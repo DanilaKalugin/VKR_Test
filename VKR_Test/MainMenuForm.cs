@@ -53,5 +53,11 @@ namespace VKR_Test
             StandingsForm form = new StandingsForm();
             form.ShowDialog();
         }
+
+        private void btnPlayerStats_Click(object sender, EventArgs e)
+        {
+            PlayerStatsForm form = new PlayerStatsForm();
+            form.ShowDialog();
+        }
     }
 }

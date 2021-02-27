@@ -48,12 +48,13 @@ namespace VKR_Test
                                         batters[i].SLG.ToString("#.000", new CultureInfo("en-US")),
                                         batters[i].OPS.ToString("#.000", new CultureInfo("en-US")));
                 dataGridView2.Rows.Add(i + 1,
-                                        Image.FromFile($"PlayerPhotos/Player{batters[i].id.ToString("0000")}.jpg"),
+                                        Image.FromFile($"PlayerPhotos/Player{batters[i].id:0000}.jpg"),
                                         $"{batters[i].FirstName} {batters[i].SecondName}",
                                         batters[i].PA,
                                         batters[i].HitByPitch,
                                         batters[i].SacrificeBunts,
                                         batters[i].SacrificeFlies,
+                                        batters[i].DoublePlay, 
                                         batters[i].XBH,
                                         batters[i].TotalBases,
                                         batters[i].ISO.ToString("#.000", new CultureInfo("en-US")));
@@ -61,7 +62,7 @@ namespace VKR_Test
 
             dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView2.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            Height = 128 + 45 * 16;
+            Height = 128 + 45 * 20;
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)

@@ -40,6 +40,7 @@ namespace VKR_Test
             this.label1 = new System.Windows.Forms.Label();
             this.btn_StartNewMatch = new System.Windows.Forms.Button();
             this.btnStandings = new System.Windows.Forms.Button();
+            this.btnPlayerStats = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +51,7 @@ namespace VKR_Test
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(750, 0);
+            this.panel1.Location = new System.Drawing.Point(780, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(350, 450);
             this.panel1.TabIndex = 0;
@@ -163,12 +164,28 @@ namespace VKR_Test
             this.btnStandings.UseVisualStyleBackColor = false;
             this.btnStandings.Click += new System.EventHandler(this.btnStandings_Click);
             // 
+            // btnPlayerStats
+            // 
+            this.btnPlayerStats.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnPlayerStats.FlatAppearance.BorderSize = 0;
+            this.btnPlayerStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlayerStats.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlayerStats.Location = new System.Drawing.Point(524, 12);
+            this.btnPlayerStats.Name = "btnPlayerStats";
+            this.btnPlayerStats.Size = new System.Drawing.Size(250, 150);
+            this.btnPlayerStats.TabIndex = 3;
+            this.btnPlayerStats.Text = "PLAYER STATISTICS";
+            this.btnPlayerStats.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnPlayerStats.UseVisualStyleBackColor = false;
+            this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(1100, 450);
+            this.ClientSize = new System.Drawing.Size(1130, 450);
+            this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnStandings);
             this.Controls.Add(this.btn_StartNewMatch);
             this.Controls.Add(this.panel1);
@@ -194,5 +211,6 @@ namespace VKR_Test
         private System.Windows.Forms.DataGridViewTextBoxColumn Age;
         private System.Windows.Forms.Button btn_StartNewMatch;
         private System.Windows.Forms.Button btnStandings;
+        private System.Windows.Forms.Button btnPlayerStats;
     }
 }
