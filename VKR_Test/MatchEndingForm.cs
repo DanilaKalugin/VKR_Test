@@ -69,7 +69,7 @@ namespace VKR_Test
             bool IsCG = OutsPlayedForThisPitcher == OutsPlayedForThisTeam;
             bool IsSHO = IsCG && RunsForThisPitcher == 0;
             
-            matchBL.AddMatchResultForThisPitcher(new PitcherResults(endedmatch.MatchID, awayTeam.TeamAbbreviation, awayTeam.PitchersPlayedInMatch[0].id, IsQS, IsCG, IsSHO));
+            matchBL.AddMatchResultForThisPitcher(new PitcherResults(awayTeam.PitchersPlayedInMatch[0].id, awayTeam.TeamAbbreviation, endedmatch.MatchID, IsQS, IsCG, IsSHO));
             
         }
 

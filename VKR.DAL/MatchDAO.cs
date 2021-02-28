@@ -37,24 +37,6 @@ namespace VKR.DAL
             }
         }
 
-        public void AddMatchResultForThisPitcher(int matchID, string teamAbbreviation, int playerID, Pitcher.PitcherResult PitcherResult)
-        {
-            using (SqlCommand command = new SqlCommand("AddMatchResultForThisPitcher", _connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@Match", SqlDbType.Int);
-                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
-                command.Parameters.Add("@Player", SqlDbType.Int);
-                command.Parameters.Add("@Result", SqlDbType.Int);
-
-                command.Prepare();
-                command.Parameters[0].Value = matchID;
-                command.Parameters[1].Value = teamAbbreviation;
-                command.Parameters[2].Value = playerID;
-                command.Parameters[3].Value = PitcherResult;
-                var result = command.ExecuteNonQuery();
-            }
-        }
         public void Dispose()
         {
             if (_connection != null)
@@ -63,7 +45,7 @@ namespace VKR.DAL
 
         public void AddMatchResultForThisPitcher(PitcherResults pitcherResults)
         {
-            using (SqlCommand command = new SqlCommand("AddMatchResultForThisPitcher", _connection))
+            using (SqlCommand command = new SqlCommand("AddMatchResultsForThisPitcher", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Match", SqlDbType.Int);

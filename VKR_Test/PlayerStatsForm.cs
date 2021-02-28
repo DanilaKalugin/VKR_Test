@@ -55,7 +55,7 @@ namespace VKR_Test
                                         batters[i].HitByPitch,
                                         batters[i].SacrificeBunts,
                                         batters[i].SacrificeFlies,
-                                        batters[i].DoublePlay, 
+                                        batters[i].DoublePlay,
                                         batters[i].XBH,
                                         batters[i].TotalBases,
                                         batters[i].ISO.ToString("#.000", new CultureInfo("en-US")));
@@ -95,7 +95,7 @@ namespace VKR_Test
                                         pitchers[i].CaughtStealing);
             }
 
-            Height = 128 + 45 * 20;
+            Height = 122 + 45 * 20;
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -111,6 +111,23 @@ namespace VKR_Test
             for (int i = 0; i < batters.Count; i++)
             {
                 dataGridView2.Rows[i].Cells[0].Value = (i + 1).ToString();
+            }
+        }
+
+        private void dataGridView4_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            for (int i = 0; i < pitchers.Count; i++)
+            {
+                dataGridView4.Rows[i].Cells[0].Value = (i + 1).ToString();
+            }
+        }
+
+        private void dataGridView3_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            for (int i = 0; i < pitchers.Count; i++)
+            {
+                dataGridView3.Rows[i].Cells[0].Value = (i + 1).ToString();
             }
         }
     }
