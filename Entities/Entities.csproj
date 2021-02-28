@@ -51,6 +51,7 @@
     <Compile Include="Match.cs" />
     <Compile Include="Pitch.cs" />
     <Compile Include="Pitcher.cs" />
+    <Compile Include="PitcherResults.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Stadium.cs" />

@@ -37,11 +37,53 @@ namespace VKR.DAL
             }
         }
 
+        public void AddMatchResultForThisPitcher(int matchID, string teamAbbreviation, int playerID, Pitcher.PitcherResult PitcherResult)
+        {
+            using (SqlCommand command = new SqlCommand("AddMatchResultForThisPitcher", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Match", SqlDbType.Int);
+                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
+                command.Parameters.Add("@Player", SqlDbType.Int);
+                command.Parameters.Add("@Result", SqlDbType.Int);
+
+                command.Prepare();
+                command.Parameters[0].Value = matchID;
+                command.Parameters[1].Value = teamAbbreviation;
+                command.Parameters[2].Value = playerID;
+                command.Parameters[3].Value = PitcherResult;
+                var result = command.ExecuteNonQuery();
+            }
+        }
         public void Dispose()
         {
             if (_connection != null)
                 _connection.Dispose();
         }
+
+        public void AddMatchResultForThisPitcher(PitcherResults pitcherResults)
+        {
+            using (SqlCommand command = new SqlCommand("AddMatchResultForThisPitcher", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Match", SqlDbType.Int);
+                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
+                command.Parameters.Add("@Player", SqlDbType.Int);
+                command.Parameters.Add("@isQS", SqlDbType.Bit);
+                command.Parameters.Add("@isCG", SqlDbType.Bit);
+                command.Parameters.Add("@isSHO", SqlDbType.Bit);
+
+                command.Prepare();
+                command.Parameters[0].Value = pitcherResults.Match;
+                command.Parameters[1].Value = pitcherResults.Team;
+                command.Parameters[2].Value = pitcherResults.Pitcher;
+                command.Parameters[3].Value = pitcherResults.IsQualityStart;
+                command.Parameters[4].Value = pitcherResults.IsCompleteGame;
+                command.Parameters[5].Value = pitcherResults.IsShutout;
+                var result = command.ExecuteNonQuery();
+            }
+        }
+
 
         public int GetNumberOfMatchesPlayed()
         {

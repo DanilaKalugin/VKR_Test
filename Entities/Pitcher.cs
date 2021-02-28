@@ -4,6 +4,8 @@ namespace Entities
 {
     public class Pitcher : Player
     {
+        public enum PitcherResult { QualityStart = 5, CompleteGame = 6, Shutout = 7 }
+
         public string ThrowingHand;
         public int Strikeouts;
         public int RunsAllowed;
@@ -28,6 +30,7 @@ namespace Entities
         public int DoublesAllowed;
         public int TriplesAllowed;
         public int HomeRunsAllowed;
+        public int DoublePlays;
 
         public int HitsAllowed { get { return SinglesAllowed + DoublesAllowed + TriplesAllowed + HomeRunsAllowed; } }
 
@@ -75,7 +78,7 @@ namespace Entities
         public Pitcher(int _id, string _firstName, string _secondName, int _Number, int _games, 
                        int _k, int _outs, int _bb, int _sac, int _sf, int _sb, int _cs, int _tbf, 
                        int _qs, int _sho, int _cg, int _w, int _l, int _sv, int _hld, int _hbp,
-                       int _singles, int _doubles, int _triples, int _hr, int _runs, int _NumberInRotation)
+                       int _singles, int _doubles, int _triples, int _hr, int _runs, int _NumberInRotation, bool IsStatistics)
         {
             id = _id;
             FirstName = _firstName;
@@ -103,7 +106,14 @@ namespace Entities
             TriplesAllowed = _triples;
             HomeRunsAllowed = _hr;
             RunsAllowed = _runs;
-            NumberInRotation = _NumberInRotation;
+            if (IsStatistics)
+            {
+                DoublePlays = _NumberInRotation;
+            }
+            else
+            {
+                NumberInRotation = _NumberInRotation;
+            }
         }
 
         public Pitcher(int _id, string _firstName, string _secondName, int _Number, int _games,

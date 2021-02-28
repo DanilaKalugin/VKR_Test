@@ -17,6 +17,7 @@ namespace VKR_Test
     {
         private readonly PlayerBL playersBL;
         List<Batter> batters;
+        List<Pitcher> pitchers;
         bool IsStandardStats;
         public PlayerStatsForm()
         {
@@ -59,9 +60,41 @@ namespace VKR_Test
                                         batters[i].TotalBases,
                                         batters[i].ISO.ToString("#.000", new CultureInfo("en-US")));
             }
-
             dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView2.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView3.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView4.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            pitchers = playersBL.GetPitchersStats().ToList();
+            for (int i = 0; i < pitchers.Count; i++)
+            {
+                dataGridView3.Rows.Add(i + 1,
+                    Image.FromFile($"PlayerPhotos/Player{pitchers[i].id.ToString("0000")}.jpg"),
+                                        $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
+                                        pitchers[i].ERA.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].Games,
+                                        pitchers[i].CompleteGames,
+                                        pitchers[i].Shutouts,
+                                        pitchers[i].IP.ToString("0.0", new CultureInfo("en-US")),
+                                        pitchers[i].HitsAllowed,
+                                        pitchers[i].RunsAllowed,
+                                        pitchers[i].HomeRunsAllowed,
+                                        pitchers[i].HitByPitch,
+                                        pitchers[i].WalksAllowed,
+                                        pitchers[i].Strikeouts,
+                                        pitchers[i].WHIP.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].BAA.ToString("#.000", new CultureInfo("en-US")));
+
+                dataGridView4.Rows.Add(i + 1,
+                                        Image.FromFile($"PlayerPhotos/Player{pitchers[i].id.ToString("0000")}.jpg"),
+                                        $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
+                                        pitchers[i].TotalBattersFaced,
+                                        pitchers[i].QualityStarts,
+                                        pitchers[i].DoublePlays,
+                                        pitchers[i].StolenBasesAllowed,
+                                        pitchers[i].CaughtStealing);
+            }
+
             Height = 128 + 45 * 20;
         }
 

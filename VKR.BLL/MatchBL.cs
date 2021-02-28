@@ -1,4 +1,5 @@
 ﻿using Entities;
+using System;
 using VKR.DAL;
 
 namespace VKR.BLL
@@ -6,6 +7,7 @@ namespace VKR.BLL
     public class MatchBL
     {
         private readonly MatchDAO matchDAO;
+        
 
         public MatchBL()
         {
@@ -30,6 +32,11 @@ namespace VKR.BLL
         public void FinishMatch(Match match)
         {
             matchDAO.FinishMatch(match);
+        }
+
+        public void AddMatchResultForThisPitcher(PitcherResults pitcherResults)
+        {
+            matchDAO.AddMatchResultForThisPitcher(pitcherResults);
         }
     }
 }

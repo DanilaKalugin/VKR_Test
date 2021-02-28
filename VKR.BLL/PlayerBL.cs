@@ -21,5 +21,10 @@ namespace VKR.BLL
         {
             return playerDAO.GetBattersStats().Where(player => (player.PA / (double)player.Games) >= 3.1).OrderByDescending(batter => batter.AVG).ToList();
         }
+
+        public List<Pitcher> GetPitchersStats()
+        {
+            return playerDAO.GetPitchersStats().Where(player => player.IP / player.Games >= 1).OrderBy(player => player.ERA).ToList();
+        }
     }
 }

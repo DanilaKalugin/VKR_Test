@@ -230,7 +230,7 @@ namespace Entities
             {
                 if (TypeOfHit == HitType.Foul)
                 {
-                    if (OutType_RandomValue > PopoutOnFoul_probability)
+                    if (OutType_RandomValue < PopoutOnFoul_probability)
                     {
                         return OutType.Popout;
                     }
@@ -291,7 +291,7 @@ namespace Entities
             Team Offense = situation.offense;
             Team Defense = situation.offense == AwayTeam ? HomeTeam : AwayTeam;
 
-            int BatterNumberComponent = (5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam : situation.BatterNumber_HomeTeam - 3));
+            int BatterNumberComponent = (5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3));
             List<GameSituation> ListOfHitsInCurrentInning = match.Where(gameSituation => gameSituation.inningNumber == situation.inningNumber && gameSituation.offense == situation.offense).ToList();
             int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double).Count() * 2 +
                               ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Single || gameSituation.result == PitchResult.Triple || gameSituation.result == PitchResult.HomeRun).Count();
@@ -323,7 +323,7 @@ namespace Entities
             Swing_RandomGenerator = new Random(3 + new Random().Next(1,3000));
             Hitting_RandomGenerator = new Random(5 + new Random().Next(1, 5000));
             HitType_RandomGenerator = new Random(7 + new Random().Next(1, 7990));
-            OutType_RandomGenerator = new Random(11 + new Random().Next(1, 11000));
+            OutType_RandomGenerator = new Random(11 + new Random().Next(1, 1100));
             OtherCondition_RandomGenerator = new Random(13 + new Random().Next(1, 1300));
         }
     }

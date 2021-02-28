@@ -87,5 +87,45 @@ namespace VKR.DAL
                 }
             }
         }
+
+        public IEnumerable<Pitcher> GetPitchersStats()
+        {
+            using (SqlCommand command = new SqlCommand("ReturnPitcherStatistics", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Prepare();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["PlayerID"];
+                        string FirstName = (string)reader["PlayerFirstName"];
+                        string SecondName = (string)reader["PlayerSecondName"]; 
+                        int number = (int)reader["PlayerNumber"];
+                        int Games = (int)reader["G"];
+                        int Strikeouts = (int)reader["K"];
+                        int Outs = (int)reader["Outs"];
+                        int Runs = (int)reader["R"];
+                        int Walks = (int)reader["BB"];
+                        int Single = (int)reader["1B"];
+                        int Double = (int)reader["2B"];
+                        int Triple = (int)reader["3B"];
+                        int HomeRun = (int)reader["HR"];
+                        int BattersFaced = (int)reader["TBF"];
+                        int HitByPitch = (int)reader["HBP"];
+                        int SacFlies = (int)reader["SF"];
+                        int Bunts = (int)reader["SAC"];
+                        int StolenBase = (int)reader["SB"];
+                        int CaughtStealing = (int)reader["CS"];
+                        int DoublePlay = (int)reader["GIDP"];
+                        int QualityStarts = (int)reader["QS"];
+                        int CompleteGames = (int)reader["CG"];
+                        int Shutouts = (int)reader["SHO"];
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, true);
+                    }
+                }
+            }
+        }
     }
 }

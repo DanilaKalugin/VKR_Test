@@ -1,22 +1,22 @@
 ﻿using Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using VKR.BLL;
 
 namespace VKR_Test
 {
     public partial class MatchEndingForm : Form
     {
         Match endedmatch;
+        private readonly MatchBL matchBL;
+
         public MatchEndingForm(Match match)
         {
             InitializeComponent();
+            matchBL = new MatchBL();
             endedmatch = match;
         }
 
@@ -54,6 +54,23 @@ namespace VKR_Test
 
             UpdateScoreboard(away1, away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, endedmatch, endedmatch.AwayTeam);
             UpdateScoreboard(home1, home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, endedmatch, endedmatch.HomeTeam);
+
+            MatchResultForPitcherAnalysis(endedmatch, endedmatch.AwayTeam);
+            MatchResultForPitcherAnalysis(endedmatch, endedmatch.HomeTeam);
+        }
+
+        private void MatchResultForPitcherAnalysis(Match endedmatch, Team awayTeam)
+        {
+            int RunsForThisPitcher = endedmatch.atBats.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.Run && atBat.Pitcher == awayTeam.PitchersPlayedInMatch[0].id);
+            int OutsPlayedForThisTeam = endedmatch.atBats.Where(atBat => atBat.Defense == awayTeam.TeamAbbreviation).Select(atBat => atBat.outs).Sum();
+            int OutsPlayedForThisPitcher = endedmatch.atBats.Where(atBat => atBat.Pitcher == awayTeam.PitchersPlayedInMatch[0].id).Select(atBat => atBat.outs).Sum();
+
+            bool IsQS = (RunsForThisPitcher <= 3 && OutsPlayedForThisPitcher / 3 >= 6);
+            bool IsCG = OutsPlayedForThisPitcher == OutsPlayedForThisTeam;
+            bool IsSHO = IsCG && RunsForThisPitcher == 0;
+            
+            matchBL.AddMatchResultForThisPitcher(new PitcherResults(endedmatch.MatchID, awayTeam.TeamAbbreviation, awayTeam.PitchersPlayedInMatch[0].id, IsQS, IsCG, IsSHO));
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)
