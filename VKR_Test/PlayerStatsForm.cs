@@ -18,7 +18,6 @@ namespace VKR_Test
         private readonly PlayerBL playersBL;
         List<Batter> batters;
         List<Pitcher> pitchers;
-        bool IsStandardStats;
         public PlayerStatsForm()
         {
             InitializeComponent();
@@ -31,7 +30,6 @@ namespace VKR_Test
             for (int i = 0; i < batters.Count; i++)
             {
                 dataGridView1.Rows.Add(i + 1,
-                                        Image.FromFile($"PlayerPhotos/Player{batters[i].id.ToString("0000")}.jpg"),
                                         $"{batters[i].FirstName} {batters[i].SecondName}",
                                         batters[i].Games,
                                         batters[i].AtBats,
@@ -49,7 +47,6 @@ namespace VKR_Test
                                         batters[i].SLG.ToString("#.000", new CultureInfo("en-US")),
                                         batters[i].OPS.ToString("#.000", new CultureInfo("en-US")));
                 dataGridView2.Rows.Add(i + 1,
-                                        Image.FromFile($"PlayerPhotos/Player{batters[i].id:0000}.jpg"),
                                         $"{batters[i].FirstName} {batters[i].SecondName}",
                                         batters[i].PA,
                                         batters[i].HitByPitch,
@@ -60,16 +57,15 @@ namespace VKR_Test
                                         batters[i].TotalBases,
                                         batters[i].ISO.ToString("#.000", new CultureInfo("en-US")));
             }
-            dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView2.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView3.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView4.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView2.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView3.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView4.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
             pitchers = playersBL.GetPitchersStats().ToList();
             for (int i = 0; i < pitchers.Count; i++)
             {
                 dataGridView3.Rows.Add(i + 1,
-                    Image.FromFile($"PlayerPhotos/Player{pitchers[i].id.ToString("0000")}.jpg"),
                                         $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
                                         pitchers[i].ERA.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].Games,
@@ -86,7 +82,6 @@ namespace VKR_Test
                                         pitchers[i].BAA.ToString("#.000", new CultureInfo("en-US")));
 
                 dataGridView4.Rows.Add(i + 1,
-                                        Image.FromFile($"PlayerPhotos/Player{pitchers[i].id.ToString("0000")}.jpg"),
                                         $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
                                         pitchers[i].TotalBattersFaced,
                                         pitchers[i].QualityStarts,

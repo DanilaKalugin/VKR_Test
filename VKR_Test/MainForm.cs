@@ -332,8 +332,8 @@ namespace VKR_Test
                     currentMatch.atBats.Add(runForDB);
                     matchBL.AddNewAtBat(runForDB);
                 }
-                currentMatch.AwayTeam.BattingLineup = teamsBL.GetStartingLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.DHRule);
-                currentMatch.HomeTeam.BattingLineup = teamsBL.GetStartingLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.DHRule);
+                currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
+                currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
 
                 teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
                 teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
@@ -348,6 +348,7 @@ namespace VKR_Test
                 form.ShowDialog();
                 DisplayPitcherStats();
             }
+
             DisplayingCurrentSituation(newGameSituation);
             DisplayCurrentRunners(newGameSituation);
             IsFinishOfMatch(currentMatch);
@@ -407,8 +408,8 @@ namespace VKR_Test
                 AtBat LastAtBat = new AtBat(currentMatch, runs);
                 currentMatch.atBats.Add(LastAtBat);
                 matchBL.AddNewAtBat(LastAtBat);
-                currentMatch.AwayTeam.BattingLineup = teamsBL.GetStartingLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.DHRule);
-                currentMatch.HomeTeam.BattingLineup = teamsBL.GetStartingLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.DHRule);
+                currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
+                currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
 
                 teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
                 teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);

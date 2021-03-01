@@ -1,4 +1,5 @@
 ﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VKR.DAL;
@@ -86,6 +87,11 @@ namespace VKR.BLL
             pitcher.TriplesAllowed = PitcherWithNewStats.TriplesAllowed;
             pitcher.WalksAllowed = PitcherWithNewStats.WalksAllowed;
             pitcher.RunsAllowed = PitcherWithNewStats.RunsAllowed;
+        }
+
+        public List<Batter> GetCurrentLineupForThisMatch(string Team, int Match)
+        {
+            return teamsDAO.GetCurrentLineupForThisMatch(Team, Match).ToList();
         }
     }
 }
