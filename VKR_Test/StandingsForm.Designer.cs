@@ -29,18 +29,18 @@ namespace VKR_Test
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.TeamColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamWins = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamLosses = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamGB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamPCT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,14 +57,15 @@ namespace VKR_Test
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TeamColor,
@@ -73,14 +74,14 @@ namespace VKR_Test
             this.TeamLosses,
             this.TeamGB,
             this.TeamPCT});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.dataGridView1.Location = new System.Drawing.Point(12, 45);
@@ -91,49 +92,6 @@ namespace VKR_Test
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(776, 378);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // TeamColor
-            // 
-            this.TeamColor.FillWeight = 20F;
-            this.TeamColor.HeaderText = "";
-            this.TeamColor.Name = "TeamColor";
-            this.TeamColor.ReadOnly = true;
-            // 
-            // TeamName
-            // 
-            this.TeamName.FillWeight = 300F;
-            this.TeamName.HeaderText = "Team";
-            this.TeamName.Name = "TeamName";
-            this.TeamName.ReadOnly = true;
-            this.TeamName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // TeamWins
-            // 
-            this.TeamWins.FillWeight = 40F;
-            this.TeamWins.HeaderText = "W";
-            this.TeamWins.Name = "TeamWins";
-            this.TeamWins.ReadOnly = true;
-            // 
-            // TeamLosses
-            // 
-            this.TeamLosses.FillWeight = 40F;
-            this.TeamLosses.HeaderText = "L";
-            this.TeamLosses.Name = "TeamLosses";
-            this.TeamLosses.ReadOnly = true;
-            // 
-            // TeamGB
-            // 
-            this.TeamGB.FillWeight = 40F;
-            this.TeamGB.HeaderText = "GB";
-            this.TeamGB.Name = "TeamGB";
-            this.TeamGB.ReadOnly = true;
-            // 
-            // TeamPCT
-            // 
-            this.TeamPCT.FillWeight = 40F;
-            this.TeamPCT.HeaderText = "PCT";
-            this.TeamPCT.Name = "TeamPCT";
-            this.TeamPCT.ReadOnly = true;
             // 
             // comboBox1
             // 
@@ -177,6 +135,55 @@ namespace VKR_Test
             this.label2.Text = "CURRENT STANDINGS";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // TeamColor
+            // 
+            this.TeamColor.FillWeight = 20F;
+            this.TeamColor.HeaderText = "";
+            this.TeamColor.Name = "TeamColor";
+            this.TeamColor.ReadOnly = true;
+            this.TeamColor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TeamName
+            // 
+            this.TeamName.FillWeight = 300F;
+            this.TeamName.HeaderText = "Team";
+            this.TeamName.Name = "TeamName";
+            this.TeamName.ReadOnly = true;
+            this.TeamName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TeamName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TeamWins
+            // 
+            this.TeamWins.FillWeight = 40F;
+            this.TeamWins.HeaderText = "W";
+            this.TeamWins.Name = "TeamWins";
+            this.TeamWins.ReadOnly = true;
+            this.TeamWins.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TeamLosses
+            // 
+            this.TeamLosses.FillWeight = 40F;
+            this.TeamLosses.HeaderText = "L";
+            this.TeamLosses.Name = "TeamLosses";
+            this.TeamLosses.ReadOnly = true;
+            this.TeamLosses.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TeamGB
+            // 
+            this.TeamGB.FillWeight = 40F;
+            this.TeamGB.HeaderText = "GB";
+            this.TeamGB.Name = "TeamGB";
+            this.TeamGB.ReadOnly = true;
+            this.TeamGB.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TeamPCT
+            // 
+            this.TeamPCT.FillWeight = 40F;
+            this.TeamPCT.HeaderText = "PCT";
+            this.TeamPCT.Name = "TeamPCT";
+            this.TeamPCT.ReadOnly = true;
+            this.TeamPCT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // StandingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,12 +208,12 @@ namespace VKR_Test
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeamColor;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeamName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeamWins;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeamLosses;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeamGB;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeamPCT;
-        private System.Windows.Forms.Label label2;
     }
 }

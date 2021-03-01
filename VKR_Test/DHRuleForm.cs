@@ -33,6 +33,7 @@ namespace VKR_Test
                 radioButton2.Checked = true;
                 radioButton1.Checked = false;
             }
+            playingWithDH = radioButton1.Checked;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

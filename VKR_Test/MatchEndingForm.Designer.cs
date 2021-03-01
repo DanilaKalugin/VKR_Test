@@ -109,7 +109,7 @@ namespace VKR_Test
             // 
             this.label2.BackColor = System.Drawing.Color.Gainsboro;
             this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("MicroFLF", 54F);
             this.label2.Location = new System.Drawing.Point(148, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(140, 300);
@@ -120,7 +120,7 @@ namespace VKR_Test
             // 
             this.label1.BackColor = System.Drawing.Color.Gainsboro;
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("MicroFLF", 54F);
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 300);
@@ -686,6 +686,7 @@ namespace VKR_Test
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MatchEndingForm";
             this.Text = "MatchEndingForm";

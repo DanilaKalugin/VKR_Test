@@ -15,14 +15,22 @@ namespace VKR_Test
         int CurrentAwayColor;
         int AwayTeamNumber;
         int HomeTeamNumber;
+        private static Random HomeTeamRandomGenerator;
+        private static Random AwayTeamRandomGenerator;
+
+        static TeamsSelectForm()
+        {
+            HomeTeamRandomGenerator = new Random();
+            AwayTeamRandomGenerator = new Random();
+        }
 
         public TeamsSelectForm()
         {
             InitializeComponent();
             teamsBL = new TeamsBL();
             teams = teamsBL.GetAllTeams();
-            AwayTeamNumber = 0;
-            HomeTeamNumber = 1;
+            AwayTeamNumber = AwayTeamRandomGenerator.Next(0, 29) - 1;
+            HomeTeamNumber = (AwayTeamNumber + HomeTeamRandomGenerator.Next(1,29)) % 30;
         }
 
         private void TeamsSelectForm_Load(object sender, EventArgs e)
