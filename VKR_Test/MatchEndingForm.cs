@@ -46,8 +46,8 @@ namespace VKR_Test
             label19.Text = endedmatch.HomeTeam.TeamAbbreviation.ToUpper();
             label19.BackColor = endedmatch.HomeTeam.TeamColorForThisMatch;
 
-            panel1.BackgroundImage = Image.FromFile($"BigTeamLogos/{endedmatch.AwayTeam.TeamAbbreviation}.png");
-            panel2.BackgroundImage = Image.FromFile($"BigTeamLogos/{endedmatch.HomeTeam.TeamAbbreviation}.png");
+            panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{endedmatch.AwayTeam.TeamAbbreviation}.png");
+            panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{endedmatch.HomeTeam.TeamAbbreviation}.png");
 
             label1.Text = endedmatch.gameSituations.Last().AwayTeamRuns.ToString();
             label2.Text = endedmatch.gameSituations.Last().HomeTeamRuns.ToString();

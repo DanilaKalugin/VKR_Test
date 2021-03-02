@@ -94,10 +94,12 @@ namespace VKR.DAL
                         int StealingBase = (int)reader["StealingBaseSuccessfulAttemptProbability"];
                         int Bunt = (int)reader["SuccessfulBuntAttemptProbability"];
                         bool DHRule = (bool)reader["LeagueDHRule"];
+                        int W = (int)reader["W"];
+                        int L = (int)reader["L"];
                         yield return new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
                                               Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
                                               FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, StealingBase,
-                                              Bunt, stadium, DHRule);
+                                              Bunt, stadium, DHRule, W, L);
                     }
                 }
             }

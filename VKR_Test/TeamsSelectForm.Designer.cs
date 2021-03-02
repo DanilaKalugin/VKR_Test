@@ -61,6 +61,8 @@ namespace VKR_Test
             this.btnAcceptTeamsSelection = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.AwayTeamBalance = new System.Windows.Forms.Label();
+            this.HomeTeamBalance = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -568,12 +570,36 @@ namespace VKR_Test
             this.label16.Text = "HOME";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // AwayTeamBalance
+            // 
+            this.AwayTeamBalance.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AwayTeamBalance.ForeColor = System.Drawing.Color.White;
+            this.AwayTeamBalance.Location = new System.Drawing.Point(315, 59);
+            this.AwayTeamBalance.Name = "AwayTeamBalance";
+            this.AwayTeamBalance.Size = new System.Drawing.Size(84, 45);
+            this.AwayTeamBalance.TabIndex = 27;
+            this.AwayTeamBalance.Text = "label17";
+            this.AwayTeamBalance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // HomeTeamBalance
+            // 
+            this.HomeTeamBalance.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HomeTeamBalance.ForeColor = System.Drawing.Color.White;
+            this.HomeTeamBalance.Location = new System.Drawing.Point(532, 59);
+            this.HomeTeamBalance.Name = "HomeTeamBalance";
+            this.HomeTeamBalance.Size = new System.Drawing.Size(84, 45);
+            this.HomeTeamBalance.TabIndex = 28;
+            this.HomeTeamBalance.Text = "label18";
+            this.HomeTeamBalance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // TeamsSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(934, 450);
+            this.Controls.Add(this.HomeTeamBalance);
+            this.Controls.Add(this.AwayTeamBalance);
             this.Controls.Add(this.btnAcceptTeamsSelection);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label11);
@@ -650,5 +676,7 @@ namespace VKR_Test
         private System.Windows.Forms.Button btnAcceptTeamsSelection;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label AwayTeamBalance;
+        private System.Windows.Forms.Label HomeTeamBalance;
     }
 }

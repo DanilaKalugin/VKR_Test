@@ -82,7 +82,7 @@ namespace Entities
         public Team(string abbreviation, string city, string name, int _StrikeZoneProbability, int _Swing_SZ_Probability, int _Swing_NotSZ_Probability,
                     int _Hit_Probability, int _Foul_Probability, int _Single_Probability, int _Double_Probability, int _HR_Probability,
                     int _PopoutOnFoul_Probability, int _FlyoutOnHR_Probability, int _Groundout_Probability, int _Flyout_Probability, int _sacFly_Probability,
-                    int _DoublePlayProbability, int _SuccessfulBaseSteling_Probability, int _SuccessfulBunt_Probability, int _Stadium, bool _DHRule)
+                    int _DoublePlayProbability, int _SuccessfulBaseSteling_Probability, int _SuccessfulBunt_Probability, int _Stadium, bool _DHRule, int w, int l)
         {
             TeamAbbreviation = abbreviation;
             TeamCity = city;
@@ -106,6 +106,8 @@ namespace Entities
             Stadium = _Stadium;
             PitchersPlayedInMatch = new List<Pitcher>();
             DHRule = _DHRule;
+            Wins = w;
+            Losses = l;
         }
 
         public Team (string abbreviation, string Name, int _W, int _L, string _League, string _Division)
