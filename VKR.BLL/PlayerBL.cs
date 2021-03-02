@@ -26,5 +26,41 @@ namespace VKR.BLL
         {
             return playerDAO.GetPitchersStats().Where(player => player.IP / player.Games >= 1).OrderBy(player => player.ERA).ToList();
         }
+
+        public List<List<List<PlayerInLineup>>> GetLineups()
+        {
+            List<PlayerInLineup> ungroupedPlayers = playerDAO.GetStartingLineups().ToList();
+            List<string> Teams = ungroupedPlayers.Select(player => player.Team).Distinct().ToList();
+            List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).Distinct().ToList();
+
+            List<List<List<PlayerInLineup>>> groupedPlayers = new List<List<List<PlayerInLineup>>>();
+            for (int i = 0; i < Teams.Count; i++)
+            {
+                groupedPlayers.Add(new List<List<PlayerInLineup>>());
+                for (int j = 0; j < Lineups.Count; j++)
+                {
+                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == Teams[i] && player.LineupType == Lineups[j]).OrderBy(player => player.NumberInLineup).ToList());
+                }
+            }
+            return groupedPlayers;
+        }
+
+        public List<List<List<PlayerInLineup>>> GetBench()
+        {
+            List<PlayerInLineup> ungroupedPlayers = playerDAO.GetBench().ToList();
+            List<string> Teams = ungroupedPlayers.Select(player => player.Team).Distinct().ToList();
+            List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
+
+            List<List<List<PlayerInLineup>>> groupedPlayers = new List<List<List<PlayerInLineup>>>();
+            for (int i = 0; i < Teams.Count; i++)
+            {
+                groupedPlayers.Add(new List<List<PlayerInLineup>>());
+                for (int j = 0; j < Lineups.Count; j++)
+                {
+                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == Teams[i] && player.LineupType == Lineups[j]).OrderBy(player => player.NumberInLineup).ToList());
+                }
+            }
+            return groupedPlayers;
+        }
     }
 }

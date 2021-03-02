@@ -53,6 +53,7 @@
     <Compile Include="Pitcher.cs" />
     <Compile Include="PitcherResults.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerInLineup.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Stadium.cs" />
     <Compile Include="Team.cs" />

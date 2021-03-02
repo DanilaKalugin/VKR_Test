@@ -30,7 +30,7 @@ namespace VKR_Test
             InitializeComponent();
             teamsBL = new TeamsBL();
             teams = teamsBL.GetAllTeams();
-            AwayTeamNumber = AwayTeamRandomGenerator.Next(0, 29) - 1;
+            AwayTeamNumber = AwayTeamRandomGenerator.Next(0, 29);
             HomeTeamNumber = (AwayTeamNumber + HomeTeamRandomGenerator.Next(1, 29)) % 30;
         }
 

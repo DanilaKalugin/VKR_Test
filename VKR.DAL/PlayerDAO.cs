@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace VKR.DAL
 {
-    public class PlayerDAO: IDisposable
+    public class PlayerDAO : IDisposable
     {
         private SqlConnection _connection;
 
@@ -78,7 +78,7 @@ namespace VKR.DAL
                         int Runs = (int)reader["R"];
                         int SacFlies = (int)reader["SF"];
                         int Bunts = (int)reader["SAC"];
-                        int RBI = (int)reader["RBI"];;
+                        int RBI = (int)reader["RBI"]; ;
                         int PA = (int)reader["PA"];
                         int GIDP = (int)reader["GIDP"];
 
@@ -101,7 +101,7 @@ namespace VKR.DAL
                     {
                         int id = (int)reader["PlayerID"];
                         string FirstName = (string)reader["PlayerFirstName"];
-                        string SecondName = (string)reader["PlayerSecondName"]; 
+                        string SecondName = (string)reader["PlayerSecondName"];
                         int number = (int)reader["PlayerNumber"];
                         int Games = (int)reader["G"];
                         int Strikeouts = (int)reader["K"];
@@ -123,6 +123,59 @@ namespace VKR.DAL
                         int CompleteGames = (int)reader["CG"];
                         int Shutouts = (int)reader["SHO"];
                         yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, true);
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<PlayerInLineup> GetStartingLineups()
+        {
+            using (SqlCommand command = new SqlCommand("GetStartingLineups", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Prepare();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["PlayerID"];
+                        string FirstName = (string)reader["PlayerFirstName"];
+                        string SecondName = (string)reader["PlayerSecondName"];
+                        int number = (int)reader["PlayerNumber"];
+                        string Place = (string)reader["PlaceOfBirth"];
+                        DateTime dob = (DateTime)reader["PlayerDateOfBirth"];
+                        string Team = (string)reader["TeamID"];
+                        int Lineup = (int)reader["LineupType"];
+                        int NumberInLineup = (int)reader["PlayerPositionInLineup"];
+                        string Position = (string)reader["PlayerPosition"];
+                        yield return new PlayerInLineup(id, FirstName, SecondName, dob, Place, number, Lineup, Team, Position, NumberInLineup);
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<PlayerInLineup> GetBench()
+        {
+            using (SqlCommand command = new SqlCommand("GetBench", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Prepare();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["PlayerID"];
+                        string FirstName = (string)reader["PlayerFirstName"];
+                        string SecondName = (string)reader["PlayerSecondName"];
+                        int number = (int)reader["PlayerNumber"];
+                        string Place = (string)reader["PlaceOfBirth"];
+                        DateTime dob = (DateTime)reader["PlayerDateOfBirth"];
+                        string Team = (string)reader["TeamID"];
+                        int Lineup = (int)reader["LineupType"];
+                        int NumberInLineup = (int)reader["PositionInLineup"];
+                        yield return new PlayerInLineup(id, FirstName, SecondName, dob, Place, number, Lineup, Team, NumberInLineup);
                     }
                 }
             }

@@ -241,11 +241,7 @@ namespace VKR_Test
                                                                               atBat.AtBatResult == AtBat.AtBatType.Popout ||
                                                                               atBat.AtBatResult == AtBat.AtBatType.Strikeout ||
                                                                               atBat.AtBatResult == AtBat.AtBatType.Flyout ||
-                                                                              atBat.AtBatResult == AtBat.AtBatType.Groundout)).Count() == 0)
-            {
-                BatterStats.Text = batter.AVG.ToString("#.000", new CultureInfo("en-US"));
-            }
-            else
+                                                                              atBat.AtBatResult == AtBat.AtBatType.Groundout)).Count() > 0)
             {
                 int Hits = currentMatch.atBats.Where(atBat => atBat.Batter == batter.id && (atBat.AtBatResult == AtBat.AtBatType.Double ||
                                                                                atBat.AtBatResult == AtBat.AtBatType.Triple ||
@@ -261,6 +257,15 @@ namespace VKR_Test
                                                                               atBat.AtBatResult == AtBat.AtBatType.Groundout)).Count();
                 BatterStats.Text = Hits + " for " + AtBats;
             }
+            else if (currentMatch.atBats.Where(atBat => atBat.Batter == batter.id && (atBat.AtBatResult == AtBat.AtBatType.HitByPitch)).Count() > 0)
+            {
+                BatterStats.Text = "HBP";
+            }
+            else
+            {
+                BatterStats.Text = batter.AVG.ToString("#.000", new CultureInfo("en-US"));
+            }
+
         }
         private void NewBatterDisplaying(Batter batter)
         {

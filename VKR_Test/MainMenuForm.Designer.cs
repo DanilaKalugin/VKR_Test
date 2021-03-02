@@ -41,6 +41,7 @@ namespace VKR_Test
             this.btn_StartNewMatch = new System.Windows.Forms.Button();
             this.btnStandings = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
+            this.btnLineups = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -179,12 +180,28 @@ namespace VKR_Test
             this.btnPlayerStats.UseVisualStyleBackColor = false;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
             // 
+            // btnLineups
+            // 
+            this.btnLineups.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnLineups.FlatAppearance.BorderSize = 0;
+            this.btnLineups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLineups.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLineups.Location = new System.Drawing.Point(12, 168);
+            this.btnLineups.Name = "btnLineups";
+            this.btnLineups.Size = new System.Drawing.Size(250, 150);
+            this.btnLineups.TabIndex = 4;
+            this.btnLineups.Text = "STARTING LINEUPS";
+            this.btnLineups.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnLineups.UseVisualStyleBackColor = false;
+            this.btnLineups.Click += new System.EventHandler(this.btnLineups_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1130, 450);
+            this.Controls.Add(this.btnLineups);
             this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnStandings);
             this.Controls.Add(this.btn_StartNewMatch);
@@ -212,5 +229,6 @@ namespace VKR_Test
         private System.Windows.Forms.Button btn_StartNewMatch;
         private System.Windows.Forms.Button btnStandings;
         private System.Windows.Forms.Button btnPlayerStats;
+        private System.Windows.Forms.Button btnLineups;
     }
 }

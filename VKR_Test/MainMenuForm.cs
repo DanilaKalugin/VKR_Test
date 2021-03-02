@@ -12,6 +12,7 @@ namespace VKR_Test
     {
         private readonly ManBL manBL;
         private readonly TeamsBL teams;
+        private readonly PlayerBL players;
 
         public MainMenuForm()
         {
@@ -57,6 +58,12 @@ namespace VKR_Test
         private void btnPlayerStats_Click(object sender, EventArgs e)
         {
             PlayerStatsForm form = new PlayerStatsForm();
+            form.ShowDialog();
+        }
+
+        private void btnLineups_Click(object sender, EventArgs e)
+        {
+            LineupsForm form = new LineupsForm();
             form.ShowDialog();
         }
     }

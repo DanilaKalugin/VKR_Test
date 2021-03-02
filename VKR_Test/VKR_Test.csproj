@@ -65,6 +65,12 @@
     <Compile Include="HomeRunCelebrationForm.Designer.cs">
       <DependentUpon>HomeRunCelebrationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LineupsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LineupsForm.Designer.cs">
+      <DependentUpon>LineupsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HomeRunCelebrationForm.resx">
       <DependentUpon>HomeRunCelebrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LineupsForm.resx">
+      <DependentUpon>LineupsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -214,6 +223,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
