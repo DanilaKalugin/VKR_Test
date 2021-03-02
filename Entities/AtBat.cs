@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace Entities
 {
@@ -19,7 +15,6 @@ namespace Entities
         public int outs;
         public int RBI;
         public int Inning;
-        private Match match;
 
         public AtBatType TypeDefinitionForLastAtBat(GameSituation situation)
         {
