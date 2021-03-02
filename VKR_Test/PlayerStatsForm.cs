@@ -18,10 +18,15 @@ namespace VKR_Test
         private readonly PlayerBL playersBL;
         List<Batter> batters;
         List<Pitcher> pitchers;
+        private enum SortMode { Ascending, Descending };
+        private SortMode[] sortingStandardPitchers;
+
         public PlayerStatsForm()
         {
             InitializeComponent();
             playersBL = new PlayerBL();
+            sortingStandardPitchers = new SortMode[4];
+            sortingStandardPitchers[0] = SortMode.Ascending;
         }
 
         private void PlayerStatsForm_Load(object sender, EventArgs e)
@@ -119,11 +124,95 @@ namespace VKR_Test
 
         private void dataGridView3_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
-            for (int i = 0; i < pitchers.Count; i++)
+            switch (e.ColumnIndex)
             {
-                dataGridView3.Rows[i].Cells[0].Value = (i + 1).ToString();
+                case 2:
+                    {
+                        if (sortingStandardPitchers[0] == SortMode.Ascending)
+                        {
+                            pitchers = pitchers.OrderByDescending(pitcher => pitcher.ERA).ToList();
+                            sortingStandardPitchers[0] = SortMode.Descending;
+                        }
+                        else
+                        {
+                            pitchers = pitchers.OrderBy(pitcher => pitcher.ERA).ToList();
+                            sortingStandardPitchers[0] = SortMode.Ascending;
+                        }
+                        break;
+                    }
+                case 6:
+                    {
+                        if (sortingStandardPitchers[1] == SortMode.Ascending)
+                        {
+                            pitchers = pitchers.OrderByDescending(pitcher => pitcher.IP).ToList();
+                            sortingStandardPitchers[1] = SortMode.Descending;
+                        }
+                        else
+                        {
+                            pitchers = pitchers.OrderBy(pitcher => pitcher.IP).ToList();
+                            sortingStandardPitchers[1] = SortMode.Ascending;
+                        }
+                        break;
+                    }
+                case 13:
+                    {
+                        if (sortingStandardPitchers[2] == SortMode.Ascending)
+                        {
+                            pitchers = pitchers.OrderByDescending(pitcher => pitcher.WHIP).ToList();
+                            sortingStandardPitchers[2] = SortMode.Descending;
+                        }
+                        else
+                        {
+                            pitchers = pitchers.OrderBy(pitcher => pitcher.WHIP).ToList();
+                            sortingStandardPitchers[2] = SortMode.Ascending;
+                        }
+                        break;
+                    }
+                case 14:
+                    {
+                        if (sortingStandardPitchers[2] == SortMode.Ascending)
+                        {
+                            pitchers = pitchers.OrderByDescending(pitcher => pitcher.BAA).ToList();
+                            sortingStandardPitchers[3] = SortMode.Descending;
+                        }
+                        else
+                        {
+                            pitchers = pitchers.OrderBy(pitcher => pitcher.BAA).ToList();
+                            sortingStandardPitchers[3] = SortMode.Ascending;
+                        }
+                        break;
+                    }
             }
+            if (e.ColumnIndex == 2 || e.ColumnIndex == 6 || e.ColumnIndex == 13 || e.ColumnIndex == 14)
+            {
+                dataGridView3.Rows.Clear();
+                for (int i = 0; i < pitchers.Count; i++)
+                {
+                    dataGridView3.Rows.Add(i + 1,
+                                            $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
+                                            pitchers[i].ERA.ToString("0.00", new CultureInfo("en-US")),
+                                            pitchers[i].Games,
+                                            pitchers[i].CompleteGames,
+                                            pitchers[i].Shutouts,
+                                            pitchers[i].IP.ToString("0.0", new CultureInfo("en-US")),
+                                            pitchers[i].HitsAllowed,
+                                            pitchers[i].RunsAllowed,
+                                            pitchers[i].HomeRunsAllowed,
+                                            pitchers[i].HitByPitch,
+                                            pitchers[i].WalksAllowed,
+                                            pitchers[i].Strikeouts,
+                                            pitchers[i].WHIP.ToString("0.00", new CultureInfo("en-US")),
+                                            pitchers[i].BAA.ToString("#.000", new CultureInfo("en-US")));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < pitchers.Count; i++)
+                {
+                    dataGridView3.Rows[i].Cells[0].Value = (i + 1).ToString();
+                }
+            }
+
         }
     }
 }
