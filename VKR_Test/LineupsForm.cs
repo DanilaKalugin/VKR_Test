@@ -16,7 +16,6 @@ namespace VKR_Test
         List<Team> teams;
         int TeamNumber;
         int LineupNumber;
-        bool LineupChanged;
         string[] Lineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
 
         public LineupsForm()
@@ -35,14 +34,12 @@ namespace VKR_Test
         {
             TeamNumber = TeamNumber < teams.Count - 1 ? TeamNumber + 1 : 0;
             DisplayRoster(TeamNumber, LineupNumber);
-            LineupChanged = true;
         }
 
         private void btnDecreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {
             TeamNumber = TeamNumber > 0 ? TeamNumber - 1 : teams.Count - 1;
             DisplayRoster(TeamNumber, LineupNumber);
-            LineupChanged = true;
         }
 
         private void DisplayRoster(int TeamNumber, int LineupNumber)
@@ -57,8 +54,6 @@ namespace VKR_Test
             label7.ForeColor = Color.White;
             dataGridView1.DefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.White;
             label1.Text = Lineups[LineupNumber];
 
             btnIncreaseTeamNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
@@ -80,44 +75,46 @@ namespace VKR_Test
         {
             LineupNumber = LineupNumber < lineups[TeamNumber].Count - 1 ? LineupNumber + 1 : 0;
             DisplayRoster(TeamNumber, LineupNumber);
-            LineupChanged = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             LineupNumber = LineupNumber > 0 ? LineupNumber - 1 : lineups[TeamNumber].Count - 1;
             DisplayRoster(TeamNumber, LineupNumber);
-            LineupChanged = true;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index].id:0000}.jpg");
-                label2.Text = $"#{lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index].PlayerNumber}";
-                label3.Text = $"{lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index].FirstName} {lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index].SecondName}".ToUpper();
-                label4.Text = $"{lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index].PlaceOfBirth}".ToUpper();
-                label5.Text = $"{lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index].DateOfBirth.ToShortDateString()}".ToUpper();
-                LineupChanged = false;
+                ShowNewPlayer(dataGridView1, dataGridView2, lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index]);
             }
         }
 
-        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView2.SelectedRows.Count > 0 && ! LineupChanged)
+            ShowNewPlayer(dataGridView1, dataGridView2, lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index]);
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowNewPlayer(dataGridView2, dataGridView1, bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index]);
+        }
+
+        private void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, PlayerInLineup player)
+        {
+            dgv2.DefaultCellStyle.SelectionBackColor = Color.Gainsboro;
+            dgv1.DefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
+            dgv1.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv2.DefaultCellStyle.SelectionForeColor = Color.Black;
+            if (dgv1.SelectedRows.Count > 0)
             {
-                panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index].id:0000}.jpg");
-                label2.Text = $"#{bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index].PlayerNumber}";
-                label3.Text = $"{bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index].FirstName} {bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index].SecondName}".ToUpper();
-                label4.Text = $"{bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index].PlaceOfBirth}".ToUpper();
-                label5.Text = $"{bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index].DateOfBirth.ToShortDateString()}".ToUpper();
+                panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.jpg");
+                label2.Text = $"#{player.PlayerNumber}";
+                label3.Text = $"{player.FirstName} {player.SecondName}".ToUpper();
+                label4.Text = $"{player.PlaceOfBirth}".ToUpper();
+                label5.Text = $"{player.DateOfBirth.ToShortDateString()}".ToUpper();
             }
-        }
-
-        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            LineupChanged = true;
         }
     }
 }

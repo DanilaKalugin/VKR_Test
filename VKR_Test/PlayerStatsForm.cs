@@ -170,7 +170,7 @@ namespace VKR_Test
                     }
                 case 14:
                     {
-                        if (sortingStandardPitchers[2] == SortMode.Ascending)
+                        if (sortingStandardPitchers[3] == SortMode.Ascending)
                         {
                             pitchers = pitchers.OrderByDescending(pitcher => pitcher.BAA).ToList();
                             sortingStandardPitchers[3] = SortMode.Descending;
