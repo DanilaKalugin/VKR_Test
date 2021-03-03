@@ -291,6 +291,7 @@ namespace VKR_Test
             this.dataGridView2.Size = new System.Drawing.Size(580, 199);
             this.dataGridView2.TabIndex = 30;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
+            this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn3
             // 

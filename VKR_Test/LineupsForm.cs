@@ -17,6 +17,7 @@ namespace VKR_Test
         int TeamNumber;
         int LineupNumber;
         string[] Lineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
+        bool LineupChanged;
 
         public LineupsForm()
         {
@@ -69,6 +70,7 @@ namespace VKR_Test
             {
                 dataGridView2.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
             }
+            LineupChanged = true;
         }
 
         private void btnIncLineupTypeNumberBy1_Click(object sender, EventArgs e)
@@ -98,6 +100,7 @@ namespace VKR_Test
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            LineupChanged = false;
             ShowNewPlayer(dataGridView2, dataGridView1, bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index]);
         }
 
@@ -114,6 +117,14 @@ namespace VKR_Test
                 label3.Text = $"{player.FirstName} {player.SecondName}".ToUpper();
                 label4.Text = $"{player.PlaceOfBirth}".ToUpper();
                 label5.Text = $"{player.DateOfBirth.ToShortDateString()}".ToUpper();
+            }
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            if(dataGridView2.SelectedRows.Count > 0 && !LineupChanged)
+            {
+                ShowNewPlayer(dataGridView2, dataGridView1, bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index]);
             }
         }
     }

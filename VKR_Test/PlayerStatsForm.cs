@@ -95,7 +95,7 @@ namespace VKR_Test
                                         pitchers[i].CaughtStealing);
             }
 
-            Height = 122 + 25 * 30;
+            Height = 120 + 25 * 20;
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
