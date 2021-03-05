@@ -200,11 +200,12 @@ namespace VKR_Test
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -212,6 +213,7 @@ namespace VKR_Test
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1478, 392);
@@ -362,7 +364,7 @@ namespace VKR_Test
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1480, 392);
+            this.tabPage4.Size = new System.Drawing.Size(1478, 392);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "EXPANDED";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -414,7 +416,7 @@ namespace VKR_Test
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowTemplate.Height = 25;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(1480, 392);
+            this.dataGridView2.Size = new System.Drawing.Size(1478, 392);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_ColumnHeaderMouseClick);
             // 
@@ -506,7 +508,7 @@ namespace VKR_Test
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1494, 424);
+            this.tabPage2.Size = new System.Drawing.Size(1492, 424);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Pitching";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -521,7 +523,7 @@ namespace VKR_Test
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.Padding = new System.Drawing.Point(0, 0);
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(1488, 418);
+            this.tabControl3.Size = new System.Drawing.Size(1486, 418);
             this.tabControl3.TabIndex = 1;
             // 
             // tabPage5
@@ -530,7 +532,7 @@ namespace VKR_Test
             this.tabPage5.Controls.Add(this.dataGridView3);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1480, 392);
+            this.tabPage5.Size = new System.Drawing.Size(1478, 392);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "STANDARD";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -586,7 +588,7 @@ namespace VKR_Test
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.RowTemplate.Height = 25;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(1480, 392);
+            this.dataGridView3.Size = new System.Drawing.Size(1478, 392);
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView3_ColumnHeaderMouseClick);
             // 

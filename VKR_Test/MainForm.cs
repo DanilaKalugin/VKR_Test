@@ -52,23 +52,23 @@ namespace VKR_Test
             UpdateScoreboard(away1, away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, currentMatch, currentMatch.AwayTeam);
             UpdateScoreboard(home1, home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, currentMatch, currentMatch.HomeTeam);
 
-            DisplayNextPitchers(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats);
-            DisplayNextPitchers(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats);
+            DisplayNextPitchers(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, currentMatch.gameSituations.Last());
+            DisplayNextPitchers(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, currentMatch.gameSituations.Last());
         }
 
-        private void DisplayNextPitchers(Label awayNext1, Label awayNext2, Label awayNext3, Label awayNextNumber1, Label awayNextNumber2, Label awayNextNumber3, Match currentMatch, Team team, Label Next1Stats, Label Next2Stats, Label Next3Stats)
+        private void DisplayNextPitchers(Label awayNext1, Label awayNext2, Label awayNext3, Label awayNextNumber1, Label awayNextNumber2, Label awayNextNumber3, Match currentMatch, Team team, Label Next1Stats, Label Next2Stats, Label Next3Stats, GameSituation situation)
         {
             int Number;
             if (currentMatch.AwayTeam == team)
             {
-                Number = currentMatch.gameSituations.Last().BatterNumber_AwayTeam;
+                Number = situation.BatterNumber_AwayTeam;
             }
             else
             {
-                Number = currentMatch.gameSituations.Last().BatterNumber_HomeTeam;
+                Number = situation.BatterNumber_HomeTeam;
             }
 
-            if (currentMatch.gameSituations.Last().offense != team)
+            if (situation.offense != team)
             {
                 Number--;
             }
@@ -180,8 +180,8 @@ namespace VKR_Test
             panel8.BackColor = gameSituation.offense.TeamColorForThisMatch;
             Batter NextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(NextBatter);
-            DisplayNextPitchers(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats);
-            DisplayNextPitchers(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats);
+            DisplayNextPitchers(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, gameSituation);
+            DisplayNextPitchers(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, gameSituation);
             DisplayPitcherStats();
         }
 
@@ -195,9 +195,9 @@ namespace VKR_Test
             panel2Base.BackColor = situation.offense.TeamColorForThisMatch;
             panel3Base.BackColor = situation.offense.TeamColorForThisMatch;
 
-            RunnerOn1Photo.BackgroundImage = situation.RunnerOnFirst.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID.ToString("0000")}.jpg") : null;
-            RunnerOn2Photo.BackgroundImage = situation.RunnerOnSecond.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID.ToString("0000")}.jpg") : null;
-            RunnerOn3Photo.BackgroundImage = situation.RunnerOnThird.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnThird.runnerID.ToString("0000")}.jpg") : null;
+            RunnerOn1Photo.BackgroundImage = situation.RunnerOnFirst.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID:0000}.jpg") : null;
+            RunnerOn2Photo.BackgroundImage = situation.RunnerOnSecond.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID:0000}.jpg") : null;
+            RunnerOn3Photo.BackgroundImage = situation.RunnerOnThird.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnThird.runnerID:0000}.jpg") : null;
 
             if (situation.RunnerOnFirst.IsBaseNotEmpty)
             {

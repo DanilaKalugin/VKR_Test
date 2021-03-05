@@ -319,6 +319,7 @@ namespace VKR_Test
             this.Controls.Add(this.btnIncreaseTeamNumberBy1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridView1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "LineupsForm";

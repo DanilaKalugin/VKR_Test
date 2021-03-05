@@ -27,6 +27,7 @@ namespace VKR_Test
             playersBL = new PlayerBL();
             sortingStandardPitchers = new SortMode[4];
             sortingStandardPitchers[0] = SortMode.Ascending;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
         private void PlayerStatsForm_Load(object sender, EventArgs e)
