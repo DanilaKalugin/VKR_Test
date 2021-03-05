@@ -183,6 +183,9 @@ namespace VKR_Test
             DisplayNextPitchers(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, gameSituation);
             DisplayNextPitchers(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, gameSituation);
             DisplayPitcherStats();
+            Text = $"{currentMatch.AwayTeam.TeamAbbreviation} {gameSituation.AwayTeamRuns} - {gameSituation.HomeTeamRuns} {currentMatch.HomeTeam.TeamAbbreviation} @ {currentMatch.stadium.StadiumTitle}";
+            lb_Runner1_Name.ForeColor = Color.Gainsboro;
+            lb_Runner2_Name.ForeColor = Color.Gainsboro;
         }
 
         public void DisplayCurrentRunners(GameSituation situation)
@@ -285,6 +288,28 @@ namespace VKR_Test
             label17.Text = batter.OPS.ToString("#.000", new CultureInfo("en-US"));
         }
 
+        private void IsHomeRun(Pitch pitch, int runs)
+        {
+            if (pitch.pitchResult == Pitch.PitchResult.HomeRun)
+            {
+                string title;
+                if (runs == 1)
+                {
+                    title = "Solo home run";
+                }
+                else if (runs == 4)
+                {
+                    title = "Grand Slam";
+                }
+                else
+                {
+                    title = $"{runs}-run Home Run";
+                }
+                HomeRunCelebrationForm hr = new HomeRunCelebrationForm(newGameSituation.offense, title, GetBatterByGameSituation(newGameSituation));
+                hr.ShowDialog();
+            }
+        }
+
         private void AddnewGameSituation(Pitch pitch)
         {
             newGameSituation.id = previousSituation.id + 1;
@@ -307,24 +332,7 @@ namespace VKR_Test
                 newGameSituation.HomeTeamRuns += runs;
             }
             currentMatch.gameSituations.Add(new GameSituation(newGameSituation.id, newGameSituation.inningNumber, newGameSituation.offense, newGameSituation.result, newGameSituation.balls, newGameSituation.strikes, newGameSituation.outs, newGameSituation.RunnerOnFirst, newGameSituation.RunnerOnSecond, newGameSituation.RunnerOnThird, newGameSituation.AwayTeamRuns, newGameSituation.HomeTeamRuns, newGameSituation.BatterNumber_AwayTeam, newGameSituation.BatterNumber_HomeTeam));
-            if (pitch.pitchResult == Pitch.PitchResult.HomeRun)
-            {
-                string title;
-                if (runs == 1)
-                {
-                    title = "Solo home run";
-                }
-                else if (runs == 4)
-                {
-                    title = "Grand Slam";
-                }
-                else
-                {
-                    title = $"{runs}-run Home Run";
-                }
-                HomeRunCelebrationForm hr = new HomeRunCelebrationForm(newGameSituation.offense, title, GetBatterByGameSituation(newGameSituation));
-                hr.ShowDialog();
-            }
+            IsHomeRun(pitch, runs);
             IsAtBatFinished(currentMatch.gameSituations.Last());
 
             if (newGameSituation.RunsByThisPitch.Count != 0)
@@ -355,6 +363,8 @@ namespace VKR_Test
             DisplayingCurrentSituation(newGameSituation);
             DisplayCurrentRunners(newGameSituation);
             IsFinishOfMatch(currentMatch);
+            label32.Visible = currentMatch.atBats.Count > 0;
+            label44.Visible = currentMatch.atBats.Count > 0;
             if (currentMatch.atBats.Count > 0)
             {
                 label44.Text = currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().ToString();
@@ -433,11 +443,6 @@ namespace VKR_Test
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void DisplayPitcherStats()
         {
             Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
@@ -470,6 +475,28 @@ namespace VKR_Test
         {
             Pitch pitch = new Pitch(newGameSituation, currentMatch.AwayTeam);
             AddnewGameSituation(pitch);
+        }
+
+        private void lb_Runner1_Name_Click(object sender, EventArgs e)
+        {
+            if (!(lb_Runner3_Name.Visible && lb_Runner2_Name.Visible))
+            {
+                lb_Runner1_Name.ForeColor = lb_Runner1_Name.ForeColor == Color.DarkGoldenrod ? Color.Gainsboro : Color.DarkGoldenrod;
+
+                if (lb_Runner2_Name.Visible)
+                {
+                    lb_Runner2_Name.ForeColor = Color.DarkGoldenrod;
+                }
+            }
+
+        }
+
+        private void lb_Runner2_Name_Click(object sender, EventArgs e)
+        {
+            if (!lb_Runner3_Name.Visible)
+            {
+                lb_Runner2_Name.ForeColor = lb_Runner2_Name.ForeColor == Color.DarkGoldenrod ? Color.Gainsboro : Color.DarkGoldenrod;
+            }
         }
     }
 }

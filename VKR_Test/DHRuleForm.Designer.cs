@@ -99,7 +99,7 @@ namespace VKR_Test
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DHRuleForm";
-            this.Text = "DHRuleForm";
+            this.Text = "Designated hitter rule";
             this.ResumeLayout(false);
 
         }

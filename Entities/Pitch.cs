@@ -372,13 +372,14 @@ namespace Entities
 
         static Pitch()
         {
-            GettingIntoStrikeZone_RandomGenerator = new Random(2 + new Random().Next(1, 1000));
-            Swing_RandomGenerator = new Random(3 + new Random().Next(1, 3000));
-            Hitting_RandomGenerator = new Random(5 + new Random().Next(1, 5000));
-            HitType_RandomGenerator = new Random(7 + new Random().Next(1, 7990));
-            OutType_RandomGenerator = new Random(11 + new Random().Next(1, 1100));
-            OtherCondition_RandomGenerator = new Random(13 + new Random().Next(1, 1300));
-            BuntResult_RandomGenerator = new Random(17 + new Random().Next(1, 1093));
+            Random InitializeRandomGenerator = new Random(DateTime.Now.Second);
+            GettingIntoStrikeZone_RandomGenerator = new Random(2 + InitializeRandomGenerator.Next(1, 1000));
+            Swing_RandomGenerator = new Random(3 + InitializeRandomGenerator.Next(1, 3000));
+            Hitting_RandomGenerator = new Random(5 + InitializeRandomGenerator.Next(1, 5000));
+            HitType_RandomGenerator = new Random(7 + InitializeRandomGenerator.Next(1, 7990));
+            OutType_RandomGenerator = new Random(11 + InitializeRandomGenerator.Next(1, 1100));
+            OtherCondition_RandomGenerator = new Random(13 + InitializeRandomGenerator.Next(1, 1300));
+            BuntResult_RandomGenerator = new Random(17 + InitializeRandomGenerator.Next(1, 1093));
         }
     }
 }

@@ -46,7 +46,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.AwayTeam_RunsScored = new System.Windows.Forms.Label();
             this.AwayTeam_Abbreviation = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -192,6 +191,7 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.btnBuntAttempt = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             panel27.SuspendLayout();
@@ -425,17 +425,6 @@
             this.AwayTeam_Abbreviation.Size = new System.Drawing.Size(99, 39);
             this.AwayTeam_Abbreviation.TabIndex = 0;
             this.AwayTeam_Abbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Gray;
-            this.panel3.BackgroundImage = global::VKR_Test.Properties.Resources._000;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(160, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(90, 78);
-            this.panel3.TabIndex = 2;
             // 
             // panel2
             // 
@@ -2001,6 +1990,7 @@
             this.lb_Runner2_Name.Size = new System.Drawing.Size(196, 77);
             this.lb_Runner2_Name.TabIndex = 2;
             this.lb_Runner2_Name.Text = "label32";
+            this.lb_Runner2_Name.Click += new System.EventHandler(this.lb_Runner2_Name_Click);
             // 
             // panel31
             // 
@@ -2055,6 +2045,7 @@
             this.lb_Runner1_Name.Size = new System.Drawing.Size(196, 77);
             this.lb_Runner1_Name.TabIndex = 2;
             this.lb_Runner1_Name.Text = "label44";
+            this.lb_Runner1_Name.Click += new System.EventHandler(this.lb_Runner1_Name_Click);
             // 
             // panel33
             // 
@@ -2149,6 +2140,7 @@
             this.label32.Size = new System.Drawing.Size(114, 19);
             this.label32.TabIndex = 53;
             this.label32.Text = "Last At-bat:";
+            this.label32.Visible = false;
             // 
             // label44
             // 
@@ -2160,19 +2152,31 @@
             this.label44.TabIndex = 54;
             this.label44.Text = "00";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label44.Visible = false;
             // 
             // btnBuntAttempt
             // 
             this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
             this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuntAttempt.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuntAttempt.Location = new System.Drawing.Point(873, 813);
+            this.btnBuntAttempt.Location = new System.Drawing.Point(851, 814);
             this.btnBuntAttempt.Name = "btnBuntAttempt";
             this.btnBuntAttempt.Size = new System.Drawing.Size(250, 35);
             this.btnBuntAttempt.TabIndex = 55;
             this.btnBuntAttempt.Text = "BUNT ATTEMPT";
             this.btnBuntAttempt.UseVisualStyleBackColor = true;
             this.btnBuntAttempt.Click += new System.EventHandler(this.btnBuntAttempt_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Gray;
+            this.panel3.BackgroundImage = global::VKR_Test.Properties.Resources._000;
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(160, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(90, 78);
+            this.panel3.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -2199,7 +2203,6 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             panel27.ResumeLayout(false);
             this.panel26.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
