@@ -285,9 +285,8 @@ namespace VKR_Test
             label17.Text = batter.OPS.ToString("#.000", new CultureInfo("en-US"));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddnewGameSituation(Pitch pitch)
         {
-            Pitch pitch = new Pitch(newGameSituation, currentMatch.gameSituations, currentMatch.HomeTeam, currentMatch.AwayTeam, currentMatch.stadium);
             newGameSituation.id = previousSituation.id + 1;
             newGameSituation.result = pitch.pitchResult;
             newGameSituation.balls = newGameSituation.NumberOfBallsDetrmining(newGameSituation.result, previousSituation);
@@ -356,8 +355,18 @@ namespace VKR_Test
             DisplayingCurrentSituation(newGameSituation);
             DisplayCurrentRunners(newGameSituation);
             IsFinishOfMatch(currentMatch);
-
+            if (currentMatch.atBats.Count > 0)
+            {
+                label44.Text = currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().ToString();
+            }
             previousSituation = new GameSituation(newGameSituation.id, newGameSituation.inningNumber, newGameSituation.offense, newGameSituation.result, newGameSituation.balls, newGameSituation.strikes, newGameSituation.outs, newGameSituation.RunnerOnFirst, newGameSituation.RunnerOnSecond, newGameSituation.RunnerOnThird, newGameSituation.AwayTeamRuns, newGameSituation.HomeTeamRuns, newGameSituation.BatterNumber_AwayTeam, newGameSituation.BatterNumber_HomeTeam);
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Pitch pitch = new Pitch(newGameSituation, currentMatch.gameSituations, currentMatch.HomeTeam, currentMatch.AwayTeam, currentMatch.stadium);
+            AddnewGameSituation(pitch);
         }
 
         private void IsFinishOfMatch(Match currentMatch)
@@ -405,6 +414,7 @@ namespace VKR_Test
                 situation.result == Pitch.PitchResult.Groundout ||
                 situation.result == Pitch.PitchResult.Flyout ||
                 situation.result == Pitch.PitchResult.SacrificeFly ||
+                situation.result == Pitch.PitchResult.SacrificeBunt ||
                 situation.result == Pitch.PitchResult.DoublePlay ||
                 (situation.result == Pitch.PitchResult.Ball && situation.balls == 0) ||
                 (situation.result == Pitch.PitchResult.Strike && situation.strikes == 0))
@@ -454,6 +464,12 @@ namespace VKR_Test
             PitcherStrikeoutsToday.Text = StrikeoutsToday.ToString();
             PitcherWalksToday.Text = WalksToday.ToString();
             PitcherHomeRunsToday.Text = HRToday.ToString();
+        }
+
+        private void btnBuntAttempt_Click(object sender, EventArgs e)
+        {
+            Pitch pitch = new Pitch(newGameSituation, currentMatch.AwayTeam);
+            AddnewGameSituation(pitch);
         }
     }
 }

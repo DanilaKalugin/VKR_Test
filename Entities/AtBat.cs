@@ -79,9 +79,80 @@ namespace Entities
                             return AtBatType.NoResult;
                         }
                     }
+                case Pitch.PitchResult.SacrificeBunt:
+                    {
+                        return AtBatType.SacrificeBunt;
+                    }
                 default:
                     {
                         return AtBatType.NoResult;
+                    }
+            }
+        }
+
+        public override string ToString()
+        {
+            switch (AtBatResult)
+            {
+                case AtBatType.HitByPitch:
+                    {
+                        return "Hit-by-Pitch";
+                    }
+                case AtBatType.HomeRun:
+                    {
+                        return "Home Run";
+                    }
+                case AtBatType.StolenBase:
+                    {
+                        return "Stolen Base";
+                    }
+                case AtBatType.CaughtStealing:
+                    {
+                        return "Caught Stealing";
+                    }
+                case AtBatType.SacrificeBunt:
+                    {
+                        return "Sacrifice Bunt";
+                    }
+                case AtBatType.SacrificeFly:
+                    {
+                        return "Sacrifice Fly";
+                    }
+                case AtBatType.Strikeout:
+                    {
+                        return "Strikeout";
+                    }
+                case AtBatType.Walk:
+                    {
+                        return "Walk";
+                    }
+                case AtBatType.Single:
+                    {
+                        return "Single";
+                    }
+                case AtBatType.Double:
+                    {
+                        return "Double";
+                    }
+                case AtBatType.Triple:
+                    {
+                        return "Triple";
+                    }
+                case AtBatType.Flyout:
+                    {
+                        return "Flyout";
+                    }
+                case AtBatType.Popout:
+                    {
+                        return "Popout";
+                    }
+                case AtBatType.Groundout:
+                    {
+                        return "Groundout";
+                    }
+                default:
+                    {
+                        return "";
                     }
             }
         }

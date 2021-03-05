@@ -189,6 +189,9 @@
             this.panel36 = new System.Windows.Forms.Panel();
             this.label48 = new System.Windows.Forms.Label();
             this.RunnerOn3Photo = new System.Windows.Forms.Panel();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.btnBuntAttempt = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             panel27.SuspendLayout();
@@ -336,7 +339,7 @@
             this.button1.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(545, 814);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(428, 35);
+            this.button1.Size = new System.Drawing.Size(300, 35);
             this.button1.TabIndex = 0;
             this.button1.Text = "NEXT PITCH";
             this.button1.UseVisualStyleBackColor = true;
@@ -2137,11 +2140,48 @@
             this.RunnerOn3Photo.Size = new System.Drawing.Size(67, 100);
             this.RunnerOn3Photo.TabIndex = 0;
             // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(396, 867);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(114, 19);
+            this.label32.TabIndex = 53;
+            this.label32.Text = "Last At-bat:";
+            // 
+            // label44
+            // 
+            this.label44.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Bold);
+            this.label44.ForeColor = System.Drawing.Color.Black;
+            this.label44.Location = new System.Drawing.Point(516, 865);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(507, 21);
+            this.label44.TabIndex = 54;
+            this.label44.Text = "00";
+            this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnBuntAttempt
+            // 
+            this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
+            this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuntAttempt.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuntAttempt.Location = new System.Drawing.Point(873, 813);
+            this.btnBuntAttempt.Name = "btnBuntAttempt";
+            this.btnBuntAttempt.Size = new System.Drawing.Size(250, 35);
+            this.btnBuntAttempt.TabIndex = 55;
+            this.btnBuntAttempt.Text = "BUNT ATTEMPT";
+            this.btnBuntAttempt.UseVisualStyleBackColor = true;
+            this.btnBuntAttempt.Click += new System.EventHandler(this.btnBuntAttempt_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(this.btnBuntAttempt);
+            this.Controls.Add(this.label44);
+            this.Controls.Add(this.label32);
             this.Controls.Add(this.panel3Base);
             this.Controls.Add(this.panel1Base);
             this.Controls.Add(this.panel2Base);
@@ -2195,6 +2235,7 @@
             this.panel3Base.ResumeLayout(false);
             this.panel36.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -2358,6 +2399,9 @@
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Button btnBuntAttempt;
     }
 }
 
