@@ -16,7 +16,7 @@ namespace VKR.BLL
 
         public List<Batter> GetBattersStats()
         {
-            return playerDAO.GetBattersStats().Where(player => (player.PA / (double)player.Games) >= 3.1).OrderByDescending(batter => batter.AVG).ToList();
+            return playerDAO.GetBattersStats().Where(player => (player.PA / (double)player.TGP) >= 3.1).OrderByDescending(batter => batter.AVG).ToList();
         }
 
         public List<Pitcher> GetPitchersStats()

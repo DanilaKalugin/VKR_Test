@@ -78,8 +78,9 @@ namespace VKR.DAL
                         int RBI = (int)reader["RBI"]; ;
                         int PA = (int)reader["PA"];
                         int GIDP = (int)reader["GIDP"];
+                        int TGP = (int)reader["TGP"];
 
-                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP);
+                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
                     }
                 }
             }

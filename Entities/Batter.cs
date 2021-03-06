@@ -24,6 +24,7 @@ namespace Entities
         public int NumberInBattingLineup;
         public int PA;
         public int DoublePlay;
+        public int TGP;
 
         public int Hits { get { return Singles + Doubles + Triples + HomeRuns; } }
 
@@ -82,7 +83,7 @@ namespace Entities
         public Batter(int _id, string _firstName, string _secondName, int _Number, int _games,
                       int _singles, int _doubles, int _triples, int _hr, int _sf, int _sac,
                       int _rbi, int _hbp, int _sb, int _cs, int _runs, int _bb, int _k, int _go,
-                      int _ao, int _po, int _pa, int _gidp)
+                      int _ao, int _po, int _pa, int _gidp, int _tgp)
         {
             id = _id;
             FirstName = _firstName;
@@ -107,6 +108,7 @@ namespace Entities
             Poputs = _po;
             PA = _pa;
             DoublePlay = _gidp;
+            TGP = _tgp;
         }
 
         public Batter(int _id, string _firstName, string _secondName, int _Number, int _games, int _singles, int _doubles,
