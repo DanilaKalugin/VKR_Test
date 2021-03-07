@@ -124,7 +124,7 @@ namespace VKR_Test
             lbPitcherSecondName.Text = gameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.CurrentPitcher.SecondName : currentMatch.AwayTeam.CurrentPitcher.SecondName;
             if (gameSituation.offense == currentMatch.AwayTeam)
             {
-                lbPitchCountForThisPitcher.Text = currentMatch.gameSituations.Where(situation => situation.offense.TeamAbbreviation == currentMatch.AwayTeam.TeamAbbreviation && situation.id > 0 && 
+                lbPitchCountForThisPitcher.Text = currentMatch.gameSituations.Where(situation => situation.offense.TeamAbbreviation == currentMatch.AwayTeam.TeamAbbreviation && situation.id > 0 &&
                                                                                                !(situation.result == Pitch.PitchResult.CaughtStealingOnSecond || situation.result == Pitch.PitchResult.CaughtStealingOnThird ||
                                                                                                  situation.result == Pitch.PitchResult.SecondBaseStolen || situation.result == Pitch.PitchResult.ThirdBaseStolen)).Count().ToString();
             }
@@ -493,9 +493,44 @@ namespace VKR_Test
                 (situation.result == Pitch.PitchResult.Ball && situation.balls == 0) ||
                 (situation.result == Pitch.PitchResult.Strike && situation.strikes == 0))
             {
-                AtBat LastAtBat = new AtBat(currentMatch, runs);
-                currentMatch.atBats.Add(LastAtBat);
-                matchBL.AddNewAtBat(LastAtBat);
+                switch (situation.result)
+                {
+                    case Pitch.PitchResult.SecondBaseStolen:
+                        {
+                            AtBat atBat = new AtBat(currentMatch, situation.RunnerOnSecond.runnerID, false);
+                            currentMatch.atBats.Add(atBat);
+                            matchBL.AddNewAtBat(atBat);
+                            break;
+                        }
+                    case Pitch.PitchResult.ThirdBaseStolen:
+                        {
+                            AtBat atBat = new AtBat(currentMatch, situation.RunnerOnThird.runnerID, true);
+                            currentMatch.atBats.Add(atBat);
+                            matchBL.AddNewAtBat(atBat);
+                            break;
+                        }
+                    case Pitch.PitchResult.CaughtStealingOnSecond:
+                        {
+                            AtBat atBat = new AtBat(currentMatch, currentMatch.gameSituations[currentMatch.gameSituations.Count - 2].RunnerOnFirst.runnerID, true);
+                            currentMatch.atBats.Add(atBat);
+                            matchBL.AddNewAtBat(atBat);
+                            break;
+                        }
+                    case Pitch.PitchResult.CaughtStealingOnThird:
+                        {
+                            AtBat atBat = new AtBat(currentMatch, currentMatch.gameSituations[currentMatch.gameSituations.Count - 2].RunnerOnSecond.runnerID, true);
+                            currentMatch.atBats.Add(atBat);
+                            matchBL.AddNewAtBat(atBat);
+                            break;
+                        }
+                    default:
+                        {
+                            AtBat LastAtBat = new AtBat(currentMatch, runs);
+                            currentMatch.atBats.Add(LastAtBat);
+                            matchBL.AddNewAtBat(LastAtBat);
+                            break;
+                        }
+                }
                 currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
                 currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
 

@@ -224,5 +224,28 @@ namespace Entities
             RBI = 0;
             Inning = currentMatch.gameSituations.Last().inningNumber;
         }
+
+        public AtBat(Match currentMatch, int runnerID, bool isBaseStealingAttempt)
+        {
+            AtBatResult = TypeDefinitionForLastAtBat(currentMatch.gameSituations.Last());
+            MatchId = currentMatch.MatchID;
+            Offense = currentMatch.gameSituations.Last().offense.TeamAbbreviation;
+            Defense = currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
+
+            if (currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam)
+            {
+                Batter = runnerID;
+                Pitcher = currentMatch.HomeTeam.CurrentPitcher.id;
+            }
+            else
+            {
+                Batter = runnerID;
+                Pitcher = currentMatch.AwayTeam.CurrentPitcher.id;
+            }
+
+            outs = OutsForThisAtBat(currentMatch.gameSituations.Last(), currentMatch.gameSituations[currentMatch.gameSituations.Count - 2]);
+            RBI = 0;
+            Inning = currentMatch.gameSituations.Last().inningNumber;
+        }
     }
 }
