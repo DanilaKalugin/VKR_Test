@@ -40,7 +40,6 @@ namespace Entities
         public List<Pitcher> PitchersPlayedInMatch;
         public Pitcher CurrentPitcher { get { return PitchersPlayedInMatch.Last(); } }
         public List<Batter> BattingLineup;
-        public List<Batter> BattersPlayedInMatch;
 
         public int Wins;
         public int Losses;

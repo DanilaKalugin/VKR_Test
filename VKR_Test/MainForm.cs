@@ -124,11 +124,15 @@ namespace VKR_Test
             lbPitcherSecondName.Text = gameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.CurrentPitcher.SecondName : currentMatch.AwayTeam.CurrentPitcher.SecondName;
             if (gameSituation.offense == currentMatch.AwayTeam)
             {
-                lbPitchCountForThisPitcher.Text = currentMatch.gameSituations.Where(situation => situation.offense.TeamAbbreviation == currentMatch.AwayTeam.TeamAbbreviation && situation.id > 0).Count().ToString();
+                lbPitchCountForThisPitcher.Text = currentMatch.gameSituations.Where(situation => situation.offense.TeamAbbreviation == currentMatch.AwayTeam.TeamAbbreviation && situation.id > 0 && 
+                                                                                               !(situation.result == Pitch.PitchResult.CaughtStealingOnSecond || situation.result == Pitch.PitchResult.CaughtStealingOnThird ||
+                                                                                                 situation.result == Pitch.PitchResult.SecondBaseStolen || situation.result == Pitch.PitchResult.ThirdBaseStolen)).Count().ToString();
             }
             else
             {
-                lbPitchCountForThisPitcher.Text = currentMatch.gameSituations.Where(situation => situation.offense.TeamAbbreviation == currentMatch.HomeTeam.TeamAbbreviation && situation.id > 0).Count().ToString();
+                lbPitchCountForThisPitcher.Text = currentMatch.gameSituations.Where(situation => situation.offense.TeamAbbreviation == currentMatch.HomeTeam.TeamAbbreviation && situation.id > 0 &&
+                                                                                               !(situation.result == Pitch.PitchResult.CaughtStealingOnSecond || situation.result == Pitch.PitchResult.CaughtStealingOnThird ||
+                                                                                                 situation.result == Pitch.PitchResult.SecondBaseStolen || situation.result == Pitch.PitchResult.ThirdBaseStolen)).Count().ToString();
             }
             switch (Convert.ToInt32(gameSituation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(gameSituation.RunnerOnSecond.IsBaseNotEmpty) * 2 + Convert.ToInt32(gameSituation.RunnerOnThird.IsBaseNotEmpty) * 4)
             {
@@ -375,8 +379,64 @@ namespace VKR_Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Pitch pitch = new Pitch(newGameSituation, currentMatch.gameSituations, currentMatch.HomeTeam, currentMatch.AwayTeam, currentMatch.stadium);
+            Pitch pitch;
+            bool StealingAttempt = lb_Runner1_Name.ForeColor == Color.DarkGoldenrod || lb_Runner2_Name.ForeColor == Color.DarkGoldenrod;
+            int CountOfAtBats = currentMatch.atBats.Count();
+            int TypeOfStealing = 0;
+            if (StealingAttempt)
+            {
+                pitch = new Pitch(newGameSituation, currentMatch.gameSituations, currentMatch.HomeTeam, currentMatch.AwayTeam);
+                if (lb_Runner1_Name.ForeColor == Color.DarkGoldenrod)
+                {
+                    if (lb_Runner2_Name.ForeColor == Color.DarkGoldenrod)
+                    {
+                        TypeOfStealing = 3;
+                    }
+                    else
+                    {
+                        TypeOfStealing = 1;
+                    }
+                }
+                else if (lb_Runner2_Name.ForeColor == Color.DarkGoldenrod)
+                {
+                    TypeOfStealing = 2;
+                }
+            }
+            else
+            {
+                pitch = new Pitch(newGameSituation, currentMatch.gameSituations, currentMatch.HomeTeam, currentMatch.AwayTeam, currentMatch.stadium);
+            }
             AddnewGameSituation(pitch);
+            int NewCountOfAtBats = currentMatch.atBats.Count();
+            if (StealingAttempt && CountOfAtBats == NewCountOfAtBats)
+            {
+                switch (TypeOfStealing)
+                {
+                    case 1:
+                        {
+                            Pitch stealingSecondBaseAttempt = new Pitch(newGameSituation, Pitch.StealingType.OnlySecondBase);
+                            AddnewGameSituation(stealingSecondBaseAttempt);
+                            break;
+                        }
+                    case 2:
+                        {
+                            Pitch stealingThirdBaseAttempt = new Pitch(newGameSituation, Pitch.StealingType.OnlyThirdBase);
+                            AddnewGameSituation(stealingThirdBaseAttempt);
+                            break;
+                        }
+                    case 3:
+                        {
+                            Pitch stealingThirdBaseAttemptBeforeSecond = new Pitch(newGameSituation, Pitch.StealingType.ThirdBaseBeforeSecond);
+                            AddnewGameSituation(stealingThirdBaseAttemptBeforeSecond);
+                            if (currentMatch.gameSituations.Last().outs != 3)
+                            {
+                                Pitch stealingSecondBaseAfterThird = new Pitch(newGameSituation, Pitch.StealingType.SecondBaseAfterThird);
+                                AddnewGameSituation(stealingSecondBaseAfterThird);
+                            }
+                            break;
+                        }
+                }
+            }
         }
 
         private void IsFinishOfMatch(Match currentMatch)
@@ -426,6 +486,10 @@ namespace VKR_Test
                 situation.result == Pitch.PitchResult.SacrificeFly ||
                 situation.result == Pitch.PitchResult.SacrificeBunt ||
                 situation.result == Pitch.PitchResult.DoublePlay ||
+                situation.result == Pitch.PitchResult.CaughtStealingOnSecond ||
+                situation.result == Pitch.PitchResult.CaughtStealingOnThird ||
+                situation.result == Pitch.PitchResult.SecondBaseStolen ||
+                situation.result == Pitch.PitchResult.ThirdBaseStolen ||
                 (situation.result == Pitch.PitchResult.Ball && situation.balls == 0) ||
                 (situation.result == Pitch.PitchResult.Strike && situation.strikes == 0))
             {

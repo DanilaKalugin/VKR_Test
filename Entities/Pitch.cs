@@ -13,7 +13,7 @@ namespace Entities
         private readonly static Random OutType_RandomGenerator;
         private readonly static Random OtherCondition_RandomGenerator;
         private readonly static Random BuntResult_RandomGenerator;
-
+        private readonly static Random StealingResult_RandomGenerator;
         private enum GettingIntoStrikeZone_TypeOfResult { BallInTheStrikeZone, BallIsOutOfTheStrikeZone, HitByPitch }
         GettingIntoStrikeZone_TypeOfResult newPitch_GettingIntoStrikeZone_Result;
         private enum Swing_ResultType { Swing, NoSwing, NoResult }
@@ -32,7 +32,12 @@ namespace Entities
 
         public PitchResult pitchResult;
 
-        public enum PitchResult { HitByPitch, Ball, Strike, Null, Foul, Single, Double, Triple, HomeRun, Flyout, Groundout, Popout, DoublePlay, SacrificeFly, SacrificeBunt }
+        public enum PitchResult { HitByPitch, Ball, Strike, Null, Foul, Single, Double, Triple, HomeRun, Flyout, Groundout, Popout, DoublePlay, SacrificeFly, SacrificeBunt, SecondBaseStolen, ThirdBaseStolen, CaughtStealingOnSecond, CaughtStealingOnThird }
+
+        public enum StealingType { OnlySecondBase, OnlyThirdBase, ThirdBaseBeforeSecond, SecondBaseAfterThird}
+
+        public enum StealingResult { SecondBaseStolen, ThirdBaseStolen, NoResult, CaughtStealingOnSecond, CaughtStealingOnThird }
+        public StealingResult newStealingAttempt_result;
 
         private PitchResult pitchResult_Definition(GettingIntoStrikeZone_TypeOfResult gettingIntoStrikeZone_Result,
                                                    Swing_ResultType swing_Result,
@@ -374,12 +379,158 @@ namespace Entities
         {
             Random InitializeRandomGenerator = new Random(DateTime.Now.Second);
             GettingIntoStrikeZone_RandomGenerator = new Random(2 + InitializeRandomGenerator.Next(1, 1000));
-            Swing_RandomGenerator = new Random(3 + InitializeRandomGenerator.Next(1, 3000));
-            Hitting_RandomGenerator = new Random(5 + InitializeRandomGenerator.Next(1, 5000));
-            HitType_RandomGenerator = new Random(7 + InitializeRandomGenerator.Next(1, 7990));
-            OutType_RandomGenerator = new Random(11 + InitializeRandomGenerator.Next(1, 1100));
-            OtherCondition_RandomGenerator = new Random(13 + InitializeRandomGenerator.Next(1, 1300));
-            BuntResult_RandomGenerator = new Random(17 + InitializeRandomGenerator.Next(1, 1093));
+            Swing_RandomGenerator = new Random(3 + InitializeRandomGenerator.Next(1, 1000));
+            Hitting_RandomGenerator = new Random(5 + InitializeRandomGenerator.Next(1, 1000));
+            HitType_RandomGenerator = new Random(7 + InitializeRandomGenerator.Next(1, 1000));
+            OutType_RandomGenerator = new Random(11 + InitializeRandomGenerator.Next(1, 1000));
+            OtherCondition_RandomGenerator = new Random(13 + InitializeRandomGenerator.Next(1, 1000));
+            BuntResult_RandomGenerator = new Random(17 + InitializeRandomGenerator.Next(1, 1000));
+            StealingResult_RandomGenerator = new Random(19 + InitializeRandomGenerator.Next(1, 1000));
+        }
+
+        public Pitch(GameSituation situation, List<GameSituation> match, Team HomeTeam, Team AwayTeam)
+        {
+            Team Offense = situation.offense;
+            Team Defense = situation.offense == AwayTeam ? HomeTeam : AwayTeam;
+
+            int BatterNumberComponent = (5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3));
+            List<GameSituation> ListOfHitsInCurrentInning = match.Where(gameSituation => gameSituation.inningNumber == situation.inningNumber && gameSituation.offense == situation.offense).ToList();
+            int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double).Count() * 2 +
+                              ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Single || gameSituation.result == PitchResult.Triple || gameSituation.result == PitchResult.HomeRun).Count();
+            int numberOfPitches = match.Where(gameSituation => gameSituation.offense.TeamAbbreviation == situation.offense.TeamAbbreviation).Count();
+            int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty);
+            int PitcherCoefficient;
+            if (Defense.PitchersPlayedInMatch.Count > 1)
+            {
+                PitcherCoefficient = 35 - Defense.PitchersPlayedInMatch.Count;
+            }
+            else
+            {
+                PitcherCoefficient = 81 - Defense.CurrentPitcher.NumberInRotation * 5;
+            }
+
+            newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient);
+            newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability);
+
+            pitchResult = pitchResult_Definition(newPitch_GettingIntoStrikeZone_Result, newPitch_Swing_Result, Hitting_ResultType.Miss, HitType.NoResult, OutType.NoResult, OtherCondition.NoOtherCondition);
+
+        }
+
+        public Pitch(GameSituation situation, StealingType stealingType)
+        {
+            Team Offense = situation.offense;
+            string RunnerPositionInDefense = "";
+            switch (stealingType)
+            {
+                case StealingType.OnlySecondBase:
+                case StealingType.SecondBaseAfterThird:
+                    {
+                        RunnerPositionInDefense = Offense.BattingLineup.Where(player => player.id == situation.RunnerOnFirst.runnerID).First().PositionForThisMatch;
+                        break;
+                    }
+                case StealingType.OnlyThirdBase:
+                case StealingType.ThirdBaseBeforeSecond:
+                    {
+                        RunnerPositionInDefense = Offense.BattingLineup.Where(player => player.id == situation.RunnerOnSecond.runnerID).First().PositionForThisMatch;
+                        break;
+                    }
+            }
+            newStealingAttempt_result = StealingAttempt_Result_Definition(Offense.StealingBaseProbability, RunnerPositionInDefense, stealingType);
+            pitchResult = pitchResult_Definition(newStealingAttempt_result);
+        }
+
+        private PitchResult pitchResult_Definition(StealingResult newStealingAttempt_result)
+        {
+            switch (newStealingAttempt_result)
+            {
+                case StealingResult.CaughtStealingOnSecond:
+                    {
+                        return PitchResult.CaughtStealingOnSecond;
+                    }
+                case StealingResult.CaughtStealingOnThird:
+                    {
+                        return PitchResult.CaughtStealingOnThird;
+                    }
+                case StealingResult.SecondBaseStolen:
+                    {
+                        return PitchResult.SecondBaseStolen;
+                    }
+                case StealingResult.ThirdBaseStolen:
+                    {
+                        return PitchResult.ThirdBaseStolen;
+                    }
+                default:
+                    {
+                        return PitchResult.Null;
+                    }
+            }
+        }
+
+        private StealingResult StealingAttempt_Result_Definition(int sb_probability, string runnerPositionInDefense, StealingType stealingType)
+        {
+            int StealingAttempt_RandomValue = StealingResult_RandomGenerator.Next(1, 100);
+
+            int StealingProbabilityCorrectedByPosition;
+            if (runnerPositionInDefense != "P")
+            {
+                StealingProbabilityCorrectedByPosition = sb_probability;
+            }
+            else
+            {
+                StealingProbabilityCorrectedByPosition = sb_probability / 2;
+            }
+
+            switch (stealingType)
+            {
+                case StealingType.OnlySecondBase:
+                    {
+                        if (StealingAttempt_RandomValue <= StealingProbabilityCorrectedByPosition)
+                        {
+                            return StealingResult.SecondBaseStolen;
+                        }
+                        else
+                        {
+                            return StealingResult.CaughtStealingOnSecond;
+                        }
+                    }
+                case StealingType.OnlyThirdBase:
+                    {
+                        if (StealingAttempt_RandomValue <= StealingProbabilityCorrectedByPosition / 4)
+                        {
+                            return StealingResult.ThirdBaseStolen;
+                        }
+                        else
+                        {
+                            return StealingResult.CaughtStealingOnThird;
+                        }
+                    }
+                case StealingType.ThirdBaseBeforeSecond:
+                    {
+                        if (StealingAttempt_RandomValue <= StealingProbabilityCorrectedByPosition / 5)
+                        {
+                            return StealingResult.ThirdBaseStolen;
+                        }
+                        else
+                        {
+                            return StealingResult.CaughtStealingOnThird;
+                        }
+                    }
+                case StealingType.SecondBaseAfterThird:
+                    {
+                        if (StealingAttempt_RandomValue <= 100 - StealingProbabilityCorrectedByPosition / 3)
+                        {
+                            return StealingResult.SecondBaseStolen;
+                        }
+                        else
+                        {
+                            return StealingResult.CaughtStealingOnSecond;
+                        }
+                    }
+                default:
+                    {
+                        return StealingResult.NoResult;
+                    }
+            }
         }
     }
 }

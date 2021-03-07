@@ -83,6 +83,16 @@ namespace Entities
                     {
                         return AtBatType.SacrificeBunt;
                     }
+                case Pitch.PitchResult.SecondBaseStolen:
+                case Pitch.PitchResult.ThirdBaseStolen:
+                    {
+                        return AtBatType.StolenBase;
+                    }
+                case Pitch.PitchResult.CaughtStealingOnSecond:
+                case Pitch.PitchResult.CaughtStealingOnThird:
+                    {
+                        return AtBatType.CaughtStealing;
+                    }
                 default:
                     {
                         return AtBatType.NoResult;
