@@ -70,12 +70,13 @@ namespace Entities
 
         public double OffensiveRating()
         {
-            double DoubleComponent = (double)(DoubleProbability - SingleProbability) / 45 * 2;
+            double DoubleComponent = (double)(DoubleProbability - SingleProbability) / 20;
             double HomeRunComponent = (double)(HomeRunProbabilty - DoubleProbability) / 4;
-            double TripleComponent = (double)(2000 - HomeRunProbabilty) / 3;
+            double TripleComponent = (double)(2000 - HomeRunProbabilty) / 2;
             double SingleComponent = (double)(SingleProbability - FoulProbability) / 50;
             double BaseStealingComponent = (double)StealingBaseProbability / 10;
-            return Math.Round(SingleComponent + DoubleComponent + HomeRunComponent + TripleComponent + BaseStealingComponent, 2);
+            double HittingComponent = (double)HittingProbability / 40;
+            return Math.Round(SingleComponent + DoubleComponent + HomeRunComponent + TripleComponent + BaseStealingComponent + HittingComponent, 2);
         }
 
         public Team(string abbreviation, string city, string name, int _StrikeZoneProbability, int _Swing_SZ_Probability, int _Swing_NotSZ_Probability,

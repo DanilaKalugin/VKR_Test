@@ -12,7 +12,7 @@ namespace VKR_Test
             InitializeComponent();
             label37.Text = $"{team.TeamTitle.ToUpper()} Batting Order".ToUpper();
             panel1.BackColor = team.TeamColorForThisMatch;
-            teamLogo.BackgroundImage = Image.FromFile($"BigTeamLogos/{team.TeamAbbreviation}.png");
+            teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             GetInfoAboutBatter(team.BattingLineup[0], p1, label1, label18, label19, label20);
             GetInfoAboutBatter(team.BattingLineup[1], p2, label2, label17, label22, label21);
             GetInfoAboutBatter(team.BattingLineup[2], p3, label3, label16, label24, label23);

@@ -241,7 +241,7 @@ namespace VKR_Test
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "StadiumSelectionForm";
-            this.Text = "StadiumSelectionForm";
+            this.Text = "Stadium selection";
             this.Load += new System.EventHandler(this.StadiumSelectionForm_Load);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
