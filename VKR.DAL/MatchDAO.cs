@@ -1,5 +1,6 @@
 ﻿using Entities;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -145,6 +146,28 @@ namespace VKR.DAL
                 command.Parameters[8].Value = atbat.Inning;
 
                 var result = command.ExecuteNonQuery();
+            }
+        }
+
+        public IEnumerable<Match> GetResultsForAllMatches()
+        {
+            using (SqlCommand command = new SqlCommand("GetResultsForAllMatches", _connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int MatchID = (int)reader["MatchID"];
+                        string AwayTeam = (string)reader["AwayTeam"];
+                        int AwayRuns = (int)reader["AwayRuns"];
+                        int HomeRuns = (int)reader["HomeRuns"];
+                        string HomeTeam = (string)reader["HomeTeam"];
+                        int Stadium = (int)reader["Stadium"];
+                        string Winner = (string)reader["Winner"];
+                        int Inning = (int)reader["InningNumber"];
+                        yield return new Match(MatchID, AwayTeam, AwayRuns, HomeRuns, HomeTeam, Stadium, Winner, Inning);
+                    }
+                }
             }
         }
     }

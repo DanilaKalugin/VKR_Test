@@ -66,5 +66,11 @@ namespace VKR_Test
             LineupsForm form = new LineupsForm();
             form.ShowDialog();
         }
+
+        private void btnResults_Click(object sender, EventArgs e)
+        {
+            MatchResultsForm form = new MatchResultsForm();
+            form.ShowDialog();
+        }
     }
 }

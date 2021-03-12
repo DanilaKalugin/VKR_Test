@@ -89,6 +89,12 @@
     <Compile Include="MatchEndingForm.Designer.cs">
       <DependentUpon>MatchEndingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MatchResultsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MatchResultsForm.Designer.cs">
+      <DependentUpon>MatchResultsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlayerStatsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     <EmbeddedResource Include="MatchEndingForm.resx">
       <DependentUpon>MatchEndingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MatchResultsForm.resx">
+      <DependentUpon>MatchResultsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PlayerStatsForm.resx">
       <DependentUpon>PlayerStatsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,9 +180,6 @@
       <DependentUpon>TeamsSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TitleForm.resx">
-      <DependentUpon>TitleForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TitleForm.ru-RU.resx">
       <DependentUpon>TitleForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

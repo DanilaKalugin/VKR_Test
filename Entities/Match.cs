@@ -11,6 +11,34 @@ namespace Entities
         public bool DHRule;
         public List<GameSituation> gameSituations;
         public List<AtBat> atBats;
+        public int HomeTeamRuns;
+        public int AwayTeamRuns;
+        public int InningNumber;
+        public string AwayTeamAbbreviation;
+        public string HomeTeamAbbreviation;
+        public int StadiumNumber;
+        public string MatchStatus
+        {
+            get
+            {
+                if (MatchWinner == "")
+                {
+                    return "";
+                }
+                else
+                {
+                    if (InningNumber != 9)
+                    {
+                        return $"Final/{InningNumber}";
+                    }
+                    else
+                    {
+                        return "Final";
+                    }
+                }
+            }
+        }
+        public string MatchWinner;
 
         public Match(int _id, Team _homeTeam, Team _awayTeam, Stadium _stadium, bool _dh)
         {
@@ -24,6 +52,18 @@ namespace Entities
                 new GameSituation(AwayTeam)
             };
             atBats = new List<AtBat>();
+        }
+
+        public Match(int _id, string _AwayTeam, int _AwayRuns, int _homeRuns, string _homeTeam, int _StadiumNumber, string Winner, int Inning)
+        {
+            MatchID = _id;
+            AwayTeamAbbreviation = _AwayTeam;
+            AwayTeamRuns = _AwayRuns;
+            HomeTeamRuns = _homeRuns;
+            HomeTeamAbbreviation = _homeTeam;
+            StadiumNumber = _StadiumNumber;
+            MatchWinner = Winner;
+            InningNumber = Inning;
         }
     }
 }
