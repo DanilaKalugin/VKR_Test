@@ -63,19 +63,19 @@ namespace Entities
 
         public double DefensiveRating()
         {
-            double PitcherComponent = (double)(281 - StrikeZoneProbabilty) / 10 * 7 + 9;
+            double PitcherComponent = (double)(301 - StrikeZoneProbabilty) / 10 * 7 + 9;
             double OutfieldComponent = (double)FlyoutProbability / 20;
             return Math.Round(PitcherComponent + OutfieldComponent + DoublePlayProbabilty, 2);
         }
 
         public double OffensiveRating()
         {
-            double DoubleComponent = (double)(DoubleProbability - SingleProbability) / 20;
-            double HomeRunComponent = (double)(HomeRunProbabilty - DoubleProbability) / 4;
-            double TripleComponent = (double)(2000 - HomeRunProbabilty) / 2;
-            double SingleComponent = (double)(SingleProbability - FoulProbability) / 50;
-            double BaseStealingComponent = (double)StealingBaseProbability / 10;
-            double HittingComponent = (double)HittingProbability / 40;
+            double DoubleComponent = (double)(DoubleProbability - SingleProbability - 102) / 6;
+            double HomeRunComponent = (double)(HomeRunProbabilty - DoubleProbability - 3) / 2;
+            double TripleComponent = (2000 - HomeRunProbabilty) / 2.5;
+            double SingleComponent = (double)(SingleProbability - FoulProbability - 122) / 30;
+            double BaseStealingComponent = (double)(StealingBaseProbability - 2) / 5;
+            double HittingComponent = (double)(HittingProbability - 251) / 25;
             return Math.Round(SingleComponent + DoubleComponent + HomeRunComponent + TripleComponent + BaseStealingComponent + HittingComponent, 2);
         }
 

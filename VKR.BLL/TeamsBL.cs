@@ -33,6 +33,7 @@ namespace VKR.BLL
         public List<Team> GetStandings(string Filter)
         {
             List<Team> teams = teamsDAO.GetStandings().ToList();
+
             if (Filter != "MLB")
             {
                 if (Filter == "NL" || Filter == "AL")
@@ -46,12 +47,23 @@ namespace VKR.BLL
             }
             int LeaderW = teams[0].Wins;
             int LeaderL = teams[0].Losses;
+
             foreach (Team team in teams)
             {
                 team.TeamColor = teamsDAO.GetAllColorsForThisTeam(team.TeamAbbreviation).ToList();
                 team.GamesBehind = (double)((LeaderW - LeaderL) - (team.Wins - team.Losses)) / 2;
             }
-            return teams.OrderBy(team => team.GamesBehind).ThenByDescending(team => team.Wins).ToList();
+            teams = teams.OrderBy(team => team.GamesBehind).ThenByDescending(team => team.Wins).ToList();
+
+            double leadGB = teams[0].GamesBehind;
+            if (leadGB < 0)
+            {
+                foreach (Team team in teams)
+                {
+                    team.GamesBehind -= leadGB;
+                }
+            }
+            return teams;
         }
 
         public List<Batter> GetStartingLineupForThisMatch(string Team, bool DHRule)

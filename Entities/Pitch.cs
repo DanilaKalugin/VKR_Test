@@ -139,7 +139,7 @@ namespace Entities
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallIsOutOfTheStrikeZone;
             }
-            else if (GettingIntoStrikeZone_RandomValue < 990)
+            else if (GettingIntoStrikeZone_RandomValue < 995)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallInTheStrikeZone;
             }
