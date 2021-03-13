@@ -13,8 +13,8 @@ namespace VKR_Test
             BackColor = team.TeamColor[0];
             label1.Text = HRType;
             timer2.Start();
-            panel1.BackgroundImage = Image.FromFile($"BigTeamLogos/{team.TeamAbbreviation}.png");
-            panel2.BackgroundImage = Image.FromFile($"BigTeamLogos/{team.TeamAbbreviation}.png");
+            panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.jpg");
             label2.Text = batter.FirstName.ToUpper() + " " + batter.SecondName.ToUpper();
 
