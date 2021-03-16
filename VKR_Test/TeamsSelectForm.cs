@@ -17,6 +17,8 @@ namespace VKR_Test
         int HomeTeamNumber;
         private static Random HomeTeamRandomGenerator;
         private static Random AwayTeamRandomGenerator;
+        public bool ExitFromCurrentMatch;
+        public int MatchNumberForDelete;
 
         static TeamsSelectForm()
         {
@@ -124,6 +126,14 @@ namespace VKR_Test
             {
                 DialogResult = DialogResult.OK;
                 Close();
+            }
+            else if (stadiumSelection.DialogResult == DialogResult.Yes)
+            {
+                ExitFromCurrentMatch = stadiumSelection.ExitFromCurrentMatch;
+                MatchNumberForDelete = stadiumSelection.MatchNumberForDelete;
+                stadiumSelection.Dispose();
+                Hide();
+                DialogResult = DialogResult.Yes;
             }
         }
     }

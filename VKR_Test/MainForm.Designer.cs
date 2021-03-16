@@ -2231,6 +2231,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             panel27.ResumeLayout(false);
             this.panel26.ResumeLayout(false);
             this.panel13.ResumeLayout(false);

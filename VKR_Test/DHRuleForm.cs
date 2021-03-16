@@ -11,8 +11,10 @@ namespace VKR_Test
         Team AwayTeam;
         Stadium stadiumForThisMatch;
         bool playingWithDH;
+        public bool ExitFromCurrentMatch;
         private readonly MatchBL matchBL;
         private readonly TeamsBL teamsBL;
+        public int MatchNumber;
 
         public DHRuleForm(Team _HomeTeam, Team _AwayTeam, Stadium _stadium)
         {
@@ -58,6 +60,14 @@ namespace VKR_Test
             {
                 DialogResult = DialogResult.OK;
                 Close();
+            }
+            else if (newMatchForm.DialogResult == DialogResult.Yes)
+            {
+                ExitFromCurrentMatch = newMatchForm.DeleteThisMatch;
+                MatchNumber = newMatchForm.currentMatch.MatchID;
+                newMatchForm.Dispose();
+                Hide();
+                DialogResult = DialogResult.Yes;
             }
         }
     }

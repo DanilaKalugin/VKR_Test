@@ -11,11 +11,12 @@ namespace VKR_Test
     public partial class MainForm : Form
     {
         int runs;
-        Match currentMatch;
+        public Match currentMatch;
         GameSituation newGameSituation;
         GameSituation previousSituation;
         TeamsBL teamsBL;
         MatchBL matchBL;
+        public bool DeleteThisMatch;
 
         public MainForm(Match match)
         {
@@ -625,6 +626,19 @@ namespace VKR_Test
             if (!lb_Runner3_Name.Visible)
             {
                 lb_Runner2_Name.ForeColor = lb_Runner2_Name.ForeColor == Color.DarkGoldenrod ? Color.Gainsboro : Color.DarkGoldenrod;
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DialogResult != DialogResult.OK)
+            {
+                if (MessageBox.Show("Do you want to close this window?\nThis match will be deleted from database", "Graduation paper", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    DeleteThisMatch = true;
+                    Hide();
+                    DialogResult = DialogResult.Yes;
+                }
             }
         }
     }

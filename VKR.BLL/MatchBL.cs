@@ -63,5 +63,10 @@ namespace VKR.BLL
             }
             return matches.Where(match => match.AwayTeamAbbreviation == team || match.HomeTeamAbbreviation == team).ToList();
         }
+
+        public void DeleteThisMatch(int matchNumberForDelete)
+        {
+            matchDAO.DeleteThisMatch(matchNumberForDelete);
+        }
     }
 }

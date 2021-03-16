@@ -12,13 +12,15 @@ namespace VKR_Test
     {
         private readonly ManBL manBL;
         private readonly TeamsBL teams;
-        private readonly PlayerBL players;
+        private readonly MatchBL matchBL;
+        private int MatchNumberForDelete;
 
         public MainMenuForm()
         {
             InitializeComponent();
             manBL = new ManBL();
             teams = new TeamsBL();
+            matchBL = new MatchBL();
         }
 
         private void MainMenuForm_Load(object sender, EventArgs e)
@@ -47,6 +49,12 @@ namespace VKR_Test
         {
             TeamsSelectForm form = new TeamsSelectForm();
             form.ShowDialog();
+            if (form.DialogResult == DialogResult.Yes)
+            {
+                MatchNumberForDelete = form.MatchNumberForDelete;
+                form.Dispose();
+                matchBL.DeleteThisMatch(MatchNumberForDelete);
+            }
         }
 
         private void btnStandings_Click(object sender, EventArgs e)

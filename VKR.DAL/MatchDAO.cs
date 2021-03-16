@@ -67,6 +67,18 @@ namespace VKR.DAL
             }
         }
 
+        public void DeleteThisMatch(int matchNumberForDelete)
+        {
+            using (SqlCommand command = new SqlCommand("DeleteMatch", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Match", SqlDbType.Int);
+
+                command.Prepare();
+                command.Parameters[0].Value = matchNumberForDelete;
+                var result = command.ExecuteNonQuery();
+            }
+        }
 
         public int GetNumberOfMatchesPlayed()
         {
