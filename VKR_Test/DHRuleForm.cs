@@ -24,16 +24,8 @@ namespace VKR_Test
             HomeTeam = _HomeTeam;
             AwayTeam = _AwayTeam;
             stadiumForThisMatch = _stadium;
-            if (HomeTeam.DHRule)
-            {
-                radioButton1.Checked = true;
-                radioButton2.Checked = false;
-            }
-            else
-            {
-                radioButton2.Checked = true;
-                radioButton1.Checked = false;
-            }
+            radioButton1.Checked = HomeTeam.DHRule;
+            radioButton2.Checked = !HomeTeam.DHRule;
             playingWithDH = radioButton1.Checked;
         }
 
