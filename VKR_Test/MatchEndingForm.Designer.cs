@@ -35,29 +35,19 @@ namespace VKR_Test
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.label22 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.label23 = new System.Windows.Forms.Label();
             this.away1 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
             this.away2 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
             this.away3 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.away4 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
             this.away5 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
             this.away6 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
             this.away7 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.away8 = new System.Windows.Forms.Label();
             this.away9 = new System.Windows.Forms.Label();
             this.homeHits = new System.Windows.Forms.Label();
@@ -77,6 +67,16 @@ namespace VKR_Test
             this.home7 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.lb1stInning = new System.Windows.Forms.Label();
+            this.lb10thInning = new System.Windows.Forms.Label();
+            this.lb9thInning = new System.Windows.Forms.Label();
+            this.lb8thInning = new System.Windows.Forms.Label();
+            this.lb7thInning = new System.Windows.Forms.Label();
+            this.lb6thInning = new System.Windows.Forms.Label();
+            this.lb5thInning = new System.Windows.Forms.Label();
+            this.lb4thInning = new System.Windows.Forms.Label();
+            this.lb3rdInning = new System.Windows.Forms.Label();
+            this.lb2ndInning = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,19 +127,6 @@ namespace VKR_Test
             this.label1.Size = new System.Drawing.Size(140, 300);
             this.label1.TabIndex = 10;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label31
-            // 
-            this.label31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label31.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(175, 396);
-            this.label31.Margin = new System.Windows.Forms.Padding(0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(45, 39);
-            this.label31.TabIndex = 72;
-            this.label31.Text = "1";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label18
             // 
@@ -200,19 +187,6 @@ namespace VKR_Test
             this.panel11.Size = new System.Drawing.Size(39, 39);
             this.panel11.TabIndex = 46;
             // 
-            // label22
-            // 
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label22.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(580, 396);
-            this.label22.Margin = new System.Windows.Forms.Padding(0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(45, 39);
-            this.label22.TabIndex = 81;
-            this.label22.Text = "10";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // panel12
             // 
             this.panel12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -221,19 +195,6 @@ namespace VKR_Test
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(39, 39);
             this.panel12.TabIndex = 47;
-            // 
-            // label23
-            // 
-            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label23.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(535, 396);
-            this.label23.Margin = new System.Windows.Forms.Padding(0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(45, 39);
-            this.label23.TabIndex = 80;
-            this.label23.Text = "9";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // away1
             // 
@@ -247,19 +208,6 @@ namespace VKR_Test
             this.away1.TabIndex = 48;
             this.away1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label24
-            // 
-            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label24.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(490, 396);
-            this.label24.Margin = new System.Windows.Forms.Padding(0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 39);
-            this.label24.TabIndex = 79;
-            this.label24.Text = "8";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // away2
             // 
             this.away2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -271,19 +219,6 @@ namespace VKR_Test
             this.away2.Size = new System.Drawing.Size(45, 39);
             this.away2.TabIndex = 49;
             this.away2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label25
-            // 
-            this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(445, 396);
-            this.label25.Margin = new System.Windows.Forms.Padding(0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(45, 39);
-            this.label25.TabIndex = 78;
-            this.label25.Text = "7";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // away3
             // 
@@ -297,19 +232,6 @@ namespace VKR_Test
             this.away3.TabIndex = 50;
             this.away3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label26
-            // 
-            this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label26.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(400, 396);
-            this.label26.Margin = new System.Windows.Forms.Padding(0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(45, 39);
-            this.label26.TabIndex = 77;
-            this.label26.Text = "6";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // away4
             // 
             this.away4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -321,19 +243,6 @@ namespace VKR_Test
             this.away4.Size = new System.Drawing.Size(45, 39);
             this.away4.TabIndex = 51;
             this.away4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label27
-            // 
-            this.label27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label27.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label27.ForeColor = System.Drawing.Color.White;
-            this.label27.Location = new System.Drawing.Point(355, 396);
-            this.label27.Margin = new System.Windows.Forms.Padding(0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(45, 39);
-            this.label27.TabIndex = 76;
-            this.label27.Text = "5";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // away5
             // 
@@ -347,19 +256,6 @@ namespace VKR_Test
             this.away5.TabIndex = 52;
             this.away5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label28
-            // 
-            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label28.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label28.ForeColor = System.Drawing.Color.White;
-            this.label28.Location = new System.Drawing.Point(310, 396);
-            this.label28.Margin = new System.Windows.Forms.Padding(0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(45, 39);
-            this.label28.TabIndex = 75;
-            this.label28.Text = "4";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // away6
             // 
             this.away6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -372,19 +268,6 @@ namespace VKR_Test
             this.away6.TabIndex = 53;
             this.away6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label29
-            // 
-            this.label29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label29.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(265, 396);
-            this.label29.Margin = new System.Windows.Forms.Padding(0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(45, 39);
-            this.label29.TabIndex = 74;
-            this.label29.Text = "3";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // away7
             // 
             this.away7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -396,19 +279,6 @@ namespace VKR_Test
             this.away7.Size = new System.Drawing.Size(45, 39);
             this.away7.TabIndex = 54;
             this.away7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label30
-            // 
-            this.label30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label30.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label30.ForeColor = System.Drawing.Color.White;
-            this.label30.Location = new System.Drawing.Point(220, 396);
-            this.label30.Margin = new System.Windows.Forms.Padding(0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(45, 39);
-            this.label30.TabIndex = 73;
-            this.label30.Text = "2";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // away8
             // 
@@ -637,36 +507,166 @@ namespace VKR_Test
             this.label3.Text = "MATCH ENDED";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lb1stInning
+            // 
+            this.lb1stInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb1stInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb1stInning.ForeColor = System.Drawing.Color.White;
+            this.lb1stInning.Location = new System.Drawing.Point(175, 396);
+            this.lb1stInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb1stInning.Name = "lb1stInning";
+            this.lb1stInning.Size = new System.Drawing.Size(45, 39);
+            this.lb1stInning.TabIndex = 86;
+            this.lb1stInning.Text = "1";
+            this.lb1stInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb10thInning
+            // 
+            this.lb10thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb10thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb10thInning.ForeColor = System.Drawing.Color.White;
+            this.lb10thInning.Location = new System.Drawing.Point(580, 396);
+            this.lb10thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb10thInning.Name = "lb10thInning";
+            this.lb10thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb10thInning.TabIndex = 95;
+            this.lb10thInning.Text = "10";
+            this.lb10thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb9thInning
+            // 
+            this.lb9thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb9thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb9thInning.ForeColor = System.Drawing.Color.White;
+            this.lb9thInning.Location = new System.Drawing.Point(535, 396);
+            this.lb9thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb9thInning.Name = "lb9thInning";
+            this.lb9thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb9thInning.TabIndex = 94;
+            this.lb9thInning.Text = "9";
+            this.lb9thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb8thInning
+            // 
+            this.lb8thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb8thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb8thInning.ForeColor = System.Drawing.Color.White;
+            this.lb8thInning.Location = new System.Drawing.Point(490, 396);
+            this.lb8thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb8thInning.Name = "lb8thInning";
+            this.lb8thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb8thInning.TabIndex = 93;
+            this.lb8thInning.Text = "8";
+            this.lb8thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb7thInning
+            // 
+            this.lb7thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb7thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb7thInning.ForeColor = System.Drawing.Color.White;
+            this.lb7thInning.Location = new System.Drawing.Point(445, 396);
+            this.lb7thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb7thInning.Name = "lb7thInning";
+            this.lb7thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb7thInning.TabIndex = 92;
+            this.lb7thInning.Text = "7";
+            this.lb7thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb6thInning
+            // 
+            this.lb6thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb6thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb6thInning.ForeColor = System.Drawing.Color.White;
+            this.lb6thInning.Location = new System.Drawing.Point(400, 396);
+            this.lb6thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb6thInning.Name = "lb6thInning";
+            this.lb6thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb6thInning.TabIndex = 91;
+            this.lb6thInning.Text = "6";
+            this.lb6thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb5thInning
+            // 
+            this.lb5thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb5thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb5thInning.ForeColor = System.Drawing.Color.White;
+            this.lb5thInning.Location = new System.Drawing.Point(355, 396);
+            this.lb5thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb5thInning.Name = "lb5thInning";
+            this.lb5thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb5thInning.TabIndex = 90;
+            this.lb5thInning.Text = "5";
+            this.lb5thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb4thInning
+            // 
+            this.lb4thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb4thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb4thInning.ForeColor = System.Drawing.Color.White;
+            this.lb4thInning.Location = new System.Drawing.Point(310, 396);
+            this.lb4thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb4thInning.Name = "lb4thInning";
+            this.lb4thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb4thInning.TabIndex = 89;
+            this.lb4thInning.Text = "4";
+            this.lb4thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb3rdInning
+            // 
+            this.lb3rdInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb3rdInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb3rdInning.ForeColor = System.Drawing.Color.White;
+            this.lb3rdInning.Location = new System.Drawing.Point(265, 396);
+            this.lb3rdInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb3rdInning.Name = "lb3rdInning";
+            this.lb3rdInning.Size = new System.Drawing.Size(45, 39);
+            this.lb3rdInning.TabIndex = 88;
+            this.lb3rdInning.Text = "3";
+            this.lb3rdInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb2ndInning
+            // 
+            this.lb2ndInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb2ndInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb2ndInning.ForeColor = System.Drawing.Color.White;
+            this.lb2ndInning.Location = new System.Drawing.Point(220, 396);
+            this.lb2ndInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb2ndInning.Name = "lb2ndInning";
+            this.lb2ndInning.Size = new System.Drawing.Size(45, 39);
+            this.lb2ndInning.TabIndex = 87;
+            this.lb2ndInning.Text = "2";
+            this.lb2ndInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MatchEndingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 529);
+            this.Controls.Add(this.lb1stInning);
+            this.Controls.Add(this.lb10thInning);
+            this.Controls.Add(this.lb9thInning);
+            this.Controls.Add(this.lb8thInning);
+            this.Controls.Add(this.lb7thInning);
+            this.Controls.Add(this.lb6thInning);
+            this.Controls.Add(this.lb5thInning);
+            this.Controls.Add(this.lb4thInning);
+            this.Controls.Add(this.lb3rdInning);
+            this.Controls.Add(this.lb2ndInning);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.label31);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.panel11);
-            this.Controls.Add(this.label22);
             this.Controls.Add(this.panel12);
-            this.Controls.Add(this.label23);
             this.Controls.Add(this.away1);
-            this.Controls.Add(this.label24);
             this.Controls.Add(this.away2);
-            this.Controls.Add(this.label25);
             this.Controls.Add(this.away3);
-            this.Controls.Add(this.label26);
             this.Controls.Add(this.away4);
-            this.Controls.Add(this.label27);
             this.Controls.Add(this.away5);
-            this.Controls.Add(this.label28);
             this.Controls.Add(this.away6);
-            this.Controls.Add(this.label29);
             this.Controls.Add(this.away7);
-            this.Controls.Add(this.label30);
             this.Controls.Add(this.away8);
             this.Controls.Add(this.away9);
             this.Controls.Add(this.homeHits);
@@ -705,29 +705,19 @@ namespace VKR_Test
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label away1;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label away2;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label away3;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label away4;
-        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label away5;
-        private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label away6;
-        private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label away7;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label away8;
         private System.Windows.Forms.Label away9;
         private System.Windows.Forms.Label homeHits;
@@ -747,5 +737,15 @@ namespace VKR_Test
         private System.Windows.Forms.Label home7;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lb1stInning;
+        private System.Windows.Forms.Label lb10thInning;
+        private System.Windows.Forms.Label lb9thInning;
+        private System.Windows.Forms.Label lb8thInning;
+        private System.Windows.Forms.Label lb7thInning;
+        private System.Windows.Forms.Label lb6thInning;
+        private System.Windows.Forms.Label lb5thInning;
+        private System.Windows.Forms.Label lb4thInning;
+        private System.Windows.Forms.Label lb3rdInning;
+        private System.Windows.Forms.Label lb2ndInning;
     }
 }

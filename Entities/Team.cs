@@ -44,6 +44,9 @@ namespace Entities
         public int Wins;
         public int Losses;
         public double GamesBehind;
+        public int RunsScored;
+        public int RunsAllowed;
+        public int RunDifferential { get { return RunsScored - RunsAllowed; } }
 
         public string Division;
 
@@ -110,7 +113,7 @@ namespace Entities
             Losses = l;
         }
 
-        public Team (string abbreviation, string Name, int _W, int _L, string _League, string _Division)
+        public Team (string abbreviation, string Name, int _W, int _L, string _League, string _Division, int _RS, int _RA)
         {
             TeamAbbreviation = abbreviation;
             TeamTitle = Name;
@@ -118,6 +121,8 @@ namespace Entities
             Wins = _W;
             Losses = _L;
             Division = _Division;
+            RunsScored = _RS;
+            RunsAllowed = _RA;
         }
     }
 }

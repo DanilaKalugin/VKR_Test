@@ -58,8 +58,10 @@ namespace VKR.DAL
                         string League = (string)reader["TeamLeague"];
                         int W = (int)reader["W"];
                         int L = (int)reader["L"];
+                        int RS = (int)reader["RS"];
+                        int RA = (int)reader["RA"];
                         string Division = (string)reader["TeamDivision"];
-                        yield return new Team(Abbreviation, Name, W, L, League, Division);
+                        yield return new Team(Abbreviation, Name, W, L, League, Division, RS, RA);
                     }
                 }
             }

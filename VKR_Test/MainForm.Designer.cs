@@ -46,6 +46,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.AwayTeam_RunsScored = new System.Windows.Forms.Label();
             this.AwayTeam_Abbreviation = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -102,16 +103,16 @@
             this.homeHits = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.lb10thInning = new System.Windows.Forms.Label();
+            this.lb9thInning = new System.Windows.Forms.Label();
+            this.lb8thInning = new System.Windows.Forms.Label();
+            this.lb7thInning = new System.Windows.Forms.Label();
+            this.lb6thInning = new System.Windows.Forms.Label();
+            this.lb5thInning = new System.Windows.Forms.Label();
+            this.lb4thInning = new System.Windows.Forms.Label();
+            this.lb3rdInning = new System.Windows.Forms.Label();
+            this.lb2ndInning = new System.Windows.Forms.Label();
+            this.lb1stInning = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
@@ -191,7 +192,8 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.btnBuntAttempt = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             panel27.SuspendLayout();
@@ -425,6 +427,17 @@
             this.AwayTeam_Abbreviation.Size = new System.Drawing.Size(99, 39);
             this.AwayTeam_Abbreviation.TabIndex = 0;
             this.AwayTeam_Abbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Gray;
+            this.panel3.BackgroundImage = global::VKR_Test.Properties.Resources._000;
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(160, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(90, 78);
+            this.panel3.TabIndex = 2;
             // 
             // panel2
             // 
@@ -1082,162 +1095,164 @@
             this.label21.Text = "R";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label22
+            // lb10thInning
             // 
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label22.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(750, 9);
-            this.label22.Margin = new System.Windows.Forms.Padding(0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(45, 39);
-            this.label22.TabIndex = 41;
-            this.label22.Text = "10";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb10thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb10thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb10thInning.ForeColor = System.Drawing.Color.White;
+            this.lb10thInning.Location = new System.Drawing.Point(750, 9);
+            this.lb10thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb10thInning.Name = "lb10thInning";
+            this.lb10thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb10thInning.TabIndex = 41;
+            this.lb10thInning.Text = "10";
+            this.lb10thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label23
+            // lb9thInning
             // 
-            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label23.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(705, 9);
-            this.label23.Margin = new System.Windows.Forms.Padding(0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(45, 39);
-            this.label23.TabIndex = 40;
-            this.label23.Text = "9";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb9thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb9thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb9thInning.ForeColor = System.Drawing.Color.White;
+            this.lb9thInning.Location = new System.Drawing.Point(705, 9);
+            this.lb9thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb9thInning.Name = "lb9thInning";
+            this.lb9thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb9thInning.TabIndex = 40;
+            this.lb9thInning.Text = "9";
+            this.lb9thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label24
+            // lb8thInning
             // 
-            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label24.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(660, 9);
-            this.label24.Margin = new System.Windows.Forms.Padding(0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 39);
-            this.label24.TabIndex = 39;
-            this.label24.Text = "8";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb8thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb8thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb8thInning.ForeColor = System.Drawing.Color.White;
+            this.lb8thInning.Location = new System.Drawing.Point(660, 9);
+            this.lb8thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb8thInning.Name = "lb8thInning";
+            this.lb8thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb8thInning.TabIndex = 39;
+            this.lb8thInning.Text = "8";
+            this.lb8thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label25
+            // lb7thInning
             // 
-            this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(615, 9);
-            this.label25.Margin = new System.Windows.Forms.Padding(0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(45, 39);
-            this.label25.TabIndex = 38;
-            this.label25.Text = "7";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb7thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb7thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb7thInning.ForeColor = System.Drawing.Color.White;
+            this.lb7thInning.Location = new System.Drawing.Point(615, 9);
+            this.lb7thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb7thInning.Name = "lb7thInning";
+            this.lb7thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb7thInning.TabIndex = 38;
+            this.lb7thInning.Text = "7";
+            this.lb7thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label26
+            // lb6thInning
             // 
-            this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label26.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(570, 9);
-            this.label26.Margin = new System.Windows.Forms.Padding(0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(45, 39);
-            this.label26.TabIndex = 37;
-            this.label26.Text = "6";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb6thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb6thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb6thInning.ForeColor = System.Drawing.Color.White;
+            this.lb6thInning.Location = new System.Drawing.Point(570, 9);
+            this.lb6thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb6thInning.Name = "lb6thInning";
+            this.lb6thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb6thInning.TabIndex = 37;
+            this.lb6thInning.Text = "6";
+            this.lb6thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label27
+            // lb5thInning
             // 
-            this.label27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label27.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label27.ForeColor = System.Drawing.Color.White;
-            this.label27.Location = new System.Drawing.Point(525, 9);
-            this.label27.Margin = new System.Windows.Forms.Padding(0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(45, 39);
-            this.label27.TabIndex = 36;
-            this.label27.Text = "5";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb5thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb5thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb5thInning.ForeColor = System.Drawing.Color.White;
+            this.lb5thInning.Location = new System.Drawing.Point(525, 9);
+            this.lb5thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb5thInning.Name = "lb5thInning";
+            this.lb5thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb5thInning.TabIndex = 36;
+            this.lb5thInning.Text = "5";
+            this.lb5thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label28
+            // lb4thInning
             // 
-            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label28.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label28.ForeColor = System.Drawing.Color.White;
-            this.label28.Location = new System.Drawing.Point(480, 9);
-            this.label28.Margin = new System.Windows.Forms.Padding(0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(45, 39);
-            this.label28.TabIndex = 35;
-            this.label28.Text = "4";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb4thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb4thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb4thInning.ForeColor = System.Drawing.Color.White;
+            this.lb4thInning.Location = new System.Drawing.Point(480, 9);
+            this.lb4thInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb4thInning.Name = "lb4thInning";
+            this.lb4thInning.Size = new System.Drawing.Size(45, 39);
+            this.lb4thInning.TabIndex = 35;
+            this.lb4thInning.Text = "4";
+            this.lb4thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label29
+            // lb3rdInning
             // 
-            this.label29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label29.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(435, 9);
-            this.label29.Margin = new System.Windows.Forms.Padding(0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(45, 39);
-            this.label29.TabIndex = 34;
-            this.label29.Text = "3";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb3rdInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb3rdInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb3rdInning.ForeColor = System.Drawing.Color.White;
+            this.lb3rdInning.Location = new System.Drawing.Point(435, 9);
+            this.lb3rdInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb3rdInning.Name = "lb3rdInning";
+            this.lb3rdInning.Size = new System.Drawing.Size(45, 39);
+            this.lb3rdInning.TabIndex = 34;
+            this.lb3rdInning.Text = "3";
+            this.lb3rdInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label30
+            // lb2ndInning
             // 
-            this.label30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label30.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label30.ForeColor = System.Drawing.Color.White;
-            this.label30.Location = new System.Drawing.Point(390, 9);
-            this.label30.Margin = new System.Windows.Forms.Padding(0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(45, 39);
-            this.label30.TabIndex = 33;
-            this.label30.Text = "2";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb2ndInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb2ndInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb2ndInning.ForeColor = System.Drawing.Color.White;
+            this.lb2ndInning.Location = new System.Drawing.Point(390, 9);
+            this.lb2ndInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb2ndInning.Name = "lb2ndInning";
+            this.lb2ndInning.Size = new System.Drawing.Size(45, 39);
+            this.lb2ndInning.TabIndex = 33;
+            this.lb2ndInning.Text = "2";
+            this.lb2ndInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label31
+            // lb1stInning
             // 
-            this.label31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label31.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(345, 9);
-            this.label31.Margin = new System.Windows.Forms.Padding(0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(45, 39);
-            this.label31.TabIndex = 32;
-            this.label31.Text = "1";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb1stInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lb1stInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb1stInning.ForeColor = System.Drawing.Color.White;
+            this.lb1stInning.Location = new System.Drawing.Point(345, 9);
+            this.lb1stInning.Margin = new System.Windows.Forms.Padding(0);
+            this.lb1stInning.Name = "lb1stInning";
+            this.lb1stInning.Size = new System.Drawing.Size(45, 39);
+            this.lb1stInning.TabIndex = 32;
+            this.lb1stInning.Text = "1";
+            this.lb1stInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel14
             // 
+            this.panel14.Controls.Add(this.label23);
+            this.panel14.Controls.Add(this.label22);
             this.panel14.Controls.Add(this.panel15);
-            this.panel14.Controls.Add(this.label31);
+            this.panel14.Controls.Add(this.lb1stInning);
             this.panel14.Controls.Add(this.label18);
             this.panel14.Controls.Add(this.label20);
             this.panel14.Controls.Add(this.label19);
             this.panel14.Controls.Add(this.label21);
             this.panel14.Controls.Add(this.panel11);
-            this.panel14.Controls.Add(this.label22);
+            this.panel14.Controls.Add(this.lb10thInning);
             this.panel14.Controls.Add(this.panel12);
-            this.panel14.Controls.Add(this.label23);
+            this.panel14.Controls.Add(this.lb9thInning);
             this.panel14.Controls.Add(this.away1);
-            this.panel14.Controls.Add(this.label24);
+            this.panel14.Controls.Add(this.lb8thInning);
             this.panel14.Controls.Add(this.away2);
-            this.panel14.Controls.Add(this.label25);
+            this.panel14.Controls.Add(this.lb7thInning);
             this.panel14.Controls.Add(this.away3);
-            this.panel14.Controls.Add(this.label26);
+            this.panel14.Controls.Add(this.lb6thInning);
             this.panel14.Controls.Add(this.away4);
-            this.panel14.Controls.Add(this.label27);
+            this.panel14.Controls.Add(this.lb5thInning);
             this.panel14.Controls.Add(this.away5);
-            this.panel14.Controls.Add(this.label28);
+            this.panel14.Controls.Add(this.lb4thInning);
             this.panel14.Controls.Add(this.away6);
-            this.panel14.Controls.Add(this.label29);
+            this.panel14.Controls.Add(this.lb3rdInning);
             this.panel14.Controls.Add(this.away7);
-            this.panel14.Controls.Add(this.label30);
+            this.panel14.Controls.Add(this.lb2ndInning);
             this.panel14.Controls.Add(this.away8);
             this.panel14.Controls.Add(this.away9);
             this.panel14.Controls.Add(this.homeHits);
@@ -2167,16 +2182,29 @@
             this.btnBuntAttempt.UseVisualStyleBackColor = true;
             this.btnBuntAttempt.Click += new System.EventHandler(this.btnBuntAttempt_Click);
             // 
-            // panel3
+            // label22
             // 
-            this.panel3.BackColor = System.Drawing.Color.Gray;
-            this.panel3.BackgroundImage = global::VKR_Test.Properties.Resources._000;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(160, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(90, 78);
-            this.panel3.TabIndex = 2;
+            this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.label22.Location = new System.Drawing.Point(301, 63);
+            this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(41, 20);
+            this.label22.TabIndex = 45;
+            this.label22.Text = "1.";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.label23.Location = new System.Drawing.Point(301, 106);
+            this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(41, 20);
+            this.label23.TabIndex = 46;
+            this.label23.Text = "1.";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainForm
             // 
@@ -2309,16 +2337,16 @@
         private System.Windows.Forms.Label homeHits;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label lb10thInning;
+        private System.Windows.Forms.Label lb9thInning;
+        private System.Windows.Forms.Label lb8thInning;
+        private System.Windows.Forms.Label lb7thInning;
+        private System.Windows.Forms.Label lb6thInning;
+        private System.Windows.Forms.Label lb5thInning;
+        private System.Windows.Forms.Label lb4thInning;
+        private System.Windows.Forms.Label lb3rdInning;
+        private System.Windows.Forms.Label lb2ndInning;
+        private System.Windows.Forms.Label lb1stInning;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label lbBatterSecondName;
         private System.Windows.Forms.Label lbBatterNumber;
@@ -2405,6 +2433,8 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Button btnBuntAttempt;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
     }
 }
 
