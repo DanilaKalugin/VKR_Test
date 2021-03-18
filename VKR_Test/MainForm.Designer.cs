@@ -194,6 +194,7 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.btnBuntAttempt = new System.Windows.Forms.Button();
+            this.btnStandings = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             panel27.SuspendLayout();
@@ -2206,11 +2207,25 @@
             this.btnBuntAttempt.UseVisualStyleBackColor = true;
             this.btnBuntAttempt.Click += new System.EventHandler(this.btnBuntAttempt_Click);
             // 
+            // btnStandings
+            // 
+            this.btnStandings.FlatAppearance.BorderSize = 0;
+            this.btnStandings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStandings.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStandings.Location = new System.Drawing.Point(12, 144);
+            this.btnStandings.Name = "btnStandings";
+            this.btnStandings.Size = new System.Drawing.Size(300, 35);
+            this.btnStandings.TabIndex = 56;
+            this.btnStandings.Text = "CURRENT STANDINGS";
+            this.btnStandings.UseVisualStyleBackColor = true;
+            this.btnStandings.Click += new System.EventHandler(this.btnStandings_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(this.btnStandings);
             this.Controls.Add(this.btnBuntAttempt);
             this.Controls.Add(this.label44);
             this.Controls.Add(this.label32);
@@ -2436,6 +2451,7 @@
         private System.Windows.Forms.Button btnBuntAttempt;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button btnStandings;
     }
 }
 

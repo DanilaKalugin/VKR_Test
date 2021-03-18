@@ -185,7 +185,7 @@ namespace Entities
             int Hitting_RandomValue = Hitting_RandomGenerator.Next(1, 2000);
             if (swingResult == Swing_ResultType.Swing)
             {
-                if (Hitting_RandomValue > Hitting_probability + pitcherCoefficient - BatterNumberComponent * 3 - numberOfPitches / 2)
+                if (Hitting_RandomValue > Hitting_probability + pitcherCoefficient - BatterNumberComponent * 3 - numberOfPitches / 3)
                 {
                     return Hitting_ResultType.Hit;
                 }

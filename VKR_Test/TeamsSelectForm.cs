@@ -137,5 +137,15 @@ namespace VKR_Test
                 DialogResult = DialogResult.Yes;
             }
         }
+
+        private void btnSwap_Click(object sender, EventArgs e)
+        {
+            int Buf = AwayTeamNumber;
+            AwayTeamNumber = HomeTeamNumber;
+            HomeTeamNumber = Buf;
+
+            DisplayTeam(AwayTeamNumber, numericUpDown1, label1, label2, panel1, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(HomeTeamNumber, numericUpDown2, label8, label7, panel2, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
+        }
     }
 }

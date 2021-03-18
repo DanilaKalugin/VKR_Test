@@ -63,6 +63,7 @@ namespace VKR_Test
             this.label16 = new System.Windows.Forms.Label();
             this.AwayTeamBalance = new System.Windows.Forms.Label();
             this.HomeTeamBalance = new System.Windows.Forms.Label();
+            this.btnSwap = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -592,12 +593,27 @@ namespace VKR_Test
             this.HomeTeamBalance.Text = "label18";
             this.HomeTeamBalance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnSwap
+            // 
+            this.btnSwap.FlatAppearance.BorderSize = 0;
+            this.btnSwap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSwap.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSwap.ForeColor = System.Drawing.Color.White;
+            this.btnSwap.Location = new System.Drawing.Point(319, 19);
+            this.btnSwap.Name = "btnSwap";
+            this.btnSwap.Size = new System.Drawing.Size(298, 28);
+            this.btnSwap.TabIndex = 29;
+            this.btnSwap.Text = "SWAP";
+            this.btnSwap.UseVisualStyleBackColor = true;
+            this.btnSwap.Click += new System.EventHandler(this.btnSwap_Click);
+            // 
             // TeamsSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(934, 450);
+            this.Controls.Add(this.btnSwap);
             this.Controls.Add(this.HomeTeamBalance);
             this.Controls.Add(this.AwayTeamBalance);
             this.Controls.Add(this.btnAcceptTeamsSelection);
@@ -678,5 +694,6 @@ namespace VKR_Test
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label AwayTeamBalance;
         private System.Windows.Forms.Label HomeTeamBalance;
+        private System.Windows.Forms.Button btnSwap;
     }
 }

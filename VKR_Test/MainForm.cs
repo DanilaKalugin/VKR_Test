@@ -641,5 +641,11 @@ namespace VKR_Test
                 }
             }
         }
+
+        private void btnStandings_Click(object sender, EventArgs e)
+        {
+            StandingsForm form = new StandingsForm(currentMatch.HomeTeam, currentMatch.AwayTeam);
+            form.ShowDialog();
+        }
     }
 }
