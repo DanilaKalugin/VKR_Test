@@ -140,6 +140,5 @@ namespace Entities
             Flyouts = _ao;
             Poputs = _po;
         }
-
     }
 }

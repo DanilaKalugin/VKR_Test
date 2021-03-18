@@ -180,12 +180,12 @@ namespace Entities
             }
         }
 
-        private Hitting_ResultType Hitting_Definition(Swing_ResultType swingResult, int Hitting_probability, int BatterNumberComponent, int pitcherCoefficient)
+        private Hitting_ResultType Hitting_Definition(Swing_ResultType swingResult, int Hitting_probability, int BatterNumberComponent, int pitcherCoefficient, int numberOfPitches)
         {
             int Hitting_RandomValue = Hitting_RandomGenerator.Next(1, 2000);
             if (swingResult == Swing_ResultType.Swing)
             {
-                if (Hitting_RandomValue > Hitting_probability + pitcherCoefficient - BatterNumberComponent * 3)
+                if (Hitting_RandomValue > Hitting_probability + pitcherCoefficient - BatterNumberComponent * 3 - numberOfPitches / 2)
                 {
                     return Hitting_ResultType.Hit;
                 }
@@ -259,7 +259,7 @@ namespace Entities
                         return OutType.NoResult;
                     }
                 }
-                else if (OutType_RandomValue <= Groundout_probability + countOfHits * 15 && TypeOfHit != HitType.Triple)
+                else if (OutType_RandomValue <= Groundout_probability + countOfHits * 15 && TypeOfHit == HitType.Single)
                 {
                     return OutType.Groundout;
                 }
@@ -281,11 +281,11 @@ namespace Entities
         private OtherCondition OtherCondition_Definition(OutType outType, GameSituation situation, int SacrificeFly_Probability, int DoublePlay_Probability)
         {
             int OtherCondition_RandomValue = OtherCondition_RandomGenerator.Next(1, 100);
-            if (outType == OutType.Flyout && ((situation.RunnerOnSecond.IsBaseNotEmpty) || (situation.RunnerOnThird.IsBaseNotEmpty)) && situation.outs < 2 && OtherCondition_RandomValue <= SacrificeFly_Probability)
+            if (outType == OutType.Flyout && (situation.RunnerOnSecond.IsBaseNotEmpty || situation.RunnerOnThird.IsBaseNotEmpty) && situation.outs < 2 && OtherCondition_RandomValue <= SacrificeFly_Probability)
             {
                 return OtherCondition.SacFly;
             }
-            else if (outType == OutType.Groundout && (situation.RunnerOnFirst.IsBaseNotEmpty) && situation.outs <= 1 && OtherCondition_RandomValue <= DoublePlay_Probability)
+            else if (outType == OutType.Groundout && situation.RunnerOnFirst.IsBaseNotEmpty && situation.outs <= 1 && OtherCondition_RandomValue <= DoublePlay_Probability)
             {
                 return OtherCondition.DoublePlay;
             }
@@ -333,9 +333,14 @@ namespace Entities
                 PitcherCoefficient = 81 - Defense.CurrentPitcher.NumberInRotation * 5;
             }
 
+            if(numberOfPitches > PitcherCoefficient)
+            {
+                numberOfPitches += numberOfPitches - PitcherCoefficient;
+            }
+
             newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability);
-            newPitch_Hitting = Hitting_Definition(newPitch_Swing_Result, Offense.HittingProbability, BatterNumberComponent, PitcherCoefficient);
+            newPitch_Hitting = Hitting_Definition(newPitch_Swing_Result, Offense.HittingProbability, BatterNumberComponent, PitcherCoefficient, numberOfPitches);
             newPitch_HitType = HitType_Definition(newPitch_Hitting, Offense.FoulProbability, Offense.SingleProbability, Offense.DoubleProbability, Offense.HomeRunProbabilty, BatterNumberComponent, CountOfHits, numberOfPitches, StadiumCoefficient, CountOfNotEmptyBases);
             newPitch_OutType = OutType_Definition(newPitch_HitType, Defense.PopoutOnFoulProbability, Defense.FlyoutOnHomeRunProbability, Defense.GroundoutProbability, Defense.FlyoutProbability, CountOfHits);
             newPitch_OtherCondition = OtherCondition_Definition(newPitch_OutType, situation, Defense.SacrificeFlyProbability, Defense.DoubleProbability);

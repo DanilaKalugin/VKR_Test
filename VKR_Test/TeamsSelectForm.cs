@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL;
 
@@ -30,7 +31,7 @@ namespace VKR_Test
         {
             InitializeComponent();
             teamsBL = new TeamsBL();
-            teams = teamsBL.GetAllTeams();
+            teams = teamsBL.GetAllTeams().OrderBy(team => team.Wins + team.Losses).ToList();
             AwayTeamNumber = AwayTeamRandomGenerator.Next(0, 29);
             HomeTeamNumber = (AwayTeamNumber + HomeTeamRandomGenerator.Next(1, 29)) % 30;
         }
