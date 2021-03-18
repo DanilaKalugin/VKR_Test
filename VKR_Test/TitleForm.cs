@@ -8,6 +8,7 @@ namespace VKR_Test
         public TitleForm()
         {
             InitializeComponent();
+            lbTitleEnglish.Text = lbTitleEnglish.Text.ToUpper();
         }
 
         private void button1_Click(object sender, EventArgs e)

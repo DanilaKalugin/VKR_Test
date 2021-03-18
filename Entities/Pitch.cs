@@ -259,7 +259,7 @@ namespace Entities
                         return OutType.NoResult;
                     }
                 }
-                else if (OutType_RandomValue <= Groundout_probability + countOfHits * 15 && TypeOfHit == HitType.Single)
+                else if (OutType_RandomValue <= Groundout_probability + countOfHits * 15 && TypeOfHit != HitType.Triple)
                 {
                     return OutType.Groundout;
                 }
@@ -402,7 +402,7 @@ namespace Entities
             List<GameSituation> ListOfHitsInCurrentInning = match.Where(gameSituation => gameSituation.inningNumber == situation.inningNumber && gameSituation.offense == situation.offense).ToList();
             int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double).Count() * 2 +
                               ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Single || gameSituation.result == PitchResult.Triple || gameSituation.result == PitchResult.HomeRun).Count();
-            int numberOfPitches = match.Where(gameSituation => gameSituation.offense.TeamAbbreviation == situation.offense.TeamAbbreviation).Count();
+            int numberOfPitches = match.Where(gameSituation => gameSituation.offense.TeamAbbreviation == situation.offense.TeamAbbreviation && situation.id > 0).Count();
             int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty);
             int PitcherCoefficient;
             if (Defense.PitchersPlayedInMatch.Count > 1)
