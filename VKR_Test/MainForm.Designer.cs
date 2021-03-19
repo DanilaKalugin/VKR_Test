@@ -38,7 +38,7 @@
             this.BatterStats = new System.Windows.Forms.Label();
             this.lbBatterSecondName = new System.Windows.Forms.Label();
             this.lbBatterNumber = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnNewPitch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.HomeTeam_Abbreviation = new System.Windows.Forms.Label();
@@ -195,6 +195,7 @@
             this.label44 = new System.Windows.Forms.Label();
             this.btnBuntAttempt = new System.Windows.Forms.Button();
             this.btnStandings = new System.Windows.Forms.Button();
+            this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             panel27.SuspendLayout();
@@ -335,18 +336,18 @@
             this.lbBatterNumber.Text = "1.";
             this.lbBatterNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button1
+            // btnNewPitch
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(545, 814);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(300, 35);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "NEXT PITCH";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnNewPitch.FlatAppearance.BorderSize = 0;
+            this.btnNewPitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewPitch.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewPitch.Location = new System.Drawing.Point(545, 814);
+            this.btnNewPitch.Name = "btnNewPitch";
+            this.btnNewPitch.Size = new System.Drawing.Size(300, 35);
+            this.btnNewPitch.TabIndex = 0;
+            this.btnNewPitch.Text = "NEXT PITCH";
+            this.btnNewPitch.UseVisualStyleBackColor = true;
+            this.btnNewPitch.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
             // 
@@ -2220,11 +2221,25 @@
             this.btnStandings.UseVisualStyleBackColor = true;
             this.btnStandings.Click += new System.EventHandler(this.btnStandings_Click);
             // 
+            // btnShowAvailablePitchers
+            // 
+            this.btnShowAvailablePitchers.FlatAppearance.BorderSize = 0;
+            this.btnShowAvailablePitchers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowAvailablePitchers.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowAvailablePitchers.Location = new System.Drawing.Point(545, 775);
+            this.btnShowAvailablePitchers.Name = "btnShowAvailablePitchers";
+            this.btnShowAvailablePitchers.Size = new System.Drawing.Size(300, 35);
+            this.btnShowAvailablePitchers.TabIndex = 57;
+            this.btnShowAvailablePitchers.Text = "CHANGE PITCHER";
+            this.btnShowAvailablePitchers.UseVisualStyleBackColor = true;
+            this.btnShowAvailablePitchers.Click += new System.EventHandler(this.btnShowAvailablePitchers_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(this.btnShowAvailablePitchers);
             this.Controls.Add(this.btnStandings);
             this.Controls.Add(this.btnBuntAttempt);
             this.Controls.Add(this.label44);
@@ -2238,7 +2253,7 @@
             this.Controls.Add(this.panel14);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNewPitch);
             this.Controls.Add(this.panel2);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -2288,7 +2303,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNewPitch;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
@@ -2452,6 +2467,7 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btnStandings;
+        private System.Windows.Forms.Button btnShowAvailablePitchers;
     }
 }
 

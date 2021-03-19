@@ -105,5 +105,15 @@ namespace VKR.BLL
         {
             return teamsDAO.GetCurrentLineupForThisMatch(Team, Match).ToList();
         }
+
+        public List<Pitcher> GetAvailablePitchers(Match match, Team team)
+        {
+            return teamsDAO.GetAvailablePitchers(match, team).ToList();
+        }
+
+        public void SubstitutePitcher(Match match, Team team, Pitcher pitcher)
+        {
+            teamsDAO.SubstitutePitcher(match, team, pitcher);
+        }
     }
 }

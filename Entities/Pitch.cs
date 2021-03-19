@@ -135,7 +135,7 @@ namespace Entities
         {
             int GettingIntoStrikeZone_RandomValue = GettingIntoStrikeZone_RandomGenerator.Next(1, 1000);
 
-            if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - pitcherCoefficient + numberOfPitches)
+            if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - pitcherCoefficient + numberOfPitches * 0.8)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallIsOutOfTheStrikeZone;
             }
@@ -259,11 +259,11 @@ namespace Entities
                         return OutType.NoResult;
                     }
                 }
-                else if (OutType_RandomValue <= Groundout_probability + countOfHits * 15 && TypeOfHit != HitType.Triple)
+                else if (OutType_RandomValue <= Groundout_probability + countOfHits * 12 && TypeOfHit != HitType.Triple)
                 {
                     return OutType.Groundout;
                 }
-                else if (OutType_RandomValue <= Flyout_probability + countOfHits * 15 * (Flyout_probability / (double)Groundout_probability) && TypeOfHit != HitType.Single)
+                else if (OutType_RandomValue <= Flyout_probability + countOfHits * 12 * (Flyout_probability / (double)Groundout_probability) && TypeOfHit != HitType.Single)
                 {
                     return OutType.Flyout;
                 }
@@ -320,7 +320,7 @@ namespace Entities
             List<GameSituation> ListOfHitsInCurrentInning = match.Where(gameSituation => gameSituation.inningNumber == situation.inningNumber && gameSituation.offense == situation.offense).ToList();
             int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double).Count() * 2 +
                               ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Single || gameSituation.result == PitchResult.Triple || gameSituation.result == PitchResult.HomeRun).Count();
-            int numberOfPitches = match.Where(gameSituation => gameSituation.offense.TeamAbbreviation == situation.offense.TeamAbbreviation).Count();
+            int numberOfPitches = match.Where(gameSituation => gameSituation.PitcherID == Defense.CurrentPitcher.id).Count();
             int StadiumCoefficient = stadium.stadiumDistanceToCenterfield - 400;
             int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty);
             int PitcherCoefficient;
@@ -351,7 +351,7 @@ namespace Entities
         public Pitch(GameSituation situation, Team AwayTeam)
         {
             Team Offense = situation.offense;
-            int BatterNumberComponent = (5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3));
+            int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
 
             newBunt_result = BuntResult_Definition(Offense.SuccessfulBuntAttemptProbabilty, BatterNumberComponent);
             pitchResult = pitchResult_Definition(newBunt_result);

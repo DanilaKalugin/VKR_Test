@@ -20,6 +20,7 @@ namespace Entities
         public int BatterNumber_AwayTeam;
         public int BatterNumber_HomeTeam;
         public List<Runner> RunsByThisPitch;
+        public int PitcherID;
 
         public GameSituation()
         {
@@ -41,9 +42,10 @@ namespace Entities
             HomeTeamRuns = 0;
             BatterNumber_AwayTeam = 1;
             BatterNumber_HomeTeam = 1;
+            PitcherID = -1;
         }
 
-        public GameSituation(int _id, int _inning, Team _offense, Pitch.PitchResult _result, int _balls, int _strikes, int _outs, Runner _RunnerOn1, Runner _RunnerOn2, Runner _RunnerOn3, int _AwayRuns, int _HomeRuns, int _Batter_Away, int _Batter_Home)
+        public GameSituation(int _id, int _inning, Team _offense, Pitch.PitchResult _result, int _balls, int _strikes, int _outs, Runner _RunnerOn1, Runner _RunnerOn2, Runner _RunnerOn3, int _AwayRuns, int _HomeRuns, int _Batter_Away, int _Batter_Home, int _Pitcher)
         {
             id = _id;
             inningNumber = _inning;
@@ -59,6 +61,7 @@ namespace Entities
             HomeTeamRuns = _HomeRuns;
             BatterNumber_AwayTeam = _Batter_Away;
             BatterNumber_HomeTeam = _Batter_Home;
+            PitcherID = _Pitcher;
         }
 
         public int NumberOfBallsDetrmining(Pitch.PitchResult result, GameSituation situation)
