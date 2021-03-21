@@ -30,12 +30,12 @@ namespace VKR_Test
             List<Match> matches = matchBL.GetResultsForallMatches();
             foreach (Match match in matches)
             {
-                dataGridView1.Rows.Add(Image.FromFile($"BigTeamLogos/{match.AwayTeamAbbreviation}.png"),
+                dataGridView1.Rows.Add(Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
                     match.AwayTeamAbbreviation,
                                        match.AwayTeamRuns,
                                        match.HomeTeamRuns,
                                        match.HomeTeamAbbreviation,
-                                       Image.FromFile($"BigTeamLogos/{match.HomeTeamAbbreviation}.png"),
+                                       Image.FromFile($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
                                        match.MatchStatus,
                                        $"{match.stadium.StadiumTitle} - {match.stadium.stadiumLocation}");
             }
@@ -56,12 +56,12 @@ namespace VKR_Test
             dataGridView1.Rows.Clear();
             foreach (Match match in matches)
             {
-                dataGridView1.Rows.Add(Image.FromFile($"BigTeamLogos/{match.AwayTeamAbbreviation}.png"),
+                dataGridView1.Rows.Add(Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
                     match.AwayTeamAbbreviation,
                                        match.AwayTeamRuns,
                                        match.HomeTeamRuns,
                                        match.HomeTeamAbbreviation,
-                                       Image.FromFile($"BigTeamLogos/{match.HomeTeamAbbreviation}.png"),
+                                       Image.FromFile($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
                                        match.MatchStatus,
                                        $"{match.stadium.StadiumTitle} - {match.stadium.stadiumLocation}");
             }

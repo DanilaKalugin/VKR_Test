@@ -28,8 +28,8 @@ namespace VKR_Test
             stadiums = stadiumsBL.GetAllStadims();
             Stadium HomeTeamStadium = stadiums.Where(stadium => stadium.stadiumId == _HomeTeam.Stadium).First();
             StadiumNumber = stadiums.IndexOf(HomeTeamStadium);
-            panel1.BackgroundImage = Image.FromFile($"BigTeamLogos/{_AwayTeam.TeamAbbreviation}.png");
-            panel2.BackgroundImage = Image.FromFile($"BigTeamLogos/{_HomeTeam.TeamAbbreviation}.png");
+            panel1.BackgroundImage = Image.FromFile($"SmallTeamLogos/{_AwayTeam.TeamAbbreviation}.png");
+            panel2.BackgroundImage = Image.FromFile($"SmallTeamLogos/{_HomeTeam.TeamAbbreviation}.png");
             HomeTeam = _HomeTeam;
             AwayTeam = _AwayTeam;
         }

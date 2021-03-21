@@ -40,8 +40,8 @@ namespace VKR_Test
 
             label18.BackColor = match.AwayTeam.TeamColorForThisMatch;
             label18.Text = match.AwayTeam.TeamTitle.ToUpper();
-            panel11.BackgroundImage = Image.FromFile($"BigTeamLogos/{match.AwayTeam.TeamAbbreviation}.png");
-            panel12.BackgroundImage = Image.FromFile($"BigTeamLogos/{match.HomeTeam.TeamAbbreviation}.png");
+            panel11.BackgroundImage = Image.FromFile($"SmallTeamLogos/{match.AwayTeam.TeamAbbreviation}.png");
+            panel12.BackgroundImage = Image.FromFile($"SmallTeamLogos/{match.HomeTeam.TeamAbbreviation}.png");
             label19.Text = match.HomeTeam.TeamTitle.ToUpper();
             label19.BackColor = match.HomeTeam.TeamColorForThisMatch;
 
@@ -179,7 +179,7 @@ namespace VKR_Test
             AwayTeam_RunsScored.Text = gameSituation.AwayTeamRuns.ToString();
             HomeTeam_RunsScored.Text = gameSituation.HomeTeamRuns.ToString();
             panel6.Visible = gameSituation.strikes == 0 && gameSituation.balls == 0;
-            panel7.BackgroundImage = Image.FromFile($"BigTeamLogos/{gameSituation.offense.TeamAbbreviation}.png");
+            panel7.BackgroundImage = Image.FromFile($"SmallTeamLogos/{gameSituation.offense.TeamAbbreviation}.png");
             panel8.BackColor = gameSituation.offense.TeamColorForThisMatch;
             Batter NextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(NextBatter);
@@ -284,8 +284,8 @@ namespace VKR_Test
             {
                 BatterStats.Text = batter.AVG.ToString("#.000", new CultureInfo("en-US"));
             }
-
         }
+
         private void NewBatterDisplaying(Batter batter)
         {
             lbBatterNumber.Text = batter.NumberInBattingLineup.ToString() + ".";
@@ -388,7 +388,6 @@ namespace VKR_Test
             }
             previousSituation = new GameSituation(newGameSituation.id, newGameSituation.inningNumber, newGameSituation.offense, newGameSituation.result, newGameSituation.balls, newGameSituation.strikes, newGameSituation.outs, newGameSituation.RunnerOnFirst, newGameSituation.RunnerOnSecond, newGameSituation.RunnerOnThird, newGameSituation.AwayTeamRuns, newGameSituation.HomeTeamRuns, newGameSituation.BatterNumber_AwayTeam, newGameSituation.BatterNumber_HomeTeam, newGameSituation.PitcherID);
         }
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -573,7 +572,8 @@ namespace VKR_Test
             Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
 
             PitchingTeamColor.BackColor = Defense.TeamColorForThisMatch;
-            PitchingTeam.BackgroundImage = Image.FromFile($"BigTeamLogos/{Defense.TeamAbbreviation}.png");
+            btnShowAvailablePitchers.BackColor = Defense.TeamColorForThisMatch;
+            PitchingTeam.BackgroundImage = Image.FromFile($"SmallTeamLogos/{Defense.TeamAbbreviation}.png");
             PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id.ToString("0000")}.jpg");
             PitcherName.Text = Defense.CurrentPitcher.FirstName.ToUpper() + " " + Defense.CurrentPitcher.SecondName.ToUpper();
             PitcherGames.Text = Defense.CurrentPitcher.Games.ToString();
@@ -657,8 +657,6 @@ namespace VKR_Test
 
                 teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
                 teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
-
-
 
                 Defense.PitchersPlayedInMatch.Add(form.newPitcherForThisTeam);
                 DisplayingCurrentSituation(newGameSituation);

@@ -70,8 +70,8 @@ namespace VKR_Test
 
             label18.BackColor = endedmatch.AwayTeam.TeamColorForThisMatch;
             label18.Text = endedmatch.AwayTeam.TeamAbbreviation.ToUpper();
-            panel11.BackgroundImage = Image.FromFile($"BigTeamLogos/{endedmatch.AwayTeam.TeamAbbreviation}.png");
-            panel12.BackgroundImage = Image.FromFile($"BigTeamLogos/{endedmatch.HomeTeam.TeamAbbreviation}.png");
+            panel11.BackgroundImage = Image.FromFile($"SmallTeamLogos/{endedmatch.AwayTeam.TeamAbbreviation}.png");
+            panel12.BackgroundImage = Image.FromFile($"SmallTeamLogos/{endedmatch.HomeTeam.TeamAbbreviation}.png");
             label19.Text = endedmatch.HomeTeam.TeamAbbreviation.ToUpper();
             label19.BackColor = endedmatch.HomeTeam.TeamColorForThisMatch;
             panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{endedmatch.AwayTeam.TeamAbbreviation}.png");

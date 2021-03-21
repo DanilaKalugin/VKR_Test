@@ -185,7 +185,7 @@ namespace VKR.DAL
                         int CompleteGames = (int)reader["CG"];
                         int Shutouts = (int)reader["SHO"];
                         int PositionInLineup = (int)reader["PlayerPositionInLineup"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs, PositionInLineup, false);
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs, PositionInLineup);
                     }
                 }
             }

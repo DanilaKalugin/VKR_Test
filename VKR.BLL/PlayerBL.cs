@@ -21,7 +21,7 @@ namespace VKR.BLL
 
         public List<Pitcher> GetPitchersStats()
         {
-            return playerDAO.GetPitchersStats().Where(player => player.IP / player.Games >= 1).OrderBy(player => player.ERA).ToList();
+            return playerDAO.GetPitchersStats().Where(player => (player.IP / player.TGP) >= 1).OrderBy(player => player.ERA).ToList();
         }
 
         public List<List<List<PlayerInLineup>>> GetLineups()

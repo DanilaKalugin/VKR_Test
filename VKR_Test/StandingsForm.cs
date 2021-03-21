@@ -32,7 +32,14 @@ namespace VKR_Test
             int AwayNumber = teams.FindIndex(team => team.TeamTitle == Away.TeamTitle);
             dataGridView1.Rows[AwayNumber].DefaultCellStyle.BackColor = Color.WhiteSmoke;
             dataGridView1.Rows[AwayNumber].DefaultCellStyle.ForeColor = Color.Black;
+
+            for(int i=0; i < dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].DefaultCellStyle.SelectionBackColor = dataGridView1.Rows[i].DefaultCellStyle.BackColor;
+                dataGridView1.Rows[i].DefaultCellStyle.SelectionForeColor = dataGridView1.Rows[i].DefaultCellStyle.ForeColor;
+            }
             comboBox1.Visible = false;
+            label1.Visible = false;
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)

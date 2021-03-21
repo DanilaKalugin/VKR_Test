@@ -1,13 +1,8 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL;
 
@@ -36,6 +31,7 @@ namespace VKR_Test
                 dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{pitcher.id:0000}.jpg"), pitcher.FirstName + " " + pitcher.SecondName, $"ERA: {pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"SO: {pitcher.Strikeouts}");
             }
             dataGridView1.DefaultCellStyle.SelectionBackColor = Defense.TeamColor[0];
+            panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{Defense.TeamAbbreviation}.png");
         }
 
         public PitcherSubstitutionForm()

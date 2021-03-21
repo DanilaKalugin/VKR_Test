@@ -134,12 +134,11 @@ namespace Entities
         private GettingIntoStrikeZone_TypeOfResult GettingIntoStrikeZone_Definition(int strikeZone_probability, int numberOfPitches, int pitcherCoefficient)
         {
             int GettingIntoStrikeZone_RandomValue = GettingIntoStrikeZone_RandomGenerator.Next(1, 1000);
-
             if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - pitcherCoefficient + numberOfPitches * 0.8)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallIsOutOfTheStrikeZone;
             }
-            else if (GettingIntoStrikeZone_RandomValue < 995)
+            else if (GettingIntoStrikeZone_RandomValue <= 995)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallInTheStrikeZone;
             }
@@ -294,6 +293,7 @@ namespace Entities
                 return OtherCondition.NoOtherCondition;
             }
         }
+
         private BuntResult BuntResult_Definition(int successfulBuntAttemptProbabilty, int batterNumberComponent)
         {
             int Bunt_RandomValue = BuntResult_RandomGenerator.Next(1, 100);
@@ -316,7 +316,7 @@ namespace Entities
             Team Offense = situation.offense;
             Team Defense = situation.offense == AwayTeam ? HomeTeam : AwayTeam;
 
-            int BatterNumberComponent = (5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3));
+            int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
             List<GameSituation> ListOfHitsInCurrentInning = match.Where(gameSituation => gameSituation.inningNumber == situation.inningNumber && gameSituation.offense == situation.offense).ToList();
             int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double).Count() * 2 +
                               ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Single || gameSituation.result == PitchResult.Triple || gameSituation.result == PitchResult.HomeRun).Count();

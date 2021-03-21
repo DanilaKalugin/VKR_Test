@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.Label label36;
             System.Windows.Forms.Panel panel27;
+            System.Windows.Forms.Label label24;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel26 = new System.Windows.Forms.Panel();
             this.lbPitcherSecondName = new System.Windows.Forms.Label();
@@ -198,6 +199,7 @@
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
+            label24 = new System.Windows.Forms.Label();
             panel27.SuspendLayout();
             this.panel26.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -1733,7 +1735,7 @@
             this.panel28.Controls.Add(this.label35);
             this.panel28.Controls.Add(this.label37);
             this.panel28.Controls.Add(this.PitchingTeamColor);
-            this.panel28.Location = new System.Drawing.Point(1179, 144);
+            this.panel28.Location = new System.Drawing.Point(1179, 167);
             this.panel28.Name = "panel28";
             this.panel28.Size = new System.Drawing.Size(234, 189);
             this.panel28.TabIndex = 48;
@@ -2002,7 +2004,7 @@
             // PitcherPhoto
             // 
             this.PitcherPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PitcherPhoto.Location = new System.Drawing.Point(1053, 144);
+            this.PitcherPhoto.Location = new System.Drawing.Point(1053, 167);
             this.PitcherPhoto.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PitcherPhoto.Name = "PitcherPhoto";
             this.PitcherPhoto.Size = new System.Drawing.Size(126, 189);
@@ -2226,19 +2228,31 @@
             this.btnShowAvailablePitchers.FlatAppearance.BorderSize = 0;
             this.btnShowAvailablePitchers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowAvailablePitchers.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowAvailablePitchers.Location = new System.Drawing.Point(545, 775);
+            this.btnShowAvailablePitchers.ForeColor = System.Drawing.Color.White;
+            this.btnShowAvailablePitchers.Location = new System.Drawing.Point(1053, 356);
             this.btnShowAvailablePitchers.Name = "btnShowAvailablePitchers";
-            this.btnShowAvailablePitchers.Size = new System.Drawing.Size(300, 35);
+            this.btnShowAvailablePitchers.Size = new System.Drawing.Size(360, 35);
             this.btnShowAvailablePitchers.TabIndex = 57;
             this.btnShowAvailablePitchers.Text = "CHANGE PITCHER";
             this.btnShowAvailablePitchers.UseVisualStyleBackColor = true;
             this.btnShowAvailablePitchers.Click += new System.EventHandler(this.btnShowAvailablePitchers_Click);
+            // 
+            // label24
+            // 
+            label24.Font = new System.Drawing.Font("MicroFLF", 12F);
+            label24.Location = new System.Drawing.Point(1179, 144);
+            label24.Name = "label24";
+            label24.Size = new System.Drawing.Size(234, 23);
+            label24.TabIndex = 58;
+            label24.Text = "CURRENT PITCHER";
+            label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(label24);
             this.Controls.Add(this.btnShowAvailablePitchers);
             this.Controls.Add(this.btnStandings);
             this.Controls.Add(this.btnBuntAttempt);
