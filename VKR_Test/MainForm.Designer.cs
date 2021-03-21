@@ -338,6 +338,16 @@
             this.lbBatterNumber.Text = "1.";
             this.lbBatterNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label24
+            // 
+            label24.Font = new System.Drawing.Font("MicroFLF", 12F);
+            label24.Location = new System.Drawing.Point(1179, 144);
+            label24.Name = "label24";
+            label24.Size = new System.Drawing.Size(234, 23);
+            label24.TabIndex = 58;
+            label24.Text = "CURRENT PITCHER";
+            label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnNewPitch
             // 
             this.btnNewPitch.FlatAppearance.BorderSize = 0;
@@ -2235,17 +2245,8 @@
             this.btnShowAvailablePitchers.TabIndex = 57;
             this.btnShowAvailablePitchers.Text = "CHANGE PITCHER";
             this.btnShowAvailablePitchers.UseVisualStyleBackColor = true;
+            this.btnShowAvailablePitchers.Visible = false;
             this.btnShowAvailablePitchers.Click += new System.EventHandler(this.btnShowAvailablePitchers_Click);
-            // 
-            // label24
-            // 
-            label24.Font = new System.Drawing.Font("MicroFLF", 12F);
-            label24.Location = new System.Drawing.Point(1179, 144);
-            label24.Name = "label24";
-            label24.Size = new System.Drawing.Size(234, 23);
-            label24.TabIndex = 58;
-            label24.Text = "CURRENT PITCHER";
-            label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
