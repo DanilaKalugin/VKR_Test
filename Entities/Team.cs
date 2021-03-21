@@ -35,8 +35,6 @@ namespace Entities
         public Manager TeamManager;
         public string League;
 
-        public List<Pitcher> PitchersRoster;
-        public List<Batter> BattersRoster;
         public List<Pitcher> PitchersPlayedInMatch;
         public Pitcher CurrentPitcher { get { return PitchersPlayedInMatch.Last(); } }
         public List<Batter> BattingLineup;

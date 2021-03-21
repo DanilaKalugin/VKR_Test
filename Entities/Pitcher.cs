@@ -4,8 +4,6 @@ namespace Entities
 {
     public class Pitcher : Player
     {
-        public enum PitcherResult { QualityStart = 5, CompleteGame = 6, Shutout = 7 }
-
         public string ThrowingHand;
         public int Strikeouts;
         public int RunsAllowed;
