@@ -51,7 +51,7 @@ namespace VKR.BLL
             foreach (Team team in teams)
             {
                 team.TeamColor = teamsDAO.GetAllColorsForThisTeam(team.TeamAbbreviation).ToList();
-                team.GamesBehind = (double)((LeaderW - LeaderL) - (team.Wins - team.Losses)) / 2;
+                team.GamesBehind = (double)(LeaderW - LeaderL - (team.Wins - team.Losses)) / 2;
             }
             teams = teams.OrderBy(team => team.GamesBehind).ThenByDescending(team => team.Wins).ToList();
 

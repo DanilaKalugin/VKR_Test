@@ -1,13 +1,9 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL;
 
@@ -27,7 +23,6 @@ namespace VKR_Test
             playersBL = new PlayerBL();
             sortingStandardPitchers = new SortMode[4];
             sortingStandardPitchers[0] = SortMode.Ascending;
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
         private void PlayerStatsForm_Load(object sender, EventArgs e)

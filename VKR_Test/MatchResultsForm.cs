@@ -14,6 +14,8 @@ namespace VKR_Test
         private readonly MatchBL matchBL;
         private readonly TeamsBL teamsBL;
         IList<Team> teams;
+        List<Match> matches;
+
         public MatchResultsForm()
         {
             InitializeComponent();
@@ -27,24 +29,11 @@ namespace VKR_Test
 
         private void MatchResultsForm_Load(object sender, EventArgs e)
         {
-            List<Match> matches = matchBL.GetResultsForallMatches();
-            foreach (Match match in matches)
-            {
-                dataGridView1.Rows.Add(Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
-                    match.AwayTeamAbbreviation,
-                                       match.AwayTeamRuns,
-                                       match.HomeTeamRuns,
-                                       match.HomeTeamAbbreviation,
-                                       Image.FromFile($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
-                                       match.MatchStatus,
-                                       $"{match.stadium.StadiumTitle} - {match.stadium.stadiumLocation}");
-            }
             cbTeam.Text = "ALL";
         }
 
         private void cbTeam_SelectedValueChanged(object sender, EventArgs e)
         {
-            List<Match> matches = matchBL.GetResultsForallMatches();
             if (cbTeam.Text == "ALL")
             {
                 matches = matchBL.GetResultsForallMatches();
