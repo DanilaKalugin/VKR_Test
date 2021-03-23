@@ -45,8 +45,9 @@ namespace VKR_Test
             dataGridView1.Rows.Clear();
             foreach (Match match in matches)
             {
-                dataGridView1.Rows.Add(Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
-                    match.AwayTeamAbbreviation,
+                dataGridView1.Rows.Add(match.MatchDate.ToString("dd-MM"),
+                    Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
+                                       match.AwayTeamAbbreviation,
                                        match.AwayTeamRuns,
                                        match.HomeTeamRuns,
                                        match.HomeTeamAbbreviation,

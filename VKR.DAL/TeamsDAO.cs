@@ -45,10 +45,15 @@ namespace VKR.DAL
                 _connection.Dispose();
         }
 
-        public IEnumerable<Team> GetStandings()
+        public IEnumerable<Team> GetStandings(DateTime date)
         {
             using (SqlCommand command = new SqlCommand("GetStandings", _connection))
             {
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Date", SqlDbType.Date);
+                command.Prepare();
+                command.Parameters[0].Value = date;
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())

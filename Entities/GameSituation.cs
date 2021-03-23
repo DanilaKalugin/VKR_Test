@@ -89,6 +89,7 @@ namespace Entities
                 case Pitch.PitchResult.Triple:
                 case Pitch.PitchResult.HomeRun:
                 case Pitch.PitchResult.SacrificeFly:
+                case Pitch.PitchResult.SacrificeBunt:
                 case Pitch.PitchResult.DoublePlay:
                     {
                         return 0;
@@ -125,6 +126,7 @@ namespace Entities
                 case Pitch.PitchResult.Triple:
                 case Pitch.PitchResult.HomeRun:
                 case Pitch.PitchResult.SacrificeFly:
+                case Pitch.PitchResult.SacrificeBunt:
                 case Pitch.PitchResult.DoublePlay:
                     {
                         return 0;

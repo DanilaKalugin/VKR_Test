@@ -107,12 +107,14 @@ namespace VKR.DAL
                 command.Parameters.Add("@HomeTeam", SqlDbType.NVarChar, 3);
                 command.Parameters.Add("Stadium", SqlDbType.Int);
                 command.Parameters.Add("DHRule", SqlDbType.Bit);
+                command.Parameters.Add("@Date", SqlDbType.Date);
 
                 command.Prepare();
                 command.Parameters[0].Value = newMatch.AwayTeam.TeamAbbreviation;
                 command.Parameters[1].Value = newMatch.HomeTeam.TeamAbbreviation;
                 command.Parameters[2].Value = newMatch.stadium.stadiumId;
                 command.Parameters[3].Value = newMatch.DHRule;
+                command.Parameters[4].Value = newMatch.MatchDate;
                 var result = command.ExecuteNonQuery();
             }
         }
@@ -177,7 +179,8 @@ namespace VKR.DAL
                         int Stadium = (int)reader["Stadium"];
                         string Winner = (string)reader["Winner"];
                         int Inning = (int)reader["InningNumber"];
-                        yield return new Match(MatchID, AwayTeam, AwayRuns, HomeRuns, HomeTeam, Stadium, Winner, Inning);
+                        DateTime Date = (DateTime)reader["MatchDate"];
+                        yield return new Match(MatchID, AwayTeam, AwayRuns, HomeRuns, HomeTeam, Stadium, Winner, Inning, Date);
                     }
                 }
             }

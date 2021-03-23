@@ -34,6 +34,8 @@ namespace VKR_Test
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAcceptDHRule = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // radioButton1
@@ -77,7 +79,7 @@ namespace VKR_Test
             this.btnAcceptDHRule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcceptDHRule.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcceptDHRule.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAcceptDHRule.Location = new System.Drawing.Point(334, 77);
+            this.btnAcceptDHRule.Location = new System.Drawing.Point(334, 210);
             this.btnAcceptDHRule.Name = "btnAcceptDHRule";
             this.btnAcceptDHRule.Size = new System.Drawing.Size(75, 23);
             this.btnAcceptDHRule.TabIndex = 3;
@@ -85,12 +87,37 @@ namespace VKR_Test
             this.btnAcceptDHRule.UseVisualStyleBackColor = true;
             this.btnAcceptDHRule.Click += new System.EventHandler(this.btnAcceptDHRule_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dateTimePicker1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(12, 137);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(397, 27);
+            this.dateTimePicker1.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label2.Location = new System.Drawing.Point(10, 111);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(399, 23);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Match date:";
+            // 
             // DHRuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(421, 112);
+            this.ClientSize = new System.Drawing.Size(421, 245);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnAcceptDHRule);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioButton2);
@@ -110,5 +137,7 @@ namespace VKR_Test
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAcceptDHRule;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label2;
     }
 }

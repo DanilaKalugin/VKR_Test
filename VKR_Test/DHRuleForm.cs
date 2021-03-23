@@ -37,7 +37,7 @@ namespace VKR_Test
         private void btnAcceptDHRule_Click(object sender, EventArgs e)
         {
             int MatchID = matchBL.GetNumberOfMatchesPlayed();
-            Match newMatch = new Match(MatchID, HomeTeam, AwayTeam, stadiumForThisMatch, playingWithDH);
+            Match newMatch = new Match(MatchID, HomeTeam, AwayTeam, stadiumForThisMatch, playingWithDH, dateTimePicker1.Value.Date);
 
             newMatch.AwayTeam.BattingLineup = teamsBL.GetStartingLineupForThisMatch(newMatch.AwayTeam.TeamAbbreviation, playingWithDH);
             newMatch.AwayTeam.PitchersPlayedInMatch.AddRange(teamsBL.GetStartingPitcherForThisTeam(AwayTeam));

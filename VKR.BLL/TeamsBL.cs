@@ -30,9 +30,9 @@ namespace VKR.BLL
             return teams;
         }
 
-        public List<Team> GetStandings(string Filter)
+        public List<Team> GetStandings(string Filter, DateTime date)
         {
-            List<Team> teams = teamsDAO.GetStandings().ToList();
+            List<Team> teams = teamsDAO.GetStandings(date).ToList();
 
             if (Filter != "MLB")
             {

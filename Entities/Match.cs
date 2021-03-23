@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Entities
 {
@@ -17,6 +18,7 @@ namespace Entities
         public string AwayTeamAbbreviation;
         public string HomeTeamAbbreviation;
         public int StadiumNumber;
+        public DateTime MatchDate;
         public string MatchStatus
         {
             get
@@ -40,7 +42,7 @@ namespace Entities
         }
         public string MatchWinner;
 
-        public Match(int _id, Team _homeTeam, Team _awayTeam, Stadium _stadium, bool _dh)
+        public Match(int _id, Team _homeTeam, Team _awayTeam, Stadium _stadium, bool _dh, DateTime date)
         {
             MatchID = _id;
             HomeTeam = _homeTeam;
@@ -52,9 +54,10 @@ namespace Entities
                 new GameSituation(AwayTeam)
             };
             atBats = new List<AtBat>();
+            MatchDate = date;
         }
 
-        public Match(int _id, string _AwayTeam, int _AwayRuns, int _homeRuns, string _homeTeam, int _StadiumNumber, string Winner, int Inning)
+        public Match(int _id, string _AwayTeam, int _AwayRuns, int _homeRuns, string _homeTeam, int _StadiumNumber, string Winner, int Inning, DateTime date)
         {
             MatchID = _id;
             AwayTeamAbbreviation = _AwayTeam;
@@ -64,6 +67,7 @@ namespace Entities
             StadiumNumber = _StadiumNumber;
             MatchWinner = Winner;
             InningNumber = Inning;
+            MatchDate = date;
         }
     }
 }
