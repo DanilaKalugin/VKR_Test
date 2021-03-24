@@ -663,7 +663,6 @@ namespace VKR_Test
                 Defense.PitchersPlayedInMatch.Add(form.newPitcherForThisTeam);
                 DisplayingCurrentSituation(newGameSituation);
                 DisplayPitcherStats();
-
             }
         }
     }

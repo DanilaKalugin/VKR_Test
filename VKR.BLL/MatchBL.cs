@@ -68,5 +68,11 @@ namespace VKR.BLL
         {
             matchDAO.DeleteThisMatch(matchNumberForDelete);
         }
+
+        public DateTime GetMaxDateForAllMatches()
+        {
+            List<Match> matches = GetResultsForallMatches();
+            return matches.Select(match => match.MatchDate).Max();
+        }
     }
 }
