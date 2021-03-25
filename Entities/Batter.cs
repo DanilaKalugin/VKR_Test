@@ -80,6 +80,47 @@ namespace Entities
 
         public double ISO { get { return SLG - AVG; } }
 
+        public double ABperHR
+        {
+            get
+            {
+                return (double)AtBats / HomeRuns;
+            }
+        }
+
+        public double WalkToStrikeout
+        {
+            get
+            {
+                return (double)Walks / Strikeouts;
+            }
+        }
+
+        public double GOtoAO
+        {
+            get
+            {
+                return (double)Groundouts / Flyouts;
+            }
+        }
+
+        public double WalkPercentage
+        {
+            get
+            {
+                return (double)Walks / PA;
+            }
+        }
+
+        public double StrikeoutPercentage
+        {
+            get
+            {
+                return (double)Strikeouts / PA;
+            }
+        }
+
+
         public Batter(int _id, string _firstName, string _secondName, int _Number, int _games,
                       int _singles, int _doubles, int _triples, int _hr, int _sf, int _sac,
                       int _rbi, int _hbp, int _sb, int _cs, int _runs, int _bb, int _k, int _go,

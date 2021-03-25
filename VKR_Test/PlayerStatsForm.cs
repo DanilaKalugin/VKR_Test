@@ -21,7 +21,7 @@ namespace VKR_Test
         {
             InitializeComponent();
             playersBL = new PlayerBL();
-            sortingStandardPitchers = new SortMode[5];
+            sortingStandardPitchers = new SortMode[7];
             sortingStandardPitchers[0] = SortMode.Ascending;
         }
 
@@ -54,9 +54,14 @@ namespace VKR_Test
                                         batters[i].SacrificeBunts,
                                         batters[i].SacrificeFlies,
                                         batters[i].DoublePlay,
+                                        batters[i].GOtoAO.ToString("0.00", new CultureInfo("en-US")),
                                         batters[i].XBH,
                                         batters[i].TotalBases,
-                                        batters[i].ISO.ToString("#.000", new CultureInfo("en-US")));
+                                        batters[i].ISO.ToString("#.000", new CultureInfo("en-US")),
+                                        batters[i].ABperHR.ToString("0.00", new CultureInfo("en-US")),
+                                        batters[i].WalkToStrikeout.ToString("#.000", new CultureInfo("en-US")),
+                                        batters[i].WalkPercentage.ToString("#.000", new CultureInfo("en-US")),
+                                        batters[i].StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")));
             }
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView2.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -107,9 +112,67 @@ namespace VKR_Test
 
         private void dataGridView2_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            for (int i = 0; i < batters.Count; i++)
+            switch (e.ColumnIndex)
             {
-                dataGridView2.Rows[i].Cells[0].Value = (i + 1).ToString();
+                case 7:
+                    {
+                        if (sortingStandardPitchers[5] == SortMode.Ascending)
+                        {
+                            batters = batters.OrderByDescending(batter => batter.GOtoAO).ToList();
+                            sortingStandardPitchers[5] = SortMode.Descending;
+                        }
+                        else
+                        {
+                            batters = batters.OrderBy(batter => batter.GOtoAO).ToList();
+                            sortingStandardPitchers[5] = SortMode.Ascending;
+                        }
+                        break;
+                    }
+                case 11:
+                    {
+                        if (sortingStandardPitchers[6] == SortMode.Ascending)
+                        {
+                            batters = batters.OrderByDescending(batter => batter.ABperHR).ToList();
+                            sortingStandardPitchers[6] = SortMode.Descending;
+                        }
+                        else
+                        {
+                            batters = batters.OrderBy(batter => batter.ABperHR).ToList();
+                            sortingStandardPitchers[6] = SortMode.Ascending;
+                        }
+                        break;
+                    }
+            }
+            if (e.ColumnIndex == 7 || e.ColumnIndex == 11)
+            {
+                dataGridView2.Rows.Clear();
+                {
+                    for (int i = 0; i < batters.Count; i++)
+                    {
+                        dataGridView2.Rows.Add(i + 1,
+                                                $"{batters[i].FirstName} {batters[i].SecondName}",
+                                                batters[i].PA,
+                                                batters[i].HitByPitch,
+                                                batters[i].SacrificeBunts,
+                                                batters[i].SacrificeFlies,
+                                                batters[i].DoublePlay,
+                                                batters[i].GOtoAO.ToString("0.00", new CultureInfo("en-US")),
+                                                batters[i].XBH,
+                                                batters[i].TotalBases,
+                                                batters[i].ISO.ToString("#.000", new CultureInfo("en-US")),
+                                                batters[i].ABperHR.ToString("0.00", new CultureInfo("en-US")),
+                                                batters[i].WalkToStrikeout.ToString("#.000", new CultureInfo("en-US")),
+                                                batters[i].WalkPercentage.ToString("#.000", new CultureInfo("en-US")),
+                                                batters[i].StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")));
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < batters.Count; i++)
+                {
+                    dataGridView2.Rows[i].Cells[0].Value = (i + 1).ToString();
+                }
             }
         }
 
@@ -146,7 +209,7 @@ namespace VKR_Test
                                         pitchers[i].BBperNineInnings.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].KperBB.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].StolenBasesAllowed,
-                                        pitchers[i].CaughtStealing); ;
+                                        pitchers[i].CaughtStealing);
                 }
             }
             else

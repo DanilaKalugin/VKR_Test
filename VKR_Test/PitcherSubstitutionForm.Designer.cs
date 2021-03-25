@@ -154,6 +154,7 @@ namespace VKR_Test
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "PitcherSubstitutionForm";
             this.Text = "PitcherSubstitutionForm";
             this.Load += new System.EventHandler(this.PitcherSubstitutionForm_Load);
