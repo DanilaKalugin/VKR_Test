@@ -25,7 +25,7 @@ namespace Entities
             {
                 if (MatchWinner == "")
                 {
-                    return "";
+                    return "In progress";
                 }
                 else
                 {

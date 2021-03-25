@@ -31,6 +31,7 @@ namespace VKR_Test
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTeamLogo = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lbTeamTitle = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -38,7 +39,6 @@ namespace VKR_Test
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelTeamLogo = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -53,6 +53,13 @@ namespace VKR_Test
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(484, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // panelTeamLogo
+            // 
+            this.panelTeamLogo.Location = new System.Drawing.Point(400, 12);
+            this.panelTeamLogo.Name = "panelTeamLogo";
+            this.panelTeamLogo.Size = new System.Drawing.Size(72, 72);
+            this.panelTeamLogo.TabIndex = 2;
             // 
             // label2
             // 
@@ -139,13 +146,6 @@ namespace VKR_Test
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
-            // panelTeamLogo
-            // 
-            this.panelTeamLogo.Location = new System.Drawing.Point(400, 12);
-            this.panelTeamLogo.Name = "panelTeamLogo";
-            this.panelTeamLogo.Size = new System.Drawing.Size(72, 72);
-            this.panelTeamLogo.TabIndex = 2;
-            // 
             // PitcherSubstitutionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,7 +153,7 @@ namespace VKR_Test
             this.ClientSize = new System.Drawing.Size(484, 704);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "PitcherSubstitutionForm";
             this.Text = "PitcherSubstitutionForm";
             this.Load += new System.EventHandler(this.PitcherSubstitutionForm_Load);

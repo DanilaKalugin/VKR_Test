@@ -78,7 +78,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.away1 = new System.Windows.Forms.Label();
             this.away2 = new System.Windows.Forms.Label();
             this.away3 = new System.Windows.Forms.Label();
             this.away4 = new System.Windows.Forms.Label();
@@ -97,14 +96,12 @@
             this.home4 = new System.Windows.Forms.Label();
             this.home3 = new System.Windows.Forms.Label();
             this.home2 = new System.Windows.Forms.Label();
-            this.home1 = new System.Windows.Forms.Label();
             this.awayRuns = new System.Windows.Forms.Label();
             this.homeRuns = new System.Windows.Forms.Label();
             this.awayHits = new System.Windows.Forms.Label();
             this.homeHits = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.lb10thInning = new System.Windows.Forms.Label();
             this.lb9thInning = new System.Windows.Forms.Label();
             this.lb8thInning = new System.Windows.Forms.Label();
             this.lb7thInning = new System.Windows.Forms.Label();
@@ -197,6 +194,8 @@
             this.btnBuntAttempt = new System.Windows.Forms.Button();
             this.btnStandings = new System.Windows.Forms.Button();
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
+            this.btnOtherResults = new System.Windows.Forms.Button();
+            this.btnPlayerStats = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -761,7 +760,7 @@
             this.label18.Location = new System.Drawing.Point(103, 53);
             this.label18.Margin = new System.Windows.Forms.Padding(6, 5, 0, 1);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(242, 39);
+            this.label18.Size = new System.Drawing.Size(287, 39);
             this.label18.TabIndex = 4;
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -773,7 +772,7 @@
             this.label19.Location = new System.Drawing.Point(103, 94);
             this.label19.Margin = new System.Windows.Forms.Padding(6, 1, 6, 5);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(242, 39);
+            this.label19.Size = new System.Drawing.Size(287, 39);
             this.label19.TabIndex = 5;
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -794,18 +793,6 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(39, 39);
             this.panel12.TabIndex = 7;
-            // 
-            // away1
-            // 
-            this.away1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away1.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.away1.ForeColor = System.Drawing.Color.White;
-            this.away1.Location = new System.Drawing.Point(345, 53);
-            this.away1.Margin = new System.Windows.Forms.Padding(0);
-            this.away1.Name = "away1";
-            this.away1.Size = new System.Drawing.Size(45, 39);
-            this.away1.TabIndex = 8;
-            this.away1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // away2
             // 
@@ -1023,18 +1010,6 @@
             this.home2.TabIndex = 19;
             this.home2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // home1
-            // 
-            this.home1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home1.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.home1.ForeColor = System.Drawing.Color.White;
-            this.home1.Location = new System.Drawing.Point(345, 94);
-            this.home1.Margin = new System.Windows.Forms.Padding(0);
-            this.home1.Name = "home1";
-            this.home1.Size = new System.Drawing.Size(45, 39);
-            this.home1.TabIndex = 18;
-            this.home1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // awayRuns
             // 
             this.awayRuns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -1109,30 +1084,17 @@
             this.label21.Text = "R";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lb10thInning
-            // 
-            this.lb10thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb10thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.lb10thInning.ForeColor = System.Drawing.Color.White;
-            this.lb10thInning.Location = new System.Drawing.Point(750, 9);
-            this.lb10thInning.Margin = new System.Windows.Forms.Padding(0);
-            this.lb10thInning.Name = "lb10thInning";
-            this.lb10thInning.Size = new System.Drawing.Size(45, 39);
-            this.lb10thInning.TabIndex = 41;
-            this.lb10thInning.Text = "10";
-            this.lb10thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lb9thInning
             // 
             this.lb9thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb9thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.lb9thInning.ForeColor = System.Drawing.Color.White;
-            this.lb9thInning.Location = new System.Drawing.Point(705, 9);
+            this.lb9thInning.Location = new System.Drawing.Point(750, 9);
             this.lb9thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb9thInning.Name = "lb9thInning";
             this.lb9thInning.Size = new System.Drawing.Size(45, 39);
-            this.lb9thInning.TabIndex = 40;
-            this.lb9thInning.Text = "9";
+            this.lb9thInning.TabIndex = 41;
+            this.lb9thInning.Text = "10";
             this.lb9thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb8thInning
@@ -1140,12 +1102,12 @@
             this.lb8thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb8thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.lb8thInning.ForeColor = System.Drawing.Color.White;
-            this.lb8thInning.Location = new System.Drawing.Point(660, 9);
+            this.lb8thInning.Location = new System.Drawing.Point(705, 9);
             this.lb8thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb8thInning.Name = "lb8thInning";
             this.lb8thInning.Size = new System.Drawing.Size(45, 39);
-            this.lb8thInning.TabIndex = 39;
-            this.lb8thInning.Text = "8";
+            this.lb8thInning.TabIndex = 40;
+            this.lb8thInning.Text = "9";
             this.lb8thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb7thInning
@@ -1153,12 +1115,12 @@
             this.lb7thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb7thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.lb7thInning.ForeColor = System.Drawing.Color.White;
-            this.lb7thInning.Location = new System.Drawing.Point(615, 9);
+            this.lb7thInning.Location = new System.Drawing.Point(660, 9);
             this.lb7thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb7thInning.Name = "lb7thInning";
             this.lb7thInning.Size = new System.Drawing.Size(45, 39);
-            this.lb7thInning.TabIndex = 38;
-            this.lb7thInning.Text = "7";
+            this.lb7thInning.TabIndex = 39;
+            this.lb7thInning.Text = "8";
             this.lb7thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb6thInning
@@ -1166,12 +1128,12 @@
             this.lb6thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb6thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.lb6thInning.ForeColor = System.Drawing.Color.White;
-            this.lb6thInning.Location = new System.Drawing.Point(570, 9);
+            this.lb6thInning.Location = new System.Drawing.Point(615, 9);
             this.lb6thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb6thInning.Name = "lb6thInning";
             this.lb6thInning.Size = new System.Drawing.Size(45, 39);
-            this.lb6thInning.TabIndex = 37;
-            this.lb6thInning.Text = "6";
+            this.lb6thInning.TabIndex = 38;
+            this.lb6thInning.Text = "7";
             this.lb6thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb5thInning
@@ -1179,12 +1141,12 @@
             this.lb5thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb5thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.lb5thInning.ForeColor = System.Drawing.Color.White;
-            this.lb5thInning.Location = new System.Drawing.Point(525, 9);
+            this.lb5thInning.Location = new System.Drawing.Point(570, 9);
             this.lb5thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb5thInning.Name = "lb5thInning";
             this.lb5thInning.Size = new System.Drawing.Size(45, 39);
-            this.lb5thInning.TabIndex = 36;
-            this.lb5thInning.Text = "5";
+            this.lb5thInning.TabIndex = 37;
+            this.lb5thInning.Text = "6";
             this.lb5thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb4thInning
@@ -1192,12 +1154,12 @@
             this.lb4thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb4thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.lb4thInning.ForeColor = System.Drawing.Color.White;
-            this.lb4thInning.Location = new System.Drawing.Point(480, 9);
+            this.lb4thInning.Location = new System.Drawing.Point(525, 9);
             this.lb4thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb4thInning.Name = "lb4thInning";
             this.lb4thInning.Size = new System.Drawing.Size(45, 39);
-            this.lb4thInning.TabIndex = 35;
-            this.lb4thInning.Text = "4";
+            this.lb4thInning.TabIndex = 36;
+            this.lb4thInning.Text = "5";
             this.lb4thInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb3rdInning
@@ -1205,12 +1167,12 @@
             this.lb3rdInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb3rdInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.lb3rdInning.ForeColor = System.Drawing.Color.White;
-            this.lb3rdInning.Location = new System.Drawing.Point(435, 9);
+            this.lb3rdInning.Location = new System.Drawing.Point(480, 9);
             this.lb3rdInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb3rdInning.Name = "lb3rdInning";
             this.lb3rdInning.Size = new System.Drawing.Size(45, 39);
-            this.lb3rdInning.TabIndex = 34;
-            this.lb3rdInning.Text = "3";
+            this.lb3rdInning.TabIndex = 35;
+            this.lb3rdInning.Text = "4";
             this.lb3rdInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb2ndInning
@@ -1218,12 +1180,12 @@
             this.lb2ndInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb2ndInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.lb2ndInning.ForeColor = System.Drawing.Color.White;
-            this.lb2ndInning.Location = new System.Drawing.Point(390, 9);
+            this.lb2ndInning.Location = new System.Drawing.Point(435, 9);
             this.lb2ndInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb2ndInning.Name = "lb2ndInning";
             this.lb2ndInning.Size = new System.Drawing.Size(45, 39);
-            this.lb2ndInning.TabIndex = 33;
-            this.lb2ndInning.Text = "2";
+            this.lb2ndInning.TabIndex = 34;
+            this.lb2ndInning.Text = "3";
             this.lb2ndInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb1stInning
@@ -1231,12 +1193,12 @@
             this.lb1stInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb1stInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.lb1stInning.ForeColor = System.Drawing.Color.White;
-            this.lb1stInning.Location = new System.Drawing.Point(345, 9);
+            this.lb1stInning.Location = new System.Drawing.Point(390, 9);
             this.lb1stInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb1stInning.Name = "lb1stInning";
             this.lb1stInning.Size = new System.Drawing.Size(45, 39);
-            this.lb1stInning.TabIndex = 32;
-            this.lb1stInning.Text = "1";
+            this.lb1stInning.TabIndex = 33;
+            this.lb1stInning.Text = "2";
             this.lb1stInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel14
@@ -1244,35 +1206,32 @@
             this.panel14.Controls.Add(this.label23);
             this.panel14.Controls.Add(this.label22);
             this.panel14.Controls.Add(this.panel15);
-            this.panel14.Controls.Add(this.lb1stInning);
             this.panel14.Controls.Add(this.label18);
             this.panel14.Controls.Add(this.label20);
             this.panel14.Controls.Add(this.label19);
             this.panel14.Controls.Add(this.label21);
             this.panel14.Controls.Add(this.panel11);
-            this.panel14.Controls.Add(this.lb10thInning);
-            this.panel14.Controls.Add(this.panel12);
             this.panel14.Controls.Add(this.lb9thInning);
-            this.panel14.Controls.Add(this.away1);
+            this.panel14.Controls.Add(this.panel12);
             this.panel14.Controls.Add(this.lb8thInning);
-            this.panel14.Controls.Add(this.away2);
             this.panel14.Controls.Add(this.lb7thInning);
-            this.panel14.Controls.Add(this.away3);
+            this.panel14.Controls.Add(this.away2);
             this.panel14.Controls.Add(this.lb6thInning);
-            this.panel14.Controls.Add(this.away4);
+            this.panel14.Controls.Add(this.away3);
             this.panel14.Controls.Add(this.lb5thInning);
-            this.panel14.Controls.Add(this.away5);
+            this.panel14.Controls.Add(this.away4);
             this.panel14.Controls.Add(this.lb4thInning);
-            this.panel14.Controls.Add(this.away6);
+            this.panel14.Controls.Add(this.away5);
             this.panel14.Controls.Add(this.lb3rdInning);
-            this.panel14.Controls.Add(this.away7);
+            this.panel14.Controls.Add(this.away6);
             this.panel14.Controls.Add(this.lb2ndInning);
+            this.panel14.Controls.Add(this.away7);
+            this.panel14.Controls.Add(this.lb1stInning);
             this.panel14.Controls.Add(this.away8);
             this.panel14.Controls.Add(this.away9);
             this.panel14.Controls.Add(this.homeHits);
             this.panel14.Controls.Add(this.away10);
             this.panel14.Controls.Add(this.awayHits);
-            this.panel14.Controls.Add(this.home1);
             this.panel14.Controls.Add(this.homeRuns);
             this.panel14.Controls.Add(this.home2);
             this.panel14.Controls.Add(this.awayRuns);
@@ -1295,25 +1254,25 @@
             // 
             this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label23.Location = new System.Drawing.Point(298, 98);
+            this.label23.Location = new System.Drawing.Point(319, 98);
             this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(44, 31);
+            this.label23.Size = new System.Drawing.Size(64, 31);
             this.label23.TabIndex = 46;
             this.label23.Text = "1.";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label22
             // 
             this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label22.Location = new System.Drawing.Point(298, 57);
+            this.label22.Location = new System.Drawing.Point(319, 57);
             this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(44, 31);
+            this.label22.Size = new System.Drawing.Size(64, 31);
             this.label22.TabIndex = 45;
             this.label22.Text = "1.";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel15
             // 
@@ -2248,11 +2207,39 @@
             this.btnShowAvailablePitchers.Visible = false;
             this.btnShowAvailablePitchers.Click += new System.EventHandler(this.btnShowAvailablePitchers_Click);
             // 
+            // btnOtherResults
+            // 
+            this.btnOtherResults.FlatAppearance.BorderSize = 0;
+            this.btnOtherResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOtherResults.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOtherResults.Location = new System.Drawing.Point(12, 185);
+            this.btnOtherResults.Name = "btnOtherResults";
+            this.btnOtherResults.Size = new System.Drawing.Size(300, 35);
+            this.btnOtherResults.TabIndex = 59;
+            this.btnOtherResults.Text = "OTHER RESULTS";
+            this.btnOtherResults.UseVisualStyleBackColor = true;
+            this.btnOtherResults.Click += new System.EventHandler(this.btnOtherResults_Click);
+            // 
+            // btnPlayerStats
+            // 
+            this.btnPlayerStats.FlatAppearance.BorderSize = 0;
+            this.btnPlayerStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlayerStats.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlayerStats.Location = new System.Drawing.Point(12, 226);
+            this.btnPlayerStats.Name = "btnPlayerStats";
+            this.btnPlayerStats.Size = new System.Drawing.Size(300, 35);
+            this.btnPlayerStats.TabIndex = 60;
+            this.btnPlayerStats.Text = "PLAYER STATS";
+            this.btnPlayerStats.UseVisualStyleBackColor = true;
+            this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(this.btnPlayerStats);
+            this.Controls.Add(this.btnOtherResults);
             this.Controls.Add(label24);
             this.Controls.Add(this.btnShowAvailablePitchers);
             this.Controls.Add(this.btnStandings);
@@ -2357,7 +2344,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Label away1;
         private System.Windows.Forms.Label away2;
         private System.Windows.Forms.Label away3;
         private System.Windows.Forms.Label away4;
@@ -2376,14 +2362,12 @@
         private System.Windows.Forms.Label home4;
         private System.Windows.Forms.Label home3;
         private System.Windows.Forms.Label home2;
-        private System.Windows.Forms.Label home1;
         private System.Windows.Forms.Label awayRuns;
         private System.Windows.Forms.Label homeRuns;
         private System.Windows.Forms.Label awayHits;
         private System.Windows.Forms.Label homeHits;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label lb10thInning;
         private System.Windows.Forms.Label lb9thInning;
         private System.Windows.Forms.Label lb8thInning;
         private System.Windows.Forms.Label lb7thInning;
@@ -2483,6 +2467,8 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btnStandings;
         private System.Windows.Forms.Button btnShowAvailablePitchers;
+        private System.Windows.Forms.Button btnOtherResults;
+        private System.Windows.Forms.Button btnPlayerStats;
     }
 }
 

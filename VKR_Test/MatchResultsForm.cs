@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using VKR.BLL;
 using Entities;
 using System.Linq;
-using System.Collections;
 
 namespace VKR_Test
 {
@@ -25,6 +24,30 @@ namespace VKR_Test
             List<string> teamsInComboBox = teams.Select(team => team.TeamTitle).ToList();
             teamsInComboBox.Add("ALL");
             cbTeam.DataSource = teamsInComboBox;
+        }
+
+        public MatchResultsForm(DateTime dateTime)
+        {
+            InitializeComponent();
+            matchBL = new MatchBL();
+            teamsBL = new TeamsBL();
+            matches = matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dateTime).ToList();
+
+            dataGridView1.Rows.Clear();
+            foreach (Match match in matches)
+            {
+                dataGridView1.Rows.Add(match.MatchDate.ToString("dd-MM"),
+                    Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
+                                       match.AwayTeamAbbreviation,
+                                       match.AwayTeamRuns,
+                                       match.HomeTeamRuns,
+                                       match.HomeTeamAbbreviation,
+                                       Image.FromFile($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
+                                       match.MatchStatus,
+                                       $"{match.stadium.StadiumTitle} - {match.stadium.stadiumLocation}");
+            }
+            cbTeam.Visible = false;
+            label2.Visible = false;
         }
 
         private void MatchResultsForm_Load(object sender, EventArgs e)

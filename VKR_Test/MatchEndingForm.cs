@@ -72,6 +72,7 @@ namespace VKR_Test
             label18.Text = endedmatch.AwayTeam.TeamAbbreviation.ToUpper();
             panel11.BackgroundImage = Image.FromFile($"SmallTeamLogos/{endedmatch.AwayTeam.TeamAbbreviation}.png");
             panel12.BackgroundImage = Image.FromFile($"SmallTeamLogos/{endedmatch.HomeTeam.TeamAbbreviation}.png");
+
             label19.Text = endedmatch.HomeTeam.TeamAbbreviation.ToUpper();
             label19.BackColor = endedmatch.HomeTeam.TeamColorForThisMatch;
             panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{endedmatch.AwayTeam.TeamAbbreviation}.png");
@@ -93,12 +94,11 @@ namespace VKR_Test
             int OutsPlayedForThisTeam = endedmatch.atBats.Where(atBat => atBat.Defense == awayTeam.TeamAbbreviation).Select(atBat => atBat.outs).Sum();
             int OutsPlayedForThisPitcher = endedmatch.atBats.Where(atBat => atBat.Pitcher == awayTeam.PitchersPlayedInMatch[0].id).Select(atBat => atBat.outs).Sum();
 
-            bool IsQS = (RunsForThisPitcher <= 3 && OutsPlayedForThisPitcher / 3 >= 6);
+            bool IsQS = RunsForThisPitcher <= 3 && OutsPlayedForThisPitcher / 3 >= 6;
             bool IsCG = OutsPlayedForThisPitcher == OutsPlayedForThisTeam;
             bool IsSHO = IsCG && RunsForThisPitcher == 0;
 
             matchBL.AddMatchResultForThisPitcher(new PitcherResults(awayTeam.PitchersPlayedInMatch[0].id, awayTeam.TeamAbbreviation, endedmatch.MatchID, IsQS, IsCG, IsSHO));
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)

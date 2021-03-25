@@ -21,7 +21,7 @@ namespace VKR_Test
         {
             InitializeComponent();
             playersBL = new PlayerBL();
-            sortingStandardPitchers = new SortMode[4];
+            sortingStandardPitchers = new SortMode[5];
             sortingStandardPitchers[0] = SortMode.Ascending;
         }
 
@@ -87,6 +87,9 @@ namespace VKR_Test
                                         pitchers[i].TotalBattersFaced,
                                         pitchers[i].QualityStarts,
                                         pitchers[i].DoublePlays,
+                                        pitchers[i].KperNineInnings.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].BBperNineInnings.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].KperBB.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].StolenBasesAllowed,
                                         pitchers[i].CaughtStealing);
             }
@@ -112,10 +115,48 @@ namespace VKR_Test
 
         private void dataGridView4_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            for (int i = 0; i < pitchers.Count; i++)
+            switch (e.ColumnIndex)
             {
-                dataGridView4.Rows[i].Cells[0].Value = (i + 1).ToString();
+                case 7:
+                    {
+                        if (sortingStandardPitchers[4] == SortMode.Ascending)
+                        {
+                            pitchers = pitchers.OrderByDescending(pitcher => pitcher.KperBB).ToList();
+                            sortingStandardPitchers[4] = SortMode.Descending;
+                        }
+                        else
+                        {
+                            pitchers = pitchers.OrderBy(pitcher => pitcher.KperBB).ToList();
+                            sortingStandardPitchers[4] = SortMode.Ascending;
+                        }
+                        break;
+                    }
             }
+            if (e.ColumnIndex == 7)
+            {
+                dataGridView4.Rows.Clear();
+                for (int i = 0; i < pitchers.Count; i++)
+                {
+                    dataGridView4.Rows.Add(i + 1,
+                                        $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
+                                        pitchers[i].TotalBattersFaced,
+                                        pitchers[i].QualityStarts,
+                                        pitchers[i].DoublePlays,
+                                        pitchers[i].KperNineInnings.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].BBperNineInnings.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].KperBB.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].StolenBasesAllowed,
+                                        pitchers[i].CaughtStealing); ;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < pitchers.Count; i++)
+                {
+                    dataGridView4.Rows[i].Cells[0].Value = (i + 1).ToString();
+                }
+            }
+
         }
 
         private void dataGridView3_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)

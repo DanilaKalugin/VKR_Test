@@ -31,7 +31,8 @@ namespace VKR_Test
         private void GetListOfPeopleWithBirthdayToday()
         {
             List<ManInTeam> men = manBL.GetListOfPeopleWithBirthdayToday();
-            List<Team> teamsList = teams.GetAllTeams(); 
+            List<Team> teamsList = teams.GetAllTeams();
+            dataGridView1.Rows.Clear();
             foreach (ManInTeam man in men)
             {
                 dataGridView1.Rows.Add("", man.Team, man.FullName, man.Age);
@@ -55,30 +56,35 @@ namespace VKR_Test
                 form.Dispose();
                 matchBL.DeleteThisMatch(MatchNumberForDelete);
             }
+            GetListOfPeopleWithBirthdayToday();
         }
 
         private void btnStandings_Click(object sender, EventArgs e)
         {
             StandingsForm form = new StandingsForm();
             form.ShowDialog();
+            GetListOfPeopleWithBirthdayToday();
         }
 
         private void btnPlayerStats_Click(object sender, EventArgs e)
         {
             PlayerStatsForm form = new PlayerStatsForm();
             form.ShowDialog();
+            GetListOfPeopleWithBirthdayToday();
         }
 
         private void btnLineups_Click(object sender, EventArgs e)
         {
             LineupsForm form = new LineupsForm();
             form.ShowDialog();
+            GetListOfPeopleWithBirthdayToday();
         }
 
         private void btnResults_Click(object sender, EventArgs e)
         {
             MatchResultsForm form = new MatchResultsForm();
             form.ShowDialog();
+            GetListOfPeopleWithBirthdayToday();
         }
     }
 }
