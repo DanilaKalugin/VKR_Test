@@ -69,5 +69,13 @@ namespace Entities
             InningNumber = Inning;
             MatchDate = date;
         }
+
+        public Match(int _id, string _AwayTeam, string _homeTeam, DateTime date)
+        {
+            MatchID = _id;
+            AwayTeamAbbreviation = _AwayTeam; 
+            HomeTeamAbbreviation = _homeTeam;
+            MatchDate = date;
+        }
     }
 }

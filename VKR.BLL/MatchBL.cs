@@ -74,5 +74,10 @@ namespace VKR.BLL
             List<Match> matches = GetResultsForallMatches();
             return matches.Select(match => match.MatchDate).Max();
         }
+
+        public List<Match> GetMatchesForThisDay(DateTime date)
+        {
+            return matchDAO.GetMatchesForThisDay(date).ToList();
+        }
     }
 }

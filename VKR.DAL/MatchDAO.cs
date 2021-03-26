@@ -185,5 +185,28 @@ namespace VKR.DAL
                 }
             }
         }
+
+        public IEnumerable<Match> GetMatchesForThisDay(DateTime date)
+        {
+            using (SqlCommand command = new SqlCommand("GetAvailibleMatchesForThisDay", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Date", SqlDbType.Date);
+
+                command.Prepare();
+                command.Parameters[0].Value = date;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int MatchID = (int)reader["MatchID"];
+                        string AwayTeam = (string)reader["AwayTeam"];
+                        string HomeTeam = (string)reader["HomeTeam"];
+                        DateTime Date = (DateTime)reader["MatchDate"];
+                        yield return new Match(MatchID, AwayTeam, HomeTeam, Date);
+                    }
+                }
+            }
+        }
     }
 }

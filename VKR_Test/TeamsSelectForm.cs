@@ -11,29 +11,30 @@ namespace VKR_Test
     public partial class TeamsSelectForm : Form
     {
         private readonly TeamsBL teamsBL;
+        private readonly MatchBL matchBL;
         List<Team> teams;
+        List<Match> matches;
         int CurrentHomeColor;
         int CurrentAwayColor;
         int AwayTeamNumber;
         int HomeTeamNumber;
-        private static Random HomeTeamRandomGenerator;
-        private static Random AwayTeamRandomGenerator;
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
-
-        static TeamsSelectForm()
-        {
-            HomeTeamRandomGenerator = new Random();
-            AwayTeamRandomGenerator = new Random();
-        }
 
         public TeamsSelectForm()
         {
             InitializeComponent();
             teamsBL = new TeamsBL();
-            teams = teamsBL.GetAllTeams().OrderBy(team => team.Wins + team.Losses).ToList();
-            AwayTeamNumber = AwayTeamRandomGenerator.Next(0, 29);
-            HomeTeamNumber = (AwayTeamNumber + HomeTeamRandomGenerator.Next(1, 29)) % 30;
+            matchBL = new MatchBL();
+            matches = matchBL.GetMatchesForThisDay(Program.MatchDate);
+            if (matches.Count == 0)
+            {
+                Program.MatchDate = Program.MatchDate.AddDays(1);
+                matches = matchBL.GetMatchesForThisDay(Program.MatchDate);
+            }
+            teams = teamsBL.GetAllTeams().ToList();
+            AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].AwayTeamAbbreviation);
+            HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
         }
 
         private void TeamsSelectForm_Load(object sender, EventArgs e)
@@ -115,7 +116,7 @@ namespace VKR_Test
 
         private void btnDecreaseAwayTeamNumberBy1_Click(object sender, EventArgs e)
         {
-            AwayTeamNumber = AwayTeamNumber == 0 ? teams.Count - 1 : AwayTeamNumber - 1; 
+            AwayTeamNumber = AwayTeamNumber == 0 ? teams.Count - 1 : AwayTeamNumber - 1;
             if (AwayTeamNumber == HomeTeamNumber)
             {
                 AwayTeamNumber = AwayTeamNumber == 0 ? teams.Count - 1 : AwayTeamNumber - 1;
