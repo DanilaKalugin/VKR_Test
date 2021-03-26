@@ -26,6 +26,7 @@ namespace VKR_Test
             InitializeComponent();
             teamsBL = new TeamsBL();
             matchBL = new MatchBL();
+            Program.MatchDate = matchBL.GetMaxDateForAllMatches();
             matches = matchBL.GetMatchesForThisDay(Program.MatchDate);
             if (matches.Count == 0)
             {

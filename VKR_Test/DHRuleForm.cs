@@ -21,7 +21,8 @@ namespace VKR_Test
             InitializeComponent();
             matchBL = new MatchBL();
             teamsBL = new TeamsBL();
-            dateTimePicker1.Value = matchBL.GetMaxDateForAllMatches();
+            Program.MatchDate = matchBL.GetMaxDateForAllMatches();
+            dateTimePicker1.Value = Program.MatchDate;
             HomeTeam = _HomeTeam;
             AwayTeam = _AwayTeam;
             stadiumForThisMatch = _stadium;

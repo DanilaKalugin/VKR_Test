@@ -21,7 +21,8 @@ namespace VKR_Test
             InitializeComponent();
             teamsBl = new TeamsBL();
             matchBL = new MatchBL();
-            dateTimePicker1.Value = matchBL.GetMaxDateForAllMatches();
+            Program.MatchDate = matchBL.GetMaxDateForAllMatches();
+            dateTimePicker1.Value = Program.MatchDate;
             comboBox1.Text = "MLB";
         }
 
@@ -30,7 +31,8 @@ namespace VKR_Test
             InitializeComponent();
             teamsBl = new TeamsBL();
             matchBL = new MatchBL();
-            dateTimePicker1.Value = matchBL.GetMaxDateForAllMatches();
+            Program.MatchDate = matchBL.GetMaxDateForAllMatches();
+            dateTimePicker1.Value = Program.MatchDate;
             HomeTeam = Home;
             AwayTeam = Away;
             comboBox1.Text = "MLB";

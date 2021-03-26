@@ -5,7 +5,7 @@ namespace VKR_Test
 {
     static class Program
     {
-        public static DateTime MatchDate = new DateTime(2021, 4, 18);
+        public static DateTime MatchDate;
 
         /// <summary>
         /// Главная точка входа для приложения.
