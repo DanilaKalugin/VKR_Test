@@ -50,10 +50,12 @@ namespace VKR.BLL
 
             foreach (Team team in teams)
             {
+                team.RunsScored = teamsDAO.GetRunsScoredByTeamAfterThisDate(team, date);
+                team.RunsAllowed = teamsDAO.GetRunsAllowedByTeamAfterThisDate(team, date);
                 team.TeamColor = teamsDAO.GetAllColorsForThisTeam(team.TeamAbbreviation).ToList();
                 team.GamesBehind = (double)(LeaderW - LeaderL - (team.Wins - team.Losses)) / 2;
             }
-            teams = teams.OrderBy(team => team.GamesBehind).ThenByDescending(team => team.Wins).ToList();
+            teams = teams.OrderBy(team => team.GamesBehind).ThenByDescending(team => team.Wins).ThenByDescending(team => team.RunDifferential).ThenByDescending(team => team.RunsScored).ToList();
 
             double leadGB = teams[0].GamesBehind;
             if (leadGB < 0)

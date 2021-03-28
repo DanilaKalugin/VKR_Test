@@ -681,6 +681,7 @@ namespace VKR_Test
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StartingLineupForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StartingLineupForm";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

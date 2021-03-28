@@ -691,6 +691,7 @@ namespace VKR_Test
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MatchEndingForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DameSituation.cs";
             this.Load += new System.EventHandler(this.MatchEndingForm_Load);
             this.panel3.ResumeLayout(false);

@@ -111,7 +111,7 @@ namespace Entities
             Losses = l;
         }
 
-        public Team (string abbreviation, string Name, int _W, int _L, string _League, string _Division, int _RS, int _RA)
+        public Team (string abbreviation, string Name, int _W, int _L, string _League, string _Division)
         {
             TeamAbbreviation = abbreviation;
             TeamTitle = Name;
@@ -119,8 +119,6 @@ namespace Entities
             Wins = _W;
             Losses = _L;
             Division = _Division;
-            RunsScored = _RS;
-            RunsAllowed = _RA;
         }
     }
 }

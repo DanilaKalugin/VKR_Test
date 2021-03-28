@@ -114,6 +114,7 @@ namespace VKR_Test
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "TitleForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Graduation paper";
             this.ResumeLayout(false);
             this.PerformLayout();

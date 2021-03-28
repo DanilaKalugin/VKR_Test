@@ -63,12 +63,40 @@ namespace VKR.DAL
                         string League = (string)reader["TeamLeague"];
                         int W = (int)reader["W"];
                         int L = (int)reader["L"];
-                        int RS = (int)reader["RS"];
-                        int RA = (int)reader["RA"];
                         string Division = (string)reader["TeamDivision"];
-                        yield return new Team(Abbreviation, Name, W, L, League, Division, RS, RA);
+                        yield return new Team(Abbreviation, Name, W, L, League, Division);
                     }
                 }
+            }
+        }
+
+        public int GetRunsScoredByTeamAfterThisDate(Team team, DateTime date)
+        {
+            using (SqlCommand command = new SqlCommand("GetRunsScoredByTeamBAfterThisDate", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
+                command.Parameters.Add("@Date", SqlDbType.Date);
+                command.Prepare();
+                command.Parameters[0].Value = team.TeamAbbreviation;
+                command.Parameters[1].Value = date;
+
+                return (int)command.ExecuteScalar();
+            }
+        }
+
+        public int GetRunsAllowedByTeamAfterThisDate(Team team, DateTime date)
+        {
+            using (SqlCommand command = new SqlCommand("GetRunsAllowedByTeamBAfterThisDate", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
+                command.Parameters.Add("@Date", SqlDbType.Date);
+                command.Prepare();
+                command.Parameters[0].Value = team.TeamAbbreviation;
+                command.Parameters[1].Value = date;
+
+                return (int)command.ExecuteScalar();
             }
         }
 

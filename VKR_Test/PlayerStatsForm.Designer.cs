@@ -47,6 +47,23 @@ namespace VKR_Test
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.STANDARD = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BatterPlace_st = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,23 +112,6 @@ namespace VKR_Test
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BatterPlace_st = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -234,6 +234,144 @@ namespace VKR_Test
             this.dataGridView1.Size = new System.Drawing.Size(1478, 392);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
+            // 
+            // BatterPlace_st
+            // 
+            this.BatterPlace_st.FillWeight = 56.78233F;
+            this.BatterPlace_st.HeaderText = "Place";
+            this.BatterPlace_st.Name = "BatterPlace_st";
+            this.BatterPlace_st.ReadOnly = true;
+            this.BatterPlace_st.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BatterPlace_st.Width = 50;
+            // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 419.9858F;
+            this.Column1.HeaderText = "Player";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Width = 352;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 75.26105F;
+            this.Column2.HeaderText = "G";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 70;
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 76.83704F;
+            this.Column3.HeaderText = "AB";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 70;
+            // 
+            // Column4
+            // 
+            this.Column4.FillWeight = 78.33845F;
+            this.Column4.HeaderText = "R";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 70;
+            // 
+            // Column5
+            // 
+            this.Column5.FillWeight = 79.76881F;
+            this.Column5.HeaderText = "H";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 70;
+            // 
+            // Column6
+            // 
+            this.Column6.FillWeight = 81.1315F;
+            this.Column6.HeaderText = "2B";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 70;
+            // 
+            // Column7
+            // 
+            this.Column7.FillWeight = 82.4297F;
+            this.Column7.HeaderText = "3B";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 70;
+            // 
+            // Column8
+            // 
+            this.Column8.FillWeight = 83.66648F;
+            this.Column8.HeaderText = "HR";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 70;
+            // 
+            // Column9
+            // 
+            this.Column9.FillWeight = 84.84475F;
+            this.Column9.HeaderText = "RBI";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 70;
+            // 
+            // Column10
+            // 
+            this.Column10.FillWeight = 85.96724F;
+            this.Column10.HeaderText = "BB";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Width = 70;
+            // 
+            // Column15
+            // 
+            this.Column15.FillWeight = 87.03662F;
+            this.Column15.HeaderText = "SB";
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            this.Column15.Width = 70;
+            // 
+            // Column16
+            // 
+            this.Column16.FillWeight = 88.05541F;
+            this.Column16.HeaderText = "CS";
+            this.Column16.Name = "Column16";
+            this.Column16.ReadOnly = true;
+            this.Column16.Width = 70;
+            // 
+            // Column11
+            // 
+            this.Column11.FillWeight = 89.02601F;
+            this.Column11.HeaderText = "AVG";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Width = 78;
+            // 
+            // Column12
+            // 
+            this.Column12.FillWeight = 89.95062F;
+            this.Column12.HeaderText = "OBP";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Width = 70;
+            // 
+            // Column13
+            // 
+            this.Column13.FillWeight = 90.83153F;
+            this.Column13.HeaderText = "SLG";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            this.Column13.Width = 70;
+            // 
+            // Column14
+            // 
+            this.Column14.FillWeight = 91.67075F;
+            this.Column14.HeaderText = "OPS";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Width = 70;
             // 
             // tabPage4
             // 
@@ -776,144 +914,6 @@ namespace VKR_Test
             this.Column19.ReadOnly = true;
             this.Column19.Width = 70;
             // 
-            // BatterPlace_st
-            // 
-            this.BatterPlace_st.FillWeight = 56.78233F;
-            this.BatterPlace_st.HeaderText = "Place";
-            this.BatterPlace_st.Name = "BatterPlace_st";
-            this.BatterPlace_st.ReadOnly = true;
-            this.BatterPlace_st.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BatterPlace_st.Width = 50;
-            // 
-            // Column1
-            // 
-            this.Column1.FillWeight = 419.9858F;
-            this.Column1.HeaderText = "Player";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column1.Width = 352;
-            // 
-            // Column2
-            // 
-            this.Column2.FillWeight = 75.26105F;
-            this.Column2.HeaderText = "G";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 70;
-            // 
-            // Column3
-            // 
-            this.Column3.FillWeight = 76.83704F;
-            this.Column3.HeaderText = "AB";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 70;
-            // 
-            // Column4
-            // 
-            this.Column4.FillWeight = 78.33845F;
-            this.Column4.HeaderText = "R";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 70;
-            // 
-            // Column5
-            // 
-            this.Column5.FillWeight = 79.76881F;
-            this.Column5.HeaderText = "H";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 70;
-            // 
-            // Column6
-            // 
-            this.Column6.FillWeight = 81.1315F;
-            this.Column6.HeaderText = "2B";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 70;
-            // 
-            // Column7
-            // 
-            this.Column7.FillWeight = 82.4297F;
-            this.Column7.HeaderText = "3B";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 70;
-            // 
-            // Column8
-            // 
-            this.Column8.FillWeight = 83.66648F;
-            this.Column8.HeaderText = "HR";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 70;
-            // 
-            // Column9
-            // 
-            this.Column9.FillWeight = 84.84475F;
-            this.Column9.HeaderText = "RBI";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 70;
-            // 
-            // Column10
-            // 
-            this.Column10.FillWeight = 85.96724F;
-            this.Column10.HeaderText = "BB";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Width = 70;
-            // 
-            // Column15
-            // 
-            this.Column15.FillWeight = 87.03662F;
-            this.Column15.HeaderText = "SB";
-            this.Column15.Name = "Column15";
-            this.Column15.ReadOnly = true;
-            this.Column15.Width = 70;
-            // 
-            // Column16
-            // 
-            this.Column16.FillWeight = 88.05541F;
-            this.Column16.HeaderText = "CS";
-            this.Column16.Name = "Column16";
-            this.Column16.ReadOnly = true;
-            this.Column16.Width = 70;
-            // 
-            // Column11
-            // 
-            this.Column11.FillWeight = 89.02601F;
-            this.Column11.HeaderText = "AVG";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Width = 78;
-            // 
-            // Column12
-            // 
-            this.Column12.FillWeight = 89.95062F;
-            this.Column12.HeaderText = "OBP";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Width = 70;
-            // 
-            // Column13
-            // 
-            this.Column13.FillWeight = 90.83153F;
-            this.Column13.HeaderText = "SLG";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            this.Column13.Width = 70;
-            // 
-            // Column14
-            // 
-            this.Column14.FillWeight = 91.67075F;
-            this.Column14.HeaderText = "OPS";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            this.Column14.Width = 70;
-            // 
             // PlayerStatsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -926,6 +926,7 @@ namespace VKR_Test
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "PlayerStatsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Player standings";
             this.Load += new System.EventHandler(this.PlayerStatsForm_Load);
             this.tabControl1.ResumeLayout(false);

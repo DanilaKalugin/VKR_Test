@@ -156,6 +156,7 @@ namespace VKR_Test
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "PitcherSubstitutionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PitcherSubstitutionForm";
             this.Load += new System.EventHandler(this.PitcherSubstitutionForm_Load);
             this.panel1.ResumeLayout(false);
