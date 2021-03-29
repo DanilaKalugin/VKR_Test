@@ -21,14 +21,14 @@ namespace VKR_Test
             Defense = defense;
             Pitchers = pitchers;
             lbTeamTitle.Text = defense.TeamTitle.ToUpper();
-            lbTeamTitle.ForeColor = defense.TeamColor[0];
+            lbTeamTitle.ForeColor = defense.TeamColorForThisMatch;
         }
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
         {
             foreach (Pitcher pitcher in Pitchers)
             {
-                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{pitcher.id:0000}.jpg"), pitcher.FirstName + " " + pitcher.SecondName, $"ERA: {pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"SO: {pitcher.Strikeouts}");
+                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"ERA: {pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"SO: {pitcher.Strikeouts}");
             }
             dataGridView1.DefaultCellStyle.SelectionBackColor = Defense.TeamColor[0];
             panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{Defense.TeamAbbreviation}.png");
