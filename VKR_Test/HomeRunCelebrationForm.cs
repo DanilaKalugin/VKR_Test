@@ -10,12 +10,12 @@ namespace VKR_Test
         public HomeRunCelebrationForm(Team team, string HRType, Batter batter)
         {
             InitializeComponent();
-            BackColor = team.TeamColor[0];
+            BackColor = team.TeamColorForThisMatch;
             label1.Text = HRType;
             timer2.Start();
             panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.jpg");
+            panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.jpg");
             label2.Text = batter.FullName.ToUpper();
 
             if (batter.HomeRuns + 1 % 10 == 1 && batter.HomeRuns + 1 % 100 != 11)
