@@ -78,7 +78,7 @@ namespace Entities
         {
             get
             {
-                return 9 * (double)Strikeouts / (Outs * 3);
+                return (double)Strikeouts / (Outs / 3) * 9;
             }
         }
 
@@ -86,7 +86,7 @@ namespace Entities
         {
             get
             {
-                return 9 * (double)WalksAllowed / (Outs * 3);
+                return 9 * (double)WalksAllowed / (Outs / 3) * 9;
             }
         }
 
