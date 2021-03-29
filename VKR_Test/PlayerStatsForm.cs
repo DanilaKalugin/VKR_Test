@@ -31,7 +31,7 @@ namespace VKR_Test
             for (int i = 0; i < batters.Count; i++)
             {
                 dataGridView1.Rows.Add(i + 1,
-                                        $"{batters[i].FirstName} {batters[i].SecondName}",
+                                        batters[i].FullName,
                                         batters[i].Games,
                                         batters[i].AtBats,
                                         batters[i].Runs,
@@ -48,7 +48,7 @@ namespace VKR_Test
                                         batters[i].SLG.ToString("#.000", new CultureInfo("en-US")),
                                         batters[i].OPS.ToString("#.000", new CultureInfo("en-US")));
                 dataGridView2.Rows.Add(i + 1,
-                                        $"{batters[i].FirstName} {batters[i].SecondName}",
+                                        batters[i].FullName,
                                         batters[i].PA,
                                         batters[i].HitByPitch,
                                         batters[i].SacrificeBunts,
@@ -72,7 +72,7 @@ namespace VKR_Test
             for (int i = 0; i < pitchers.Count; i++)
             {
                 dataGridView3.Rows.Add(i + 1,
-                                        $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
+                                        pitchers[i].FullName,
                                         pitchers[i].ERA.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].Games,
                                         pitchers[i].CompleteGames,
@@ -88,7 +88,7 @@ namespace VKR_Test
                                         pitchers[i].BAA.ToString("#.000", new CultureInfo("en-US")));
 
                 dataGridView4.Rows.Add(i + 1,
-                                        $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
+                                        pitchers[i].FullName,
                                         pitchers[i].TotalBattersFaced,
                                         pitchers[i].QualityStarts,
                                         pitchers[i].DoublePlays,
@@ -150,7 +150,7 @@ namespace VKR_Test
                     for (int i = 0; i < batters.Count; i++)
                     {
                         dataGridView2.Rows.Add(i + 1,
-                                                $"{batters[i].FirstName} {batters[i].SecondName}",
+                                                batters[i].FullName,
                                                 batters[i].PA,
                                                 batters[i].HitByPitch,
                                                 batters[i].SacrificeBunts,
@@ -201,7 +201,7 @@ namespace VKR_Test
                 for (int i = 0; i < pitchers.Count; i++)
                 {
                     dataGridView4.Rows.Add(i + 1,
-                                        $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
+                                        pitchers[i].FullName,
                                         pitchers[i].TotalBattersFaced,
                                         pitchers[i].QualityStarts,
                                         pitchers[i].DoublePlays,
@@ -289,7 +289,7 @@ namespace VKR_Test
                 for (int i = 0; i < pitchers.Count; i++)
                 {
                     dataGridView3.Rows.Add(i + 1,
-                                            $"{pitchers[i].FirstName} {pitchers[i].SecondName}",
+                                            pitchers[i].FullName,
                                             pitchers[i].ERA.ToString("0.00", new CultureInfo("en-US")),
                                             pitchers[i].Games,
                                             pitchers[i].CompleteGames,

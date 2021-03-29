@@ -221,19 +221,19 @@ namespace VKR_Test
             if (situation.RunnerOnFirst.IsBaseNotEmpty)
             {
                 Batter runneron1St = situation.offense.BattingLineup.Where(Batter => Batter.id == situation.RunnerOnFirst.runnerID).First();
-                lb_Runner1_Name.Text = (runneron1St.FirstName + " " + runneron1St.SecondName).ToUpper();
+                lb_Runner1_Name.Text = runneron1St.FullName.ToUpper();
             }
 
             if (situation.RunnerOnSecond.IsBaseNotEmpty)
             {
                 Batter runneron2nd = situation.offense.BattingLineup.Where(Batter => Batter.id == situation.RunnerOnSecond.runnerID).First();
-                lb_Runner2_Name.Text = (runneron2nd.FirstName + " " + runneron2nd.SecondName).ToUpper();
+                lb_Runner2_Name.Text = runneron2nd.FullName.ToUpper();
             }
 
             if (situation.RunnerOnThird.IsBaseNotEmpty)
             {
                 Batter runneron3rd = situation.offense.BattingLineup.Where(Batter => Batter.id == situation.RunnerOnThird.runnerID).First();
-                lb_Runner3_Name.Text = (runneron3rd.FirstName + " " + runneron3rd.SecondName).ToUpper();
+                lb_Runner3_Name.Text = runneron3rd.FullName.ToUpper();
             }
         }
 
@@ -294,7 +294,7 @@ namespace VKR_Test
             panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.jpg");
             lblPlayerPosition.Text = batter.PositionForThisMatch;
             lblPlayerNumber.Text = batter.PlayerNumber.ToString();
-            lblPlayerName.Text = batter.FirstName.ToUpper() + " " + batter.SecondName.ToUpper();
+            lblPlayerName.Text = batter.FullName.ToUpper();
             label6.Text = batter.AVG.ToString("#.000", new CultureInfo("en-US"));
             label9.Text = batter.HomeRuns.ToString("N0", CultureInfo.InvariantCulture);
             label11.Text = batter.RBI.ToString("N0", CultureInfo.InvariantCulture);
@@ -571,7 +571,7 @@ namespace VKR_Test
             btnShowAvailablePitchers.BackColor = Defense.TeamColorForThisMatch;
             PitchingTeam.BackgroundImage = Image.FromFile($"SmallTeamLogos/{Defense.TeamAbbreviation}.png");
             PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id.ToString("0000")}.jpg");
-            PitcherName.Text = Defense.CurrentPitcher.FirstName.ToUpper() + " " + Defense.CurrentPitcher.SecondName.ToUpper();
+            PitcherName.Text = Defense.CurrentPitcher.FullName.ToUpper();
             PitcherGames.Text = Defense.CurrentPitcher.Games.ToString();
             PitcherBAA.Text = Defense.CurrentPitcher.BAA.ToString("#.000", new CultureInfo("en-US"));
             PitcherERA.Text = Defense.CurrentPitcher.ERA.ToString("##0.00", new CultureInfo("en-US"));

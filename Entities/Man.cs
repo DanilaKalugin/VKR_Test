@@ -9,5 +9,13 @@ namespace Entities
         public string SecondName;
         public DateTime DateOfBirth;
         public string PlaceOfBirth;
+
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + SecondName;
+            }
+        }
     }
 }

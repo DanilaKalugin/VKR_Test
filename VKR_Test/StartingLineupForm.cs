@@ -22,7 +22,7 @@ namespace VKR_Test
             GetInfoAboutBatter(team.BattingLineup[6], p7, label7, label12, label32, label31);
             GetInfoAboutBatter(team.BattingLineup[7], p8, label8, label11, label34, label33);
             GetInfoAboutBatter(team.BattingLineup[8], p9, label9, label10, label36, label35);
-            teamManager.Text = $"► Team Manager: {team.TeamManager.FirstName} {team.TeamManager.SecondName}".ToUpper();
+            teamManager.Text = $"► Team Manager: {team.TeamManager.FullName}".ToUpper();
             timer1.Start();
         }
 

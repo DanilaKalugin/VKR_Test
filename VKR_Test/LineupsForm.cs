@@ -114,9 +114,9 @@ namespace VKR_Test
             {
                 panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.jpg");
                 label2.Text = $"#{player.PlayerNumber}";
-                label3.Text = $"{player.FirstName} {player.SecondName}".ToUpper();
-                label4.Text = $"{player.PlaceOfBirth}".ToUpper();
-                label5.Text = $"{player.DateOfBirth.ToShortDateString()}".ToUpper();
+                label3.Text = player.FullName.ToUpper();
+                label4.Text = player.PlaceOfBirth.ToUpper();
+                label5.Text = player.DateOfBirth.ToShortDateString().ToUpper();
             }
         }
 
