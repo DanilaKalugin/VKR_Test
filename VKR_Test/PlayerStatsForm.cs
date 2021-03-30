@@ -21,7 +21,7 @@ namespace VKR_Test
         {
             InitializeComponent();
             playersBL = new PlayerBL();
-            sortingStandardPitchers = new SortMode[7];
+            sortingStandardPitchers = new SortMode[9];
             sortingStandardPitchers[0] = SortMode.Ascending;
         }
 
@@ -180,6 +180,34 @@ namespace VKR_Test
         {
             switch (e.ColumnIndex)
             {
+                case 5:
+                    {
+                        if (sortingStandardPitchers[7] == SortMode.Ascending)
+                        {
+                            pitchers = pitchers.OrderByDescending(pitcher => pitcher.KperNineInnings).ToList();
+                            sortingStandardPitchers[7] = SortMode.Descending;
+                        }
+                        else
+                        {
+                            pitchers = pitchers.OrderBy(pitcher => pitcher.KperNineInnings).ToList();
+                            sortingStandardPitchers[7] = SortMode.Ascending;
+                        }
+                        break;
+                    }
+                case 6:
+                    {
+                        if (sortingStandardPitchers[8] == SortMode.Ascending)
+                        {
+                            pitchers = pitchers.OrderByDescending(pitcher => pitcher.BBperNineInnings).ToList();
+                            sortingStandardPitchers[8] = SortMode.Descending;
+                        }
+                        else
+                        {
+                            pitchers = pitchers.OrderBy(pitcher => pitcher.BBperNineInnings).ToList();
+                            sortingStandardPitchers[8] = SortMode.Ascending;
+                        }
+                        break;
+                    }
                 case 7:
                     {
                         if (sortingStandardPitchers[4] == SortMode.Ascending)
@@ -195,7 +223,7 @@ namespace VKR_Test
                         break;
                     }
             }
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 5 || e.ColumnIndex == 6 || e.ColumnIndex == 7)
             {
                 dataGridView4.Rows.Clear();
                 for (int i = 0; i < pitchers.Count; i++)
