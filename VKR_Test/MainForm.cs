@@ -180,7 +180,9 @@ namespace VKR_Test
 
             panel6.Visible = gameSituation.strikes == 0 && gameSituation.balls == 0;
             panel7.BackgroundImage = Image.FromFile($"SmallTeamLogos/{gameSituation.offense.TeamAbbreviation}.png");
+
             panel8.BackColor = gameSituation.offense.TeamColorForThisMatch;
+
             Batter NextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(NextBatter);
             DisplayNextBatters(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, gameSituation);

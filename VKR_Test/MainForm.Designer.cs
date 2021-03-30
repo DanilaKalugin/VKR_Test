@@ -112,6 +112,7 @@
             this.lb2ndInning = new System.Windows.Forms.Label();
             this.lb1stInning = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.btnSeriesHistory = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -196,7 +197,6 @@
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             this.btnOtherResults = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
-            this.btnSeriesHistory = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -350,6 +350,7 @@
             // 
             // btnNewPitch
             // 
+            this.btnNewPitch.BackColor = System.Drawing.Color.Gainsboro;
             this.btnNewPitch.FlatAppearance.BorderSize = 0;
             this.btnNewPitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewPitch.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -358,7 +359,7 @@
             this.btnNewPitch.Size = new System.Drawing.Size(300, 35);
             this.btnNewPitch.TabIndex = 0;
             this.btnNewPitch.Text = "NEXT PITCH";
-            this.btnNewPitch.UseVisualStyleBackColor = true;
+            this.btnNewPitch.UseVisualStyleBackColor = false;
             this.btnNewPitch.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
@@ -1251,6 +1252,20 @@
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(1423, 138);
             this.panel14.TabIndex = 45;
+            // 
+            // btnSeriesHistory
+            // 
+            this.btnSeriesHistory.BackColor = System.Drawing.Color.LightGray;
+            this.btnSeriesHistory.FlatAppearance.BorderSize = 0;
+            this.btnSeriesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeriesHistory.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeriesHistory.Location = new System.Drawing.Point(64, 9);
+            this.btnSeriesHistory.Name = "btnSeriesHistory";
+            this.btnSeriesHistory.Size = new System.Drawing.Size(323, 40);
+            this.btnSeriesHistory.TabIndex = 61;
+            this.btnSeriesHistory.Text = "SERIES HISTORY";
+            this.btnSeriesHistory.UseVisualStyleBackColor = false;
+            this.btnSeriesHistory.Click += new System.EventHandler(this.btnSeriesHistory_Click);
             // 
             // label23
             // 
@@ -2170,6 +2185,7 @@
             // 
             // btnBuntAttempt
             // 
+            this.btnBuntAttempt.BackColor = System.Drawing.Color.Gainsboro;
             this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
             this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuntAttempt.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2178,11 +2194,12 @@
             this.btnBuntAttempt.Size = new System.Drawing.Size(250, 35);
             this.btnBuntAttempt.TabIndex = 55;
             this.btnBuntAttempt.Text = "BUNT ATTEMPT";
-            this.btnBuntAttempt.UseVisualStyleBackColor = true;
+            this.btnBuntAttempt.UseVisualStyleBackColor = false;
             this.btnBuntAttempt.Click += new System.EventHandler(this.btnBuntAttempt_Click);
             // 
             // btnStandings
             // 
+            this.btnStandings.BackColor = System.Drawing.Color.Gainsboro;
             this.btnStandings.FlatAppearance.BorderSize = 0;
             this.btnStandings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStandings.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2191,7 +2208,7 @@
             this.btnStandings.Size = new System.Drawing.Size(300, 35);
             this.btnStandings.TabIndex = 56;
             this.btnStandings.Text = "CURRENT STANDINGS";
-            this.btnStandings.UseVisualStyleBackColor = true;
+            this.btnStandings.UseVisualStyleBackColor = false;
             this.btnStandings.Click += new System.EventHandler(this.btnStandings_Click);
             // 
             // btnShowAvailablePitchers
@@ -2211,6 +2228,7 @@
             // 
             // btnOtherResults
             // 
+            this.btnOtherResults.BackColor = System.Drawing.Color.Gainsboro;
             this.btnOtherResults.FlatAppearance.BorderSize = 0;
             this.btnOtherResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOtherResults.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2219,11 +2237,12 @@
             this.btnOtherResults.Size = new System.Drawing.Size(300, 35);
             this.btnOtherResults.TabIndex = 59;
             this.btnOtherResults.Text = "OTHER RESULTS";
-            this.btnOtherResults.UseVisualStyleBackColor = true;
+            this.btnOtherResults.UseVisualStyleBackColor = false;
             this.btnOtherResults.Click += new System.EventHandler(this.btnOtherResults_Click);
             // 
             // btnPlayerStats
             // 
+            this.btnPlayerStats.BackColor = System.Drawing.Color.Gainsboro;
             this.btnPlayerStats.FlatAppearance.BorderSize = 0;
             this.btnPlayerStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlayerStats.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2232,26 +2251,14 @@
             this.btnPlayerStats.Size = new System.Drawing.Size(300, 35);
             this.btnPlayerStats.TabIndex = 60;
             this.btnPlayerStats.Text = "PLAYER STATS";
-            this.btnPlayerStats.UseVisualStyleBackColor = true;
+            this.btnPlayerStats.UseVisualStyleBackColor = false;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
-            // 
-            // btnSeriesHistory
-            // 
-            this.btnSeriesHistory.FlatAppearance.BorderSize = 0;
-            this.btnSeriesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeriesHistory.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeriesHistory.Location = new System.Drawing.Point(64, 9);
-            this.btnSeriesHistory.Name = "btnSeriesHistory";
-            this.btnSeriesHistory.Size = new System.Drawing.Size(323, 40);
-            this.btnSeriesHistory.TabIndex = 61;
-            this.btnSeriesHistory.Text = "SERIES HISTORY";
-            this.btnSeriesHistory.UseVisualStyleBackColor = true;
-            this.btnSeriesHistory.Click += new System.EventHandler(this.btnSeriesHistory_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
             this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnOtherResults);
