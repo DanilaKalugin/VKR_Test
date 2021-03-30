@@ -38,11 +38,12 @@ namespace VKR_Test
             this.PlayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_StartNewMatch = new System.Windows.Forms.Button();
+            this.btn_StartMatchFromSchedule = new System.Windows.Forms.Button();
             this.btnStandings = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
             this.btnLineups = new System.Windows.Forms.Button();
             this.btnResults = new System.Windows.Forms.Button();
+            this.btnNewMatch = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -136,20 +137,20 @@ namespace VKR_Test
             this.label1.Text = "Happy Birthday";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btn_StartNewMatch
+            // btn_StartMatchFromSchedule
             // 
-            this.btn_StartNewMatch.BackColor = System.Drawing.Color.Gainsboro;
-            this.btn_StartNewMatch.FlatAppearance.BorderSize = 0;
-            this.btn_StartNewMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_StartNewMatch.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_StartNewMatch.Location = new System.Drawing.Point(12, 12);
-            this.btn_StartNewMatch.Name = "btn_StartNewMatch";
-            this.btn_StartNewMatch.Size = new System.Drawing.Size(250, 150);
-            this.btn_StartNewMatch.TabIndex = 1;
-            this.btn_StartNewMatch.Text = "START NEW MATCH";
-            this.btn_StartNewMatch.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btn_StartNewMatch.UseVisualStyleBackColor = false;
-            this.btn_StartNewMatch.Click += new System.EventHandler(this.btn_StartNewMatch_Click);
+            this.btn_StartMatchFromSchedule.BackColor = System.Drawing.Color.Gainsboro;
+            this.btn_StartMatchFromSchedule.FlatAppearance.BorderSize = 0;
+            this.btn_StartMatchFromSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_StartMatchFromSchedule.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_StartMatchFromSchedule.Location = new System.Drawing.Point(12, 89);
+            this.btn_StartMatchFromSchedule.Name = "btn_StartMatchFromSchedule";
+            this.btn_StartMatchFromSchedule.Size = new System.Drawing.Size(250, 73);
+            this.btn_StartMatchFromSchedule.TabIndex = 1;
+            this.btn_StartMatchFromSchedule.Text = "REAL MLB SEASON";
+            this.btn_StartMatchFromSchedule.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btn_StartMatchFromSchedule.UseVisualStyleBackColor = false;
+            this.btn_StartMatchFromSchedule.Click += new System.EventHandler(this.btn_StartNewMatch_Click);
             // 
             // btnStandings
             // 
@@ -211,17 +212,33 @@ namespace VKR_Test
             this.btnResults.UseVisualStyleBackColor = false;
             this.btnResults.Click += new System.EventHandler(this.btnResults_Click);
             // 
+            // btnNewMatch
+            // 
+            this.btnNewMatch.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnNewMatch.FlatAppearance.BorderSize = 0;
+            this.btnNewMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewMatch.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewMatch.Location = new System.Drawing.Point(12, 12);
+            this.btnNewMatch.Name = "btnNewMatch";
+            this.btnNewMatch.Size = new System.Drawing.Size(250, 73);
+            this.btnNewMatch.TabIndex = 6;
+            this.btnNewMatch.Text = "START NEW MATCH";
+            this.btnNewMatch.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnNewMatch.UseVisualStyleBackColor = false;
+            this.btnNewMatch.Click += new System.EventHandler(this.btnNewMatch_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1130, 450);
+            this.Controls.Add(this.btnNewMatch);
             this.Controls.Add(this.btnResults);
             this.Controls.Add(this.btnLineups);
             this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnStandings);
-            this.Controls.Add(this.btn_StartNewMatch);
+            this.Controls.Add(this.btn_StartMatchFromSchedule);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -245,10 +262,11 @@ namespace VKR_Test
         private System.Windows.Forms.DataGridViewTextBoxColumn TeamName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PlayerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Age;
-        private System.Windows.Forms.Button btn_StartNewMatch;
+        private System.Windows.Forms.Button btn_StartMatchFromSchedule;
         private System.Windows.Forms.Button btnStandings;
         private System.Windows.Forms.Button btnPlayerStats;
         private System.Windows.Forms.Button btnLineups;
         private System.Windows.Forms.Button btnResults;
+        private System.Windows.Forms.Button btnNewMatch;
     }
 }

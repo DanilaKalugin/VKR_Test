@@ -26,6 +26,16 @@ namespace VKR_Test
             InitializeComponent();
             teamsBL = new TeamsBL();
             matchBL = new MatchBL();
+            teams = teamsBL.GetAllTeams().ToList();
+            AwayTeamNumber = 0;
+            HomeTeamNumber = 1;
+        }
+
+        public TeamsSelectForm(DateTime date)
+        {
+            InitializeComponent();
+            teamsBL = new TeamsBL();
+            matchBL = new MatchBL();
             Program.MatchDate = matchBL.GetMaxDateForAllMatches();
             matches = matchBL.GetMatchesForThisDay(Program.MatchDate);
             if (matches.Count == 0)

@@ -48,7 +48,7 @@ namespace VKR_Test
 
         private void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
-            TeamsSelectForm form = new TeamsSelectForm();
+            TeamsSelectForm form = new TeamsSelectForm(Program.MatchDate);
             form.ShowDialog();
             if (form.DialogResult == DialogResult.Yes)
             {
@@ -84,6 +84,19 @@ namespace VKR_Test
         {
             MatchResultsForm form = new MatchResultsForm();
             form.ShowDialog();
+            GetListOfPeopleWithBirthdayToday();
+        }
+
+        private void btnNewMatch_Click(object sender, EventArgs e)
+        {
+            TeamsSelectForm form = new TeamsSelectForm();
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.Yes)
+            {
+                MatchNumberForDelete = form.MatchNumberForDelete;
+                form.Dispose();
+                matchBL.DeleteThisMatch(MatchNumberForDelete);
+            }
             GetListOfPeopleWithBirthdayToday();
         }
     }
