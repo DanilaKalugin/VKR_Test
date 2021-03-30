@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /VKR_Test/TitleForm.ru-RU.resx
+*.xlsx

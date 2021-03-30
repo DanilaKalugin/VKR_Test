@@ -50,6 +50,31 @@ namespace VKR_Test
             label2.Visible = false;
         }
 
+        public MatchResultsForm(Team homeTeam, Team AwayTeam)
+        {
+            InitializeComponent();
+            matchBL = new MatchBL();
+            teamsBL = new TeamsBL();
+            matches = matchBL.GetResultsForallMatches().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
+                                                                       (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).ToList();
+
+            dataGridView1.Rows.Clear();
+            foreach (Match match in matches)
+            {
+                dataGridView1.Rows.Add(match.MatchDate.ToString("dd-MM"),
+                    Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
+                                       match.AwayTeamAbbreviation,
+                                       match.AwayTeamRuns,
+                                       match.HomeTeamRuns,
+                                       match.HomeTeamAbbreviation,
+                                       Image.FromFile($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
+                                       match.MatchStatus,
+                                       $"{match.stadium.StadiumTitle} - {match.stadium.stadiumLocation}");
+            }
+            cbTeam.Visible = false;
+            label2.Visible = false;
+        }
+
         private void MatchResultsForm_Load(object sender, EventArgs e)
         {
             cbTeam.Text = "ALL";

@@ -674,5 +674,11 @@ namespace VKR_Test
             PlayerStatsForm form = new PlayerStatsForm();
             form.ShowDialog();
         }
+
+        private void btnSeriesHistory_Click(object sender, EventArgs e)
+        {
+            MatchResultsForm form = new MatchResultsForm(currentMatch.HomeTeam, currentMatch.AwayTeam);
+            form.ShowDialog();
+        }
     }
 }

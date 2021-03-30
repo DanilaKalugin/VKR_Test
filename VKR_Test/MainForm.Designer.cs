@@ -196,6 +196,7 @@
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             this.btnOtherResults = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
+            this.btnSeriesHistory = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -1203,6 +1204,7 @@
             // 
             // panel14
             // 
+            this.panel14.Controls.Add(this.btnSeriesHistory);
             this.panel14.Controls.Add(this.label23);
             this.panel14.Controls.Add(this.label22);
             this.panel14.Controls.Add(this.panel15);
@@ -2233,6 +2235,19 @@
             this.btnPlayerStats.UseVisualStyleBackColor = true;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
             // 
+            // btnSeriesHistory
+            // 
+            this.btnSeriesHistory.FlatAppearance.BorderSize = 0;
+            this.btnSeriesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeriesHistory.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeriesHistory.Location = new System.Drawing.Point(64, 9);
+            this.btnSeriesHistory.Name = "btnSeriesHistory";
+            this.btnSeriesHistory.Size = new System.Drawing.Size(323, 40);
+            this.btnSeriesHistory.TabIndex = 61;
+            this.btnSeriesHistory.Text = "SERIES HISTORY";
+            this.btnSeriesHistory.UseVisualStyleBackColor = true;
+            this.btnSeriesHistory.Click += new System.EventHandler(this.btnSeriesHistory_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2470,6 +2485,7 @@
         private System.Windows.Forms.Button btnShowAvailablePitchers;
         private System.Windows.Forms.Button btnOtherResults;
         private System.Windows.Forms.Button btnPlayerStats;
+        private System.Windows.Forms.Button btnSeriesHistory;
     }
 }
 
