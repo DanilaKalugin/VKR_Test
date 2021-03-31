@@ -22,10 +22,8 @@ namespace VKR.BLL
             double MaxDefensiveRating = teams.Select(team => team.DefensiveRating()).Max();
             foreach (Team team in teams)
             {
-                team.TeamColor = teamsDAO.GetAllColorsForThisTeam(team.TeamAbbreviation).ToList();
                 team.NormalizedOffensiveRating = (int)(team.OffensiveRating() / MaxOffensiveRating * 99);
                 team.NormalizedDefensiveRating = (int)(team.DefensiveRating() / MaxDefensiveRating * 99);
-                team.TeamManager = GetManagerForThisTeam(team);
             }
             return teams;
         }
@@ -50,9 +48,6 @@ namespace VKR.BLL
 
             foreach (Team team in teams)
             {
-                team.RunsScored = teamsDAO.GetRunsScoredByTeamAfterThisDate(team, date);
-                team.RunsAllowed = teamsDAO.GetRunsAllowedByTeamAfterThisDate(team, date);
-                team.TeamColor = teamsDAO.GetAllColorsForThisTeam(team.TeamAbbreviation).ToList();
                 team.GamesBehind = (double)(LeaderW - LeaderL - (team.Wins - team.Losses)) / 2;
             }
             teams = teams.OrderBy(team => team.GamesBehind).ThenByDescending(team => team.Wins).ThenByDescending(team => team.RunDifferential).ThenByDescending(team => team.RunsScored).ToList();

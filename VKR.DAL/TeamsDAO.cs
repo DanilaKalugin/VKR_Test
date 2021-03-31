@@ -5,6 +5,7 @@ using System.Data;
 using System.Configuration;
 using Entities;
 using System.Drawing;
+using System.Linq;
 
 namespace VKR.DAL
 {
@@ -47,9 +48,9 @@ namespace VKR.DAL
 
         public IEnumerable<Team> GetStandings(DateTime date)
         {
+            List<Team> teams = new List<Team>();
             using (SqlCommand command = new SqlCommand("GetStandings", _connection))
             {
-
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Date", SqlDbType.Date);
                 command.Prepare();
@@ -64,10 +65,17 @@ namespace VKR.DAL
                         int W = (int)reader["W"];
                         int L = (int)reader["L"];
                         string Division = (string)reader["TeamDivision"];
-                        yield return new Team(Abbreviation, Name, W, L, League, Division);
+                        teams.Add(new Team(Abbreviation, Name, W, L, League, Division));
                     }
                 }
             }
+            for (int i = 0; i < teams.Count; i++)
+            {
+                teams[i].TeamColor = GetAllColorsForThisTeam(teams[i].TeamAbbreviation).ToList();
+                teams[i].RunsScored = GetRunsScoredByTeamAfterThisDate(teams[i], date);
+                teams[i].RunsAllowed = GetRunsAllowedByTeamAfterThisDate(teams[i], date);
+            }
+            return teams;
         }
 
         public int GetRunsScoredByTeamAfterThisDate(Team team, DateTime date)
@@ -102,6 +110,7 @@ namespace VKR.DAL
 
         public IEnumerable<Team> GetList()
         {
+            List<Team> teams = new List<Team>(); 
             using (SqlCommand command = new SqlCommand("GetAllTeams", _connection))
             {
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -131,13 +140,19 @@ namespace VKR.DAL
                         bool DHRule = (bool)reader["LeagueDHRule"];
                         int W = (int)reader["W"];
                         int L = (int)reader["L"];
-                        yield return new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
+                        teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
                                               Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
                                               FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, StealingBase,
-                                              Bunt, stadium, DHRule, W, L);
+                                              Bunt, stadium, DHRule, W, L));
                     }
                 }
             }
+            for (int i = 0; i < teams.Count; i++)
+            {
+                teams[i].TeamColor = GetAllColorsForThisTeam(teams[i].TeamAbbreviation).ToList();
+                teams[i].TeamManager = GetManagerForThisTeam(teams[i]).First();
+            }
+            return teams;
         }
 
         public IEnumerable<Batter> GetCurrentLineupForThisMatch(string team, int Match)
