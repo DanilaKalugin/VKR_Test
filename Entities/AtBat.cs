@@ -207,14 +207,7 @@ namespace Entities
             }
 
             outs = OutsForThisAtBat(currentMatch.gameSituations.Last(), currentMatch.gameSituations[currentMatch.gameSituations.Count - 2]);
-            if (AtBatResult == AtBatType.Groundout && outs == 2)
-            {
-                RBI = 0;
-            }
-            else
-            {
-                RBI = runs;
-            }
+            RBI = runs;
             Inning = currentMatch.gameSituations.Last().inningNumber;
         }
 
