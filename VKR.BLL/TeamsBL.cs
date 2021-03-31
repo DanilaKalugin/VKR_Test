@@ -68,11 +68,6 @@ namespace VKR.BLL
             return teamsDAO.GetStartingLineupForThisMatch(Team, DHRule).ToList();
         }
 
-        public Manager GetManagerForThisTeam(Team team)
-        {
-            return teamsDAO.GetManagerForThisTeam(team).First();
-        }
-
         public List<Pitcher> GetStartingPitcherForThisTeam(Team team)
         {
             return teamsDAO.GetStartingPitcherForThisTeam(team).ToList();
