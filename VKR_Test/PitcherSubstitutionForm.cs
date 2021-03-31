@@ -22,6 +22,7 @@ namespace VKR_Test
             Pitchers = pitchers;
             lbTeamTitle.Text = defense.TeamTitle.ToUpper();
             lbTeamTitle.ForeColor = defense.TeamColorForThisMatch;
+            Text = $"New pitcher for {defense.TeamTitle}";
         }
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
