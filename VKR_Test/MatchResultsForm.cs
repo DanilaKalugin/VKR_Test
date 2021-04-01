@@ -32,20 +32,7 @@ namespace VKR_Test
             matchBL = new MatchBL();
             teamsBL = new TeamsBL();
             matches = matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dateTime).ToList();
-
-            dataGridView1.Rows.Clear();
-            foreach (Match match in matches)
-            {
-                dataGridView1.Rows.Add(match.MatchDate.ToString("dd-MM"),
-                    Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
-                                       match.AwayTeamAbbreviation,
-                                       match.AwayTeamRuns,
-                                       match.HomeTeamRuns,
-                                       match.HomeTeamAbbreviation,
-                                       Image.FromFile($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
-                                       match.MatchStatus,
-                                       $"{match.stadium.StadiumTitle} - {match.stadium.stadiumLocation}");
-            }
+            FillResultsTable(dataGridView1, matches);
             cbTeam.Visible = false;
             label2.Visible = false;
         }
@@ -57,20 +44,7 @@ namespace VKR_Test
             teamsBL = new TeamsBL();
             matches = matchBL.GetResultsForallMatches().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
                                                                        (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).ToList();
-
-            dataGridView1.Rows.Clear();
-            foreach (Match match in matches)
-            {
-                dataGridView1.Rows.Add(match.MatchDate.ToString("dd-MM"),
-                    Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
-                                       match.AwayTeamAbbreviation,
-                                       match.AwayTeamRuns,
-                                       match.HomeTeamRuns,
-                                       match.HomeTeamAbbreviation,
-                                       Image.FromFile($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
-                                       match.MatchStatus,
-                                       $"{match.stadium.StadiumTitle} - {match.stadium.stadiumLocation}");
-            }
+            FillResultsTable(dataGridView1, matches);
             cbTeam.Visible = false;
             label2.Visible = false;
         }
@@ -90,10 +64,15 @@ namespace VKR_Test
             {
                 matches = matchBL.GetResultsForallMatches(teams[cbTeam.SelectedIndex].TeamAbbreviation);
             }
-            dataGridView1.Rows.Clear();
+            FillResultsTable(dataGridView1, matches);
+        }
+
+        private void FillResultsTable(DataGridView dgv, List<Match> matches)
+        {
+            dgv.Rows.Clear();
             foreach (Match match in matches)
             {
-                dataGridView1.Rows.Add(match.MatchDate.ToString("dd-MM"),
+                dgv.Rows.Add(match.MatchDate.ToString("dd-MM"),
                     Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
                                        match.AwayTeamAbbreviation,
                                        match.AwayTeamRuns,
