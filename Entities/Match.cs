@@ -25,7 +25,7 @@ namespace Entities
             {
                 if (MatchWinner == "")
                 {
-                    return "In progress";
+                    return $"{InningNumber} inning";
                 }
                 else
                 {
