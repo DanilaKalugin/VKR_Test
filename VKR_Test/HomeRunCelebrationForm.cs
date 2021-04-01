@@ -1,6 +1,8 @@
 ﻿using Entities;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace VKR_Test
@@ -38,7 +40,7 @@ namespace VKR_Test
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Opacity -= 0.1;
+            Opacity -= 0.05;
             if (Opacity == 0)
             {
                 Close();
@@ -48,6 +50,17 @@ namespace VKR_Test
         private void timer2_Tick(object sender, EventArgs e)
         {
             timer1.Start();
+        }
+
+        private void HomeRunCelebrationForm_BackColorChanged(object sender, EventArgs e)
+        {
+            List<int> colorcomponents = new List<int> { BackColor.R, BackColor.G, BackColor.B };
+            if(colorcomponents.Max() <= 40)
+            {
+                label1.ForeColor = Color.WhiteSmoke;
+                label2.ForeColor = Color.WhiteSmoke;
+                label3.ForeColor = Color.WhiteSmoke;
+            }
         }
     }
 }

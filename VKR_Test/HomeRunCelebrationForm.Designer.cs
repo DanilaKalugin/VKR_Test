@@ -121,6 +121,7 @@ namespace VKR_Test
             this.Name = "HomeRunCelebrationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeRunCelebrationForm";
+            this.BackColorChanged += new System.EventHandler(this.HomeRunCelebrationForm_BackColorChanged);
             this.ResumeLayout(false);
 
         }
