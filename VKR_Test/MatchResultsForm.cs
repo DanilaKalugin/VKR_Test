@@ -22,19 +22,19 @@ namespace VKR_Test
             teamsBL = new TeamsBL();
             teams = teamsBL.GetAllTeams().ToList();
             List<string> teamsInComboBox = teams.Select(team => team.TeamTitle).ToList();
-            teamsInComboBox.Add("ALL");
             cbTeam.DataSource = teamsInComboBox;
+            panel2.Visible = false;
         }
 
-        public MatchResultsForm(DateTime dateTime)
+        public MatchResultsForm(DateTime dateTime, bool IsCurrentDayResults)
         {
             InitializeComponent();
             matchBL = new MatchBL();
             teamsBL = new TeamsBL();
-            matches = matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dateTime).ToList();
+            dateTimePicker1.Value = dateTime;
             FillResultsTable(dataGridView1, matches);
-            cbTeam.Visible = false;
-            label2.Visible = false;
+            panel1.Visible = false;
+            panel2.Visible = !IsCurrentDayResults;
         }
 
         public MatchResultsForm(Team homeTeam, Team AwayTeam)
@@ -45,8 +45,8 @@ namespace VKR_Test
             matches = matchBL.GetResultsForallMatches().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
                                                                        (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).ToList();
             FillResultsTable(dataGridView1, matches);
-            cbTeam.Visible = false;
-            label2.Visible = false;
+            panel1.Visible = false;
+            panel2.Visible = false;
         }
 
         private void MatchResultsForm_Load(object sender, EventArgs e)
@@ -56,19 +56,19 @@ namespace VKR_Test
 
         private void cbTeam_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cbTeam.Text == "ALL")
-            {
-                matches = matchBL.GetResultsForallMatches();
-            }
-            else
-            {
-                matches = matchBL.GetResultsForallMatches(teams[cbTeam.SelectedIndex].TeamAbbreviation);
-            }
+            matches = matchBL.GetResultsForallMatches(teams[cbTeam.SelectedIndex].TeamAbbreviation);
             FillResultsTable(dataGridView1, matches);
         }
 
         private void FillResultsTable(DataGridView dgv, List<Match> matches)
         {
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                dgv.Rows[i].Cells[1].Value = null;
+                dgv.Rows[i].Cells[6].Value = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
             dgv.Rows.Clear();
             foreach (Match match in matches)
             {
@@ -82,6 +82,12 @@ namespace VKR_Test
                                        match.MatchStatus,
                                        $"{match.stadium.StadiumTitle} - {match.stadium.stadiumLocation}");
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            matches = matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dateTimePicker1.Value).ToList();
+            FillResultsTable(dataGridView1, matches);
         }
     }
 }

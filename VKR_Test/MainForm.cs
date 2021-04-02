@@ -667,7 +667,7 @@ namespace VKR_Test
 
         private void btnOtherResults_Click(object sender, EventArgs e)
         {
-            MatchResultsForm form = new MatchResultsForm(currentMatch.MatchDate);
+            MatchResultsForm form = new MatchResultsForm(currentMatch.MatchDate, true);
             form.ShowDialog();
         }
 

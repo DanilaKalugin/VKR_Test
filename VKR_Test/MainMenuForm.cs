@@ -99,5 +99,12 @@ namespace VKR_Test
             }
             GetListOfPeopleWithBirthdayToday();
         }
+
+        private void btnResultsByDate_Click(object sender, EventArgs e)
+        {
+            MatchResultsForm form = new MatchResultsForm(matchBL.GetMaxDateForAllMatches(), false);
+            form.ShowDialog();
+            GetListOfPeopleWithBirthdayToday();
+        }
     }
 }

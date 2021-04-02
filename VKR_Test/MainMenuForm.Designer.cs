@@ -44,6 +44,7 @@ namespace VKR_Test
             this.btnLineups = new System.Windows.Forms.Button();
             this.btnResults = new System.Windows.Forms.Button();
             this.btnNewMatch = new System.Windows.Forms.Button();
+            this.btnResultsByDate = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -205,9 +206,9 @@ namespace VKR_Test
             this.btnResults.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResults.Location = new System.Drawing.Point(268, 168);
             this.btnResults.Name = "btnResults";
-            this.btnResults.Size = new System.Drawing.Size(250, 150);
+            this.btnResults.Size = new System.Drawing.Size(250, 73);
             this.btnResults.TabIndex = 5;
-            this.btnResults.Text = "MATCH RESULTS";
+            this.btnResults.Text = "MATCH RESULTS BY TEAM";
             this.btnResults.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnResults.UseVisualStyleBackColor = false;
             this.btnResults.Click += new System.EventHandler(this.btnResults_Click);
@@ -227,12 +228,28 @@ namespace VKR_Test
             this.btnNewMatch.UseVisualStyleBackColor = false;
             this.btnNewMatch.Click += new System.EventHandler(this.btnNewMatch_Click);
             // 
+            // btnResultsByDate
+            // 
+            this.btnResultsByDate.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnResultsByDate.FlatAppearance.BorderSize = 0;
+            this.btnResultsByDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResultsByDate.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResultsByDate.Location = new System.Drawing.Point(268, 245);
+            this.btnResultsByDate.Name = "btnResultsByDate";
+            this.btnResultsByDate.Size = new System.Drawing.Size(250, 73);
+            this.btnResultsByDate.TabIndex = 7;
+            this.btnResultsByDate.Text = "MATCH RESULTS BY DATE";
+            this.btnResultsByDate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnResultsByDate.UseVisualStyleBackColor = false;
+            this.btnResultsByDate.Click += new System.EventHandler(this.btnResultsByDate_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1130, 450);
+            this.Controls.Add(this.btnResultsByDate);
             this.Controls.Add(this.btnNewMatch);
             this.Controls.Add(this.btnResults);
             this.Controls.Add(this.btnLineups);
@@ -268,5 +285,6 @@ namespace VKR_Test
         private System.Windows.Forms.Button btnLineups;
         private System.Windows.Forms.Button btnResults;
         private System.Windows.Forms.Button btnNewMatch;
+        private System.Windows.Forms.Button btnResultsByDate;
     }
 }
