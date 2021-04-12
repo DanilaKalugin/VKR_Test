@@ -134,7 +134,8 @@ namespace Entities
         private GettingIntoStrikeZone_TypeOfResult GettingIntoStrikeZone_Definition(int strikeZone_probability, int numberOfPitches, int pitcherCoefficient)
         {
             int GettingIntoStrikeZone_RandomValue = GettingIntoStrikeZone_RandomGenerator.Next(1, 1000);
-            if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - pitcherCoefficient + numberOfPitches * 0.8)
+            
+            if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - pitcherCoefficient + numberOfPitches * 1)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallIsOutOfTheStrikeZone;
             }
@@ -330,14 +331,13 @@ namespace Entities
             }
             else
             {
-                PitcherCoefficient = 81 - Defense.CurrentPitcher.NumberInRotation * 5;
+                PitcherCoefficient = 79 - Defense.CurrentPitcher.NumberInRotation * 6;
             }
 
-            if(numberOfPitches > PitcherCoefficient)
+            if (numberOfPitches > PitcherCoefficient)
             {
                 numberOfPitches += numberOfPitches - PitcherCoefficient;
             }
-
             newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability);
             newPitch_Hitting = Hitting_Definition(newPitch_Swing_Result, Offense.HittingProbability, BatterNumberComponent, PitcherCoefficient, numberOfPitches);

@@ -542,19 +542,18 @@
             this.panel6.Controls.Add(this.label9);
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.label6);
-            this.panel6.Controls.Add(this.panel10);
             this.panel6.Controls.Add(this.panel8);
-            this.panel6.Controls.Add(this.panel7);
-            this.panel6.Location = new System.Drawing.Point(63, 889);
+            this.panel6.Location = new System.Drawing.Point(298, 889);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1090, 140);
+            this.panel6.Size = new System.Drawing.Size(855, 140);
             this.panel6.TabIndex = 3;
+            this.panel6.VisibleChanged += new System.EventHandler(this.panel6_VisibleChanged);
             // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label14.Location = new System.Drawing.Point(778, 67);
+            this.label14.Location = new System.Drawing.Point(543, 67);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(26, 42);
             this.label14.TabIndex = 21;
@@ -565,7 +564,7 @@
             // 
             this.label15.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(705, 52);
+            this.label15.Location = new System.Drawing.Point(470, 52);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(76, 57);
             this.label15.TabIndex = 20;
@@ -576,7 +575,7 @@
             // 
             this.label12.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label12.Location = new System.Drawing.Point(663, 67);
+            this.label12.Location = new System.Drawing.Point(428, 67);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(36, 42);
             this.label12.TabIndex = 19;
@@ -587,7 +586,7 @@
             // 
             this.label13.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(609, 52);
+            this.label13.Location = new System.Drawing.Point(374, 52);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(59, 57);
             this.label13.TabIndex = 18;
@@ -598,7 +597,7 @@
             // 
             this.label16.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label16.Location = new System.Drawing.Point(903, 67);
+            this.label16.Location = new System.Drawing.Point(668, 67);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(53, 42);
             this.label16.TabIndex = 17;
@@ -609,7 +608,7 @@
             // 
             this.label17.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(810, 52);
+            this.label17.Location = new System.Drawing.Point(575, 52);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(100, 57);
             this.label17.TabIndex = 16;
@@ -620,7 +619,7 @@
             // 
             this.label10.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label10.Location = new System.Drawing.Point(561, 67);
+            this.label10.Location = new System.Drawing.Point(326, 67);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 42);
             this.label10.TabIndex = 11;
@@ -631,7 +630,7 @@
             // 
             this.label11.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(488, 52);
+            this.label11.Location = new System.Drawing.Point(253, 52);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 57);
             this.label11.TabIndex = 10;
@@ -642,7 +641,7 @@
             // 
             this.label8.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label8.Location = new System.Drawing.Point(446, 67);
+            this.label8.Location = new System.Drawing.Point(211, 67);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 42);
             this.label8.TabIndex = 9;
@@ -653,7 +652,7 @@
             // 
             this.label9.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(392, 52);
+            this.label9.Location = new System.Drawing.Point(157, 52);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 57);
             this.label9.TabIndex = 8;
@@ -664,7 +663,7 @@
             // 
             this.label7.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label7.Location = new System.Drawing.Point(333, 67);
+            this.label7.Location = new System.Drawing.Point(98, 67);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 42);
             this.label7.TabIndex = 7;
@@ -675,7 +674,7 @@
             // 
             this.label6.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(240, 52);
+            this.label6.Location = new System.Drawing.Point(5, 52);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 57);
             this.label6.TabIndex = 6;
@@ -685,19 +684,19 @@
             // panel10
             // 
             this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel10.Location = new System.Drawing.Point(140, 0);
+            this.panel10.Location = new System.Drawing.Point(205, 889);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(93, 140);
             this.panel10.TabIndex = 5;
             // 
             // panel8
             // 
-            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.Controls.Add(this.lblPlayerName);
             this.panel8.Controls.Add(this.panel9);
-            this.panel8.Location = new System.Drawing.Point(235, 0);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0, 3, 3, 0);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(855, 36);
             this.panel8.TabIndex = 4;
@@ -748,8 +747,8 @@
             // panel7
             // 
             this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Location = new System.Drawing.Point(65, 889);
+            this.panel7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(140, 140);
             this.panel7.TabIndex = 0;
@@ -2272,6 +2271,8 @@
             this.Controls.Add(this.panel1Base);
             this.Controls.Add(this.panel2Base);
             this.Controls.Add(this.PitcherPhoto);
+            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel28);
             this.Controls.Add(panel27);
             this.Controls.Add(this.panel14);

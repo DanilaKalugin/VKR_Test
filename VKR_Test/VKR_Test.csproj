@@ -3014,6 +3014,9 @@
     <Content Include="Stadiums\Stadium060.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Stadiums\Stadium061.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TeamLogoForMenu\ARI.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

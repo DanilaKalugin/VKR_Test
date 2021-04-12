@@ -682,5 +682,11 @@ namespace VKR_Test
             MatchResultsForm form = new MatchResultsForm(currentMatch.HomeTeam, currentMatch.AwayTeam);
             form.ShowDialog();
         }
+
+        private void panel6_VisibleChanged(object sender, EventArgs e)
+        {
+            panel7.Visible = panel6.Visible;
+            panel10.Visible = panel6.Visible;
+        }
     }
 }

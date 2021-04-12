@@ -692,7 +692,7 @@ namespace VKR_Test
             this.MaximizeBox = false;
             this.Name = "MatchEndingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DameSituation.cs";
+            this.Text = "Match ended";
             this.Load += new System.EventHandler(this.MatchEndingForm_Load);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
