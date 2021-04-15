@@ -49,6 +49,7 @@
     <Compile Include="Manager.cs" />
     <Compile Include="ManInTeam.cs" />
     <Compile Include="Match.cs" />
+    <Compile Include="OrdinalNumerals.cs" />
     <Compile Include="Pitch.cs" />
     <Compile Include="Pitcher.cs" />
     <Compile Include="PitcherResults.cs" />

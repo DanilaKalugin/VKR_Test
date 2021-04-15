@@ -25,7 +25,7 @@ namespace Entities
             {
                 if (MatchWinner == "")
                 {
-                    return $"{InningNumber} inning";
+                    return $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(InningNumber)} inning";
                 }
                 else
                 {

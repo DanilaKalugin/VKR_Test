@@ -46,6 +46,7 @@ namespace VKR_Test
         private void DisplayRoster(int TeamNumber, int LineupNumber)
         {
             dataGridView1.Rows.Clear();
+            panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{teams[TeamNumber].TeamAbbreviation}.png");
             foreach (PlayerInLineup player in lineups[TeamNumber][LineupNumber])
             {
                 dataGridView1.Rows.Add(player.NumberInLineup, player.Position, $"{player.FirstName[0]}. {player.SecondName}");

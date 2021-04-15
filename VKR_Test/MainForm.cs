@@ -131,7 +131,7 @@ namespace VKR_Test
             lbPitchCountForThisPitcher.Text = currentMatch.gameSituations.Where(situation => situation.PitcherID == CurrentPitcherId &&
                                                                                                !(situation.result == Pitch.PitchResult.CaughtStealingOnSecond || situation.result == Pitch.PitchResult.CaughtStealingOnThird ||
                                                                                                  situation.result == Pitch.PitchResult.SecondBaseStolen || situation.result == Pitch.PitchResult.ThirdBaseStolen)).Count().ToString();
-            
+
             switch (Convert.ToInt32(gameSituation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(gameSituation.RunnerOnSecond.IsBaseNotEmpty) * 2 + Convert.ToInt32(gameSituation.RunnerOnThird.IsBaseNotEmpty) * 4)
             {
                 case 0:
@@ -322,10 +322,23 @@ namespace VKR_Test
                 {
                     title = $"{runs}-run Home Run";
                 }
-                HomeRunCelebrationForm hr = new HomeRunCelebrationForm(newGameSituation.offense, title, GetBatterByGameSituation(newGameSituation));
+                HomeRunCelebrationForm hr = new HomeRunCelebrationForm(newGameSituation.offense, title, GetBatterByGameSituation(newGameSituation), currentMatch.atBats);
                 hr.ShowDialog();
             }
         }
+
+        private void GetCurrentStatsForThisMatch()
+        {
+            currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
+            currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
+
+            teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
+            teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
+
+            UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, currentMatch, currentMatch.AwayTeam);
+            UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, currentMatch, currentMatch.HomeTeam);
+        }
+
 
         private void AddnewGameSituation(Pitch pitch)
         {
@@ -360,14 +373,7 @@ namespace VKR_Test
                     currentMatch.atBats.Add(runForDB);
                     matchBL.AddNewAtBat(runForDB);
                 }
-                currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
-                currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
-
-                teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
-                teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
-
-                UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, currentMatch, currentMatch.AwayTeam);
-                UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, currentMatch, currentMatch.HomeTeam);
+                GetCurrentStatsForThisMatch();
             }
             newGameSituation.PrepareForNextPitch(currentMatch.gameSituations.Last(), currentMatch.AwayTeam, currentMatch.HomeTeam);
             if (currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam && currentMatch.gameSituations.Last().outs == 3 && currentMatch.gameSituations.Last().inningNumber == 1)
@@ -554,14 +560,7 @@ namespace VKR_Test
                             break;
                         }
                 }
-                currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
-                currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
-
-                teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
-                teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
-
-                UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, currentMatch, currentMatch.AwayTeam);
-                UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, currentMatch, currentMatch.HomeTeam);
+                GetCurrentStatsForThisMatch();
             }
         }
 

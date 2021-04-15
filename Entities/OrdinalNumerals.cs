@@ -1,0 +1,25 @@
+﻿namespace Entities
+{
+    public class OrdinalNumerals
+    {
+        public static string GetOrdinalNumeralFromQuantitive(int number)
+        {
+            if (number % 10 == 1 && number % 100 != 11)
+            {
+                return $"{number}st";
+            }
+            else if (number % 10 == 2 && number % 100 != 12)
+            {
+                return $"{number}nd";
+            }
+            else if (number % 10 == 3 && number % 100 != 13)
+            {
+                return $"{number}rd";
+            }
+            else
+            {
+                return $"{number}th";
+            }
+        }
+    }
+}

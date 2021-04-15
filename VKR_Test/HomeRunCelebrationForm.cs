@@ -9,7 +9,7 @@ namespace VKR_Test
 {
     public partial class HomeRunCelebrationForm : Form
     {
-        public HomeRunCelebrationForm(Team team, string HRType, Batter batter)
+        public HomeRunCelebrationForm(Team team, string HRType, Batter batter, List<AtBat> allAtBats)
         {
             InitializeComponent();
             BackColor = team.TeamColorForThisMatch;
@@ -20,22 +20,11 @@ namespace VKR_Test
             panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.jpg");
             label2.Text = batter.FullName.ToUpper();
 
-            if (batter.HomeRuns + 1 % 10 == 1 && batter.HomeRuns + 1 % 100 != 11)
-            {
-                label3.Text = $"{batter.HomeRuns + 1}st HR in career";
-            }
-            else if (batter.HomeRuns + 1 % 10 == 2 && batter.HomeRuns + 2 % 100 != 12)
-            {
-                label3.Text = $"{batter.HomeRuns + 1}nd HR in career";
-            }
-            else if (batter.HomeRuns + 1 % 10 == 3 && batter.HomeRuns + 2 % 100 != 13)
-            {
-                label3.Text = $"{batter.HomeRuns + 1}rd HR in career";
-            }
-            else
-            {
-                label3.Text = $"{batter.HomeRuns + 1}th HR in career";
-            }
+            int HRTodayForThisBatter = allAtBats.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.id).Count();
+
+            label3.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.HomeRuns + 1)} HR in career";
+            label4.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(HRTodayForThisBatter + 1)} HR in this match";
+            label4.Visible = HRTodayForThisBatter > 0;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

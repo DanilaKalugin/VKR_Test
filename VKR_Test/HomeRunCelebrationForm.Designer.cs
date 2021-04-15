@@ -39,6 +39,7 @@ namespace VKR_Test
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -92,10 +93,10 @@ namespace VKR_Test
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Forza Light", 28F);
+            this.label3.Font = new System.Drawing.Font("Forza Light", 24F);
             this.label3.Location = new System.Drawing.Point(200, 358);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(550, 58);
+            this.label3.Size = new System.Drawing.Size(550, 41);
             this.label3.TabIndex = 8;
             this.label3.Text = "Home";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -105,11 +106,22 @@ namespace VKR_Test
             this.timer2.Interval = 3000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Forza Light", 24F);
+            this.label4.Location = new System.Drawing.Point(200, 399);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(550, 41);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Home";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // HomeRunCelebrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel10);
@@ -136,5 +148,6 @@ namespace VKR_Test
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label label4;
     }
 }
