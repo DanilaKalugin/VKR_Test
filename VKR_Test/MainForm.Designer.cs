@@ -67,12 +67,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.lblPlayerName = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.lblPlayerPosition = new System.Windows.Forms.Label();
             this.lblPlayerNumber = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -178,17 +178,17 @@
             this.panel2Base = new System.Windows.Forms.Panel();
             this.lb_Runner2_Name = new System.Windows.Forms.Label();
             this.panel31 = new System.Windows.Forms.Panel();
-            this.label46 = new System.Windows.Forms.Label();
+            this.lb2ndBase = new System.Windows.Forms.Label();
             this.RunnerOn2Photo = new System.Windows.Forms.Panel();
             this.panel1Base = new System.Windows.Forms.Panel();
             this.lb_Runner1_Name = new System.Windows.Forms.Label();
             this.panel33 = new System.Windows.Forms.Panel();
-            this.label47 = new System.Windows.Forms.Label();
+            this.lb1stBase = new System.Windows.Forms.Label();
             this.RunnerOn1Photo = new System.Windows.Forms.Panel();
             this.panel3Base = new System.Windows.Forms.Panel();
             this.lb_Runner3_Name = new System.Windows.Forms.Label();
             this.panel36 = new System.Windows.Forms.Panel();
-            this.label48 = new System.Windows.Forms.Label();
+            this.lb3rdBase = new System.Windows.Forms.Label();
             this.RunnerOn3Photo = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
@@ -681,15 +681,6 @@
             this.label6.Text = "1.000";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // panel10
-            // 
-            this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel10.Location = new System.Drawing.Point(205, 889);
-            this.panel10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(93, 140);
-            this.panel10.TabIndex = 5;
-            // 
             // panel8
             // 
             this.panel8.Controls.Add(this.lblPlayerName);
@@ -743,6 +734,15 @@
             this.lblPlayerNumber.TabIndex = 0;
             this.lblPlayerNumber.Text = "00";
             this.lblPlayerNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel10
+            // 
+            this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel10.Location = new System.Drawing.Point(205, 889);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(93, 140);
+            this.panel10.TabIndex = 5;
             // 
             // panel7
             // 
@@ -1999,10 +1999,9 @@
             // 
             this.panel2Base.Controls.Add(this.lb_Runner2_Name);
             this.panel2Base.Controls.Add(this.panel31);
-            this.panel2Base.Controls.Add(this.RunnerOn2Photo);
-            this.panel2Base.Location = new System.Drawing.Point(576, 144);
+            this.panel2Base.Location = new System.Drawing.Point(643, 144);
             this.panel2Base.Name = "panel2Base";
-            this.panel2Base.Size = new System.Drawing.Size(263, 100);
+            this.panel2Base.Size = new System.Drawing.Size(196, 100);
             this.panel2Base.TabIndex = 50;
             this.panel2Base.Visible = false;
             // 
@@ -2012,7 +2011,7 @@
             this.lb_Runner2_Name.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Runner2_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_Runner2_Name.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lb_Runner2_Name.Location = new System.Drawing.Point(67, 23);
+            this.lb_Runner2_Name.Location = new System.Drawing.Point(0, 23);
             this.lb_Runner2_Name.Name = "lb_Runner2_Name";
             this.lb_Runner2_Name.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
             this.lb_Runner2_Name.Size = new System.Drawing.Size(196, 77);
@@ -2022,30 +2021,29 @@
             // 
             // panel31
             // 
-            this.panel31.Controls.Add(this.label46);
+            this.panel31.Controls.Add(this.lb2ndBase);
             this.panel31.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel31.Location = new System.Drawing.Point(67, 0);
+            this.panel31.Location = new System.Drawing.Point(0, 0);
             this.panel31.Name = "panel31";
             this.panel31.Size = new System.Drawing.Size(196, 23);
             this.panel31.TabIndex = 1;
             // 
-            // label46
+            // lb2ndBase
             // 
-            this.label46.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label46.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.ForeColor = System.Drawing.Color.White;
-            this.label46.Location = new System.Drawing.Point(0, 0);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(196, 23);
-            this.label46.TabIndex = 0;
-            this.label46.Text = "2ND BASE";
-            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb2ndBase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb2ndBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb2ndBase.ForeColor = System.Drawing.Color.White;
+            this.lb2ndBase.Location = new System.Drawing.Point(0, 0);
+            this.lb2ndBase.Name = "lb2ndBase";
+            this.lb2ndBase.Size = new System.Drawing.Size(196, 23);
+            this.lb2ndBase.TabIndex = 0;
+            this.lb2ndBase.Text = "2ND BASE";
+            this.lb2ndBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // RunnerOn2Photo
             // 
             this.RunnerOn2Photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RunnerOn2Photo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.RunnerOn2Photo.Location = new System.Drawing.Point(0, 0);
+            this.RunnerOn2Photo.Location = new System.Drawing.Point(576, 144);
             this.RunnerOn2Photo.Name = "RunnerOn2Photo";
             this.RunnerOn2Photo.Size = new System.Drawing.Size(67, 100);
             this.RunnerOn2Photo.TabIndex = 0;
@@ -2054,20 +2052,20 @@
             // 
             this.panel1Base.Controls.Add(this.lb_Runner1_Name);
             this.panel1Base.Controls.Add(this.panel33);
-            this.panel1Base.Controls.Add(this.RunnerOn1Photo);
-            this.panel1Base.Location = new System.Drawing.Point(1148, 505);
+            this.panel1Base.Location = new System.Drawing.Point(1215, 505);
+            this.panel1Base.Margin = new System.Windows.Forms.Padding(0);
             this.panel1Base.Name = "panel1Base";
-            this.panel1Base.Size = new System.Drawing.Size(263, 100);
+            this.panel1Base.Size = new System.Drawing.Size(196, 100);
             this.panel1Base.TabIndex = 51;
             this.panel1Base.Visible = false;
             // 
             // lb_Runner1_Name
             // 
             this.lb_Runner1_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb_Runner1_Name.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Runner1_Name.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lb_Runner1_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_Runner1_Name.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lb_Runner1_Name.Location = new System.Drawing.Point(67, 23);
+            this.lb_Runner1_Name.Location = new System.Drawing.Point(0, 23);
             this.lb_Runner1_Name.Name = "lb_Runner1_Name";
             this.lb_Runner1_Name.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
             this.lb_Runner1_Name.Size = new System.Drawing.Size(196, 77);
@@ -2077,30 +2075,29 @@
             // 
             // panel33
             // 
-            this.panel33.Controls.Add(this.label47);
+            this.panel33.Controls.Add(this.lb1stBase);
             this.panel33.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel33.Location = new System.Drawing.Point(67, 0);
+            this.panel33.Location = new System.Drawing.Point(0, 0);
             this.panel33.Name = "panel33";
             this.panel33.Size = new System.Drawing.Size(196, 23);
             this.panel33.TabIndex = 1;
             // 
-            // label47
+            // lb1stBase
             // 
-            this.label47.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label47.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.ForeColor = System.Drawing.Color.White;
-            this.label47.Location = new System.Drawing.Point(0, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(196, 23);
-            this.label47.TabIndex = 1;
-            this.label47.Text = "1ST BASE";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb1stBase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb1stBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb1stBase.ForeColor = System.Drawing.Color.White;
+            this.lb1stBase.Location = new System.Drawing.Point(0, 0);
+            this.lb1stBase.Name = "lb1stBase";
+            this.lb1stBase.Size = new System.Drawing.Size(196, 23);
+            this.lb1stBase.TabIndex = 1;
+            this.lb1stBase.Text = "1ST BASE";
+            this.lb1stBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // RunnerOn1Photo
             // 
             this.RunnerOn1Photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RunnerOn1Photo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.RunnerOn1Photo.Location = new System.Drawing.Point(0, 0);
+            this.RunnerOn1Photo.Location = new System.Drawing.Point(1148, 505);
             this.RunnerOn1Photo.Name = "RunnerOn1Photo";
             this.RunnerOn1Photo.Size = new System.Drawing.Size(67, 100);
             this.RunnerOn1Photo.TabIndex = 0;
@@ -2109,10 +2106,9 @@
             // 
             this.panel3Base.Controls.Add(this.lb_Runner3_Name);
             this.panel3Base.Controls.Add(this.panel36);
-            this.panel3Base.Controls.Add(this.RunnerOn3Photo);
-            this.panel3Base.Location = new System.Drawing.Point(12, 505);
+            this.panel3Base.Location = new System.Drawing.Point(79, 505);
             this.panel3Base.Name = "panel3Base";
-            this.panel3Base.Size = new System.Drawing.Size(263, 100);
+            this.panel3Base.Size = new System.Drawing.Size(196, 100);
             this.panel3Base.TabIndex = 52;
             this.panel3Base.Visible = false;
             // 
@@ -2122,7 +2118,7 @@
             this.lb_Runner3_Name.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Runner3_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_Runner3_Name.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lb_Runner3_Name.Location = new System.Drawing.Point(67, 23);
+            this.lb_Runner3_Name.Location = new System.Drawing.Point(0, 23);
             this.lb_Runner3_Name.Name = "lb_Runner3_Name";
             this.lb_Runner3_Name.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
             this.lb_Runner3_Name.Size = new System.Drawing.Size(196, 77);
@@ -2131,30 +2127,29 @@
             // 
             // panel36
             // 
-            this.panel36.Controls.Add(this.label48);
+            this.panel36.Controls.Add(this.lb3rdBase);
             this.panel36.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel36.Location = new System.Drawing.Point(67, 0);
+            this.panel36.Location = new System.Drawing.Point(0, 0);
             this.panel36.Name = "panel36";
             this.panel36.Size = new System.Drawing.Size(196, 23);
             this.panel36.TabIndex = 1;
             // 
-            // label48
+            // lb3rdBase
             // 
-            this.label48.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label48.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.ForeColor = System.Drawing.Color.White;
-            this.label48.Location = new System.Drawing.Point(0, 0);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(196, 23);
-            this.label48.TabIndex = 1;
-            this.label48.Text = "3RD BASE";
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb3rdBase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb3rdBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb3rdBase.ForeColor = System.Drawing.Color.White;
+            this.lb3rdBase.Location = new System.Drawing.Point(0, 0);
+            this.lb3rdBase.Name = "lb3rdBase";
+            this.lb3rdBase.Size = new System.Drawing.Size(196, 23);
+            this.lb3rdBase.TabIndex = 1;
+            this.lb3rdBase.Text = "3RD BASE";
+            this.lb3rdBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // RunnerOn3Photo
             // 
             this.RunnerOn3Photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RunnerOn3Photo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.RunnerOn3Photo.Location = new System.Drawing.Point(0, 0);
+            this.RunnerOn3Photo.Location = new System.Drawing.Point(12, 505);
             this.RunnerOn3Photo.Name = "RunnerOn3Photo";
             this.RunnerOn3Photo.Size = new System.Drawing.Size(67, 100);
             this.RunnerOn3Photo.TabIndex = 0;
@@ -2261,6 +2256,9 @@
             this.ClientSize = new System.Drawing.Size(1423, 1041);
             this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnOtherResults);
+            this.Controls.Add(this.RunnerOn3Photo);
+            this.Controls.Add(this.RunnerOn2Photo);
+            this.Controls.Add(this.RunnerOn1Photo);
             this.Controls.Add(label24);
             this.Controls.Add(this.btnShowAvailablePitchers);
             this.Controls.Add(this.btnStandings);
@@ -2481,9 +2479,9 @@
         private System.Windows.Forms.Label lb_Runner3_Name;
         private System.Windows.Forms.Panel panel36;
         private System.Windows.Forms.Panel RunnerOn3Photo;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label lb2ndBase;
+        private System.Windows.Forms.Label lb1stBase;
+        private System.Windows.Forms.Label lb3rdBase;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Button btnBuntAttempt;

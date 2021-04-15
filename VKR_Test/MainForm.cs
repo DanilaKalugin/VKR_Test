@@ -212,9 +212,9 @@ namespace VKR_Test
             panel2Base.Visible = situation.RunnerOnSecond.IsBaseNotEmpty;
             panel3Base.Visible = situation.RunnerOnThird.IsBaseNotEmpty;
 
-            panel1Base.BackColor = situation.offense.TeamColorForThisMatch;
-            panel2Base.BackColor = situation.offense.TeamColorForThisMatch;
-            panel3Base.BackColor = situation.offense.TeamColorForThisMatch;
+            lb1stBase.BackColor = situation.offense.TeamColorForThisMatch;
+            lb2ndBase.BackColor = situation.offense.TeamColorForThisMatch;
+            lb3rdBase.BackColor = situation.offense.TeamColorForThisMatch;
 
             RunnerOn1Photo.BackgroundImage = situation.RunnerOnFirst.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID:0000}.jpg") : null;
             RunnerOn2Photo.BackgroundImage = situation.RunnerOnSecond.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID:0000}.jpg") : null;

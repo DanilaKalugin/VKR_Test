@@ -61,10 +61,10 @@ namespace VKR.DAL
                     {
                         string Abbreviation = (string)reader["TeamAbbreviation"];
                         string Name = (string)reader["TeamName"];
-                        string League = (string)reader["TeamLeague"];
+                        string League = (string)reader["LeagueID"];
                         int W = (int)reader["W"];
                         int L = (int)reader["L"];
-                        string Division = (string)reader["TeamDivision"];
+                        string Division = (string)reader["DivisionTitle"];
                         teams.Add(new Team(Abbreviation, Name, W, L, League, Division));
                     }
                 }

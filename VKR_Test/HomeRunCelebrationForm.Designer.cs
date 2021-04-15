@@ -44,7 +44,7 @@ namespace VKR_Test
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Forza Light", 40F);
+            this.label1.Font = new System.Drawing.Font("MicroFLF", 40F);
             this.label1.Location = new System.Drawing.Point(200, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(400, 150);
@@ -83,20 +83,20 @@ namespace VKR_Test
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Forza Light", 32F);
+            this.label2.Font = new System.Drawing.Font("MicroFLF", 32F);
             this.label2.Location = new System.Drawing.Point(200, 276);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(550, 82);
+            this.label2.Size = new System.Drawing.Size(550, 51);
             this.label2.TabIndex = 7;
             this.label2.Text = "Home";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Forza Light", 24F);
-            this.label3.Location = new System.Drawing.Point(200, 358);
+            this.label3.Font = new System.Drawing.Font("MicroFLF", 24F);
+            this.label3.Location = new System.Drawing.Point(201, 327);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(550, 41);
+            this.label3.Size = new System.Drawing.Size(549, 41);
             this.label3.TabIndex = 8;
             this.label3.Text = "Home";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -108,10 +108,10 @@ namespace VKR_Test
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Forza Light", 24F);
-            this.label4.Location = new System.Drawing.Point(200, 399);
+            this.label4.Font = new System.Drawing.Font("MicroFLF", 24F);
+            this.label4.Location = new System.Drawing.Point(201, 368);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(550, 41);
+            this.label4.Size = new System.Drawing.Size(549, 41);
             this.label4.TabIndex = 9;
             this.label4.Text = "Home";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
