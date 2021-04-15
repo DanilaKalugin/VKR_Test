@@ -197,6 +197,8 @@
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             this.btnOtherResults = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -1699,6 +1701,8 @@
             // panel28
             // 
             this.panel28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.panel28.Controls.Add(this.label26);
+            this.panel28.Controls.Add(this.label25);
             this.panel28.Controls.Add(this.PitcherHomeRunsToday);
             this.panel28.Controls.Add(this.PitcherStrikeoutsToday);
             this.panel28.Controls.Add(this.PitcherWalksToday);
@@ -2248,6 +2252,28 @@
             this.btnPlayerStats.UseVisualStyleBackColor = false;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
             // 
+            // label25
+            // 
+            this.label25.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.label25.Location = new System.Drawing.Point(174, 46);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(57, 15);
+            this.label25.TabIndex = 24;
+            this.label25.Text = "CAREER";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label26
+            // 
+            this.label26.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.label26.Location = new System.Drawing.Point(109, 46);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(56, 15);
+            this.label26.TabIndex = 25;
+            this.label26.Text = "MATCH";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2492,6 +2518,8 @@
         private System.Windows.Forms.Button btnOtherResults;
         private System.Windows.Forms.Button btnPlayerStats;
         private System.Windows.Forms.Button btnSeriesHistory;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
     }
 }
 
