@@ -65,8 +65,9 @@ namespace Entities
         public double DefensiveRating()
         {
             double PitcherComponent = (double)(450 - StrikeZoneProbabilty) / 12;
-            double OutfieldComponent = (double)FlyoutProbability / 20;
-            return Math.Round(PitcherComponent + OutfieldComponent + DoublePlayProbabilty, 2);
+            double GroundoutComponent = (double)(GroundoutProbability * 1.05) / 20;
+            double OutfieldComponent = (double)(FlyoutProbability - GroundoutProbability) / 20;
+            return Math.Round(PitcherComponent + GroundoutComponent + OutfieldComponent + DoublePlayProbabilty, 2);
         }
 
         public double OffensiveRating()
