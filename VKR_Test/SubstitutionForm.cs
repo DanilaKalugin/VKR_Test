@@ -9,7 +9,7 @@ namespace VKR_Test
 {
     public partial class SubstitutionForm : Form
     {
-        Team CurrentTeam;
+        private Team CurrentTeam;
         List<Pitcher> Pitchers;
         List<Batter> Batters;
         public Pitcher newPitcherForThisTeam;

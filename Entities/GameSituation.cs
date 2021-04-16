@@ -22,10 +22,6 @@ namespace Entities
         public List<Runner> RunsByThisPitch;
         public int PitcherID;
 
-        public GameSituation()
-        {
-        }
-
         public GameSituation(Team offenseTeam)
         {
             id = 0;
