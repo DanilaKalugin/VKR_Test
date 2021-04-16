@@ -151,6 +151,8 @@
             this.homeTeamNextBatters = new System.Windows.Forms.Panel();
             this.home_DueUP = new System.Windows.Forms.Label();
             this.panel28 = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.PitcherHomeRunsToday = new System.Windows.Forms.Label();
             this.PitcherStrikeoutsToday = new System.Windows.Forms.Label();
             this.PitcherWalksToday = new System.Windows.Forms.Label();
@@ -197,8 +199,7 @@
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             this.btnOtherResults = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
+            this.btnChangeBatter = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -685,6 +686,7 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.btnChangeBatter);
             this.panel8.Controls.Add(this.lblPlayerName);
             this.panel8.Controls.Add(this.panel9);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1729,6 +1731,28 @@
             this.panel28.Size = new System.Drawing.Size(234, 189);
             this.panel28.TabIndex = 48;
             // 
+            // label26
+            // 
+            this.label26.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.label26.Location = new System.Drawing.Point(109, 46);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(56, 15);
+            this.label26.TabIndex = 25;
+            this.label26.Text = "MATCH";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label25
+            // 
+            this.label25.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.label25.Location = new System.Drawing.Point(174, 46);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(57, 15);
+            this.label25.TabIndex = 24;
+            this.label25.Text = "CAREER";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // PitcherHomeRunsToday
             // 
             this.PitcherHomeRunsToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2252,27 +2276,20 @@
             this.btnPlayerStats.UseVisualStyleBackColor = false;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
             // 
-            // label25
+            // btnChangeBatter
             // 
-            this.label25.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label25.Location = new System.Drawing.Point(174, 46);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(57, 15);
-            this.label25.TabIndex = 24;
-            this.label25.Text = "CAREER";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label26
-            // 
-            this.label26.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label26.Location = new System.Drawing.Point(109, 46);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(56, 15);
-            this.label26.TabIndex = 25;
-            this.label26.Text = "MATCH";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnChangeBatter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnChangeBatter.FlatAppearance.BorderSize = 0;
+            this.btnChangeBatter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangeBatter.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeBatter.ForeColor = System.Drawing.Color.White;
+            this.btnChangeBatter.Location = new System.Drawing.Point(747, 0);
+            this.btnChangeBatter.Name = "btnChangeBatter";
+            this.btnChangeBatter.Size = new System.Drawing.Size(108, 36);
+            this.btnChangeBatter.TabIndex = 61;
+            this.btnChangeBatter.Text = "CHANGE";
+            this.btnChangeBatter.UseVisualStyleBackColor = true;
+            this.btnChangeBatter.Click += new System.EventHandler(this.btnChangeBatter_Click);
             // 
             // MainForm
             // 
@@ -2520,6 +2537,7 @@
         private System.Windows.Forms.Button btnSeriesHistory;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btnChangeBatter;
     }
 }
 

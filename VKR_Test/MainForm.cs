@@ -647,7 +647,7 @@ namespace VKR_Test
         {
             Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
             List<Pitcher> pitchers = teamsBL.GetAvailablePitchers(currentMatch, Defense);
-            PitcherSubstitutionForm form = new PitcherSubstitutionForm(Defense, pitchers);
+            SubstitutionForm form = new SubstitutionForm(Defense, pitchers);
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
             {
@@ -686,6 +686,26 @@ namespace VKR_Test
         {
             panel7.Visible = panel6.Visible;
             panel10.Visible = panel6.Visible;
+        }
+
+        private void btnChangeBatter_Click(object sender, EventArgs e)
+        {
+            Team Offense = newGameSituation.offense;
+            List<Batter> batters = teamsBL.GetAvailableBatters(currentMatch, Offense, GetBatterByGameSituation(newGameSituation));
+            SubstitutionForm form = new SubstitutionForm(Offense, batters);
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.OK)
+            {
+                teamsBL.SubstituteBatter(currentMatch, Offense, GetBatterByGameSituation(newGameSituation), form.newBatterForThisTeam);
+                currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
+                currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
+
+                teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
+                teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
+
+                DisplayingCurrentSituation(newGameSituation);
+            }
+
         }
     }
 }

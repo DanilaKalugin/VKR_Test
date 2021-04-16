@@ -1,7 +1,7 @@
 ﻿
 namespace VKR_Test
 {
-    partial class PitcherSubstitutionForm
+    partial class SubstitutionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace VKR_Test
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PitcherSubstitutionForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubstitutionForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelTeamLogo = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();

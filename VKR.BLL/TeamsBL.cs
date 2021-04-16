@@ -107,5 +107,15 @@ namespace VKR.BLL
         {
             teamsDAO.SubstitutePitcher(match, team, pitcher);
         }
+
+        public List<Batter> GetAvailableBatters(Match match, Team team, Batter batter)
+        {
+            return teamsDAO.GetAvailableBatters(match, team, batter).ToList();
+        }
+
+        public void SubstituteBatter(Match match, Team team, Batter oldBatter, Batter newBatter)
+        {
+            teamsDAO.SubstituteBatter(match, team, oldBatter, newBatter);
+        }
     }
 }

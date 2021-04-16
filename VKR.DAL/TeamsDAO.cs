@@ -429,5 +429,71 @@ namespace VKR.DAL
                 var result = command.ExecuteNonQuery();
             }
         }
+
+        public IEnumerable<Batter> GetAvailableBatters(Match match, Team team, Batter batter)
+        {
+            using (SqlCommand command = new SqlCommand("GetAvailableBattersForSubstitution", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Match", SqlDbType.Int);
+                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
+                command.Parameters.Add("@Position", SqlDbType.NVarChar, 2);
+                command.Prepare();
+                command.Parameters[0].Value = match.MatchID;
+                command.Parameters[1].Value = team.TeamAbbreviation;
+                command.Parameters[2].Value = batter.PositionForThisMatch;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["PlayerID"];
+                        string FirstName = (string)reader["PlayerFirstName"];
+                        string SecondName = (string)reader["PlayerSecondName"];
+                        int number = (int)reader["PlayerNumber"];
+                        int Games = (int)reader["G"];
+                        int Strikeouts = (int)reader["K"];
+                        int Walks = (int)reader["BB"];
+                        int HitByPitch = (int)reader["HBP"];
+                        int Flyout = (int)reader["AO"];
+                        int Groundout = (int)reader["GO"];
+                        int Popout = (int)reader["PO"];
+                        int Single = (int)reader["1B"];
+                        int Double = (int)reader["2B"];
+                        int Triple = (int)reader["3B"];
+                        int HomeRun = (int)reader["HR"];
+                        int StolenBase = (int)reader["SB"];
+                        int CaughtStealing = (int)reader["CS"];
+                        int Runs = (int)reader["R"];
+                        int SacFlies = (int)reader["SF"];
+                        int Bunts = (int)reader["SAC"];
+                        int RBI = (int)reader["RBI"];
+                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, Runs, Walks, batter.PositionForThisMatch, batter.NumberInBattingLineup, Strikeouts, Groundout, Flyout, Popout);
+                    }
+                }
+            }
+        }
+
+        public void SubstituteBatter(Match match, Team team, Batter oldBatter, Batter newBatter)
+        {
+            using (SqlCommand command = new SqlCommand("SubstituteBatter", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Match", SqlDbType.Int));
+                command.Parameters.Add(new SqlParameter("@Team", SqlDbType.NVarChar, 3));
+                command.Parameters.Add(new SqlParameter("@NewPitcher", SqlDbType.Int));
+                command.Parameters.Add(new SqlParameter("@Position", SqlDbType.NVarChar, 2));
+                command.Parameters.Add(new SqlParameter("@Number", SqlDbType.Int));
+
+                command.Prepare();
+
+                command.Parameters[0].Value = match.MatchID;
+                command.Parameters[1].Value = team.TeamAbbreviation;
+                command.Parameters[2].Value = newBatter.id;
+                command.Parameters[3].Value = oldBatter.PositionForThisMatch;
+                command.Parameters[4].Value = oldBatter.NumberInBattingLineup;
+
+                var result = command.ExecuteNonQuery();
+            }
+        }
     }
 }
