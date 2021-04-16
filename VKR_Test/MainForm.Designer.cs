@@ -200,6 +200,7 @@
             this.btnOtherResults = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
             this.btnChangeBatter = new System.Windows.Forms.Button();
+            this.lbTodayStats = new System.Windows.Forms.Label();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -533,6 +534,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.panel6.Controls.Add(this.lbTodayStats);
             this.panel6.Controls.Add(this.label14);
             this.panel6.Controls.Add(this.label15);
             this.panel6.Controls.Add(this.label12);
@@ -2291,6 +2293,17 @@
             this.btnChangeBatter.UseVisualStyleBackColor = true;
             this.btnChangeBatter.Click += new System.EventHandler(this.btnChangeBatter_Click);
             // 
+            // lbTodayStats
+            // 
+            this.lbTodayStats.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lbTodayStats.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
+            this.lbTodayStats.Location = new System.Drawing.Point(0, 110);
+            this.lbTodayStats.Name = "lbTodayStats";
+            this.lbTodayStats.Size = new System.Drawing.Size(855, 30);
+            this.lbTodayStats.TabIndex = 22;
+            this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2538,6 +2551,7 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btnChangeBatter;
+        private System.Windows.Forms.Label lbTodayStats;
     }
 }
 

@@ -292,6 +292,7 @@ namespace VKR_Test
             lbBatterSecondName.Text = batter.SecondName;
 
             ShowBatterStats(batter, BatterStats);
+            ShowStatsForThisMatch(batter, lbTodayStats);
 
             panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.jpg");
             lblPlayerPosition.Text = batter.PositionForThisMatch;
@@ -303,6 +304,75 @@ namespace VKR_Test
             label13.Text = batter.StolenBases.ToString("N0", CultureInfo.InvariantCulture);
             label15.Text = batter.Runs.ToString("N0", CultureInfo.InvariantCulture);
             label17.Text = batter.OPS.ToString("#.000", new CultureInfo("en-US"));
+        }
+
+        private void ShowStatsForThisMatch(Batter batter, Label lbTodayStats)
+        {
+            List<AtBat> atBatsForThisBatter = currentMatch.atBats.Where(atBat => atBat.Batter == batter.id).ToList();
+            int Hits = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.Double ||
+                                                                               atBat.AtBatResult == AtBat.AtBatType.Triple ||
+                                                                               atBat.AtBatResult == AtBat.AtBatType.HomeRun ||
+                                                                               atBat.AtBatResult == AtBat.AtBatType.Single).Count();
+            int AtBats = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.Double ||
+                                                                          atBat.AtBatResult == AtBat.AtBatType.Triple ||
+                                                                          atBat.AtBatResult == AtBat.AtBatType.HomeRun ||
+                                                                          atBat.AtBatResult == AtBat.AtBatType.Single ||
+                                                                          atBat.AtBatResult == AtBat.AtBatType.Popout ||
+                                                                          atBat.AtBatResult == AtBat.AtBatType.Strikeout ||
+                                                                          atBat.AtBatResult == AtBat.AtBatType.Flyout ||
+                                                                          atBat.AtBatResult == AtBat.AtBatType.Groundout).Count();
+            int HBPs = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HitByPitch).Count();
+            int BBs = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.Walk).Count();
+            int SFs = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.SacrificeFly).Count();
+            int SACs = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.SacrificeBunt).Count();
+            int Rs = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.Run).Count();
+            int HRs = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun).Count();
+            int Ks = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.Strikeout).Count();
+            int RBIs = atBatsForThisBatter.Sum(atBat => atBat.RBI);
+
+            int SBs = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.StolenBase).Count();
+            lbTodayStats.Text = "►TODAY: ";
+
+            if (AtBats > 0)
+            {
+                lbTodayStats.Text += $"{Hits} for {AtBats}";
+            }
+            AddNewStatsForTodayStatsLabel(HRs, "HR", lbTodayStats);
+            AddNewStatsForTodayStatsLabel(RBIs, "RBI", lbTodayStats);
+            AddNewStatsForTodayStatsLabel(Rs, "R", lbTodayStats);
+            AddNewStatsForTodayStatsLabel(SBs, "SB", lbTodayStats);
+            AddNewStatsForTodayStatsLabel(HBPs, "HBP", lbTodayStats);
+            AddNewStatsForTodayStatsLabel(BBs, "BB", lbTodayStats);
+            AddNewStatsForTodayStatsLabel(SFs, "SF", lbTodayStats);
+            AddNewStatsForTodayStatsLabel(SACs, "SAC", lbTodayStats);
+            AddNewStatsForTodayStatsLabel(Ks, "SO", lbTodayStats);
+            lbTodayStats.Visible = lbTodayStats.Text != "►TODAY: ";
+
+        }
+
+        private void AddNewStatsForTodayStatsLabel(int value, string text, Label lb)
+        {
+            if (value > 0)
+            {
+                string valueWithText;
+                if (value > 1)
+                {
+                    valueWithText = $"{value} {text}";
+                }
+                else
+                {
+                    valueWithText = $"{text}";
+                }
+
+                if (lb.Text == "►TODAY: ")
+                {
+                    lb.Text += $"{valueWithText}";
+                }
+                else
+                {
+                    lb.Text += $", {valueWithText}";
+                }
+            }
         }
 
         private void IsHomeRun(Pitch pitch, int runs)
