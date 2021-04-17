@@ -34,7 +34,7 @@ namespace Entities
 
         public enum PitchResult { HitByPitch, Ball, Strike, Null, Foul, Single, Double, Triple, HomeRun, Flyout, Groundout, Popout, DoublePlay, SacrificeFly, SacrificeBunt, SecondBaseStolen, ThirdBaseStolen, CaughtStealingOnSecond, CaughtStealingOnThird }
 
-        public enum StealingType { OnlySecondBase, OnlyThirdBase, ThirdBaseBeforeSecond, SecondBaseAfterThird}
+        public enum StealingType { OnlySecondBase, OnlyThirdBase, ThirdBaseBeforeSecond, SecondBaseAfterThird }
 
         public enum StealingResult { SecondBaseStolen, ThirdBaseStolen, NoResult, CaughtStealingOnSecond, CaughtStealingOnThird }
         public StealingResult newStealingAttempt_result;
@@ -134,7 +134,7 @@ namespace Entities
         private GettingIntoStrikeZone_TypeOfResult GettingIntoStrikeZone_Definition(int strikeZone_probability, int numberOfPitches, int pitcherCoefficient)
         {
             int GettingIntoStrikeZone_RandomValue = GettingIntoStrikeZone_RandomGenerator.Next(1, 1000);
-            
+
             if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - pitcherCoefficient + numberOfPitches * 1)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallIsOutOfTheStrikeZone;
@@ -324,15 +324,7 @@ namespace Entities
             int numberOfPitches = match.Where(gameSituation => gameSituation.PitcherID == Defense.CurrentPitcher.id).Count();
             int StadiumCoefficient = stadium.stadiumDistanceToCenterfield - 400;
             int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty);
-            int PitcherCoefficient;
-            if (Defense.PitchersPlayedInMatch.Count > 1)
-            {
-                PitcherCoefficient = 35 - Defense.PitchersPlayedInMatch.Count;
-            }
-            else
-            {
-                PitcherCoefficient = 79 - Defense.CurrentPitcher.NumberInRotation * 6;
-            }
+            int PitcherCoefficient = GetPitcherCoeffitientForThisPitcher(Defense);
 
             if (numberOfPitches > PitcherCoefficient)
             {
@@ -398,27 +390,31 @@ namespace Entities
             Team Offense = situation.offense;
             Team Defense = situation.offense == AwayTeam ? HomeTeam : AwayTeam;
 
-            int BatterNumberComponent = (5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3));
+            int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
             List<GameSituation> ListOfHitsInCurrentInning = match.Where(gameSituation => gameSituation.inningNumber == situation.inningNumber && gameSituation.offense == situation.offense).ToList();
             int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double).Count() * 2 +
                               ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Single || gameSituation.result == PitchResult.Triple || gameSituation.result == PitchResult.HomeRun).Count();
             int numberOfPitches = match.Where(gameSituation => gameSituation.offense.TeamAbbreviation == situation.offense.TeamAbbreviation && situation.id > 0).Count();
             int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty);
-            int PitcherCoefficient;
-            if (Defense.PitchersPlayedInMatch.Count > 1)
-            {
-                PitcherCoefficient = 35 - Defense.PitchersPlayedInMatch.Count;
-            }
-            else
-            {
-                PitcherCoefficient = 81 - Defense.CurrentPitcher.NumberInRotation * 5;
-            }
-
+            int PitcherCoefficient = GetPitcherCoeffitientForThisPitcher(Defense);
+            
             newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability);
 
             pitchResult = pitchResult_Definition(newPitch_GettingIntoStrikeZone_Result, newPitch_Swing_Result, Hitting_ResultType.Miss, HitType.NoResult, OutType.NoResult, OtherCondition.NoOtherCondition);
 
+        }
+
+        private int GetPitcherCoeffitientForThisPitcher(Team defense)
+        {
+            if (defense.PitchersPlayedInMatch.Count > 1)
+            {
+                return 30 - defense.PitchersPlayedInMatch.Count;
+            }
+            else
+            {
+                return 81 - defense.CurrentPitcher.NumberInRotation * 5;
+            }
         }
 
         public Pitch(GameSituation situation, StealingType stealingType)
@@ -482,7 +478,14 @@ namespace Entities
             }
             else
             {
-                StealingProbabilityCorrectedByPosition = sb_probability / 2;
+                if (stealingType == StealingType.SecondBaseAfterThird)
+                {
+                    StealingProbabilityCorrectedByPosition = sb_probability * 2;
+                }
+                else
+                {
+                    StealingProbabilityCorrectedByPosition = sb_probability / 2;
+                }
             }
 
             switch (stealingType)
