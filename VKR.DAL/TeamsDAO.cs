@@ -303,49 +303,6 @@ namespace VKR.DAL
             return colors;
         }
 
-        public IEnumerable<Batter> GetStartingLineupForThisMatch(string Team, bool DHRule)
-        {
-            using (SqlCommand command = new SqlCommand("GetStartingLineupForThisTeam", _connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
-                command.Parameters.Add("@DHRule", SqlDbType.Bit);
-                command.Prepare();
-                command.Parameters[0].Value = Team;
-                command.Parameters[1].Value = DHRule;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = (int)reader["PlayerID"];
-                        string FirstName = (string)reader["PlayerFirstName"];
-                        string SecondName = (string)reader["PlayerSecondName"];
-                        int number = (int)reader["PlayerNumber"];
-                        int PositionInLineup = (int)reader["PlayerPositionInLineup"];
-                        string Position = (string)reader["PlayerPosition"];
-                        int Games = (int)reader["G"];
-                        int Strikeouts = (int)reader["K"];
-                        int Walks = (int)reader["BB"];
-                        int HitByPitch = (int)reader["HBP"];
-                        int Flyout = (int)reader["AO"];
-                        int Groundout = (int)reader["GO"];
-                        int Popout = (int)reader["PO"];
-                        int Single = (int)reader["1B"];
-                        int Double = (int)reader["2B"];
-                        int Triple = (int)reader["3B"];
-                        int HomeRun = (int)reader["HR"];
-                        int StolenBase = (int)reader["SB"];
-                        int CaughtStealing = (int)reader["CS"];
-                        int Runs = (int)reader["R"];
-                        int SacFlies = (int)reader["SF"];
-                        int Bunts = (int)reader["SAC"];
-                        int RBI = (int)reader["RBI"];
-                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, Runs, Walks, Position, PositionInLineup, Strikeouts, Groundout, Flyout, Popout);
-                    }
-                }
-            }
-        }
-
         public IEnumerable<Manager> GetManagerForThisTeam(Team team)
         {
             using (SqlCommand command = new SqlCommand("GetManagerForThisTeam", _connection))

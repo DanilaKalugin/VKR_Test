@@ -63,11 +63,6 @@ namespace VKR.BLL
             return teams;
         }
 
-        public List<Batter> GetStartingLineupForThisMatch(string Team, bool DHRule)
-        {
-            return teamsDAO.GetStartingLineupForThisMatch(Team, DHRule).ToList();
-        }
-
         public List<Pitcher> GetStartingPitcherForThisTeam(Team team)
         {
             return teamsDAO.GetStartingPitcherForThisTeam(team).ToList();

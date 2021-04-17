@@ -209,15 +209,15 @@ namespace Entities
                 {
                     return HitType.Foul;
                 }
-                else if (HitType_RandomValue <= single_probability - BatterNumberComponent * 1 + countOfHits * 30 + countOfNotEmptyBases * 10 * 3)
+                else if (HitType_RandomValue <= single_probability - BatterNumberComponent * 1 + countOfHits * 30 + countOfNotEmptyBases * 7 * 3)
                 {
                     return HitType.Single;
                 }
-                else if (HitType_RandomValue <= double_probability + countOfHits * 15 + StadiumCoefficient / 3 + countOfNotEmptyBases * 10 * 2)
+                else if (HitType_RandomValue <= double_probability + countOfHits * 15 + StadiumCoefficient / 3 + countOfNotEmptyBases * 5 * 2)
                 {
                     return HitType.Double;
                 }
-                else if (HitType_RandomValue <= homeRun_Probability - numberOfPitches / 3 - StadiumCoefficient / 9 + countOfNotEmptyBases * 10)
+                else if (HitType_RandomValue <= homeRun_Probability - numberOfPitches / 3 - StadiumCoefficient / 9 + countOfNotEmptyBases * 3)
                 {
                     return HitType.HomeRun;
                 }
@@ -263,7 +263,7 @@ namespace Entities
                 {
                     return OutType.Groundout;
                 }
-                else if (OutType_RandomValue <= Flyout_probability + countOfHits * 12 * (Flyout_probability / (double)Groundout_probability) && TypeOfHit != HitType.Single)
+                else if (OutType_RandomValue <= Flyout_probability + countOfHits * 12 * (Flyout_probability / (double)Groundout_probability))
                 {
                     return OutType.Flyout;
                 }
@@ -397,7 +397,10 @@ namespace Entities
             int numberOfPitches = match.Where(gameSituation => gameSituation.offense.TeamAbbreviation == situation.offense.TeamAbbreviation && situation.id > 0).Count();
             int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty);
             int PitcherCoefficient = GetPitcherCoeffitientForThisPitcher(Defense);
-            
+            if (numberOfPitches > PitcherCoefficient)
+            {
+                numberOfPitches += numberOfPitches - PitcherCoefficient;
+            }
             newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability);
 
