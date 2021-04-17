@@ -63,11 +63,6 @@ namespace VKR_Test
                                         batters[i].WalkPercentage.ToString("#.000", new CultureInfo("en-US")),
                                         batters[i].StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")));
             }
-            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView2.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView3.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView4.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
             pitchers = playersBL.GetPitchersStats().ToList();
             for (int i = 0; i < pitchers.Count; i++)
             {
