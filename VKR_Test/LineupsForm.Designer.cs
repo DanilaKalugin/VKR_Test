@@ -53,6 +53,7 @@ namespace VKR_Test
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panelTeamLogo = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -316,11 +317,23 @@ namespace VKR_Test
             this.panelTeamLogo.Size = new System.Drawing.Size(160, 160);
             this.panelTeamLogo.TabIndex = 31;
             // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label6.ForeColor = System.Drawing.Color.DimGray;
+            this.label6.Location = new System.Drawing.Point(624, 147);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(155, 25);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "#99";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
             // LineupsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 414);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.panelTeamLogo);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label5);
@@ -371,5 +384,6 @@ namespace VKR_Test
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.Panel panelTeamLogo;
+        private System.Windows.Forms.Label label6;
     }
 }

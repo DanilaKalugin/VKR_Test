@@ -63,9 +63,9 @@ namespace VKR.BLL
             return teams;
         }
 
-        public List<Pitcher> GetStartingPitcherForThisTeam(Team team)
+        public List<Pitcher> GetStartingPitcherForThisTeam(Team team, Match match)
         {
-            return teamsDAO.GetStartingPitcherForThisTeam(team).ToList();
+            return teamsDAO.GetStartingPitcherForThisTeam(team, match.MatchID).ToList();
         }
 
         public void UpdateStatsForThisPitcher(Pitcher pitcher)
@@ -111,6 +111,11 @@ namespace VKR.BLL
         public void SubstituteBatter(Match match, Team team, Batter oldBatter, Batter newBatter)
         {
             teamsDAO.SubstituteBatter(match, team, oldBatter, newBatter);
+        }
+
+        public Pitcher GetPitcherByID(int id)
+        {
+            return teamsDAO.GetPitcherByID(id).First();
         }
     }
 }

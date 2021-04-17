@@ -42,10 +42,10 @@ namespace VKR_Test
             Match newMatch = new Match(MatchID, HomeTeam, AwayTeam, stadiumForThisMatch, playingWithDH, dateTimePicker1.Value.Date);
             matchBL.StartNewMatch(newMatch);
             newMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(newMatch.AwayTeam.TeamAbbreviation, MatchID);
-            newMatch.AwayTeam.PitchersPlayedInMatch.AddRange(teamsBL.GetStartingPitcherForThisTeam(AwayTeam));
+            newMatch.AwayTeam.PitchersPlayedInMatch.AddRange(teamsBL.GetStartingPitcherForThisTeam(AwayTeam, newMatch));
 
             newMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(newMatch.HomeTeam.TeamAbbreviation, MatchID);
-            newMatch.HomeTeam.PitchersPlayedInMatch.AddRange(teamsBL.GetStartingPitcherForThisTeam(HomeTeam));
+            newMatch.HomeTeam.PitchersPlayedInMatch.AddRange(teamsBL.GetStartingPitcherForThisTeam(HomeTeam, newMatch));
 
             MainForm newMatchForm = new MainForm(newMatch);
             newMatchForm.ShowDialog();

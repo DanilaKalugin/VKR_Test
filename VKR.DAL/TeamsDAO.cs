@@ -155,6 +155,46 @@ namespace VKR.DAL
             return teams;
         }
 
+        public IEnumerable<Pitcher> GetPitcherByID(int id)
+        {
+            using (SqlCommand command = new SqlCommand("UpdatePitcherStats", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Player", SqlDbType.Int);
+                command.Prepare();
+                command.Parameters[0].Value = id;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int _id = (int)reader["PlayerID"];
+                        string FirstName = (string)reader["PlayerFirstName"];
+                        string SecondName = (string)reader["PlayerSecondName"];
+                        int number = (int)reader["PlayerNumber"];
+                        int Games = (int)reader["G"];
+                        int Strikeouts = (int)reader["K"];
+                        int Outs = (int)reader["Outs"];
+                        int Runs = (int)reader["R"];
+                        int Walks = (int)reader["BB"];
+                        int Single = (int)reader["1B"];
+                        int Double = (int)reader["2B"];
+                        int Triple = (int)reader["3B"];
+                        int HomeRun = (int)reader["HR"];
+                        int BattersFaced = (int)reader["TBF"];
+                        int HitByPitch = (int)reader["HBP"];
+                        int SacFlies = (int)reader["SF"];
+                        int Bunts = (int)reader["SAC"];
+                        int StolenBase = (int)reader["SB"];
+                        int CaughtStealing = (int)reader["CS"];
+                        int QualityStarts = (int)reader["QS"];
+                        int CompleteGames = (int)reader["CG"];
+                        int Shutouts = (int)reader["SHO"];
+                        yield return new Pitcher(_id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs);
+                    }
+                }
+            }
+        }
+
         public IEnumerable<Batter> GetCurrentLineupForThisMatch(string team, int Match)
         {
             using (SqlCommand command = new SqlCommand("GetCurrentLineupForThisMatch", _connection))
@@ -198,14 +238,16 @@ namespace VKR.DAL
             }
         }
 
-        public IEnumerable<Pitcher> GetStartingPitcherForThisTeam(Team team)
+        public IEnumerable<Pitcher> GetStartingPitcherForThisTeam(Team team, int matchID)
         {
-            using (SqlCommand command = new SqlCommand("GetStartingPitcherForThisMatch", _connection))
+            using (SqlCommand command = new SqlCommand("GetStartingPitcherForThisTeam", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Match", SqlDbType.Int);
                 command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
                 command.Prepare();
-                command.Parameters[0].Value = team.TeamAbbreviation;
+                command.Parameters[0].Value = matchID;
+                command.Parameters[1].Value = team.TeamAbbreviation;
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())

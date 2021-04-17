@@ -28,35 +28,29 @@ namespace VKR_Test
             teams = teamsBL.GetAllTeams();
             lineups = players.GetLineups();
             bench = players.GetBench();
-            DisplayRoster(TeamNumber, LineupNumber);
+            TeamChanged(TeamNumber);
         }
 
         private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {
             TeamNumber = TeamNumber < teams.Count - 1 ? TeamNumber + 1 : 0;
-            DisplayRoster(TeamNumber, LineupNumber);
+            TeamChanged(TeamNumber);
         }
 
         private void btnDecreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {
             TeamNumber = TeamNumber > 0 ? TeamNumber - 1 : teams.Count - 1;
-            DisplayRoster(TeamNumber, LineupNumber);
+            TeamChanged(TeamNumber);
         }
 
-        private void DisplayRoster(int TeamNumber, int LineupNumber)
+        private void TeamChanged(int TeamNumber)
         {
-            dataGridView1.Rows.Clear();
             panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{teams[TeamNumber].TeamAbbreviation}.png");
-            foreach (PlayerInLineup player in lineups[TeamNumber][LineupNumber])
-            {
-                dataGridView1.Rows.Add(player.NumberInLineup, player.Position, $"{player.FirstName[0]}. {player.SecondName}");
-            }
             label7.Text = teams[TeamNumber].TeamTitle.ToUpper();
             label7.BackColor = teams[TeamNumber].TeamColor[0];
             label7.ForeColor = Color.White;
             dataGridView1.DefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-            label1.Text = Lineups[LineupNumber];
 
             btnIncreaseTeamNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
             btnDecreaseTeamNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
@@ -65,13 +59,25 @@ namespace VKR_Test
             btnDecLineupTypeNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
             label1.ForeColor = teams[TeamNumber].TeamColor[0];
             lbl_LineupHeader.ForeColor = teams[TeamNumber].TeamColor[0];
+            DisplayRoster(TeamNumber, LineupNumber);
+        }
 
+        private void DisplayRoster(int TeamNumber, int LineupNumber)
+        {
+            dataGridView1.Rows.Clear();
+            foreach (PlayerInLineup player in lineups[TeamNumber][LineupNumber])
+            {
+                dataGridView1.Rows.Add(player.NumberInLineup, player.Position, $"{player.FirstName[0]}. {player.SecondName}");
+            }
+            label1.Text = Lineups[LineupNumber];
             dataGridView2.Rows.Clear();
             foreach (PlayerInLineup player in bench[TeamNumber][LineupNumber])
             {
                 dataGridView2.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
             }
             LineupChanged = true;
+
+            label6.Text = LineupNumber != 4 ? "BENCH" : "BULLPEN";
         }
 
         private void btnIncLineupTypeNumberBy1_Click(object sender, EventArgs e)

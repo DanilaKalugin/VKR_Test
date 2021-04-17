@@ -766,10 +766,17 @@ namespace VKR_Test
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
             {
-                teamsBL.SubstituteBatter(currentMatch, Offense, GetBatterByGameSituation(newGameSituation), form.newBatterForThisTeam);
+                Batter oldBatter = GetBatterByGameSituation(newGameSituation);
+                teamsBL.SubstituteBatter(currentMatch, Offense, oldBatter, form.newBatterForThisTeam);
                 currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
                 currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
-
+                
+                
+                if (!currentMatch.DHRule && oldBatter.NumberInBattingLineup == 9)
+                {
+                    Pitcher newPitcher = teamsBL.GetPitcherByID(form.newBatterForThisTeam.id);
+                    Offense.PitchersPlayedInMatch.Add(newPitcher);
+                }
                 teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
                 teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
 
