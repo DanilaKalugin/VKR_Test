@@ -205,19 +205,19 @@ namespace Entities
             int HitType_RandomValue = HitType_RandomGenerator.Next(1, 2000);
             if (hitting_Result == Hitting_ResultType.Hit)
             {
-                if (HitType_RandomValue <= Foul_Probability - BatterNumberComponent * 2 + countOfHits * 45 + countOfNotEmptyBases * 10 * 4)
+                if (HitType_RandomValue <= Foul_Probability - BatterNumberComponent * 7 + countOfHits * 45 + countOfNotEmptyBases * 26)
                 {
                     return HitType.Foul;
                 }
-                else if (HitType_RandomValue <= single_probability - BatterNumberComponent * 1 + countOfHits * 30 + countOfNotEmptyBases * 7 * 3)
+                else if (HitType_RandomValue <= single_probability - BatterNumberComponent * 5 + countOfHits * 35 + countOfNotEmptyBases * 15)
                 {
                     return HitType.Single;
                 }
-                else if (HitType_RandomValue <= double_probability + countOfHits * 15 + StadiumCoefficient / 3 + countOfNotEmptyBases * 5 * 2)
+                else if (HitType_RandomValue <= double_probability - BatterNumberComponent * 3 + countOfHits * 10 + StadiumCoefficient / 3 + countOfNotEmptyBases * 8)
                 {
                     return HitType.Double;
                 }
-                else if (HitType_RandomValue <= homeRun_Probability - numberOfPitches / 3 - StadiumCoefficient / 9 + countOfNotEmptyBases * 3)
+                else if (HitType_RandomValue <= homeRun_Probability - BatterNumberComponent + countOfHits - numberOfPitches / 3 - StadiumCoefficient / 9 + countOfNotEmptyBases * 3)
                 {
                     return HitType.HomeRun;
                 }
@@ -319,8 +319,10 @@ namespace Entities
 
             int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
             List<GameSituation> ListOfHitsInCurrentInning = match.Where(gameSituation => gameSituation.inningNumber == situation.inningNumber && gameSituation.offense == situation.offense).ToList();
-            int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double).Count() * 2 +
-                              ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Single || gameSituation.result == PitchResult.Triple || gameSituation.result == PitchResult.HomeRun).Count();
+            int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double || 
+                                                                               gameSituation.result == PitchResult.Single || 
+                                                                               gameSituation.result == PitchResult.Triple || 
+                                                                               gameSituation.result == PitchResult.HomeRun).Count();
             int numberOfPitches = match.Where(gameSituation => gameSituation.PitcherID == Defense.CurrentPitcher.id).Count();
             int StadiumCoefficient = stadium.stadiumDistanceToCenterfield - 400;
             int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty);
@@ -392,8 +394,10 @@ namespace Entities
 
             int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
             List<GameSituation> ListOfHitsInCurrentInning = match.Where(gameSituation => gameSituation.inningNumber == situation.inningNumber && gameSituation.offense == situation.offense).ToList();
-            int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double).Count() * 2 +
-                              ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Single || gameSituation.result == PitchResult.Triple || gameSituation.result == PitchResult.HomeRun).Count();
+            int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double || 
+                                                                               gameSituation.result == PitchResult.Single || 
+                                                                               gameSituation.result == PitchResult.Triple || 
+                                                                               gameSituation.result == PitchResult.HomeRun).Count();
             int numberOfPitches = match.Where(gameSituation => gameSituation.offense.TeamAbbreviation == situation.offense.TeamAbbreviation && situation.id > 0).Count();
             int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty);
             int PitcherCoefficient = GetPitcherCoeffitientForThisPitcher(Defense);
