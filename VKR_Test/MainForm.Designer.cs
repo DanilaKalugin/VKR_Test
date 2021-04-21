@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label36;
             System.Windows.Forms.Panel panel27;
             System.Windows.Forms.Label label24;
@@ -55,6 +56,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.lbTodayStats = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -68,6 +70,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.btnChangeBatter = new System.Windows.Forms.Button();
             this.lblPlayerName = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.lblPlayerPosition = new System.Windows.Forms.Label();
@@ -199,8 +202,8 @@
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             this.btnOtherResults = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
-            this.btnChangeBatter = new System.Windows.Forms.Button();
-            this.lbTodayStats = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnAutomaticSimulation = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -554,6 +557,17 @@
             this.panel6.TabIndex = 3;
             this.panel6.VisibleChanged += new System.EventHandler(this.panel6_VisibleChanged);
             // 
+            // lbTodayStats
+            // 
+            this.lbTodayStats.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lbTodayStats.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
+            this.lbTodayStats.Location = new System.Drawing.Point(0, 110);
+            this.lbTodayStats.Name = "lbTodayStats";
+            this.lbTodayStats.Size = new System.Drawing.Size(855, 30);
+            this.lbTodayStats.TabIndex = 22;
+            this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("MicroFLF", 14F);
@@ -697,6 +711,21 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(855, 36);
             this.panel8.TabIndex = 4;
+            // 
+            // btnChangeBatter
+            // 
+            this.btnChangeBatter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnChangeBatter.FlatAppearance.BorderSize = 0;
+            this.btnChangeBatter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangeBatter.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeBatter.ForeColor = System.Drawing.Color.White;
+            this.btnChangeBatter.Location = new System.Drawing.Point(747, 0);
+            this.btnChangeBatter.Name = "btnChangeBatter";
+            this.btnChangeBatter.Size = new System.Drawing.Size(108, 36);
+            this.btnChangeBatter.TabIndex = 61;
+            this.btnChangeBatter.Text = "CHANGE";
+            this.btnChangeBatter.UseVisualStyleBackColor = true;
+            this.btnChangeBatter.Click += new System.EventHandler(this.btnChangeBatter_Click);
             // 
             // lblPlayerName
             // 
@@ -2278,31 +2307,24 @@
             this.btnPlayerStats.UseVisualStyleBackColor = false;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
             // 
-            // btnChangeBatter
+            // timer1
             // 
-            this.btnChangeBatter.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnChangeBatter.FlatAppearance.BorderSize = 0;
-            this.btnChangeBatter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeBatter.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeBatter.ForeColor = System.Drawing.Color.White;
-            this.btnChangeBatter.Location = new System.Drawing.Point(747, 0);
-            this.btnChangeBatter.Name = "btnChangeBatter";
-            this.btnChangeBatter.Size = new System.Drawing.Size(108, 36);
-            this.btnChangeBatter.TabIndex = 61;
-            this.btnChangeBatter.Text = "CHANGE";
-            this.btnChangeBatter.UseVisualStyleBackColor = true;
-            this.btnChangeBatter.Click += new System.EventHandler(this.btnChangeBatter_Click);
+            this.timer1.Interval = 250;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // lbTodayStats
+            // btnAutomaticSimulation
             // 
-            this.lbTodayStats.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbTodayStats.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
-            this.lbTodayStats.Location = new System.Drawing.Point(0, 110);
-            this.lbTodayStats.Name = "lbTodayStats";
-            this.lbTodayStats.Size = new System.Drawing.Size(855, 30);
-            this.lbTodayStats.TabIndex = 22;
-            this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnAutomaticSimulation.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnAutomaticSimulation.FlatAppearance.BorderSize = 0;
+            this.btnAutomaticSimulation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAutomaticSimulation.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutomaticSimulation.Location = new System.Drawing.Point(239, 814);
+            this.btnAutomaticSimulation.Name = "btnAutomaticSimulation";
+            this.btnAutomaticSimulation.Size = new System.Drawing.Size(300, 35);
+            this.btnAutomaticSimulation.TabIndex = 61;
+            this.btnAutomaticSimulation.Text = "MANUAL";
+            this.btnAutomaticSimulation.UseVisualStyleBackColor = false;
+            this.btnAutomaticSimulation.Click += new System.EventHandler(this.btnAutomaticSimulation_Click);
             // 
             // MainForm
             // 
@@ -2310,6 +2332,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(this.btnAutomaticSimulation);
             this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnOtherResults);
             this.Controls.Add(this.RunnerOn3Photo);
@@ -2342,6 +2365,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             panel27.ResumeLayout(false);
             this.panel26.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
@@ -2552,6 +2576,8 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btnChangeBatter;
         private System.Windows.Forms.Label lbTodayStats;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnAutomaticSimulation;
     }
 }
 
