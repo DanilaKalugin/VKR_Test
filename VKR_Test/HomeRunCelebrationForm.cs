@@ -49,6 +49,7 @@ namespace VKR_Test
                 label1.ForeColor = Color.WhiteSmoke;
                 label2.ForeColor = Color.WhiteSmoke;
                 label3.ForeColor = Color.WhiteSmoke;
+                label4.ForeColor = Color.WhiteSmoke;
             }
         }
     }
