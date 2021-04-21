@@ -202,7 +202,7 @@
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             this.btnOtherResults = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.AutoSimulation = new System.Windows.Forms.Timer(this.components);
             this.btnAutomaticSimulation = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
@@ -2307,10 +2307,10 @@
             this.btnPlayerStats.UseVisualStyleBackColor = false;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
             // 
-            // timer1
+            // AutoSimulation
             // 
-            this.timer1.Interval = 250;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.AutoSimulation.Interval = 1000;
+            this.AutoSimulation.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // btnAutomaticSimulation
             // 
@@ -2576,7 +2576,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btnChangeBatter;
         private System.Windows.Forms.Label lbTodayStats;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer AutoSimulation;
         private System.Windows.Forms.Button btnAutomaticSimulation;
     }
 }
