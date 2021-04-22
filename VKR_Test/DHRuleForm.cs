@@ -53,7 +53,8 @@ namespace VKR_Test
             if (newMatchForm.DialogResult == DialogResult.OK)
             {
                 DialogResult = DialogResult.OK;
-                Close();
+                newMatchForm.Dispose();
+                Hide();
             }
             else if (newMatchForm.DialogResult == DialogResult.Yes)
             {

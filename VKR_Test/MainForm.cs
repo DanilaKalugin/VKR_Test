@@ -555,8 +555,9 @@ namespace VKR_Test
                 form.ShowDialog();
                 if (form.DialogResult == DialogResult.OK)
                 {
+                    form.Dispose();
                     DialogResult = DialogResult.OK;
-                    Close();
+                    Hide();
                 }
             }
         }

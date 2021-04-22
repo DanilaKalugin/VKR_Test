@@ -104,7 +104,7 @@ namespace VKR_Test
         private void btnClose_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            Close();
+            Hide();
         }
     }
 }

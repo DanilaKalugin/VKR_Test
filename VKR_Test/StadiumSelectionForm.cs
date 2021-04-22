@@ -76,7 +76,8 @@ namespace VKR_Test
             if (DHForm.DialogResult == DialogResult.OK)
             {
                 DialogResult = DialogResult.OK;
-                Close();
+                DHForm.Dispose();
+                Hide();
             }
             else if (DHForm.DialogResult == DialogResult.Yes)
             {

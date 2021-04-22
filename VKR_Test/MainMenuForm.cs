@@ -56,6 +56,10 @@ namespace VKR_Test
                 form.Dispose();
                 matchBL.DeleteThisMatch(MatchNumberForDelete);
             }
+            else
+            {
+                form.Dispose();
+            }
             GetListOfPeopleWithBirthdayToday();
         }
 

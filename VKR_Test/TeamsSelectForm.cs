@@ -152,8 +152,9 @@ namespace VKR_Test
 
             if (stadiumSelection.DialogResult == DialogResult.OK)
             {
+                stadiumSelection.Dispose();
                 DialogResult = DialogResult.OK;
-                Close();
+                Hide();
             }
             else if (stadiumSelection.DialogResult == DialogResult.Yes)
             {
