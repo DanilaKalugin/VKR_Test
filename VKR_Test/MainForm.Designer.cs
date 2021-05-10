@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label36;
             System.Windows.Forms.Panel panel27;
             System.Windows.Forms.Label label24;
@@ -202,8 +201,6 @@
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             this.btnOtherResults = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
-            this.AutoSimulation = new System.Windows.Forms.Timer(this.components);
-            this.btnAutomaticSimulation = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -2307,32 +2304,12 @@
             this.btnPlayerStats.UseVisualStyleBackColor = false;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
             // 
-            // AutoSimulation
-            // 
-            this.AutoSimulation.Interval = 1000;
-            this.AutoSimulation.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // btnAutomaticSimulation
-            // 
-            this.btnAutomaticSimulation.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnAutomaticSimulation.FlatAppearance.BorderSize = 0;
-            this.btnAutomaticSimulation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAutomaticSimulation.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAutomaticSimulation.Location = new System.Drawing.Point(239, 814);
-            this.btnAutomaticSimulation.Name = "btnAutomaticSimulation";
-            this.btnAutomaticSimulation.Size = new System.Drawing.Size(300, 35);
-            this.btnAutomaticSimulation.TabIndex = 61;
-            this.btnAutomaticSimulation.Text = "MANUAL";
-            this.btnAutomaticSimulation.UseVisualStyleBackColor = false;
-            this.btnAutomaticSimulation.Click += new System.EventHandler(this.btnAutomaticSimulation_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
-            this.Controls.Add(this.btnAutomaticSimulation);
             this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnOtherResults);
             this.Controls.Add(this.RunnerOn3Photo);
@@ -2365,7 +2342,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.MainForm_Load);
             panel27.ResumeLayout(false);
             this.panel26.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
@@ -2576,8 +2552,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btnChangeBatter;
         private System.Windows.Forms.Label lbTodayStats;
-        private System.Windows.Forms.Timer AutoSimulation;
-        private System.Windows.Forms.Button btnAutomaticSimulation;
     }
 }
 

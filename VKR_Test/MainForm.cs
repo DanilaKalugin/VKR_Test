@@ -27,7 +27,6 @@ namespace VKR_Test
             currentMatch = match;
             StartingLineupForm lineup = new StartingLineupForm(currentMatch.AwayTeam);
             lineup.ShowDialog();
-            AutoSimulation.Start();
             previousSituation = currentMatch.gameSituations.Last();
             newGameSituation = new GameSituation(match.AwayTeam);
             AwayTeam_Abbreviation.Text = match.AwayTeam.TeamAbbreviation;
@@ -380,7 +379,6 @@ namespace VKR_Test
         {
             if (pitch.pitchResult == Pitch.PitchResult.HomeRun)
             {
-                AutoSimulation.Stop();
                 string title;
                 if (runs == 1)
                 {
@@ -396,10 +394,6 @@ namespace VKR_Test
                 }
                 HomeRunCelebrationForm hr = new HomeRunCelebrationForm(newGameSituation.offense, title, GetBatterByGameSituation(newGameSituation), currentMatch.atBats);
                 hr.ShowDialog();
-                if (btnAutomaticSimulation.Text == "MANUAL")
-                {
-                    AutoSimulation.Start();
-                }
             }
         }
 
@@ -454,13 +448,8 @@ namespace VKR_Test
             newGameSituation.PrepareForNextPitch(currentMatch.gameSituations.Last(), currentMatch.AwayTeam, currentMatch.HomeTeam);
             if (currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam && currentMatch.gameSituations.Last().outs == 3 && currentMatch.gameSituations.Last().inningNumber == 1)
             {
-                AutoSimulation.Stop();
                 StartingLineupForm form = new StartingLineupForm(currentMatch.HomeTeam);
-                form.ShowDialog(); 
-                if (btnAutomaticSimulation.Text == "MANUAL")
-                {
-                    AutoSimulation.Start();
-                }
+                form.ShowDialog();
                 DisplayPitcherStats();
             }
 
@@ -550,7 +539,6 @@ namespace VKR_Test
                 (currentMatch.gameSituations.Last().offense == currentMatch.HomeTeam && currentMatch.gameSituations.Last().AwayTeamRuns < currentMatch.gameSituations.Last().HomeTeamRuns && currentMatch.gameSituations.Last().inningNumber >= 9))
             {
                 MatchEndingForm form = new MatchEndingForm(currentMatch);
-                AutoSimulation.Dispose();
                 matchBL.FinishMatch(currentMatch);
                 form.ShowDialog();
                 if (form.DialogResult == DialogResult.OK)
@@ -714,7 +702,6 @@ namespace VKR_Test
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            AutoSimulation.Stop();
             if (DialogResult != DialogResult.OK)
             {
                 if (MessageBox.Show("Do you want to close this window?\nThis match will be deleted from database", "Graduation paper", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -724,27 +711,17 @@ namespace VKR_Test
                     DialogResult = DialogResult.Yes;
                 }
             }
-            else if (btnAutomaticSimulation.Text == "MANUAL")
-            {
-AutoSimulation.Start();
-            }
                 
         }
 
         private void btnStandings_Click(object sender, EventArgs e)
         {
-            AutoSimulation.Stop();
             StandingsForm form = new StandingsForm(currentMatch.HomeTeam, currentMatch.AwayTeam);
             form.ShowDialog(); 
-            if (btnAutomaticSimulation.Text == "MANUAL")
-            {
-                AutoSimulation.Start();
-            }
         }
 
         private void btnShowAvailablePitchers_Click(object sender, EventArgs e)
         {
-            AutoSimulation.Stop();
             Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
             List<Pitcher> pitchers = teamsBL.GetAvailablePitchers(currentMatch, Defense);
             SubstitutionForm form = new SubstitutionForm(Defense, pitchers);
@@ -762,43 +739,24 @@ AutoSimulation.Start();
                 DisplayingCurrentSituation(newGameSituation);
                 DisplayPitcherStats();
             }
-            if (btnAutomaticSimulation.Text == "MANUAL")
-            {
-                AutoSimulation.Start();
-            }
         }
 
         private void btnOtherResults_Click(object sender, EventArgs e)
         {
-            AutoSimulation.Stop();
             MatchResultsForm form = new MatchResultsForm(currentMatch.MatchDate, true);
             form.ShowDialog(); 
-            if (btnAutomaticSimulation.Text == "MANUAL")
-            {
-                AutoSimulation.Start();
-            }
         }
 
         private void btnPlayerStats_Click(object sender, EventArgs e)
         {
-            AutoSimulation.Stop();
             PlayerStatsForm form = new PlayerStatsForm();
             form.ShowDialog(); 
-            if (btnAutomaticSimulation.Text == "MANUAL")
-            {
-                AutoSimulation.Start();
-            }
         }
 
         private void btnSeriesHistory_Click(object sender, EventArgs e)
         {
-            AutoSimulation.Stop();
             MatchResultsForm form = new MatchResultsForm(currentMatch.HomeTeam, currentMatch.AwayTeam);
             form.ShowDialog(); 
-            if (btnAutomaticSimulation.Text == "MANUAL")
-            {
-                AutoSimulation.Start();
-            }
         }
 
         private void panel6_VisibleChanged(object sender, EventArgs e)
@@ -809,7 +767,6 @@ AutoSimulation.Start();
 
         private void btnChangeBatter_Click(object sender, EventArgs e)
         {
-            AutoSimulation.Stop();
             Team Offense = newGameSituation.offense;
             List<Batter> batters = teamsBL.GetAvailableBatters(currentMatch, Offense, GetBatterByGameSituation(newGameSituation));
             SubstitutionForm form = new SubstitutionForm(Offense, batters);
@@ -831,34 +788,6 @@ AutoSimulation.Start();
                 teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
 
                 DisplayingCurrentSituation(newGameSituation);
-            }
-            if (btnAutomaticSimulation.Text == "MANUAL")
-            {
-                AutoSimulation.Start();
-            }
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            GenerateNewPitch();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            //timer1.Start();
-        }
-
-        private void btnAutomaticSimulation_Click(object sender, EventArgs e)
-        {
-            if (AutoSimulation.Enabled)
-            {
-                AutoSimulation.Stop();
-                btnAutomaticSimulation.Text = "AUTOMATIC";
-            }
-            else
-            {
-                AutoSimulation.Start();
-                btnAutomaticSimulation.Text = "MANUAL";
             }
         }
     }
