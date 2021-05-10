@@ -340,3 +340,5 @@ ASALocalRun/
 healthchecksdb
 /VKR_Test/TitleForm.ru-RU.resx
 *.xlsx
+/VKR.iss
+/VKR_setup.exe
