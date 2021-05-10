@@ -53,13 +53,9 @@ namespace VKR_Test
             if (form.DialogResult == DialogResult.Yes)
             {
                 MatchNumberForDelete = form.MatchNumberForDelete;
-                form.Dispose();
                 matchBL.DeleteThisMatch(MatchNumberForDelete);
             }
-            else
-            {
-                form.Dispose();
-            }
+            form.Dispose();
             GetListOfPeopleWithBirthdayToday();
         }
 
