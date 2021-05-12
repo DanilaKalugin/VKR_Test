@@ -1,6 +1,7 @@
 ﻿using Entities;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace VKR_Test
@@ -11,7 +12,7 @@ namespace VKR_Test
         {
             InitializeComponent();
             label37.Text = $"{team.TeamTitle.ToUpper()} Batting Order".ToUpper();
-            panel1.BackColor = team.TeamColorForThisMatch;
+            //panel1.BackColor = team.TeamColorForThisMatch;
             teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             GetInfoAboutBatter(team.BattingLineup[0], p1, label1, label18, label19, label20);
             GetInfoAboutBatter(team.BattingLineup[1], p2, label2, label17, label22, label21);
@@ -22,15 +23,24 @@ namespace VKR_Test
             GetInfoAboutBatter(team.BattingLineup[6], p7, label7, label12, label32, label31);
             GetInfoAboutBatter(team.BattingLineup[7], p8, label8, label11, label34, label33);
             GetInfoAboutBatter(team.BattingLineup[8], p9, label9, label10, label36, label35);
+            BackColor = team.TeamColorForThisMatch;
             teamManager.Text = $"► Team Manager: {team.TeamManager.FullName}".ToUpper();
             timer1.Start();
         }
 
         public void GetInfoAboutBatter(Batter batter, Panel photo, Label Name, Label SecondName, Label Number, Label Position)
         {
-            photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.jpg");
-            Name.Text = batter.FirstName;
-            SecondName.Text = batter.SecondName;
+            if (File.Exists($"PlayerPhotos/Player{batter.id:0000}.png"))
+            {
+photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+            }
+            else
+            {
+photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.jpg");
+            }
+
+            Name.Text = batter.FirstName.ToUpper();
+            SecondName.Text = batter.SecondName.ToUpper();
             Number.Text = batter.PlayerNumber.ToString();
             Position.Text = batter.PositionForThisMatch;
         }
