@@ -43,9 +43,10 @@ namespace VKR_Test
             lbTeamTitle.Text = offense.TeamTitle.ToUpper();
             lbTeamTitle.ForeColor = offense.TeamColorForThisMatch;
             Text = $"New batter for {offense.TeamTitle}";
-            foreach (Batter batter in Batters)
+            for (int i = 0; i < Batters.Count; i++)
             {
-                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png"), batter.FullName, $"AVG: {batter.AVG.ToString("#.000", new CultureInfo("en-US"))}", $"HR: {batter.HomeRuns}");
+                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{Batters[i].id:0000}.png"), Batters[i].FullName, $"AVG: {Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"HR: {Batters[i].HomeRuns}");
+                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.WhiteSmoke;
             }
         }
 
