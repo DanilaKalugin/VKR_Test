@@ -32,14 +32,32 @@ namespace VKR_Test
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartingLineupForm));
             this.p1 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.p2 = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.p3 = new System.Windows.Forms.Panel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.p4 = new System.Windows.Forms.Panel();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.p8 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.p7 = new System.Windows.Forms.Panel();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
             this.p6 = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.p5 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
             this.p9 = new System.Windows.Forms.Panel();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,24 +76,6 @@ namespace VKR_Test
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
             this.teamLogo = new System.Windows.Forms.Panel();
             this.label37 = new System.Windows.Forms.Label();
             this.timer_LineupForm = new System.Windows.Forms.Timer(this.components);
@@ -107,6 +107,30 @@ namespace VKR_Test
             this.p1.Size = new System.Drawing.Size(120, 180);
             this.p1.TabIndex = 7;
             // 
+            // label20
+            // 
+            this.label20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label20.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(79, 156);
+            this.label20.Margin = new System.Windows.Forms.Padding(0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(40, 23);
+            this.label20.TabIndex = 35;
+            this.label20.Text = "label20";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label19
+            // 
+            this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label19.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(79, 130);
+            this.label19.Margin = new System.Windows.Forms.Padding(0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(40, 23);
+            this.label19.TabIndex = 34;
+            this.label19.Text = "label19";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // p2
             // 
             this.p2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -117,6 +141,30 @@ namespace VKR_Test
             this.p2.Name = "p2";
             this.p2.Size = new System.Drawing.Size(120, 180);
             this.p2.TabIndex = 8;
+            // 
+            // label21
+            // 
+            this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label21.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(79, 156);
+            this.label21.Margin = new System.Windows.Forms.Padding(0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(40, 23);
+            this.label21.TabIndex = 37;
+            this.label21.Text = "label21";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label22
+            // 
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label22.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(79, 130);
+            this.label22.Margin = new System.Windows.Forms.Padding(0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(40, 23);
+            this.label22.TabIndex = 36;
+            this.label22.Text = "label22";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // p3
             // 
@@ -129,6 +177,30 @@ namespace VKR_Test
             this.p3.Size = new System.Drawing.Size(120, 180);
             this.p3.TabIndex = 10;
             // 
+            // label23
+            // 
+            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label23.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(79, 156);
+            this.label23.Margin = new System.Windows.Forms.Padding(0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(40, 23);
+            this.label23.TabIndex = 39;
+            this.label23.Text = "label23";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label24
+            // 
+            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label24.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(79, 130);
+            this.label24.Margin = new System.Windows.Forms.Padding(0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(40, 23);
+            this.label24.TabIndex = 38;
+            this.label24.Text = "label24";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // p4
             // 
             this.p4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -139,6 +211,30 @@ namespace VKR_Test
             this.p4.Name = "p4";
             this.p4.Size = new System.Drawing.Size(120, 180);
             this.p4.TabIndex = 9;
+            // 
+            // label25
+            // 
+            this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label25.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(79, 156);
+            this.label25.Margin = new System.Windows.Forms.Padding(0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(40, 23);
+            this.label25.TabIndex = 41;
+            this.label25.Text = "label25";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label26
+            // 
+            this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label26.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(79, 130);
+            this.label26.Margin = new System.Windows.Forms.Padding(0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(40, 23);
+            this.label26.TabIndex = 40;
+            this.label26.Text = "label26";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // p8
             // 
@@ -151,6 +247,30 @@ namespace VKR_Test
             this.p8.Size = new System.Drawing.Size(120, 180);
             this.p8.TabIndex = 13;
             // 
+            // label34
+            // 
+            this.label34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label34.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(79, 130);
+            this.label34.Margin = new System.Windows.Forms.Padding(0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(40, 23);
+            this.label34.TabIndex = 48;
+            this.label34.Text = "label34";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label33
+            // 
+            this.label33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label33.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(79, 156);
+            this.label33.Margin = new System.Windows.Forms.Padding(0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(40, 23);
+            this.label33.TabIndex = 49;
+            this.label33.Text = "label33";
+            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // p7
             // 
             this.p7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -161,6 +281,30 @@ namespace VKR_Test
             this.p7.Name = "p7";
             this.p7.Size = new System.Drawing.Size(120, 180);
             this.p7.TabIndex = 14;
+            // 
+            // label32
+            // 
+            this.label32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label32.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(79, 130);
+            this.label32.Margin = new System.Windows.Forms.Padding(0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(40, 23);
+            this.label32.TabIndex = 46;
+            this.label32.Text = "label32";
+            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label31
+            // 
+            this.label31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label31.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(79, 156);
+            this.label31.Margin = new System.Windows.Forms.Padding(0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(40, 23);
+            this.label31.TabIndex = 47;
+            this.label31.Text = "label31";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // p6
             // 
@@ -173,6 +317,30 @@ namespace VKR_Test
             this.p6.Size = new System.Drawing.Size(120, 180);
             this.p6.TabIndex = 12;
             // 
+            // label29
+            // 
+            this.label29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label29.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(79, 156);
+            this.label29.Margin = new System.Windows.Forms.Padding(0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(40, 23);
+            this.label29.TabIndex = 45;
+            this.label29.Text = "label29";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label30
+            // 
+            this.label30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label30.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(79, 130);
+            this.label30.Margin = new System.Windows.Forms.Padding(0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(40, 23);
+            this.label30.TabIndex = 44;
+            this.label30.Text = "label30";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // p5
             // 
             this.p5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -184,6 +352,30 @@ namespace VKR_Test
             this.p5.Size = new System.Drawing.Size(120, 180);
             this.p5.TabIndex = 11;
             // 
+            // label27
+            // 
+            this.label27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label27.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(79, 156);
+            this.label27.Margin = new System.Windows.Forms.Padding(0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(40, 23);
+            this.label27.TabIndex = 43;
+            this.label27.Text = "label27";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label28
+            // 
+            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label28.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(79, 130);
+            this.label28.Margin = new System.Windows.Forms.Padding(0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(40, 23);
+            this.label28.TabIndex = 42;
+            this.label28.Text = "label28";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // p9
             // 
             this.p9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -194,6 +386,30 @@ namespace VKR_Test
             this.p9.Name = "p9";
             this.p9.Size = new System.Drawing.Size(120, 180);
             this.p9.TabIndex = 15;
+            // 
+            // label35
+            // 
+            this.label35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label35.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(79, 156);
+            this.label35.Margin = new System.Windows.Forms.Padding(0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(40, 23);
+            this.label35.TabIndex = 51;
+            this.label35.Text = "label35";
+            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label36
+            // 
+            this.label36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label36.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(79, 130);
+            this.label36.Margin = new System.Windows.Forms.Padding(0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(40, 23);
+            this.label36.TabIndex = 50;
+            this.label36.Text = "label36";
+            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -411,222 +627,6 @@ namespace VKR_Test
             this.label18.Text = "label18";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label19
-            // 
-            this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label19.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(79, 130);
-            this.label19.Margin = new System.Windows.Forms.Padding(0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(40, 23);
-            this.label19.TabIndex = 34;
-            this.label19.Text = "label19";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label20
-            // 
-            this.label20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label20.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(79, 156);
-            this.label20.Margin = new System.Windows.Forms.Padding(0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(40, 23);
-            this.label20.TabIndex = 35;
-            this.label20.Text = "label20";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label21
-            // 
-            this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label21.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(79, 156);
-            this.label21.Margin = new System.Windows.Forms.Padding(0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(40, 23);
-            this.label21.TabIndex = 37;
-            this.label21.Text = "label21";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label22
-            // 
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label22.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(79, 130);
-            this.label22.Margin = new System.Windows.Forms.Padding(0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(40, 23);
-            this.label22.TabIndex = 36;
-            this.label22.Text = "label22";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label23
-            // 
-            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label23.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(79, 156);
-            this.label23.Margin = new System.Windows.Forms.Padding(0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(40, 23);
-            this.label23.TabIndex = 39;
-            this.label23.Text = "label23";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label24
-            // 
-            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label24.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(79, 130);
-            this.label24.Margin = new System.Windows.Forms.Padding(0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(40, 23);
-            this.label24.TabIndex = 38;
-            this.label24.Text = "label24";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label25
-            // 
-            this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label25.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(79, 156);
-            this.label25.Margin = new System.Windows.Forms.Padding(0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(40, 23);
-            this.label25.TabIndex = 41;
-            this.label25.Text = "label25";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label26
-            // 
-            this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label26.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(79, 130);
-            this.label26.Margin = new System.Windows.Forms.Padding(0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(40, 23);
-            this.label26.TabIndex = 40;
-            this.label26.Text = "label26";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label27
-            // 
-            this.label27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label27.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(79, 156);
-            this.label27.Margin = new System.Windows.Forms.Padding(0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(40, 23);
-            this.label27.TabIndex = 43;
-            this.label27.Text = "label27";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label28
-            // 
-            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label28.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(79, 130);
-            this.label28.Margin = new System.Windows.Forms.Padding(0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(40, 23);
-            this.label28.TabIndex = 42;
-            this.label28.Text = "label28";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label29
-            // 
-            this.label29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label29.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(79, 156);
-            this.label29.Margin = new System.Windows.Forms.Padding(0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(40, 23);
-            this.label29.TabIndex = 45;
-            this.label29.Text = "label29";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label30
-            // 
-            this.label30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label30.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(79, 130);
-            this.label30.Margin = new System.Windows.Forms.Padding(0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(40, 23);
-            this.label30.TabIndex = 44;
-            this.label30.Text = "label30";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label31
-            // 
-            this.label31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label31.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(79, 156);
-            this.label31.Margin = new System.Windows.Forms.Padding(0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(40, 23);
-            this.label31.TabIndex = 47;
-            this.label31.Text = "label31";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label32
-            // 
-            this.label32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label32.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(79, 130);
-            this.label32.Margin = new System.Windows.Forms.Padding(0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(40, 23);
-            this.label32.TabIndex = 46;
-            this.label32.Text = "label32";
-            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label33
-            // 
-            this.label33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label33.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(79, 156);
-            this.label33.Margin = new System.Windows.Forms.Padding(0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(40, 23);
-            this.label33.TabIndex = 49;
-            this.label33.Text = "label33";
-            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label34
-            // 
-            this.label34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label34.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(79, 130);
-            this.label34.Margin = new System.Windows.Forms.Padding(0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(40, 23);
-            this.label34.TabIndex = 48;
-            this.label34.Text = "label34";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label35
-            // 
-            this.label35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label35.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(79, 156);
-            this.label35.Margin = new System.Windows.Forms.Padding(0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(40, 23);
-            this.label35.TabIndex = 51;
-            this.label35.Text = "label35";
-            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label36
-            // 
-            this.label36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label36.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(79, 130);
-            this.label36.Margin = new System.Windows.Forms.Padding(0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(40, 23);
-            this.label36.TabIndex = 50;
-            this.label36.Text = "label36";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // teamLogo
             // 
             this.teamLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -638,9 +638,10 @@ namespace VKR_Test
             // label37
             // 
             this.label37.Font = new System.Drawing.Font("MicroFLF", 25F, System.Drawing.FontStyle.Bold);
+            this.label37.ForeColor = System.Drawing.Color.Black;
             this.label37.Location = new System.Drawing.Point(114, 3);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(1074, 106);
+            this.label37.Size = new System.Drawing.Size(1083, 106);
             this.label37.TabIndex = 53;
             this.label37.Text = "label37";
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

@@ -119,7 +119,7 @@ namespace VKR_Test
             dgv2.DefaultCellStyle.SelectionForeColor = Color.Black;
             if (dgv1.SelectedRows.Count > 0)
             {
-                panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.jpg");
+                panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.png");
                 label2.Text = $"#{player.PlayerNumber}";
                 label3.Text = player.FullName.ToUpper();
                 label4.Text = player.PlaceOfBirth.ToUpper();

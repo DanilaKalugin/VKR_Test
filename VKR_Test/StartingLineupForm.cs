@@ -1,7 +1,6 @@
 ﻿using Entities;
 using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace VKR_Test
@@ -12,33 +11,32 @@ namespace VKR_Test
         {
             InitializeComponent();
             label37.Text = $"{team.TeamTitle.ToUpper()} Batting Order".ToUpper();
-            //panel1.BackColor = team.TeamColorForThisMatch;
             teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            GetInfoAboutBatter(team.BattingLineup[0], p1, label1, label18, label19, label20);
-            GetInfoAboutBatter(team.BattingLineup[1], p2, label2, label17, label22, label21);
-            GetInfoAboutBatter(team.BattingLineup[2], p3, label3, label16, label24, label23);
-            GetInfoAboutBatter(team.BattingLineup[3], p4, label4, label15, label26, label25);
-            GetInfoAboutBatter(team.BattingLineup[4], p5, label5, label14, label28, label27);
-            GetInfoAboutBatter(team.BattingLineup[5], p6, label6, label13, label30, label29);
-            GetInfoAboutBatter(team.BattingLineup[6], p7, label7, label12, label32, label31);
-            GetInfoAboutBatter(team.BattingLineup[7], p8, label8, label11, label34, label33);
-            GetInfoAboutBatter(team.BattingLineup[8], p9, label9, label10, label36, label35);
             BackColor = team.TeamColorForThisMatch;
+            GetInfoAboutBatter(team.BattingLineup[0], p1, label1, label18, label19, label20, team);
+            GetInfoAboutBatter(team.BattingLineup[1], p2, label2, label17, label22, label21, team);
+            GetInfoAboutBatter(team.BattingLineup[2], p3, label3, label16, label24, label23, team);
+            GetInfoAboutBatter(team.BattingLineup[3], p4, label4, label15, label26, label25, team);
+            GetInfoAboutBatter(team.BattingLineup[4], p5, label5, label14, label28, label27, team);
+            GetInfoAboutBatter(team.BattingLineup[5], p6, label6, label13, label30, label29, team);
+            GetInfoAboutBatter(team.BattingLineup[6], p7, label7, label12, label32, label31, team);
+            GetInfoAboutBatter(team.BattingLineup[7], p8, label8, label11, label34, label33, team);
+            GetInfoAboutBatter(team.BattingLineup[8], p9, label9, label10, label36, label35, team);
             teamManager.Text = $"► Team Manager: {team.TeamManager.FullName}".ToUpper();
             timer1.Start();
         }
 
-        public void GetInfoAboutBatter(Batter batter, Panel photo, Label Name, Label SecondName, Label Number, Label Position)
+        public void GetInfoAboutBatter(Batter batter, Panel photo, Label Name, Label SecondName, Label Number, Label Position, Team team)
         {
-            if (File.Exists($"PlayerPhotos/Player{batter.id:0000}.png"))
+            if (BackColor == team.TeamColor[1])
             {
-photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+                photo.BackColor = team.TeamColor[0];
             }
             else
             {
-photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.jpg");
+                photo.BackColor = team.TeamColor[1];
             }
-
+            photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
             Name.Text = batter.FirstName.ToUpper();
             SecondName.Text = batter.SecondName.ToUpper();
             Number.Text = batter.PlayerNumber.ToString();

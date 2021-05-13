@@ -25,7 +25,7 @@ namespace VKR_Test
             Text = $"New pitcher for {defense.TeamTitle}";
             foreach (Pitcher pitcher in Pitchers)
             {
-                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"ERA: {pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"SO: {pitcher.Strikeouts}");
+                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{pitcher.id:0000}.png"), pitcher.FullName, $"ERA: {pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"SO: {pitcher.Strikeouts}");
             }
         }
 
@@ -45,7 +45,7 @@ namespace VKR_Test
             Text = $"New batter for {offense.TeamTitle}";
             foreach (Batter batter in Batters)
             {
-                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.jpg"), batter.FullName, $"AVG: {batter.AVG.ToString("#.000", new CultureInfo("en-US"))}", $"HR: {batter.HomeRuns}");
+                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png"), batter.FullName, $"AVG: {batter.AVG.ToString("#.000", new CultureInfo("en-US"))}", $"HR: {batter.HomeRuns}");
             }
         }
 

@@ -216,9 +216,9 @@ namespace VKR_Test
             lb2ndBase.BackColor = situation.offense.TeamColorForThisMatch;
             lb3rdBase.BackColor = situation.offense.TeamColorForThisMatch;
 
-            RunnerOn1Photo.BackgroundImage = situation.RunnerOnFirst.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID:0000}.jpg") : null;
-            RunnerOn2Photo.BackgroundImage = situation.RunnerOnSecond.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID:0000}.jpg") : null;
-            RunnerOn3Photo.BackgroundImage = situation.RunnerOnThird.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnThird.runnerID:0000}.jpg") : null;
+            RunnerOn1Photo.BackgroundImage = situation.RunnerOnFirst.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID:0000}.png") : null;
+            RunnerOn2Photo.BackgroundImage = situation.RunnerOnSecond.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID:0000}.png") : null;
+            RunnerOn3Photo.BackgroundImage = situation.RunnerOnThird.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnThird.runnerID:0000}.png") : null;
 
             if (situation.RunnerOnFirst.IsBaseNotEmpty)
             {
@@ -294,7 +294,7 @@ namespace VKR_Test
             ShowBatterStats(batter, BatterStats);
             ShowStatsForThisMatch(batter, lbTodayStats);
 
-            panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.jpg");
+            panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.png");
             lblPlayerPosition.Text = batter.PositionForThisMatch;
             lblPlayerNumber.Text = batter.PlayerNumber.ToString();
             lblPlayerName.Text = batter.FullName.ToUpper();
@@ -647,7 +647,7 @@ namespace VKR_Test
             PitchingTeamColor.BackColor = Defense.TeamColorForThisMatch;
             btnShowAvailablePitchers.BackColor = Defense.TeamColorForThisMatch;
             PitchingTeam.BackgroundImage = Image.FromFile($"SmallTeamLogos/{Defense.TeamAbbreviation}.png");
-            PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id.ToString("0000")}.jpg");
+            PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id.ToString("0000")}.png");
             PitcherName.Text = Defense.CurrentPitcher.FullName.ToUpper();
             PitcherGames.Text = Defense.CurrentPitcher.Games.ToString();
             PitcherBAA.Text = Defense.CurrentPitcher.BAA.ToString("#.000", new CultureInfo("en-US"));

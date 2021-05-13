@@ -17,7 +17,7 @@ namespace VKR_Test
             timer2.Start();
             panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.jpg");
+            panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
             label2.Text = batter.FullName.ToUpper();
 
             int HRTodayForThisBatter = allAtBats.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.id).Count();

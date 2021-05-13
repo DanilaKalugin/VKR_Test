@@ -770,8 +770,8 @@
             // panel10
             // 
             this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel10.Location = new System.Drawing.Point(205, 889);
-            this.panel10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.panel10.Location = new System.Drawing.Point(298, 749);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(93, 140);
             this.panel10.TabIndex = 5;
@@ -779,7 +779,7 @@
             // panel7
             // 
             this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel7.Location = new System.Drawing.Point(65, 889);
+            this.panel7.Location = new System.Drawing.Point(158, 889);
             this.panel7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(140, 140);
