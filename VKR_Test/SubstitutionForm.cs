@@ -46,7 +46,6 @@ namespace VKR_Test
             for (int i = 0; i < Batters.Count; i++)
             {
                 dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotos/Player{Batters[i].id:0000}.png"), Batters[i].FullName, $"AVG: {Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"HR: {Batters[i].HomeRuns}");
-                dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.WhiteSmoke;
             }
         }
 
