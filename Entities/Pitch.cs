@@ -395,7 +395,6 @@ namespace Entities
             int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
             List<GameSituation> ListOfHitsInCurrentInning = match.Where(gameSituation => gameSituation.inningNumber == situation.inningNumber && gameSituation.offense == situation.offense).ToList();
             int CountOfHits = ListOfHitsInCurrentInning.Where(gameSituation => gameSituation.result == PitchResult.Double || 
-                                                                               gameSituation.result == PitchResult.Single || 
                                                                                gameSituation.result == PitchResult.Triple || 
                                                                                gameSituation.result == PitchResult.HomeRun).Count();
             int numberOfPitches = match.Where(gameSituation => gameSituation.offense.TeamAbbreviation == situation.offense.TeamAbbreviation && situation.id > 0).Count();
