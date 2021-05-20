@@ -58,6 +58,9 @@ namespace VKR_Test
             btnIncLineupTypeNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
             btnDecLineupTypeNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
             label1.ForeColor = teams[TeamNumber].TeamColor[0];
+            label3.ForeColor = teams[TeamNumber].TeamColor[0];
+            label2.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.7), (int)(teams[TeamNumber].TeamColor[0].G * 0.7), (int)(teams[TeamNumber].TeamColor[0].B * 0.7));
+
             lbl_LineupHeader.ForeColor = teams[TeamNumber].TeamColor[0];
             DisplayRoster(TeamNumber, LineupNumber);
         }
@@ -122,8 +125,7 @@ namespace VKR_Test
                 panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.png");
                 label2.Text = $"#{player.PlayerNumber}";
                 label3.Text = player.FullName.ToUpper();
-                label4.Text = player.PlaceOfBirth.ToUpper();
-                label5.Text = player.DateOfBirth.ToShortDateString().ToUpper();
+                label4.Text = $"{player.PlaceOfBirth.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";
             }
         }
 
