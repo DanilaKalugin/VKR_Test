@@ -52,5 +52,10 @@ namespace VKR_Test
                 label4.ForeColor = Color.WhiteSmoke;
             }
         }
+
+        private void HomeRunCelebrationForm_DoubleClick(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

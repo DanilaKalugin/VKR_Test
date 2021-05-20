@@ -101,7 +101,7 @@ namespace VKR_Test
             this.p1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.p1.Controls.Add(this.label20);
             this.p1.Controls.Add(this.label19);
-            this.p1.Location = new System.Drawing.Point(36, 118);
+            this.p1.Location = new System.Drawing.Point(32, 118);
             this.p1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.p1.Name = "p1";
             this.p1.Size = new System.Drawing.Size(120, 180);
@@ -136,7 +136,7 @@ namespace VKR_Test
             this.p2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.p2.Controls.Add(this.label21);
             this.p2.Controls.Add(this.label22);
-            this.p2.Location = new System.Drawing.Point(162, 118);
+            this.p2.Location = new System.Drawing.Point(159, 118);
             this.p2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.p2.Name = "p2";
             this.p2.Size = new System.Drawing.Size(120, 180);
@@ -171,7 +171,7 @@ namespace VKR_Test
             this.p3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.p3.Controls.Add(this.label23);
             this.p3.Controls.Add(this.label24);
-            this.p3.Location = new System.Drawing.Point(288, 118);
+            this.p3.Location = new System.Drawing.Point(286, 118);
             this.p3.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.p3.Name = "p3";
             this.p3.Size = new System.Drawing.Size(120, 180);
@@ -206,7 +206,7 @@ namespace VKR_Test
             this.p4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.p4.Controls.Add(this.label25);
             this.p4.Controls.Add(this.label26);
-            this.p4.Location = new System.Drawing.Point(414, 118);
+            this.p4.Location = new System.Drawing.Point(413, 118);
             this.p4.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.p4.Name = "p4";
             this.p4.Size = new System.Drawing.Size(120, 180);
@@ -241,7 +241,7 @@ namespace VKR_Test
             this.p8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.p8.Controls.Add(this.label34);
             this.p8.Controls.Add(this.label33);
-            this.p8.Location = new System.Drawing.Point(918, 118);
+            this.p8.Location = new System.Drawing.Point(921, 118);
             this.p8.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.p8.Name = "p8";
             this.p8.Size = new System.Drawing.Size(120, 180);
@@ -276,7 +276,7 @@ namespace VKR_Test
             this.p7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.p7.Controls.Add(this.label32);
             this.p7.Controls.Add(this.label31);
-            this.p7.Location = new System.Drawing.Point(792, 118);
+            this.p7.Location = new System.Drawing.Point(794, 118);
             this.p7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.p7.Name = "p7";
             this.p7.Size = new System.Drawing.Size(120, 180);
@@ -311,7 +311,7 @@ namespace VKR_Test
             this.p6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.p6.Controls.Add(this.label29);
             this.p6.Controls.Add(this.label30);
-            this.p6.Location = new System.Drawing.Point(666, 118);
+            this.p6.Location = new System.Drawing.Point(667, 118);
             this.p6.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.p6.Name = "p6";
             this.p6.Size = new System.Drawing.Size(120, 180);
@@ -381,7 +381,7 @@ namespace VKR_Test
             this.p9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.p9.Controls.Add(this.label35);
             this.p9.Controls.Add(this.label36);
-            this.p9.Location = new System.Drawing.Point(1044, 118);
+            this.p9.Location = new System.Drawing.Point(1048, 118);
             this.p9.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.p9.Name = "p9";
             this.p9.Size = new System.Drawing.Size(120, 180);
@@ -415,7 +415,7 @@ namespace VKR_Test
             // 
             this.label1.BackColor = System.Drawing.Color.Black;
             this.label1.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label1.Location = new System.Drawing.Point(36, 301);
+            this.label1.Location = new System.Drawing.Point(32, 301);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 23);
@@ -427,7 +427,7 @@ namespace VKR_Test
             // 
             this.label2.BackColor = System.Drawing.Color.Black;
             this.label2.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label2.Location = new System.Drawing.Point(162, 301);
+            this.label2.Location = new System.Drawing.Point(159, 301);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 23);
@@ -439,7 +439,7 @@ namespace VKR_Test
             // 
             this.label3.BackColor = System.Drawing.Color.Black;
             this.label3.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label3.Location = new System.Drawing.Point(288, 301);
+            this.label3.Location = new System.Drawing.Point(286, 301);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(120, 23);
@@ -451,7 +451,7 @@ namespace VKR_Test
             // 
             this.label4.BackColor = System.Drawing.Color.Black;
             this.label4.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label4.Location = new System.Drawing.Point(414, 301);
+            this.label4.Location = new System.Drawing.Point(413, 301);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(120, 23);
@@ -475,7 +475,7 @@ namespace VKR_Test
             // 
             this.label6.BackColor = System.Drawing.Color.Black;
             this.label6.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label6.Location = new System.Drawing.Point(666, 301);
+            this.label6.Location = new System.Drawing.Point(667, 301);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(120, 23);
@@ -487,7 +487,7 @@ namespace VKR_Test
             // 
             this.label7.BackColor = System.Drawing.Color.Black;
             this.label7.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label7.Location = new System.Drawing.Point(792, 301);
+            this.label7.Location = new System.Drawing.Point(794, 301);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(120, 23);
@@ -499,7 +499,7 @@ namespace VKR_Test
             // 
             this.label8.BackColor = System.Drawing.Color.Black;
             this.label8.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label8.Location = new System.Drawing.Point(918, 301);
+            this.label8.Location = new System.Drawing.Point(921, 301);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(120, 23);
@@ -511,7 +511,7 @@ namespace VKR_Test
             // 
             this.label9.BackColor = System.Drawing.Color.Black;
             this.label9.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label9.Location = new System.Drawing.Point(1044, 301);
+            this.label9.Location = new System.Drawing.Point(1048, 301);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(120, 23);
@@ -523,7 +523,7 @@ namespace VKR_Test
             // 
             this.label10.BackColor = System.Drawing.Color.Black;
             this.label10.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(1044, 324);
+            this.label10.Location = new System.Drawing.Point(1048, 324);
             this.label10.Margin = new System.Windows.Forms.Padding(0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(120, 23);
@@ -535,7 +535,7 @@ namespace VKR_Test
             // 
             this.label11.BackColor = System.Drawing.Color.Black;
             this.label11.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(918, 324);
+            this.label11.Location = new System.Drawing.Point(921, 324);
             this.label11.Margin = new System.Windows.Forms.Padding(0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(120, 23);
@@ -547,7 +547,7 @@ namespace VKR_Test
             // 
             this.label12.BackColor = System.Drawing.Color.Black;
             this.label12.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(792, 324);
+            this.label12.Location = new System.Drawing.Point(794, 324);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(120, 23);
@@ -559,7 +559,7 @@ namespace VKR_Test
             // 
             this.label13.BackColor = System.Drawing.Color.Black;
             this.label13.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(666, 324);
+            this.label13.Location = new System.Drawing.Point(667, 324);
             this.label13.Margin = new System.Windows.Forms.Padding(0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(120, 23);
@@ -583,7 +583,7 @@ namespace VKR_Test
             // 
             this.label15.BackColor = System.Drawing.Color.Black;
             this.label15.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(414, 324);
+            this.label15.Location = new System.Drawing.Point(413, 324);
             this.label15.Margin = new System.Windows.Forms.Padding(0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(120, 23);
@@ -595,7 +595,7 @@ namespace VKR_Test
             // 
             this.label16.BackColor = System.Drawing.Color.Black;
             this.label16.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(288, 324);
+            this.label16.Location = new System.Drawing.Point(286, 324);
             this.label16.Margin = new System.Windows.Forms.Padding(0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(120, 23);
@@ -607,7 +607,7 @@ namespace VKR_Test
             // 
             this.label17.BackColor = System.Drawing.Color.Black;
             this.label17.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label17.Location = new System.Drawing.Point(162, 324);
+            this.label17.Location = new System.Drawing.Point(159, 324);
             this.label17.Margin = new System.Windows.Forms.Padding(0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(120, 23);
@@ -619,7 +619,7 @@ namespace VKR_Test
             // 
             this.label18.BackColor = System.Drawing.Color.Black;
             this.label18.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label18.Location = new System.Drawing.Point(36, 324);
+            this.label18.Location = new System.Drawing.Point(32, 324);
             this.label18.Margin = new System.Windows.Forms.Padding(0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(120, 23);
@@ -730,6 +730,7 @@ namespace VKR_Test
             this.Name = "StartingLineupForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StartingLineupForm";
+            this.DoubleClick += new System.EventHandler(this.StartingLineupForm_DoubleClick);
             this.p1.ResumeLayout(false);
             this.p2.ResumeLayout(false);
             this.p3.ResumeLayout(false);

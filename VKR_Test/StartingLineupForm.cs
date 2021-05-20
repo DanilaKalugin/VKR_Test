@@ -57,5 +57,10 @@ namespace VKR_Test
             timer_LineupForm.Start();
             timer1.Stop();
         }
+
+        private void StartingLineupForm_DoubleClick(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
