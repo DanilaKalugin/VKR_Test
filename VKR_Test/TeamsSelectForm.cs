@@ -46,6 +46,7 @@ namespace VKR_Test
             teams = teamsBL.GetAllTeams().ToList();
             AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].AwayTeamAbbreviation);
             HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
+            btnSwap.Visible = false;
         }
 
         private void TeamsSelectForm_Load(object sender, EventArgs e)
