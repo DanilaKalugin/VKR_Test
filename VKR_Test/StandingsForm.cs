@@ -43,7 +43,7 @@ namespace VKR_Test
             GetNewTable(comboBox1);
         }
 
-        private void GetStandingsForThisGroup(string group, int TeamsInGroup, int GroupNumber, Team _Home, Team _Away)
+        private void GetStandingsForThisGroup(string group, int TeamsInGroup, int GroupNumber)
         {
             teams = teamsBl.GetStandings(group, dateTimePicker1.Value);
             dataGridView1.Rows.Add("", group, "W", "L", "GB", "PCT", "RS", "RA", "DIFF");
@@ -81,23 +81,23 @@ namespace VKR_Test
             {
                 case 0:
                     {
-                        GetStandingsForThisGroup("MLB", 30, 0, HomeTeam, AwayTeam);
+                        GetStandingsForThisGroup("MLB", 30, 0);
                         break;
                     }
                 case 1:
                     {
-                        GetStandingsForThisGroup("AL", 15, 0, HomeTeam, AwayTeam);
-                        GetStandingsForThisGroup("NL", 15, 1, HomeTeam, AwayTeam);
+                        GetStandingsForThisGroup("AL", 15, 0);
+                        GetStandingsForThisGroup("NL", 15, 1);
                         break;
                     }
                 case 2:
                     {
-                        GetStandingsForThisGroup("AL East", 5, 0, HomeTeam, AwayTeam);
-                        GetStandingsForThisGroup("AL Central", 5, 1, HomeTeam, AwayTeam);
-                        GetStandingsForThisGroup("AL West", 5, 2, HomeTeam, AwayTeam);
-                        GetStandingsForThisGroup("NL East", 5, 3, HomeTeam, AwayTeam);
-                        GetStandingsForThisGroup("NL Central", 5, 4, HomeTeam, AwayTeam);
-                        GetStandingsForThisGroup("NL West", 5, 5, HomeTeam, AwayTeam);
+                        GetStandingsForThisGroup("AL East", 5, 0);
+                        GetStandingsForThisGroup("AL Central", 5, 1);
+                        GetStandingsForThisGroup("AL West", 5, 2);
+                        GetStandingsForThisGroup("NL East", 5, 3);
+                        GetStandingsForThisGroup("NL Central", 5, 4);
+                        GetStandingsForThisGroup("NL West", 5, 5);
                         break;
                     }
             }

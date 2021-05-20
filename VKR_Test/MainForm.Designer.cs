@@ -117,7 +117,6 @@
             this.btnSeriesHistory = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.panel15 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
@@ -215,7 +214,6 @@
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel14.SuspendLayout();
-            this.panel15.SuspendLayout();
             this.panel18.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel22.SuspendLayout();
@@ -1236,10 +1234,11 @@
             // 
             // panel14
             // 
+            this.panel14.Controls.Add(this.panel18);
+            this.panel14.Controls.Add(this.panel16);
             this.panel14.Controls.Add(this.btnSeriesHistory);
             this.panel14.Controls.Add(this.label23);
             this.panel14.Controls.Add(this.label22);
-            this.panel14.Controls.Add(this.panel15);
             this.panel14.Controls.Add(this.label18);
             this.panel14.Controls.Add(this.label20);
             this.panel14.Controls.Add(this.label19);
@@ -1322,22 +1321,11 @@
             this.label22.Text = "1.";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // panel15
-            // 
-            this.panel15.Controls.Add(this.panel18);
-            this.panel15.Controls.Add(this.panel16);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel15.Location = new System.Drawing.Point(903, 0);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(520, 138);
-            this.panel15.TabIndex = 44;
-            // 
             // panel18
             // 
             this.panel18.Controls.Add(this.panel17);
             this.panel18.Controls.Add(this.AwayTeamNextBatters);
-            this.panel18.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel18.Location = new System.Drawing.Point(0, 0);
+            this.panel18.Location = new System.Drawing.Point(901, 0);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(260, 138);
             this.panel18.TabIndex = 1;
@@ -1519,8 +1507,7 @@
             // 
             this.panel16.Controls.Add(this.panel19);
             this.panel16.Controls.Add(this.homeTeamNextBatters);
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel16.Location = new System.Drawing.Point(260, 0);
+            this.panel16.Location = new System.Drawing.Point(1162, 0);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(260, 138);
             this.panel16.TabIndex = 0;
@@ -2350,7 +2337,6 @@
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
-            this.panel15.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
@@ -2455,7 +2441,6 @@
         private System.Windows.Forms.Label lbBatterSecondName;
         private System.Windows.Forms.Label lbBatterNumber;
         private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Panel AwayTeamNextBatters;
         private System.Windows.Forms.Panel panel16;
