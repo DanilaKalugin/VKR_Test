@@ -60,6 +60,7 @@ namespace VKR_Test
             label1.ForeColor = teams[TeamNumber].TeamColor[0];
             label3.ForeColor = teams[TeamNumber].TeamColor[0];
             label2.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.7), (int)(teams[TeamNumber].TeamColor[0].G * 0.7), (int)(teams[TeamNumber].TeamColor[0].B * 0.7));
+            label6.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.65), (int)(teams[TeamNumber].TeamColor[0].G * 0.65), (int)(teams[TeamNumber].TeamColor[0].B * 0.65));
 
             lbl_LineupHeader.ForeColor = teams[TeamNumber].TeamColor[0];
             DisplayRoster(TeamNumber, LineupNumber);

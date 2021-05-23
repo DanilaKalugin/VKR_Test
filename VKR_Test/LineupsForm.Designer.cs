@@ -305,7 +305,7 @@ namespace VKR_Test
             // 
             // label6
             // 
-            this.label6.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label6.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.DimGray;
             this.label6.Location = new System.Drawing.Point(624, 147);
             this.label6.Name = "label6";

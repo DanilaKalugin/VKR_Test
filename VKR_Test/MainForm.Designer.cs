@@ -114,9 +114,6 @@
             this.lb2ndInning = new System.Windows.Forms.Label();
             this.lb1stInning = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.btnSeriesHistory = new System.Windows.Forms.Button();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
@@ -151,6 +148,9 @@
             this.homeNextNumber1 = new System.Windows.Forms.Label();
             this.homeTeamNextBatters = new System.Windows.Forms.Panel();
             this.home_DueUP = new System.Windows.Forms.Label();
+            this.btnSeriesHistory = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.panel28 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -532,7 +532,6 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel6.Controls.Add(this.lbTodayStats);
             this.panel6.Controls.Add(this.label14);
             this.panel6.Controls.Add(this.label15);
             this.panel6.Controls.Add(this.label12);
@@ -548,20 +547,21 @@
             this.panel6.Controls.Add(this.panel8);
             this.panel6.Location = new System.Drawing.Point(198, 889);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(903, 140);
+            this.panel6.Size = new System.Drawing.Size(903, 110);
             this.panel6.TabIndex = 3;
             this.panel6.VisibleChanged += new System.EventHandler(this.panel6_VisibleChanged);
             // 
             // lbTodayStats
             // 
-            this.lbTodayStats.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lbTodayStats.BackColor = System.Drawing.Color.Black;
             this.lbTodayStats.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
-            this.lbTodayStats.Location = new System.Drawing.Point(0, 110);
+            this.lbTodayStats.Location = new System.Drawing.Point(88, 999);
             this.lbTodayStats.Name = "lbTodayStats";
-            this.lbTodayStats.Size = new System.Drawing.Size(903, 30);
+            this.lbTodayStats.Size = new System.Drawing.Size(1013, 30);
             this.lbTodayStats.TabIndex = 22;
             this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTodayStats.VisibleChanged += new System.EventHandler(this.lbTodayStats_VisibleChanged);
             // 
             // label14
             // 
@@ -777,10 +777,10 @@
             // panel7
             // 
             this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel7.Location = new System.Drawing.Point(58, 889);
+            this.panel7.Location = new System.Drawing.Point(88, 889);
             this.panel7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(140, 140);
+            this.panel7.Size = new System.Drawing.Size(110, 110);
             this.panel7.TabIndex = 0;
             // 
             // label18
@@ -1283,44 +1283,6 @@
             this.panel14.Size = new System.Drawing.Size(1423, 138);
             this.panel14.TabIndex = 45;
             // 
-            // btnSeriesHistory
-            // 
-            this.btnSeriesHistory.BackColor = System.Drawing.Color.LightGray;
-            this.btnSeriesHistory.FlatAppearance.BorderSize = 0;
-            this.btnSeriesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeriesHistory.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeriesHistory.Location = new System.Drawing.Point(64, 9);
-            this.btnSeriesHistory.Name = "btnSeriesHistory";
-            this.btnSeriesHistory.Size = new System.Drawing.Size(323, 40);
-            this.btnSeriesHistory.TabIndex = 61;
-            this.btnSeriesHistory.Text = "SERIES HISTORY";
-            this.btnSeriesHistory.UseVisualStyleBackColor = false;
-            this.btnSeriesHistory.Click += new System.EventHandler(this.btnSeriesHistory_Click);
-            // 
-            // label23
-            // 
-            this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label23.Location = new System.Drawing.Point(319, 98);
-            this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(64, 31);
-            this.label23.TabIndex = 46;
-            this.label23.Text = "1.";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label22
-            // 
-            this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label22.Location = new System.Drawing.Point(319, 57);
-            this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(64, 31);
-            this.label22.TabIndex = 45;
-            this.label22.Text = "1.";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // panel18
             // 
             this.panel18.Controls.Add(this.panel17);
@@ -1710,6 +1672,44 @@
             this.home_DueUP.TabIndex = 0;
             this.home_DueUP.Text = "label32";
             this.home_DueUP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSeriesHistory
+            // 
+            this.btnSeriesHistory.BackColor = System.Drawing.Color.LightGray;
+            this.btnSeriesHistory.FlatAppearance.BorderSize = 0;
+            this.btnSeriesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeriesHistory.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeriesHistory.Location = new System.Drawing.Point(64, 9);
+            this.btnSeriesHistory.Name = "btnSeriesHistory";
+            this.btnSeriesHistory.Size = new System.Drawing.Size(323, 40);
+            this.btnSeriesHistory.TabIndex = 61;
+            this.btnSeriesHistory.Text = "SERIES HISTORY";
+            this.btnSeriesHistory.UseVisualStyleBackColor = false;
+            this.btnSeriesHistory.Click += new System.EventHandler(this.btnSeriesHistory_Click);
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label23.Location = new System.Drawing.Point(319, 98);
+            this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(64, 31);
+            this.label23.TabIndex = 46;
+            this.label23.Text = "1.";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label22
+            // 
+            this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label22.Location = new System.Drawing.Point(319, 57);
+            this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(64, 31);
+            this.label22.TabIndex = 45;
+            this.label22.Text = "1.";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel28
             // 
@@ -2293,6 +2293,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(this.lbTodayStats);
             this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnOtherResults);
             this.Controls.Add(this.RunnerOn3Photo);

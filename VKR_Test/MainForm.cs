@@ -304,6 +304,8 @@ namespace VKR_Test
             label13.Text = batter.StolenBases.ToString("N0", CultureInfo.InvariantCulture);
             label15.Text = batter.Runs.ToString("N0", CultureInfo.InvariantCulture);
             label17.Text = batter.OPS.ToString("#.000", new CultureInfo("en-US"));
+
+
         }
 
         private void ShowStatsForThisMatch(Batter batter, Label lbTodayStats)
@@ -346,8 +348,7 @@ namespace VKR_Test
             AddNewStatsForTodayStatsLabel(SFs, "SF", lbTodayStats);
             AddNewStatsForTodayStatsLabel(SACs, "SAC", lbTodayStats);
             AddNewStatsForTodayStatsLabel(Ks, "SO", lbTodayStats);
-            lbTodayStats.Visible = lbTodayStats.Text != "►TODAY: ";
-
+            lbTodayStats.Visible = lbTodayStats.Text != "►TODAY: " && panel6.Visible;
         }
 
         private void AddNewStatsForTodayStatsLabel(int value, string text, Label lb)
@@ -789,6 +790,14 @@ namespace VKR_Test
 
                 DisplayingCurrentSituation(newGameSituation);
             }
+        }
+
+        private void lbTodayStats_VisibleChanged(object sender, EventArgs e)
+        {
+            panel6.Height = lbTodayStats.Visible ? 110 : 140;
+            panel7.Width = lbTodayStats.Visible ? 110 : 140;
+            panel7.Height = lbTodayStats.Visible ? 110 : 140;
+            panel7.Left = lbTodayStats.Visible ? 88 : 58;
         }
     }
 }
