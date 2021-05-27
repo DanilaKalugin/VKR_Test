@@ -55,7 +55,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.lbTodayStats = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -74,6 +73,7 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.lblPlayerPosition = new System.Windows.Forms.Label();
             this.lblPlayerNumber = new System.Windows.Forms.Label();
+            this.lbTodayStats = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
@@ -330,7 +330,7 @@
             // 
             // lbBatterNumber
             // 
-            this.lbBatterNumber.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBatterNumber.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBatterNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.lbBatterNumber.Location = new System.Drawing.Point(3, 5);
             this.lbBatterNumber.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -551,18 +551,6 @@
             this.panel6.TabIndex = 3;
             this.panel6.VisibleChanged += new System.EventHandler(this.panel6_VisibleChanged);
             // 
-            // lbTodayStats
-            // 
-            this.lbTodayStats.BackColor = System.Drawing.Color.Black;
-            this.lbTodayStats.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
-            this.lbTodayStats.Location = new System.Drawing.Point(88, 999);
-            this.lbTodayStats.Name = "lbTodayStats";
-            this.lbTodayStats.Size = new System.Drawing.Size(1013, 30);
-            this.lbTodayStats.TabIndex = 22;
-            this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbTodayStats.VisibleChanged += new System.EventHandler(this.lbTodayStats_VisibleChanged);
-            // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("MicroFLF", 14F);
@@ -738,6 +726,7 @@
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel9.Controls.Add(this.lblPlayerPosition);
             this.panel9.Controls.Add(this.lblPlayerNumber);
+            this.panel9.ForeColor = System.Drawing.Color.White;
             this.panel9.Location = new System.Drawing.Point(3, 3);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(89, 30);
@@ -757,13 +746,25 @@
             // lblPlayerNumber
             // 
             this.lblPlayerNumber.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerNumber.ForeColor = System.Drawing.Color.White;
+            this.lblPlayerNumber.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblPlayerNumber.Location = new System.Drawing.Point(3, 3);
             this.lblPlayerNumber.Name = "lblPlayerNumber";
             this.lblPlayerNumber.Size = new System.Drawing.Size(36, 24);
             this.lblPlayerNumber.TabIndex = 0;
             this.lblPlayerNumber.Text = "00";
             this.lblPlayerNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbTodayStats
+            // 
+            this.lbTodayStats.BackColor = System.Drawing.Color.Black;
+            this.lbTodayStats.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
+            this.lbTodayStats.Location = new System.Drawing.Point(88, 999);
+            this.lbTodayStats.Name = "lbTodayStats";
+            this.lbTodayStats.Size = new System.Drawing.Size(1013, 30);
+            this.lbTodayStats.TabIndex = 22;
+            this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTodayStats.VisibleChanged += new System.EventHandler(this.lbTodayStats_VisibleChanged);
             // 
             // panel10
             // 
@@ -1341,7 +1342,7 @@
             // 
             // AwayNextNumber3
             // 
-            this.AwayNextNumber3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AwayNextNumber3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AwayNextNumber3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.AwayNextNumber3.Location = new System.Drawing.Point(3, 5);
             this.AwayNextNumber3.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1387,7 +1388,7 @@
             // 
             // AwayNextNumber2
             // 
-            this.AwayNextNumber2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AwayNextNumber2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AwayNextNumber2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.AwayNextNumber2.Location = new System.Drawing.Point(3, 5);
             this.AwayNextNumber2.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1434,7 +1435,7 @@
             // 
             // AwayNextNumber1
             // 
-            this.AwayNextNumber1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AwayNextNumber1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AwayNextNumber1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.AwayNextNumber1.Location = new System.Drawing.Point(3, 5);
             this.AwayNextNumber1.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1523,7 +1524,7 @@
             // 
             // homeNextNumber3
             // 
-            this.homeNextNumber3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.homeNextNumber3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.homeNextNumber3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.homeNextNumber3.Location = new System.Drawing.Point(3, 5);
             this.homeNextNumber3.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1569,7 +1570,7 @@
             // 
             // homeNextNumber2
             // 
-            this.homeNextNumber2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.homeNextNumber2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.homeNextNumber2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.homeNextNumber2.Location = new System.Drawing.Point(3, 5);
             this.homeNextNumber2.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1642,7 +1643,7 @@
             // 
             // homeNextNumber1
             // 
-            this.homeNextNumber1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.homeNextNumber1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.homeNextNumber1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.homeNextNumber1.Location = new System.Drawing.Point(3, 5);
             this.homeNextNumber1.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1690,25 +1691,23 @@
             // label23
             // 
             this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label23.ForeColor = System.Drawing.Color.Gainsboro;
             this.label23.Location = new System.Drawing.Point(319, 98);
             this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(64, 31);
             this.label23.TabIndex = 46;
-            this.label23.Text = "1.";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label22
             // 
             this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label22.ForeColor = System.Drawing.Color.Gainsboro;
             this.label22.Location = new System.Drawing.Point(319, 57);
             this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(64, 31);
             this.label22.TabIndex = 45;
-            this.label22.Text = "1.";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel28
@@ -2009,7 +2008,7 @@
             // 
             this.PitcherName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherName.ForeColor = System.Drawing.Color.White;
-            this.PitcherName.Location = new System.Drawing.Point(43, 3);
+            this.PitcherName.Location = new System.Drawing.Point(46, 3);
             this.PitcherName.Name = "PitcherName";
             this.PitcherName.Size = new System.Drawing.Size(178, 39);
             this.PitcherName.TabIndex = 8;
@@ -2022,7 +2021,7 @@
             this.PitchingTeam.Location = new System.Drawing.Point(3, 3);
             this.PitchingTeam.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
             this.PitchingTeam.Name = "PitchingTeam";
-            this.PitchingTeam.Size = new System.Drawing.Size(39, 39);
+            this.PitchingTeam.Size = new System.Drawing.Size(37, 37);
             this.PitchingTeam.TabIndex = 7;
             // 
             // PitcherPhoto

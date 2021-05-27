@@ -68,15 +68,8 @@ namespace VKR_Test
         {
             NumberOfLastInningDefinition(endedmatch);
 
-            label18.BackColor = endedmatch.AwayTeam.TeamColorForThisMatch;
-            label18.Text = endedmatch.AwayTeam.TeamAbbreviation.ToUpper();
-            panel11.BackgroundImage = Image.FromFile($"SmallTeamLogos/{endedmatch.AwayTeam.TeamAbbreviation}.png");
-            panel12.BackgroundImage = Image.FromFile($"SmallTeamLogos/{endedmatch.HomeTeam.TeamAbbreviation}.png");
-
-            label19.Text = endedmatch.HomeTeam.TeamAbbreviation.ToUpper();
-            label19.BackColor = endedmatch.HomeTeam.TeamColorForThisMatch;
-            panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{endedmatch.AwayTeam.TeamAbbreviation}.png");
-            panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{endedmatch.HomeTeam.TeamAbbreviation}.png");
+            GetInformationAboutTeam(endedmatch.AwayTeam, label18, AwayTeamSmallLogo, lbAwayBalance, panel1);
+            GetInformationAboutTeam(endedmatch.HomeTeam, label19, HomeTeamSmallLogo, lbHomeBalance, panel2);
 
             label1.Text = endedmatch.gameSituations.Last().AwayTeamRuns.ToString();
             label2.Text = endedmatch.gameSituations.Last().HomeTeamRuns.ToString();
@@ -86,6 +79,17 @@ namespace VKR_Test
 
             MatchResultForPitcherAnalysis(endedmatch, endedmatch.AwayTeam);
             MatchResultForPitcherAnalysis(endedmatch, endedmatch.HomeTeam);
+        }
+
+        private void GetInformationAboutTeam(Team team, Label Abbreviation, Panel panelSmallLogo, Label Balance, Panel panelBigLogo)
+        {
+            Abbreviation.BackColor = team.TeamColorForThisMatch;
+            Abbreviation.Text = team.TeamAbbreviation.ToUpper();
+            panelSmallLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{team.TeamAbbreviation}.png");
+            Balance.Text = $"{team.Wins}-{team.Losses}";
+            Balance.ForeColor = team.TeamColorForThisMatch;
+            panelBigLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            panelBigLogo.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.85), (int)(team.TeamColorForThisMatch.G * 0.85), (int)(team.TeamColorForThisMatch.B * 0.85));
         }
 
         private void MatchResultForPitcherAnalysis(Match endedmatch, Team awayTeam)

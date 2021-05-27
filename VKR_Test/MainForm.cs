@@ -304,8 +304,6 @@ namespace VKR_Test
             label13.Text = batter.StolenBases.ToString("N0", CultureInfo.InvariantCulture);
             label15.Text = batter.Runs.ToString("N0", CultureInfo.InvariantCulture);
             label17.Text = batter.OPS.ToString("#.000", new CultureInfo("en-US"));
-
-
         }
 
         private void ShowStatsForThisMatch(Batter batter, Label lbTodayStats)
