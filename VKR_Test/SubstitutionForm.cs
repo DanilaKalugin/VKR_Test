@@ -32,6 +32,7 @@ namespace VKR_Test
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
         {
             dataGridView1.DefaultCellStyle.SelectionBackColor = CurrentTeam.TeamColorForThisMatch;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(CurrentTeam.TeamColorForThisMatch, false);
             panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{CurrentTeam.TeamAbbreviation}.png");
         }
 

@@ -167,6 +167,7 @@ namespace VKR_Test
             this.label18.Size = new System.Drawing.Size(86, 39);
             this.label18.TabIndex = 44;
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label18.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label20
             // 
@@ -192,6 +193,7 @@ namespace VKR_Test
             this.label19.Size = new System.Drawing.Size(86, 39);
             this.label19.TabIndex = 45;
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label19.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label21
             // 

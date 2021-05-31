@@ -176,5 +176,17 @@ namespace VKR_Test
             DisplayTeam(AwayTeamNumber, numericUpDown1, label1, label2, panel1, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
             DisplayTeam(HomeTeamNumber, numericUpDown2, label8, label7, panel2, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
+
+        private void BackColorChanging_label(object sender, EventArgs e)
+        {
+            Label l = sender as Label;
+            l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
+        }
+
+        private void BackColorChanging_button(object sender, EventArgs e)
+        {
+            Button l = sender as Button;
+            l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
+        }
     }
 }

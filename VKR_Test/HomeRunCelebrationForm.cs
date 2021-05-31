@@ -41,16 +41,10 @@ namespace VKR_Test
             timer1.Start();
         }
 
-        private void HomeRunCelebrationForm_BackColorChanged(object sender, EventArgs e)
+        private void BackColorChanging(object sender, EventArgs e)
         {
-            List<int> colorcomponents = new List<int> { BackColor.R, BackColor.G, BackColor.B };
-            if(colorcomponents.Max() <= 40)
-            {
-                label1.ForeColor = Color.WhiteSmoke;
-                label2.ForeColor = Color.WhiteSmoke;
-                label3.ForeColor = Color.WhiteSmoke;
-                label4.ForeColor = Color.WhiteSmoke;
-            }
+            Label l = sender as Label;
+            l.BackColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(BackColor, true);
         }
 
         private void HomeRunCelebrationForm_DoubleClick(object sender, EventArgs e)

@@ -308,10 +308,10 @@
             // 
             this.BatterStats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BatterStats.ForeColor = System.Drawing.Color.White;
-            this.BatterStats.Location = new System.Drawing.Point(178, 5);
+            this.BatterStats.Location = new System.Drawing.Point(168, 5);
             this.BatterStats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.BatterStats.Name = "BatterStats";
-            this.BatterStats.Size = new System.Drawing.Size(71, 20);
+            this.BatterStats.Size = new System.Drawing.Size(81, 20);
             this.BatterStats.TabIndex = 4;
             this.BatterStats.Text = "0";
             this.BatterStats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -396,6 +396,7 @@
             this.HomeTeam_Abbreviation.Size = new System.Drawing.Size(99, 39);
             this.HomeTeam_Abbreviation.TabIndex = 1;
             this.HomeTeam_Abbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.HomeTeam_Abbreviation.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // HomeTeam_RunsScored
             // 
@@ -408,6 +409,7 @@
             this.HomeTeam_RunsScored.Size = new System.Drawing.Size(58, 39);
             this.HomeTeam_RunsScored.TabIndex = 3;
             this.HomeTeam_RunsScored.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.HomeTeam_RunsScored.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel4
             // 
@@ -432,6 +434,7 @@
             this.AwayTeam_RunsScored.Size = new System.Drawing.Size(58, 39);
             this.AwayTeam_RunsScored.TabIndex = 2;
             this.AwayTeam_RunsScored.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.AwayTeam_RunsScored.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // AwayTeam_Abbreviation
             // 
@@ -444,6 +447,7 @@
             this.AwayTeam_Abbreviation.Size = new System.Drawing.Size(99, 39);
             this.AwayTeam_Abbreviation.TabIndex = 0;
             this.AwayTeam_Abbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AwayTeam_Abbreviation.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel3
             // 
@@ -708,6 +712,7 @@
             this.btnChangeBatter.TabIndex = 61;
             this.btnChangeBatter.Text = "CHANGE";
             this.btnChangeBatter.UseVisualStyleBackColor = true;
+            this.btnChangeBatter.BackColorChanged += new System.EventHandler(this.BackColorChanging_button);
             this.btnChangeBatter.Click += new System.EventHandler(this.btnChangeBatter_Click);
             // 
             // lblPlayerName
@@ -720,6 +725,7 @@
             this.lblPlayerName.TabIndex = 2;
             this.lblPlayerName.Text = "00";
             this.lblPlayerName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPlayerName.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel9
             // 
@@ -742,6 +748,7 @@
             this.lblPlayerPosition.TabIndex = 1;
             this.lblPlayerPosition.Text = "00";
             this.lblPlayerPosition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPlayerPosition.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // lblPlayerNumber
             // 
@@ -753,6 +760,7 @@
             this.lblPlayerNumber.TabIndex = 0;
             this.lblPlayerNumber.Text = "00";
             this.lblPlayerNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPlayerNumber.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // lbTodayStats
             // 
@@ -795,6 +803,7 @@
             this.label18.Size = new System.Drawing.Size(287, 39);
             this.label18.TabIndex = 4;
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label18.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label19
             // 
@@ -807,6 +816,7 @@
             this.label19.Size = new System.Drawing.Size(287, 39);
             this.label19.TabIndex = 5;
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label19.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel11
             // 
@@ -1321,10 +1331,10 @@
             // 
             this.AwayNext3Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AwayNext3Stats.ForeColor = System.Drawing.Color.White;
-            this.AwayNext3Stats.Location = new System.Drawing.Point(185, 5);
+            this.AwayNext3Stats.Location = new System.Drawing.Point(175, 5);
             this.AwayNext3Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.AwayNext3Stats.Name = "AwayNext3Stats";
-            this.AwayNext3Stats.Size = new System.Drawing.Size(71, 20);
+            this.AwayNext3Stats.Size = new System.Drawing.Size(81, 20);
             this.AwayNext3Stats.TabIndex = 6;
             this.AwayNext3Stats.Text = "0";
             this.AwayNext3Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1367,10 +1377,10 @@
             // 
             this.AwayNext2Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AwayNext2Stats.ForeColor = System.Drawing.Color.White;
-            this.AwayNext2Stats.Location = new System.Drawing.Point(185, 5);
+            this.AwayNext2Stats.Location = new System.Drawing.Point(175, 5);
             this.AwayNext2Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.AwayNext2Stats.Name = "AwayNext2Stats";
-            this.AwayNext2Stats.Size = new System.Drawing.Size(71, 20);
+            this.AwayNext2Stats.Size = new System.Drawing.Size(81, 20);
             this.AwayNext2Stats.TabIndex = 6;
             this.AwayNext2Stats.Text = "0";
             this.AwayNext2Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1414,10 +1424,10 @@
             // 
             this.AwayNext1Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AwayNext1Stats.ForeColor = System.Drawing.Color.White;
-            this.AwayNext1Stats.Location = new System.Drawing.Point(185, 5);
+            this.AwayNext1Stats.Location = new System.Drawing.Point(175, 5);
             this.AwayNext1Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.AwayNext1Stats.Name = "AwayNext1Stats";
-            this.AwayNext1Stats.Size = new System.Drawing.Size(71, 20);
+            this.AwayNext1Stats.Size = new System.Drawing.Size(81, 20);
             this.AwayNext1Stats.TabIndex = 5;
             this.AwayNext1Stats.Text = "0";
             this.AwayNext1Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1465,6 +1475,7 @@
             this.away_DueUP.TabIndex = 0;
             this.away_DueUP.Text = "label32";
             this.away_DueUP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.away_DueUP.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel16
             // 
@@ -1503,10 +1514,10 @@
             // 
             this.HomeNext3Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HomeNext3Stats.ForeColor = System.Drawing.Color.White;
-            this.HomeNext3Stats.Location = new System.Drawing.Point(185, 5);
+            this.HomeNext3Stats.Location = new System.Drawing.Point(175, 5);
             this.HomeNext3Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.HomeNext3Stats.Name = "HomeNext3Stats";
-            this.HomeNext3Stats.Size = new System.Drawing.Size(71, 20);
+            this.HomeNext3Stats.Size = new System.Drawing.Size(81, 20);
             this.HomeNext3Stats.TabIndex = 8;
             this.HomeNext3Stats.Text = "0";
             this.HomeNext3Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1549,10 +1560,10 @@
             // 
             this.HomeNext2Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HomeNext2Stats.ForeColor = System.Drawing.Color.White;
-            this.HomeNext2Stats.Location = new System.Drawing.Point(185, 5);
+            this.HomeNext2Stats.Location = new System.Drawing.Point(175, 5);
             this.HomeNext2Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.HomeNext2Stats.Name = "HomeNext2Stats";
-            this.HomeNext2Stats.Size = new System.Drawing.Size(71, 20);
+            this.HomeNext2Stats.Size = new System.Drawing.Size(81, 20);
             this.HomeNext2Stats.TabIndex = 8;
             this.HomeNext2Stats.Text = "0";
             this.HomeNext2Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1598,10 +1609,10 @@
             // 
             this.HomeNext1Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HomeNext1Stats.ForeColor = System.Drawing.Color.White;
-            this.HomeNext1Stats.Location = new System.Drawing.Point(185, 5);
+            this.HomeNext1Stats.Location = new System.Drawing.Point(175, 5);
             this.HomeNext1Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.HomeNext1Stats.Name = "HomeNext1Stats";
-            this.HomeNext1Stats.Size = new System.Drawing.Size(71, 20);
+            this.HomeNext1Stats.Size = new System.Drawing.Size(81, 20);
             this.HomeNext1Stats.TabIndex = 7;
             this.HomeNext1Stats.Text = "0";
             this.HomeNext1Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1673,6 +1684,7 @@
             this.home_DueUP.TabIndex = 0;
             this.home_DueUP.Text = "label32";
             this.home_DueUP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.home_DueUP.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // btnSeriesHistory
             // 
@@ -2014,6 +2026,7 @@
             this.PitcherName.TabIndex = 8;
             this.PitcherName.Text = "Player";
             this.PitcherName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PitcherName.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // PitchingTeam
             // 
@@ -2077,6 +2090,7 @@
             this.lb2ndBase.TabIndex = 0;
             this.lb2ndBase.Text = "2ND BASE";
             this.lb2ndBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb2ndBase.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // RunnerOn2Photo
             // 
@@ -2131,6 +2145,7 @@
             this.lb1stBase.TabIndex = 1;
             this.lb1stBase.Text = "1ST BASE";
             this.lb1stBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb1stBase.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // RunnerOn1Photo
             // 
@@ -2183,6 +2198,7 @@
             this.lb3rdBase.TabIndex = 1;
             this.lb3rdBase.Text = "3RD BASE";
             this.lb3rdBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb3rdBase.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // RunnerOn3Photo
             // 
@@ -2256,6 +2272,7 @@
             this.btnShowAvailablePitchers.Text = "CHANGE PITCHER";
             this.btnShowAvailablePitchers.UseVisualStyleBackColor = true;
             this.btnShowAvailablePitchers.Visible = false;
+            this.btnShowAvailablePitchers.BackColorChanged += new System.EventHandler(this.BackColorChanging_button);
             this.btnShowAvailablePitchers.Click += new System.EventHandler(this.btnShowAvailablePitchers_Click);
             // 
             // btnOtherResults

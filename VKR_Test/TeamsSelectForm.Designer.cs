@@ -87,6 +87,7 @@ namespace VKR_Test
             this.label1.TabIndex = 2;
             this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label1.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label2
             // 
@@ -99,6 +100,7 @@ namespace VKR_Test
             this.label2.TabIndex = 3;
             this.label2.Text = "label2";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label2.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // numericUpDown1
             // 
@@ -175,6 +177,7 @@ namespace VKR_Test
             this.label7.TabIndex = 10;
             this.label7.Text = "label7";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label8
             // 
@@ -188,6 +191,7 @@ namespace VKR_Test
             this.label8.TabIndex = 9;
             this.label8.Text = "label8";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel2
             // 
@@ -210,6 +214,7 @@ namespace VKR_Test
             this.btnIncreaseAwayTeamNumberBy1.TabIndex = 13;
             this.btnIncreaseAwayTeamNumberBy1.Text = ">";
             this.btnIncreaseAwayTeamNumberBy1.UseVisualStyleBackColor = true;
+            this.btnIncreaseAwayTeamNumberBy1.BackColorChanged += new System.EventHandler(this.BackColorChanging_button);
             this.btnIncreaseAwayTeamNumberBy1.Click += new System.EventHandler(this.btnIncreaseAwayTeamNumberBy1_Click);
             // 
             // btnDecreaseAwayTeamNumberBy1
@@ -224,6 +229,7 @@ namespace VKR_Test
             this.btnDecreaseAwayTeamNumberBy1.TabIndex = 14;
             this.btnDecreaseAwayTeamNumberBy1.Text = "<";
             this.btnDecreaseAwayTeamNumberBy1.UseVisualStyleBackColor = true;
+            this.btnDecreaseAwayTeamNumberBy1.BackColorChanged += new System.EventHandler(this.BackColorChanging_button);
             this.btnDecreaseAwayTeamNumberBy1.Click += new System.EventHandler(this.btnDecreaseAwayTeamNumberBy1_Click);
             // 
             // btnIncreaseHomeTeamNumberBy1
@@ -239,6 +245,7 @@ namespace VKR_Test
             this.btnIncreaseHomeTeamNumberBy1.TabIndex = 15;
             this.btnIncreaseHomeTeamNumberBy1.Text = ">";
             this.btnIncreaseHomeTeamNumberBy1.UseVisualStyleBackColor = true;
+            this.btnIncreaseHomeTeamNumberBy1.BackColorChanged += new System.EventHandler(this.BackColorChanging_button);
             this.btnIncreaseHomeTeamNumberBy1.Click += new System.EventHandler(this.btnIncreaseHomeTeamNumberBy1_Click);
             // 
             // btnDecreaseHomeTeamNumberBy1
@@ -254,6 +261,7 @@ namespace VKR_Test
             this.btnDecreaseHomeTeamNumberBy1.TabIndex = 16;
             this.btnDecreaseHomeTeamNumberBy1.Text = "<";
             this.btnDecreaseHomeTeamNumberBy1.UseVisualStyleBackColor = true;
+            this.btnDecreaseHomeTeamNumberBy1.BackColorChanged += new System.EventHandler(this.BackColorChanging_button);
             this.btnDecreaseHomeTeamNumberBy1.Click += new System.EventHandler(this.btnDecreaseHomeTeamNumberBy1_Click);
             // 
             // AwayOverallRating

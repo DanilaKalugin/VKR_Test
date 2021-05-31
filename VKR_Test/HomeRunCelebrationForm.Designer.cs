@@ -51,6 +51,7 @@ namespace VKR_Test
             this.label1.TabIndex = 0;
             this.label1.Text = "Home";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.BackColorChanged += new System.EventHandler(this.BackColorChanging);
             // 
             // timer1
             // 
@@ -90,6 +91,7 @@ namespace VKR_Test
             this.label2.TabIndex = 7;
             this.label2.Text = "Home";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.BackColorChanged += new System.EventHandler(this.BackColorChanging);
             // 
             // label3
             // 
@@ -100,6 +102,7 @@ namespace VKR_Test
             this.label3.TabIndex = 8;
             this.label3.Text = "Home";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.BackColorChanged += new System.EventHandler(this.BackColorChanging);
             // 
             // timer2
             // 
@@ -115,6 +118,7 @@ namespace VKR_Test
             this.label4.TabIndex = 9;
             this.label4.Text = "Home";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.BackColorChanged += new System.EventHandler(this.BackColorChanging);
             // 
             // HomeRunCelebrationForm
             // 
@@ -133,7 +137,6 @@ namespace VKR_Test
             this.Name = "HomeRunCelebrationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeRunCelebrationForm";
-            this.BackColorChanged += new System.EventHandler(this.HomeRunCelebrationForm_BackColorChanged);
             this.DoubleClick += new System.EventHandler(this.HomeRunCelebrationForm_DoubleClick);
             this.ResumeLayout(false);
 

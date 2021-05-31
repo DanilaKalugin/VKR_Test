@@ -110,5 +110,11 @@ namespace VKR_Test
             DialogResult = DialogResult.OK;
             Hide();
         }
+
+        private void BackColorChanging_label(object sender, EventArgs e)
+        {
+            Label l = sender as Label;
+            l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
+        }
     }
 }

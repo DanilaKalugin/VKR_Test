@@ -274,11 +274,15 @@ namespace VKR_Test
                                                                               atBat.AtBatResult == AtBat.AtBatType.Strikeout ||
                                                                               atBat.AtBatResult == AtBat.AtBatType.Flyout ||
                                                                               atBat.AtBatResult == AtBat.AtBatType.Groundout)).Count();
-                BatterStats.Text = Hits + " for " + AtBats;
+                BatterStats.Text = Hits + " FOR " + AtBats;
             }
             else if (currentMatch.atBats.Where(atBat => atBat.Batter == batter.id && (atBat.AtBatResult == AtBat.AtBatType.HitByPitch)).Count() > 0)
             {
                 BatterStats.Text = "HBP";
+            }
+            else if (currentMatch.atBats.Where(atBat => atBat.Batter == batter.id && atBat.AtBatResult == AtBat.AtBatType.Walk).Count() > 0)
+            {
+                BatterStats.Text = "WALK";
             }
             else
             {
@@ -796,6 +800,18 @@ namespace VKR_Test
             panel7.Width = lbTodayStats.Visible ? 110 : 140;
             panel7.Height = lbTodayStats.Visible ? 110 : 140;
             panel7.Left = lbTodayStats.Visible ? 88 : 58;
+        }
+
+        private void BackColorChanging_label(object sender, EventArgs e)
+        {
+            Label l = sender as Label;
+            l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
+        }
+
+        private void BackColorChanging_button(object sender, EventArgs e)
+        {
+            Button l = sender as Button;
+            l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
         }
     }
 }
