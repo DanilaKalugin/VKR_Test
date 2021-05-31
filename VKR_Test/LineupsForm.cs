@@ -118,9 +118,15 @@ namespace VKR_Test
         private void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, PlayerInLineup player)
         {
             dgv2.DefaultCellStyle.SelectionBackColor = Color.Gainsboro;
+            dgv2.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.LightGray;
+            dgv2.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv2.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.Black;
+
             dgv1.DefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
             dgv1.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgv2.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv1.AlternatingRowsDefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
+            dgv1.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
+
             if (dgv1.SelectedRows.Count > 0)
             {
                 panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.png");
@@ -132,7 +138,7 @@ namespace VKR_Test
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            if(dataGridView2.SelectedRows.Count > 0 && !LineupChanged)
+            if (dataGridView2.SelectedRows.Count > 0 && !LineupChanged)
             {
                 ShowNewPlayer(dataGridView2, dataGridView1, bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index]);
             }

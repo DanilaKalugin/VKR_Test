@@ -210,7 +210,7 @@ namespace VKR_Test
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("MicroFLF", 42F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.DimGray;
             this.label2.Location = new System.Drawing.Point(6, 98);
             this.label2.Name = "label2";
@@ -318,13 +318,13 @@ namespace VKR_Test
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 414);
+            this.Controls.Add(this.panel10);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panelTeamLogo);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel10);
             this.Controls.Add(this.lbl_LineupHeader);
             this.Controls.Add(this.btnDecLineupTypeNumberBy1);
             this.Controls.Add(this.btnIncLineupTypeNumberBy1);
