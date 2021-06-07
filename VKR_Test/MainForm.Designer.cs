@@ -1305,7 +1305,7 @@
             // 
             // panel17
             // 
-            this.panel17.BackColor = System.Drawing.SystemColors.Control;
+            this.panel17.BackColor = System.Drawing.Color.White;
             this.panel17.Controls.Add(this.panel22);
             this.panel17.Controls.Add(this.panel21);
             this.panel17.Controls.Add(this.panel20);
@@ -1488,7 +1488,7 @@
             // 
             // panel19
             // 
-            this.panel19.BackColor = System.Drawing.SystemColors.Control;
+            this.panel19.BackColor = System.Drawing.Color.White;
             this.panel19.Controls.Add(this.panel23);
             this.panel19.Controls.Add(this.panel24);
             this.panel19.Controls.Add(this.panel25);
@@ -1710,6 +1710,7 @@
             this.label23.Size = new System.Drawing.Size(64, 31);
             this.label23.TabIndex = 46;
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label23.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label22
             // 
@@ -1721,6 +1722,7 @@
             this.label22.Size = new System.Drawing.Size(64, 31);
             this.label22.TabIndex = 45;
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label22.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel28
             // 
@@ -2307,7 +2309,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
             this.Controls.Add(this.lbTodayStats);
             this.Controls.Add(this.btnPlayerStats);
