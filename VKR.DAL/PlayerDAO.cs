@@ -120,8 +120,10 @@ namespace VKR.DAL
                         int QualityStarts = (int)reader["QS"];
                         int CompleteGames = (int)reader["CG"];
                         int Shutouts = (int)reader["SHO"];
+                        int Flyout = (int)reader["AO"];
+                        int Groundout = (int)reader["GO"];
                         int TGP = (int)reader["TGP"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, TGP);
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, TGP, Groundout, Flyout);
                     }
                 }
             }
