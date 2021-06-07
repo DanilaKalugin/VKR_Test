@@ -87,6 +87,7 @@ namespace VKR_Test
                                         pitchers[i].TotalBattersFaced,
                                         pitchers[i].QualityStarts,
                                         pitchers[i].DoublePlays,
+                                        pitchers[i].GOtoAO.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].KperNineInnings.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].BBperNineInnings.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].KperBB.ToString("0.00", new CultureInfo("en-US")),
@@ -175,7 +176,7 @@ namespace VKR_Test
         {
             switch (e.ColumnIndex)
             {
-                case 5:
+                case 6:
                     {
                         if (sortingStandardPitchers[7] == SortMode.Ascending)
                         {
@@ -189,7 +190,7 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 6:
+                case 7:
                     {
                         if (sortingStandardPitchers[8] == SortMode.Ascending)
                         {
@@ -203,7 +204,7 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 7:
+                case 8:
                     {
                         if (sortingStandardPitchers[4] == SortMode.Ascending)
                         {
@@ -218,7 +219,7 @@ namespace VKR_Test
                         break;
                     }
             }
-            if (e.ColumnIndex == 5 || e.ColumnIndex == 6 || e.ColumnIndex == 7)
+            if (e.ColumnIndex == 6 || e.ColumnIndex == 7 || e.ColumnIndex == 8)
             {
                 dataGridView4.Rows.Clear();
                 for (int i = 0; i < pitchers.Count; i++)
@@ -228,6 +229,7 @@ namespace VKR_Test
                                         pitchers[i].TotalBattersFaced,
                                         pitchers[i].QualityStarts,
                                         pitchers[i].DoublePlays,
+                                        pitchers[i].GOtoAO.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].KperNineInnings.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].BBperNineInnings.ToString("0.00", new CultureInfo("en-US")),
                                         pitchers[i].KperBB.ToString("0.00", new CultureInfo("en-US")),
