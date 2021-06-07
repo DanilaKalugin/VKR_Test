@@ -44,7 +44,7 @@ namespace VKR_Test
         private void BackColorChanging(object sender, EventArgs e)
         {
             Label l = sender as Label;
-            l.BackColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(BackColor, true);
+            l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(BackColor, true);
         }
 
         private void HomeRunCelebrationForm_DoubleClick(object sender, EventArgs e)
