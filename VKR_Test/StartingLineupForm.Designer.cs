@@ -648,7 +648,7 @@ namespace VKR_Test
             // 
             // timer_LineupForm
             // 
-            this.timer_LineupForm.Interval = 3;
+            this.timer_LineupForm.Interval = 2;
             this.timer_LineupForm.Tick += new System.EventHandler(this.timer_LineupForm_Tick);
             // 
             // panel1
