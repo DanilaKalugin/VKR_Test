@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,14 +16,34 @@ namespace VKR_Test
         List<Batter> batters;
         List<Pitcher> pitchers;
         private enum SortMode { Ascending, Descending };
-        private SortMode[] sortingStandardPitchers;
+        private enum PlayerType { Pitchers, Batters };
+        private enum StatsType { Standard, Expanded };
+
+        private SortMode[] sortModes;
+        private PlayerType playerType;
+        private StatsType statsType;
 
         public PlayerStatsForm()
         {
             InitializeComponent();
             playersBL = new PlayerBL();
-            sortingStandardPitchers = new SortMode[9];
-            sortingStandardPitchers[0] = SortMode.Ascending;
+            sortModes = new SortMode[9];
+            playerType = PlayerType.Batters;
+            statsType = StatsType.Standard;
+            ShowNewStats(playerType, statsType);
+        }
+
+        private void ShowNewStats(PlayerType playerType, StatsType statsType)
+        {
+            panelStandardBatterStats.Visible = playerType == PlayerType.Batters && statsType == StatsType.Standard;
+            panelExpandedBatterStats.Visible = playerType == PlayerType.Batters && statsType == StatsType.Expanded;
+            panelStandardPitcherStats.Visible = playerType == PlayerType.Pitchers && statsType == StatsType.Standard;
+            panelExpandedPitcherStats.Visible = playerType == PlayerType.Pitchers && statsType == StatsType.Expanded;
+
+            btnExpandedStats.BackColor = statsType == StatsType.Expanded ? Color.LightGray : Color.DarkGray;
+            btnStandardStats.BackColor = statsType == StatsType.Standard ? Color.LightGray : Color.DarkGray;
+            btnHitting.BackColor = playerType == PlayerType.Batters ? Color.LightGray : Color.DarkGray;
+            btnPitching.BackColor = playerType == PlayerType.Pitchers ? Color.LightGray : Color.DarkGray;
         }
 
         private void PlayerStatsForm_Load(object sender, EventArgs e)
@@ -94,8 +115,6 @@ namespace VKR_Test
                                         pitchers[i].StolenBasesAllowed,
                                         pitchers[i].CaughtStealing);
             }
-
-            Height = 120 + 25 * 20;
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -112,29 +131,29 @@ namespace VKR_Test
             {
                 case 7:
                     {
-                        if (sortingStandardPitchers[5] == SortMode.Ascending)
+                        if (sortModes[5] == SortMode.Ascending)
                         {
                             batters = batters.OrderByDescending(batter => batter.GOtoAO).ToList();
-                            sortingStandardPitchers[5] = SortMode.Descending;
+                            sortModes[5] = SortMode.Descending;
                         }
                         else
                         {
                             batters = batters.OrderBy(batter => batter.GOtoAO).ToList();
-                            sortingStandardPitchers[5] = SortMode.Ascending;
+                            sortModes[5] = SortMode.Ascending;
                         }
                         break;
                     }
                 case 11:
                     {
-                        if (sortingStandardPitchers[6] == SortMode.Ascending)
+                        if (sortModes[6] == SortMode.Ascending)
                         {
                             batters = batters.OrderByDescending(batter => batter.ABperHR).ToList();
-                            sortingStandardPitchers[6] = SortMode.Descending;
+                            sortModes[6] = SortMode.Descending;
                         }
                         else
                         {
                             batters = batters.OrderBy(batter => batter.ABperHR).ToList();
-                            sortingStandardPitchers[6] = SortMode.Ascending;
+                            sortModes[6] = SortMode.Ascending;
                         }
                         break;
                     }
@@ -178,43 +197,43 @@ namespace VKR_Test
             {
                 case 6:
                     {
-                        if (sortingStandardPitchers[7] == SortMode.Ascending)
+                        if (sortModes[7] == SortMode.Ascending)
                         {
                             pitchers = pitchers.OrderByDescending(pitcher => pitcher.KperNineInnings).ToList();
-                            sortingStandardPitchers[7] = SortMode.Descending;
+                            sortModes[7] = SortMode.Descending;
                         }
                         else
                         {
                             pitchers = pitchers.OrderBy(pitcher => pitcher.KperNineInnings).ToList();
-                            sortingStandardPitchers[7] = SortMode.Ascending;
+                            sortModes[7] = SortMode.Ascending;
                         }
                         break;
                     }
                 case 7:
                     {
-                        if (sortingStandardPitchers[8] == SortMode.Ascending)
+                        if (sortModes[8] == SortMode.Ascending)
                         {
                             pitchers = pitchers.OrderByDescending(pitcher => pitcher.BBperNineInnings).ToList();
-                            sortingStandardPitchers[8] = SortMode.Descending;
+                            sortModes[8] = SortMode.Descending;
                         }
                         else
                         {
                             pitchers = pitchers.OrderBy(pitcher => pitcher.BBperNineInnings).ToList();
-                            sortingStandardPitchers[8] = SortMode.Ascending;
+                            sortModes[8] = SortMode.Ascending;
                         }
                         break;
                     }
                 case 8:
                     {
-                        if (sortingStandardPitchers[4] == SortMode.Ascending)
+                        if (sortModes[4] == SortMode.Ascending)
                         {
                             pitchers = pitchers.OrderByDescending(pitcher => pitcher.KperBB).ToList();
-                            sortingStandardPitchers[4] = SortMode.Descending;
+                            sortModes[4] = SortMode.Descending;
                         }
                         else
                         {
                             pitchers = pitchers.OrderBy(pitcher => pitcher.KperBB).ToList();
-                            sortingStandardPitchers[4] = SortMode.Ascending;
+                            sortModes[4] = SortMode.Ascending;
                         }
                         break;
                     }
@@ -253,57 +272,57 @@ namespace VKR_Test
             {
                 case 2:
                     {
-                        if (sortingStandardPitchers[0] == SortMode.Ascending)
+                        if (sortModes[0] == SortMode.Ascending)
                         {
                             pitchers = pitchers.OrderByDescending(pitcher => pitcher.ERA).ToList();
-                            sortingStandardPitchers[0] = SortMode.Descending;
+                            sortModes[0] = SortMode.Descending;
                         }
                         else
                         {
                             pitchers = pitchers.OrderBy(pitcher => pitcher.ERA).ToList();
-                            sortingStandardPitchers[0] = SortMode.Ascending;
+                            sortModes[0] = SortMode.Ascending;
                         }
                         break;
                     }
                 case 6:
                     {
-                        if (sortingStandardPitchers[1] == SortMode.Ascending)
+                        if (sortModes[1] == SortMode.Ascending)
                         {
                             pitchers = pitchers.OrderByDescending(pitcher => pitcher.IP).ToList();
-                            sortingStandardPitchers[1] = SortMode.Descending;
+                            sortModes[1] = SortMode.Descending;
                         }
                         else
                         {
                             pitchers = pitchers.OrderBy(pitcher => pitcher.IP).ToList();
-                            sortingStandardPitchers[1] = SortMode.Ascending;
+                            sortModes[1] = SortMode.Ascending;
                         }
                         break;
                     }
                 case 13:
                     {
-                        if (sortingStandardPitchers[2] == SortMode.Ascending)
+                        if (sortModes[2] == SortMode.Ascending)
                         {
                             pitchers = pitchers.OrderByDescending(pitcher => pitcher.WHIP).ToList();
-                            sortingStandardPitchers[2] = SortMode.Descending;
+                            sortModes[2] = SortMode.Descending;
                         }
                         else
                         {
                             pitchers = pitchers.OrderBy(pitcher => pitcher.WHIP).ToList();
-                            sortingStandardPitchers[2] = SortMode.Ascending;
+                            sortModes[2] = SortMode.Ascending;
                         }
                         break;
                     }
                 case 14:
                     {
-                        if (sortingStandardPitchers[3] == SortMode.Ascending)
+                        if (sortModes[3] == SortMode.Ascending)
                         {
                             pitchers = pitchers.OrderByDescending(pitcher => pitcher.BAA).ToList();
-                            sortingStandardPitchers[3] = SortMode.Descending;
+                            sortModes[3] = SortMode.Descending;
                         }
                         else
                         {
                             pitchers = pitchers.OrderBy(pitcher => pitcher.BAA).ToList();
-                            sortingStandardPitchers[3] = SortMode.Ascending;
+                            sortModes[3] = SortMode.Ascending;
                         }
                         break;
                     }
@@ -338,6 +357,30 @@ namespace VKR_Test
                 }
             }
 
+        }
+
+        private void btnHitting_Click(object sender, EventArgs e)
+        {
+            playerType = PlayerType.Batters;
+            ShowNewStats(playerType, statsType);
+        }
+
+        private void btnPitching_Click(object sender, EventArgs e)
+        {
+            playerType = PlayerType.Pitchers;
+            ShowNewStats(playerType, statsType);
+        }
+
+        private void btnStandardStats_Click(object sender, EventArgs e)
+        {
+            statsType = StatsType.Standard;
+            ShowNewStats(playerType, statsType);
+        }
+
+        private void btnExpandedStats_Click(object sender, EventArgs e)
+        {
+            statsType = StatsType.Expanded;
+            ShowNewStats(playerType, statsType);
         }
     }
 }
