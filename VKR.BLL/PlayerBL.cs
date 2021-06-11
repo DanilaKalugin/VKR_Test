@@ -59,5 +59,11 @@ namespace VKR.BLL
             }
             return groupedPlayers;
         }
+
+        public string GetPlayerNameByID(int code)
+        {
+            Player PlayerByCode = playerDAO.GetPlayerNameByID(code).First();
+            return $"{PlayerByCode.FirstName[0]}. {PlayerByCode.SecondName}";
+        }
     }
 }

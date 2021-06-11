@@ -121,13 +121,13 @@ namespace Entities
         }
 
 
-        public Batter(int _id, string _firstName, string _secondName, int _Number, int _games,
+        public Batter(int _id, string _FirstName, string _secondName, int _Number, int _games,
                       int _singles, int _doubles, int _triples, int _hr, int _sf, int _sac,
                       int _rbi, int _hbp, int _sb, int _cs, int _runs, int _bb, int _k, int _go,
                       int _ao, int _po, int _pa, int _gidp, int _tgp)
         {
             id = _id;
-            FirstName = _firstName;
+            FirstName = _FirstName;
             SecondName = _secondName;
             PlayerNumber = _Number;
             Games = _games;
@@ -180,6 +180,12 @@ namespace Entities
             Groundouts = _go;
             Flyouts = _ao;
             Poputs = _po;
+        }
+
+        public Batter(string _FirstName, string _SecondName)
+        {
+            FirstName = _FirstName;
+            SecondName = _SecondName;
         }
     }
 }

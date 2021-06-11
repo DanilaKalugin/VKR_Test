@@ -200,6 +200,9 @@
             this.btnShowAvailablePitchers = new System.Windows.Forms.Button();
             this.btnOtherResults = new System.Windows.Forms.Button();
             this.btnPlayerStats = new System.Windows.Forms.Button();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.panelLastAtBat = new System.Windows.Forms.Panel();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -234,6 +237,7 @@
             this.panel33.SuspendLayout();
             this.panel3Base.SuspendLayout();
             this.panel36.SuspendLayout();
+            this.panelLastAtBat.SuspendLayout();
             this.SuspendLayout();
             // 
             // label36
@@ -704,7 +708,7 @@
             this.btnChangeBatter.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnChangeBatter.FlatAppearance.BorderSize = 0;
             this.btnChangeBatter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeBatter.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeBatter.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangeBatter.ForeColor = System.Drawing.Color.White;
             this.btnChangeBatter.Location = new System.Drawing.Point(795, 0);
             this.btnChangeBatter.Name = "btnChangeBatter";
@@ -2212,26 +2216,26 @@
             // 
             // label32
             // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(396, 867);
+            this.label32.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.label32.Location = new System.Drawing.Point(0, 0);
+            this.label32.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(114, 19);
+            this.label32.Size = new System.Drawing.Size(124, 31);
             this.label32.TabIndex = 53;
             this.label32.Text = "Last At-bat:";
-            this.label32.Visible = false;
+            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label32.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label44
             // 
-            this.label44.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Bold);
-            this.label44.ForeColor = System.Drawing.Color.Black;
-            this.label44.Location = new System.Drawing.Point(516, 865);
+            this.label44.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label44.ForeColor = System.Drawing.Color.White;
+            this.label44.Location = new System.Drawing.Point(400, 0);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(507, 21);
+            this.label44.Size = new System.Drawing.Size(370, 31);
             this.label44.TabIndex = 54;
             this.label44.Text = "00";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label44.Visible = false;
             // 
             // btnBuntAttempt
             // 
@@ -2305,6 +2309,40 @@
             this.btnPlayerStats.UseVisualStyleBackColor = false;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
             // 
+            // panel15
+            // 
+            this.panel15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel15.Location = new System.Drawing.Point(124, 0);
+            this.panel15.Margin = new System.Windows.Forms.Padding(0, 3, 3, 1);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(31, 31);
+            this.panel15.TabIndex = 61;
+            // 
+            // label27
+            // 
+            this.label27.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Bold);
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(155, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(247, 31);
+            this.label27.TabIndex = 62;
+            this.label27.Text = "00";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label27.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            // 
+            // panelLastAtBat
+            // 
+            this.panelLastAtBat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.panelLastAtBat.Controls.Add(this.label27);
+            this.panelLastAtBat.Controls.Add(this.panel15);
+            this.panelLastAtBat.Controls.Add(this.label32);
+            this.panelLastAtBat.Controls.Add(this.label44);
+            this.panelLastAtBat.Location = new System.Drawing.Point(331, 852);
+            this.panelLastAtBat.Name = "panelLastAtBat";
+            this.panelLastAtBat.Size = new System.Drawing.Size(770, 31);
+            this.panelLastAtBat.TabIndex = 63;
+            this.panelLastAtBat.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2321,8 +2359,6 @@
             this.Controls.Add(this.btnShowAvailablePitchers);
             this.Controls.Add(this.btnStandings);
             this.Controls.Add(this.btnBuntAttempt);
-            this.Controls.Add(this.label44);
-            this.Controls.Add(this.label32);
             this.Controls.Add(this.panel3Base);
             this.Controls.Add(this.panel1Base);
             this.Controls.Add(this.panel2Base);
@@ -2336,6 +2372,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnNewPitch);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelLastAtBat);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2377,8 +2414,8 @@
             this.panel33.ResumeLayout(false);
             this.panel3Base.ResumeLayout(false);
             this.panel36.ResumeLayout(false);
+            this.panelLastAtBat.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -2552,6 +2589,9 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btnChangeBatter;
         private System.Windows.Forms.Label lbTodayStats;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Panel panelLastAtBat;
     }
 }
 

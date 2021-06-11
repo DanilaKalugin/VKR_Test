@@ -15,8 +15,9 @@ namespace VKR_Test
         public Match currentMatch;
         GameSituation newGameSituation;
         GameSituation previousSituation;
-        TeamsBL teamsBL;
-        MatchBL matchBL;
+        private readonly TeamsBL teamsBL;
+        private readonly MatchBL matchBL;
+        private readonly PlayerBL playerBL;
         public bool DeleteThisMatch;
 
         public MainForm(Match match)
@@ -24,6 +25,7 @@ namespace VKR_Test
             InitializeComponent();
             teamsBL = new TeamsBL();
             matchBL = new MatchBL();
+            playerBL = new PlayerBL();
             currentMatch = match;
             StartingLineupForm lineup = new StartingLineupForm(currentMatch.AwayTeam);
             lineup.ShowDialog();
@@ -182,6 +184,7 @@ namespace VKR_Test
             panel7.BackgroundImage = Image.FromFile($"SmallTeamLogos/{gameSituation.offense.TeamAbbreviation}.png");
 
             panel8.BackColor = gameSituation.offense.TeamColorForThisMatch;
+            btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.B * 0.9));
 
             Batter NextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(NextBatter);
@@ -459,12 +462,18 @@ namespace VKR_Test
             DisplayingCurrentSituation(newGameSituation);
             DisplayCurrentRunners(newGameSituation);
             IsFinishOfMatch(currentMatch);
-            label32.Visible = currentMatch.atBats.Count > 0;
-            label44.Visible = currentMatch.atBats.Count > 0;
+
+            panelLastAtBat.Visible = currentMatch.atBats.Count > 0;
+
             if (currentMatch.atBats.Count > 0)
             {
+                string LastAtBatOffense = currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Offense;
+                label27.BackColor = LastAtBatOffense == currentMatch.AwayTeam.TeamAbbreviation ? currentMatch.AwayTeam.TeamColorForThisMatch : currentMatch.HomeTeam.TeamColorForThisMatch;
+                panel15.BackgroundImage = Image.FromFile($"SmallTeamLogos/{LastAtBatOffense}.png");
+                label27.Text = playerBL.GetPlayerNameByID(currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Batter);
                 label44.Text = currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().ToString();
             }
+
             previousSituation = new GameSituation(newGameSituation.id, newGameSituation.inningNumber, newGameSituation.offense, newGameSituation.result, newGameSituation.balls, newGameSituation.strikes, newGameSituation.outs, newGameSituation.RunnerOnFirst, newGameSituation.RunnerOnSecond, newGameSituation.RunnerOnThird, newGameSituation.AwayTeamRuns, newGameSituation.HomeTeamRuns, newGameSituation.BatterNumber_AwayTeam, newGameSituation.BatterNumber_HomeTeam, newGameSituation.PitcherID);
         }
 
@@ -714,13 +723,13 @@ namespace VKR_Test
                     DialogResult = DialogResult.Yes;
                 }
             }
-                
+
         }
 
         private void btnStandings_Click(object sender, EventArgs e)
         {
             StandingsForm form = new StandingsForm(currentMatch.HomeTeam, currentMatch.AwayTeam);
-            form.ShowDialog(); 
+            form.ShowDialog();
         }
 
         private void btnShowAvailablePitchers_Click(object sender, EventArgs e)
@@ -747,19 +756,19 @@ namespace VKR_Test
         private void btnOtherResults_Click(object sender, EventArgs e)
         {
             MatchResultsForm form = new MatchResultsForm(currentMatch.MatchDate, true);
-            form.ShowDialog(); 
+            form.ShowDialog();
         }
 
         private void btnPlayerStats_Click(object sender, EventArgs e)
         {
             PlayerStatsForm form = new PlayerStatsForm();
-            form.ShowDialog(); 
+            form.ShowDialog();
         }
 
         private void btnSeriesHistory_Click(object sender, EventArgs e)
         {
             MatchResultsForm form = new MatchResultsForm(currentMatch.HomeTeam, currentMatch.AwayTeam);
-            form.ShowDialog(); 
+            form.ShowDialog();
         }
 
         private void panel6_VisibleChanged(object sender, EventArgs e)

@@ -181,5 +181,25 @@ namespace VKR.DAL
                 }
             }
         }
+
+        public IEnumerable<Batter> GetPlayerNameByID(int code)
+        {
+            using (SqlCommand command = new SqlCommand("GetPlayerNameByID", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Code", SqlDbType.Int);
+                command.Prepare();
+                command.Parameters[0].Value = code;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string FirstName = (string)reader["PlayerFirstName"];
+                        string SecondName = (string)reader["PlayerSecondName"];
+                        yield return new Batter(FirstName, SecondName);
+                    }
+                }
+            }
+        }
     }
 }
