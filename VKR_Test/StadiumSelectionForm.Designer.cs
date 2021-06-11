@@ -35,22 +35,22 @@ namespace VKR_Test
             this.label4 = new System.Windows.Forms.Label();
             this.btnDecreaseStadiumNumberBy1 = new System.Windows.Forms.Button();
             this.btnIncreaseStadiumNumberBy1 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbDistanceToCenterField = new System.Windows.Forms.Label();
+            this.lbStadiumCapacity = new System.Windows.Forms.Label();
+            this.lbStadiumLocation = new System.Windows.Forms.Label();
+            this.lbStadiumName = new System.Windows.Forms.Label();
+            this.pbHomeTeamLogo = new System.Windows.Forms.Panel();
+            this.pbAwayTeamLogo = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.pbStadiumPhoto = new System.Windows.Forms.Panel();
             this.btnAcceptSelectedStadium = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(207)))));
             this.label2.Location = new System.Drawing.Point(12, 577);
             this.label2.Name = "label2";
@@ -60,7 +60,7 @@ namespace VKR_Test
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(207)))));
             this.label3.Location = new System.Drawing.Point(12, 600);
             this.label3.Name = "label3";
@@ -70,7 +70,7 @@ namespace VKR_Test
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(207)))));
             this.label4.Location = new System.Drawing.Point(12, 623);
             this.label4.Name = "label4";
@@ -82,7 +82,7 @@ namespace VKR_Test
             // 
             this.btnDecreaseStadiumNumberBy1.FlatAppearance.BorderSize = 0;
             this.btnDecreaseStadiumNumberBy1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDecreaseStadiumNumberBy1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDecreaseStadiumNumberBy1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnDecreaseStadiumNumberBy1.ForeColor = System.Drawing.Color.White;
             this.btnDecreaseStadiumNumberBy1.Location = new System.Drawing.Point(9, 95);
             this.btnDecreaseStadiumNumberBy1.Name = "btnDecreaseStadiumNumberBy1";
@@ -97,7 +97,7 @@ namespace VKR_Test
             this.btnIncreaseStadiumNumberBy1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIncreaseStadiumNumberBy1.FlatAppearance.BorderSize = 0;
             this.btnIncreaseStadiumNumberBy1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIncreaseStadiumNumberBy1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnIncreaseStadiumNumberBy1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnIncreaseStadiumNumberBy1.ForeColor = System.Drawing.Color.White;
             this.btnIncreaseStadiumNumberBy1.Location = new System.Drawing.Point(558, 95);
             this.btnIncreaseStadiumNumberBy1.Name = "btnIncreaseStadiumNumberBy1";
@@ -107,71 +107,71 @@ namespace VKR_Test
             this.btnIncreaseStadiumNumberBy1.UseVisualStyleBackColor = true;
             this.btnIncreaseStadiumNumberBy1.Click += new System.EventHandler(this.btnIncreaseStadiumNumberBy1_Click);
             // 
-            // label5
+            // lbDistanceToCenterField
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(275, 623);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(331, 23);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "label5";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbDistanceToCenterField.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbDistanceToCenterField.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDistanceToCenterField.ForeColor = System.Drawing.Color.White;
+            this.lbDistanceToCenterField.Location = new System.Drawing.Point(275, 623);
+            this.lbDistanceToCenterField.Name = "lbDistanceToCenterField";
+            this.lbDistanceToCenterField.Size = new System.Drawing.Size(331, 23);
+            this.lbDistanceToCenterField.TabIndex = 9;
+            this.lbDistanceToCenterField.Text = "label5";
+            this.lbDistanceToCenterField.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label6
+            // lbStadiumCapacity
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(275, 600);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(331, 23);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "label6";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbStadiumCapacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbStadiumCapacity.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStadiumCapacity.ForeColor = System.Drawing.Color.White;
+            this.lbStadiumCapacity.Location = new System.Drawing.Point(275, 600);
+            this.lbStadiumCapacity.Name = "lbStadiumCapacity";
+            this.lbStadiumCapacity.Size = new System.Drawing.Size(331, 23);
+            this.lbStadiumCapacity.TabIndex = 8;
+            this.lbStadiumCapacity.Text = "label6";
+            this.lbStadiumCapacity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label7
+            // lbStadiumLocation
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(275, 577);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(331, 23);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "label7";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbStadiumLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbStadiumLocation.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStadiumLocation.ForeColor = System.Drawing.Color.White;
+            this.lbStadiumLocation.Location = new System.Drawing.Point(275, 577);
+            this.lbStadiumLocation.Name = "lbStadiumLocation";
+            this.lbStadiumLocation.Size = new System.Drawing.Size(331, 23);
+            this.lbStadiumLocation.TabIndex = 7;
+            this.lbStadiumLocation.Text = "label7";
+            this.lbStadiumLocation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label1
+            // lbStadiumName
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lbStadiumName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(60, 95);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(492, 23);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "label1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbStadiumName.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStadiumName.ForeColor = System.Drawing.Color.White;
+            this.lbStadiumName.Location = new System.Drawing.Point(60, 95);
+            this.lbStadiumName.Name = "lbStadiumName";
+            this.lbStadiumName.Size = new System.Drawing.Size(492, 23);
+            this.lbStadiumName.TabIndex = 10;
+            this.lbStadiumName.Text = "label1";
+            this.lbStadiumName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel2
+            // pbHomeTeamLogo
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Location = new System.Drawing.Point(345, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(80, 80);
-            this.panel2.TabIndex = 12;
+            this.pbHomeTeamLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbHomeTeamLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbHomeTeamLogo.Location = new System.Drawing.Point(345, 3);
+            this.pbHomeTeamLogo.Name = "pbHomeTeamLogo";
+            this.pbHomeTeamLogo.Size = new System.Drawing.Size(80, 80);
+            this.pbHomeTeamLogo.TabIndex = 12;
             // 
-            // panel1
+            // pbAwayTeamLogo
             // 
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(193, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(80, 80);
-            this.panel1.TabIndex = 11;
+            this.pbAwayTeamLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbAwayTeamLogo.Location = new System.Drawing.Point(193, 3);
+            this.pbAwayTeamLogo.Name = "pbAwayTeamLogo";
+            this.pbAwayTeamLogo.Size = new System.Drawing.Size(80, 80);
+            this.pbAwayTeamLogo.TabIndex = 11;
             // 
             // label8
             // 
@@ -187,8 +187,8 @@ namespace VKR_Test
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Silver;
-            this.panel3.Controls.Add(this.panel2);
-            this.panel3.Controls.Add(this.panel1);
+            this.panel3.Controls.Add(this.pbHomeTeamLogo);
+            this.panel3.Controls.Add(this.pbAwayTeamLogo);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.ForeColor = System.Drawing.SystemColors.ControlDark;
@@ -197,13 +197,13 @@ namespace VKR_Test
             this.panel3.Size = new System.Drawing.Size(618, 86);
             this.panel3.TabIndex = 14;
             // 
-            // panel4
+            // pbStadiumPhoto
             // 
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(6, 124);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(600, 450);
-            this.panel4.TabIndex = 15;
+            this.pbStadiumPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbStadiumPhoto.Location = new System.Drawing.Point(6, 124);
+            this.pbStadiumPhoto.Name = "pbStadiumPhoto";
+            this.pbStadiumPhoto.Size = new System.Drawing.Size(600, 450);
+            this.pbStadiumPhoto.TabIndex = 15;
             // 
             // btnAcceptSelectedStadium
             // 
@@ -226,12 +226,12 @@ namespace VKR_Test
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(618, 689);
             this.Controls.Add(this.btnAcceptSelectedStadium);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pbStadiumPhoto);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lbStadiumName);
+            this.Controls.Add(this.lbDistanceToCenterField);
+            this.Controls.Add(this.lbStadiumCapacity);
+            this.Controls.Add(this.lbStadiumLocation);
             this.Controls.Add(this.btnIncreaseStadiumNumberBy1);
             this.Controls.Add(this.btnDecreaseStadiumNumberBy1);
             this.Controls.Add(this.label4);
@@ -255,15 +255,15 @@ namespace VKR_Test
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnDecreaseStadiumNumberBy1;
         private System.Windows.Forms.Button btnIncreaseStadiumNumberBy1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbDistanceToCenterField;
+        private System.Windows.Forms.Label lbStadiumCapacity;
+        private System.Windows.Forms.Label lbStadiumLocation;
+        private System.Windows.Forms.Label lbStadiumName;
+        private System.Windows.Forms.Panel pbHomeTeamLogo;
+        private System.Windows.Forms.Panel pbAwayTeamLogo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pbStadiumPhoto;
         private System.Windows.Forms.Button btnAcceptSelectedStadium;
     }
 }

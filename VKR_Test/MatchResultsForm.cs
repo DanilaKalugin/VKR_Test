@@ -31,8 +31,8 @@ namespace VKR_Test
             InitializeComponent();
             matchBL = new MatchBL();
             teamsBL = new TeamsBL();
-            dateTimePicker1.Value = dateTime;
-            FillResultsTable(dataGridView1, matches);
+            dtpMatchDate.Value = dateTime;
+            FillResultsTable(dgvMatches, matches);
             panel1.Visible = false;
             panel2.Visible = !IsCurrentDayResults;
         }
@@ -44,7 +44,7 @@ namespace VKR_Test
             teamsBL = new TeamsBL();
             matches = matchBL.GetResultsForallMatches().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
                                                                        (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).ToList();
-            FillResultsTable(dataGridView1, matches);
+            FillResultsTable(dgvMatches, matches);
             panel1.Visible = false;
             panel2.Visible = false;
         }
@@ -57,7 +57,7 @@ namespace VKR_Test
         private void cbTeam_SelectedValueChanged(object sender, EventArgs e)
         {
             matches = matchBL.GetResultsForallMatches(teams[cbTeam.SelectedIndex].TeamAbbreviation);
-            FillResultsTable(dataGridView1, matches);
+            FillResultsTable(dgvMatches, matches);
         }
 
         private void FillResultsTable(DataGridView dgv, List<Match> matches)
@@ -86,8 +86,8 @@ namespace VKR_Test
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            matches = matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dateTimePicker1.Value).ToList();
-            FillResultsTable(dataGridView1, matches);
+            matches = matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dtpMatchDate.Value).ToList();
+            FillResultsTable(dgvMatches, matches);
         }
     }
 }

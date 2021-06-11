@@ -22,24 +22,24 @@ namespace VKR_Test
             matchBL = new MatchBL();
             teamsBL = new TeamsBL();
             Program.MatchDate = matchBL.GetMaxDateForAllMatches();
-            dateTimePicker1.Value = Program.MatchDate;
+            dtpMatchDate.Value = Program.MatchDate;
             HomeTeam = _HomeTeam;
             AwayTeam = _AwayTeam;
             stadiumForThisMatch = _stadium;
-            radioButton1.Checked = HomeTeam.DHRule;
-            radioButton2.Checked = !HomeTeam.DHRule;
-            playingWithDH = radioButton1.Checked;
+            rbPlayWithDH.Checked = HomeTeam.DHRule;
+            rbPlayWithoutDH.Checked = !HomeTeam.DHRule;
+            playingWithDH = rbPlayWithDH.Checked;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            playingWithDH = radioButton1.Checked;
+            playingWithDH = rbPlayWithDH.Checked;
         }
 
         private void btnAcceptDHRule_Click(object sender, EventArgs e)
         {
             int MatchID = matchBL.GetNumberOfMatchesPlayed();
-            Match newMatch = new Match(MatchID, HomeTeam, AwayTeam, stadiumForThisMatch, playingWithDH, dateTimePicker1.Value.Date);
+            Match newMatch = new Match(MatchID, HomeTeam, AwayTeam, stadiumForThisMatch, playingWithDH, dtpMatchDate.Value.Date);
             matchBL.StartNewMatch(newMatch);
             newMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(newMatch.AwayTeam.TeamAbbreviation, MatchID);
             newMatch.AwayTeam.PitchersPlayedInMatch.AddRange(teamsBL.GetStartingPitcherForThisTeam(AwayTeam, newMatch));

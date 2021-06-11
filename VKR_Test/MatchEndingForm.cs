@@ -68,11 +68,11 @@ namespace VKR_Test
         {
             NumberOfLastInningDefinition(endedmatch);
 
-            GetInformationAboutTeam(endedmatch.AwayTeam, label18, AwayTeamSmallLogo, lbAwayBalance, panel1);
-            GetInformationAboutTeam(endedmatch.HomeTeam, label19, HomeTeamSmallLogo, lbHomeBalance, panel2);
+            GetInformationAboutTeam(endedmatch.AwayTeam, lbAwayTeamAbbreviation, AwayTeamSmallLogo, lbAwayBalance, pbAwayLogo);
+            GetInformationAboutTeam(endedmatch.HomeTeam, lbHomeTeamAbbreviation, HomeTeamSmallLogo, lbHomeBalance, pbHomeLogo);
 
-            label1.Text = endedmatch.gameSituations.Last().AwayTeamRuns.ToString();
-            label2.Text = endedmatch.gameSituations.Last().HomeTeamRuns.ToString();
+            lbAwayRuns.Text = endedmatch.gameSituations.Last().AwayTeamRuns.ToString();
+            lbHomeRuns.Text = endedmatch.gameSituations.Last().HomeTeamRuns.ToString();
 
             UpdateScoreboard(away1, away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, endedmatch, endedmatch.AwayTeam);
             UpdateScoreboard(home1, home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, endedmatch, endedmatch.HomeTeam);

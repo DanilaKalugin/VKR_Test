@@ -32,15 +32,15 @@
             System.Windows.Forms.Panel panel27;
             System.Windows.Forms.Label label24;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.panel26 = new System.Windows.Forms.Panel();
+            this.panelCurrentSituationPitcher = new System.Windows.Forms.Panel();
             this.lbPitcherSecondName = new System.Windows.Forms.Label();
             this.lbPitchCountForThisPitcher = new System.Windows.Forms.Label();
-            this.panel13 = new System.Windows.Forms.Panel();
+            this.panelCurrentSituationBatter = new System.Windows.Forms.Panel();
             this.BatterStats = new System.Windows.Forms.Label();
             this.lbBatterSecondName = new System.Windows.Forms.Label();
             this.lbBatterNumber = new System.Windows.Forms.Label();
             this.btnNewPitch = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelSmallScoreBoard = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.HomeTeam_Abbreviation = new System.Windows.Forms.Label();
             this.HomeTeam_RunsScored = new System.Windows.Forms.Label();
@@ -48,13 +48,13 @@
             this.AwayTeam_RunsScored = new System.Windows.Forms.Label();
             this.AwayTeam_Abbreviation = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelCurrentSituation = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.panelCurrentBatter = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -74,8 +74,8 @@
             this.lblPlayerPosition = new System.Windows.Forms.Label();
             this.lblPlayerNumber = new System.Windows.Forms.Label();
             this.lbTodayStats = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.pbCurrentBatterPhoto = new System.Windows.Forms.Panel();
+            this.pbCurrentOffenseLogo = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -113,9 +113,9 @@
             this.lb3rdInning = new System.Windows.Forms.Label();
             this.lb2ndInning = new System.Windows.Forms.Label();
             this.lb1stInning = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
+            this.panelScoreBoard = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
-            this.panel17 = new System.Windows.Forms.Panel();
+            this.panelNextAwayBatters = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
             this.AwayNext3Stats = new System.Windows.Forms.Label();
             this.AwayNext3 = new System.Windows.Forms.Label();
@@ -131,7 +131,7 @@
             this.AwayTeamNextBatters = new System.Windows.Forms.Panel();
             this.away_DueUP = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.panel19 = new System.Windows.Forms.Panel();
+            this.panelNextHomeBatters = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.HomeNext3Stats = new System.Windows.Forms.Label();
             this.homeNext3 = new System.Windows.Forms.Label();
@@ -151,7 +151,7 @@
             this.btnSeriesHistory = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.panel28 = new System.Windows.Forms.Panel();
+            this.panelCurrentPitcher = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.PitcherHomeRunsToday = new System.Windows.Forms.Label();
@@ -207,29 +207,29 @@
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
             panel27.SuspendLayout();
-            this.panel26.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelCurrentSituationPitcher.SuspendLayout();
+            this.panelCurrentSituationBatter.SuspendLayout();
+            this.panelSmallScoreBoard.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel6.SuspendLayout();
+            this.panelCurrentSituation.SuspendLayout();
+            this.panelCurrentBatter.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel14.SuspendLayout();
+            this.panelScoreBoard.SuspendLayout();
             this.panel18.SuspendLayout();
-            this.panel17.SuspendLayout();
+            this.panelNextAwayBatters.SuspendLayout();
             this.panel22.SuspendLayout();
             this.panel21.SuspendLayout();
             this.panel20.SuspendLayout();
             this.AwayTeamNextBatters.SuspendLayout();
             this.panel16.SuspendLayout();
-            this.panel19.SuspendLayout();
+            this.panelNextHomeBatters.SuspendLayout();
             this.panel23.SuspendLayout();
             this.panel24.SuspendLayout();
             this.panel25.SuspendLayout();
             this.homeTeamNextBatters.SuspendLayout();
-            this.panel28.SuspendLayout();
+            this.panelCurrentPitcher.SuspendLayout();
             this.PitchingTeamColor.SuspendLayout();
             this.panel2Base.SuspendLayout();
             this.panel31.SuspendLayout();
@@ -255,23 +255,23 @@
             // panel27
             // 
             panel27.BackColor = System.Drawing.Color.Gray;
-            panel27.Controls.Add(this.panel26);
-            panel27.Controls.Add(this.panel13);
+            panel27.Controls.Add(this.panelCurrentSituationPitcher);
+            panel27.Controls.Add(this.panelCurrentSituationBatter);
             panel27.Location = new System.Drawing.Point(1163, 851);
             panel27.Name = "panel27";
             panel27.Size = new System.Drawing.Size(250, 61);
             panel27.TabIndex = 47;
             // 
-            // panel26
+            // panelCurrentSituationPitcher
             // 
-            this.panel26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel26.Controls.Add(this.lbPitcherSecondName);
-            this.panel26.Controls.Add(label36);
-            this.panel26.Controls.Add(this.lbPitchCountForThisPitcher);
-            this.panel26.Location = new System.Drawing.Point(0, 0);
-            this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(250, 30);
-            this.panel26.TabIndex = 46;
+            this.panelCurrentSituationPitcher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.panelCurrentSituationPitcher.Controls.Add(this.lbPitcherSecondName);
+            this.panelCurrentSituationPitcher.Controls.Add(label36);
+            this.panelCurrentSituationPitcher.Controls.Add(this.lbPitchCountForThisPitcher);
+            this.panelCurrentSituationPitcher.Location = new System.Drawing.Point(0, 0);
+            this.panelCurrentSituationPitcher.Name = "panelCurrentSituationPitcher";
+            this.panelCurrentSituationPitcher.Size = new System.Drawing.Size(250, 30);
+            this.panelCurrentSituationPitcher.TabIndex = 46;
             // 
             // lbPitcherSecondName
             // 
@@ -297,16 +297,16 @@
             this.lbPitchCountForThisPitcher.Text = "0";
             this.lbPitchCountForThisPitcher.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // panel13
+            // panelCurrentSituationBatter
             // 
-            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel13.Controls.Add(this.BatterStats);
-            this.panel13.Controls.Add(this.lbBatterSecondName);
-            this.panel13.Controls.Add(this.lbBatterNumber);
-            this.panel13.Location = new System.Drawing.Point(0, 31);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(250, 30);
-            this.panel13.TabIndex = 44;
+            this.panelCurrentSituationBatter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.panelCurrentSituationBatter.Controls.Add(this.BatterStats);
+            this.panelCurrentSituationBatter.Controls.Add(this.lbBatterSecondName);
+            this.panelCurrentSituationBatter.Controls.Add(this.lbBatterNumber);
+            this.panelCurrentSituationBatter.Location = new System.Drawing.Point(0, 31);
+            this.panelCurrentSituationBatter.Name = "panelCurrentSituationBatter";
+            this.panelCurrentSituationBatter.Size = new System.Drawing.Size(250, 30);
+            this.panelCurrentSituationBatter.TabIndex = 44;
             // 
             // BatterStats
             // 
@@ -368,15 +368,15 @@
             this.btnNewPitch.UseVisualStyleBackColor = false;
             this.btnNewPitch.Click += new System.EventHandler(this.button1_Click);
             // 
-            // panel1
+            // panelSmallScoreBoard
             // 
-            this.panel1.Controls.Add(this.panel5);
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Location = new System.Drawing.Point(1162, 920);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 78);
-            this.panel1.TabIndex = 1;
+            this.panelSmallScoreBoard.Controls.Add(this.panel5);
+            this.panelSmallScoreBoard.Controls.Add(this.panel4);
+            this.panelSmallScoreBoard.Controls.Add(this.panel3);
+            this.panelSmallScoreBoard.Location = new System.Drawing.Point(1162, 920);
+            this.panelSmallScoreBoard.Name = "panelSmallScoreBoard";
+            this.panelSmallScoreBoard.Size = new System.Drawing.Size(250, 78);
+            this.panelSmallScoreBoard.TabIndex = 1;
             // 
             // panel5
             // 
@@ -464,18 +464,18 @@
             this.panel3.Size = new System.Drawing.Size(90, 78);
             this.panel3.TabIndex = 2;
             // 
-            // panel2
+            // panelCurrentSituation
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(1161, 999);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(250, 30);
-            this.panel2.TabIndex = 2;
+            this.panelCurrentSituation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.panelCurrentSituation.Controls.Add(this.label5);
+            this.panelCurrentSituation.Controls.Add(this.label4);
+            this.panelCurrentSituation.Controls.Add(this.label3);
+            this.panelCurrentSituation.Controls.Add(this.label2);
+            this.panelCurrentSituation.Controls.Add(this.label1);
+            this.panelCurrentSituation.Location = new System.Drawing.Point(1161, 999);
+            this.panelCurrentSituation.Name = "panelCurrentSituation";
+            this.panelCurrentSituation.Size = new System.Drawing.Size(250, 30);
+            this.panelCurrentSituation.TabIndex = 2;
             // 
             // label5
             // 
@@ -537,27 +537,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "▲";
             // 
-            // panel6
+            // panelCurrentBatter
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel6.Controls.Add(this.label14);
-            this.panel6.Controls.Add(this.label15);
-            this.panel6.Controls.Add(this.label12);
-            this.panel6.Controls.Add(this.label13);
-            this.panel6.Controls.Add(this.label16);
-            this.panel6.Controls.Add(this.label17);
-            this.panel6.Controls.Add(this.label10);
-            this.panel6.Controls.Add(this.label11);
-            this.panel6.Controls.Add(this.label8);
-            this.panel6.Controls.Add(this.label9);
-            this.panel6.Controls.Add(this.label7);
-            this.panel6.Controls.Add(this.label6);
-            this.panel6.Controls.Add(this.panel8);
-            this.panel6.Location = new System.Drawing.Point(198, 889);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(903, 110);
-            this.panel6.TabIndex = 3;
-            this.panel6.VisibleChanged += new System.EventHandler(this.panel6_VisibleChanged);
+            this.panelCurrentBatter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.panelCurrentBatter.Controls.Add(this.label14);
+            this.panelCurrentBatter.Controls.Add(this.label15);
+            this.panelCurrentBatter.Controls.Add(this.label12);
+            this.panelCurrentBatter.Controls.Add(this.label13);
+            this.panelCurrentBatter.Controls.Add(this.label16);
+            this.panelCurrentBatter.Controls.Add(this.label17);
+            this.panelCurrentBatter.Controls.Add(this.label10);
+            this.panelCurrentBatter.Controls.Add(this.label11);
+            this.panelCurrentBatter.Controls.Add(this.label8);
+            this.panelCurrentBatter.Controls.Add(this.label9);
+            this.panelCurrentBatter.Controls.Add(this.label7);
+            this.panelCurrentBatter.Controls.Add(this.label6);
+            this.panelCurrentBatter.Controls.Add(this.panel8);
+            this.panelCurrentBatter.Location = new System.Drawing.Point(198, 889);
+            this.panelCurrentBatter.Name = "panelCurrentBatter";
+            this.panelCurrentBatter.Size = new System.Drawing.Size(903, 110);
+            this.panelCurrentBatter.TabIndex = 3;
+            this.panelCurrentBatter.VisibleChanged += new System.EventHandler(this.panel6_VisibleChanged);
             // 
             // label14
             // 
@@ -769,7 +769,7 @@
             // lbTodayStats
             // 
             this.lbTodayStats.BackColor = System.Drawing.Color.Black;
-            this.lbTodayStats.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTodayStats.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
             this.lbTodayStats.Location = new System.Drawing.Point(88, 999);
             this.lbTodayStats.Name = "lbTodayStats";
@@ -778,23 +778,23 @@
             this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbTodayStats.VisibleChanged += new System.EventHandler(this.lbTodayStats_VisibleChanged);
             // 
-            // panel10
+            // pbCurrentBatterPhoto
             // 
-            this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel10.Location = new System.Drawing.Point(198, 749);
-            this.panel10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(93, 140);
-            this.panel10.TabIndex = 5;
+            this.pbCurrentBatterPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbCurrentBatterPhoto.Location = new System.Drawing.Point(198, 749);
+            this.pbCurrentBatterPhoto.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.pbCurrentBatterPhoto.Name = "pbCurrentBatterPhoto";
+            this.pbCurrentBatterPhoto.Size = new System.Drawing.Size(93, 140);
+            this.pbCurrentBatterPhoto.TabIndex = 5;
             // 
-            // panel7
+            // pbCurrentOffenseLogo
             // 
-            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel7.Location = new System.Drawing.Point(88, 889);
-            this.panel7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(110, 110);
-            this.panel7.TabIndex = 0;
+            this.pbCurrentOffenseLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbCurrentOffenseLogo.Location = new System.Drawing.Point(88, 889);
+            this.pbCurrentOffenseLogo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.pbCurrentOffenseLogo.Name = "pbCurrentOffenseLogo";
+            this.pbCurrentOffenseLogo.Size = new System.Drawing.Size(110, 110);
+            this.pbCurrentOffenseLogo.TabIndex = 0;
             // 
             // label18
             // 
@@ -1247,78 +1247,78 @@
             this.lb1stInning.Text = "2";
             this.lb1stInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel14
+            // panelScoreBoard
             // 
-            this.panel14.Controls.Add(this.panel18);
-            this.panel14.Controls.Add(this.panel16);
-            this.panel14.Controls.Add(this.btnSeriesHistory);
-            this.panel14.Controls.Add(this.label23);
-            this.panel14.Controls.Add(this.label22);
-            this.panel14.Controls.Add(this.label18);
-            this.panel14.Controls.Add(this.label20);
-            this.panel14.Controls.Add(this.label19);
-            this.panel14.Controls.Add(this.label21);
-            this.panel14.Controls.Add(this.panel11);
-            this.panel14.Controls.Add(this.lb9thInning);
-            this.panel14.Controls.Add(this.panel12);
-            this.panel14.Controls.Add(this.lb8thInning);
-            this.panel14.Controls.Add(this.lb7thInning);
-            this.panel14.Controls.Add(this.away2);
-            this.panel14.Controls.Add(this.lb6thInning);
-            this.panel14.Controls.Add(this.away3);
-            this.panel14.Controls.Add(this.lb5thInning);
-            this.panel14.Controls.Add(this.away4);
-            this.panel14.Controls.Add(this.lb4thInning);
-            this.panel14.Controls.Add(this.away5);
-            this.panel14.Controls.Add(this.lb3rdInning);
-            this.panel14.Controls.Add(this.away6);
-            this.panel14.Controls.Add(this.lb2ndInning);
-            this.panel14.Controls.Add(this.away7);
-            this.panel14.Controls.Add(this.lb1stInning);
-            this.panel14.Controls.Add(this.away8);
-            this.panel14.Controls.Add(this.away9);
-            this.panel14.Controls.Add(this.homeHits);
-            this.panel14.Controls.Add(this.away10);
-            this.panel14.Controls.Add(this.awayHits);
-            this.panel14.Controls.Add(this.homeRuns);
-            this.panel14.Controls.Add(this.home2);
-            this.panel14.Controls.Add(this.awayRuns);
-            this.panel14.Controls.Add(this.home3);
-            this.panel14.Controls.Add(this.home10);
-            this.panel14.Controls.Add(this.home4);
-            this.panel14.Controls.Add(this.home9);
-            this.panel14.Controls.Add(this.home5);
-            this.panel14.Controls.Add(this.home8);
-            this.panel14.Controls.Add(this.home6);
-            this.panel14.Controls.Add(this.home7);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(0, 0);
-            this.panel14.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(1423, 138);
-            this.panel14.TabIndex = 45;
+            this.panelScoreBoard.Controls.Add(this.panel18);
+            this.panelScoreBoard.Controls.Add(this.panel16);
+            this.panelScoreBoard.Controls.Add(this.btnSeriesHistory);
+            this.panelScoreBoard.Controls.Add(this.label23);
+            this.panelScoreBoard.Controls.Add(this.label22);
+            this.panelScoreBoard.Controls.Add(this.label18);
+            this.panelScoreBoard.Controls.Add(this.label20);
+            this.panelScoreBoard.Controls.Add(this.label19);
+            this.panelScoreBoard.Controls.Add(this.label21);
+            this.panelScoreBoard.Controls.Add(this.panel11);
+            this.panelScoreBoard.Controls.Add(this.lb9thInning);
+            this.panelScoreBoard.Controls.Add(this.panel12);
+            this.panelScoreBoard.Controls.Add(this.lb8thInning);
+            this.panelScoreBoard.Controls.Add(this.lb7thInning);
+            this.panelScoreBoard.Controls.Add(this.away2);
+            this.panelScoreBoard.Controls.Add(this.lb6thInning);
+            this.panelScoreBoard.Controls.Add(this.away3);
+            this.panelScoreBoard.Controls.Add(this.lb5thInning);
+            this.panelScoreBoard.Controls.Add(this.away4);
+            this.panelScoreBoard.Controls.Add(this.lb4thInning);
+            this.panelScoreBoard.Controls.Add(this.away5);
+            this.panelScoreBoard.Controls.Add(this.lb3rdInning);
+            this.panelScoreBoard.Controls.Add(this.away6);
+            this.panelScoreBoard.Controls.Add(this.lb2ndInning);
+            this.panelScoreBoard.Controls.Add(this.away7);
+            this.panelScoreBoard.Controls.Add(this.lb1stInning);
+            this.panelScoreBoard.Controls.Add(this.away8);
+            this.panelScoreBoard.Controls.Add(this.away9);
+            this.panelScoreBoard.Controls.Add(this.homeHits);
+            this.panelScoreBoard.Controls.Add(this.away10);
+            this.panelScoreBoard.Controls.Add(this.awayHits);
+            this.panelScoreBoard.Controls.Add(this.homeRuns);
+            this.panelScoreBoard.Controls.Add(this.home2);
+            this.panelScoreBoard.Controls.Add(this.awayRuns);
+            this.panelScoreBoard.Controls.Add(this.home3);
+            this.panelScoreBoard.Controls.Add(this.home10);
+            this.panelScoreBoard.Controls.Add(this.home4);
+            this.panelScoreBoard.Controls.Add(this.home9);
+            this.panelScoreBoard.Controls.Add(this.home5);
+            this.panelScoreBoard.Controls.Add(this.home8);
+            this.panelScoreBoard.Controls.Add(this.home6);
+            this.panelScoreBoard.Controls.Add(this.home7);
+            this.panelScoreBoard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelScoreBoard.Location = new System.Drawing.Point(0, 0);
+            this.panelScoreBoard.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
+            this.panelScoreBoard.Name = "panelScoreBoard";
+            this.panelScoreBoard.Size = new System.Drawing.Size(1423, 138);
+            this.panelScoreBoard.TabIndex = 45;
             // 
             // panel18
             // 
-            this.panel18.Controls.Add(this.panel17);
+            this.panel18.Controls.Add(this.panelNextAwayBatters);
             this.panel18.Controls.Add(this.AwayTeamNextBatters);
             this.panel18.Location = new System.Drawing.Point(901, 0);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(260, 138);
             this.panel18.TabIndex = 1;
             // 
-            // panel17
+            // panelNextAwayBatters
             // 
-            this.panel17.BackColor = System.Drawing.Color.White;
-            this.panel17.Controls.Add(this.panel22);
-            this.panel17.Controls.Add(this.panel21);
-            this.panel17.Controls.Add(this.panel20);
-            this.panel17.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel17.ForeColor = System.Drawing.Color.White;
-            this.panel17.Location = new System.Drawing.Point(0, 33);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(260, 105);
-            this.panel17.TabIndex = 1;
+            this.panelNextAwayBatters.BackColor = System.Drawing.Color.White;
+            this.panelNextAwayBatters.Controls.Add(this.panel22);
+            this.panelNextAwayBatters.Controls.Add(this.panel21);
+            this.panelNextAwayBatters.Controls.Add(this.panel20);
+            this.panelNextAwayBatters.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelNextAwayBatters.ForeColor = System.Drawing.Color.White;
+            this.panelNextAwayBatters.Location = new System.Drawing.Point(0, 33);
+            this.panelNextAwayBatters.Name = "panelNextAwayBatters";
+            this.panelNextAwayBatters.Size = new System.Drawing.Size(260, 105);
+            this.panelNextAwayBatters.TabIndex = 1;
             // 
             // panel22
             // 
@@ -1483,25 +1483,25 @@
             // 
             // panel16
             // 
-            this.panel16.Controls.Add(this.panel19);
+            this.panel16.Controls.Add(this.panelNextHomeBatters);
             this.panel16.Controls.Add(this.homeTeamNextBatters);
             this.panel16.Location = new System.Drawing.Point(1162, 0);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(260, 138);
             this.panel16.TabIndex = 0;
             // 
-            // panel19
+            // panelNextHomeBatters
             // 
-            this.panel19.BackColor = System.Drawing.Color.White;
-            this.panel19.Controls.Add(this.panel23);
-            this.panel19.Controls.Add(this.panel24);
-            this.panel19.Controls.Add(this.panel25);
-            this.panel19.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel19.ForeColor = System.Drawing.Color.White;
-            this.panel19.Location = new System.Drawing.Point(0, 33);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(260, 105);
-            this.panel19.TabIndex = 2;
+            this.panelNextHomeBatters.BackColor = System.Drawing.Color.White;
+            this.panelNextHomeBatters.Controls.Add(this.panel23);
+            this.panelNextHomeBatters.Controls.Add(this.panel24);
+            this.panelNextHomeBatters.Controls.Add(this.panel25);
+            this.panelNextHomeBatters.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelNextHomeBatters.ForeColor = System.Drawing.Color.White;
+            this.panelNextHomeBatters.Location = new System.Drawing.Point(0, 33);
+            this.panelNextHomeBatters.Name = "panelNextHomeBatters";
+            this.panelNextHomeBatters.Size = new System.Drawing.Size(260, 105);
+            this.panelNextHomeBatters.TabIndex = 2;
             // 
             // panel23
             // 
@@ -1728,36 +1728,36 @@
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label22.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
-            // panel28
+            // panelCurrentPitcher
             // 
-            this.panel28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel28.Controls.Add(this.label26);
-            this.panel28.Controls.Add(this.label25);
-            this.panel28.Controls.Add(this.PitcherHomeRunsToday);
-            this.panel28.Controls.Add(this.PitcherStrikeoutsToday);
-            this.panel28.Controls.Add(this.PitcherWalksToday);
-            this.panel28.Controls.Add(this.PitcherIPToday);
-            this.panel28.Controls.Add(this.PitcherBAA);
-            this.panel28.Controls.Add(this.PitcherWHIP);
-            this.panel28.Controls.Add(this.PitcherHomeRuns);
-            this.panel28.Controls.Add(this.PitcherStrikeouts);
-            this.panel28.Controls.Add(this.PitcherWalks);
-            this.panel28.Controls.Add(this.PitcherIP);
-            this.panel28.Controls.Add(this.PitcherERA);
-            this.panel28.Controls.Add(this.PitcherGames);
-            this.panel28.Controls.Add(this.label43);
-            this.panel28.Controls.Add(this.label42);
-            this.panel28.Controls.Add(this.label41);
-            this.panel28.Controls.Add(this.label40);
-            this.panel28.Controls.Add(this.label39);
-            this.panel28.Controls.Add(this.label38);
-            this.panel28.Controls.Add(this.label35);
-            this.panel28.Controls.Add(this.label37);
-            this.panel28.Controls.Add(this.PitchingTeamColor);
-            this.panel28.Location = new System.Drawing.Point(1179, 167);
-            this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(234, 189);
-            this.panel28.TabIndex = 48;
+            this.panelCurrentPitcher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.panelCurrentPitcher.Controls.Add(this.label26);
+            this.panelCurrentPitcher.Controls.Add(this.label25);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherHomeRunsToday);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherStrikeoutsToday);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherWalksToday);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherIPToday);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherBAA);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherWHIP);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherHomeRuns);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherStrikeouts);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherWalks);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherIP);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherERA);
+            this.panelCurrentPitcher.Controls.Add(this.PitcherGames);
+            this.panelCurrentPitcher.Controls.Add(this.label43);
+            this.panelCurrentPitcher.Controls.Add(this.label42);
+            this.panelCurrentPitcher.Controls.Add(this.label41);
+            this.panelCurrentPitcher.Controls.Add(this.label40);
+            this.panelCurrentPitcher.Controls.Add(this.label39);
+            this.panelCurrentPitcher.Controls.Add(this.label38);
+            this.panelCurrentPitcher.Controls.Add(this.label35);
+            this.panelCurrentPitcher.Controls.Add(this.label37);
+            this.panelCurrentPitcher.Controls.Add(this.PitchingTeamColor);
+            this.panelCurrentPitcher.Location = new System.Drawing.Point(1179, 167);
+            this.panelCurrentPitcher.Name = "panelCurrentPitcher";
+            this.panelCurrentPitcher.Size = new System.Drawing.Size(234, 189);
+            this.panelCurrentPitcher.TabIndex = 48;
             // 
             // label26
             // 
@@ -2363,15 +2363,15 @@
             this.Controls.Add(this.panel1Base);
             this.Controls.Add(this.panel2Base);
             this.Controls.Add(this.PitcherPhoto);
-            this.Controls.Add(this.panel10);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel28);
+            this.Controls.Add(this.pbCurrentBatterPhoto);
+            this.Controls.Add(this.pbCurrentOffenseLogo);
+            this.Controls.Add(this.panelCurrentPitcher);
             this.Controls.Add(panel27);
-            this.Controls.Add(this.panel14);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelScoreBoard);
+            this.Controls.Add(this.panelCurrentBatter);
+            this.Controls.Add(this.panelSmallScoreBoard);
             this.Controls.Add(this.btnNewPitch);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelCurrentSituation);
             this.Controls.Add(this.panelLastAtBat);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -2382,31 +2382,31 @@
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             panel27.ResumeLayout(false);
-            this.panel26.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.panelCurrentSituationPitcher.ResumeLayout(false);
+            this.panelCurrentSituationBatter.ResumeLayout(false);
+            this.panelSmallScoreBoard.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel6.ResumeLayout(false);
+            this.panelCurrentSituation.ResumeLayout(false);
+            this.panelCurrentSituation.PerformLayout();
+            this.panelCurrentBatter.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
+            this.panelScoreBoard.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
-            this.panel17.ResumeLayout(false);
+            this.panelNextAwayBatters.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
             this.panel21.ResumeLayout(false);
             this.panel20.ResumeLayout(false);
             this.AwayTeamNextBatters.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
-            this.panel19.ResumeLayout(false);
+            this.panelNextHomeBatters.ResumeLayout(false);
             this.panel23.ResumeLayout(false);
             this.panel24.ResumeLayout(false);
             this.panel25.ResumeLayout(false);
             this.homeTeamNextBatters.ResumeLayout(false);
-            this.panel28.ResumeLayout(false);
-            this.panel28.PerformLayout();
+            this.panelCurrentPitcher.ResumeLayout(false);
+            this.panelCurrentPitcher.PerformLayout();
             this.PitchingTeamColor.ResumeLayout(false);
             this.panel2Base.ResumeLayout(false);
             this.panel31.ResumeLayout(false);
@@ -2422,8 +2422,8 @@
         #endregion
 
         private System.Windows.Forms.Button btnNewPitch;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelSmallScoreBoard;
+        private System.Windows.Forms.Panel panelCurrentSituation;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
@@ -2436,10 +2436,10 @@
         private System.Windows.Forms.Label AwayTeam_Abbreviation;
         private System.Windows.Forms.Label HomeTeam_RunsScored;
         private System.Windows.Forms.Label AwayTeam_RunsScored;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panelCurrentBatter;
+        private System.Windows.Forms.Panel pbCurrentOffenseLogo;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel pbCurrentBatterPhoto;
         private System.Windows.Forms.Label lblPlayerName;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label lblPlayerPosition;
@@ -2493,17 +2493,17 @@
         private System.Windows.Forms.Label lb3rdInning;
         private System.Windows.Forms.Label lb2ndInning;
         private System.Windows.Forms.Label lb1stInning;
-        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panelCurrentSituationBatter;
         private System.Windows.Forms.Label lbBatterSecondName;
         private System.Windows.Forms.Label lbBatterNumber;
-        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panelScoreBoard;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Panel AwayTeamNextBatters;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Panel homeTeamNextBatters;
         private System.Windows.Forms.Label away_DueUP;
         private System.Windows.Forms.Label home_DueUP;
-        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Panel panelNextAwayBatters;
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.Label AwayNext3;
         private System.Windows.Forms.Label AwayNextNumber3;
@@ -2513,7 +2513,7 @@
         private System.Windows.Forms.Panel panel20;
         private System.Windows.Forms.Label AwayNext1;
         private System.Windows.Forms.Label AwayNextNumber1;
-        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Panel panelNextHomeBatters;
         private System.Windows.Forms.Panel panel23;
         private System.Windows.Forms.Label homeNext3;
         private System.Windows.Forms.Label homeNextNumber3;
@@ -2532,10 +2532,10 @@
         private System.Windows.Forms.Label HomeNext1Stats;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Panel panel26;
+        private System.Windows.Forms.Panel panelCurrentSituationPitcher;
         private System.Windows.Forms.Label lbPitchCountForThisPitcher;
         private System.Windows.Forms.Label lbPitcherSecondName;
-        private System.Windows.Forms.Panel panel28;
+        private System.Windows.Forms.Panel panelCurrentPitcher;
         private System.Windows.Forms.Label PitcherHomeRunsToday;
         private System.Windows.Forms.Label PitcherStrikeoutsToday;
         private System.Windows.Forms.Label PitcherWalksToday;

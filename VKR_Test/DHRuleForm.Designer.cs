@@ -30,38 +30,38 @@ namespace VKR_Test
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DHRuleForm));
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbPlayWithDH = new System.Windows.Forms.RadioButton();
+            this.rbPlayWithoutDH = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAcceptDHRule = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpMatchDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // radioButton1
+            // rbPlayWithDH
             // 
-            this.radioButton1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.radioButton1.Location = new System.Drawing.Point(12, 46);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(150, 24);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "PLAY WITH DH";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.rbPlayWithDH.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbPlayWithDH.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.rbPlayWithDH.Location = new System.Drawing.Point(12, 46);
+            this.rbPlayWithDH.Name = "rbPlayWithDH";
+            this.rbPlayWithDH.Size = new System.Drawing.Size(150, 24);
+            this.rbPlayWithDH.TabIndex = 0;
+            this.rbPlayWithDH.TabStop = true;
+            this.rbPlayWithDH.Text = "PLAY WITH DH";
+            this.rbPlayWithDH.UseVisualStyleBackColor = true;
+            this.rbPlayWithDH.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // radioButton2
+            // rbPlayWithoutDH
             // 
-            this.radioButton2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.radioButton2.Location = new System.Drawing.Point(13, 76);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(173, 24);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "PLAY WITHOUT DH";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbPlayWithoutDH.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbPlayWithoutDH.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.rbPlayWithoutDH.Location = new System.Drawing.Point(13, 76);
+            this.rbPlayWithoutDH.Name = "rbPlayWithoutDH";
+            this.rbPlayWithoutDH.Size = new System.Drawing.Size(173, 24);
+            this.rbPlayWithoutDH.TabIndex = 1;
+            this.rbPlayWithoutDH.TabStop = true;
+            this.rbPlayWithoutDH.Text = "PLAY WITHOUT DH";
+            this.rbPlayWithoutDH.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -87,21 +87,21 @@ namespace VKR_Test
             this.btnAcceptDHRule.UseVisualStyleBackColor = true;
             this.btnAcceptDHRule.Click += new System.EventHandler(this.btnAcceptDHRule_Click);
             // 
-            // dateTimePicker1
+            // dtpMatchDate
             // 
-            this.dateTimePicker1.CalendarForeColor = System.Drawing.Color.WhiteSmoke;
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.WhiteSmoke;
-            this.dateTimePicker1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 137);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2021, 10, 3, 0, 0, 0, 0);
-            this.dateTimePicker1.MinDate = new System.DateTime(2021, 4, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(397, 27);
-            this.dateTimePicker1.TabIndex = 4;
-            this.dateTimePicker1.Value = new System.DateTime(2021, 4, 12, 0, 0, 0, 0);
+            this.dtpMatchDate.CalendarForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dtpMatchDate.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dtpMatchDate.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dtpMatchDate.CalendarTitleForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dtpMatchDate.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpMatchDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpMatchDate.Location = new System.Drawing.Point(12, 137);
+            this.dtpMatchDate.MaxDate = new System.DateTime(2021, 10, 3, 0, 0, 0, 0);
+            this.dtpMatchDate.MinDate = new System.DateTime(2021, 4, 1, 0, 0, 0, 0);
+            this.dtpMatchDate.Name = "dtpMatchDate";
+            this.dtpMatchDate.Size = new System.Drawing.Size(397, 27);
+            this.dtpMatchDate.TabIndex = 4;
+            this.dtpMatchDate.Value = new System.DateTime(2021, 4, 12, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -120,11 +120,11 @@ namespace VKR_Test
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(421, 245);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpMatchDate);
             this.Controls.Add(this.btnAcceptDHRule);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rbPlayWithoutDH);
+            this.Controls.Add(this.rbPlayWithDH);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -137,11 +137,11 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbPlayWithDH;
+        private System.Windows.Forms.RadioButton rbPlayWithoutDH;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAcceptDHRule;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpMatchDate;
         private System.Windows.Forms.Label label2;
     }
 }

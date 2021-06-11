@@ -30,16 +30,16 @@ namespace VKR_Test
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatchEndingForm));
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pbHomeLogo = new System.Windows.Forms.Panel();
+            this.pbAwayLogo = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbHomeBalance = new System.Windows.Forms.Label();
             this.lbAwayBalance = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.lbHomeRuns = new System.Windows.Forms.Label();
+            this.lbAwayRuns = new System.Windows.Forms.Label();
+            this.lbAwayTeamAbbreviation = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.lbHomeTeamAbbreviation = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.AwayTeamSmallLogo = new System.Windows.Forms.Panel();
             this.HomeTeamSmallLogo = new System.Windows.Forms.Panel();
@@ -82,31 +82,31 @@ namespace VKR_Test
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel2
+            // pbHomeLogo
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Location = new System.Drawing.Point(650, 75);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(300, 300);
-            this.panel2.TabIndex = 9;
+            this.pbHomeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbHomeLogo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pbHomeLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbHomeLogo.Location = new System.Drawing.Point(650, 75);
+            this.pbHomeLogo.Name = "pbHomeLogo";
+            this.pbHomeLogo.Size = new System.Drawing.Size(300, 300);
+            this.pbHomeLogo.TabIndex = 9;
             // 
-            // panel1
+            // pbAwayLogo
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(50, 75);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 300);
-            this.panel1.TabIndex = 8;
+            this.pbAwayLogo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pbAwayLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbAwayLogo.Location = new System.Drawing.Point(50, 75);
+            this.pbAwayLogo.Name = "pbAwayLogo";
+            this.pbAwayLogo.Size = new System.Drawing.Size(300, 300);
+            this.pbAwayLogo.TabIndex = 8;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.lbHomeBalance);
             this.panel3.Controls.Add(this.lbAwayBalance);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.lbHomeRuns);
+            this.panel3.Controls.Add(this.lbAwayRuns);
             this.panel3.Location = new System.Drawing.Point(356, 75);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(288, 300);
@@ -134,40 +134,40 @@ namespace VKR_Test
             this.lbAwayBalance.TabIndex = 46;
             this.lbAwayBalance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // lbHomeRuns
             // 
-            this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 54F);
-            this.label2.Location = new System.Drawing.Point(148, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 300);
-            this.label2.TabIndex = 11;
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbHomeRuns.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbHomeRuns.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbHomeRuns.Font = new System.Drawing.Font("MicroFLF", 54F);
+            this.lbHomeRuns.Location = new System.Drawing.Point(148, 0);
+            this.lbHomeRuns.Name = "lbHomeRuns";
+            this.lbHomeRuns.Size = new System.Drawing.Size(140, 300);
+            this.lbHomeRuns.TabIndex = 11;
+            this.lbHomeRuns.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // lbAwayRuns
             // 
-            this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 54F);
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 300);
-            this.label1.TabIndex = 10;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbAwayRuns.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbAwayRuns.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbAwayRuns.Font = new System.Drawing.Font("MicroFLF", 54F);
+            this.lbAwayRuns.Location = new System.Drawing.Point(0, 0);
+            this.lbAwayRuns.Name = "lbAwayRuns";
+            this.lbAwayRuns.Size = new System.Drawing.Size(140, 300);
+            this.lbAwayRuns.TabIndex = 10;
+            this.lbAwayRuns.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label18
+            // lbAwayTeamAbbreviation
             // 
-            this.label18.BackColor = System.Drawing.Color.Gainsboro;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(89, 440);
-            this.label18.Margin = new System.Windows.Forms.Padding(6, 5, 0, 1);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(86, 39);
-            this.label18.TabIndex = 44;
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label18.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            this.lbAwayTeamAbbreviation.BackColor = System.Drawing.Color.Gainsboro;
+            this.lbAwayTeamAbbreviation.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lbAwayTeamAbbreviation.ForeColor = System.Drawing.Color.White;
+            this.lbAwayTeamAbbreviation.Location = new System.Drawing.Point(89, 440);
+            this.lbAwayTeamAbbreviation.Margin = new System.Windows.Forms.Padding(6, 5, 0, 1);
+            this.lbAwayTeamAbbreviation.Name = "lbAwayTeamAbbreviation";
+            this.lbAwayTeamAbbreviation.Size = new System.Drawing.Size(86, 39);
+            this.lbAwayTeamAbbreviation.TabIndex = 44;
+            this.lbAwayTeamAbbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbAwayTeamAbbreviation.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label20
             // 
@@ -182,18 +182,18 @@ namespace VKR_Test
             this.label20.Text = "H";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label19
+            // lbHomeTeamAbbreviation
             // 
-            this.label19.BackColor = System.Drawing.Color.Gainsboro;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(89, 481);
-            this.label19.Margin = new System.Windows.Forms.Padding(6, 1, 6, 5);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(86, 39);
-            this.label19.TabIndex = 45;
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label19.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            this.lbHomeTeamAbbreviation.BackColor = System.Drawing.Color.Gainsboro;
+            this.lbHomeTeamAbbreviation.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lbHomeTeamAbbreviation.ForeColor = System.Drawing.Color.White;
+            this.lbHomeTeamAbbreviation.Location = new System.Drawing.Point(89, 481);
+            this.lbHomeTeamAbbreviation.Margin = new System.Windows.Forms.Padding(6, 1, 6, 5);
+            this.lbHomeTeamAbbreviation.Name = "lbHomeTeamAbbreviation";
+            this.lbHomeTeamAbbreviation.Size = new System.Drawing.Size(86, 39);
+            this.lbHomeTeamAbbreviation.TabIndex = 45;
+            this.lbHomeTeamAbbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbHomeTeamAbbreviation.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label21
             // 
@@ -685,9 +685,9 @@ namespace VKR_Test
             this.Controls.Add(this.lb2ndInning);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.label18);
+            this.Controls.Add(this.lbAwayTeamAbbreviation);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.label19);
+            this.Controls.Add(this.lbHomeTeamAbbreviation);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.AwayTeamSmallLogo);
             this.Controls.Add(this.HomeTeamSmallLogo);
@@ -716,8 +716,8 @@ namespace VKR_Test
             this.Controls.Add(this.home6);
             this.Controls.Add(this.home7);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pbHomeLogo);
+            this.Controls.Add(this.pbAwayLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -732,14 +732,14 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pbHomeLogo;
+        private System.Windows.Forms.Panel pbAwayLogo;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lbAwayRuns;
+        private System.Windows.Forms.Label lbHomeRuns;
+        private System.Windows.Forms.Label lbAwayTeamAbbreviation;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lbHomeTeamAbbreviation;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Panel AwayTeamSmallLogo;
         private System.Windows.Forms.Panel HomeTeamSmallLogo;

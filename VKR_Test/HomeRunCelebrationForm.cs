@@ -13,18 +13,18 @@ namespace VKR_Test
         {
             InitializeComponent();
             BackColor = team.TeamColorForThisMatch;
-            label1.Text = HRType;
+            lbHomeRunType.Text = HRType;
             timer2.Start();
             panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
-            label2.Text = batter.FullName.ToUpper();
+            pbPatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+            lbBatterName.Text = batter.FullName.ToUpper();
 
             int HRTodayForThisBatter = allAtBats.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.id).Count();
 
-            label3.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.HomeRuns + 1)} HR in career";
-            label4.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(HRTodayForThisBatter + 1)} HR in this match";
-            label4.Visible = HRTodayForThisBatter > 0;
+            lbBatterHRNumber.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.HomeRuns + 1)} HR in career";
+            lbBatterHRNumberInThisMatch.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(HRTodayForThisBatter + 1)} HR in this match";
+            lbBatterHRNumberInThisMatch.Visible = HRTodayForThisBatter > 0;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -34,44 +34,44 @@ namespace VKR_Test
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LineupsForm));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvLineup = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDecreaseTeamNumberBy1 = new System.Windows.Forms.Button();
             this.btnIncreaseTeamNumberBy1 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lbTeamtitle = new System.Windows.Forms.Label();
             this.btnDecLineupTypeNumberBy1 = new System.Windows.Forms.Button();
             this.btnIncLineupTypeNumberBy1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbLineUpType = new System.Windows.Forms.Label();
             this.lbl_LineupHeader = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.lbPlayerNumber = new System.Windows.Forms.Label();
+            this.lbPlayerName = new System.Windows.Forms.Label();
+            this.lbPlayerPlace_and_DateOfBirth = new System.Windows.Forms.Label();
+            this.dgvBench = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.pbPlayerPhoto = new System.Windows.Forms.Panel();
             this.panelTeamLogo = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLineup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBench)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvLineup
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dgvLineup.AllowUserToAddRows = false;
+            this.dgvLineup.AllowUserToDeleteRows = false;
+            this.dgvLineup.AllowUserToResizeColumns = false;
+            this.dgvLineup.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvLineup.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvLineup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLineup.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgvLineup.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvLineup.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvLineup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLineup.ColumnHeadersVisible = false;
+            this.dgvLineup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3});
@@ -82,18 +82,18 @@ namespace VKR_Test
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 181);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(580, 199);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dgvLineup.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvLineup.GridColor = System.Drawing.Color.Gainsboro;
+            this.dgvLineup.Location = new System.Drawing.Point(13, 181);
+            this.dgvLineup.MultiSelect = false;
+            this.dgvLineup.Name = "dgvLineup";
+            this.dgvLineup.ReadOnly = true;
+            this.dgvLineup.RowHeadersVisible = false;
+            this.dgvLineup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvLineup.Size = new System.Drawing.Size(580, 199);
+            this.dgvLineup.TabIndex = 0;
+            this.dgvLineup.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dgvLineup.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // Column1
             // 
@@ -144,17 +144,17 @@ namespace VKR_Test
             this.btnIncreaseTeamNumberBy1.UseVisualStyleBackColor = true;
             this.btnIncreaseTeamNumberBy1.Click += new System.EventHandler(this.btnIncreaseTeamNumberBy1_Click);
             // 
-            // label7
+            // lbTeamtitle
             // 
-            this.label7.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(505, 12);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(266, 22);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "label7";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTeamtitle.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTeamtitle.ForeColor = System.Drawing.Color.Black;
+            this.lbTeamtitle.Location = new System.Drawing.Point(505, 12);
+            this.lbTeamtitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lbTeamtitle.Name = "lbTeamtitle";
+            this.lbTeamtitle.Size = new System.Drawing.Size(266, 22);
+            this.lbTeamtitle.TabIndex = 17;
+            this.lbTeamtitle.Text = "label7";
+            this.lbTeamtitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnDecLineupTypeNumberBy1
             // 
@@ -184,17 +184,17 @@ namespace VKR_Test
             this.btnIncLineupTypeNumberBy1.UseVisualStyleBackColor = true;
             this.btnIncLineupTypeNumberBy1.Click += new System.EventHandler(this.btnIncLineupTypeNumberBy1_Click);
             // 
-            // label1
+            // lbLineUpType
             // 
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(309, 383);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(266, 22);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "label1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbLineUpType.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLineUpType.ForeColor = System.Drawing.Color.Black;
+            this.lbLineUpType.Location = new System.Drawing.Point(309, 383);
+            this.lbLineUpType.Margin = new System.Windows.Forms.Padding(0);
+            this.lbLineUpType.Name = "lbLineUpType";
+            this.lbLineUpType.Size = new System.Drawing.Size(266, 22);
+            this.lbLineUpType.TabIndex = 20;
+            this.lbLineUpType.Text = "label1";
+            this.lbLineUpType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbl_LineupHeader
             // 
@@ -208,57 +208,57 @@ namespace VKR_Test
             this.lbl_LineupHeader.Text = "LINEUP";
             this.lbl_LineupHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // lbPlayerNumber
             // 
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 42F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(6, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 74);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "#99";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbPlayerNumber.Font = new System.Drawing.Font("MicroFLF", 42F, System.Drawing.FontStyle.Bold);
+            this.lbPlayerNumber.ForeColor = System.Drawing.Color.DimGray;
+            this.lbPlayerNumber.Location = new System.Drawing.Point(6, 98);
+            this.lbPlayerNumber.Name = "lbPlayerNumber";
+            this.lbPlayerNumber.Size = new System.Drawing.Size(155, 74);
+            this.lbPlayerNumber.TabIndex = 26;
+            this.lbPlayerNumber.Text = "#99";
+            this.lbPlayerNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label3
+            // lbPlayerName
             // 
-            this.label3.Font = new System.Drawing.Font("MicroFLF", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(273, 37);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(515, 42);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "label3";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbPlayerName.Font = new System.Drawing.Font("MicroFLF", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPlayerName.ForeColor = System.Drawing.Color.Black;
+            this.lbPlayerName.Location = new System.Drawing.Point(273, 37);
+            this.lbPlayerName.Margin = new System.Windows.Forms.Padding(0);
+            this.lbPlayerName.Name = "lbPlayerName";
+            this.lbPlayerName.Size = new System.Drawing.Size(515, 42);
+            this.lbPlayerName.TabIndex = 27;
+            this.lbPlayerName.Text = "label3";
+            this.lbPlayerName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // lbPlayerPlace_and_DateOfBirth
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("MicroFLF", 14F);
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(276, 79);
-            this.label4.Margin = new System.Windows.Forms.Padding(0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 21);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "label4";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbPlayerPlace_and_DateOfBirth.AutoSize = true;
+            this.lbPlayerPlace_and_DateOfBirth.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.lbPlayerPlace_and_DateOfBirth.ForeColor = System.Drawing.Color.Black;
+            this.lbPlayerPlace_and_DateOfBirth.Location = new System.Drawing.Point(276, 79);
+            this.lbPlayerPlace_and_DateOfBirth.Margin = new System.Windows.Forms.Padding(0);
+            this.lbPlayerPlace_and_DateOfBirth.Name = "lbPlayerPlace_and_DateOfBirth";
+            this.lbPlayerPlace_and_DateOfBirth.Size = new System.Drawing.Size(61, 21);
+            this.lbPlayerPlace_and_DateOfBirth.TabIndex = 28;
+            this.lbPlayerPlace_and_DateOfBirth.Text = "label4";
+            this.lbPlayerPlace_and_DateOfBirth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dataGridView2
+            // dgvBench
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dgvBench.AllowUserToAddRows = false;
+            this.dgvBench.AllowUserToDeleteRows = false;
+            this.dgvBench.AllowUserToResizeColumns = false;
+            this.dgvBench.AllowUserToResizeRows = false;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.ColumnHeadersVisible = false;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvBench.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvBench.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBench.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgvBench.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvBench.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvBench.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBench.ColumnHeadersVisible = false;
+            this.dgvBench.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
@@ -267,18 +267,18 @@ namespace VKR_Test
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView2.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView2.Location = new System.Drawing.Point(624, 181);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(580, 199);
-            this.dataGridView2.TabIndex = 30;
-            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
-            this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
+            this.dgvBench.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvBench.GridColor = System.Drawing.Color.Gainsboro;
+            this.dgvBench.Location = new System.Drawing.Point(624, 181);
+            this.dgvBench.MultiSelect = false;
+            this.dgvBench.Name = "dgvBench";
+            this.dgvBench.ReadOnly = true;
+            this.dgvBench.RowHeadersVisible = false;
+            this.dgvBench.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBench.Size = new System.Drawing.Size(580, 199);
+            this.dgvBench.TabIndex = 30;
+            this.dgvBench.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
+            this.dgvBench.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -287,13 +287,13 @@ namespace VKR_Test
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
-            // panel10
+            // pbPlayerPhoto
             // 
-            this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel10.Location = new System.Drawing.Point(167, 12);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(106, 160);
-            this.panel10.TabIndex = 25;
+            this.pbPlayerPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbPlayerPhoto.Location = new System.Drawing.Point(167, 12);
+            this.pbPlayerPhoto.Name = "pbPlayerPhoto";
+            this.pbPlayerPhoto.Size = new System.Drawing.Size(106, 160);
+            this.pbPlayerPhoto.TabIndex = 25;
             // 
             // panelTeamLogo
             // 
@@ -318,21 +318,21 @@ namespace VKR_Test
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 414);
-            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.pbPlayerPhoto);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panelTeamLogo);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dgvBench);
+            this.Controls.Add(this.lbPlayerPlace_and_DateOfBirth);
+            this.Controls.Add(this.lbPlayerName);
+            this.Controls.Add(this.lbPlayerNumber);
             this.Controls.Add(this.lbl_LineupHeader);
             this.Controls.Add(this.btnDecLineupTypeNumberBy1);
             this.Controls.Add(this.btnIncLineupTypeNumberBy1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbLineUpType);
             this.Controls.Add(this.btnDecreaseTeamNumberBy1);
             this.Controls.Add(this.btnIncreaseTeamNumberBy1);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.lbTeamtitle);
+            this.Controls.Add(this.dgvLineup);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -340,8 +340,8 @@ namespace VKR_Test
             this.Name = "LineupsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Starting lineups";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLineup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBench)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -349,22 +349,22 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvLineup;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Button btnDecreaseTeamNumberBy1;
         private System.Windows.Forms.Button btnIncreaseTeamNumberBy1;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lbTeamtitle;
         private System.Windows.Forms.Button btnDecLineupTypeNumberBy1;
         private System.Windows.Forms.Button btnIncLineupTypeNumberBy1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbLineUpType;
         private System.Windows.Forms.Label lbl_LineupHeader;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Panel pbPlayerPhoto;
+        private System.Windows.Forms.Label lbPlayerNumber;
+        private System.Windows.Forms.Label lbPlayerName;
+        private System.Windows.Forms.Label lbPlayerPlace_and_DateOfBirth;
+        private System.Windows.Forms.DataGridView dgvBench;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.Panel panelTeamLogo;
         private System.Windows.Forms.Label label6;

@@ -51,8 +51,8 @@ namespace VKR_Test
 
         private void TeamsSelectForm_Load(object sender, EventArgs e)
         {
-            DisplayTeam(AwayTeamNumber, numericUpDown1, label1, label2, panel1, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
-            DisplayTeam(HomeTeamNumber, numericUpDown2, label8, label7, panel2, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
+            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
         private void DisplayTeam(int TeamNumber, NumericUpDown teamColorsForMatch, Label teamCity, Label teamTitle, Panel teamLogo, int teamColorNumber, Label TeamColorHeader,
@@ -92,8 +92,8 @@ namespace VKR_Test
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            CurrentAwayColor = (int)numericUpDown1.Value;
-            CurrentTeamColorChanged(AwayTeamNumber, CurrentAwayColor, label1, label2, label4, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1);
+            CurrentAwayColor = (int)numAwayTeamColor.Value;
+            CurrentTeamColorChanged(AwayTeamNumber, CurrentAwayColor, lbAwayCity, lbAwayTitle, label4, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1);
         }
 
         private void btnIncreaseAwayTeamNumberBy1_Click(object sender, EventArgs e)
@@ -103,7 +103,7 @@ namespace VKR_Test
             {
                 AwayTeamNumber = AwayTeamNumber == teams.Count - 1 ? 0 : AwayTeamNumber + 1;
             }
-            DisplayTeam(AwayTeamNumber, numericUpDown1, label1, label2, panel1, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1, AwayTeamBalance);
         }
 
         private void btnIncreaseHomeTeamNumberBy1_Click(object sender, EventArgs e)
@@ -113,7 +113,7 @@ namespace VKR_Test
             {
                 HomeTeamNumber = HomeTeamNumber == teams.Count - 1 ? 0 : HomeTeamNumber + 1;
             }
-            DisplayTeam(HomeTeamNumber, numericUpDown2, label8, label7, panel2, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1, HomeTeamBalance);
+            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
         private void btnDecreaseHomeTeamNumberBy1_Click(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace VKR_Test
             {
                 HomeTeamNumber = HomeTeamNumber == 0 ? teams.Count - 1 : HomeTeamNumber - 1;
             }
-            DisplayTeam(HomeTeamNumber, numericUpDown2, label8, label7, panel2, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1, HomeTeamBalance);
+            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
         private void btnDecreaseAwayTeamNumberBy1_Click(object sender, EventArgs e)
@@ -133,13 +133,13 @@ namespace VKR_Test
             {
                 AwayTeamNumber = AwayTeamNumber == 0 ? teams.Count - 1 : AwayTeamNumber - 1;
             }
-            DisplayTeam(AwayTeamNumber, numericUpDown1, label1, label2, panel1, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1, AwayTeamBalance);
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-            CurrentHomeColor = (int)numericUpDown2.Value;
-            CurrentTeamColorChanged(HomeTeamNumber, CurrentHomeColor, label8, label7, label5, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1);
+            CurrentHomeColor = (int)numHomeTeamColor.Value;
+            CurrentTeamColorChanged(HomeTeamNumber, CurrentHomeColor, lbHomeCity, lbHomeTitle, label5, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1);
         }
 
         private void btnAcceptTeamsSelection_Click(object sender, EventArgs e)
@@ -173,8 +173,8 @@ namespace VKR_Test
             AwayTeamNumber = HomeTeamNumber;
             HomeTeamNumber = Buf;
 
-            DisplayTeam(AwayTeamNumber, numericUpDown1, label1, label2, panel1, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
-            DisplayTeam(HomeTeamNumber, numericUpDown2, label8, label7, panel2, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
+            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
         private void BackColorChanging_label(object sender, EventArgs e)

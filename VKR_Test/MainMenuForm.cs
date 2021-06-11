@@ -32,17 +32,17 @@ namespace VKR_Test
         {
             List<ManInTeam> men = manBL.GetListOfPeopleWithBirthdayToday();
             List<Team> teamsList = teams.GetAllTeams();
-            dataGridView1.Rows.Clear();
+            dgvBirthDays.Rows.Clear();
             foreach (ManInTeam man in men)
             {
-                dataGridView1.Rows.Add("", man.Team, man.FullName, man.Age);
+                dgvBirthDays.Rows.Add("", man.Team, man.FullName, man.Age);
             }
 
             for (int i = 0; i < men.Count; i++)
             {
                 Team ManTeam = teamsList.Where(team => team.TeamAbbreviation == men[i].Team).First();
-                dataGridView1.Rows[i].Cells[0].Style.BackColor = ManTeam.TeamColor[0];
-                dataGridView1.Rows[i].Cells[0].Style.SelectionBackColor = ManTeam.TeamColor[0];
+                dgvBirthDays.Rows[i].Cells[0].Style.BackColor = ManTeam.TeamColor[0];
+                dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = ManTeam.TeamColor[0];
             }
         }
 

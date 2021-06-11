@@ -25,14 +25,14 @@ namespace VKR_Test
             Text = $"New pitcher for {defense.TeamTitle}";
             foreach (Pitcher pitcher in Pitchers)
             {
-                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"ERA: {pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"SO: {pitcher.Strikeouts}");
+                dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"ERA: {pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"SO: {pitcher.Strikeouts}");
             }
         }
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
         {
-            dataGridView1.DefaultCellStyle.SelectionBackColor = CurrentTeam.TeamColorForThisMatch;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(CurrentTeam.TeamColorForThisMatch, false);
+            dgvAvailablePlayers.DefaultCellStyle.SelectionBackColor = CurrentTeam.TeamColorForThisMatch;
+            dgvAvailablePlayers.DefaultCellStyle.SelectionForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(CurrentTeam.TeamColorForThisMatch, false);
             panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{CurrentTeam.TeamAbbreviation}.png");
         }
 
@@ -46,7 +46,7 @@ namespace VKR_Test
             Text = $"New batter for {offense.TeamTitle}";
             for (int i = 0; i < Batters.Count; i++)
             {
-                dataGridView1.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"AVG: {Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"HR: {Batters[i].HomeRuns}");
+                dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"AVG: {Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"HR: {Batters[i].HomeRuns}");
             }
         }
 
@@ -54,11 +54,11 @@ namespace VKR_Test
         {
             if (Pitchers == null)
             {
-                newBatterForThisTeam = Batters[dataGridView1.SelectedRows[0].Index];
+                newBatterForThisTeam = Batters[dgvAvailablePlayers.SelectedRows[0].Index];
             }
             else
             {
-                newPitcherForThisTeam = Pitchers[dataGridView1.SelectedRows[0].Index];
+                newPitcherForThisTeam = Pitchers[dgvAvailablePlayers.SelectedRows[0].Index];
             }
             DialogResult = DialogResult.OK;
         }

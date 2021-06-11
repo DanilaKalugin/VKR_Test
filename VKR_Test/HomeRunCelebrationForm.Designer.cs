@@ -31,27 +31,27 @@ namespace VKR_Test
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeRunCelebrationForm));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbHomeRunType = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.pbPatterPhoto = new System.Windows.Forms.Panel();
+            this.lbBatterName = new System.Windows.Forms.Label();
+            this.lbBatterHRNumber = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbBatterHRNumberInThisMatch = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // lbHomeRunType
             // 
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 40F);
-            this.label1.Location = new System.Drawing.Point(200, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(400, 150);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Home";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.BackColorChanged += new System.EventHandler(this.BackColorChanging);
+            this.lbHomeRunType.Font = new System.Drawing.Font("MicroFLF", 40F);
+            this.lbHomeRunType.Location = new System.Drawing.Point(200, 50);
+            this.lbHomeRunType.Name = "lbHomeRunType";
+            this.lbHomeRunType.Size = new System.Drawing.Size(400, 150);
+            this.lbHomeRunType.TabIndex = 0;
+            this.lbHomeRunType.Text = "Home";
+            this.lbHomeRunType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbHomeRunType.BackColorChanged += new System.EventHandler(this.BackColorChanging);
             // 
             // timer1
             // 
@@ -74,64 +74,64 @@ namespace VKR_Test
             this.panel2.Size = new System.Drawing.Size(150, 150);
             this.panel2.TabIndex = 2;
             // 
-            // panel10
+            // pbPatterPhoto
             // 
-            this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel10.Location = new System.Drawing.Point(0, 237);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(142, 213);
-            this.panel10.TabIndex = 6;
+            this.pbPatterPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbPatterPhoto.Location = new System.Drawing.Point(0, 237);
+            this.pbPatterPhoto.Name = "pbPatterPhoto";
+            this.pbPatterPhoto.Size = new System.Drawing.Size(142, 213);
+            this.pbPatterPhoto.TabIndex = 6;
             // 
-            // label2
+            // lbBatterName
             // 
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 32F);
-            this.label2.Location = new System.Drawing.Point(170, 276);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(580, 51);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Home";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.BackColorChanged += new System.EventHandler(this.BackColorChanging);
+            this.lbBatterName.Font = new System.Drawing.Font("MicroFLF", 32F);
+            this.lbBatterName.Location = new System.Drawing.Point(170, 276);
+            this.lbBatterName.Name = "lbBatterName";
+            this.lbBatterName.Size = new System.Drawing.Size(580, 51);
+            this.lbBatterName.TabIndex = 7;
+            this.lbBatterName.Text = "Home";
+            this.lbBatterName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbBatterName.BackColorChanged += new System.EventHandler(this.BackColorChanging);
             // 
-            // label3
+            // lbBatterHRNumber
             // 
-            this.label3.Font = new System.Drawing.Font("MicroFLF", 24F);
-            this.label3.Location = new System.Drawing.Point(171, 327);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(579, 41);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Home";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.BackColorChanged += new System.EventHandler(this.BackColorChanging);
+            this.lbBatterHRNumber.Font = new System.Drawing.Font("MicroFLF", 24F);
+            this.lbBatterHRNumber.Location = new System.Drawing.Point(171, 327);
+            this.lbBatterHRNumber.Name = "lbBatterHRNumber";
+            this.lbBatterHRNumber.Size = new System.Drawing.Size(579, 41);
+            this.lbBatterHRNumber.TabIndex = 8;
+            this.lbBatterHRNumber.Text = "Home";
+            this.lbBatterHRNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbBatterHRNumber.BackColorChanged += new System.EventHandler(this.BackColorChanging);
             // 
             // timer2
             // 
             this.timer2.Interval = 3000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // label4
+            // lbBatterHRNumberInThisMatch
             // 
-            this.label4.Font = new System.Drawing.Font("MicroFLF", 24F);
-            this.label4.Location = new System.Drawing.Point(171, 368);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(579, 41);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Home";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.BackColorChanged += new System.EventHandler(this.BackColorChanging);
+            this.lbBatterHRNumberInThisMatch.Font = new System.Drawing.Font("MicroFLF", 24F);
+            this.lbBatterHRNumberInThisMatch.Location = new System.Drawing.Point(171, 368);
+            this.lbBatterHRNumberInThisMatch.Name = "lbBatterHRNumberInThisMatch";
+            this.lbBatterHRNumberInThisMatch.Size = new System.Drawing.Size(579, 41);
+            this.lbBatterHRNumberInThisMatch.TabIndex = 9;
+            this.lbBatterHRNumberInThisMatch.Text = "Home";
+            this.lbBatterHRNumberInThisMatch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbBatterHRNumberInThisMatch.BackColorChanged += new System.EventHandler(this.BackColorChanging);
             // 
             // HomeRunCelebrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.lbBatterHRNumberInThisMatch);
+            this.Controls.Add(this.lbBatterHRNumber);
+            this.Controls.Add(this.lbBatterName);
+            this.Controls.Add(this.pbPatterPhoto);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbHomeRunType);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomeRunCelebrationForm";
@@ -144,14 +144,14 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbHomeRunType;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel pbPatterPhoto;
+        private System.Windows.Forms.Label lbBatterName;
+        private System.Windows.Forms.Label lbBatterHRNumber;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbBatterHRNumberInThisMatch;
     }
 }

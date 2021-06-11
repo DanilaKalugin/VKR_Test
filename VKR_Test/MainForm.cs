@@ -180,8 +180,8 @@ namespace VKR_Test
             AwayTeam_RunsScored.Text = gameSituation.AwayTeamRuns.ToString();
             HomeTeam_RunsScored.Text = gameSituation.HomeTeamRuns.ToString();
 
-            panel6.Visible = gameSituation.strikes == 0 && gameSituation.balls == 0;
-            panel7.BackgroundImage = Image.FromFile($"SmallTeamLogos/{gameSituation.offense.TeamAbbreviation}.png");
+            panelCurrentBatter.Visible = gameSituation.strikes == 0 && gameSituation.balls == 0;
+            pbCurrentOffenseLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{gameSituation.offense.TeamAbbreviation}.png");
 
             panel8.BackColor = gameSituation.offense.TeamColorForThisMatch;
             btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.B * 0.9));
@@ -301,7 +301,7 @@ namespace VKR_Test
             ShowBatterStats(batter, BatterStats);
             ShowStatsForThisMatch(batter, lbTodayStats);
 
-            panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.png");
+            pbCurrentBatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.png");
             lblPlayerPosition.Text = batter.PositionForThisMatch;
             lblPlayerNumber.Text = batter.PlayerNumber.ToString();
             lblPlayerName.Text = batter.FullName.ToUpper();
@@ -353,7 +353,7 @@ namespace VKR_Test
             AddNewStatsForTodayStatsLabel(SFs, "SF", lbTodayStats);
             AddNewStatsForTodayStatsLabel(SACs, "SAC", lbTodayStats);
             AddNewStatsForTodayStatsLabel(Ks, "SO", lbTodayStats);
-            lbTodayStats.Visible = lbTodayStats.Text != "►TODAY: " && panel6.Visible;
+            lbTodayStats.Visible = lbTodayStats.Text != "►TODAY: " && panelCurrentBatter.Visible;
         }
 
         private void AddNewStatsForTodayStatsLabel(int value, string text, Label lb)
@@ -773,8 +773,8 @@ namespace VKR_Test
 
         private void panel6_VisibleChanged(object sender, EventArgs e)
         {
-            panel7.Visible = panel6.Visible;
-            panel10.Visible = panel6.Visible;
+            pbCurrentOffenseLogo.Visible = panelCurrentBatter.Visible;
+            pbCurrentBatterPhoto.Visible = panelCurrentBatter.Visible;
         }
 
         private void btnChangeBatter_Click(object sender, EventArgs e)
@@ -805,10 +805,10 @@ namespace VKR_Test
 
         private void lbTodayStats_VisibleChanged(object sender, EventArgs e)
         {
-            panel6.Height = lbTodayStats.Visible ? 110 : 140;
-            panel7.Width = lbTodayStats.Visible ? 110 : 140;
-            panel7.Height = lbTodayStats.Visible ? 110 : 140;
-            panel7.Left = lbTodayStats.Visible ? 88 : 58;
+            panelCurrentBatter.Height = lbTodayStats.Visible ? 110 : 140;
+            pbCurrentOffenseLogo.Width = lbTodayStats.Visible ? 110 : 140;
+            pbCurrentOffenseLogo.Height = lbTodayStats.Visible ? 110 : 140;
+            pbCurrentOffenseLogo.Left = lbTodayStats.Visible ? 88 : 58;
         }
 
         private void BackColorChanging_label(object sender, EventArgs e)

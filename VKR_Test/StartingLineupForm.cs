@@ -10,18 +10,18 @@ namespace VKR_Test
         public StartingLineupForm(Team team)
         {
             InitializeComponent();
-            label37.Text = $"{team.TeamTitle.ToUpper()} Batting Order".ToUpper();
+            lbTeamTitle.Text = $"{team.TeamTitle.ToUpper()} Batting Order".ToUpper();
             teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             BackColor = team.TeamColorForThisMatch;
-            GetInfoAboutBatter(team.BattingLineup[0], p1, label1, label18, label19, label20, team);
-            GetInfoAboutBatter(team.BattingLineup[1], p2, label2, label17, label22, label21, team);
-            GetInfoAboutBatter(team.BattingLineup[2], p3, label3, label16, label24, label23, team);
-            GetInfoAboutBatter(team.BattingLineup[3], p4, label4, label15, label26, label25, team);
-            GetInfoAboutBatter(team.BattingLineup[4], p5, label5, label14, label28, label27, team);
-            GetInfoAboutBatter(team.BattingLineup[5], p6, label6, label13, label30, label29, team);
-            GetInfoAboutBatter(team.BattingLineup[6], p7, label7, label12, label32, label31, team);
-            GetInfoAboutBatter(team.BattingLineup[7], p8, label8, label11, label34, label33, team);
-            GetInfoAboutBatter(team.BattingLineup[8], p9, label9, label10, label36, label35, team);
+            GetInfoAboutBatter(team.BattingLineup[0], p1_photo, p1_FirstName, p1_SecondName, p1_Number, p1_Position, team);
+            GetInfoAboutBatter(team.BattingLineup[1], p2_photo, p2_FirstName, p2_SecondName, p2_Number, p2_Position, team);
+            GetInfoAboutBatter(team.BattingLineup[2], p3_photo, p3_FirstName, p3_SecondName, p3_Number, p3_Position, team);
+            GetInfoAboutBatter(team.BattingLineup[3], p4_photo, p4_FirstName, p4_SecondName, p4_Number, p4_Position, team);
+            GetInfoAboutBatter(team.BattingLineup[4], p5_photo, p5_FirstName, p5_SecondName, p5_Number, p5_Position, team);
+            GetInfoAboutBatter(team.BattingLineup[5], p6_photo, p6_Firstname, p6_SecondName, p6_Number, p6_Position, team);
+            GetInfoAboutBatter(team.BattingLineup[6], p7_photo, p7_FirstName, p7_SecondName, p7_Number, p7_Position, team);
+            GetInfoAboutBatter(team.BattingLineup[7], p8_photo, p8_FirstName, p8_SecondName, p8_Number, p8_Position, team);
+            GetInfoAboutBatter(team.BattingLineup[8], p9_photo, p9_FirstName, p9_SecondName, p9_Number, p9_Position, team);
             teamManager.Text = $"► Team Manager: {team.TeamManager.FullName}".ToUpper();
             timer1.Start();
         }

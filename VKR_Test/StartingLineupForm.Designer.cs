@@ -31,601 +31,601 @@ namespace VKR_Test
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartingLineupForm));
-            this.p1 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.p2 = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.p3 = new System.Windows.Forms.Panel();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.p4 = new System.Windows.Forms.Panel();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.p8 = new System.Windows.Forms.Panel();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.p7 = new System.Windows.Forms.Panel();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.p6 = new System.Windows.Forms.Panel();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.p5 = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.p9 = new System.Windows.Forms.Panel();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.p1_photo = new System.Windows.Forms.Panel();
+            this.p1_Position = new System.Windows.Forms.Label();
+            this.p1_Number = new System.Windows.Forms.Label();
+            this.p2_photo = new System.Windows.Forms.Panel();
+            this.p2_Position = new System.Windows.Forms.Label();
+            this.p2_Number = new System.Windows.Forms.Label();
+            this.p3_photo = new System.Windows.Forms.Panel();
+            this.p3_Position = new System.Windows.Forms.Label();
+            this.p3_Number = new System.Windows.Forms.Label();
+            this.p4_photo = new System.Windows.Forms.Panel();
+            this.p4_Position = new System.Windows.Forms.Label();
+            this.p4_Number = new System.Windows.Forms.Label();
+            this.p8_photo = new System.Windows.Forms.Panel();
+            this.p8_Number = new System.Windows.Forms.Label();
+            this.p8_Position = new System.Windows.Forms.Label();
+            this.p7_photo = new System.Windows.Forms.Panel();
+            this.p7_Number = new System.Windows.Forms.Label();
+            this.p7_Position = new System.Windows.Forms.Label();
+            this.p6_photo = new System.Windows.Forms.Panel();
+            this.p6_Position = new System.Windows.Forms.Label();
+            this.p6_Number = new System.Windows.Forms.Label();
+            this.p5_photo = new System.Windows.Forms.Panel();
+            this.p5_Position = new System.Windows.Forms.Label();
+            this.p5_Number = new System.Windows.Forms.Label();
+            this.p9_photo = new System.Windows.Forms.Panel();
+            this.p9_Position = new System.Windows.Forms.Label();
+            this.p9_Number = new System.Windows.Forms.Label();
+            this.p1_FirstName = new System.Windows.Forms.Label();
+            this.p2_FirstName = new System.Windows.Forms.Label();
+            this.p3_FirstName = new System.Windows.Forms.Label();
+            this.p4_FirstName = new System.Windows.Forms.Label();
+            this.p5_FirstName = new System.Windows.Forms.Label();
+            this.p6_Firstname = new System.Windows.Forms.Label();
+            this.p7_FirstName = new System.Windows.Forms.Label();
+            this.p8_FirstName = new System.Windows.Forms.Label();
+            this.p9_FirstName = new System.Windows.Forms.Label();
+            this.p9_SecondName = new System.Windows.Forms.Label();
+            this.p8_SecondName = new System.Windows.Forms.Label();
+            this.p7_SecondName = new System.Windows.Forms.Label();
+            this.p6_SecondName = new System.Windows.Forms.Label();
+            this.p5_SecondName = new System.Windows.Forms.Label();
+            this.p4_SecondName = new System.Windows.Forms.Label();
+            this.p3_SecondName = new System.Windows.Forms.Label();
+            this.p2_SecondName = new System.Windows.Forms.Label();
+            this.p1_SecondName = new System.Windows.Forms.Label();
             this.teamLogo = new System.Windows.Forms.Panel();
-            this.label37 = new System.Windows.Forms.Label();
+            this.lbTeamTitle = new System.Windows.Forms.Label();
             this.timer_LineupForm = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.teamManager = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.p1.SuspendLayout();
-            this.p2.SuspendLayout();
-            this.p3.SuspendLayout();
-            this.p4.SuspendLayout();
-            this.p8.SuspendLayout();
-            this.p7.SuspendLayout();
-            this.p6.SuspendLayout();
-            this.p5.SuspendLayout();
-            this.p9.SuspendLayout();
+            this.p1_photo.SuspendLayout();
+            this.p2_photo.SuspendLayout();
+            this.p3_photo.SuspendLayout();
+            this.p4_photo.SuspendLayout();
+            this.p8_photo.SuspendLayout();
+            this.p7_photo.SuspendLayout();
+            this.p6_photo.SuspendLayout();
+            this.p5_photo.SuspendLayout();
+            this.p9_photo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // p1
-            // 
-            this.p1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p1.Controls.Add(this.label20);
-            this.p1.Controls.Add(this.label19);
-            this.p1.Location = new System.Drawing.Point(32, 118);
-            this.p1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.p1.Name = "p1";
-            this.p1.Size = new System.Drawing.Size(120, 180);
-            this.p1.TabIndex = 7;
-            // 
-            // label20
-            // 
-            this.label20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label20.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(79, 156);
-            this.label20.Margin = new System.Windows.Forms.Padding(0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(40, 23);
-            this.label20.TabIndex = 35;
-            this.label20.Text = "label20";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label19
-            // 
-            this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label19.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(79, 130);
-            this.label19.Margin = new System.Windows.Forms.Padding(0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(40, 23);
-            this.label19.TabIndex = 34;
-            this.label19.Text = "label19";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // p2
-            // 
-            this.p2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p2.Controls.Add(this.label21);
-            this.p2.Controls.Add(this.label22);
-            this.p2.Location = new System.Drawing.Point(159, 118);
-            this.p2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.p2.Name = "p2";
-            this.p2.Size = new System.Drawing.Size(120, 180);
-            this.p2.TabIndex = 8;
-            // 
-            // label21
-            // 
-            this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label21.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(79, 156);
-            this.label21.Margin = new System.Windows.Forms.Padding(0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(40, 23);
-            this.label21.TabIndex = 37;
-            this.label21.Text = "label21";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label22
-            // 
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label22.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(79, 130);
-            this.label22.Margin = new System.Windows.Forms.Padding(0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(40, 23);
-            this.label22.TabIndex = 36;
-            this.label22.Text = "label22";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // p3
-            // 
-            this.p3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p3.Controls.Add(this.label23);
-            this.p3.Controls.Add(this.label24);
-            this.p3.Location = new System.Drawing.Point(286, 118);
-            this.p3.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.p3.Name = "p3";
-            this.p3.Size = new System.Drawing.Size(120, 180);
-            this.p3.TabIndex = 10;
-            // 
-            // label23
-            // 
-            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label23.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(79, 156);
-            this.label23.Margin = new System.Windows.Forms.Padding(0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(40, 23);
-            this.label23.TabIndex = 39;
-            this.label23.Text = "label23";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label24
-            // 
-            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label24.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(79, 130);
-            this.label24.Margin = new System.Windows.Forms.Padding(0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(40, 23);
-            this.label24.TabIndex = 38;
-            this.label24.Text = "label24";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // p4
-            // 
-            this.p4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p4.Controls.Add(this.label25);
-            this.p4.Controls.Add(this.label26);
-            this.p4.Location = new System.Drawing.Point(413, 118);
-            this.p4.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.p4.Name = "p4";
-            this.p4.Size = new System.Drawing.Size(120, 180);
-            this.p4.TabIndex = 9;
-            // 
-            // label25
-            // 
-            this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label25.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(79, 156);
-            this.label25.Margin = new System.Windows.Forms.Padding(0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(40, 23);
-            this.label25.TabIndex = 41;
-            this.label25.Text = "label25";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label26
-            // 
-            this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label26.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(79, 130);
-            this.label26.Margin = new System.Windows.Forms.Padding(0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(40, 23);
-            this.label26.TabIndex = 40;
-            this.label26.Text = "label26";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // p8
-            // 
-            this.p8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p8.Controls.Add(this.label34);
-            this.p8.Controls.Add(this.label33);
-            this.p8.Location = new System.Drawing.Point(921, 118);
-            this.p8.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.p8.Name = "p8";
-            this.p8.Size = new System.Drawing.Size(120, 180);
-            this.p8.TabIndex = 13;
-            // 
-            // label34
-            // 
-            this.label34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label34.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(79, 130);
-            this.label34.Margin = new System.Windows.Forms.Padding(0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(40, 23);
-            this.label34.TabIndex = 48;
-            this.label34.Text = "label34";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label33
-            // 
-            this.label33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label33.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(79, 156);
-            this.label33.Margin = new System.Windows.Forms.Padding(0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(40, 23);
-            this.label33.TabIndex = 49;
-            this.label33.Text = "label33";
-            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // p7
-            // 
-            this.p7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p7.Controls.Add(this.label32);
-            this.p7.Controls.Add(this.label31);
-            this.p7.Location = new System.Drawing.Point(794, 118);
-            this.p7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.p7.Name = "p7";
-            this.p7.Size = new System.Drawing.Size(120, 180);
-            this.p7.TabIndex = 14;
-            // 
-            // label32
-            // 
-            this.label32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label32.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(79, 130);
-            this.label32.Margin = new System.Windows.Forms.Padding(0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(40, 23);
-            this.label32.TabIndex = 46;
-            this.label32.Text = "label32";
-            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label31
-            // 
-            this.label31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label31.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(79, 156);
-            this.label31.Margin = new System.Windows.Forms.Padding(0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(40, 23);
-            this.label31.TabIndex = 47;
-            this.label31.Text = "label31";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // p6
-            // 
-            this.p6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p6.Controls.Add(this.label29);
-            this.p6.Controls.Add(this.label30);
-            this.p6.Location = new System.Drawing.Point(667, 118);
-            this.p6.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.p6.Name = "p6";
-            this.p6.Size = new System.Drawing.Size(120, 180);
-            this.p6.TabIndex = 12;
-            // 
-            // label29
-            // 
-            this.label29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label29.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(79, 156);
-            this.label29.Margin = new System.Windows.Forms.Padding(0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(40, 23);
-            this.label29.TabIndex = 45;
-            this.label29.Text = "label29";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label30
-            // 
-            this.label30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label30.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(79, 130);
-            this.label30.Margin = new System.Windows.Forms.Padding(0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(40, 23);
-            this.label30.TabIndex = 44;
-            this.label30.Text = "label30";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // p5
-            // 
-            this.p5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p5.Controls.Add(this.label27);
-            this.p5.Controls.Add(this.label28);
-            this.p5.Location = new System.Drawing.Point(540, 118);
-            this.p5.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.p5.Name = "p5";
-            this.p5.Size = new System.Drawing.Size(120, 180);
-            this.p5.TabIndex = 11;
-            // 
-            // label27
-            // 
-            this.label27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label27.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(79, 156);
-            this.label27.Margin = new System.Windows.Forms.Padding(0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(40, 23);
-            this.label27.TabIndex = 43;
-            this.label27.Text = "label27";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label28
-            // 
-            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label28.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(79, 130);
-            this.label28.Margin = new System.Windows.Forms.Padding(0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(40, 23);
-            this.label28.TabIndex = 42;
-            this.label28.Text = "label28";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // p9
-            // 
-            this.p9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.p9.Controls.Add(this.label35);
-            this.p9.Controls.Add(this.label36);
-            this.p9.Location = new System.Drawing.Point(1048, 118);
-            this.p9.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.p9.Name = "p9";
-            this.p9.Size = new System.Drawing.Size(120, 180);
-            this.p9.TabIndex = 15;
-            // 
-            // label35
-            // 
-            this.label35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label35.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(79, 156);
-            this.label35.Margin = new System.Windows.Forms.Padding(0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(40, 23);
-            this.label35.TabIndex = 51;
-            this.label35.Text = "label35";
-            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label36
-            // 
-            this.label36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label36.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(79, 130);
-            this.label36.Margin = new System.Windows.Forms.Padding(0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(40, 23);
-            this.label36.TabIndex = 50;
-            this.label36.Text = "label36";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label1.Location = new System.Drawing.Point(32, 301);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 23);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "label1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Black;
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label2.Location = new System.Drawing.Point(159, 301);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 23);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "label2";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.Black;
-            this.label3.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label3.Location = new System.Drawing.Point(286, 301);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 23);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "label3";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.Black;
-            this.label4.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label4.Location = new System.Drawing.Point(413, 301);
-            this.label4.Margin = new System.Windows.Forms.Padding(0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 23);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "label4";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.Black;
-            this.label5.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label5.Location = new System.Drawing.Point(540, 301);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 23);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "label5";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.Black;
-            this.label6.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label6.Location = new System.Drawing.Point(667, 301);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 23);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "label6";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.BackColor = System.Drawing.Color.Black;
-            this.label7.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label7.Location = new System.Drawing.Point(794, 301);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(120, 23);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "label7";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.Color.Black;
-            this.label8.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label8.Location = new System.Drawing.Point(921, 301);
-            this.label8.Margin = new System.Windows.Forms.Padding(0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(120, 23);
-            this.label8.TabIndex = 23;
-            this.label8.Text = "label8";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.Color.Black;
-            this.label9.Font = new System.Drawing.Font("MicroFLF", 11F);
-            this.label9.Location = new System.Drawing.Point(1048, 301);
-            this.label9.Margin = new System.Windows.Forms.Padding(0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 23);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "label9";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.Black;
-            this.label10.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(1048, 324);
-            this.label10.Margin = new System.Windows.Forms.Padding(0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(120, 23);
-            this.label10.TabIndex = 33;
-            this.label10.Text = "label10";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label11
-            // 
-            this.label11.BackColor = System.Drawing.Color.Black;
-            this.label11.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(921, 324);
-            this.label11.Margin = new System.Windows.Forms.Padding(0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(120, 23);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "label11";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label12
-            // 
-            this.label12.BackColor = System.Drawing.Color.Black;
-            this.label12.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(794, 324);
-            this.label12.Margin = new System.Windows.Forms.Padding(0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(120, 23);
-            this.label12.TabIndex = 31;
-            this.label12.Text = "label12";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.BackColor = System.Drawing.Color.Black;
-            this.label13.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(667, 324);
-            this.label13.Margin = new System.Windows.Forms.Padding(0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(120, 23);
-            this.label13.TabIndex = 30;
-            this.label13.Text = "label13";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label14
-            // 
-            this.label14.BackColor = System.Drawing.Color.Black;
-            this.label14.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label14.Location = new System.Drawing.Point(540, 324);
-            this.label14.Margin = new System.Windows.Forms.Padding(0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(120, 23);
-            this.label14.TabIndex = 29;
-            this.label14.Text = "label14";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label15
-            // 
-            this.label15.BackColor = System.Drawing.Color.Black;
-            this.label15.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(413, 324);
-            this.label15.Margin = new System.Windows.Forms.Padding(0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(120, 23);
-            this.label15.TabIndex = 28;
-            this.label15.Text = "label15";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label16
-            // 
-            this.label16.BackColor = System.Drawing.Color.Black;
-            this.label16.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(286, 324);
-            this.label16.Margin = new System.Windows.Forms.Padding(0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(120, 23);
-            this.label16.TabIndex = 27;
-            this.label16.Text = "label16";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label17
-            // 
-            this.label17.BackColor = System.Drawing.Color.Black;
-            this.label17.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label17.Location = new System.Drawing.Point(159, 324);
-            this.label17.Margin = new System.Windows.Forms.Padding(0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(120, 23);
-            this.label17.TabIndex = 26;
-            this.label17.Text = "label17";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label18
-            // 
-            this.label18.BackColor = System.Drawing.Color.Black;
-            this.label18.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
-            this.label18.Location = new System.Drawing.Point(32, 324);
-            this.label18.Margin = new System.Windows.Forms.Padding(0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(120, 23);
-            this.label18.TabIndex = 25;
-            this.label18.Text = "label18";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // p1_photo
+            // 
+            this.p1_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p1_photo.Controls.Add(this.p1_Position);
+            this.p1_photo.Controls.Add(this.p1_Number);
+            this.p1_photo.Location = new System.Drawing.Point(32, 118);
+            this.p1_photo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.p1_photo.Name = "p1_photo";
+            this.p1_photo.Size = new System.Drawing.Size(120, 180);
+            this.p1_photo.TabIndex = 7;
+            // 
+            // p1_Position
+            // 
+            this.p1_Position.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p1_Position.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1_Position.Location = new System.Drawing.Point(79, 156);
+            this.p1_Position.Margin = new System.Windows.Forms.Padding(0);
+            this.p1_Position.Name = "p1_Position";
+            this.p1_Position.Size = new System.Drawing.Size(40, 23);
+            this.p1_Position.TabIndex = 35;
+            this.p1_Position.Text = "label20";
+            this.p1_Position.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p1_Number
+            // 
+            this.p1_Number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p1_Number.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1_Number.Location = new System.Drawing.Point(79, 130);
+            this.p1_Number.Margin = new System.Windows.Forms.Padding(0);
+            this.p1_Number.Name = "p1_Number";
+            this.p1_Number.Size = new System.Drawing.Size(40, 23);
+            this.p1_Number.TabIndex = 34;
+            this.p1_Number.Text = "label19";
+            this.p1_Number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p2_photo
+            // 
+            this.p2_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p2_photo.Controls.Add(this.p2_Position);
+            this.p2_photo.Controls.Add(this.p2_Number);
+            this.p2_photo.Location = new System.Drawing.Point(159, 118);
+            this.p2_photo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.p2_photo.Name = "p2_photo";
+            this.p2_photo.Size = new System.Drawing.Size(120, 180);
+            this.p2_photo.TabIndex = 8;
+            // 
+            // p2_Position
+            // 
+            this.p2_Position.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p2_Position.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2_Position.Location = new System.Drawing.Point(79, 156);
+            this.p2_Position.Margin = new System.Windows.Forms.Padding(0);
+            this.p2_Position.Name = "p2_Position";
+            this.p2_Position.Size = new System.Drawing.Size(40, 23);
+            this.p2_Position.TabIndex = 37;
+            this.p2_Position.Text = "label21";
+            this.p2_Position.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p2_Number
+            // 
+            this.p2_Number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p2_Number.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2_Number.Location = new System.Drawing.Point(79, 130);
+            this.p2_Number.Margin = new System.Windows.Forms.Padding(0);
+            this.p2_Number.Name = "p2_Number";
+            this.p2_Number.Size = new System.Drawing.Size(40, 23);
+            this.p2_Number.TabIndex = 36;
+            this.p2_Number.Text = "label22";
+            this.p2_Number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p3_photo
+            // 
+            this.p3_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p3_photo.Controls.Add(this.p3_Position);
+            this.p3_photo.Controls.Add(this.p3_Number);
+            this.p3_photo.Location = new System.Drawing.Point(286, 118);
+            this.p3_photo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.p3_photo.Name = "p3_photo";
+            this.p3_photo.Size = new System.Drawing.Size(120, 180);
+            this.p3_photo.TabIndex = 10;
+            // 
+            // p3_Position
+            // 
+            this.p3_Position.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p3_Position.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p3_Position.Location = new System.Drawing.Point(79, 156);
+            this.p3_Position.Margin = new System.Windows.Forms.Padding(0);
+            this.p3_Position.Name = "p3_Position";
+            this.p3_Position.Size = new System.Drawing.Size(40, 23);
+            this.p3_Position.TabIndex = 39;
+            this.p3_Position.Text = "label23";
+            this.p3_Position.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p3_Number
+            // 
+            this.p3_Number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p3_Number.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p3_Number.Location = new System.Drawing.Point(79, 130);
+            this.p3_Number.Margin = new System.Windows.Forms.Padding(0);
+            this.p3_Number.Name = "p3_Number";
+            this.p3_Number.Size = new System.Drawing.Size(40, 23);
+            this.p3_Number.TabIndex = 38;
+            this.p3_Number.Text = "label24";
+            this.p3_Number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p4_photo
+            // 
+            this.p4_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p4_photo.Controls.Add(this.p4_Position);
+            this.p4_photo.Controls.Add(this.p4_Number);
+            this.p4_photo.Location = new System.Drawing.Point(413, 118);
+            this.p4_photo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.p4_photo.Name = "p4_photo";
+            this.p4_photo.Size = new System.Drawing.Size(120, 180);
+            this.p4_photo.TabIndex = 9;
+            // 
+            // p4_Position
+            // 
+            this.p4_Position.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p4_Position.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p4_Position.Location = new System.Drawing.Point(79, 156);
+            this.p4_Position.Margin = new System.Windows.Forms.Padding(0);
+            this.p4_Position.Name = "p4_Position";
+            this.p4_Position.Size = new System.Drawing.Size(40, 23);
+            this.p4_Position.TabIndex = 41;
+            this.p4_Position.Text = "label25";
+            this.p4_Position.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p4_Number
+            // 
+            this.p4_Number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p4_Number.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p4_Number.Location = new System.Drawing.Point(79, 130);
+            this.p4_Number.Margin = new System.Windows.Forms.Padding(0);
+            this.p4_Number.Name = "p4_Number";
+            this.p4_Number.Size = new System.Drawing.Size(40, 23);
+            this.p4_Number.TabIndex = 40;
+            this.p4_Number.Text = "label26";
+            this.p4_Number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p8_photo
+            // 
+            this.p8_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p8_photo.Controls.Add(this.p8_Number);
+            this.p8_photo.Controls.Add(this.p8_Position);
+            this.p8_photo.Location = new System.Drawing.Point(921, 118);
+            this.p8_photo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.p8_photo.Name = "p8_photo";
+            this.p8_photo.Size = new System.Drawing.Size(120, 180);
+            this.p8_photo.TabIndex = 13;
+            // 
+            // p8_Number
+            // 
+            this.p8_Number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p8_Number.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p8_Number.Location = new System.Drawing.Point(79, 130);
+            this.p8_Number.Margin = new System.Windows.Forms.Padding(0);
+            this.p8_Number.Name = "p8_Number";
+            this.p8_Number.Size = new System.Drawing.Size(40, 23);
+            this.p8_Number.TabIndex = 48;
+            this.p8_Number.Text = "label34";
+            this.p8_Number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p8_Position
+            // 
+            this.p8_Position.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p8_Position.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p8_Position.Location = new System.Drawing.Point(79, 156);
+            this.p8_Position.Margin = new System.Windows.Forms.Padding(0);
+            this.p8_Position.Name = "p8_Position";
+            this.p8_Position.Size = new System.Drawing.Size(40, 23);
+            this.p8_Position.TabIndex = 49;
+            this.p8_Position.Text = "label33";
+            this.p8_Position.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p7_photo
+            // 
+            this.p7_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p7_photo.Controls.Add(this.p7_Number);
+            this.p7_photo.Controls.Add(this.p7_Position);
+            this.p7_photo.Location = new System.Drawing.Point(794, 118);
+            this.p7_photo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.p7_photo.Name = "p7_photo";
+            this.p7_photo.Size = new System.Drawing.Size(120, 180);
+            this.p7_photo.TabIndex = 14;
+            // 
+            // p7_Number
+            // 
+            this.p7_Number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p7_Number.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p7_Number.Location = new System.Drawing.Point(79, 130);
+            this.p7_Number.Margin = new System.Windows.Forms.Padding(0);
+            this.p7_Number.Name = "p7_Number";
+            this.p7_Number.Size = new System.Drawing.Size(40, 23);
+            this.p7_Number.TabIndex = 46;
+            this.p7_Number.Text = "label32";
+            this.p7_Number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p7_Position
+            // 
+            this.p7_Position.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p7_Position.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p7_Position.Location = new System.Drawing.Point(79, 156);
+            this.p7_Position.Margin = new System.Windows.Forms.Padding(0);
+            this.p7_Position.Name = "p7_Position";
+            this.p7_Position.Size = new System.Drawing.Size(40, 23);
+            this.p7_Position.TabIndex = 47;
+            this.p7_Position.Text = "label31";
+            this.p7_Position.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p6_photo
+            // 
+            this.p6_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p6_photo.Controls.Add(this.p6_Position);
+            this.p6_photo.Controls.Add(this.p6_Number);
+            this.p6_photo.Location = new System.Drawing.Point(667, 118);
+            this.p6_photo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.p6_photo.Name = "p6_photo";
+            this.p6_photo.Size = new System.Drawing.Size(120, 180);
+            this.p6_photo.TabIndex = 12;
+            // 
+            // p6_Position
+            // 
+            this.p6_Position.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p6_Position.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p6_Position.Location = new System.Drawing.Point(79, 156);
+            this.p6_Position.Margin = new System.Windows.Forms.Padding(0);
+            this.p6_Position.Name = "p6_Position";
+            this.p6_Position.Size = new System.Drawing.Size(40, 23);
+            this.p6_Position.TabIndex = 45;
+            this.p6_Position.Text = "label29";
+            this.p6_Position.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p6_Number
+            // 
+            this.p6_Number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p6_Number.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p6_Number.Location = new System.Drawing.Point(79, 130);
+            this.p6_Number.Margin = new System.Windows.Forms.Padding(0);
+            this.p6_Number.Name = "p6_Number";
+            this.p6_Number.Size = new System.Drawing.Size(40, 23);
+            this.p6_Number.TabIndex = 44;
+            this.p6_Number.Text = "label30";
+            this.p6_Number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p5_photo
+            // 
+            this.p5_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p5_photo.Controls.Add(this.p5_Position);
+            this.p5_photo.Controls.Add(this.p5_Number);
+            this.p5_photo.Location = new System.Drawing.Point(540, 118);
+            this.p5_photo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.p5_photo.Name = "p5_photo";
+            this.p5_photo.Size = new System.Drawing.Size(120, 180);
+            this.p5_photo.TabIndex = 11;
+            // 
+            // p5_Position
+            // 
+            this.p5_Position.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p5_Position.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p5_Position.Location = new System.Drawing.Point(79, 156);
+            this.p5_Position.Margin = new System.Windows.Forms.Padding(0);
+            this.p5_Position.Name = "p5_Position";
+            this.p5_Position.Size = new System.Drawing.Size(40, 23);
+            this.p5_Position.TabIndex = 43;
+            this.p5_Position.Text = "label27";
+            this.p5_Position.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p5_Number
+            // 
+            this.p5_Number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p5_Number.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p5_Number.Location = new System.Drawing.Point(79, 130);
+            this.p5_Number.Margin = new System.Windows.Forms.Padding(0);
+            this.p5_Number.Name = "p5_Number";
+            this.p5_Number.Size = new System.Drawing.Size(40, 23);
+            this.p5_Number.TabIndex = 42;
+            this.p5_Number.Text = "label28";
+            this.p5_Number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p9_photo
+            // 
+            this.p9_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.p9_photo.Controls.Add(this.p9_Position);
+            this.p9_photo.Controls.Add(this.p9_Number);
+            this.p9_photo.Location = new System.Drawing.Point(1048, 118);
+            this.p9_photo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.p9_photo.Name = "p9_photo";
+            this.p9_photo.Size = new System.Drawing.Size(120, 180);
+            this.p9_photo.TabIndex = 15;
+            // 
+            // p9_Position
+            // 
+            this.p9_Position.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p9_Position.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p9_Position.Location = new System.Drawing.Point(79, 156);
+            this.p9_Position.Margin = new System.Windows.Forms.Padding(0);
+            this.p9_Position.Name = "p9_Position";
+            this.p9_Position.Size = new System.Drawing.Size(40, 23);
+            this.p9_Position.TabIndex = 51;
+            this.p9_Position.Text = "label35";
+            this.p9_Position.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p9_Number
+            // 
+            this.p9_Number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.p9_Number.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p9_Number.Location = new System.Drawing.Point(79, 130);
+            this.p9_Number.Margin = new System.Windows.Forms.Padding(0);
+            this.p9_Number.Name = "p9_Number";
+            this.p9_Number.Size = new System.Drawing.Size(40, 23);
+            this.p9_Number.TabIndex = 50;
+            this.p9_Number.Text = "label36";
+            this.p9_Number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p1_FirstName
+            // 
+            this.p1_FirstName.BackColor = System.Drawing.Color.Black;
+            this.p1_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F);
+            this.p1_FirstName.Location = new System.Drawing.Point(32, 301);
+            this.p1_FirstName.Margin = new System.Windows.Forms.Padding(0);
+            this.p1_FirstName.Name = "p1_FirstName";
+            this.p1_FirstName.Size = new System.Drawing.Size(120, 23);
+            this.p1_FirstName.TabIndex = 16;
+            this.p1_FirstName.Text = "label1";
+            this.p1_FirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p2_FirstName
+            // 
+            this.p2_FirstName.BackColor = System.Drawing.Color.Black;
+            this.p2_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F);
+            this.p2_FirstName.Location = new System.Drawing.Point(159, 301);
+            this.p2_FirstName.Margin = new System.Windows.Forms.Padding(0);
+            this.p2_FirstName.Name = "p2_FirstName";
+            this.p2_FirstName.Size = new System.Drawing.Size(120, 23);
+            this.p2_FirstName.TabIndex = 17;
+            this.p2_FirstName.Text = "label2";
+            this.p2_FirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p3_FirstName
+            // 
+            this.p3_FirstName.BackColor = System.Drawing.Color.Black;
+            this.p3_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F);
+            this.p3_FirstName.Location = new System.Drawing.Point(286, 301);
+            this.p3_FirstName.Margin = new System.Windows.Forms.Padding(0);
+            this.p3_FirstName.Name = "p3_FirstName";
+            this.p3_FirstName.Size = new System.Drawing.Size(120, 23);
+            this.p3_FirstName.TabIndex = 18;
+            this.p3_FirstName.Text = "label3";
+            this.p3_FirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p4_FirstName
+            // 
+            this.p4_FirstName.BackColor = System.Drawing.Color.Black;
+            this.p4_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F);
+            this.p4_FirstName.Location = new System.Drawing.Point(413, 301);
+            this.p4_FirstName.Margin = new System.Windows.Forms.Padding(0);
+            this.p4_FirstName.Name = "p4_FirstName";
+            this.p4_FirstName.Size = new System.Drawing.Size(120, 23);
+            this.p4_FirstName.TabIndex = 19;
+            this.p4_FirstName.Text = "label4";
+            this.p4_FirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p5_FirstName
+            // 
+            this.p5_FirstName.BackColor = System.Drawing.Color.Black;
+            this.p5_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F);
+            this.p5_FirstName.Location = new System.Drawing.Point(540, 301);
+            this.p5_FirstName.Margin = new System.Windows.Forms.Padding(0);
+            this.p5_FirstName.Name = "p5_FirstName";
+            this.p5_FirstName.Size = new System.Drawing.Size(120, 23);
+            this.p5_FirstName.TabIndex = 20;
+            this.p5_FirstName.Text = "label5";
+            this.p5_FirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p6_Firstname
+            // 
+            this.p6_Firstname.BackColor = System.Drawing.Color.Black;
+            this.p6_Firstname.Font = new System.Drawing.Font("MicroFLF", 11F);
+            this.p6_Firstname.Location = new System.Drawing.Point(667, 301);
+            this.p6_Firstname.Margin = new System.Windows.Forms.Padding(0);
+            this.p6_Firstname.Name = "p6_Firstname";
+            this.p6_Firstname.Size = new System.Drawing.Size(120, 23);
+            this.p6_Firstname.TabIndex = 21;
+            this.p6_Firstname.Text = "label6";
+            this.p6_Firstname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p7_FirstName
+            // 
+            this.p7_FirstName.BackColor = System.Drawing.Color.Black;
+            this.p7_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F);
+            this.p7_FirstName.Location = new System.Drawing.Point(794, 301);
+            this.p7_FirstName.Margin = new System.Windows.Forms.Padding(0);
+            this.p7_FirstName.Name = "p7_FirstName";
+            this.p7_FirstName.Size = new System.Drawing.Size(120, 23);
+            this.p7_FirstName.TabIndex = 22;
+            this.p7_FirstName.Text = "label7";
+            this.p7_FirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p8_FirstName
+            // 
+            this.p8_FirstName.BackColor = System.Drawing.Color.Black;
+            this.p8_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F);
+            this.p8_FirstName.Location = new System.Drawing.Point(921, 301);
+            this.p8_FirstName.Margin = new System.Windows.Forms.Padding(0);
+            this.p8_FirstName.Name = "p8_FirstName";
+            this.p8_FirstName.Size = new System.Drawing.Size(120, 23);
+            this.p8_FirstName.TabIndex = 23;
+            this.p8_FirstName.Text = "label8";
+            this.p8_FirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p9_FirstName
+            // 
+            this.p9_FirstName.BackColor = System.Drawing.Color.Black;
+            this.p9_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F);
+            this.p9_FirstName.Location = new System.Drawing.Point(1048, 301);
+            this.p9_FirstName.Margin = new System.Windows.Forms.Padding(0);
+            this.p9_FirstName.Name = "p9_FirstName";
+            this.p9_FirstName.Size = new System.Drawing.Size(120, 23);
+            this.p9_FirstName.TabIndex = 24;
+            this.p9_FirstName.Text = "label9";
+            this.p9_FirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p9_SecondName
+            // 
+            this.p9_SecondName.BackColor = System.Drawing.Color.Black;
+            this.p9_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
+            this.p9_SecondName.Location = new System.Drawing.Point(1048, 324);
+            this.p9_SecondName.Margin = new System.Windows.Forms.Padding(0);
+            this.p9_SecondName.Name = "p9_SecondName";
+            this.p9_SecondName.Size = new System.Drawing.Size(120, 23);
+            this.p9_SecondName.TabIndex = 33;
+            this.p9_SecondName.Text = "label10";
+            this.p9_SecondName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p8_SecondName
+            // 
+            this.p8_SecondName.BackColor = System.Drawing.Color.Black;
+            this.p8_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
+            this.p8_SecondName.Location = new System.Drawing.Point(921, 324);
+            this.p8_SecondName.Margin = new System.Windows.Forms.Padding(0);
+            this.p8_SecondName.Name = "p8_SecondName";
+            this.p8_SecondName.Size = new System.Drawing.Size(120, 23);
+            this.p8_SecondName.TabIndex = 32;
+            this.p8_SecondName.Text = "label11";
+            this.p8_SecondName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p7_SecondName
+            // 
+            this.p7_SecondName.BackColor = System.Drawing.Color.Black;
+            this.p7_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
+            this.p7_SecondName.Location = new System.Drawing.Point(794, 324);
+            this.p7_SecondName.Margin = new System.Windows.Forms.Padding(0);
+            this.p7_SecondName.Name = "p7_SecondName";
+            this.p7_SecondName.Size = new System.Drawing.Size(120, 23);
+            this.p7_SecondName.TabIndex = 31;
+            this.p7_SecondName.Text = "label12";
+            this.p7_SecondName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p6_SecondName
+            // 
+            this.p6_SecondName.BackColor = System.Drawing.Color.Black;
+            this.p6_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
+            this.p6_SecondName.Location = new System.Drawing.Point(667, 324);
+            this.p6_SecondName.Margin = new System.Windows.Forms.Padding(0);
+            this.p6_SecondName.Name = "p6_SecondName";
+            this.p6_SecondName.Size = new System.Drawing.Size(120, 23);
+            this.p6_SecondName.TabIndex = 30;
+            this.p6_SecondName.Text = "label13";
+            this.p6_SecondName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p5_SecondName
+            // 
+            this.p5_SecondName.BackColor = System.Drawing.Color.Black;
+            this.p5_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
+            this.p5_SecondName.Location = new System.Drawing.Point(540, 324);
+            this.p5_SecondName.Margin = new System.Windows.Forms.Padding(0);
+            this.p5_SecondName.Name = "p5_SecondName";
+            this.p5_SecondName.Size = new System.Drawing.Size(120, 23);
+            this.p5_SecondName.TabIndex = 29;
+            this.p5_SecondName.Text = "label14";
+            this.p5_SecondName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p4_SecondName
+            // 
+            this.p4_SecondName.BackColor = System.Drawing.Color.Black;
+            this.p4_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
+            this.p4_SecondName.Location = new System.Drawing.Point(413, 324);
+            this.p4_SecondName.Margin = new System.Windows.Forms.Padding(0);
+            this.p4_SecondName.Name = "p4_SecondName";
+            this.p4_SecondName.Size = new System.Drawing.Size(120, 23);
+            this.p4_SecondName.TabIndex = 28;
+            this.p4_SecondName.Text = "label15";
+            this.p4_SecondName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p3_SecondName
+            // 
+            this.p3_SecondName.BackColor = System.Drawing.Color.Black;
+            this.p3_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
+            this.p3_SecondName.Location = new System.Drawing.Point(286, 324);
+            this.p3_SecondName.Margin = new System.Windows.Forms.Padding(0);
+            this.p3_SecondName.Name = "p3_SecondName";
+            this.p3_SecondName.Size = new System.Drawing.Size(120, 23);
+            this.p3_SecondName.TabIndex = 27;
+            this.p3_SecondName.Text = "label16";
+            this.p3_SecondName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p2_SecondName
+            // 
+            this.p2_SecondName.BackColor = System.Drawing.Color.Black;
+            this.p2_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
+            this.p2_SecondName.Location = new System.Drawing.Point(159, 324);
+            this.p2_SecondName.Margin = new System.Windows.Forms.Padding(0);
+            this.p2_SecondName.Name = "p2_SecondName";
+            this.p2_SecondName.Size = new System.Drawing.Size(120, 23);
+            this.p2_SecondName.TabIndex = 26;
+            this.p2_SecondName.Text = "label17";
+            this.p2_SecondName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p1_SecondName
+            // 
+            this.p1_SecondName.BackColor = System.Drawing.Color.Black;
+            this.p1_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold);
+            this.p1_SecondName.Location = new System.Drawing.Point(32, 324);
+            this.p1_SecondName.Margin = new System.Windows.Forms.Padding(0);
+            this.p1_SecondName.Name = "p1_SecondName";
+            this.p1_SecondName.Size = new System.Drawing.Size(120, 23);
+            this.p1_SecondName.TabIndex = 25;
+            this.p1_SecondName.Text = "label18";
+            this.p1_SecondName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // teamLogo
             // 
@@ -635,16 +635,16 @@ namespace VKR_Test
             this.teamLogo.Size = new System.Drawing.Size(106, 106);
             this.teamLogo.TabIndex = 52;
             // 
-            // label37
+            // lbTeamTitle
             // 
-            this.label37.Font = new System.Drawing.Font("MicroFLF", 25F, System.Drawing.FontStyle.Bold);
-            this.label37.ForeColor = System.Drawing.Color.Black;
-            this.label37.Location = new System.Drawing.Point(114, 3);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(1083, 106);
-            this.label37.TabIndex = 53;
-            this.label37.Text = "label37";
-            this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTeamTitle.Font = new System.Drawing.Font("MicroFLF", 25F, System.Drawing.FontStyle.Bold);
+            this.lbTeamTitle.ForeColor = System.Drawing.Color.Black;
+            this.lbTeamTitle.Location = new System.Drawing.Point(114, 3);
+            this.lbTeamTitle.Name = "lbTeamTitle";
+            this.lbTeamTitle.Size = new System.Drawing.Size(1083, 106);
+            this.lbTeamTitle.TabIndex = 53;
+            this.lbTeamTitle.Text = "label37";
+            this.lbTeamTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer_LineupForm
             // 
@@ -655,7 +655,7 @@ namespace VKR_Test
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
             this.panel1.Controls.Add(this.teamLogo);
-            this.panel1.Controls.Add(this.label37);
+            this.panel1.Controls.Add(this.lbTeamTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -675,7 +675,7 @@ namespace VKR_Test
             // teamManager
             // 
             this.teamManager.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.teamManager.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamManager.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teamManager.ForeColor = System.Drawing.Color.Gold;
             this.teamManager.Location = new System.Drawing.Point(0, 0);
             this.teamManager.Name = "teamManager";
@@ -697,33 +697,33 @@ namespace VKR_Test
             this.ClientSize = new System.Drawing.Size(1200, 380);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.p9);
-            this.Controls.Add(this.p8);
-            this.Controls.Add(this.p7);
-            this.Controls.Add(this.p5);
-            this.Controls.Add(this.p4);
-            this.Controls.Add(this.p3);
-            this.Controls.Add(this.p2);
-            this.Controls.Add(this.p1);
-            this.Controls.Add(this.p6);
+            this.Controls.Add(this.p9_SecondName);
+            this.Controls.Add(this.p8_SecondName);
+            this.Controls.Add(this.p7_SecondName);
+            this.Controls.Add(this.p6_SecondName);
+            this.Controls.Add(this.p5_SecondName);
+            this.Controls.Add(this.p4_SecondName);
+            this.Controls.Add(this.p3_SecondName);
+            this.Controls.Add(this.p2_SecondName);
+            this.Controls.Add(this.p1_SecondName);
+            this.Controls.Add(this.p9_FirstName);
+            this.Controls.Add(this.p8_FirstName);
+            this.Controls.Add(this.p7_FirstName);
+            this.Controls.Add(this.p6_Firstname);
+            this.Controls.Add(this.p5_FirstName);
+            this.Controls.Add(this.p4_FirstName);
+            this.Controls.Add(this.p3_FirstName);
+            this.Controls.Add(this.p2_FirstName);
+            this.Controls.Add(this.p1_FirstName);
+            this.Controls.Add(this.p9_photo);
+            this.Controls.Add(this.p8_photo);
+            this.Controls.Add(this.p7_photo);
+            this.Controls.Add(this.p5_photo);
+            this.Controls.Add(this.p4_photo);
+            this.Controls.Add(this.p3_photo);
+            this.Controls.Add(this.p2_photo);
+            this.Controls.Add(this.p1_photo);
+            this.Controls.Add(this.p6_photo);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -731,15 +731,15 @@ namespace VKR_Test
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StartingLineupForm";
             this.DoubleClick += new System.EventHandler(this.StartingLineupForm_DoubleClick);
-            this.p1.ResumeLayout(false);
-            this.p2.ResumeLayout(false);
-            this.p3.ResumeLayout(false);
-            this.p4.ResumeLayout(false);
-            this.p8.ResumeLayout(false);
-            this.p7.ResumeLayout(false);
-            this.p6.ResumeLayout(false);
-            this.p5.ResumeLayout(false);
-            this.p9.ResumeLayout(false);
+            this.p1_photo.ResumeLayout(false);
+            this.p2_photo.ResumeLayout(false);
+            this.p3_photo.ResumeLayout(false);
+            this.p4_photo.ResumeLayout(false);
+            this.p8_photo.ResumeLayout(false);
+            this.p7_photo.ResumeLayout(false);
+            this.p6_photo.ResumeLayout(false);
+            this.p5_photo.ResumeLayout(false);
+            this.p9_photo.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -748,53 +748,53 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Panel p1;
-        private System.Windows.Forms.Panel p2;
-        private System.Windows.Forms.Panel p3;
-        private System.Windows.Forms.Panel p4;
-        private System.Windows.Forms.Panel p8;
-        private System.Windows.Forms.Panel p7;
-        private System.Windows.Forms.Panel p6;
-        private System.Windows.Forms.Panel p5;
-        private System.Windows.Forms.Panel p9;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Panel p1_photo;
+        private System.Windows.Forms.Panel p2_photo;
+        private System.Windows.Forms.Panel p3_photo;
+        private System.Windows.Forms.Panel p4_photo;
+        private System.Windows.Forms.Panel p8_photo;
+        private System.Windows.Forms.Panel p7_photo;
+        private System.Windows.Forms.Panel p6_photo;
+        private System.Windows.Forms.Panel p5_photo;
+        private System.Windows.Forms.Panel p9_photo;
+        private System.Windows.Forms.Label p1_FirstName;
+        private System.Windows.Forms.Label p2_FirstName;
+        private System.Windows.Forms.Label p3_FirstName;
+        private System.Windows.Forms.Label p4_FirstName;
+        private System.Windows.Forms.Label p5_FirstName;
+        private System.Windows.Forms.Label p6_Firstname;
+        private System.Windows.Forms.Label p7_FirstName;
+        private System.Windows.Forms.Label p8_FirstName;
+        private System.Windows.Forms.Label p9_FirstName;
+        private System.Windows.Forms.Label p9_SecondName;
+        private System.Windows.Forms.Label p8_SecondName;
+        private System.Windows.Forms.Label p7_SecondName;
+        private System.Windows.Forms.Label p6_SecondName;
+        private System.Windows.Forms.Label p5_SecondName;
+        private System.Windows.Forms.Label p4_SecondName;
+        private System.Windows.Forms.Label p3_SecondName;
+        private System.Windows.Forms.Label p2_SecondName;
+        private System.Windows.Forms.Label p1_SecondName;
+        private System.Windows.Forms.Label p1_Number;
+        private System.Windows.Forms.Label p1_Position;
+        private System.Windows.Forms.Label p2_Position;
+        private System.Windows.Forms.Label p2_Number;
+        private System.Windows.Forms.Label p3_Position;
+        private System.Windows.Forms.Label p3_Number;
+        private System.Windows.Forms.Label p4_Position;
+        private System.Windows.Forms.Label p4_Number;
+        private System.Windows.Forms.Label p5_Position;
+        private System.Windows.Forms.Label p5_Number;
+        private System.Windows.Forms.Label p6_Position;
+        private System.Windows.Forms.Label p6_Number;
+        private System.Windows.Forms.Label p7_Position;
+        private System.Windows.Forms.Label p7_Number;
+        private System.Windows.Forms.Label p8_Position;
+        private System.Windows.Forms.Label p8_Number;
+        private System.Windows.Forms.Label p9_Position;
+        private System.Windows.Forms.Label p9_Number;
         private System.Windows.Forms.Panel teamLogo;
-        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label lbTeamTitle;
         private System.Windows.Forms.Timer timer_LineupForm;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;

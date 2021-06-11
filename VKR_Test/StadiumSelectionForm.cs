@@ -28,25 +28,25 @@ namespace VKR_Test
             stadiums = stadiumsBL.GetAllStadims();
             Stadium HomeTeamStadium = stadiums.Where(stadium => stadium.stadiumId == _HomeTeam.Stadium).First();
             StadiumNumber = stadiums.IndexOf(HomeTeamStadium);
-            panel1.BackgroundImage = Image.FromFile($"SmallTeamLogos/{_AwayTeam.TeamAbbreviation}.png");
-            panel2.BackgroundImage = Image.FromFile($"SmallTeamLogos/{_HomeTeam.TeamAbbreviation}.png");
+            pbAwayTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{_AwayTeam.TeamAbbreviation}.png");
+            pbHomeTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{_HomeTeam.TeamAbbreviation}.png");
             HomeTeam = _HomeTeam;
             AwayTeam = _AwayTeam;
         }
 
         public void DisplayCurrentStadium(int _Number)
         {
-            label7.Text = stadiums[_Number].stadiumLocation;
-            label1.Text = stadiums[_Number].StadiumTitle;
-            label6.Text = stadiums[_Number].stadiumCapacity.ToString("N0", CultureInfo.InvariantCulture);
-            label5.Text = stadiums[_Number].stadiumDistanceToCenterfield + " ft";
+            lbStadiumLocation.Text = stadiums[_Number].stadiumLocation;
+            lbStadiumName.Text = stadiums[_Number].StadiumTitle;
+            lbStadiumCapacity.Text = stadiums[_Number].stadiumCapacity.ToString("N0", CultureInfo.InvariantCulture);
+            lbDistanceToCenterField.Text = stadiums[_Number].stadiumDistanceToCenterfield + " ft";
             if (File.Exists($"Stadiums/Stadium{stadiums[_Number].stadiumId.ToString("000")}.jpg"))
             {
-                panel4.BackgroundImage = Image.FromFile($"Stadiums/Stadium{stadiums[_Number].stadiumId.ToString("000")}.jpg");
+                pbStadiumPhoto.BackgroundImage = Image.FromFile($"Stadiums/Stadium{stadiums[_Number].stadiumId.ToString("000")}.jpg");
             }
             else
             {
-                panel4.BackgroundImage = null;
+                pbStadiumPhoto.BackgroundImage = null;
             }
         }
 

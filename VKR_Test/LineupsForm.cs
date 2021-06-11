@@ -46,20 +46,20 @@ namespace VKR_Test
         private void TeamChanged(int TeamNumber)
         {
             panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{teams[TeamNumber].TeamAbbreviation}.png");
-            label7.Text = teams[TeamNumber].TeamTitle.ToUpper();
-            label7.BackColor = teams[TeamNumber].TeamColor[0];
-            label7.ForeColor = Color.White;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            lbTeamtitle.Text = teams[TeamNumber].TeamTitle.ToUpper();
+            lbTeamtitle.BackColor = teams[TeamNumber].TeamColor[0];
+            lbTeamtitle.ForeColor = Color.White;
+            dgvLineup.DefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
+            dgvLineup.DefaultCellStyle.SelectionForeColor = Color.White;
 
             btnIncreaseTeamNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
             btnDecreaseTeamNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
 
             btnIncLineupTypeNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
             btnDecLineupTypeNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
-            label1.ForeColor = teams[TeamNumber].TeamColor[0];
-            label3.ForeColor = teams[TeamNumber].TeamColor[0];
-            label2.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.7), (int)(teams[TeamNumber].TeamColor[0].G * 0.7), (int)(teams[TeamNumber].TeamColor[0].B * 0.7));
+            lbLineUpType.ForeColor = teams[TeamNumber].TeamColor[0];
+            lbPlayerName.ForeColor = teams[TeamNumber].TeamColor[0];
+            lbPlayerNumber.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.7), (int)(teams[TeamNumber].TeamColor[0].G * 0.7), (int)(teams[TeamNumber].TeamColor[0].B * 0.7));
             label6.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.65), (int)(teams[TeamNumber].TeamColor[0].G * 0.65), (int)(teams[TeamNumber].TeamColor[0].B * 0.65));
 
             lbl_LineupHeader.ForeColor = teams[TeamNumber].TeamColor[0];
@@ -68,16 +68,16 @@ namespace VKR_Test
 
         private void DisplayRoster(int TeamNumber, int LineupNumber)
         {
-            dataGridView1.Rows.Clear();
+            dgvLineup.Rows.Clear();
             foreach (PlayerInLineup player in lineups[TeamNumber][LineupNumber])
             {
-                dataGridView1.Rows.Add(player.NumberInLineup, player.Position, $"{player.FirstName[0]}. {player.SecondName}");
+                dgvLineup.Rows.Add(player.NumberInLineup, player.Position, $"{player.FirstName[0]}. {player.SecondName}");
             }
-            label1.Text = Lineups[LineupNumber];
-            dataGridView2.Rows.Clear();
+            lbLineUpType.Text = Lineups[LineupNumber];
+            dgvBench.Rows.Clear();
             foreach (PlayerInLineup player in bench[TeamNumber][LineupNumber])
             {
-                dataGridView2.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
+                dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
             }
             LineupChanged = true;
 
@@ -98,21 +98,21 @@ namespace VKR_Test
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            if (dgvLineup.SelectedRows.Count > 0)
             {
-                ShowNewPlayer(dataGridView1, dataGridView2, lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index]);
+                ShowNewPlayer(dgvLineup, dgvBench, lineups[TeamNumber][LineupNumber][dgvLineup.SelectedRows[0].Index]);
             }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            ShowNewPlayer(dataGridView1, dataGridView2, lineups[TeamNumber][LineupNumber][dataGridView1.SelectedRows[0].Index]);
+            ShowNewPlayer(dgvLineup, dgvBench, lineups[TeamNumber][LineupNumber][dgvLineup.SelectedRows[0].Index]);
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LineupChanged = false;
-            ShowNewPlayer(dataGridView2, dataGridView1, bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index]);
+            ShowNewPlayer(dgvBench, dgvLineup, bench[TeamNumber][LineupNumber][dgvBench.SelectedRows[0].Index]);
         }
 
         private void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, PlayerInLineup player)
@@ -129,18 +129,18 @@ namespace VKR_Test
 
             if (dgv1.SelectedRows.Count > 0)
             {
-                panel10.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.png");
-                label2.Text = $"#{player.PlayerNumber}";
-                label3.Text = player.FullName.ToUpper();
-                label4.Text = $"{player.PlaceOfBirth.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";
+                pbPlayerPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.png");
+                lbPlayerNumber.Text = $"#{player.PlayerNumber}";
+                lbPlayerName.Text = player.FullName.ToUpper();
+                lbPlayerPlace_and_DateOfBirth.Text = $"{player.PlaceOfBirth.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";
             }
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView2.SelectedRows.Count > 0 && !LineupChanged)
+            if (dgvBench.SelectedRows.Count > 0 && !LineupChanged)
             {
-                ShowNewPlayer(dataGridView2, dataGridView1, bench[TeamNumber][LineupNumber][dataGridView2.SelectedRows[0].Index]);
+                ShowNewPlayer(dgvBench, dgvLineup, bench[TeamNumber][LineupNumber][dgvBench.SelectedRows[0].Index]);
             }
         }
     }
