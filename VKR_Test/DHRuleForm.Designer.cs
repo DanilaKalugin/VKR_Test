@@ -49,7 +49,6 @@ namespace VKR_Test
             this.rbPlayWithDH.TabStop = true;
             this.rbPlayWithDH.Text = "PLAY WITH DH";
             this.rbPlayWithDH.UseVisualStyleBackColor = true;
-            this.rbPlayWithDH.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // rbPlayWithoutDH
             // 

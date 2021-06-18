@@ -16,22 +16,20 @@ namespace VKR_Test
         private readonly StadiumsBL stadiumsBL;
         List<Stadium> stadiums;
         int StadiumNumber;
-        Team HomeTeam;
-        Team AwayTeam;
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
+        public Match newMatch;
 
-        public StadiumSelectionForm(Team _HomeTeam, Team _AwayTeam)
+        public StadiumSelectionForm(Match match)
         {
             InitializeComponent();
             stadiumsBL = new StadiumsBL();
+            newMatch = match;
             stadiums = stadiumsBL.GetAllStadims();
-            Stadium HomeTeamStadium = stadiums.Where(stadium => stadium.stadiumId == _HomeTeam.Stadium).First();
+            Stadium HomeTeamStadium = stadiums.Where(stadium => stadium.stadiumId == newMatch.HomeTeam.Stadium).First();
             StadiumNumber = stadiums.IndexOf(HomeTeamStadium);
-            pbAwayTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{_AwayTeam.TeamAbbreviation}.png");
-            pbHomeTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{_HomeTeam.TeamAbbreviation}.png");
-            HomeTeam = _HomeTeam;
-            AwayTeam = _AwayTeam;
+            pbAwayTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{newMatch.AwayTeam.TeamAbbreviation}.png");
+            pbHomeTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{newMatch.HomeTeam.TeamAbbreviation}.png");
         }
 
         public void DisplayCurrentStadium(int _Number)
@@ -70,7 +68,8 @@ namespace VKR_Test
         private void btnAcceptSelectedStadium_Click(object sender, EventArgs e)
         {
             Stadium stadiumForThisMatch = stadiums[StadiumNumber];
-            DHRuleForm DHForm = new DHRuleForm(HomeTeam, AwayTeam, stadiumForThisMatch);
+            newMatch.stadium = stadiumForThisMatch;
+            DHRuleForm DHForm = new DHRuleForm(newMatch);
             DHForm.ShowDialog();
 
             if (DHForm.DialogResult == DialogResult.OK)

@@ -20,6 +20,7 @@ namespace VKR_Test
         int HomeTeamNumber;
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
+        Match newMatch;
 
         public TeamsSelectForm()
         {
@@ -31,9 +32,10 @@ namespace VKR_Test
             HomeTeamNumber = 1;
         }
 
-        public TeamsSelectForm(DateTime date)
+        public TeamsSelectForm(Match match)
         {
             InitializeComponent();
+            newMatch = match;
             teamsBL = new TeamsBL();
             matchBL = new MatchBL();
             Program.MatchDate = matchBL.GetMaxDateForAllMatches();
@@ -148,7 +150,9 @@ namespace VKR_Test
             Team AwayTeam = teams[AwayTeamNumber];
             HomeTeam.TeamColorForThisMatch = HomeTeam.TeamColor[CurrentHomeColor];
             AwayTeam.TeamColorForThisMatch = AwayTeam.TeamColor[CurrentAwayColor];
-            StadiumSelectionForm stadiumSelection = new StadiumSelectionForm(HomeTeam, AwayTeam);
+            newMatch.HomeTeam = HomeTeam;
+            newMatch.AwayTeam = AwayTeam;
+            StadiumSelectionForm stadiumSelection = new StadiumSelectionForm(newMatch);
             stadiumSelection.ShowDialog();
 
             if (stadiumSelection.DialogResult == DialogResult.OK)

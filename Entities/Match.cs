@@ -77,5 +77,11 @@ namespace Entities
             HomeTeamAbbreviation = _homeTeam;
             MatchDate = date;
         }
+
+        public Match(DateTime date)
+        {
+            MatchDate = date;
+            atBats = new List<AtBat>();
+        }
     }
 }

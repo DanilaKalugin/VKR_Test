@@ -48,7 +48,8 @@ namespace VKR_Test
 
         private void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
-            TeamsSelectForm form = new TeamsSelectForm(Program.MatchDate);
+            Match match = new Match(Program.MatchDate);
+            TeamsSelectForm form = new TeamsSelectForm(match);
             form.ShowDialog();
             if (form.DialogResult == DialogResult.Yes)
             {

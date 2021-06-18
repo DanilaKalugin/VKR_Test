@@ -20,6 +20,10 @@ namespace VKR.BLL
         public void StartNewMatch(Match match)
         {
             matchDAO.StartNewMatch(match);
+            match.gameSituations = new List<GameSituation>
+            {
+                new GameSituation(match.AwayTeam)
+            };
         }
 
         public int GetNumberOfMatchesPlayed()
