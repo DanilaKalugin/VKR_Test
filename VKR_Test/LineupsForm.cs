@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using VKR.BLL;
 
@@ -52,15 +53,19 @@ namespace VKR_Test
             dgvLineup.DefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
             dgvLineup.DefaultCellStyle.SelectionForeColor = Color.White;
 
+            label4.ForeColor = teams[TeamNumber].TeamColor[0];
+            label5.ForeColor = teams[TeamNumber].TeamColor[0];
+            label6.ForeColor = teams[TeamNumber].TeamColor[0];
             btnIncreaseTeamNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
             btnDecreaseTeamNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
-
             btnIncLineupTypeNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
             btnDecLineupTypeNumberBy1.ForeColor = teams[TeamNumber].TeamColor[0];
             lbLineUpType.ForeColor = teams[TeamNumber].TeamColor[0];
             lbPlayerName.ForeColor = teams[TeamNumber].TeamColor[0];
+
+
             lbPlayerNumber.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.7), (int)(teams[TeamNumber].TeamColor[0].G * 0.7), (int)(teams[TeamNumber].TeamColor[0].B * 0.7));
-            label6.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.65), (int)(teams[TeamNumber].TeamColor[0].G * 0.65), (int)(teams[TeamNumber].TeamColor[0].B * 0.65));
+            dgvBench.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.65), (int)(teams[TeamNumber].TeamColor[0].G * 0.65), (int)(teams[TeamNumber].TeamColor[0].B * 0.65));
 
             lbl_LineupHeader.ForeColor = teams[TeamNumber].TeamColor[0];
             DisplayRoster(TeamNumber, LineupNumber);
@@ -81,7 +86,8 @@ namespace VKR_Test
             }
             LineupChanged = true;
 
-            label6.Text = LineupNumber != 4 ? "BENCH" : "BULLPEN";
+            dgvBench.Columns[0].HeaderText = LineupNumber != 4 ? "BENCH" : "BULLPEN";
+
         }
 
         private void btnIncLineupTypeNumberBy1_Click(object sender, EventArgs e)
@@ -126,6 +132,28 @@ namespace VKR_Test
             dgv1.DefaultCellStyle.SelectionForeColor = Color.White;
             dgv1.AlternatingRowsDefaultCellStyle.SelectionBackColor = teams[TeamNumber].TeamColor[0];
             dgv1.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
+
+            if (LineupNumber != 4)
+            {
+                label4.Text = "AVG";
+                label5.Text = "HR";
+                label6.Text = "RBI";
+                Batter batter = players.GetBatterByCode(player.id);
+                label1.Text = batter.AVG.ToString("#.000", new CultureInfo("en-US"));
+                label2.Text = batter.HomeRuns.ToString();
+                label3.Text = batter.RBI.ToString();
+            }
+            else
+            {
+                label4.Text = "ERA";
+                label5.Text = "SO";
+                label6.Text = "WHIP";
+                Pitcher pitcher = players.GetPitcherByCode(player.id);
+                label1.Text = pitcher.ERA.ToString("0.00", new CultureInfo("en-US"));
+                label2.Text = pitcher.Strikeouts.ToString();
+                label3.Text = pitcher.WHIP.ToString("0.00", new CultureInfo("en-US"));
+            }
+            label7.Text = $"Positions: {string.Join(", ", player.PlayerPositions)}";
 
             if (dgv1.SelectedRows.Count > 0)
             {

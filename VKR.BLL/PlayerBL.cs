@@ -27,6 +27,10 @@ namespace VKR.BLL
         public List<List<List<PlayerInLineup>>> GetLineups()
         {
             List<PlayerInLineup> ungroupedPlayers = playerDAO.GetStartingLineups().ToList();
+            for (int i = 0; i < ungroupedPlayers.Count; i++)
+            {
+                ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();
+            }
             List<string> Teams = ungroupedPlayers.Select(player => player.Team).Distinct().ToList();
             List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).Distinct().ToList();
 
@@ -45,6 +49,10 @@ namespace VKR.BLL
         public List<List<List<PlayerInLineup>>> GetBench()
         {
             List<PlayerInLineup> ungroupedPlayers = playerDAO.GetBench().ToList();
+            for (int i = 0; i < ungroupedPlayers.Count; i++)
+            {
+                ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();
+            }
             List<string> Teams = ungroupedPlayers.Select(player => player.Team).Distinct().ToList();
             List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
 
@@ -65,5 +73,16 @@ namespace VKR.BLL
             Player PlayerByCode = playerDAO.GetPlayerNameByID(code).First();
             return $"{PlayerByCode.FirstName[0]}. {PlayerByCode.SecondName}";
         }
+
+        public Batter GetBatterByCode(int code)
+        {
+            return playerDAO.GetBatterByCode(code).First();
+        }
+
+        public Pitcher GetPitcherByCode(int code)
+        {
+            return playerDAO.GetPitcherByCode(code).First();
+        }
+
     }
 }
