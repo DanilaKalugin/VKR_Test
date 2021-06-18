@@ -117,5 +117,12 @@ namespace VKR.BLL
         {
             return teamsDAO.GetPitcherByID(id).First();
         }
+
+        public void UpdateTeamBalance(Team team)
+        {
+            Team TeamWithNewBalance = teamsDAO.UpdateBalanceForThisTeam(team).First();
+            team.Wins = TeamWithNewBalance.Wins;
+            team.Losses = TeamWithNewBalance.Losses;
+        }
     }
 }

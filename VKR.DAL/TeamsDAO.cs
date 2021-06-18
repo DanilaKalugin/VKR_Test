@@ -155,6 +155,52 @@ namespace VKR.DAL
             return teams;
         }
 
+        public IEnumerable<Team> UpdateBalanceForThisTeam(Team team)
+        {
+            List<Team> teams = new List<Team>();
+            using (SqlCommand command = new SqlCommand("UpdateBalanceForThisTeam", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
+                command.Prepare();
+                command.Parameters[0].Value = team.TeamAbbreviation;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string Abbreviation = (string)reader["TeamAbbreviation"];
+                        string City = (string)reader["TeamCity"];
+                        string Name = (string)reader["TeamName"];
+                        int stadium = (int)reader["TeamStadium"];
+                        int SZ = (int)reader["StrikeZoneProbability"];
+                        int Swing_SZ = (int)reader["SwingInStrikeZoneProbability"];
+                        int Swing_NotSZ = (int)reader["SwingOutsideStrikeZoneProbability"];
+                        int Hitting = (int)reader["HittingProbability"];
+                        int Foul = (int)reader["FoulProbability"];
+                        int Single = (int)reader["SingleProbability"];
+                        int Double = (int)reader["DoubleProbability"];
+                        int HomeRun = (int)reader["HomeRunProbability"];
+                        int PopoutOnFoul = (int)reader["PopoutOnFoulProbability"];
+                        int FlyoutOnHR = (int)reader["FlyoutOnHomerunProbability"];
+                        int Groundout = (int)reader["GroundoutProbability"];
+                        int Flyout = (int)reader["FlyoutProbability"];
+                        int SF = (int)reader["SacrificeFlyProbability"];
+                        int DoublePlay = (int)reader["DoublePlayProbability"];
+                        int StealingBase = (int)reader["StealingBaseSuccessfulAttemptProbability"];
+                        int Bunt = (int)reader["SuccessfulBuntAttemptProbability"];
+                        bool DHRule = (bool)reader["LeagueDHRule"];
+                        int W = (int)reader["W"];
+                        int L = (int)reader["L"];
+                        teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
+                                              Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
+                                              FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, StealingBase,
+                                              Bunt, stadium, DHRule, W, L));
+                    }
+                }
+            }
+            return teams;
+        }
+
         public IEnumerable<Pitcher> GetPitcherByID(int id)
         {
             using (SqlCommand command = new SqlCommand("UpdatePitcherStats", _connection))

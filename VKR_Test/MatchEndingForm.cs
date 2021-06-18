@@ -12,11 +12,13 @@ namespace VKR_Test
     {
         Match endedmatch;
         private readonly MatchBL matchBL;
+        private readonly TeamsBL teamsBL;
 
         public MatchEndingForm(Match match)
         {
             InitializeComponent();
             matchBL = new MatchBL();
+            teamsBL = new TeamsBL();
             endedmatch = match;
         }
 
@@ -67,6 +69,9 @@ namespace VKR_Test
         private void MatchEndingForm_Load(object sender, EventArgs e)
         {
             NumberOfLastInningDefinition(endedmatch);
+
+            teamsBL.UpdateTeamBalance(endedmatch.AwayTeam);
+            teamsBL.UpdateTeamBalance(endedmatch.HomeTeam);
 
             GetInformationAboutTeam(endedmatch.AwayTeam, lbAwayTeamAbbreviation, AwayTeamSmallLogo, lbAwayBalance, pbAwayLogo);
             GetInformationAboutTeam(endedmatch.HomeTeam, lbHomeTeamAbbreviation, HomeTeamSmallLogo, lbHomeBalance, pbHomeLogo);
