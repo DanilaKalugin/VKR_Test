@@ -48,6 +48,7 @@ namespace VKR_Test
 
         private void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
+            Program.MatchDate = matchBL.GetMaxDateForAllMatches();
             Match match = new Match(Program.MatchDate);
             TeamsSelectForm form = new TeamsSelectForm(match);
             form.ShowDialog();
