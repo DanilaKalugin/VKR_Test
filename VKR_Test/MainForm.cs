@@ -336,7 +336,6 @@ namespace VKR_Test
             int HRs = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun).Count();
             int Ks = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.Strikeout).Count();
             int RBIs = atBatsForThisBatter.Sum(atBat => atBat.RBI);
-
             int SBs = atBatsForThisBatter.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.StolenBase).Count();
             lbTodayStats.Text = "►TODAY: ";
 
@@ -397,6 +396,10 @@ namespace VKR_Test
                 else
                 {
                     title = $"{runs}-run Home Run";
+                }
+                if (newGameSituation.inningNumber >= 9 && newGameSituation.offense == currentMatch.HomeTeam && newGameSituation.AwayTeamRuns < newGameSituation.HomeTeamRuns)
+                {
+                    title = "Walk-off " + title.ToLower();
                 }
                 HomeRunCelebrationForm hr = new HomeRunCelebrationForm(newGameSituation.offense, title, GetBatterByGameSituation(newGameSituation), currentMatch.atBats);
                 hr.ShowDialog();

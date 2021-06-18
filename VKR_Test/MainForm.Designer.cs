@@ -360,7 +360,7 @@
             this.btnNewPitch.FlatAppearance.BorderSize = 0;
             this.btnNewPitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewPitch.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewPitch.Location = new System.Drawing.Point(545, 814);
+            this.btnNewPitch.Location = new System.Drawing.Point(545, 811);
             this.btnNewPitch.Name = "btnNewPitch";
             this.btnNewPitch.Size = new System.Drawing.Size(300, 35);
             this.btnNewPitch.TabIndex = 0;
@@ -2243,7 +2243,7 @@
             this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
             this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuntAttempt.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuntAttempt.Location = new System.Drawing.Point(851, 814);
+            this.btnBuntAttempt.Location = new System.Drawing.Point(851, 811);
             this.btnBuntAttempt.Name = "btnBuntAttempt";
             this.btnBuntAttempt.Size = new System.Drawing.Size(250, 35);
             this.btnBuntAttempt.TabIndex = 55;
