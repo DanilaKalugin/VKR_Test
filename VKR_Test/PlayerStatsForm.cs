@@ -25,7 +25,7 @@ namespace VKR_Test
         private PlayerType playerType;
         private StatsType statsType;
         private int lastBattingSort = 11;
-        private int lastPitchingSort;
+        private int lastPitchingSort = 2;
 
         public PlayerStatsForm()
         {
@@ -53,6 +53,7 @@ namespace VKR_Test
             btnStandardStats.BackColor = statsType == StatsType.Standard ? Color.LightGray : Color.DarkGray;
             btnHitting.BackColor = playerType == PlayerType.Batters ? Color.LightGray : Color.DarkGray;
             btnPitching.BackColor = playerType == PlayerType.Pitchers ? Color.LightGray : Color.DarkGray;
+            cbPositions.Visible = playerType == PlayerType.Batters;
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -861,13 +862,27 @@ namespace VKR_Test
             teamsInComboBox.AddRange(teams.Select(team => team.TeamTitle).ToList());
             cbTeams.DataSource = teamsInComboBox;
 
+            cbPositions.DataSource = playersBL.GetPlayerPositions();
+            cbPositions.DisplayMember = "FullTitle";
+            cbPositions.ValueMember = "ShortTitle";
         }
 
         private void SelectedIndexChanged(object sender, EventArgs e)
         {
-            batters = playersBL.GetBattersStats(cbTeams.Text, cbPlayers.Text);
-            pitchers = playersBL.GetPitchersStats(cbTeams.Text, cbPlayers.Text);
-            GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
+            if (cbTeams.Items != null && cbPositions.DataSource != null)
+            {
+                if (cbPositions.SelectedValue is PlayerPosition)
+                {
+                    batters = playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, (cbPositions.SelectedValue as PlayerPosition).ShortTitle);
+                }
+                else
+                {
+                    batters = playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, cbPositions.SelectedValue.ToString());
+                }
+                pitchers = playersBL.GetPitchersStats(cbTeams.Text, cbPlayers.Text);
+                GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
+            }
+
         }
     }
 }

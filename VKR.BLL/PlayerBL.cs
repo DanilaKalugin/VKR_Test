@@ -17,7 +17,7 @@ namespace VKR.BLL
             playerDAO = new PlayerDAO();
         }
 
-        public List<Batter> GetBattersStats(string TeamFilter = "MLB", string Qualifying = "Qualified Players")
+        public List<Batter> GetBattersStats(string TeamFilter = "MLB", string Qualifying = "Qualified Players", string Positions = "")
         {
             List<string> abbreviations = GetTeamsForFilter(TeamFilter);
 
@@ -27,6 +27,21 @@ namespace VKR.BLL
                 batter.PlayerPositions = playerDAO.GetPositionsForThisPlayer(batter.id).ToList();
             }
             batters = batters.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
+            if (Positions != "")
+            {
+                if (Positions == "OF")
+                {
+
+                    List<Batter> lf = batters.Where(batter => batter.PlayerPositions.IndexOf("LF") != -1).ToList();
+                    List<Batter> cf = batters.Where(batter => batter.PlayerPositions.IndexOf("CF") != -1).ToList();
+                    List<Batter> rf = batters.Where(batter => batter.PlayerPositions.IndexOf("RF") != -1).ToList();
+                    batters = lf.Union(cf).Union(rf).Distinct().ToList();
+                }
+                else
+                {
+                    batters = batters.Where(player => player.PlayerPositions.IndexOf(Positions) != -1).ToList();
+                }
+            }
             if (Qualifying == "Qualified Players")
             {
                 batters = batters.Where(player => (double)player.PA / player.TGP >= 3.1).ToList();
@@ -34,12 +49,12 @@ namespace VKR.BLL
             return batters;
         }
 
-        public List<Batter>GetSortedBattersStatsDesc<Tkey>(List<Batter> batters, Func<Batter, Tkey> key)
+        public List<Batter> GetSortedBattersStatsDesc<Tkey>(List<Batter> batters, Func<Batter, Tkey> key)
         {
             return batters.OrderByDescending(key).ToList();
         }
 
-        public List<Batter>GetSortedBattersStats<Tkey>(List<Batter> batters, Func<Batter, Tkey> key)
+        public List<Batter> GetSortedBattersStats<Tkey>(List<Batter> batters, Func<Batter, Tkey> key)
         {
             return batters.OrderBy(key).ToList();
         }
@@ -61,12 +76,12 @@ namespace VKR.BLL
             return pitchers;
         }
 
-        public List<Pitcher>GetSortedPitchersStatsDesc<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)
+        public List<Pitcher> GetSortedPitchersStatsDesc<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)
         {
             return pitchers.OrderByDescending(key).ToList();
         }
 
-        public List<Pitcher>GetSortedPitchersStats<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)
+        public List<Pitcher> GetSortedPitchersStats<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)
         {
             return pitchers.OrderBy(key).ToList();
         }
@@ -141,6 +156,11 @@ namespace VKR.BLL
         public Pitcher GetPitcherByCode(int code)
         {
             return playerDAO.GetPitcherByCode(code).First();
+        }
+
+        public List<PlayerPosition> GetPlayerPositions()
+        {
+            return playerDAO.GetPlayerPositions().ToList();
         }
 
     }

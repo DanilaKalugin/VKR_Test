@@ -120,6 +120,7 @@ namespace VKR_Test
             this.panelExpandedPitcherStats = new System.Windows.Forms.Panel();
             this.cbTeams = new System.Windows.Forms.ComboBox();
             this.cbPlayers = new System.Windows.Forms.ComboBox();
+            this.cbPositions = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -1064,12 +1065,28 @@ namespace VKR_Test
             this.cbPlayers.TabIndex = 9;
             this.cbPlayers.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
             // 
+            // cbPositions
+            // 
+            this.cbPositions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbPositions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPositions.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.cbPositions.FormattingEnabled = true;
+            this.cbPositions.Items.AddRange(new object[] {
+            "Qualified Players",
+            "All Players"});
+            this.cbPositions.Location = new System.Drawing.Point(578, 18);
+            this.cbPositions.Name = "cbPositions";
+            this.cbPositions.Size = new System.Drawing.Size(206, 25);
+            this.cbPositions.TabIndex = 11;
+            this.cbPositions.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            // 
             // PlayerStatsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1502, 586);
+            this.Controls.Add(this.cbPositions);
             this.Controls.Add(this.cbPlayers);
             this.Controls.Add(this.cbTeams);
             this.Controls.Add(this.panelExpandedPitcherStats);
@@ -1178,5 +1195,6 @@ namespace VKR_Test
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
+        private System.Windows.Forms.ComboBox cbPositions;
     }
 }
