@@ -186,6 +186,17 @@ namespace VKR.DAL
             }
         }
 
+        public DateTime GetDateForNextMatch()
+        {
+            using (SqlCommand command = new SqlCommand("GetDateForNextMatch", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Prepare();
+
+                return (DateTime)command.ExecuteScalar();
+            }
+        }
+
         public IEnumerable<Match> GetMatchesForThisDay(DateTime date)
         {
             using (SqlCommand command = new SqlCommand("GetAvailibleMatchesForThisDay", _connection))

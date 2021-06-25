@@ -79,6 +79,11 @@ namespace VKR.BLL
             return matches.Select(match => match.MatchDate).Max();
         }
 
+        public DateTime GetDateForNextMatch()
+        {
+            return matchDAO.GetDateForNextMatch();
+        }
+
         public List<Match> GetMatchesForThisDay(DateTime date)
         {
             return matchDAO.GetMatchesForThisDay(date).ToList();
