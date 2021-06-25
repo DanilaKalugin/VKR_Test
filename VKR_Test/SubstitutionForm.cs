@@ -23,6 +23,7 @@ namespace VKR_Test
             lbTeamTitle.Text = defense.TeamTitle.ToUpper();
             lbTeamTitle.ForeColor = defense.TeamColorForThisMatch;
             Text = $"New pitcher for {defense.TeamTitle}";
+            lbHeader.Text = "BULLPEN";
             foreach (Pitcher pitcher in Pitchers)
             {
                 dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"ERA: {pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"SO: {pitcher.Strikeouts}");
@@ -44,6 +45,7 @@ namespace VKR_Test
             lbTeamTitle.Text = offense.TeamTitle.ToUpper();
             lbTeamTitle.ForeColor = offense.TeamColorForThisMatch;
             Text = $"New batter for {offense.TeamTitle}";
+            lbHeader.Text = "PINCH HITTER";
             for (int i = 0; i < Batters.Count; i++)
             {
                 dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"AVG: {Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"HR: {Batters[i].HomeRuns}");

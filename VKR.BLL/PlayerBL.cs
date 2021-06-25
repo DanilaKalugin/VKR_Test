@@ -8,20 +8,58 @@ namespace VKR.BLL
     public class PlayerBL
     {
         private readonly PlayerDAO playerDAO;
+        private readonly TeamsDAO teamsDAO;
 
         public PlayerBL()
         {
+            teamsDAO = new TeamsDAO();
             playerDAO = new PlayerDAO();
         }
 
-        public List<Batter> GetBattersStats()
+        public List<Batter> GetBattersStats(string TeamFilter, string Qualifying)
         {
-            return playerDAO.GetBattersStats().Where(player => (player.PA / (double)player.TGP) >= 3.1).OrderByDescending(batter => batter.AVG).ToList();
+            List<string> abbreviations = GetTeamsForFilter(TeamFilter);
+
+            List<Batter> batters = playerDAO.GetBattersStats().ToList();
+            foreach (Batter batter in batters)
+            {
+                batter.PlayerPositions = playerDAO.GetPositionsForThisPlayer(batter.id).ToList();
+            }
+            batters = batters.Where(player => abbreviations.IndexOf(player.Team) != -1).OrderByDescending(batter => batter.AVG).ToList();
+            if (Qualifying == "Qualified Players")
+            {
+                batters = batters.Where(player => (double)player.PA / player.TGP >= 3.1).ToList();
+            }
+            return batters;
         }
 
-        public List<Pitcher> GetPitchersStats()
+        public List<Pitcher> GetPitchersStats(string TeamFilter, string Qualifying)
         {
-            return playerDAO.GetPitchersStats().Where(player => (player.IP / player.TGP) >= 1.1).OrderBy(player => player.ERA).ToList();
+            List<string> abbreviations = GetTeamsForFilter(TeamFilter);
+
+            List<Pitcher> pitchers = playerDAO.GetPitchersStats().ToList();
+            foreach (Pitcher pitcher in pitchers)
+            {
+                pitcher.PlayerPositions = playerDAO.GetPositionsForThisPlayer(pitcher.id).ToList();
+            }
+            pitchers = pitchers.Where(player => abbreviations.IndexOf(player.Team) != -1).OrderBy(player => player.ERA).ToList();
+            if (Qualifying == "Qualified Players")
+            {
+                pitchers = pitchers.Where(player => player.IP / player.TGP >= 1.1).ToList();
+            }
+            return pitchers;
+        }
+
+        private List<string> GetTeamsForFilter(string TeamFilter)
+        {
+            List<string> teamsabbreviations = new List<string>();
+            List<Team> teams = teamsDAO.GetList().ToList();
+            if (TeamFilter == "MLB")
+            {
+                teamsabbreviations.AddRange(teams.Select(team => team.TeamAbbreviation).ToList());
+            }
+            else teamsabbreviations.AddRange(teams.Where(team => team.TeamTitle == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
+            return teamsabbreviations;
         }
 
         public List<List<List<PlayerInLineup>>> GetLineups()

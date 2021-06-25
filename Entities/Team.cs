@@ -79,8 +79,8 @@ namespace Entities
             double HomeRunComponent = (double)(HomeRunProbabilty - DoubleProbability) / 2;
             double TripleComponent = (2000 - HomeRunProbabilty) / 2.5;
             double SingleComponent = (double)(SingleProbability - FoulProbability) / 30;
-            double BaseStealingComponent = (double)(StealingBaseProbability) / 5;
-            double HittingComponent = (double)(HittingProbability) / 25;
+            double BaseStealingComponent = (double)StealingBaseProbability / 5;
+            double HittingComponent = (double)HittingProbability / 25;
             return Math.Round(SingleComponent + DoubleComponent + HomeRunComponent + TripleComponent + BaseStealingComponent + HittingComponent, 2);
         }
 
