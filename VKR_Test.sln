@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKR_Test", "VKR_Test\VKR_Test.csproj", "{02DD103D-6AA8-4C32-B181-52D6571C861F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKR.PL", "VKR_Test\VKR.PL.csproj", "{02DD103D-6AA8-4C32-B181-52D6571C861F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{F6578B10-3651-4DEE-898D-C3BC432E6608}"
 EndProject

@@ -2,6 +2,7 @@
 using System.Linq;
 using VKR.DAL;
 using Entities;
+using System;
 
 namespace VKR.BLL
 {
@@ -16,7 +17,7 @@ namespace VKR.BLL
             playerDAO = new PlayerDAO();
         }
 
-        public List<Batter> GetBattersStats(string TeamFilter, string Qualifying)
+        public List<Batter> GetBattersStats(string TeamFilter = "MLB", string Qualifying = "Qualified Players")
         {
             List<string> abbreviations = GetTeamsForFilter(TeamFilter);
 
@@ -25,7 +26,7 @@ namespace VKR.BLL
             {
                 batter.PlayerPositions = playerDAO.GetPositionsForThisPlayer(batter.id).ToList();
             }
-            batters = batters.Where(player => abbreviations.IndexOf(player.Team) != -1).OrderByDescending(batter => batter.AVG).ToList();
+            batters = batters.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
             if (Qualifying == "Qualified Players")
             {
                 batters = batters.Where(player => (double)player.PA / player.TGP >= 3.1).ToList();
@@ -33,7 +34,17 @@ namespace VKR.BLL
             return batters;
         }
 
-        public List<Pitcher> GetPitchersStats(string TeamFilter, string Qualifying)
+        public List<Batter>GetSortedBattersStatsDesc<Tkey>(List<Batter> batters, Func<Batter, Tkey> key)
+        {
+            return batters.OrderByDescending(key).ToList();
+        }
+
+        public List<Batter>GetSortedBattersStats<Tkey>(List<Batter> batters, Func<Batter, Tkey> key)
+        {
+            return batters.OrderBy(key).ToList();
+        }
+
+        public List<Pitcher> GetPitchersStats(string TeamFilter = "MLB", string Qualifying = "Qualified Players")
         {
             List<string> abbreviations = GetTeamsForFilter(TeamFilter);
 
@@ -42,12 +53,22 @@ namespace VKR.BLL
             {
                 pitcher.PlayerPositions = playerDAO.GetPositionsForThisPlayer(pitcher.id).ToList();
             }
-            pitchers = pitchers.Where(player => abbreviations.IndexOf(player.Team) != -1).OrderBy(player => player.ERA).ToList();
+            pitchers = pitchers.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
             if (Qualifying == "Qualified Players")
             {
                 pitchers = pitchers.Where(player => player.IP / player.TGP >= 1.1).ToList();
             }
             return pitchers;
+        }
+
+        public List<Pitcher>GetSortedPitchersStatsDesc<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)
+        {
+            return pitchers.OrderByDescending(key).ToList();
+        }
+
+        public List<Pitcher>GetSortedPitchersStats<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)
+        {
+            return pitchers.OrderBy(key).ToList();
         }
 
         private List<string> GetTeamsForFilter(string TeamFilter)
