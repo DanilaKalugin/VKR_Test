@@ -4,6 +4,7 @@ namespace Entities
 {
     public class Player: Man
     {
+        public string Team;
         public int PlayerNumber;
         public List<string> PlayerPositions;
         public int Games;

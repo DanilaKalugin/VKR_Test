@@ -5,7 +5,6 @@ namespace Entities
     public class PlayerInLineup : Player
     {
         public int LineupType;
-        public string Team;
         public string Position;
         public int NumberInLineup;
 

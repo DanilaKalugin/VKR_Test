@@ -124,7 +124,7 @@ namespace Entities
         public Batter(int _id, string _FirstName, string _secondName, int _Number, int _games,
                       int _singles, int _doubles, int _triples, int _hr, int _sf, int _sac,
                       int _rbi, int _hbp, int _sb, int _cs, int _runs, int _bb, int _k, int _go,
-                      int _ao, int _po, int _pa, int _gidp, int _tgp)
+                      int _ao, int _po, int _pa, int _gidp, int _tgp, string team)
         {
             id = _id;
             FirstName = _FirstName;
@@ -150,6 +150,7 @@ namespace Entities
             PA = _pa;
             DoublePlay = _gidp;
             TGP = _tgp;
+            Team = team;
         }
 
         public Batter(int _id, string _firstName, string _secondName, int _Number, int _games, int _singles, int _doubles,

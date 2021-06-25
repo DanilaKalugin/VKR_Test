@@ -179,7 +179,7 @@ namespace Entities
                        int _k, int _outs, int _bb, int _sac, int _sf, int _sb, int _cs, int _tbf,
                        int _qs, int _sho, int _cg, int _w, int _l, int _sv, int _hld, int _hbp,
                        int _singles, int _doubles, int _triples, int _hr, int _runs, int _DoublePlays, 
-                       int _TGP, int _go, int _ao)
+                       int _TGP, int _go, int _ao, string team)
         {
             id = _id;
             FirstName = _firstName;
@@ -211,6 +211,7 @@ namespace Entities
             TGP = _TGP;
             Groundouts = _go;
             Flyouts = _ao;
+            Team = team;
         }
     }
 }
