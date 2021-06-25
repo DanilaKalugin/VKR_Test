@@ -13,44 +13,24 @@ namespace VKR_Test
     public partial class PlayerStatsForm : Form
     {
         private readonly PlayerBL playersBL;
-        private readonly TeamsBL teamsBL;
-        private List<Team> teams;
         List<Batter> batters;
         List<Pitcher> pitchers;
         private enum SortMode { Ascending, Descending };
         private enum PlayerType { Pitchers, Batters };
         private enum StatsType { Standard, Expanded };
 
-        private SortMode[][] sortModes;
+        private SortMode[] sortModes;
         private PlayerType playerType;
         private StatsType statsType;
 
         public PlayerStatsForm()
         {
             InitializeComponent();
-
             playersBL = new PlayerBL();
-            teamsBL = new TeamsBL();
-            teams = teamsBL.GetAllTeams().ToList();
-
-            List<string> teamsInComboBox = new List<string>
-            {
-                "MLB"
-            };
-
-            sortModes = new SortMode[4][];
-
-            sortModes[0] = new SortMode[dataGridView1.ColumnCount];
-            sortModes[1] = new SortMode[dataGridView2.ColumnCount];
-            sortModes[2] = new SortMode[dataGridView3.ColumnCount];
-            sortModes[3] = new SortMode[dataGridView4.ColumnCount];
-
+            sortModes = new SortMode[9];
             playerType = PlayerType.Batters;
             statsType = StatsType.Standard;
-            cbPlayers.DataSource = cbPlayers.Items;
             ShowNewStats(playerType, statsType);
-            teamsInComboBox.AddRange(teams.Select(team => team.TeamTitle).ToList());
-            cbTeams.DataSource = teamsInComboBox;
         }
 
         private void ShowNewStats(PlayerType playerType, StatsType statsType)
@@ -66,6 +46,77 @@ namespace VKR_Test
             btnPitching.BackColor = playerType == PlayerType.Pitchers ? Color.LightGray : Color.DarkGray;
         }
 
+        private void PlayerStatsForm_Load(object sender, EventArgs e)
+        {
+            batters = playersBL.GetBattersStats().ToList();
+            for (int i = 0; i < batters.Count; i++)
+            {
+                dataGridView1.Rows.Add(i + 1,
+                                        batters[i].FullName,
+                                        batters[i].Games,
+                                        batters[i].AtBats,
+                                        batters[i].Runs,
+                                        batters[i].Hits,
+                                        batters[i].Doubles,
+                                        batters[i].Triples,
+                                        batters[i].HomeRuns,
+                                        batters[i].RBI,
+                                        batters[i].Walks,
+                                        batters[i].StolenBases,
+                                        batters[i].CaughtStealing,
+                                        batters[i].AVG.ToString("#.000", new CultureInfo("en-US")),
+                                        batters[i].OBP.ToString("#.000", new CultureInfo("en-US")),
+                                        batters[i].SLG.ToString("#.000", new CultureInfo("en-US")),
+                                        batters[i].OPS.ToString("#.000", new CultureInfo("en-US")));
+                dataGridView2.Rows.Add(i + 1,
+                                        batters[i].FullName,
+                                        batters[i].PA,
+                                        batters[i].HitByPitch,
+                                        batters[i].SacrificeBunts,
+                                        batters[i].SacrificeFlies,
+                                        batters[i].DoublePlay,
+                                        batters[i].GOtoAO.ToString("0.00", new CultureInfo("en-US")),
+                                        batters[i].XBH,
+                                        batters[i].TotalBases,
+                                        batters[i].ISO.ToString("#.000", new CultureInfo("en-US")),
+                                        batters[i].ABperHR.ToString("0.00", new CultureInfo("en-US")),
+                                        batters[i].WalkToStrikeout.ToString("#.000", new CultureInfo("en-US")),
+                                        batters[i].WalkPercentage.ToString("#.000", new CultureInfo("en-US")),
+                                        batters[i].StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")));
+            }
+            pitchers = playersBL.GetPitchersStats().ToList();
+            for (int i = 0; i < pitchers.Count; i++)
+            {
+                dataGridView3.Rows.Add(i + 1,
+                                        pitchers[i].FullName,
+                                        pitchers[i].ERA.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].Games,
+                                        pitchers[i].CompleteGames,
+                                        pitchers[i].Shutouts,
+                                        pitchers[i].IP.ToString("0.0", new CultureInfo("en-US")),
+                                        pitchers[i].HitsAllowed,
+                                        pitchers[i].RunsAllowed,
+                                        pitchers[i].HomeRunsAllowed,
+                                        pitchers[i].HitByPitch,
+                                        pitchers[i].WalksAllowed,
+                                        pitchers[i].Strikeouts,
+                                        pitchers[i].WHIP.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].BAA.ToString("#.000", new CultureInfo("en-US")));
+
+                dataGridView4.Rows.Add(i + 1,
+                                        pitchers[i].FullName,
+                                        pitchers[i].TotalBattersFaced,
+                                        pitchers[i].QualityStarts,
+                                        pitchers[i].DoublePlays,
+                                        pitchers[i].GOtoAO.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].KperNineInnings.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].BBperNineInnings.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].KperBB.ToString("0.00", new CultureInfo("en-US")),
+                                        pitchers[i].StolenBasesAllowed,
+                                        pitchers[i].CaughtStealing);
+            }
+        }
+
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             for (int i = 0; i < batters.Count; i++)
@@ -78,7 +129,7 @@ namespace VKR_Test
         {
             switch (e.ColumnIndex)
             {
-                case 8:
+                case 7:
                     {
                         if (sortModes[5] == SortMode.Ascending)
                         {
@@ -92,7 +143,7 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 12:
+                case 11:
                     {
                         if (sortModes[6] == SortMode.Ascending)
                         {
@@ -107,14 +158,13 @@ namespace VKR_Test
                         break;
                     }
             }
-            if (e.ColumnIndex == 8 || e.ColumnIndex == 12)
+            if (e.ColumnIndex == 7 || e.ColumnIndex == 11)
             {
                 dataGridView2.Rows.Clear();
                 {
                     for (int i = 0; i < batters.Count; i++)
                     {
                         dataGridView2.Rows.Add(i + 1,
-                                                "",
                                                 batters[i].FullName,
                                                 batters[i].PA,
                                                 batters[i].HitByPitch,
@@ -220,7 +270,7 @@ namespace VKR_Test
         {
             switch (e.ColumnIndex)
             {
-                case 5:
+                case 2:
                     {
                         if (sortModes[0] == SortMode.Ascending)
                         {
@@ -234,7 +284,7 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 9:
+                case 6:
                     {
                         if (sortModes[1] == SortMode.Ascending)
                         {
@@ -248,7 +298,7 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 16:
+                case 13:
                     {
                         if (sortModes[2] == SortMode.Ascending)
                         {
@@ -262,7 +312,7 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 17:
+                case 14:
                     {
                         if (sortModes[3] == SortMode.Ascending)
                         {
@@ -277,16 +327,13 @@ namespace VKR_Test
                         break;
                     }
             }
-            if (e.ColumnIndex == 5 || e.ColumnIndex == 9 || e.ColumnIndex == 16 || e.ColumnIndex == 17)
+            if (e.ColumnIndex == 2 || e.ColumnIndex == 6 || e.ColumnIndex == 13 || e.ColumnIndex == 14)
             {
                 dataGridView3.Rows.Clear();
                 for (int i = 0; i < pitchers.Count; i++)
                 {
                     dataGridView3.Rows.Add(i + 1,
-                                            "",
                                             pitchers[i].FullName,
-                                            pitchers[i].Wins,
-                                            pitchers[i].Losses,
                                             pitchers[i].ERA.ToString("0.00", new CultureInfo("en-US")),
                                             pitchers[i].Games,
                                             pitchers[i].CompleteGames,
@@ -309,6 +356,7 @@ namespace VKR_Test
                     dataGridView3.Rows[i].Cells[0].Value = (i + 1).ToString();
                 }
             }
+
         }
 
         private void btnHitting_Click(object sender, EventArgs e)
@@ -333,139 +381,6 @@ namespace VKR_Test
         {
             statsType = StatsType.Expanded;
             ShowNewStats(playerType, statsType);
-        }
-
-        private void cbTeams_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FillBattersAndPitchersTable(cbTeams.Text, cbPlayers.Text);
-        }
-
-        private void FillBattersAndPitchersTable(string TeamFilter, string PlayersFilter)
-        {
-            dataGridView1.Rows.Clear();
-            dataGridView2.Rows.Clear();
-            dataGridView3.Rows.Clear();
-            dataGridView4.Rows.Clear();
-
-            batters = playersBL.GetBattersStats(TeamFilter, PlayersFilter).ToList();
-            for (int i = 0; i < batters.Count; i++)
-            {
-                dataGridView1.Rows.Add(i + 1,
-                                        "",
-                                        batters[i].FullName,
-                                        batters[i].Games,
-                                        batters[i].AtBats,
-                                        batters[i].Runs,
-                                        batters[i].Hits,
-                                        batters[i].Doubles,
-                                        batters[i].Triples,
-                                        batters[i].HomeRuns,
-                                        batters[i].RBI,
-                                        batters[i].Walks,
-                                        batters[i].StolenBases,
-                                        batters[i].CaughtStealing,
-                                        batters[i].AVG.ToString("#.000", new CultureInfo("en-US")),
-                                        batters[i].OBP.ToString("#.000", new CultureInfo("en-US")),
-                                        batters[i].SLG.ToString("#.000", new CultureInfo("en-US")),
-                                        batters[i].OPS.ToString("#.000", new CultureInfo("en-US")));
-                dataGridView2.Rows.Add(i + 1,
-                                        "",
-                                        batters[i].FullName,
-                                        batters[i].PA,
-                                        batters[i].HitByPitch,
-                                        batters[i].SacrificeBunts,
-                                        batters[i].SacrificeFlies,
-                                        batters[i].DoublePlay,
-                                        batters[i].GOtoAO.ToString("0.00", new CultureInfo("en-US")),
-                                        batters[i].XBH,
-                                        batters[i].TotalBases,
-                                        batters[i].ISO.ToString("#.000", new CultureInfo("en-US")),
-                                        batters[i].ABperHR.ToString("0.00", new CultureInfo("en-US")),
-                                        batters[i].WalkToStrikeout.ToString("#.000", new CultureInfo("en-US")),
-                                        batters[i].WalkPercentage.ToString("#.000", new CultureInfo("en-US")),
-                                        batters[i].StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")));
-            }
-            pitchers = playersBL.GetPitchersStats(TeamFilter, PlayersFilter).ToList();
-            for (int i = 0; i < pitchers.Count; i++)
-            {
-                dataGridView3.Rows.Add(i + 1,
-                                        "",
-                                        pitchers[i].FullName,
-                                        pitchers[i].Wins,
-                                        pitchers[i].Losses,
-                                        pitchers[i].ERA.ToString("0.00", new CultureInfo("en-US")),
-                                        pitchers[i].Games,
-                                        pitchers[i].CompleteGames,
-                                        pitchers[i].Shutouts,
-                                        pitchers[i].IP.ToString("0.0", new CultureInfo("en-US")),
-                                        pitchers[i].HitsAllowed,
-                                        pitchers[i].RunsAllowed,
-                                        pitchers[i].HomeRunsAllowed,
-                                        pitchers[i].HitByPitch,
-                                        pitchers[i].WalksAllowed,
-                                        pitchers[i].Strikeouts,
-                                        pitchers[i].WHIP.ToString("0.00", new CultureInfo("en-US")),
-                                        pitchers[i].BAA.ToString("#.000", new CultureInfo("en-US")));
-                dataGridView4.Rows.Add(i + 1,
-                                        "",
-                                        pitchers[i].FullName,
-                                        pitchers[i].TotalBattersFaced,
-                                        pitchers[i].QualityStarts,
-                                        pitchers[i].DoublePlays,
-                                        pitchers[i].GOtoAO.ToString("0.00", new CultureInfo("en-US")),
-                                        pitchers[i].KperNineInnings.ToString("0.00", new CultureInfo("en-US")),
-                                        pitchers[i].BBperNineInnings.ToString("0.00", new CultureInfo("en-US")),
-                                        pitchers[i].KperBB.ToString("0.00", new CultureInfo("en-US")),
-                                        pitchers[i].StolenBasesAllowed,
-                                        pitchers[i].CaughtStealing);
-
-            }
-
-            for (int i = 0; i < sortModes.Length; i++)
-            {
-                sortModes[i] = SortMode.Descending;
-            }
-        }
-
-        private void cbPlayers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FillBattersAndPitchersTable(cbTeams.Text, cbPlayers.Text);
-        }
-
-        private void dataGridView4_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            for (int i = 0; i < pitchers.Count; i++)
-            {
-                dataGridView4.Rows[i].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
-                dataGridView4.Rows[i].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
-            }
-        }
-
-        private void dataGridView3_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            for (int i = 0; i < pitchers.Count; i++)
-            {
-                dataGridView3.Rows[i].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
-                dataGridView3.Rows[i].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
-            }
-        }
-
-        private void dataGridView2_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            for (int i = 0; i < batters.Count; i++)
-            {
-                dataGridView2.Rows[i].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == batters[i].Team).First().TeamColor[0];
-                dataGridView2.Rows[i].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == batters[i].Team).First().TeamColor[0];
-            }
-        }
-
-        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            for (int i = 0; i < pitchers.Count; i++)
-            {
-                dataGridView1.Rows[i].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == batters[i].Team).First().TeamColor[0];
-                dataGridView1.Rows[i].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == batters[i].Team).First().TeamColor[0];
-            }
         }
     }
 }
