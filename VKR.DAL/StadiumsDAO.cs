@@ -1,47 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using Entities;
 
 namespace VKR.DAL
 {
-    public class StadiumsDAO : IDisposable
+    public class StadiumsDAO : DAO
     {
-        private SqlConnection _connection;
-
-        public static string GetConnectionString()
-        {
-            var currentConnection = ConfigurationManager.AppSettings["CurrentConnectionString"];
-            var connectionString = ConfigurationManager.ConnectionStrings[currentConnection].ConnectionString;
-            return connectionString;
-        }
-
         public StadiumsDAO()
         {
             InitConnection();
-        }
-
-        private void InitConnection()
-        {
-            _connection = new SqlConnection(GetConnectionString());
-            _connection.Open();
-            _connection.StateChange += ConnectionStateChange;
-        }
-
-        void ConnectionStateChange(object sender, StateChangeEventArgs e)
-        {
-            if (e.CurrentState == ConnectionState.Broken)
-            {
-                InitConnection();
-            }
-        }
-
-        public void Dispose()
-        {
-            if (_connection != null)
-                _connection.Dispose();
         }
 
         public IEnumerable<Stadium> GetAllStadiums()

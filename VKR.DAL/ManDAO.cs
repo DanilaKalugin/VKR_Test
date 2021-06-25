@@ -1,47 +1,16 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace VKR.DAL
 {
-    public class ManDAO : IDisposable
+    public class ManDAO : DAO
     {
-        private SqlConnection _connection;
-
-        public static string GetConnectionString()
-        {
-            var currentConnection = ConfigurationManager.AppSettings["CurrentConnectionString"];
-            var connectionString = ConfigurationManager.ConnectionStrings[currentConnection].ConnectionString;
-            return connectionString;
-        }
-
         public ManDAO()
         {
             InitConnection();
-        }
-
-        private void InitConnection()
-        {
-            _connection = new SqlConnection(GetConnectionString());
-            _connection.Open();
-            _connection.StateChange += ConnectionStateChange;
-        }
-
-        void ConnectionStateChange(object sender, StateChangeEventArgs e)
-        {
-            if (e.CurrentState == ConnectionState.Broken)
-            {
-                InitConnection();
-            }
-        }
-
-        public void Dispose()
-        {
-            if (_connection != null)
-                _connection.Dispose();
         }
 
         public IEnumerable<ManInTeam> GetListOfPeopleWithBirthdayToday()

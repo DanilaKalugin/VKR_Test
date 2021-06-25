@@ -2,48 +2,17 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Configuration;
 using Entities;
 using System.Drawing;
 using System.Linq;
 
 namespace VKR.DAL
 {
-    public class TeamsDAO : IDisposable
+    public class TeamsDAO : DAO
     {
-        private SqlConnection _connection;
-
-        public static string GetConnectionString()
-        {
-            var currentConnection = ConfigurationManager.AppSettings["CurrentConnectionString"];
-            var connectionString = ConfigurationManager.ConnectionStrings[currentConnection].ConnectionString;
-            return connectionString;
-        }
-
         public TeamsDAO()
         {
             InitConnection();
-        }
-
-        private void InitConnection()
-        {
-            _connection = new SqlConnection(GetConnectionString());
-            _connection.Open();
-            _connection.StateChange += ConnectionStateChange;
-        }
-
-        void ConnectionStateChange(object sender, StateChangeEventArgs e)
-        {
-            if (e.CurrentState == ConnectionState.Broken)
-            {
-                InitConnection();
-            }
-        }
-
-        public void Dispose()
-        {
-            if (_connection != null)
-                _connection.Dispose();
         }
 
         public IEnumerable<Team> GetStandings(DateTime date)
