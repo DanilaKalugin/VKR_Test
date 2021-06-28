@@ -715,7 +715,7 @@ namespace VKR_Test
         {
             if (e.ColumnIndex > 2)
             {
-                sortModes[0][e.ColumnIndex - 3] = sortModes[0][e.ColumnIndex - 3] == SortMode.Ascending ? SortMode.Descending : SortMode.Ascending;
+                sortModes[0][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] = sortModes[0][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Ascending ? SortMode.Descending : SortMode.Ascending;
                 lastBattingSort = e.ColumnIndex - 3;
             }
             GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
@@ -725,7 +725,7 @@ namespace VKR_Test
         {
             if (e.ColumnIndex > 2)
             {
-                sortModes[1][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] = sortModes[1][e.ColumnIndex - 3] == SortMode.Ascending ? SortMode.Descending : SortMode.Ascending;
+                sortModes[1][e.ColumnIndex - 3] = sortModes[1][e.ColumnIndex - 3] == SortMode.Ascending ? SortMode.Descending : SortMode.Ascending;
                 lastPitchingSort = e.ColumnIndex - 3;
             }
             GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
