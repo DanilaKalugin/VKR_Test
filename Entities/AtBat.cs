@@ -25,6 +25,7 @@ namespace Entities
                         return AtBatType.Single;
                     }
                 case Pitch.PitchResult.Double:
+                case Pitch.PitchResult.GroundRuleDouble:
                     {
                         return AtBatType.Double;
                     }
@@ -176,18 +177,9 @@ namespace Entities
             else return LastSituation.outs;
         }
 
-        public int RBIForThisAtBat(Match currentMatch)
-        {
-            if (currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam)
-            {
-                return currentMatch.gameSituations.Last().AwayTeamRuns - currentMatch.gameSituations[currentMatch.gameSituations.Count() - 2].AwayTeamRuns;
-            }
-            else
-            {
-                return currentMatch.gameSituations.Last().HomeTeamRuns - currentMatch.gameSituations[currentMatch.gameSituations.Count() - 2].HomeTeamRuns;
-            }
-        }
-
+        /// <summary>
+        /// Normal At-Bat without runs
+        /// </summary>
         public AtBat(Match currentMatch, int runs)
         {
             AtBatResult = TypeDefinitionForLastAtBat(currentMatch.gameSituations.Last());
@@ -211,6 +203,9 @@ namespace Entities
             Inning = currentMatch.gameSituations.Last().inningNumber;
         }
 
+        /// <summary>
+        /// New run
+        /// </summary>
         public AtBat(Runner runner, Match currentMatch)
         {
             AtBatResult = AtBatType.Run;
@@ -225,6 +220,9 @@ namespace Entities
             Inning = currentMatch.gameSituations.Last().inningNumber;
         }
 
+        /// <summary>
+        /// Base stealing result
+        /// </summary>
         public AtBat(Match currentMatch, int runnerID, bool isBaseStealingAttempt)
         {
             AtBatResult = TypeDefinitionForLastAtBat(currentMatch.gameSituations.Last());

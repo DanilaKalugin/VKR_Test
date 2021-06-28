@@ -165,6 +165,7 @@ namespace Entities
             else if ((result == Pitch.PitchResult.HomeRun) ||
                     (result == Pitch.PitchResult.Double) ||
                     (result == Pitch.PitchResult.Triple) ||
+                    (result == Pitch.PitchResult.GroundRuleDouble) || 
                     (result == Pitch.PitchResult.DoublePlay) ||
                     (result == Pitch.PitchResult.SacrificeBunt) ||
                     (result == Pitch.PitchResult.SecondBaseStolen) ||
@@ -185,7 +186,7 @@ namespace Entities
             {
                 return new Runner(situation.RunnerOnFirst);
             }
-            else if (result == Pitch.PitchResult.Double)
+            else if (result == Pitch.PitchResult.Double || result == Pitch.PitchResult.GroundRuleDouble)
             {
                 return ReturnNewRunner(match);
             }
@@ -241,7 +242,7 @@ namespace Entities
             {
                 return new Runner(situation.RunnerOnSecond);
             }
-            else if (result == Pitch.PitchResult.Double)
+            else if (result == Pitch.PitchResult.Double || result == Pitch.PitchResult.GroundRuleDouble)
             {
                 return new Runner(situation.RunnerOnFirst);
             }
@@ -268,7 +269,7 @@ namespace Entities
             {
                 return Convert.ToInt32(situation.RunnerOnThird.IsBaseNotEmpty);
             }
-            else if (result == Pitch.PitchResult.Double)
+            else if (result == Pitch.PitchResult.Double || result == Pitch.PitchResult.GroundRuleDouble)
             {
                 return Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnThird.IsBaseNotEmpty);
             }
@@ -302,7 +303,7 @@ namespace Entities
                     runners.Add(situation.RunnerOnThird);
                 }
             }
-            else if (result == Pitch.PitchResult.Double)
+            else if (result == Pitch.PitchResult.Double || result == Pitch.PitchResult.GroundRuleDouble)
             {
                 if(situation.RunnerOnThird.IsBaseNotEmpty)
                 {
@@ -357,6 +358,7 @@ namespace Entities
                 (gameSituation.result == Pitch.PitchResult.Flyout) ||
                 (gameSituation.result == Pitch.PitchResult.Single) ||
                 (gameSituation.result == Pitch.PitchResult.Double) ||
+                (gameSituation.result == Pitch.PitchResult.GroundRuleDouble) ||
                 (gameSituation.result == Pitch.PitchResult.Triple) ||
                 (gameSituation.result == Pitch.PitchResult.HomeRun) ||
                 (gameSituation.result == Pitch.PitchResult.DoublePlay) ||
