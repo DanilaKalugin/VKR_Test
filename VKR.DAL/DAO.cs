@@ -7,8 +7,8 @@ namespace VKR.DAL
 {
     public class DAO : IDisposable
     {
-
         protected SqlConnection _connection;
+
         public static string GetConnectionString()
         {
             var currentConnection = ConfigurationManager.AppSettings["CurrentConnectionString"];

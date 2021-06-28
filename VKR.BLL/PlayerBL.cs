@@ -162,6 +162,5 @@ namespace VKR.BLL
         {
             return playerDAO.GetPlayerPositions().ToList();
         }
-
     }
 }
