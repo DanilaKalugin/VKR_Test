@@ -26,14 +26,17 @@ namespace VKR.BLL
             };
         }
 
-        public int GetNumberOfMatchesPlayed()
+        public int GetNumberOfMatchesPlayed(Match newMatch)
         {
-            return matchDAO.GetNumberOfMatchesPlayed();
+            return matchDAO.GetNumberOfMatchesPlayed(newMatch);
         }
 
-        public void AddNewAtBat(AtBat atBat)
+        public void AddNewAtBat(AtBat atBat, Match currentMatch)
         {
-            matchDAO.AddNewAtBat(atBat);
+            if (!currentMatch.IsQuickMatch)
+            {
+                matchDAO.AddNewAtBat(atBat);
+            }
         }
 
         public void FinishMatch(Match match)
@@ -41,9 +44,12 @@ namespace VKR.BLL
             matchDAO.FinishMatch(match);
         }
 
-        public void AddMatchResultForThisPitcher(PitcherResults pitcherResults)
+        public void AddMatchResultForThisPitcher(PitcherResults pitcherResults, Match currentMatch)
         {
-            matchDAO.AddMatchResultForThisPitcher(pitcherResults);
+            if (!currentMatch.IsQuickMatch)
+            {
+                matchDAO.AddMatchResultForThisPitcher(pitcherResults);
+            }
         }
 
         public List<Match> GetResultsForallMatches()

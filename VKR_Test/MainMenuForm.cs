@@ -49,7 +49,7 @@ namespace VKR_Test
         private void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
             Program.MatchDate = matchBL.GetDateForNextMatch();
-            Match match = new Match(Program.MatchDate);
+            Match match = new Match(Program.MatchDate, false);
             TeamsSelectForm form = new TeamsSelectForm(match);
             form.ShowDialog();
             if (form.DialogResult == DialogResult.Yes)
@@ -91,7 +91,9 @@ namespace VKR_Test
 
         private void btnNewMatch_Click(object sender, EventArgs e)
         {
-            TeamsSelectForm form = new TeamsSelectForm();
+            Program.MatchDate = matchBL.GetDateForNextMatch();
+            Match match = new Match(Program.MatchDate, true);
+            TeamsSelectForm form = new TeamsSelectForm(match);
             form.ShowDialog();
             if (form.DialogResult == DialogResult.Yes)
             {

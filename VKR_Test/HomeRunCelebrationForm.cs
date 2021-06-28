@@ -9,7 +9,7 @@ namespace VKR_Test
 {
     public partial class HomeRunCelebrationForm : Form
     {
-        public HomeRunCelebrationForm(Team team, string HRType, Batter batter, List<AtBat> allAtBats)
+        public HomeRunCelebrationForm(Team team, string HRType, Batter batter, List<AtBat> allAtBats, bool isQuickMatch)
         {
             InitializeComponent();
             BackColor = team.TeamColorForThisMatch;
@@ -21,6 +21,9 @@ namespace VKR_Test
             lbBatterName.Text = batter.FullName.ToUpper();
 
             int HRTodayForThisBatter = allAtBats.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.id).Count();
+
+            lbBatterHRNumber.Visible = !isQuickMatch;
+            lbBatterHRNumberInThisMatch.Visible = !isQuickMatch;
 
             lbBatterHRNumber.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.HomeRuns + 1)} HR in career";
             lbBatterHRNumberInThisMatch.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(HRTodayForThisBatter + 1)} HR in this match";

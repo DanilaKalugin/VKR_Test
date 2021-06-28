@@ -38,16 +38,28 @@ namespace VKR_Test
             newMatch = match;
             teamsBL = new TeamsBL();
             matchBL = new MatchBL();
-            Program.MatchDate = matchBL.GetMaxDateForAllMatches();
+
+            btnDecreaseAwayTeamNumberBy1.Visible = match.IsQuickMatch;
+            btnIncreaseAwayTeamNumberBy1.Visible = match.IsQuickMatch;
+            btnDecreaseHomeTeamNumberBy1.Visible = match.IsQuickMatch;
+            btnIncreaseHomeTeamNumberBy1.Visible = match.IsQuickMatch;
+
+            AwayTeamBalance.Visible = !match.IsQuickMatch;
+            HomeTeamBalance.Visible = !match.IsQuickMatch;
+
             matches = matchBL.GetMatchesForThisDay(Program.MatchDate);
-            if (matches.Count == 0)
-            {
-                Program.MatchDate = Program.MatchDate.AddDays(1);
-                matches = matchBL.GetMatchesForThisDay(Program.MatchDate);
-            }
             teams = teamsBL.GetAllTeams().ToList();
-            AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].AwayTeamAbbreviation);
-            HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
+
+            if (match.IsQuickMatch)
+            {
+                AwayTeamNumber = 0;
+                HomeTeamNumber = 1;
+            }
+            else
+            {
+                AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].AwayTeamAbbreviation);
+                HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
+            }
             btnSwap.Visible = false;
         }
 

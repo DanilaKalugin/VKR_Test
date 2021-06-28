@@ -31,36 +31,28 @@ namespace VKR_Test
             lineup.ShowDialog();
             previousSituation = currentMatch.gameSituations.Last();
             newGameSituation = new GameSituation(match.AwayTeam);
-            AwayTeam_Abbreviation.Text = match.AwayTeam.TeamAbbreviation;
-            HomeTeam_Abbreviation.Text = match.HomeTeam.TeamAbbreviation;
-            AwayTeam_Abbreviation.BackColor = match.AwayTeam.TeamColorForThisMatch;
-            HomeTeam_Abbreviation.BackColor = match.HomeTeam.TeamColorForThisMatch;
-            AwayTeam_RunsScored.BackColor = Color.FromArgb((int)(match.AwayTeam.TeamColorForThisMatch.R * 0.9), (int)(match.AwayTeam.TeamColorForThisMatch.G * 0.9), (int)(match.AwayTeam.TeamColorForThisMatch.B * 0.9));
-            HomeTeam_RunsScored.BackColor = Color.FromArgb((int)(match.HomeTeam.TeamColorForThisMatch.R * 0.9), (int)(match.HomeTeam.TeamColorForThisMatch.G * 0.9), (int)(match.HomeTeam.TeamColorForThisMatch.B * 0.9));
-            panel4.BackColor = match.AwayTeam.TeamColorForThisMatch;
-            panel5.BackColor = match.HomeTeam.TeamColorForThisMatch;
 
-            label18.BackColor = match.AwayTeam.TeamColorForThisMatch;
-            label18.Text = match.AwayTeam.TeamTitle.ToUpper();
-            panel11.BackgroundImage = Image.FromFile($"SmallTeamLogos/{match.AwayTeam.TeamAbbreviation}.png");
-            panel12.BackgroundImage = Image.FromFile($"SmallTeamLogos/{match.HomeTeam.TeamAbbreviation}.png");
-            label19.Text = match.HomeTeam.TeamTitle.ToUpper();
-            label19.BackColor = match.HomeTeam.TeamColorForThisMatch;
-
-            label22.Text = $"{currentMatch.AwayTeam.Wins}-{currentMatch.AwayTeam.Losses}";
-            label22.BackColor = match.AwayTeam.TeamColorForThisMatch;
-            label23.Text = $"{currentMatch.HomeTeam.Wins}-{currentMatch.HomeTeam.Losses}";
-            label23.BackColor = match.HomeTeam.TeamColorForThisMatch;
-
-            AwayTeamNextBatters.BackColor = match.AwayTeam.TeamColorForThisMatch;
-            away_DueUP.Text = $"{match.AwayTeam.TeamTitle.ToUpper()} - DUE UP";
-
-            homeTeamNextBatters.BackColor = match.HomeTeam.TeamColorForThisMatch;
-            home_DueUP.Text = $"{match.HomeTeam.TeamTitle.ToUpper()} - DUE UP";
+            PrepareForThisTeam(match.AwayTeam, AwayTeam_Abbreviation, AwayTeam_RunsScored, label18, panel11, label22, currentMatch, AwayTeamNextBatters, away_DueUP);
+            PrepareForThisTeam(match.HomeTeam, HomeTeam_Abbreviation, HomeTeam_RunsScored, label19, panel12, label23, currentMatch, homeTeamNextBatters, home_DueUP);
             DisplayingCurrentSituation(match.gameSituations.Last());
 
             DisplayNextBatters(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, currentMatch.gameSituations.Last());
             DisplayNextBatters(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, currentMatch.gameSituations.Last());
+        }
+
+        private void PrepareForThisTeam(Team team, Label teamAbbreviation, Label RunsScored, Label teamTitle, Panel TeamLogo, Label teamBalance, Match match, Panel NextBatters, Label NextBattersHeader)
+        {
+            teamAbbreviation.Text = team.TeamAbbreviation;
+            teamAbbreviation.BackColor = team.TeamColorForThisMatch;
+            RunsScored.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.9), (int)(team.TeamColorForThisMatch.G * 0.9), (int)(team.TeamColorForThisMatch.B * 0.9));
+            teamTitle.Text = team.TeamTitle.ToUpper();
+            teamTitle.BackColor = team.TeamColorForThisMatch;
+            TeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{team.TeamAbbreviation}.png");
+            teamBalance.Text = $"{team.Wins}-{team.Losses}";
+            teamBalance.BackColor = team.TeamColorForThisMatch;
+            teamBalance.Visible = !match.IsQuickMatch;
+            NextBatters.BackColor = team.TeamColorForThisMatch;
+            NextBattersHeader.Text = $"{team.TeamTitle.ToUpper()} - DUE UP";
         }
 
         private void DisplayNextBatters(Label awayNext1, Label awayNext2, Label awayNext3, Label awayNextNumber1, Label awayNextNumber2, Label awayNextNumber3, Match currentMatch, Team team, Label Next1Stats, Label Next2Stats, Label Next3Stats, GameSituation situation)
@@ -181,7 +173,7 @@ namespace VKR_Test
             HomeTeam_RunsScored.Text = gameSituation.HomeTeamRuns.ToString();
 
             panelCurrentBatter.Visible = gameSituation.strikes == 0 && gameSituation.balls == 0;
-            pbCurrentOffenseLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{gameSituation.offense.TeamAbbreviation}.png");
+
 
             panel8.BackColor = gameSituation.offense.TeamColorForThisMatch;
             btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.B * 0.9));
@@ -401,7 +393,7 @@ namespace VKR_Test
                 {
                     title = "Walk-off " + title.ToLower();
                 }
-                HomeRunCelebrationForm hr = new HomeRunCelebrationForm(newGameSituation.offense, title, GetBatterByGameSituation(newGameSituation), currentMatch.atBats);
+                HomeRunCelebrationForm hr = new HomeRunCelebrationForm(newGameSituation.offense, title, GetBatterByGameSituation(newGameSituation), currentMatch.atBats, currentMatch.IsQuickMatch);
                 hr.ShowDialog();
             }
         }
@@ -450,7 +442,7 @@ namespace VKR_Test
                 {
                     AtBat runForDB = new AtBat(runner, currentMatch);
                     currentMatch.atBats.Add(runForDB);
-                    matchBL.AddNewAtBat(runForDB);
+                    matchBL.AddNewAtBat(runForDB, currentMatch);
                 }
                 GetCurrentStatsForThisMatch();
             }
@@ -463,7 +455,11 @@ namespace VKR_Test
             }
 
             DisplayingCurrentSituation(newGameSituation);
-            DisplayCurrentRunners(newGameSituation);
+            if (newGameSituation.strikes == 0 && newGameSituation.balls == 0)
+            {
+                DisplayCurrentRunners(newGameSituation);
+            }
+
             IsFinishOfMatch(currentMatch);
 
             panelLastAtBat.Visible = currentMatch.atBats.Count > 0;
@@ -617,37 +613,37 @@ namespace VKR_Test
                 {
                     case Pitch.PitchResult.SecondBaseStolen:
                         {
-                            AtBat atBat = new AtBat(currentMatch, situation.RunnerOnSecond.runnerID, false);
+                            AtBat atBat = new AtBat(currentMatch, situation.RunnerOnSecond.runnerID, true);
                             currentMatch.atBats.Add(atBat);
-                            matchBL.AddNewAtBat(atBat);
+                            matchBL.AddNewAtBat(atBat, currentMatch);
                             break;
                         }
                     case Pitch.PitchResult.ThirdBaseStolen:
                         {
                             AtBat atBat = new AtBat(currentMatch, situation.RunnerOnThird.runnerID, true);
                             currentMatch.atBats.Add(atBat);
-                            matchBL.AddNewAtBat(atBat);
+                            matchBL.AddNewAtBat(atBat, currentMatch);
                             break;
                         }
                     case Pitch.PitchResult.CaughtStealingOnSecond:
                         {
                             AtBat atBat = new AtBat(currentMatch, currentMatch.gameSituations[currentMatch.gameSituations.Count - 2].RunnerOnFirst.runnerID, true);
                             currentMatch.atBats.Add(atBat);
-                            matchBL.AddNewAtBat(atBat);
+                            matchBL.AddNewAtBat(atBat, currentMatch);
                             break;
                         }
                     case Pitch.PitchResult.CaughtStealingOnThird:
                         {
                             AtBat atBat = new AtBat(currentMatch, currentMatch.gameSituations[currentMatch.gameSituations.Count - 2].RunnerOnSecond.runnerID, true);
                             currentMatch.atBats.Add(atBat);
-                            matchBL.AddNewAtBat(atBat);
+                            matchBL.AddNewAtBat(atBat, currentMatch);
                             break;
                         }
                     default:
                         {
                             AtBat LastAtBat = new AtBat(currentMatch, runs);
                             currentMatch.atBats.Add(LastAtBat);
-                            matchBL.AddNewAtBat(LastAtBat);
+                            matchBL.AddNewAtBat(LastAtBat, currentMatch);
                             break;
                         }
                 }
@@ -778,6 +774,10 @@ namespace VKR_Test
         {
             pbCurrentOffenseLogo.Visible = panelCurrentBatter.Visible;
             pbCurrentBatterPhoto.Visible = panelCurrentBatter.Visible;
+            if (newGameSituation != null)
+            {
+                pbCurrentOffenseLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{newGameSituation.offense.TeamAbbreviation}.png");
+            }
         }
 
         private void btnChangeBatter_Click(object sender, EventArgs e)

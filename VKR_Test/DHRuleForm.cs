@@ -27,7 +27,7 @@ namespace VKR_Test
 
         private void btnAcceptDHRule_Click(object sender, EventArgs e)
         {
-            int MatchID = matchBL.GetNumberOfMatchesPlayed();
+            int MatchID = matchBL.GetNumberOfMatchesPlayed(newMatch);
             newMatch.MatchDate = dtpMatchDate.Value;
             newMatch.DHRule = rbPlayWithDH.Checked;
             newMatch.MatchID = MatchID;

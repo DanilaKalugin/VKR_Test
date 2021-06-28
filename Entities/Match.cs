@@ -19,6 +19,7 @@ namespace Entities
         public string HomeTeamAbbreviation;
         public int StadiumNumber;
         public DateTime MatchDate;
+        public bool IsQuickMatch;
         public string MatchStatus
         {
             get
@@ -78,9 +79,10 @@ namespace Entities
             MatchDate = date;
         }
 
-        public Match(DateTime date)
+        public Match(DateTime date, bool QuickMatch)
         {
             MatchDate = date;
+            IsQuickMatch = QuickMatch;
             atBats = new List<AtBat>();
         }
     }

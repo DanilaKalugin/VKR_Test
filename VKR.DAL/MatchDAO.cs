@@ -49,21 +49,22 @@ namespace VKR.DAL
             }
         }
 
-        public int GetNumberOfMatchesPlayed()
+        public int GetNumberOfMatchesPlayed(Match newMatch)
         {
             using (SqlCommand command = new SqlCommand("GetNumberOfMatchesPlayed", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@QuickMatch", SqlDbType.Bit);
 
                 SqlParameter _MatchID = new SqlParameter("@MatchID", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Output
                 };
                 command.Prepare();
+                command.Parameters[0].Value = newMatch.IsQuickMatch;
                 command.Parameters.Add(_MatchID);
-                var result = command.ExecuteNonQuery();
+                _ = command.ExecuteNonQuery();
                 return (int)_MatchID.Value;
-                
             }
         }
 
@@ -77,6 +78,7 @@ namespace VKR.DAL
                 command.Parameters.Add("Stadium", SqlDbType.Int);
                 command.Parameters.Add("DHRule", SqlDbType.Bit);
                 command.Parameters.Add("@Date", SqlDbType.Date);
+                command.Parameters.Add("@QuickMatch", SqlDbType.Bit);
 
                 command.Prepare();
                 command.Parameters[0].Value = newMatch.AwayTeam.TeamAbbreviation;
@@ -84,6 +86,7 @@ namespace VKR.DAL
                 command.Parameters[2].Value = newMatch.stadium.stadiumId;
                 command.Parameters[3].Value = newMatch.DHRule;
                 command.Parameters[4].Value = newMatch.MatchDate;
+                command.Parameters[5].Value = newMatch.IsQuickMatch;
                 var result = command.ExecuteNonQuery();
             }
         }

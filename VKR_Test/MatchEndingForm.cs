@@ -91,6 +91,7 @@ namespace VKR_Test
             Abbreviation.BackColor = team.TeamColorForThisMatch;
             Abbreviation.Text = team.TeamAbbreviation.ToUpper();
             panelSmallLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{team.TeamAbbreviation}.png");
+            Balance.Visible = !endedmatch.IsQuickMatch;
             Balance.Text = $"{team.Wins}-{team.Losses}";
             Balance.ForeColor = team.TeamColorForThisMatch;
             panelBigLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
@@ -107,7 +108,7 @@ namespace VKR_Test
             bool IsCG = OutsPlayedForThisPitcher == OutsPlayedForThisTeam;
             bool IsSHO = IsCG && RunsForThisPitcher == 0;
 
-            matchBL.AddMatchResultForThisPitcher(new PitcherResults(awayTeam.PitchersPlayedInMatch[0].id, awayTeam.TeamAbbreviation, endedmatch.MatchID, IsQS, IsCG, IsSHO));
+            matchBL.AddMatchResultForThisPitcher(new PitcherResults(awayTeam.PitchersPlayedInMatch[0].id, awayTeam.TeamAbbreviation, endedmatch.MatchID, IsQS, IsCG, IsSHO), endedmatch);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

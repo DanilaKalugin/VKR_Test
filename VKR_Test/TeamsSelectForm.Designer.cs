@@ -80,10 +80,11 @@ namespace VKR_Test
             // 
             this.lbAwayCity.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbAwayCity.ForeColor = System.Drawing.Color.White;
-            this.lbAwayCity.Location = new System.Drawing.Point(29, 59);
+            this.lbAwayCity.Location = new System.Drawing.Point(12, 59);
             this.lbAwayCity.Margin = new System.Windows.Forms.Padding(0);
             this.lbAwayCity.Name = "lbAwayCity";
-            this.lbAwayCity.Size = new System.Drawing.Size(266, 23);
+            this.lbAwayCity.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
+            this.lbAwayCity.Size = new System.Drawing.Size(300, 23);
             this.lbAwayCity.TabIndex = 2;
             this.lbAwayCity.Text = "label1";
             this.lbAwayCity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -93,10 +94,11 @@ namespace VKR_Test
             // 
             this.lbAwayTitle.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbAwayTitle.ForeColor = System.Drawing.Color.White;
-            this.lbAwayTitle.Location = new System.Drawing.Point(29, 82);
+            this.lbAwayTitle.Location = new System.Drawing.Point(12, 82);
             this.lbAwayTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbAwayTitle.Name = "lbAwayTitle";
-            this.lbAwayTitle.Size = new System.Drawing.Size(266, 22);
+            this.lbAwayTitle.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
+            this.lbAwayTitle.Size = new System.Drawing.Size(300, 22);
             this.lbAwayTitle.TabIndex = 3;
             this.lbAwayTitle.Text = "label2";
             this.lbAwayTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -170,10 +172,11 @@ namespace VKR_Test
             this.lbHomeTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbHomeTitle.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHomeTitle.ForeColor = System.Drawing.Color.White;
-            this.lbHomeTitle.Location = new System.Drawing.Point(639, 82);
+            this.lbHomeTitle.Location = new System.Drawing.Point(622, 82);
             this.lbHomeTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbHomeTitle.Name = "lbHomeTitle";
-            this.lbHomeTitle.Size = new System.Drawing.Size(266, 22);
+            this.lbHomeTitle.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
+            this.lbHomeTitle.Size = new System.Drawing.Size(300, 22);
             this.lbHomeTitle.TabIndex = 10;
             this.lbHomeTitle.Text = "label7";
             this.lbHomeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -184,10 +187,11 @@ namespace VKR_Test
             this.lbHomeCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbHomeCity.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHomeCity.ForeColor = System.Drawing.Color.White;
-            this.lbHomeCity.Location = new System.Drawing.Point(639, 59);
+            this.lbHomeCity.Location = new System.Drawing.Point(622, 59);
             this.lbHomeCity.Margin = new System.Windows.Forms.Padding(0);
             this.lbHomeCity.Name = "lbHomeCity";
-            this.lbHomeCity.Size = new System.Drawing.Size(266, 23);
+            this.lbHomeCity.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
+            this.lbHomeCity.Size = new System.Drawing.Size(300, 23);
             this.lbHomeCity.TabIndex = 9;
             this.lbHomeCity.Text = "label8";
             this.lbHomeCity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
