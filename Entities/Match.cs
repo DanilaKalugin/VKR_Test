@@ -20,6 +20,7 @@ namespace Entities
         public int StadiumNumber;
         public DateTime MatchDate;
         public bool IsQuickMatch;
+        public int MatchLength;
         public string MatchStatus
         {
             get

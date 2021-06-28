@@ -31,6 +31,7 @@ namespace VKR_Test
             newMatch.MatchDate = dtpMatchDate.Value;
             newMatch.DHRule = rbPlayWithDH.Checked;
             newMatch.MatchID = MatchID;
+            newMatch.MatchLength = (int)numMatchLength.Value;
 
             matchBL.StartNewMatch(newMatch);
             newMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(newMatch.AwayTeam.TeamAbbreviation, MatchID);
@@ -56,6 +57,11 @@ namespace VKR_Test
                 Hide();
                 DialogResult = DialogResult.Yes;
             }
+        }
+
+        private void numMatchLength_ValueChanged(object sender, EventArgs e)
+        {
+            labelMatchLength.Text = (numMatchLength.Value % 10 == 1 && numMatchLength.Value % 100 != 11) ? $"{numMatchLength.Value} INNING" : $"{numMatchLength.Value} INNINGS";
         }
     }
 }

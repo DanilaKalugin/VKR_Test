@@ -36,6 +36,10 @@ namespace VKR_Test
             this.btnAcceptDHRule = new System.Windows.Forms.Button();
             this.dtpMatchDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelMatchLength = new System.Windows.Forms.Label();
+            this.numMatchLength = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numMatchLength)).BeginInit();
             this.SuspendLayout();
             // 
             // rbPlayWithDH
@@ -54,7 +58,7 @@ namespace VKR_Test
             // 
             this.rbPlayWithoutDH.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbPlayWithoutDH.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.rbPlayWithoutDH.Location = new System.Drawing.Point(13, 76);
+            this.rbPlayWithoutDH.Location = new System.Drawing.Point(168, 46);
             this.rbPlayWithoutDH.Name = "rbPlayWithoutDH";
             this.rbPlayWithoutDH.Size = new System.Drawing.Size(173, 24);
             this.rbPlayWithoutDH.TabIndex = 1;
@@ -94,11 +98,11 @@ namespace VKR_Test
             this.dtpMatchDate.CalendarTitleForeColor = System.Drawing.Color.WhiteSmoke;
             this.dtpMatchDate.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpMatchDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpMatchDate.Location = new System.Drawing.Point(12, 137);
+            this.dtpMatchDate.Location = new System.Drawing.Point(168, 76);
             this.dtpMatchDate.MaxDate = new System.DateTime(2021, 10, 3, 0, 0, 0, 0);
             this.dtpMatchDate.MinDate = new System.DateTime(2021, 4, 1, 0, 0, 0, 0);
             this.dtpMatchDate.Name = "dtpMatchDate";
-            this.dtpMatchDate.Size = new System.Drawing.Size(397, 27);
+            this.dtpMatchDate.Size = new System.Drawing.Size(241, 27);
             this.dtpMatchDate.TabIndex = 4;
             this.dtpMatchDate.Value = new System.DateTime(2021, 4, 12, 0, 0, 0, 0);
             // 
@@ -106,11 +110,58 @@ namespace VKR_Test
             // 
             this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(10, 111);
+            this.label2.Location = new System.Drawing.Point(9, 80);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(399, 23);
+            this.label2.Size = new System.Drawing.Size(152, 23);
             this.label2.TabIndex = 5;
             this.label2.Text = "Match date:";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label3.Location = new System.Drawing.Point(9, 116);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(152, 23);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Match length:";
+            // 
+            // labelMatchLength
+            // 
+            this.labelMatchLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelMatchLength.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMatchLength.ForeColor = System.Drawing.Color.White;
+            this.labelMatchLength.Location = new System.Drawing.Point(168, 111);
+            this.labelMatchLength.Name = "labelMatchLength";
+            this.labelMatchLength.Size = new System.Drawing.Size(224, 26);
+            this.labelMatchLength.TabIndex = 14;
+            this.labelMatchLength.Text = "label5";
+            this.labelMatchLength.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // numMatchLength
+            // 
+            this.numMatchLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numMatchLength.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numMatchLength.Location = new System.Drawing.Point(168, 111);
+            this.numMatchLength.Maximum = new decimal(new int[] {
+            11,
+            0,
+            0,
+            0});
+            this.numMatchLength.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMatchLength.Name = "numMatchLength";
+            this.numMatchLength.Size = new System.Drawing.Size(241, 26);
+            this.numMatchLength.TabIndex = 13;
+            this.numMatchLength.Value = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.numMatchLength.ValueChanged += new System.EventHandler(this.numMatchLength_ValueChanged);
             // 
             // DHRuleForm
             // 
@@ -118,6 +169,9 @@ namespace VKR_Test
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(421, 245);
+            this.Controls.Add(this.labelMatchLength);
+            this.Controls.Add(this.numMatchLength);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtpMatchDate);
             this.Controls.Add(this.btnAcceptDHRule);
@@ -130,6 +184,7 @@ namespace VKR_Test
             this.Name = "DHRuleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Designated hitter rule";
+            ((System.ComponentModel.ISupportInitialize)(this.numMatchLength)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -142,5 +197,8 @@ namespace VKR_Test
         private System.Windows.Forms.Button btnAcceptDHRule;
         private System.Windows.Forms.DateTimePicker dtpMatchDate;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelMatchLength;
+        private System.Windows.Forms.NumericUpDown numMatchLength;
     }
 }
