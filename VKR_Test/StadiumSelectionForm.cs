@@ -70,6 +70,7 @@ namespace VKR_Test
             Stadium stadiumForThisMatch = stadiums[StadiumNumber];
             newMatch.stadium = stadiumForThisMatch;
             DHRuleForm DHForm = new DHRuleForm(newMatch);
+            Visible = false;
             DHForm.ShowDialog();
 
             if (DHForm.DialogResult == DialogResult.OK)

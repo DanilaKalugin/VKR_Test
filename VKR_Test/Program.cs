@@ -15,7 +15,7 @@ namespace VKR_Test
        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TitleForm());
+            Application.Run(new MainMenuForm());
         }
     }
 }

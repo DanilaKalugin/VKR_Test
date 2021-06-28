@@ -21,16 +21,7 @@ namespace VKR_Test
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
         Match newMatch;
-
-        public TeamsSelectForm()
-        {
-            InitializeComponent();
-            teamsBL = new TeamsBL();
-            matchBL = new MatchBL();
-            teams = teamsBL.GetAllTeams().ToList();
-            AwayTeamNumber = 0;
-            HomeTeamNumber = 1;
-        }
+        int matchNumber = 0;
 
         public TeamsSelectForm(Match match)
         {
@@ -57,10 +48,12 @@ namespace VKR_Test
             }
             else
             {
+                matchNumber = 0;
                 AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].AwayTeamAbbreviation);
                 HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
             }
-            btnSwap.Visible = false;
+            btnSwap.Visible = match.IsQuickMatch;
+            btnNextMatch.Visible = !match.IsQuickMatch;
         }
 
         private void TeamsSelectForm_Load(object sender, EventArgs e)
@@ -165,6 +158,7 @@ namespace VKR_Test
             newMatch.HomeTeam = HomeTeam;
             newMatch.AwayTeam = AwayTeam;
             StadiumSelectionForm stadiumSelection = new StadiumSelectionForm(newMatch);
+            Visible = false;
             stadiumSelection.ShowDialog();
 
             if (stadiumSelection.DialogResult == DialogResult.OK)
@@ -203,6 +197,15 @@ namespace VKR_Test
         {
             Button l = sender as Button;
             l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
+        }
+
+        private void btnNextMatch_Click(object sender, EventArgs e)
+        {
+            matchNumber = matchNumber < matches.Count - 1 ? matchNumber + 1 : 0;
+            AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[matchNumber].AwayTeamAbbreviation);
+            HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[matchNumber].HomeTeamAbbreviation);
+            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
     }
 }

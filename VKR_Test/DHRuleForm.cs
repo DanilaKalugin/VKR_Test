@@ -20,6 +20,7 @@ namespace VKR_Test
             teamsBL = new TeamsBL();
             Program.MatchDate = matchBL.GetMaxDateForAllMatches();
             newMatch = match;
+            numMatchLength.Value = 9;
             dtpMatchDate.Value = match.MatchDate;
             rbPlayWithDH.Checked = newMatch.HomeTeam.DHRule;
             rbPlayWithoutDH.Checked = !newMatch.HomeTeam.DHRule;
@@ -41,6 +42,7 @@ namespace VKR_Test
             newMatch.HomeTeam.PitchersPlayedInMatch.AddRange(teamsBL.GetStartingPitcherForThisTeam(newMatch.HomeTeam, newMatch));
 
             MainForm newMatchForm = new MainForm(newMatch);
+            Visible = false;
             newMatchForm.ShowDialog();
 
             if (newMatchForm.DialogResult == DialogResult.OK)

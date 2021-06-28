@@ -21,6 +21,8 @@ namespace VKR_Test
             manBL = new ManBL();
             teams = new TeamsBL();
             matchBL = new MatchBL();
+            TitleForm title = new TitleForm();
+            title.ShowDialog();
         }
 
         private void MainMenuForm_Load(object sender, EventArgs e)
@@ -30,6 +32,7 @@ namespace VKR_Test
 
         private void GetListOfPeopleWithBirthdayToday()
         {
+            Visible = true;
             List<ManInTeam> men = manBL.GetListOfPeopleWithBirthdayToday();
             List<Team> teamsList = teams.GetAllTeams();
             dgvBirthDays.Rows.Clear();
@@ -64,6 +67,7 @@ namespace VKR_Test
         private void btnStandings_Click(object sender, EventArgs e)
         {
             StandingsForm form = new StandingsForm();
+            Visible = false;
             form.ShowDialog();
             GetListOfPeopleWithBirthdayToday();
         }
@@ -71,6 +75,7 @@ namespace VKR_Test
         private void btnPlayerStats_Click(object sender, EventArgs e)
         {
             PlayerStatsForm form = new PlayerStatsForm();
+            Visible = false;
             form.ShowDialog();
             GetListOfPeopleWithBirthdayToday();
         }
@@ -78,6 +83,7 @@ namespace VKR_Test
         private void btnLineups_Click(object sender, EventArgs e)
         {
             LineupsForm form = new LineupsForm();
+            Visible = false;
             form.ShowDialog();
             GetListOfPeopleWithBirthdayToday();
         }
@@ -85,6 +91,7 @@ namespace VKR_Test
         private void btnResults_Click(object sender, EventArgs e)
         {
             MatchResultsForm form = new MatchResultsForm();
+            Visible = false;
             form.ShowDialog();
             GetListOfPeopleWithBirthdayToday();
         }
@@ -93,6 +100,7 @@ namespace VKR_Test
         {
             Program.MatchDate = matchBL.GetDateForNextMatch();
             Match match = new Match(Program.MatchDate, true);
+            Visible = false;
             TeamsSelectForm form = new TeamsSelectForm(match);
             form.ShowDialog();
             if (form.DialogResult == DialogResult.Yes)
@@ -107,6 +115,7 @@ namespace VKR_Test
         private void btnResultsByDate_Click(object sender, EventArgs e)
         {
             MatchResultsForm form = new MatchResultsForm(matchBL.GetMaxDateForAllMatches(), false);
+            Visible = false;
             form.ShowDialog();
             GetListOfPeopleWithBirthdayToday();
         }

@@ -551,6 +551,7 @@ namespace VKR_Test
             {
                 MatchEndingForm form = new MatchEndingForm(currentMatch);
                 matchBL.FinishMatch(currentMatch);
+                Visible = false;
                 form.ShowDialog();
                 if (form.DialogResult == DialogResult.OK)
                 {

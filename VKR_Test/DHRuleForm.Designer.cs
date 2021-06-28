@@ -157,7 +157,7 @@ namespace VKR_Test
             this.numMatchLength.Size = new System.Drawing.Size(241, 26);
             this.numMatchLength.TabIndex = 13;
             this.numMatchLength.Value = new decimal(new int[] {
-            9,
+            1,
             0,
             0,
             0});

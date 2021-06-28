@@ -13,8 +13,7 @@ namespace VKR_Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainMenuForm form = new MainMenuForm();
-            form.ShowDialog();
+            Close();
         }
     }
 }
