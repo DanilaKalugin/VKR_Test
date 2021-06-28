@@ -8,8 +8,10 @@
         public bool IsQualityStart;
         public bool IsCompleteGame;
         public bool IsShutout;
+        public bool IsWin;
+        public bool IsLoss;
 
-        public PitcherResults(int Pitcher, string Team, int Match, bool _QS, bool _cg, bool _sho)
+        public PitcherResults(int Pitcher, string Team, int Match, bool _QS, bool _cg, bool _sho, bool _w, bool _l)
         {
             this.Pitcher = Pitcher;
             this.Team = Team;
@@ -17,6 +19,8 @@
             IsQualityStart = _QS;
             IsCompleteGame = _cg;
             IsShutout = _sho;
+            IsWin = _w;
+            IsLoss = _l;
         }
     }
 }

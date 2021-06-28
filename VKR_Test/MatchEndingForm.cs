@@ -104,11 +104,15 @@ namespace VKR_Test
             int OutsPlayedForThisTeam = endedmatch.atBats.Where(atBat => atBat.Defense == awayTeam.TeamAbbreviation).Select(atBat => atBat.outs).Sum();
             int OutsPlayedForThisPitcher = endedmatch.atBats.Where(atBat => atBat.Pitcher == awayTeam.PitchersPlayedInMatch[0].id).Select(atBat => atBat.outs).Sum();
 
+            Team WinningTeam = endedmatch.gameSituations.Last().AwayTeamRuns > endedmatch.gameSituations.Last().HomeTeamRuns ? endedmatch.AwayTeam : endedmatch.HomeTeam;
+
             bool IsQS = RunsForThisPitcher <= 3 && OutsPlayedForThisPitcher / 3 >= 6;
             bool IsCG = OutsPlayedForThisPitcher == OutsPlayedForThisTeam;
             bool IsSHO = IsCG && RunsForThisPitcher == 0;
+            bool IsWin = IsCG && awayTeam.TeamAbbreviation == WinningTeam.TeamAbbreviation;
+            bool IsLoss = IsCG && awayTeam.TeamAbbreviation != WinningTeam.TeamAbbreviation;
 
-            matchBL.AddMatchResultForThisPitcher(new PitcherResults(awayTeam.PitchersPlayedInMatch[0].id, awayTeam.TeamAbbreviation, endedmatch.MatchID, IsQS, IsCG, IsSHO), endedmatch);
+            matchBL.AddMatchResultForThisPitcher(new PitcherResults(awayTeam.PitchersPlayedInMatch[0].id, awayTeam.TeamAbbreviation, endedmatch.MatchID, IsQS, IsCG, IsSHO, IsWin, IsLoss), endedmatch);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
