@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label36;
             System.Windows.Forms.Panel panel27;
             System.Windows.Forms.Label label24;
@@ -203,6 +204,7 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.label27 = new System.Windows.Forms.Label();
             this.panelLastAtBat = new System.Windows.Forms.Panel();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -238,6 +240,7 @@
             this.panel3Base.SuspendLayout();
             this.panel36.SuspendLayout();
             this.panelLastAtBat.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label36
@@ -2343,6 +2346,10 @@
             this.panelLastAtBat.TabIndex = 63;
             this.panelLastAtBat.Visible = false;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2415,6 +2422,7 @@
             this.panel3Base.ResumeLayout(false);
             this.panel36.ResumeLayout(false);
             this.panelLastAtBat.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2592,6 +2600,7 @@
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Panel panelLastAtBat;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 

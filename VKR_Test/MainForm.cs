@@ -178,6 +178,7 @@ namespace VKR_Test
             panel8.BackColor = gameSituation.offense.TeamColorForThisMatch;
             btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.B * 0.9));
 
+            pbCurrentOffenseLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{newGameSituation.offense.TeamAbbreviation}.png");
             Batter NextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(NextBatter);
             DisplayNextBatters(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, gameSituation);
@@ -780,10 +781,6 @@ namespace VKR_Test
         {
             pbCurrentOffenseLogo.Visible = panelCurrentBatter.Visible;
             pbCurrentBatterPhoto.Visible = panelCurrentBatter.Visible;
-            if (newGameSituation != null)
-            {
-                pbCurrentOffenseLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{newGameSituation.offense.TeamAbbreviation}.png");
-            }
         }
 
         private void btnChangeBatter_Click(object sender, EventArgs e)
