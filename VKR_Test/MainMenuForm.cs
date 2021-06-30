@@ -74,7 +74,7 @@ namespace VKR_Test
 
         private void btnPlayerStats_Click(object sender, EventArgs e)
         {
-            PlayerStatsForm form = new PlayerStatsForm();
+            PlayerStatsForm form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players);
             Visible = false;
             form.ShowDialog();
             GetListOfPeopleWithBirthdayToday();
@@ -115,6 +115,14 @@ namespace VKR_Test
         private void btnResultsByDate_Click(object sender, EventArgs e)
         {
             MatchResultsForm form = new MatchResultsForm(matchBL.GetMaxDateForAllMatches(), false);
+            Visible = false;
+            form.ShowDialog();
+            GetListOfPeopleWithBirthdayToday();
+        }
+
+        private void btnTeamStats_Click(object sender, EventArgs e)
+        {
+            PlayerStatsForm form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Teams);
             Visible = false;
             form.ShowDialog();
             GetListOfPeopleWithBirthdayToday();

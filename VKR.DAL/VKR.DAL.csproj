@@ -52,9 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entities\Entities.csproj">
+    <ProjectReference Include="..\Entities\VKR.Entities.csproj">
       <Project>{19ffd1aa-e9a7-49d8-9e49-1e6adfda5875}</Project>
-      <Name>Entities</Name>
+      <Name>VKR.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

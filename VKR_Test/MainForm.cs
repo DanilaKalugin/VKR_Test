@@ -520,26 +520,31 @@ namespace VKR_Test
                         {
                             Pitch stealingSecondBaseAttempt = new Pitch(newGameSituation, Pitch.StealingType.OnlySecondBase);
                             AddnewGameSituation(stealingSecondBaseAttempt);
+                            DisplayCurrentRunners(newGameSituation);
                             break;
                         }
                     case 2:
                         {
                             Pitch stealingThirdBaseAttempt = new Pitch(newGameSituation, Pitch.StealingType.OnlyThirdBase);
                             AddnewGameSituation(stealingThirdBaseAttempt);
+                            DisplayCurrentRunners(newGameSituation);
                             break;
                         }
                     case 3:
                         {
                             Pitch stealingThirdBaseAttemptBeforeSecond = new Pitch(newGameSituation, Pitch.StealingType.ThirdBaseBeforeSecond);
                             AddnewGameSituation(stealingThirdBaseAttemptBeforeSecond);
+                            DisplayCurrentRunners(newGameSituation);
                             if (currentMatch.gameSituations.Last().outs != 3)
                             {
                                 Pitch stealingSecondBaseAfterThird = new Pitch(newGameSituation, Pitch.StealingType.SecondBaseAfterThird);
                                 AddnewGameSituation(stealingSecondBaseAfterThird);
+                                DisplayCurrentRunners(newGameSituation);
                             }
                             break;
                         }
                 }
+
             }
         }
 
@@ -614,7 +619,7 @@ namespace VKR_Test
                 {
                     case Pitch.PitchResult.SecondBaseStolen:
                         {
-                            AtBat atBat = new AtBat(currentMatch, situation.RunnerOnSecond.runnerID, true);
+                            AtBat atBat = new AtBat(currentMatch, situation.RunnerOnSecond.runnerID, false);
                             currentMatch.atBats.Add(atBat);
                             matchBL.AddNewAtBat(atBat, currentMatch);
                             break;
@@ -761,7 +766,7 @@ namespace VKR_Test
 
         private void btnPlayerStats_Click(object sender, EventArgs e)
         {
-            PlayerStatsForm form = new PlayerStatsForm();
+            PlayerStatsForm form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players);
             form.ShowDialog();
         }
 

@@ -509,5 +509,50 @@ namespace VKR.DAL
                 var result = command.ExecuteNonQuery();
             }
         }
+
+        public IEnumerable<Team> ReturnTeamBattingStats()
+        {
+            List<Team> teams = new List<Team>();
+            using (SqlCommand command = new SqlCommand("ReturnTeamBattingStats", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Prepare();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string team = (string)reader["TeamAbbreviation"];
+                        string Name = (string)reader["TeamName"];
+                        int TGP = (int)reader["TGP"];
+                        int Strikeouts = (int)reader["K"];
+                        int Walks = (int)reader["BB"];
+                        int HitByPitch = (int)reader["HBP"];
+                        int Flyout = (int)reader["AO"];
+                        int Groundout = (int)reader["GO"];
+                        int Popout = (int)reader["PO"];
+                        int Single = (int)reader["1B"];
+                        int Double = (int)reader["2B"];
+                        int Triple = (int)reader["3B"];
+                        int HomeRun = (int)reader["HR"];
+                        int StolenBase = (int)reader["SB"];
+                        int CaughtStealing = (int)reader["CS"];
+                        int Runs = (int)reader["R"];
+                        int SacFlies = (int)reader["SF"];
+                        int Bunts = (int)reader["SAC"];
+                        int RBI = (int)reader["RBI"]; ;
+                        int PA = (int)reader["PA"];
+                        int GIDP = (int)reader["GIDP"];
+                        teams.Add(new Team(team, Name, TGP, Single, Double, Triple, HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP));
+                    }
+                }
+            }
+            for (int i = 0; i < teams.Count; i++)
+            {
+                teams[i].TeamColor = GetAllColorsForThisTeam(teams[i].TeamAbbreviation).ToList();
+                teams[i].TeamManager = GetManagerForThisTeam(teams[i]).First();
+            }
+            return teams;
+        }
     }
 }

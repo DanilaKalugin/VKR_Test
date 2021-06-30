@@ -197,6 +197,9 @@
     <EmbeddedResource Include="TitleForm.resx">
       <DependentUpon>TitleForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -212,9 +215,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entities\Entities.csproj">
+    <ProjectReference Include="..\Entities\VKR.Entities.csproj">
       <Project>{19ffd1aa-e9a7-49d8-9e49-1e6adfda5875}</Project>
-      <Name>Entities</Name>
+      <Name>VKR.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\VKR.BLL\VKR.BLL.csproj">
       <Project>{eb513c16-3c1f-49cc-9476-bd1402537db6}</Project>

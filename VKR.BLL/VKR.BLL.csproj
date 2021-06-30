@@ -50,9 +50,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entities\Entities.csproj">
+    <ProjectReference Include="..\Entities\VKR.Entities.csproj">
       <Project>{19ffd1aa-e9a7-49d8-9e49-1e6adfda5875}</Project>
-      <Name>Entities</Name>
+      <Name>VKR.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\VKR.DAL\VKR.DAL.csproj">
       <Project>{2c75f509-b23a-41a0-998f-b9961f5b96d9}</Project>

@@ -108,6 +108,16 @@ namespace VKR.BLL
             return teamsDAO.GetAvailableBatters(match, team, batter).ToList();
         }
 
+        public List<Team> GetSortedTeamStatsDesc<Tkey>(List<Team> teams, Func<Team, Tkey> key)
+        {
+            return teams.OrderByDescending(key).ToList();
+        }
+
+        public List<Team> GetSortedTeamStats<Tkey>(List<Team> teams, Func<Team, Tkey> key)
+        {
+            return teams.OrderBy(key).ToList();
+        }
+
         public void SubstituteBatter(Match match, Team team, Batter oldBatter, Batter newBatter)
         {
             teamsDAO.SubstituteBatter(match, team, oldBatter, newBatter);
@@ -123,6 +133,11 @@ namespace VKR.BLL
             Team TeamWithNewBalance = teamsDAO.UpdateBalanceForThisTeam(team).First();
             team.Wins = TeamWithNewBalance.Wins;
             team.Losses = TeamWithNewBalance.Losses;
+        }
+
+        public List<Team> GetTeamBattingStats()
+        {
+            return teamsDAO.ReturnTeamBattingStats().OrderByDescending(team => team.AVG).ToList();
         }
     }
 }

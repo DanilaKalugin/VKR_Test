@@ -46,6 +46,7 @@ namespace VKR_Test
             this.btnResults = new System.Windows.Forms.Button();
             this.btnNewMatch = new System.Windows.Forms.Button();
             this.btnResultsByDate = new System.Windows.Forms.Button();
+            this.btnTeamStats = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBirthDays)).BeginInit();
             this.SuspendLayout();
@@ -182,7 +183,7 @@ namespace VKR_Test
             this.btnPlayerStats.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlayerStats.Location = new System.Drawing.Point(524, 12);
             this.btnPlayerStats.Name = "btnPlayerStats";
-            this.btnPlayerStats.Size = new System.Drawing.Size(250, 150);
+            this.btnPlayerStats.Size = new System.Drawing.Size(250, 73);
             this.btnPlayerStats.TabIndex = 3;
             this.btnPlayerStats.Text = "PLAYER STATISTICS";
             this.btnPlayerStats.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -249,12 +250,28 @@ namespace VKR_Test
             this.btnResultsByDate.UseVisualStyleBackColor = false;
             this.btnResultsByDate.Click += new System.EventHandler(this.btnResultsByDate_Click);
             // 
+            // btnTeamStats
+            // 
+            this.btnTeamStats.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnTeamStats.FlatAppearance.BorderSize = 0;
+            this.btnTeamStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTeamStats.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeamStats.Location = new System.Drawing.Point(524, 89);
+            this.btnTeamStats.Name = "btnTeamStats";
+            this.btnTeamStats.Size = new System.Drawing.Size(250, 73);
+            this.btnTeamStats.TabIndex = 8;
+            this.btnTeamStats.Text = "TEAM STATISTICS";
+            this.btnTeamStats.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnTeamStats.UseVisualStyleBackColor = false;
+            this.btnTeamStats.Click += new System.EventHandler(this.btnTeamStats_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1130, 450);
+            this.Controls.Add(this.btnTeamStats);
             this.Controls.Add(this.btnResultsByDate);
             this.Controls.Add(this.btnNewMatch);
             this.Controls.Add(this.btnResults);
@@ -292,5 +309,6 @@ namespace VKR_Test
         private System.Windows.Forms.Button btnResults;
         private System.Windows.Forms.Button btnNewMatch;
         private System.Windows.Forms.Button btnResultsByDate;
+        private System.Windows.Forms.Button btnTeamStats;
     }
 }
