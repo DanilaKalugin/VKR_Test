@@ -167,7 +167,7 @@ namespace Entities
                     (result == Pitch.PitchResult.Triple) ||
                     (result == Pitch.PitchResult.GroundRuleDouble) || 
                     (result == Pitch.PitchResult.DoublePlay) ||
-                    (result == Pitch.PitchResult.SacrificeBunt) ||
+                    (result == Pitch.PitchResult.SacrificeBunt && !situation.RunnerOnSecond.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.SecondBaseStolen) ||
                     (result == Pitch.PitchResult.CaughtStealingOnSecond))
             {
@@ -182,7 +182,7 @@ namespace Entities
         public Runner HavingARunnerOnSecondBase(Pitch.PitchResult result, GameSituation situation, Match match, int balls)
         {
             if ((((result == Pitch.PitchResult.Ball && balls == 0) || (result == Pitch.PitchResult.HitByPitch)) && situation.RunnerOnFirst.IsBaseNotEmpty) ||
-                            (result == Pitch.PitchResult.Single) || (result == Pitch.PitchResult.SacrificeBunt && outs < 3) || (result == Pitch.PitchResult.SecondBaseStolen))
+                            (result == Pitch.PitchResult.Single) || (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && !situation.RunnerOnSecond.IsBaseNotEmpty) || (result == Pitch.PitchResult.SecondBaseStolen))
             {
                 return new Runner(situation.RunnerOnFirst);
             }
@@ -192,13 +192,14 @@ namespace Entities
             }
             else if ((result == Pitch.PitchResult.HomeRun) ||
                     (result == Pitch.PitchResult.Triple) ||
-                    (result == Pitch.PitchResult.SacrificeFly) ||
+                    (result == Pitch.PitchResult.SacrificeFly && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.Popout) ||
                     ((result == Pitch.PitchResult.Groundout) && outs < 3) ||
                     ((result == Pitch.PitchResult.DoublePlay) && outs < 3) ||
                     (result == Pitch.PitchResult.ThirdBaseStolen) ||
                     (result == Pitch.PitchResult.CaughtStealingOnSecond) ||
-                    (result == Pitch.PitchResult.CaughtStealingOnThird))
+                    (result == Pitch.PitchResult.CaughtStealingOnThird) || 
+                    (result == Pitch.PitchResult.SacrificeBunt && situation.RunnerOnSecond.IsBaseNotEmpty)) 
 
             {
                 return new Runner();
@@ -233,11 +234,11 @@ namespace Entities
             }
             else if ((((result == Pitch.PitchResult.Ball && balls == 0) || (result == Pitch.PitchResult.HitByPitch)) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty) || 
                      result == Pitch.PitchResult.Single ||
-                     result == Pitch.PitchResult.SacrificeFly ||
+                    (result == Pitch.PitchResult.SacrificeFly && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                      result == Pitch.PitchResult.Popout ||
                     ((result == Pitch.PitchResult.Groundout) && outs < 3) ||
                     ((result == Pitch.PitchResult.DoublePlay) && outs < 3) || 
-                    (result == Pitch.PitchResult.SacrificeBunt && outs < 3) ||
+                    (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.ThirdBaseStolen))
             {
                 return new Runner(situation.RunnerOnSecond);
@@ -247,7 +248,9 @@ namespace Entities
                 return new Runner(situation.RunnerOnFirst);
             }
             else if ((result == Pitch.PitchResult.HomeRun) ||
-                    (result == Pitch.PitchResult.CaughtStealingOnThird))
+                    (result == Pitch.PitchResult.CaughtStealingOnThird) || 
+                    (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && situation.RunnerOnThird.IsBaseNotEmpty) ||
+                    (result == Pitch.PitchResult.SacrificeFly && situation.RunnerOnThird.IsBaseNotEmpty))
             {
                 return new Runner();
             }
