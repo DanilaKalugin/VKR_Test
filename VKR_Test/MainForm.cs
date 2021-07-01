@@ -828,5 +828,11 @@ namespace VKR_Test
             Button l = sender as Button;
             l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
         }
+
+        private void btnTeamStats_Click(object sender, EventArgs e)
+        {
+            PlayerStatsForm form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Teams);
+            form.ShowDialog();
+        }
     }
 }

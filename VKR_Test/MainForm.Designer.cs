@@ -205,6 +205,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.panelLastAtBat = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnTeamStats = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -2350,12 +2351,27 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btnTeamStats
+            // 
+            this.btnTeamStats.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnTeamStats.FlatAppearance.BorderSize = 0;
+            this.btnTeamStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTeamStats.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeamStats.Location = new System.Drawing.Point(12, 267);
+            this.btnTeamStats.Name = "btnTeamStats";
+            this.btnTeamStats.Size = new System.Drawing.Size(300, 35);
+            this.btnTeamStats.TabIndex = 64;
+            this.btnTeamStats.Text = "TEAM STATS";
+            this.btnTeamStats.UseVisualStyleBackColor = false;
+            this.btnTeamStats.Click += new System.EventHandler(this.btnTeamStats_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(this.btnTeamStats);
             this.Controls.Add(this.lbTodayStats);
             this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnOtherResults);
@@ -2601,6 +2617,7 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Panel panelLastAtBat;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button btnTeamStats;
     }
 }
 

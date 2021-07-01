@@ -139,5 +139,10 @@ namespace VKR.BLL
         {
             return teamsDAO.ReturnTeamBattingStats().OrderByDescending(team => team.AVG).ToList();
         }
+
+        public List<Team> GetTeamPitchingStats()
+        {
+            return teamsDAO.ReturnTeamPitchingStats().OrderBy(team => team.ERA).ToList();
+        }
     }
 }

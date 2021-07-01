@@ -201,6 +201,90 @@ namespace Entities
             }
         }
 
+        //Pitching stats
+        public int Outs;
+        public int WalksAllowed;
+        public int StolenBasesAllowed;
+        public int TotalBattersFaced;
+        public int QualityStarts;
+        public int Shutouts;
+        public int CompleteGames;
+        public int Saves;
+        public int Holds;
+
+        public int SinglesAllowed;
+        public int DoublesAllowed;
+        public int TriplesAllowed;
+        public int HomeRunsAllowed;
+        public int DoublePlays;
+
+        public int HitsAllowed { get { return SinglesAllowed + DoublesAllowed + TriplesAllowed + HomeRunsAllowed; } }
+
+        public double IP { get { return Math.Round(Outs / 3 + (double)(Outs % 3) / 10, 1); } }
+
+        public double WHIP
+        {
+            get
+            {
+                if (IP == 0)
+                {
+                    return 0;
+                }
+                else return Math.Round((WalksAllowed + HitsAllowed) / ((double)Outs / 3), 2);
+            }
+        }
+
+        public double BAA
+        {
+            get
+            {
+                if (TotalBattersFaced - WalksAllowed - HitByPitch - SacrificeFlies - SacrificeBunts == 0)
+                {
+                    return 0;
+                }
+                else return Math.Round((double)HitsAllowed / (TotalBattersFaced - WalksAllowed - HitByPitch - SacrificeFlies - SacrificeBunts), 3);
+            }
+        }
+
+        public double ERA
+        {
+            get
+            {
+                if (IP == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return Math.Round(RunsAllowed / ((double)Outs / 3) * 9, 2);
+                }
+            }
+        }
+
+        public double KperNineInnings
+        {
+            get
+            {
+                return (double)Strikeouts / (Outs / 3) * 9;
+            }
+        }
+
+        public double BBperNineInnings
+        {
+            get
+            {
+                return 9 * (double)WalksAllowed / (Outs / 3) * 9;
+            }
+        }
+
+        public double KperBB
+        {
+            get
+            {
+                return (double)Strikeouts / WalksAllowed;
+            }
+        }
+
         public Team(string abbreviation, string city, string name, int _StrikeZoneProbability, int _Swing_SZ_Probability, int _Swing_NotSZ_Probability,
                     int _Hit_Probability, int _Foul_Probability, int _Single_Probability, int _Double_Probability, int _HR_Probability,
                     int _PopoutOnFoul_Probability, int _FlyoutOnHR_Probability, int _Groundout_Probability, int _Flyout_Probability, int _sacFly_Probability,
@@ -260,6 +344,40 @@ namespace Entities
             DoublePlay = _gidp;
         }
 
+        public Team(string abbreviation, string name, int _games,
+                       int _k, int _outs, int _bb, int _sac, int _sf, int _sb, int _cs, int _tbf,
+                       int _qs, int _sho, int _cg, int _w, int _l, int _sv, int _hld, int _hbp,
+                       int _singles, int _doubles, int _triples, int _hr, int _runs, int _DoublePlays,
+                       int _go, int _ao)
+        {
+            TeamAbbreviation = abbreviation;
+            TeamTitle = name;
+            Strikeouts = _k;
+            Outs = _outs;
+            WalksAllowed = _bb;
+            SacrificeBunts = _sac;
+            SacrificeFlies = _sf;
+            StolenBasesAllowed = _sb;
+            CaughtStealing = _cs;
+            TotalBattersFaced = _tbf;
+            QualityStarts = _qs;
+            Shutouts = _sho;
+            CompleteGames = _cg;
+            Wins = _w;
+            Losses = _l;
+            Saves = _sv;
+            Holds = _hld;
+            HitByPitch = _hbp;
+            SinglesAllowed = _singles;
+            DoublesAllowed = _doubles;
+            TriplesAllowed = _triples;
+            HomeRunsAllowed = _hr;
+            RunsAllowed = _runs;
+            DoublePlays = _DoublePlays;
+            TGP = _games;
+            Groundouts = _go;
+            Flyouts = _ao;
+        }
         public Team (string abbreviation, string Name, int _W, int _L, string _League, string _Division)
         {
             TeamAbbreviation = abbreviation;
@@ -269,5 +387,7 @@ namespace Entities
             Losses = _L;
             Division = _Division;
         }
+
+
     }
 }

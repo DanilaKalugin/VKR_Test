@@ -481,10 +481,12 @@ namespace VKR_Test
                         if (sortModes[1][0] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.Wins);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.Wins);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.Wins);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.Wins);
                         }
                         break;
                     }
@@ -493,10 +495,12 @@ namespace VKR_Test
                         if (sortModes[1][1] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.Losses);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.Losses);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.Losses);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.Losses);
                         }
                         break;
                     }
@@ -505,10 +509,12 @@ namespace VKR_Test
                         if (sortModes[1][2] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.ERA);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.ERA);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.ERA);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.ERA);
                         }
                         break;
                     }
@@ -517,10 +523,12 @@ namespace VKR_Test
                         if (sortModes[1][3] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.Games);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.TGP);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.Games);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.TGP);
                         }
                         break;
                     }
@@ -529,10 +537,12 @@ namespace VKR_Test
                         if (sortModes[1][4] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.CompleteGames);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.CompleteGames);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.CompleteGames);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.CompleteGames);
                         }
                         break;
                     }
@@ -541,10 +551,12 @@ namespace VKR_Test
                         if (sortModes[1][5] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.Shutouts);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.Shutouts);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.Shutouts);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.Shutouts);
                         }
                         break;
                     }
@@ -553,10 +565,12 @@ namespace VKR_Test
                         if (sortModes[1][6] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.IP);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.IP);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.IP);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.IP);
                         }
                         break;
                     }
@@ -565,10 +579,12 @@ namespace VKR_Test
                         if (sortModes[1][7] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.HitsAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.HitsAllowed);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.HitsAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.HitsAllowed);
                         }
                         break;
                     }
@@ -577,10 +593,12 @@ namespace VKR_Test
                         if (sortModes[1][8] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.RunsAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.RunsAllowed);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.RunsAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.RunsAllowed);
                         }
                         break;
                     }
@@ -589,10 +607,12 @@ namespace VKR_Test
                         if (sortModes[1][9] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.HomeRunsAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.HomeRunsAllowed);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.HomeRunsAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.HomeRunsAllowed);
                         }
                         break;
                     }
@@ -601,10 +621,12 @@ namespace VKR_Test
                         if (sortModes[1][10] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.HitByPitch);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.HitByPitch);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.HitByPitch);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.HitByPitch);
                         }
                         break;
                     }
@@ -613,10 +635,12 @@ namespace VKR_Test
                         if (sortModes[1][11] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.WalksAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.WalksAllowed);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.WalksAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.WalksAllowed);
                         }
                         break;
                     }
@@ -625,10 +649,12 @@ namespace VKR_Test
                         if (sortModes[1][12] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.Strikeouts);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.Strikeouts);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.Strikeouts);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.Strikeouts);
                         }
                         break;
                     }
@@ -637,10 +663,12 @@ namespace VKR_Test
                         if (sortModes[1][13] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.WHIP);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.WHIP);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.WHIP);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.WHIP);
                         }
                         break;
                     }
@@ -649,10 +677,12 @@ namespace VKR_Test
                         if (sortModes[1][14] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.BAA);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.BAA);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.BAA);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.BAA);
                         }
                         break;
                     }
@@ -661,10 +691,12 @@ namespace VKR_Test
                         if (sortModes[1][15] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.TotalBattersFaced);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.TotalBattersFaced);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.TotalBattersFaced);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.TotalBattersFaced);
                         }
                         break;
                     }
@@ -673,10 +705,12 @@ namespace VKR_Test
                         if (sortModes[1][16] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.QualityStarts);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.QualityStarts);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.QualityStarts);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.QualityStarts);
                         }
                         break;
                     }
@@ -685,10 +719,12 @@ namespace VKR_Test
                         if (sortModes[1][17] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.DoublePlays);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.DoublePlays);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.DoublePlays);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.DoublePlays);
                         }
                         break;
                     }
@@ -697,10 +733,12 @@ namespace VKR_Test
                         if (sortModes[1][18] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.GOtoAO);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.GOtoAO);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.GOtoAO);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.GOtoAO);
                         }
                         break;
                     }
@@ -709,10 +747,12 @@ namespace VKR_Test
                         if (sortModes[1][19] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.KperNineInnings);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.KperNineInnings);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.KperNineInnings);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.KperNineInnings);
                         }
                         break;
                     }
@@ -721,10 +761,12 @@ namespace VKR_Test
                         if (sortModes[1][20] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.BBperNineInnings);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.BBperNineInnings);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.BBperNineInnings);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.BBperNineInnings);
                         }
                         break;
                     }
@@ -733,10 +775,12 @@ namespace VKR_Test
                         if (sortModes[1][21] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.KperBB);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.KperBB);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.KperBB);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.KperBB);
                         }
                         break;
                     }
@@ -745,10 +789,12 @@ namespace VKR_Test
                         if (sortModes[1][22] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.StolenBasesAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.StolenBasesAllowed);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.StolenBasesAllowed);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.StolenBasesAllowed);
                         }
                         break;
                     }
@@ -757,15 +803,17 @@ namespace VKR_Test
                         if (sortModes[1][23] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.CaughtStealing);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.CaughtStealing);
                         }
                         else
                         {
                             pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.CaughtStealing);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.CaughtStealing);
                         }
                         break;
                     }
             }
-            FillBattersAndPitchersTable(batters, pitchers, teamBattingStats);
+            FillBattersAndPitchersTable(batters, pitchers, teamBattingStats, teamPitchingStats);
         }
 
         private void dataGridView4_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -812,7 +860,7 @@ namespace VKR_Test
             ShowNewStats(playerType, statsType);
         }
 
-        private void FillBattersAndPitchersTable(List<Batter> batters, List<Pitcher> pitchers, List<Team> teamBatting)
+        private void FillBattersAndPitchersTable(List<Batter> batters, List<Pitcher> pitchers, List<Team> teamBatting, List<Team> teamPitching)
         {
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
@@ -897,6 +945,7 @@ namespace VKR_Test
                                             pitchers[i].StolenBasesAllowed,
                                             pitchers[i].CaughtStealing);
                     dataGridView4.Rows[i].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
+                    dataGridView4.Rows[i].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
                 }
             }
             else
@@ -942,6 +991,43 @@ namespace VKR_Test
                     dataGridView2.Rows[i].Cells[1].Style.BackColor = teamBatting[i].TeamColor[0];
                     dataGridView2.Rows[i].Cells[1].Style.SelectionBackColor = teamBatting[i].TeamColor[0];
                 }
+                for (int i = 0; i < teamPitching.Count; i++)
+                {
+                    dataGridView3.Rows.Add(i + 1,
+                                            "",
+                                            teamPitching[i].TeamTitle,
+                                            teamPitching[i].Wins,
+                                            teamPitching[i].Losses,
+                                            teamPitching[i].ERA.ToString("0.00", new CultureInfo("en-US")),
+                                            teamPitching[i].TGP,
+                                            teamPitching[i].CompleteGames,
+                                            teamPitching[i].Shutouts,
+                                            teamPitching[i].IP.ToString("0.0", new CultureInfo("en-US")),
+                                            teamPitching[i].HitsAllowed,
+                                            teamPitching[i].RunsAllowed,
+                                            teamPitching[i].HomeRunsAllowed,
+                                            teamPitching[i].HitByPitch,
+                                            teamPitching[i].WalksAllowed,
+                                            teamPitching[i].Strikeouts,
+                                            teamPitching[i].WHIP.ToString("0.00", new CultureInfo("en-US")),
+                                            teamPitching[i].BAA.ToString("#.000", new CultureInfo("en-US")));
+                    dataGridView3.Rows[i].Cells[1].Style.BackColor = teamPitching[i].TeamColor[0];
+                    dataGridView3.Rows[i].Cells[1].Style.SelectionBackColor = teamPitching[i].TeamColor[0];
+                    dataGridView4.Rows.Add(i + 1,
+                                            "",
+                                            teamPitching[i].TeamTitle,
+                                            teamPitching[i].TotalBattersFaced,
+                                            teamPitching[i].QualityStarts,
+                                            teamPitching[i].DoublePlays,
+                                            teamPitching[i].GOtoAO.ToString("0.00", new CultureInfo("en-US")),
+                                            teamPitching[i].KperNineInnings.ToString("0.00", new CultureInfo("en-US")),
+                                            teamPitching[i].BBperNineInnings.ToString("0.00", new CultureInfo("en-US")),
+                                            teamPitching[i].KperBB.ToString("0.00", new CultureInfo("en-US")),
+                                            teamPitching[i].StolenBasesAllowed,
+                                            teamPitching[i].CaughtStealing);
+                    dataGridView4.Rows[i].Cells[1].Style.BackColor = teamPitching[i].TeamColor[0];
+                    dataGridView4.Rows[i].Cells[1].Style.SelectionBackColor = teamPitching[i].TeamColor[0];
+                }
             }
         }
 
@@ -955,7 +1041,7 @@ namespace VKR_Test
             batters = playersBL.GetBattersStats();
             pitchers = playersBL.GetPitchersStats();
             teamBattingStats = teamsBL.GetTeamBattingStats();
-
+            teamPitchingStats = teamsBL.GetTeamPitchingStats();
 
             playerType = PlayerType.Batters;
             statsType = StatsType.Standard;
@@ -992,7 +1078,6 @@ namespace VKR_Test
                 pitchers = playersBL.GetPitchersStats(cbTeams.Text, cbPlayers.Text);
                 GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
             }
-
         }
     }
 }

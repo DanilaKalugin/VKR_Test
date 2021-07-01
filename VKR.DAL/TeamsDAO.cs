@@ -554,5 +554,57 @@ namespace VKR.DAL
             }
             return teams;
         }
+
+        public IEnumerable<Team> ReturnTeamPitchingStats()
+        {
+            List<Team> teams = new List<Team>();
+            using (SqlCommand command = new SqlCommand("ReturnTeamPitchingStats", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Prepare();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        string team = (string)reader["TeamAbbreviation"];
+                        string Name = (string)reader["TeamName"];
+                        int TGP = (int)reader["TGP"];
+                        int Strikeouts = (int)reader["K"];
+                        int Outs = (int)reader["Outs"];
+                        int Runs = (int)reader["R"];
+                        int Walks = (int)reader["BB"];
+                        int Single = (int)reader["1B"];
+                        int Double = (int)reader["2B"];
+                        int Triple = (int)reader["3B"];
+                        int HomeRun = (int)reader["HR"];
+                        int BattersFaced = (int)reader["TBF"];
+                        int HitByPitch = (int)reader["HBP"];
+                        int SacFlies = (int)reader["SF"];
+                        int Bunts = (int)reader["SAC"];
+                        int StolenBase = (int)reader["SB"];
+                        int CaughtStealing = (int)reader["CS"];
+                        int DoublePlay = (int)reader["GIDP"];
+                        int QualityStarts = (int)reader["QS"];
+                        int CompleteGames = (int)reader["CG"];
+                        int Shutouts = (int)reader["SHO"];
+                        int Flyout = (int)reader["AO"];
+                        int Groundout = (int)reader["GO"];
+                        int Wins = (int)reader["W"];
+                        int Losses = (int)reader["L"];
+                        int Saves = (int)reader["SV"];
+                        int Holds = (int)reader["HLD"];
+                        teams.Add(new Team(team, Name, TGP, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, Groundout, Flyout));
+                    }
+                }
+            }
+            for (int i = 0; i < teams.Count; i++)
+            {
+                teams[i].TeamColor = GetAllColorsForThisTeam(teams[i].TeamAbbreviation).ToList();
+                teams[i].TeamManager = GetManagerForThisTeam(teams[i]).First();
+            }
+            return teams;
+        }
     }
 }
