@@ -193,18 +193,18 @@ namespace Entities
             else if ((result == Pitch.PitchResult.HomeRun) ||
                     (result == Pitch.PitchResult.Triple) ||
                     (result == Pitch.PitchResult.SacrificeFly && !situation.RunnerOnThird.IsBaseNotEmpty) ||
+                    (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.Popout) ||
                     ((result == Pitch.PitchResult.Groundout) && outs < 3) ||
                     ((result == Pitch.PitchResult.DoublePlay) && outs < 3) ||
                     (result == Pitch.PitchResult.ThirdBaseStolen) ||
                     (result == Pitch.PitchResult.CaughtStealingOnSecond) ||
-                    (result == Pitch.PitchResult.CaughtStealingOnThird) || 
-                    (result == Pitch.PitchResult.SacrificeBunt && situation.RunnerOnSecond.IsBaseNotEmpty)) 
+                    (result == Pitch.PitchResult.CaughtStealingOnThird)) 
 
             {
                 return new Runner();
             }
-            else
+            else 
             {
                 return new Runner(situation.RunnerOnSecond);
             }
