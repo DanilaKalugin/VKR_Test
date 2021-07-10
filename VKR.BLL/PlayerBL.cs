@@ -93,6 +93,7 @@ namespace VKR.BLL
             if (TeamFilter == "MLB")
             {
                 teamsabbreviations.AddRange(teams.Select(team => team.TeamAbbreviation).ToList());
+                teamsabbreviations.Add("");
             }
             else teamsabbreviations.AddRange(teams.Where(team => team.TeamTitle == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
             return teamsabbreviations;
@@ -105,7 +106,7 @@ namespace VKR.BLL
             {
                 ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();
             }
-            List<string> Teams = ungroupedPlayers.Select(player => player.Team).Distinct().ToList();
+            List<Team> Teams = teamsDAO.GetList().ToList();
             List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).Distinct().ToList();
 
             List<List<List<PlayerInLineup>>> groupedPlayers = new List<List<List<PlayerInLineup>>>();
@@ -114,7 +115,7 @@ namespace VKR.BLL
                 groupedPlayers.Add(new List<List<PlayerInLineup>>());
                 for (int j = 0; j < Lineups.Count; j++)
                 {
-                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == Teams[i] && player.LineupType == Lineups[j]).OrderBy(player => player.NumberInLineup).ToList());
+                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == Teams[i].TeamAbbreviation && player.LineupType == Lineups[j]).OrderBy(player => player.NumberInLineup).ToList());
                 }
             }
             return groupedPlayers;
@@ -127,7 +128,7 @@ namespace VKR.BLL
             {
                 ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();
             }
-            List<string> Teams = ungroupedPlayers.Select(player => player.Team).Distinct().ToList();
+            List<Team> Teams = teamsDAO.GetList().ToList();
             List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
 
             List<List<List<PlayerInLineup>>> groupedPlayers = new List<List<List<PlayerInLineup>>>();
@@ -136,7 +137,7 @@ namespace VKR.BLL
                 groupedPlayers.Add(new List<List<PlayerInLineup>>());
                 for (int j = 0; j < Lineups.Count; j++)
                 {
-                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == Teams[i] && player.LineupType == Lineups[j]).OrderBy(player => player.NumberInLineup).ToList());
+                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == Teams[i].TeamAbbreviation && player.LineupType == Lineups[j]).OrderBy(player => player.NumberInLineup).ToList());
                 }
             }
             return groupedPlayers;
