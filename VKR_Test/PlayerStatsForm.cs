@@ -21,7 +21,7 @@ namespace VKR_Test
         private enum SortMode { Ascending, Descending };
         private enum PlayerType { Pitchers, Batters };
         private enum StatsType { Standard, Expanded };
-        public enum SortingObjects { Players, Teams};
+        public enum SortingObjects { Players, Teams };
         private SortMode[][] sortModes;
         private PlayerType playerType;
         private StatsType statsType;
@@ -747,7 +747,7 @@ namespace VKR_Test
                         if (sortModes[1][19] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.KperNineInnings);
-                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.KperNineInnings);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.KperNineInnings);
                         }
                         else
                         {
@@ -820,8 +820,8 @@ namespace VKR_Test
         {
             if (e.ColumnIndex > 2)
             {
-                sortModes[0][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] = sortModes[0][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Ascending ? SortMode.Descending : SortMode.Ascending;
-                lastBattingSort = e.ColumnIndex - 3;
+                sortModes[1][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] = sortModes[0][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Ascending ? SortMode.Descending : SortMode.Ascending;
+                lastPitchingSort = dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3;
             }
             GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
         }
@@ -888,8 +888,8 @@ namespace VKR_Test
                                             batters[i].OBP.ToString("#.000", new CultureInfo("en-US")),
                                             batters[i].SLG.ToString("#.000", new CultureInfo("en-US")),
                                             batters[i].OPS.ToString("#.000", new CultureInfo("en-US")));
-                    dataGridView1.Rows[i].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == batters[i].Team).First().TeamColor[0];
-                    dataGridView1.Rows[i].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == batters[i].Team).First().TeamColor[0];
+
+                    GetCorrectColorForCell(dataGridView1, i, batters[i].Team);
                     dataGridView2.Rows.Add(i + 1,
                                             "",
                                             batters[i].FullName,
@@ -906,8 +906,7 @@ namespace VKR_Test
                                             batters[i].WalkToStrikeout.ToString("#.000", new CultureInfo("en-US")),
                                             batters[i].WalkPercentage.ToString("#.000", new CultureInfo("en-US")),
                                             batters[i].StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")));
-                    dataGridView2.Rows[i].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == batters[i].Team).First().TeamColor[0];
-                    dataGridView2.Rows[i].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == batters[i].Team).First().TeamColor[0];
+                    GetCorrectColorForCell(dataGridView2, i, batters[i].Team);
                 }
                 for (int i = 0; i < pitchers.Count; i++)
                 {
@@ -929,8 +928,7 @@ namespace VKR_Test
                                             pitchers[i].Strikeouts,
                                             pitchers[i].WHIP.ToString("0.00", new CultureInfo("en-US")),
                                             pitchers[i].BAA.ToString("#.000", new CultureInfo("en-US")));
-                    dataGridView3.Rows[i].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
-                    dataGridView3.Rows[i].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
+                    GetCorrectColorForCell(dataGridView3, i, pitchers[i].Team);
 
                     dataGridView4.Rows.Add(i + 1,
                                             "",
@@ -944,8 +942,7 @@ namespace VKR_Test
                                             pitchers[i].KperBB.ToString("0.00", new CultureInfo("en-US")),
                                             pitchers[i].StolenBasesAllowed,
                                             pitchers[i].CaughtStealing);
-                    dataGridView4.Rows[i].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
-                    dataGridView4.Rows[i].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == pitchers[i].Team).First().TeamColor[0];
+                    GetCorrectColorForCell(dataGridView4, i, pitchers[i].Team);
                 }
             }
             else
@@ -1031,6 +1028,21 @@ namespace VKR_Test
             }
         }
 
+
+        private void GetCorrectColorForCell(DataGridView dgv, int RowNumber, string TeamForThisPlayer)
+        {
+            if (TeamForThisPlayer != "")
+            {
+                dgv.Rows[RowNumber].Cells[1].Style.BackColor = teams.Where(team => team.TeamAbbreviation == TeamForThisPlayer).First().TeamColor[0];
+                dgv.Rows[RowNumber].Cells[1].Style.SelectionBackColor = teams.Where(team => team.TeamAbbreviation == TeamForThisPlayer).First().TeamColor[0];
+            }
+            else
+            {
+                dgv.Rows[RowNumber].Cells[1].Style.BackColor = Color.FromArgb(220, 220, 220);
+                dgv.Rows[RowNumber].Cells[1].Style.SelectionBackColor = Color.FromArgb(220, 220, 220);
+            }
+        }
+
         private void dataGridView4_CellStyleChanged(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.SelectionBackColor = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor;
@@ -1058,9 +1070,9 @@ namespace VKR_Test
             cbPositions.DisplayMember = "FullTitle";
             cbPositions.ValueMember = "ShortTitle";
 
-            cbPlayers.Visible = objects == SortingObjects.Players; 
-            cbTeams.Visible = objects == SortingObjects.Players; 
-            cbPositions.Visible = objects == SortingObjects.Players; 
+            cbPlayers.Visible = objects == SortingObjects.Players;
+            cbTeams.Visible = objects == SortingObjects.Players;
+            cbPositions.Visible = objects == SortingObjects.Players;
         }
 
         private void SelectedIndexChanged(object sender, EventArgs e)

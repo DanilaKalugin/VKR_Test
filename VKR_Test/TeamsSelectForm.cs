@@ -53,7 +53,7 @@ namespace VKR_Test
                 HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
             }
             btnSwap.Visible = match.IsQuickMatch;
-            btnNextMatch.Visible = !match.IsQuickMatch;
+            btnNextMatch.Visible = !match.IsQuickMatch && matches.Count > 1;
         }
 
         private void TeamsSelectForm_Load(object sender, EventArgs e)
