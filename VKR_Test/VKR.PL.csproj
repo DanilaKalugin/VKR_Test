@@ -100,6 +100,24 @@
     <Compile Include="MatchResultsForm.Designer.cs">
       <DependentUpon>MatchResultsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MatchResultsMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MatchResultsMenuForm.Designer.cs">
+      <DependentUpon>MatchResultsMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RostersMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RostersMenuForm.Designer.cs">
+      <DependentUpon>RostersMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatsMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatsMenuForm.Designer.cs">
+      <DependentUpon>StatsMenuForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SubstitutionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +182,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MatchResultsForm.resx">
       <DependentUpon>MatchResultsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchResultsMenuForm.resx">
+      <DependentUpon>MatchResultsMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RostersMenuForm.resx">
+      <DependentUpon>RostersMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatsMenuForm.resx">
+      <DependentUpon>StatsMenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SubstitutionForm.resx">
       <DependentUpon>SubstitutionForm.cs</DependentUpon>
@@ -327,6 +354,12 @@
     <EmbeddedResource Include="SmallTeamLogos\WSH.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="ImagesForMenu\MainMenu.png" />
+    <None Include="ImagesForMenu\Title.png" />
+    <None Include="ImagesForMenu\MatchResults.png" />
+    <None Include="ImagesForMenu\Stats.png" />
+    <None Include="ImagesForMenu\Roster.png" />
+    <None Include="ImagesForMenu\ButtonBackground.png" />
     <Content Include="PlayerPhotosForSubstitution\Player0001.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -6825,6 +6858,7 @@
     <Content Include="PlayerPhotos\Player1083.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Title.png" />
     <Content Include="Stadiums\Stadium001.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

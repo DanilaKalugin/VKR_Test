@@ -1073,6 +1073,8 @@ namespace VKR_Test
             cbPlayers.Visible = objects == SortingObjects.Players;
             cbTeams.Visible = objects == SortingObjects.Players;
             cbPositions.Visible = objects == SortingObjects.Players;
+
+            Text = objects == SortingObjects.Players ? "Player statistics" : "Team statistics";
         }
 
         private void SelectedIndexChanged(object sender, EventArgs e)
