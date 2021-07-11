@@ -45,8 +45,8 @@ namespace VKR_Test
             this.btnLineups = new System.Windows.Forms.Button();
             this.btnResults = new System.Windows.Forms.Button();
             this.btnNewMatch = new System.Windows.Forms.Button();
-            this.btnResultsByDate = new System.Windows.Forms.Button();
-            this.btnTeamStats = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBirthDays)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +57,8 @@ namespace VKR_Test
             this.panel1.Controls.Add(this.dgvBirthDays);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(780, 0);
+            this.panel1.Location = new System.Drawing.Point(1204, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(350, 450);
             this.panel1.TabIndex = 0;
@@ -151,9 +152,10 @@ namespace VKR_Test
             this.btn_StartMatchFromSchedule.FlatAppearance.BorderSize = 0;
             this.btn_StartMatchFromSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_StartMatchFromSchedule.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_StartMatchFromSchedule.Location = new System.Drawing.Point(12, 89);
+            this.btn_StartMatchFromSchedule.Location = new System.Drawing.Point(418, 94);
+            this.btn_StartMatchFromSchedule.Margin = new System.Windows.Forms.Padding(6, 3, 6, 6);
             this.btn_StartMatchFromSchedule.Name = "btn_StartMatchFromSchedule";
-            this.btn_StartMatchFromSchedule.Size = new System.Drawing.Size(250, 73);
+            this.btn_StartMatchFromSchedule.Size = new System.Drawing.Size(250, 76);
             this.btn_StartMatchFromSchedule.TabIndex = 1;
             this.btn_StartMatchFromSchedule.Text = "REAL MLB SEASON";
             this.btn_StartMatchFromSchedule.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -166,9 +168,10 @@ namespace VKR_Test
             this.btnStandings.FlatAppearance.BorderSize = 0;
             this.btnStandings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStandings.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStandings.Location = new System.Drawing.Point(268, 12);
+            this.btnStandings.Location = new System.Drawing.Point(680, 12);
+            this.btnStandings.Margin = new System.Windows.Forms.Padding(6);
             this.btnStandings.Name = "btnStandings";
-            this.btnStandings.Size = new System.Drawing.Size(250, 150);
+            this.btnStandings.Size = new System.Drawing.Size(250, 158);
             this.btnStandings.TabIndex = 2;
             this.btnStandings.Text = "STANDINGS";
             this.btnStandings.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -181,11 +184,12 @@ namespace VKR_Test
             this.btnPlayerStats.FlatAppearance.BorderSize = 0;
             this.btnPlayerStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlayerStats.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlayerStats.Location = new System.Drawing.Point(524, 12);
+            this.btnPlayerStats.Location = new System.Drawing.Point(942, 12);
+            this.btnPlayerStats.Margin = new System.Windows.Forms.Padding(6, 6, 6, 3);
             this.btnPlayerStats.Name = "btnPlayerStats";
-            this.btnPlayerStats.Size = new System.Drawing.Size(250, 73);
+            this.btnPlayerStats.Size = new System.Drawing.Size(250, 158);
             this.btnPlayerStats.TabIndex = 3;
-            this.btnPlayerStats.Text = "PLAYER STATISTICS";
+            this.btnPlayerStats.Text = "STATISTICS";
             this.btnPlayerStats.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnPlayerStats.UseVisualStyleBackColor = false;
             this.btnPlayerStats.Click += new System.EventHandler(this.btnPlayerStats_Click);
@@ -196,11 +200,12 @@ namespace VKR_Test
             this.btnLineups.FlatAppearance.BorderSize = 0;
             this.btnLineups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLineups.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLineups.Location = new System.Drawing.Point(12, 168);
+            this.btnLineups.Location = new System.Drawing.Point(418, 182);
+            this.btnLineups.Margin = new System.Windows.Forms.Padding(6);
             this.btnLineups.Name = "btnLineups";
             this.btnLineups.Size = new System.Drawing.Size(250, 150);
             this.btnLineups.TabIndex = 4;
-            this.btnLineups.Text = "STARTING LINEUPS";
+            this.btnLineups.Text = "ROSTERS";
             this.btnLineups.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnLineups.UseVisualStyleBackColor = false;
             this.btnLineups.Click += new System.EventHandler(this.btnLineups_Click);
@@ -211,11 +216,12 @@ namespace VKR_Test
             this.btnResults.FlatAppearance.BorderSize = 0;
             this.btnResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResults.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResults.Location = new System.Drawing.Point(268, 168);
+            this.btnResults.Location = new System.Drawing.Point(680, 182);
+            this.btnResults.Margin = new System.Windows.Forms.Padding(6);
             this.btnResults.Name = "btnResults";
-            this.btnResults.Size = new System.Drawing.Size(250, 73);
+            this.btnResults.Size = new System.Drawing.Size(250, 150);
             this.btnResults.TabIndex = 5;
-            this.btnResults.Text = "MATCH RESULTS BY TEAM";
+            this.btnResults.Text = "SCHEDULE AND MATCH RESULTS";
             this.btnResults.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnResults.UseVisualStyleBackColor = false;
             this.btnResults.Click += new System.EventHandler(this.btnResults_Click);
@@ -226,53 +232,51 @@ namespace VKR_Test
             this.btnNewMatch.FlatAppearance.BorderSize = 0;
             this.btnNewMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewMatch.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewMatch.Location = new System.Drawing.Point(12, 12);
+            this.btnNewMatch.Location = new System.Drawing.Point(418, 12);
+            this.btnNewMatch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 3);
             this.btnNewMatch.Name = "btnNewMatch";
-            this.btnNewMatch.Size = new System.Drawing.Size(250, 73);
+            this.btnNewMatch.Size = new System.Drawing.Size(250, 76);
             this.btnNewMatch.TabIndex = 6;
             this.btnNewMatch.Text = "START NEW MATCH";
             this.btnNewMatch.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnNewMatch.UseVisualStyleBackColor = false;
             this.btnNewMatch.Click += new System.EventHandler(this.btnNewMatch_Click);
             // 
-            // btnResultsByDate
+            // btnClose
             // 
-            this.btnResultsByDate.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnResultsByDate.FlatAppearance.BorderSize = 0;
-            this.btnResultsByDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResultsByDate.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResultsByDate.Location = new System.Drawing.Point(268, 245);
-            this.btnResultsByDate.Name = "btnResultsByDate";
-            this.btnResultsByDate.Size = new System.Drawing.Size(250, 73);
-            this.btnResultsByDate.TabIndex = 7;
-            this.btnResultsByDate.Text = "MATCH RESULTS BY DATE";
-            this.btnResultsByDate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnResultsByDate.UseVisualStyleBackColor = false;
-            this.btnResultsByDate.Click += new System.EventHandler(this.btnResultsByDate_Click);
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnClose.Location = new System.Drawing.Point(1036, 389);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 3, 9, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(132, 49);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnTeamStats
+            // panel2
             // 
-            this.btnTeamStats.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnTeamStats.FlatAppearance.BorderSize = 0;
-            this.btnTeamStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTeamStats.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeamStats.Location = new System.Drawing.Point(524, 89);
-            this.btnTeamStats.Name = "btnTeamStats";
-            this.btnTeamStats.Size = new System.Drawing.Size(250, 73);
-            this.btnTeamStats.TabIndex = 8;
-            this.btnTeamStats.Text = "TEAM STATISTICS";
-            this.btnTeamStats.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnTeamStats.UseVisualStyleBackColor = false;
-            this.btnTeamStats.Click += new System.EventHandler(this.btnTeamStats_Click);
+            this.panel2.BackgroundImage = global::VKR_Test.Properties.Resources.MainMenu;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(406, 450);
+            this.panel2.TabIndex = 9;
             // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(1130, 450);
-            this.Controls.Add(this.btnTeamStats);
-            this.Controls.Add(this.btnResultsByDate);
+            this.ClientSize = new System.Drawing.Size(1554, 450);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnNewMatch);
             this.Controls.Add(this.btnResults);
             this.Controls.Add(this.btnLineups);
@@ -280,7 +284,7 @@ namespace VKR_Test
             this.Controls.Add(this.btnStandings);
             this.Controls.Add(this.btn_StartMatchFromSchedule);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainMenuForm";
@@ -308,7 +312,7 @@ namespace VKR_Test
         private System.Windows.Forms.Button btnLineups;
         private System.Windows.Forms.Button btnResults;
         private System.Windows.Forms.Button btnNewMatch;
-        private System.Windows.Forms.Button btnResultsByDate;
-        private System.Windows.Forms.Button btnTeamStats;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnClose;
     }
 }
