@@ -161,6 +161,7 @@ namespace VKR_Test
                 lbPlayerNumber.Text = $"#{player.PlayerNumber}";
                 lbPlayerName.Text = player.FullName.ToUpper();
                 lbPlayerPlace_and_DateOfBirth.Text = $"{player.PlaceOfBirth.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";
+                playerHands.Text = $"B/T: {player.BattingHand[0]}/{player.Pitchinghand[0]}".ToUpper();
             }
         }
 

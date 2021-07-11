@@ -60,6 +60,7 @@ namespace VKR_Test
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.playerHands = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLineup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBench)).BeginInit();
             this.SuspendLayout();
@@ -404,11 +405,24 @@ namespace VKR_Test
             this.label7.Text = "label4";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // playerHands
+            // 
+            this.playerHands.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.playerHands.ForeColor = System.Drawing.Color.Black;
+            this.playerHands.Location = new System.Drawing.Point(276, 121);
+            this.playerHands.Margin = new System.Windows.Forms.Padding(0);
+            this.playerHands.Name = "playerHands";
+            this.playerHands.Size = new System.Drawing.Size(125, 21);
+            this.playerHands.TabIndex = 40;
+            this.playerHands.Text = "#99";
+            this.playerHands.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // LineupsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 414);
+            this.Controls.Add(this.playerHands);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -471,5 +485,6 @@ namespace VKR_Test
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label playerHands;
     }
 }

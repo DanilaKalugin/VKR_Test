@@ -8,5 +8,7 @@ namespace Entities
         public int PlayerNumber;
         public List<string> PlayerPositions;
         public int Games;
+        public string BattingHand;
+        public string Pitchinghand;
     }
 }

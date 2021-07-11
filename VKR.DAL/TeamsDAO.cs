@@ -204,7 +204,16 @@ namespace VKR.DAL
                         int QualityStarts = (int)reader["QS"];
                         int CompleteGames = (int)reader["CG"];
                         int Shutouts = (int)reader["SHO"];
-                        yield return new Pitcher(_id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs);
+                        int Wins = (int)reader["W"];
+                        int Losses = (int)reader["L"];
+                        int Saves = (int)reader["SV"];
+                        int Holds = (int)reader["HLD"];
+                        string Batting = (string)reader["PlayerBattingHand"];
+                        string Pitching = (string)reader["PlayerPitchingHand"];
+                        yield return new Pitcher(_id, FirstName, SecondName, number, Games, Strikeouts, Outs, 
+                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
+                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Holds, Saves, 
+                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, Batting, Pitching);
                     }
                 }
             }
@@ -247,7 +256,12 @@ namespace VKR.DAL
                         int SacFlies = (int)reader["SF"];
                         int Bunts = (int)reader["SAC"];
                         int RBI = (int)reader["RBI"];
-                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, Runs, Walks, Position, PositionInLineup, Strikeouts, Groundout, Flyout, Popout);
+                        string Batting = (string)reader["PlayerBattingHand"];
+                        string Pitching = (string)reader["PlayerPitchingHand"];
+                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, 
+                                                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, 
+                                                Runs, Walks, Position, PositionInLineup, Strikeouts, Groundout, Flyout, 
+                                                Popout, Batting, Pitching);
                     }
                 }
             }
@@ -289,8 +303,18 @@ namespace VKR.DAL
                         int QualityStarts = (int)reader["QS"];
                         int CompleteGames = (int)reader["CG"];
                         int Shutouts = (int)reader["SHO"];
+                        int Wins = (int)reader["W"];
+                        int Losses = (int)reader["L"];
+                        int Saves = (int)reader["SV"];
+                        int Holds = (int)reader["HLD"];
+                        string Batting = (string)reader["PlayerBattingHand"];
+                        string Pitching = (string)reader["PlayerPitchingHand"];
                         int PositionInLineup = (int)reader["PlayerPositionInLineup"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs, PositionInLineup);
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, 
+                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
+                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
+                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, PositionInLineup, 
+                                                 Batting, Pitching);
                     }
                 }
             }
@@ -330,7 +354,16 @@ namespace VKR.DAL
                         int QualityStarts = (int)reader["QS"];
                         int CompleteGames = (int)reader["CG"];
                         int Shutouts = (int)reader["SHO"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs);
+                        int Wins = (int)reader["W"];
+                        int Losses = (int)reader["L"];
+                        int Saves = (int)reader["SV"];
+                        int Holds = (int)reader["HLD"];
+                        string Batting = (string)reader["PlayerBattingHand"];
+                        string Pitching = (string)reader["PlayerPitchingHand"];
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, 
+                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
+                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
+                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, Batting, Pitching);
                     }
                 }
             }
@@ -419,7 +452,16 @@ namespace VKR.DAL
                         int QualityStarts = (int)reader["QS"];
                         int CompleteGames = (int)reader["CG"];
                         int Shutouts = (int)reader["SHO"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, 0, 0, 0, 0, HitByPitch, Single, Double, Triple, HomeRun, Runs);
+                        int Wins = (int)reader["W"];
+                        int Losses = (int)reader["L"];
+                        int Saves = (int)reader["SV"];
+                        int Holds = (int)reader["HLD"];
+                        string Batting = (string)reader["PlayerBattingHand"];
+                        string Pitching = (string)reader["PlayerPitchingHand"];
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, 
+                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
+                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
+                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, Batting, Pitching);
                     }
                 }
             }
@@ -481,7 +523,12 @@ namespace VKR.DAL
                         int SacFlies = (int)reader["SF"];
                         int Bunts = (int)reader["SAC"];
                         int RBI = (int)reader["RBI"];
-                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, Runs, Walks, batter.PositionForThisMatch, batter.NumberInBattingLineup, Strikeouts, Groundout, Flyout, Popout);
+                        string Batting = (string)reader["PlayerBattingHand"];
+                        string Pitching = (string)reader["PlayerPitchingHand"];
+                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, 
+                                                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, 
+                                                Runs, Walks, batter.PositionForThisMatch, batter.NumberInBattingLineup, 
+                                                Strikeouts, Groundout, Flyout, Popout, Batting, Pitching);
                     }
                 }
             }
@@ -543,7 +590,10 @@ namespace VKR.DAL
                         int RBI = (int)reader["RBI"]; ;
                         int PA = (int)reader["PA"];
                         int GIDP = (int)reader["GIDP"];
-                        teams.Add(new Team(team, Name, TGP, Single, Double, Triple, HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP));
+                        teams.Add(new Team(team, Name, TGP, Single, Double, Triple, HomeRun, 
+                                           SacFlies, Bunts, RBI, HitByPitch, StolenBase, 
+                                           CaughtStealing, Runs, Walks, Strikeouts, Groundout, 
+                                           Flyout, Popout, PA, GIDP));
                     }
                 }
             }
@@ -595,7 +645,11 @@ namespace VKR.DAL
                         int Losses = (int)reader["L"];
                         int Saves = (int)reader["SV"];
                         int Holds = (int)reader["HLD"];
-                        teams.Add(new Team(team, Name, TGP, Strikeouts, Outs, Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, Groundout, Flyout));
+                        teams.Add(new Team(team, Name, TGP, Strikeouts, Outs, Walks, Bunts, SacFlies, 
+                                           StolenBase, CaughtStealing, BattersFaced, QualityStarts, 
+                                           Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
+                                           HitByPitch, Single, Double, Triple, HomeRun, Runs, 
+                                           DoublePlay, Groundout, Flyout));
                     }
                 }
             }
