@@ -447,7 +447,7 @@ namespace VKR_Test
                 }
                 GetCurrentStatsForThisMatch();
             }
-            newGameSituation.PrepareForNextPitch(currentMatch.gameSituations.Last(), currentMatch.AwayTeam, currentMatch.HomeTeam);
+            newGameSituation.PrepareForNextPitch(currentMatch.gameSituations.Last(), currentMatch.AwayTeam, currentMatch.HomeTeam, currentMatch.MatchLength);
             if (currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam && currentMatch.gameSituations.Last().outs == 3 && currentMatch.gameSituations.Last().inningNumber == 1)
             {
                 StartingLineupForm form = new StartingLineupForm(currentMatch.HomeTeam);

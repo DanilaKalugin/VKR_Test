@@ -140,11 +140,11 @@ namespace Entities
             }
         }
 
-        private GettingIntoStrikeZone_TypeOfResult GettingIntoStrikeZone_Definition(int strikeZone_probability, int numberOfPitches, int pitcherCoefficient)
+        private GettingIntoStrikeZone_TypeOfResult GettingIntoStrikeZone_Definition(int strikeZone_probability, int numberOfPitches, int pitcherCoefficient, GameSituation situation)
         {
             int GettingIntoStrikeZone_RandomValue = GettingIntoStrikeZone_RandomGenerator.Next(1, 1000);
 
-            if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - pitcherCoefficient + numberOfPitches * 1)
+            if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - pitcherCoefficient + numberOfPitches + (situation.strikes - situation.balls) * 5)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallIsOutOfTheStrikeZone;
             }
@@ -351,7 +351,7 @@ namespace Entities
             {
                 numberOfPitches += numberOfPitches - PitcherCoefficient;
             }
-            newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient);
+            newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient, situation);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability, situation);
             newPitch_Hitting = Hitting_Definition(newPitch_Swing_Result, Offense.HittingProbability, BatterNumberComponent, PitcherCoefficient, numberOfPitches, situation);
             newPitch_HitType = HitType_Definition(newPitch_Hitting, Offense.FoulProbability, Offense.SingleProbability, Offense.DoubleProbability, Offense.HomeRunProbabilty, BatterNumberComponent, numberOfPitches, StadiumCoefficient, CountOfNotEmptyBases, situation, CurrentBatterPosition);
@@ -453,7 +453,7 @@ namespace Entities
             {
                 numberOfPitches += numberOfPitches - PitcherCoefficient;
             }
-            newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient);
+            newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient, situation);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability, situation);
             pitchResult = pitchResult_Definition(newPitch_GettingIntoStrikeZone_Result, newPitch_Swing_Result, Hitting_ResultType.Miss, HitType.NoResult, OutType.NoResult, OtherCondition.NoOtherCondition);
         }
