@@ -351,7 +351,7 @@ namespace Entities
             return runners;
         }
 
-        public void PrepareForNextPitch(GameSituation gameSituation, Team team1, Team team2)
+        public void PrepareForNextPitch(GameSituation gameSituation, Team team1, Team team2, int matchLength)
         {
             if ((gameSituation.result == Pitch.PitchResult.Ball && gameSituation.balls == 0) ||
                 (gameSituation.result == Pitch.PitchResult.Strike && gameSituation.strikes == 0) ||
@@ -389,17 +389,18 @@ namespace Entities
                 {
                     offense = team1;
                     inningNumber = gameSituation.inningNumber + 1;
+                    RunnerOnSecond = inningNumber > matchLength ? new Runner(offense.BattingLineup[(gameSituation.BatterNumber_AwayTeam == 1 ? 9 : gameSituation.BatterNumber_AwayTeam - 1) - 1], team2.CurrentPitcher) : new Runner();
                 }
                 else
                 {
                     offense = team2;
                     inningNumber = gameSituation.inningNumber;
+                    RunnerOnSecond = inningNumber > matchLength ? new Runner(offense.BattingLineup[(gameSituation.BatterNumber_HomeTeam == 1 ? 9 : gameSituation.BatterNumber_HomeTeam - 1) - 1], team1.CurrentPitcher) : new Runner();
                 }
                 balls = 0;
                 strikes = 0;
                 outs = 0;
                 RunnerOnFirst = new Runner();
-                RunnerOnSecond = new Runner();
                 RunnerOnThird = new Runner();
             }
             else
