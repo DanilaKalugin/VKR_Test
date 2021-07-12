@@ -29,6 +29,7 @@ namespace VKR_Test
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatchResultsMenuForm));
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnResults = new System.Windows.Forms.Button();
             this.btnResultsByDate = new System.Windows.Forms.Button();
@@ -77,16 +78,16 @@ namespace VKR_Test
             // 
             // btnCloseResultsMenu
             // 
-            this.btnCloseResultsMenu.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnCloseResultsMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.btnCloseResultsMenu.FlatAppearance.BorderSize = 0;
             this.btnCloseResultsMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseResultsMenu.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseResultsMenu.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnCloseResultsMenu.Location = new System.Drawing.Point(809, 389);
             this.btnCloseResultsMenu.Name = "btnCloseResultsMenu";
             this.btnCloseResultsMenu.Size = new System.Drawing.Size(132, 49);
             this.btnCloseResultsMenu.TabIndex = 13;
             this.btnCloseResultsMenu.Text = "CLOSE";
-            this.btnCloseResultsMenu.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnCloseResultsMenu.UseVisualStyleBackColor = false;
             this.btnCloseResultsMenu.Click += new System.EventHandler(this.btnCloseResultsMenu_Click);
             // 
@@ -101,6 +102,7 @@ namespace VKR_Test
             this.Controls.Add(this.btnResults);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MatchResultsMenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
