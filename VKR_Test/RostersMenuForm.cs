@@ -24,7 +24,23 @@ namespace VKR_Test
 
         private void btnLineups_Click(object sender, EventArgs e)
         {
-            LineupsForm form = new LineupsForm();
+            LineupsForm form = new LineupsForm(LineupsForm.RosterType.StartingLineups);
+            Visible = false;
+            form.ShowDialog();
+            Visible = true;
+        }
+
+        private void btnReserves_Click(object sender, EventArgs e)
+        {
+            LineupsForm form = new LineupsForm(LineupsForm.RosterType.Reserves);
+            Visible = false;
+            form.ShowDialog();
+            Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LineupsForm form = new LineupsForm(LineupsForm.RosterType.FreeAgents);
             Visible = false;
             form.ShowDialog();
             Visible = true;

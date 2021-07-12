@@ -99,31 +99,9 @@ namespace VKR.BLL
             return teamsabbreviations;
         }
 
-        public List<List<List<PlayerInLineup>>> GetLineups()
+        public List<List<List<PlayerInLineup>>> GetRoster(string rosterType)
         {
-            List<PlayerInLineup> ungroupedPlayers = playerDAO.GetStartingLineups().ToList();
-            for (int i = 0; i < ungroupedPlayers.Count; i++)
-            {
-                ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();
-            }
-            List<Team> Teams = teamsDAO.GetList().ToList();
-            List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).Distinct().ToList();
-
-            List<List<List<PlayerInLineup>>> groupedPlayers = new List<List<List<PlayerInLineup>>>();
-            for (int i = 0; i < Teams.Count; i++)
-            {
-                groupedPlayers.Add(new List<List<PlayerInLineup>>());
-                for (int j = 0; j < Lineups.Count; j++)
-                {
-                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == Teams[i].TeamAbbreviation && player.LineupType == Lineups[j]).OrderBy(player => player.NumberInLineup).ToList());
-                }
-            }
-            return groupedPlayers;
-        }
-
-        public List<List<List<PlayerInLineup>>> GetBench()
-        {
-            List<PlayerInLineup> ungroupedPlayers = playerDAO.GetBench().ToList();
+            List<PlayerInLineup> ungroupedPlayers = playerDAO.GetRoster(rosterType).ToList();
             for (int i = 0; i < ungroupedPlayers.Count; i++)
             {
                 ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();
@@ -139,6 +117,24 @@ namespace VKR.BLL
                 {
                     groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == Teams[i].TeamAbbreviation && player.LineupType == Lineups[j]).OrderBy(player => player.NumberInLineup).ToList());
                 }
+            }
+            return groupedPlayers;
+        }
+
+        public List<List<List<PlayerInLineup>>> GetFreeAgents()
+        {
+            List<PlayerInLineup> ungroupedPlayers = playerDAO.GetRoster("GetFreeAgents").ToList();
+            for (int i = 0; i < ungroupedPlayers.Count; i++)
+            {
+                ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();
+            }
+            List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
+
+            List<List<List<PlayerInLineup>>> groupedPlayers = new List<List<List<PlayerInLineup>>>();
+            groupedPlayers.Add(new List<List<PlayerInLineup>>());
+            for (int j = 0; j < Lineups.Count; j++)
+            {
+                groupedPlayers[0].Add(ungroupedPlayers.Where(player => player.LineupType == Lineups[j]).OrderBy(player => player.NumberInLineup).ToList());
             }
             return groupedPlayers;
         }

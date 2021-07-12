@@ -29,9 +29,12 @@ namespace VKR_Test
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RostersMenuForm));
             this.btnLineups = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCloseRostersMenu = new System.Windows.Forms.Button();
+            this.btnReserves = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +47,7 @@ namespace VKR_Test
             this.btnLineups.Location = new System.Drawing.Point(15, 15);
             this.btnLineups.Margin = new System.Windows.Forms.Padding(6);
             this.btnLineups.Name = "btnLineups";
-            this.btnLineups.Size = new System.Drawing.Size(250, 75);
+            this.btnLineups.Size = new System.Drawing.Size(250, 150);
             this.btnLineups.TabIndex = 18;
             this.btnLineups.Text = "STARTING LINEUPS";
             this.btnLineups.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -68,7 +71,6 @@ namespace VKR_Test
             this.btnCloseRostersMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseRostersMenu.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseRostersMenu.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnCloseRostersMenu.Image = global::VKR_Test.Properties.Resources.ButtonBackground;
             this.btnCloseRostersMenu.Location = new System.Drawing.Point(193, 15);
             this.btnCloseRostersMenu.Margin = new System.Windows.Forms.Padding(6);
             this.btnCloseRostersMenu.Name = "btnCloseRostersMenu";
@@ -78,15 +80,50 @@ namespace VKR_Test
             this.btnCloseRostersMenu.UseVisualStyleBackColor = false;
             this.btnCloseRostersMenu.Click += new System.EventHandler(this.btnCloseResultsMenu_Click);
             // 
+            // btnReserves
+            // 
+            this.btnReserves.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnReserves.FlatAppearance.BorderSize = 0;
+            this.btnReserves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReserves.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReserves.Location = new System.Drawing.Point(15, 177);
+            this.btnReserves.Margin = new System.Windows.Forms.Padding(6);
+            this.btnReserves.Name = "btnReserves";
+            this.btnReserves.Size = new System.Drawing.Size(250, 150);
+            this.btnReserves.TabIndex = 19;
+            this.btnReserves.Text = "RESERVES";
+            this.btnReserves.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnReserves.UseVisualStyleBackColor = false;
+            this.btnReserves.Click += new System.EventHandler(this.btnReserves_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gainsboro;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(277, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(250, 150);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "FREE AGENTS";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // RostersMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1000, 350);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnReserves);
             this.Controls.Add(this.btnLineups);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RostersMenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RostersMenuForm";
@@ -100,5 +137,7 @@ namespace VKR_Test
         private System.Windows.Forms.Button btnCloseRostersMenu;
         private System.Windows.Forms.Button btnLineups;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnReserves;
+        private System.Windows.Forms.Button button1;
     }
 }
