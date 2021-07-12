@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL;
@@ -43,9 +44,17 @@ namespace VKR_Test
 
             for (int i = 0; i < men.Count; i++)
             {
-                Team ManTeam = teamsList.Where(team => team.TeamAbbreviation == men[i].Team).First();
-                dgvBirthDays.Rows[i].Cells[0].Style.BackColor = ManTeam.TeamColor[0];
-                dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = ManTeam.TeamColor[0];
+                if (men[i].Team != "")
+                {
+                    Team ManTeam = teamsList.Where(team => team.TeamAbbreviation == men[i].Team).First();
+                    dgvBirthDays.Rows[i].Cells[0].Style.BackColor = ManTeam.TeamColor[0];
+                    dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = ManTeam.TeamColor[0];
+                }
+                else
+                {
+                    dgvBirthDays.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(220, 220, 220);
+                    dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = Color.FromArgb(220, 220, 220);
+                }
             }
         }
 
