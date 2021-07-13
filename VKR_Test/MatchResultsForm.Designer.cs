@@ -44,7 +44,7 @@ namespace VKR_Test
             this.Column9 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbHeader = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbTeam = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -179,17 +179,17 @@ namespace VKR_Test
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
-            // label1
+            // lbHeader
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(674, 97);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "PREVIOUS MATCH RESULTS";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbHeader.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbHeader.Font = new System.Drawing.Font("MicroFLF", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHeader.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbHeader.Location = new System.Drawing.Point(0, 0);
+            this.lbHeader.Name = "lbHeader";
+            this.lbHeader.Size = new System.Drawing.Size(674, 97);
+            this.lbHeader.TabIndex = 1;
+            this.lbHeader.Text = "PREVIOUS MATCH RESULTS";
+            this.lbHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -274,7 +274,7 @@ namespace VKR_Test
             this.ClientSize = new System.Drawing.Size(994, 550);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbHeader);
             this.Controls.Add(this.dgvMatches);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -282,6 +282,7 @@ namespace VKR_Test
             this.Name = "MatchResultsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Previous match results";
+            this.Load += new System.EventHandler(this.MatchResultsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatches)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -292,7 +293,7 @@ namespace VKR_Test
         #endregion
 
         private System.Windows.Forms.DataGridView dgvMatches;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbHeader;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbTeam;
         private System.Windows.Forms.Label label2;

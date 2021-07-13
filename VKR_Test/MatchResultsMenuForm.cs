@@ -16,7 +16,7 @@ namespace VKR_Test
 
         private void btnResultsByDate_Click(object sender, EventArgs e)
         {
-            MatchResultsForm form = new MatchResultsForm(matchBL.GetMaxDateForAllMatches(), false);
+            MatchResultsForm form = new MatchResultsForm(matchBL.GetMaxDateForAllMatches(), false, MatchResultsForm.TableType.Results);
             Visible = false;
             form.ShowDialog();
             Visible = true;
@@ -24,7 +24,7 @@ namespace VKR_Test
 
         private void btnResults_Click(object sender, EventArgs e)
         {
-            MatchResultsForm form = new MatchResultsForm();
+            MatchResultsForm form = new MatchResultsForm(MatchResultsForm.TableType.Results);
             Visible = false;
             form.ShowDialog();
             Visible = true;
@@ -33,6 +33,22 @@ namespace VKR_Test
         private void btnCloseResultsMenu_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnScheduleByTeam_Click(object sender, EventArgs e)
+        {
+            MatchResultsForm form = new MatchResultsForm(MatchResultsForm.TableType.Schedule);
+            Visible = false;
+            form.ShowDialog();
+            Visible = true;
+        }
+
+        private void btnScheduleByDate_Click(object sender, EventArgs e)
+        {
+            MatchResultsForm form = new MatchResultsForm(matchBL.GetMaxDateForAllMatches(), false, MatchResultsForm.TableType.Schedule);
+            Visible = false;
+            form.ShowDialog();
+            Visible = true;
         }
     }
 }

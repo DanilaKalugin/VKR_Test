@@ -52,7 +52,7 @@ namespace VKR.BLL
             }
         }
 
-        public List<Match> GetResultsForallMatches()
+        public List<Match> GetResultsForallMatches(string team = "")
         {
             List<Match> matches = matchDAO.GetResultsForAllMatches().ToList();
             List<Stadium> stadiums = stadiumsDAO.GetAllStadiums().ToList();
@@ -60,18 +60,14 @@ namespace VKR.BLL
             {
                 match.stadium = stadiums.Where(stadium => stadium.stadiumId == match.StadiumNumber).First();
             }
-            return matches;
-        }
-
-        public List<Match> GetResultsForallMatches(string team)
-        {
-            List<Match> matches = matchDAO.GetResultsForAllMatches().ToList();
-            List<Stadium> stadiums = stadiumsDAO.GetAllStadiums().ToList();
-            foreach (Match match in matches)
+            if (team != "")
             {
-                match.stadium = stadiums.Where(stadium => stadium.stadiumId == match.StadiumNumber).First();
+                return matches.Where(match => match.AwayTeamAbbreviation == team || match.HomeTeamAbbreviation == team).ToList();
             }
-            return matches.Where(match => match.AwayTeamAbbreviation == team || match.HomeTeamAbbreviation == team).ToList();
+            else
+            {
+                return matches;
+            }
         }
 
         public void DeleteThisMatch(int matchNumberForDelete)
@@ -93,6 +89,24 @@ namespace VKR.BLL
         public List<Match> GetMatchesForThisDay(DateTime date)
         {
             return matchDAO.GetMatchesForThisDay(date).ToList();
+        }
+
+        public List<Match> GetSchedule(string team = "")
+        {
+            List<Match> matches = matchDAO.GetSchedule().ToList();
+            List<Stadium> stadiums = stadiumsDAO.GetAllStadiums().ToList();
+            foreach (Match match in matches)
+            {
+                match.stadium = stadiums.Where(stadium => stadium.stadiumId == match.StadiumNumber).First();
+            }
+            if (team != "")
+            {
+                return matches.Where(match => match.AwayTeamAbbreviation == team || match.HomeTeamAbbreviation == team).ToList();
+            }
+            else
+            {
+                return matches;
+            }
         }
     }
 }

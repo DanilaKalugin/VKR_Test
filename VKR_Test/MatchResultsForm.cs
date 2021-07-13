@@ -14,21 +14,27 @@ namespace VKR_Test
         private readonly TeamsBL teamsBL;
         IList<Team> teams;
         List<Match> matches;
+        public enum TableType { Results, Schedule };
+        private TableType tableType;
 
-        public MatchResultsForm()
+
+        public MatchResultsForm(TableType _tableType)
         {
             InitializeComponent();
+            tableType = _tableType;
             matchBL = new MatchBL();
             teamsBL = new TeamsBL();
             teams = teamsBL.GetAllTeams().ToList();
             List<string> teamsInComboBox = teams.Select(team => team.TeamTitle).ToList();
             cbTeam.DataSource = teamsInComboBox;
             panel2.Visible = false;
+
         }
 
-        public MatchResultsForm(DateTime dateTime, bool IsCurrentDayResults)
+        public MatchResultsForm(DateTime dateTime, bool IsCurrentDayResults, TableType _tableType)
         {
             InitializeComponent();
+            tableType = _tableType;
             matchBL = new MatchBL();
             teamsBL = new TeamsBL();
             dtpMatchDate.Value = dateTime;
@@ -51,12 +57,19 @@ namespace VKR_Test
 
         private void MatchResultsForm_Load(object sender, EventArgs e)
         {
-            cbTeam.Text = "ALL";
+            lbHeader.Text = tableType == TableType.Results ? "MATCH RESULTS" : "SCHEDULE";
         }
 
         private void cbTeam_SelectedValueChanged(object sender, EventArgs e)
         {
-            matches = matchBL.GetResultsForallMatches(teams[cbTeam.SelectedIndex].TeamAbbreviation);
+            if (tableType == TableType.Results)
+            {
+                matches = matchBL.GetResultsForallMatches(teams[cbTeam.SelectedIndex].TeamAbbreviation);
+            }
+            else
+            {
+                matches = matchBL.GetSchedule(teams[cbTeam.SelectedIndex].TeamAbbreviation);
+            }
             FillResultsTable(dgvMatches, matches);
         }
 
@@ -86,7 +99,14 @@ namespace VKR_Test
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            matches = matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dtpMatchDate.Value).ToList();
+            if (tableType == TableType.Results)
+            {
+                matches = matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dtpMatchDate.Value).ToList();
+            }
+            else
+            {
+                matches = matchBL.GetSchedule().Where(match => match.MatchDate == dtpMatchDate.Value).ToList();
+            }
             FillResultsTable(dgvMatches, matches);
         }
     }

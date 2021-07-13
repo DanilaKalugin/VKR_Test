@@ -161,6 +161,25 @@ namespace VKR.DAL
                 }
             }
         }
+        
+        public IEnumerable<Match> GetSchedule()
+        {
+            using (SqlCommand command = new SqlCommand("GetSchedule", _connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int MatchID = (int)reader["MatchID"];
+                        string AwayTeam = (string)reader["AwayTeam"];
+                        string HomeTeam = (string)reader["HomeTeam"];
+                        int Stadium = (int)reader["TeamStadium"];
+                        DateTime Date = (DateTime)reader["MatchDate"];
+                        yield return new Match(MatchID, AwayTeam, HomeTeam, Stadium, Date);
+                    }
+                }
+            }
+        }
 
         public DateTime GetDateForNextMatch()
         {

@@ -33,12 +33,20 @@ namespace Entities
                 {
                     if (InningNumber != 9)
                     {
-                        return $"Final/{InningNumber}";
+                        if (InningNumber == 0)
+                        {
+                            return "";
+                        }
+                        else
+                        {
+                            return $"Final/{InningNumber}";
+                        }
                     }
                     else
                     {
                         return "Final";
                     }
+                    
                 }
             }
         }
@@ -78,6 +86,15 @@ namespace Entities
             AwayTeamAbbreviation = _AwayTeam; 
             HomeTeamAbbreviation = _homeTeam;
             MatchDate = date;
+        }
+
+        public Match(int _id, string _AwayTeam, string _homeTeam, int _StadiumNumber, DateTime date)
+        {
+            MatchID = _id;
+            AwayTeamAbbreviation = _AwayTeam; 
+            HomeTeamAbbreviation = _homeTeam;
+            MatchDate = date;
+            StadiumNumber = _StadiumNumber;
         }
 
         public Match(DateTime date, bool QuickMatch)

@@ -34,6 +34,8 @@ namespace VKR_Test
             this.btnResults = new System.Windows.Forms.Button();
             this.btnResultsByDate = new System.Windows.Forms.Button();
             this.btnCloseResultsMenu = new System.Windows.Forms.Button();
+            this.btnScheduleByTeam = new System.Windows.Forms.Button();
+            this.btnScheduleByDate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel2
@@ -53,6 +55,7 @@ namespace VKR_Test
             this.btnResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResults.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResults.Location = new System.Drawing.Point(432, 12);
+            this.btnResults.Margin = new System.Windows.Forms.Padding(6);
             this.btnResults.Name = "btnResults";
             this.btnResults.Size = new System.Drawing.Size(250, 150);
             this.btnResults.TabIndex = 11;
@@ -68,6 +71,7 @@ namespace VKR_Test
             this.btnResultsByDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResultsByDate.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResultsByDate.Location = new System.Drawing.Point(432, 174);
+            this.btnResultsByDate.Margin = new System.Windows.Forms.Padding(6);
             this.btnResultsByDate.Name = "btnResultsByDate";
             this.btnResultsByDate.Size = new System.Drawing.Size(250, 150);
             this.btnResultsByDate.TabIndex = 12;
@@ -83,7 +87,7 @@ namespace VKR_Test
             this.btnCloseResultsMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseResultsMenu.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseResultsMenu.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnCloseResultsMenu.Location = new System.Drawing.Point(809, 389);
+            this.btnCloseResultsMenu.Location = new System.Drawing.Point(812, 389);
             this.btnCloseResultsMenu.Name = "btnCloseResultsMenu";
             this.btnCloseResultsMenu.Size = new System.Drawing.Size(132, 49);
             this.btnCloseResultsMenu.TabIndex = 13;
@@ -91,22 +95,56 @@ namespace VKR_Test
             this.btnCloseResultsMenu.UseVisualStyleBackColor = false;
             this.btnCloseResultsMenu.Click += new System.EventHandler(this.btnCloseResultsMenu_Click);
             // 
+            // btnScheduleByTeam
+            // 
+            this.btnScheduleByTeam.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnScheduleByTeam.FlatAppearance.BorderSize = 0;
+            this.btnScheduleByTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScheduleByTeam.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScheduleByTeam.Location = new System.Drawing.Point(694, 12);
+            this.btnScheduleByTeam.Margin = new System.Windows.Forms.Padding(6);
+            this.btnScheduleByTeam.Name = "btnScheduleByTeam";
+            this.btnScheduleByTeam.Size = new System.Drawing.Size(250, 150);
+            this.btnScheduleByTeam.TabIndex = 14;
+            this.btnScheduleByTeam.Text = "SCHEDULE BY TEAM";
+            this.btnScheduleByTeam.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnScheduleByTeam.UseVisualStyleBackColor = false;
+            this.btnScheduleByTeam.Click += new System.EventHandler(this.btnScheduleByTeam_Click);
+            // 
+            // btnScheduleByDate
+            // 
+            this.btnScheduleByDate.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnScheduleByDate.FlatAppearance.BorderSize = 0;
+            this.btnScheduleByDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScheduleByDate.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScheduleByDate.Location = new System.Drawing.Point(694, 174);
+            this.btnScheduleByDate.Margin = new System.Windows.Forms.Padding(6);
+            this.btnScheduleByDate.Name = "btnScheduleByDate";
+            this.btnScheduleByDate.Size = new System.Drawing.Size(250, 150);
+            this.btnScheduleByDate.TabIndex = 15;
+            this.btnScheduleByDate.Text = "SCHEDULE BY DATE";
+            this.btnScheduleByDate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnScheduleByDate.UseVisualStyleBackColor = false;
+            this.btnScheduleByDate.Click += new System.EventHandler(this.btnScheduleByDate_Click);
+            // 
             // MatchResultsMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(953, 450);
-            this.Controls.Add(this.btnCloseResultsMenu);
+            this.ClientSize = new System.Drawing.Size(959, 450);
             this.Controls.Add(this.btnResultsByDate);
+            this.Controls.Add(this.btnScheduleByDate);
             this.Controls.Add(this.btnResults);
+            this.Controls.Add(this.btnScheduleByTeam);
+            this.Controls.Add(this.btnCloseResultsMenu);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MatchResultsMenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MatchResultsMenu";
+            this.Text = "Schedule & match results";
             this.ResumeLayout(false);
 
         }
@@ -117,5 +155,7 @@ namespace VKR_Test
         private System.Windows.Forms.Button btnResults;
         private System.Windows.Forms.Button btnResultsByDate;
         private System.Windows.Forms.Button btnCloseResultsMenu;
+        private System.Windows.Forms.Button btnScheduleByTeam;
+        private System.Windows.Forms.Button btnScheduleByDate;
     }
 }
