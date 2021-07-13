@@ -24,10 +24,16 @@ namespace VKR_Test
             lbTeamTitle.ForeColor = defense.TeamColorForThisMatch;
             Text = $"New pitcher for {defense.TeamTitle}";
             lbHeader.Text = "BULLPEN";
-            foreach (Pitcher pitcher in Pitchers)
+            if (Pitchers.Count > 0)
             {
-                dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"ERA: {pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"SO: {pitcher.Strikeouts}");
+                dgvAvailablePlayers.Columns[2].HeaderText = "ERA";
+                dgvAvailablePlayers.Columns[3].HeaderText = "SO";
+                foreach (Pitcher pitcher in Pitchers)
+                {
+                    dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"{pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"{pitcher.Strikeouts}");
+                }
             }
+            else DialogResult = DialogResult.Cancel;
         }
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
@@ -46,10 +52,16 @@ namespace VKR_Test
             lbTeamTitle.ForeColor = offense.TeamColorForThisMatch;
             Text = $"New batter for {offense.TeamTitle}";
             lbHeader.Text = "PINCH HITTER";
-            for (int i = 0; i < Batters.Count; i++)
+            if (Batters.Count > 0)
             {
-                dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"AVG: {Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"HR: {Batters[i].HomeRuns}");
+                dgvAvailablePlayers.Columns[2].HeaderText = "AVG";
+                dgvAvailablePlayers.Columns[3].HeaderText = "HR";
+                for (int i = 0; i < Batters.Count; i++)
+                {
+                    dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"{Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"{Batters[i].HomeRuns}");
+                }
             }
+            else DialogResult = DialogResult.Cancel;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
