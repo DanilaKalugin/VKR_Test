@@ -174,7 +174,6 @@ namespace VKR_Test
 
             panelCurrentBatter.Visible = gameSituation.strikes == 0 && gameSituation.balls == 0;
 
-
             panel8.BackColor = gameSituation.offense.TeamColorForThisMatch;
             btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.offense.TeamColorForThisMatch.B * 0.9));
 
@@ -687,7 +686,7 @@ namespace VKR_Test
             PitcherHomeRunsToday.Text = HRToday.ToString();
 
             int TBFinThisMatch = currentMatch.atBats.Where(atBat => atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.AtBatResult != AtBat.AtBatType.StolenBase && atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.Pitcher == Defense.CurrentPitcher.id).Count();
-            btnShowAvailablePitchers.Visible = TBFinThisMatch >= 3;
+            btnShowAvailablePitchers.Visible = TBFinThisMatch >= 3 && newGameSituation.balls == 0 && newGameSituation.strikes == 0;
         }
 
         private void btnBuntAttempt_Click(object sender, EventArgs e)
@@ -761,7 +760,7 @@ namespace VKR_Test
 
         private void btnOtherResults_Click(object sender, EventArgs e)
         {
-            MatchResultsForm form = new MatchResultsForm(currentMatch.MatchDate, true);
+            MatchResultsForm form = new MatchResultsForm(currentMatch.MatchDate, true, MatchResultsForm.TableType.Results);
             form.ShowDialog();
         }
 
