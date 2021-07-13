@@ -108,7 +108,7 @@ namespace VKR_Test
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StatsMenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "StatsMenuForm";
+            this.Text = "Statistics";
             this.ResumeLayout(false);
 
         }

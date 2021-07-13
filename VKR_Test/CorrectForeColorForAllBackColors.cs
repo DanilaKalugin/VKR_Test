@@ -11,7 +11,7 @@ namespace VKR_Test
             List<int> colorcomponents = new List<int> { color.R, color.G, color.B };
             if (standardColorIsBlack)
             {
-                if (colorcomponents.Max() <= 45)
+                if (colorcomponents.Max() <= 60)
                 {
                     return Color.WhiteSmoke;
                 }

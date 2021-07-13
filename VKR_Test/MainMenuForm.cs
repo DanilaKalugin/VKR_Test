@@ -41,7 +41,6 @@ namespace VKR_Test
             {
                 dgvBirthDays.Rows.Add("", man.Team, man.FullName, man.Age);
             }
-
             for (int i = 0; i < men.Count; i++)
             {
                 if (men[i].Team != "")
@@ -56,6 +55,8 @@ namespace VKR_Test
                     dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = Color.FromArgb(220, 220, 220);
                 }
             }
+            panel1.Visible = dgvBirthDays.Rows.Count > 0;
+            Width = dgvBirthDays.Rows.Count > 0 ? 1554 : 1204;
         }
 
         private void btn_StartNewMatch_Click(object sender, EventArgs e)

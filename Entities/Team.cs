@@ -378,6 +378,7 @@ namespace Entities
             Groundouts = _go;
             Flyouts = _ao;
         }
+
         public Team (string abbreviation, string Name, int _W, int _L, string _League, string _Division)
         {
             TeamAbbreviation = abbreviation;
@@ -387,7 +388,5 @@ namespace Entities
             Losses = _L;
             Division = _Division;
         }
-
-
     }
 }
