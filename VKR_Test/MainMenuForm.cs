@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,12 +19,21 @@ namespace VKR_Test
 
         public MainMenuForm()
         {
-            InitializeComponent();
-            manBL = new ManBL();
-            teams = new TeamsBL();
-            matchBL = new MatchBL();
-            TitleForm title = new TitleForm();
-            title.ShowDialog();
+            try
+            {
+                InitializeComponent();
+                manBL = new ManBL();
+                teams = new TeamsBL();
+                matchBL = new MatchBL();
+                TitleForm title = new TitleForm();
+                title.ShowDialog();
+            }
+            catch (SqlException)
+            {
+                ShowInTaskbar = false;
+                ServerNotFoundForm form = new ServerNotFoundForm();
+                form.ShowDialog();
+            }
         }
 
         private void MainMenuForm_Load(object sender, EventArgs e)

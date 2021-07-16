@@ -46,6 +46,7 @@
     <Compile Include="DAO.cs" />
     <Compile Include="ManDAO.cs" />
     <Compile Include="MatchDAO.cs" />
+    <Compile Include="NewConnectionDAO.cs" />
     <Compile Include="PlayerDAO.cs" />
     <Compile Include="StadiumsDAO.cs" />
     <Compile Include="TeamsDAO.cs" />

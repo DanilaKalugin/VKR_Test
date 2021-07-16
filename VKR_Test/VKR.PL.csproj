@@ -58,11 +58,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CorrectForeColorForAllBackColors.cs" />
+    <Compile Include="DBDeploymentResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBDeploymentResultForm.Designer.cs">
+      <DependentUpon>DBDeploymentResultForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DHRuleForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DHRuleForm.Designer.cs">
       <DependentUpon>DHRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorForm.Designer.cs">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HomeRunCelebrationForm.cs">
       <SubType>Form</SubType>
@@ -106,11 +118,23 @@
     <Compile Include="MatchResultsMenuForm.Designer.cs">
       <DependentUpon>MatchResultsMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewConnectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewConnectionForm.Designer.cs">
+      <DependentUpon>NewConnectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RostersMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RostersMenuForm.Designer.cs">
       <DependentUpon>RostersMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerNotFoundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerNotFoundForm.Designer.cs">
+      <DependentUpon>ServerNotFoundForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StatsMenuForm.cs">
       <SubType>Form</SubType>
@@ -162,8 +186,14 @@
     <Compile Include="TitleForm.Designer.cs">
       <DependentUpon>TitleForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DBDeploymentResultForm.resx">
+      <DependentUpon>DBDeploymentResultForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DHRuleForm.resx">
       <DependentUpon>DHRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorForm.resx">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeRunCelebrationForm.resx">
       <DependentUpon>HomeRunCelebrationForm.cs</DependentUpon>
@@ -186,8 +216,14 @@
     <EmbeddedResource Include="MatchResultsMenuForm.resx">
       <DependentUpon>MatchResultsMenuForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewConnectionForm.resx">
+      <DependentUpon>NewConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RostersMenuForm.resx">
       <DependentUpon>RostersMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerNotFoundForm.resx">
+      <DependentUpon>ServerNotFoundForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StatsMenuForm.resx">
       <DependentUpon>StatsMenuForm.cs</DependentUpon>
@@ -359,7 +395,9 @@
     <None Include="ImagesForMenu\MatchResults.png" />
     <None Include="ImagesForMenu\Stats.png" />
     <None Include="ImagesForMenu\Roster.png" />
-    <None Include="ImagesForMenu\ButtonBackground.png" />
+    <None Include="ImagesForMenu\Error.png" />
+    <None Include="ImagesForMenu\Error2.png" />
+    <None Include="ImagesForMenu\NewConnection.png" />
     <Content Include="PlayerPhotosForSubstitution\Player0001.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -6859,6 +6897,258 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Title.png" />
+    <Content Include="Scripts\01dbo.Leagues.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\02dbo.Countries.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\03dbo.PlayerPosition.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\04dbo.LineUpType.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\05dbo.TypesOfAtBatResults.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\06dbo.Cities.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\07dbo.Divisions.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\08dbo.Managers.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\09dbo.Stadiums.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\10dbo.Players.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\11dbo.Teams.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\12dbo.PlayersPositions.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\13dbo.NextMatches.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\14dbo.TeamColors.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\15dbo.Matches.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\16dbo.PlayersInTeams.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\17dbo.PitcherResults.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\18dbo.LineupsForMatches.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\19dbo.StartingLineups.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\20dbo.AtBats.Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\21dbo.MatchResults.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\22dbo.ExpandedAtBats.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\23dbo.PitcherResultsGroupedByPitcher.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\24dbo.CountOfMatchesPlayed.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\25dbo.CountOfMatchesPlayedForPitcher.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\26dbo.MatchesPlayedByTeam.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\27dbo.PitcherResultsGroupedByTeam.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\28dbo.CurrentStandings.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\29dbo.RunsAgainstTeam.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\30dbo.RunsScoredByTeam.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\31dbo.TeamRunsAfterEachAtBat.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\32dbo.TeamBattingStats.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\33dbo.BatterStatistics.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\34dbo.PitcherStatistics.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\35dbo.MatchLeaderAfterEachAtBat.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\36dbo.TeamPitchingStats.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\37dbo.WinningAtBats.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\38dbo.InningWithWinningAtBat.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\39dbo.FirstAtBatForWinningPitcher.View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\40dbo.AddMatchResultsForThisPitcher.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\41dbo.AddNewAtBat.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\42dbo.DeleteMatch.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\43dbo.FinishMatch.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\44dbo.GetActivePlayers.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\45dbo.GetActivePlayersAndReserves.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\46dbo.GetAllPlayerPositions.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\47dbo.GetAllStadiums.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\48dbo.GetAllTeams.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\49dbo.GetAvailableBattersForSubstitution.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\50dbo.GetAvailablePitchersForSubstitution.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\51dbo.GetAvailibleMatchesForThisDay.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\52dbo.GetBatterStatsByCode.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\53dbo.GetBench.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\54dbo.GetColorsForThisTeam.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\55dbo.GetCurrentLineupForThisMatch.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\56dbo.GetDateForNextMatch.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\57dbo.GetFreeAgents.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\58dbo.GetListOfPeopleWithBirthdayToday.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\59dbo.GetManagerForThisTeam.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\60dbo.GetNumberOfMatchesPlayed.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\61dbo.GetPitcherStatsByCode.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\62dbo.GetPlayerNameByID.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\63dbo.GetPlayerPositions.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\64dbo.GetReserves.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\65dbo.GetResultsForAllMatches.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\66dbo.GetRunsAllowedByTeamBAfterThisDate.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\67dbo.GetRunsScoredByTeamBAfterThisDate.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\68dbo.GetSchedule.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\69dbo.GetStandings.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\70dbo.GetStartingLineups.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\71dbo.GetStartingPitcherForThisTeam.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\72dbo.GetStartingPitcherID.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\73dbo.ReturnBatterStatistics.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\74dbo.ReturnLineupTypeForThisMatch.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\75dbo.ReturnPitcherStatistics.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\76dbo.ReturnTeamBattingStats.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\77dbo.ReturnTeamPitchingStats.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\78dbo.ReturnThrowingHandForStartingPitcher.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\79dbo.SubstituteBatter.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\80dbo.SubstitutePitcher.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\81dbo.UpdateBalanceForThisTeam.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\82dbo.UpdatePitcherStats.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\83dbo.AddPlayersToTheMatch.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\84dbo.StartNewMatch.StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Stadiums\Stadium001.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

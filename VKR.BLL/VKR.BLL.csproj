@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ManBL.cs" />
     <Compile Include="MatchBL.cs" />
+    <Compile Include="NewConnectionBL.cs" />
     <Compile Include="PlayerBL.cs" />
     <Compile Include="StadiumsBL.cs" />
     <Compile Include="TeamsBL.cs" />
