@@ -140,7 +140,7 @@ namespace Entities
                 (result == Pitch.PitchResult.Groundout) ||
                 (result == Pitch.PitchResult.Popout) ||
                 (result == Pitch.PitchResult.Flyout) ||
-                (result == Pitch.PitchResult.SacrificeFly) || 
+                (result == Pitch.PitchResult.SacrificeFly) ||
                 (result == Pitch.PitchResult.SacrificeBunt) ||
                 (result == Pitch.PitchResult.CaughtStealingOnSecond) ||
                 (result == Pitch.PitchResult.CaughtStealingOnThird))
@@ -165,7 +165,7 @@ namespace Entities
             else if ((result == Pitch.PitchResult.HomeRun) ||
                     (result == Pitch.PitchResult.Double) ||
                     (result == Pitch.PitchResult.Triple) ||
-                    (result == Pitch.PitchResult.GroundRuleDouble) || 
+                    (result == Pitch.PitchResult.GroundRuleDouble) ||
                     (result == Pitch.PitchResult.DoublePlay) ||
                     (result == Pitch.PitchResult.SacrificeBunt && !situation.RunnerOnSecond.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.SecondBaseStolen) ||
@@ -181,8 +181,11 @@ namespace Entities
 
         public Runner HavingARunnerOnSecondBase(Pitch.PitchResult result, GameSituation situation, Match match, int balls)
         {
-            if ((((result == Pitch.PitchResult.Ball && balls == 0) || (result == Pitch.PitchResult.HitByPitch)) && situation.RunnerOnFirst.IsBaseNotEmpty) ||
-                            (result == Pitch.PitchResult.Single) || (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && !situation.RunnerOnSecond.IsBaseNotEmpty) || (result == Pitch.PitchResult.SecondBaseStolen))
+            if ((((result == Pitch.PitchResult.Ball && balls == 0) ||
+                (result == Pitch.PitchResult.HitByPitch)) && situation.RunnerOnFirst.IsBaseNotEmpty) ||
+                (result == Pitch.PitchResult.Single) ||
+                (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && !situation.RunnerOnSecond.IsBaseNotEmpty) ||
+                (result == Pitch.PitchResult.SecondBaseStolen))
             {
                 return new Runner(situation.RunnerOnFirst);
             }
@@ -193,18 +196,16 @@ namespace Entities
             else if ((result == Pitch.PitchResult.HomeRun) ||
                     (result == Pitch.PitchResult.Triple) ||
                     (result == Pitch.PitchResult.SacrificeFly && !situation.RunnerOnThird.IsBaseNotEmpty) ||
-                    (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
+                    ((result == Pitch.PitchResult.SacrificeBunt || result == Pitch.PitchResult.Groundout || result == Pitch.PitchResult.DoublePlay) && outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.Popout) ||
-                    ((result == Pitch.PitchResult.Groundout) && outs < 3) ||
-                    ((result == Pitch.PitchResult.DoublePlay) && outs < 3) ||
                     (result == Pitch.PitchResult.ThirdBaseStolen) ||
                     (result == Pitch.PitchResult.CaughtStealingOnSecond) ||
-                    (result == Pitch.PitchResult.CaughtStealingOnThird)) 
+                    (result == Pitch.PitchResult.CaughtStealingOnThird))
 
             {
                 return new Runner();
             }
-            else 
+            else
             {
                 return new Runner(situation.RunnerOnSecond);
             }
@@ -232,13 +233,11 @@ namespace Entities
             {
                 return ReturnNewRunner(match);
             }
-            else if ((((result == Pitch.PitchResult.Ball && balls == 0) || (result == Pitch.PitchResult.HitByPitch)) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty) || 
+            else if ((((result == Pitch.PitchResult.Ball && balls == 0) || (result == Pitch.PitchResult.HitByPitch)) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty) ||
                      result == Pitch.PitchResult.Single ||
                     (result == Pitch.PitchResult.SacrificeFly && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                      result == Pitch.PitchResult.Popout ||
-                    ((result == Pitch.PitchResult.Groundout) && outs < 3) ||
-                    ((result == Pitch.PitchResult.DoublePlay) && outs < 3) || 
-                    (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
+                    ((result == Pitch.PitchResult.Groundout || result == Pitch.PitchResult.DoublePlay || result == Pitch.PitchResult.SacrificeBunt) && outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.ThirdBaseStolen))
             {
                 return new Runner(situation.RunnerOnSecond);
@@ -248,8 +247,8 @@ namespace Entities
                 return new Runner(situation.RunnerOnFirst);
             }
             else if ((result == Pitch.PitchResult.HomeRun) ||
-                    (result == Pitch.PitchResult.CaughtStealingOnThird) || 
-                    (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && situation.RunnerOnThird.IsBaseNotEmpty) ||
+                    (result == Pitch.PitchResult.CaughtStealingOnThird) ||
+                    ((result == Pitch.PitchResult.SacrificeBunt || result == Pitch.PitchResult.DoublePlay || result == Pitch.PitchResult.Groundout) && outs < 3 && situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.SacrificeFly && situation.RunnerOnThird.IsBaseNotEmpty))
             {
                 return new Runner();
@@ -267,7 +266,7 @@ namespace Entities
                ((result == Pitch.PitchResult.HitByPitch || (result == Pitch.PitchResult.Ball && balls == 0)) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty && situation.RunnerOnThird.IsBaseNotEmpty) ||
                (result == Pitch.PitchResult.Groundout && outs < 3) ||
                (result == Pitch.PitchResult.DoublePlay && outs < 3) ||
-               (result == Pitch.PitchResult.Popout && outs < 3) || 
+               (result == Pitch.PitchResult.Popout && outs < 3) ||
                (result == Pitch.PitchResult.SacrificeBunt && outs < 3))
             {
                 return Convert.ToInt32(situation.RunnerOnThird.IsBaseNotEmpty);
@@ -298,21 +297,21 @@ namespace Entities
                ((result == Pitch.PitchResult.HitByPitch || (result == Pitch.PitchResult.Ball && balls == 0)) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty && situation.RunnerOnThird.IsBaseNotEmpty) ||
                (result == Pitch.PitchResult.Groundout && outs < 3) ||
                (result == Pitch.PitchResult.DoublePlay && outs < 3) ||
-               (result == Pitch.PitchResult.Popout && outs < 3) || 
+               (result == Pitch.PitchResult.Popout && outs < 3) ||
                (result == Pitch.PitchResult.SacrificeBunt && outs < 3))
             {
-                if(situation.RunnerOnThird.IsBaseNotEmpty)
+                if (situation.RunnerOnThird.IsBaseNotEmpty)
                 {
                     runners.Add(situation.RunnerOnThird);
                 }
             }
             else if (result == Pitch.PitchResult.Double || result == Pitch.PitchResult.GroundRuleDouble)
             {
-                if(situation.RunnerOnThird.IsBaseNotEmpty)
+                if (situation.RunnerOnThird.IsBaseNotEmpty)
                 {
                     runners.Add(situation.RunnerOnThird);
                 }
-                if(situation.RunnerOnSecond.IsBaseNotEmpty)
+                if (situation.RunnerOnSecond.IsBaseNotEmpty)
                 {
                     runners.Add(situation.RunnerOnSecond);
                 }
@@ -365,7 +364,7 @@ namespace Entities
                 (gameSituation.result == Pitch.PitchResult.Triple) ||
                 (gameSituation.result == Pitch.PitchResult.HomeRun) ||
                 (gameSituation.result == Pitch.PitchResult.DoublePlay) ||
-                (gameSituation.result == Pitch.PitchResult.SacrificeFly) || 
+                (gameSituation.result == Pitch.PitchResult.SacrificeFly) ||
                 (gameSituation.result == Pitch.PitchResult.SacrificeBunt))
             {
                 if (gameSituation.offense == team1)
