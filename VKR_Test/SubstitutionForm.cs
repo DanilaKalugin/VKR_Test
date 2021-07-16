@@ -33,7 +33,12 @@ namespace VKR_Test
                     dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"{pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"{pitcher.Strikeouts}");
                 }
             }
-            else DialogResult = DialogResult.Cancel;
+            else
+            {
+                ErrorForm form = new ErrorForm();
+                form.ShowDialog();
+                DialogResult = DialogResult.Cancel;
+            }
         }
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
@@ -61,7 +66,12 @@ namespace VKR_Test
                     dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"{Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"{Batters[i].HomeRuns}");
                 }
             }
-            else DialogResult = DialogResult.Cancel;
+            else
+            {
+                ErrorForm form = new ErrorForm();
+                form.ShowDialog();
+                DialogResult = DialogResult.Cancel;
+            }
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
