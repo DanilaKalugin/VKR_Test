@@ -140,15 +140,15 @@ namespace Entities
             }
         }
 
-        private GettingIntoStrikeZone_TypeOfResult GettingIntoStrikeZone_Definition(int strikeZone_probability, int numberOfPitches, int pitcherCoefficient, GameSituation situation)
+        private GettingIntoStrikeZone_TypeOfResult GettingIntoStrikeZone_Definition(int strikeZone_probability, int hitByPitch_probability, int numberOfPitches, int pitcherCoefficient, GameSituation situation)
         {
-            int GettingIntoStrikeZone_RandomValue = GettingIntoStrikeZone_RandomGenerator.Next(1, 1000);
+            int GettingIntoStrikeZone_RandomValue = GettingIntoStrikeZone_RandomGenerator.Next(1, 3000);
 
-            if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - pitcherCoefficient + numberOfPitches + (situation.strikes - situation.balls) * 5)
+            if (GettingIntoStrikeZone_RandomValue < strikeZone_probability - (pitcherCoefficient - numberOfPitches) * 3 + (situation.strikes - situation.balls) * 15)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallIsOutOfTheStrikeZone;
             }
-            else if (GettingIntoStrikeZone_RandomValue <= 990)
+            else if (GettingIntoStrikeZone_RandomValue <= hitByPitch_probability)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallInTheStrikeZone;
             }
@@ -247,7 +247,7 @@ namespace Entities
                 {
                     return HitType.GroundRuleDouble;
                 }
-                else if (HitType_RandomValue <= FoulProbabilityNormalizedByBatterPosition + SingleProbabnilityNormalizedByBatterPosition + DoubleProbabilityNormalizedByBatterPosition + HRProbabilityNormalizedByBatterPosition - BatterNumberComponent - numberOfPitches / 3 - StadiumCoefficient / 9 + countOfNotEmptyBases * 5)
+                else if (HitType_RandomValue <= FoulProbabilityNormalizedByBatterPosition + SingleProbabnilityNormalizedByBatterPosition + DoubleProbabilityNormalizedByBatterPosition + HRProbabilityNormalizedByBatterPosition - BatterNumberComponent - numberOfPitches / 4 - StadiumCoefficient / 9 + countOfNotEmptyBases * 7)
                 {
                     return HitType.HomeRun;
                 }
@@ -353,7 +353,7 @@ namespace Entities
             {
                 numberOfPitches += numberOfPitches - PitcherCoefficient;
             }
-            newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient, situation);
+            newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, Defense.HitByPitchProbability, numberOfPitches, PitcherCoefficient, situation);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability, situation);
             newPitch_Hitting = Hitting_Definition(newPitch_Swing_Result, Offense.HittingProbability, BatterNumberComponent, PitcherCoefficient, numberOfPitches, situation, HandsCoefficient);
             newPitch_HitType = HitType_Definition(newPitch_Hitting, Offense.FoulProbability, Offense.SingleProbability, Offense.DoubleProbability, Offense.HomeRunProbabilty, BatterNumberComponent, numberOfPitches, StadiumCoefficient, CountOfNotEmptyBases, situation, CurrentBatter);
@@ -455,7 +455,7 @@ namespace Entities
             {
                 numberOfPitches += numberOfPitches - PitcherCoefficient;
             }
-            newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, numberOfPitches, PitcherCoefficient, situation);
+            newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, Defense.HitByPitchProbability, numberOfPitches, PitcherCoefficient, situation);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability, situation);
             pitchResult = pitchResult_Definition(newPitch_GettingIntoStrikeZone_Result, newPitch_Swing_Result, Hitting_ResultType.Miss, HitType.NoResult, OutType.NoResult, OtherCondition.NoOtherCondition);
         }

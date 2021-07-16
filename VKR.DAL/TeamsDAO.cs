@@ -109,10 +109,11 @@ namespace VKR.DAL
                         bool DHRule = (bool)reader["LeagueDHRule"];
                         int W = (int)reader["W"];
                         int L = (int)reader["L"];
+                        int HBP = (int)reader["HitByPitchProbability"];
                         teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
                                               Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
                                               FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, StealingBase,
-                                              Bunt, stadium, DHRule, W, L));
+                                              Bunt, stadium, DHRule, W, L, HBP));
                     }
                 }
             }
@@ -160,10 +161,11 @@ namespace VKR.DAL
                         bool DHRule = (bool)reader["LeagueDHRule"];
                         int W = (int)reader["W"];
                         int L = (int)reader["L"];
+                        int HBP = (int)reader["HitByPitchProbability"];
                         teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
                                               Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
                                               FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, StealingBase,
-                                              Bunt, stadium, DHRule, W, L));
+                                              Bunt, stadium, DHRule, W, L, HBP));
                     }
                 }
             }

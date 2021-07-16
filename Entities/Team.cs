@@ -29,6 +29,7 @@ namespace Entities
         public int SacrificeFlyProbability;
         public int StealingBaseProbability;
         public int SuccessfulBuntAttemptProbabilty;
+        public int HitByPitchProbability;
         public int NormalizedOffensiveRating;
         public int NormalizedDefensiveRating;
         public int Stadium;
@@ -64,7 +65,7 @@ namespace Entities
 
         public double DefensiveRating()
         {
-            double PitchingComponent = (double)(470 - StrikeZoneProbabilty) / 12;
+            double PitchingComponent = (double)(470 * 3 - StrikeZoneProbabilty) / 36;
             double GroundoutComponent = (double)(GroundoutProbability * 1.1) / 20;
             double OutfieldComponent = (double)(FlyoutProbability - GroundoutProbability) / 20;
             double DoublePlayComponent = (double)DoublePlayProbabilty / 3;
@@ -288,7 +289,7 @@ namespace Entities
         public Team(string abbreviation, string city, string name, int _StrikeZoneProbability, int _Swing_SZ_Probability, int _Swing_NotSZ_Probability,
                     int _Hit_Probability, int _Foul_Probability, int _Single_Probability, int _Double_Probability, int _HR_Probability,
                     int _PopoutOnFoul_Probability, int _FlyoutOnHR_Probability, int _Groundout_Probability, int _Flyout_Probability, int _sacFly_Probability,
-                    int _DoublePlayProbability, int _SuccessfulBaseSteling_Probability, int _SuccessfulBunt_Probability, int _Stadium, bool _DHRule, int w, int l)
+                    int _DoublePlayProbability, int _SuccessfulBaseSteling_Probability, int _SuccessfulBunt_Probability, int _Stadium, bool _DHRule, int w, int l, int _HBP)
         {
             TeamAbbreviation = abbreviation;
             TeamCity = city;
@@ -314,6 +315,7 @@ namespace Entities
             DHRule = _DHRule;
             Wins = w;
             Losses = l;
+            HitByPitchProbability = _HBP;
         }
 
         public Team(string abbreviation, string name, int _games,
