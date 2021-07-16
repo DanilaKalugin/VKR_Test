@@ -41,10 +41,11 @@ namespace VKR_Test
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(713, 665);
+            this.button1.Location = new System.Drawing.Point(713, 565);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -54,8 +55,9 @@ namespace VKR_Test
             // 
             // lbTitleEnglish
             // 
+            this.lbTitleEnglish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTitleEnglish.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitleEnglish.Location = new System.Drawing.Point(12, 556);
+            this.lbTitleEnglish.Location = new System.Drawing.Point(12, 456);
             this.lbTitleEnglish.Name = "lbTitleEnglish";
             this.lbTitleEnglish.Size = new System.Drawing.Size(776, 24);
             this.lbTitleEnglish.TabIndex = 2;
@@ -63,9 +65,10 @@ namespace VKR_Test
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.label1.Location = new System.Drawing.Point(13, 580);
+            this.label1.Location = new System.Drawing.Point(13, 480);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(266, 17);
             this.label1.TabIndex = 3;
@@ -73,9 +76,10 @@ namespace VKR_Test
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(14, 599);
+            this.label2.Location = new System.Drawing.Point(14, 499);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(538, 17);
             this.label2.TabIndex = 4;
@@ -83,9 +87,10 @@ namespace VKR_Test
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(14, 642);
+            this.label3.Location = new System.Drawing.Point(14, 542);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(265, 19);
             this.label3.TabIndex = 5;
@@ -93,9 +98,10 @@ namespace VKR_Test
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(14, 665);
+            this.label4.Location = new System.Drawing.Point(14, 565);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(375, 19);
             this.label4.TabIndex = 6;
@@ -114,7 +120,8 @@ namespace VKR_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 700);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
