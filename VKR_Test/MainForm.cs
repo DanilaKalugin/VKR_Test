@@ -277,7 +277,18 @@ namespace VKR_Test
             }
             else if (currentMatch.atBats.Where(atBat => atBat.Batter == batter.id && atBat.AtBatResult == AtBat.AtBatType.Walk).Count() > 0)
             {
-                BatterStats.Text = "WALK";
+                if (currentMatch.atBats.Where(atBat => atBat.Batter == batter.id && atBat.AtBatResult == AtBat.AtBatType.Walk).Count() == 1)
+                {
+                    BatterStats.Text = "WALK";
+                }
+                else
+                {
+                    BatterStats.Text = $"{currentMatch.atBats.Where(atBat => atBat.Batter == batter.id && atBat.AtBatResult == AtBat.AtBatType.Walk).Count()} WALKS";
+                }
+            }
+            else if (currentMatch.atBats.Where(atBat => atBat.Batter == batter.id && atBat.AtBatResult == AtBat.AtBatType.SacrificeFly).Count() > 0)
+            {
+                BatterStats.Text = "SAC FLY";
             }
             else
             {
