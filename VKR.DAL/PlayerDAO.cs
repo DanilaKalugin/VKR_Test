@@ -285,6 +285,35 @@ namespace VKR.DAL
             }
         }
 
+        public IEnumerable<PlayerInLineup> GetStartingLineups()
+        {
+            using (SqlCommand command = new SqlCommand("GetStartingLineups", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Prepare();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["PlayerID"];
+                        string FirstName = (string)reader["PlayerFirstName"];
+                        string SecondName = (string)reader["PlayerSecondName"];
+                        int number = (int)reader["PlayerNumber"];
+                        string Place = (string)reader["PlaceOfBirth"];
+                        DateTime dob = (DateTime)reader["PlayerDateOfBirth"];
+                        string Team = (string)reader["TeamID"];
+                        int Lineup = (int)reader["LineupType"];
+                        int NumberInLineup = (int)reader["PositionInLineup"];
+                        string Batting = (string)reader["PlayerBattingHand"];
+                        string Pitching = (string)reader["PlayerPitchingHand"];
+                        string Position = (string)reader["PlayerPosition"];
+                        yield return new PlayerInLineup(id, FirstName, SecondName, dob, Place, number, Lineup, Team, Position, NumberInLineup, Batting, Pitching);
+                    }
+                }
+            }
+        }
+
         public IEnumerable<Batter> GetPlayerNameByID(int code)
         {
             using (SqlCommand command = new SqlCommand("GetPlayerNameByID", _connection))

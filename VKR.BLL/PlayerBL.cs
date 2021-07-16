@@ -101,7 +101,15 @@ namespace VKR.BLL
 
         public List<List<List<PlayerInLineup>>> GetRoster(string rosterType)
         {
-            List<PlayerInLineup> ungroupedPlayers = playerDAO.GetRoster(rosterType).ToList();
+            List<PlayerInLineup> ungroupedPlayers;
+            if (rosterType == "GetStartingLineups")
+            {
+                ungroupedPlayers = playerDAO.GetStartingLineups().ToList();
+            }
+            else
+            {
+                ungroupedPlayers = playerDAO.GetRoster(rosterType).ToList();
+            }
             for (int i = 0; i < ungroupedPlayers.Count; i++)
             {
                 ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();

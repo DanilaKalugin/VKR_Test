@@ -35,7 +35,7 @@ namespace VKR_Test
             {
                 case RosterType.StartingLineups:
                     {
-                        lineups = players.GetRoster("GetLineups");
+                        lineups = players.GetRoster("GetStartingLineups");
                         bench = players.GetRoster("GetBench");
                         break;
                     }
