@@ -42,6 +42,8 @@ namespace Entities
 
         public int Wins;
         public int Losses;
+        public string HomeBalance;
+        public string AwayBalance;
         public double GamesBehind;
         public int RunsScored;
         public int RunsAllowed;
@@ -381,7 +383,7 @@ namespace Entities
             Flyouts = _ao;
         }
 
-        public Team (string abbreviation, string Name, int _W, int _L, string _League, string _Division)
+        public Team (string abbreviation, string Name, int _W, int _L, string _League, string _Division, int _hw, int _hl, int _aw, int _al)
         {
             TeamAbbreviation = abbreviation;
             TeamTitle = Name;
@@ -389,6 +391,8 @@ namespace Entities
             Wins = _W;
             Losses = _L;
             Division = _Division;
+            HomeBalance = $"{_hw}-{_hl}";
+            AwayBalance = $"{_aw}-{_al}";
         }
     }
 }

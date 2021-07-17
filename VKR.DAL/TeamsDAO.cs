@@ -34,7 +34,11 @@ namespace VKR.DAL
                         int W = (int)reader["W"];
                         int L = (int)reader["L"];
                         string Division = (string)reader["DivisionTitle"];
-                        teams.Add(new Team(Abbreviation, Name, W, L, League, Division));
+                        int HW = (int)reader["HW"];
+                        int HL = (int)reader["HL"];
+                        int AW = (int)reader["AW"];
+                        int AL = (int)reader["AL"];
+                        teams.Add(new Team(Abbreviation, Name, W, L, League, Division, HW, HL, AW, AL));
                     }
                 }
             }

@@ -46,7 +46,7 @@ namespace VKR_Test
         private void GetStandingsForThisGroup(string group, int TeamsInGroup, int GroupNumber)
         {
             teams = teamsBl.GetStandings(group, dtpStandingsDate.Value);
-            dgvStandings.Rows.Add("", group, "W", "L", "GB", "PCT", "RS", "RA", "DIFF");
+            dgvStandings.Rows.Add("", group, "W", "L", "GB", "PCT", "RS", "RA", "DIFF", "HOME", "AWAY");
             dgvStandings.Rows[(TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
             dgvStandings.Rows[(TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.Font = new Font(dgvStandings.DefaultCellStyle.Font, FontStyle.Bold);
 
@@ -55,7 +55,7 @@ namespace VKR_Test
 
             for (int i = 0; i < teams.Count; i++)
             {
-                dgvStandings.Rows.Add("", teams[i].TeamTitle, teams[i].Wins, teams[i].Losses, teams[i].GamesBehind.ToString("0.0", new CultureInfo("en-US")), teams[i].PCT.ToString("#.000", new CultureInfo("en-US")), teams[i].RunsScored, teams[i].RunsAllowed, teams[i].RunDifferential);
+                dgvStandings.Rows.Add("", teams[i].TeamTitle, teams[i].Wins, teams[i].Losses, teams[i].GamesBehind.ToString("0.0", new CultureInfo("en-US")), teams[i].PCT.ToString("#.000", new CultureInfo("en-US")), teams[i].RunsScored, teams[i].RunsAllowed, teams[i].RunDifferential, teams[i].HomeBalance, teams[i].AwayBalance);
                 if ((HomeTeam != null && HomeTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].Cells[1].Value) ||
                     (AwayTeam != null && AwayTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].Cells[1].Value))
                 {
@@ -101,7 +101,14 @@ namespace VKR_Test
                         break;
                     }
             }
-            Height = 97 + dgvStandings.RowTemplate.Height * dgvStandings.RowCount;
+            if (dgvStandings.RowCount < Screen.PrimaryScreen.Bounds.Size.Height)
+            {
+                Height = 97 + dgvStandings.RowTemplate.Height * dgvStandings.RowCount;
+            }
+            else
+            {
+                Height = 97 + ((Screen.PrimaryScreen.Bounds.Size.Height - 97) / dgvStandings.RowTemplate.Height) * dgvStandings.RowTemplate.Height;
+            }
         }
     }
 }
