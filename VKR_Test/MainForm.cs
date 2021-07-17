@@ -492,9 +492,39 @@ namespace VKR_Test
             GenerateNewPitch();
         }
 
+        private void BasesStealingAttempt_Definition()
+        {
+            Pitch.StealingAttempt thirdBaseStealingAttempt, secondBaseStealingAttempt;
+            if (newGameSituation.RunnerOnSecond.IsBaseNotEmpty && !newGameSituation.RunnerOnThird.IsBaseNotEmpty)
+            {
+                thirdBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Third, 250, newGameSituation, currentMatch.HomeTeam, currentMatch.AwayTeam);
+                if (thirdBaseStealingAttempt == Pitch.StealingAttempt.Attempt)
+                {
+                    lb_Runner2_Name.ForeColor = Color.DarkGoldenrod;
+                    if (newGameSituation.RunnerOnFirst.IsBaseNotEmpty && newGameSituation.RunnerOnSecond.IsBaseNotEmpty)
+                    {
+                        secondBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Second, 250, newGameSituation, currentMatch.HomeTeam, currentMatch.AwayTeam);
+                        if (secondBaseStealingAttempt == Pitch.StealingAttempt.Attempt)
+                        {
+                            lb_Runner1_Name.ForeColor = Color.DarkGoldenrod;
+                        }
+                    }
+                }
+            }
+            if (newGameSituation.RunnerOnFirst.IsBaseNotEmpty && !newGameSituation.RunnerOnSecond.IsBaseNotEmpty)
+            {
+                secondBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Second, 250, newGameSituation, currentMatch.HomeTeam, currentMatch.AwayTeam);
+                if (secondBaseStealingAttempt == Pitch.StealingAttempt.Attempt)
+                {
+                    lb_Runner1_Name.ForeColor = Color.DarkGoldenrod;
+                }
+            }
+        }
+
         private void GenerateNewPitch()
         {
             Pitch pitch;
+            BasesStealingAttempt_Definition();
             bool StealingAttempt = lb_Runner1_Name.ForeColor == Color.DarkGoldenrod || lb_Runner2_Name.ForeColor == Color.DarkGoldenrod;
             int CountOfAtBats = currentMatch.atBats.Count();
             int TypeOfStealing = 0;
