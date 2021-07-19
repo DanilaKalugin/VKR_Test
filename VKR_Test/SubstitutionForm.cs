@@ -24,20 +24,11 @@ namespace VKR_Test
             lbTeamTitle.ForeColor = defense.TeamColorForThisMatch;
             Text = $"New pitcher for {defense.TeamTitle}";
             lbHeader.Text = "BULLPEN";
-            if (Pitchers.Count > 0)
+            dgvAvailablePlayers.Columns[2].HeaderText = "ERA";
+            dgvAvailablePlayers.Columns[3].HeaderText = "SO";
+            foreach (Pitcher pitcher in Pitchers)
             {
-                dgvAvailablePlayers.Columns[2].HeaderText = "ERA";
-                dgvAvailablePlayers.Columns[3].HeaderText = "SO";
-                foreach (Pitcher pitcher in Pitchers)
-                {
-                    dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"{pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"{pitcher.Strikeouts}");
-                }
-            }
-            else
-            {
-                ErrorForm form = new ErrorForm();
-                form.ShowDialog();
-                DialogResult = DialogResult.Cancel;
+                dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"{pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"{pitcher.Strikeouts}");
             }
         }
 
@@ -57,20 +48,11 @@ namespace VKR_Test
             lbTeamTitle.ForeColor = offense.TeamColorForThisMatch;
             Text = $"New batter for {offense.TeamTitle}";
             lbHeader.Text = "PINCH HITTER";
-            if (Batters.Count > 0)
+            dgvAvailablePlayers.Columns[2].HeaderText = "AVG";
+            dgvAvailablePlayers.Columns[3].HeaderText = "HR";
+            for (int i = 0; i < Batters.Count; i++)
             {
-                dgvAvailablePlayers.Columns[2].HeaderText = "AVG";
-                dgvAvailablePlayers.Columns[3].HeaderText = "HR";
-                for (int i = 0; i < Batters.Count; i++)
-                {
-                    dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"{Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"{Batters[i].HomeRuns}");
-                }
-            }
-            else
-            {
-                ErrorForm form = new ErrorForm();
-                form.ShowDialog();
-                DialogResult = DialogResult.Cancel;
+                dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"{Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"{Batters[i].HomeRuns}");
             }
         }
 
