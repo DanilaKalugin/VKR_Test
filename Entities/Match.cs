@@ -46,11 +46,29 @@ namespace Entities
                     {
                         return "Final";
                     }
-                    
+
                 }
             }
         }
         public string MatchWinner;
+
+        public List<string> GetMatchLeaderAfterEachPitch()
+        {
+            List<string> leaderAfterEachAtBat = new List<string>();
+            for (int i = 0; i < gameSituations.Count; i++)
+            {
+                if (gameSituations[i].AwayTeamRuns > gameSituations[i].HomeTeamRuns)
+                {
+                    leaderAfterEachAtBat.Add(AwayTeam.TeamAbbreviation);
+                }
+                else if (gameSituations[i].AwayTeamRuns < gameSituations[i].HomeTeamRuns)
+                {
+                    leaderAfterEachAtBat.Add(HomeTeam.TeamAbbreviation);
+                }
+                else leaderAfterEachAtBat.Add("");
+            }
+            return leaderAfterEachAtBat;
+        }
 
         public Match(int _id, Team _homeTeam, Team _awayTeam, Stadium _stadium, bool _dh, DateTime date)
         {
@@ -83,7 +101,7 @@ namespace Entities
         public Match(int _id, string _AwayTeam, string _homeTeam, DateTime date)
         {
             MatchID = _id;
-            AwayTeamAbbreviation = _AwayTeam; 
+            AwayTeamAbbreviation = _AwayTeam;
             HomeTeamAbbreviation = _homeTeam;
             MatchDate = date;
         }
@@ -91,7 +109,7 @@ namespace Entities
         public Match(int _id, string _AwayTeam, string _homeTeam, int _StadiumNumber, DateTime date)
         {
             MatchID = _id;
-            AwayTeamAbbreviation = _AwayTeam; 
+            AwayTeamAbbreviation = _AwayTeam;
             HomeTeamAbbreviation = _homeTeam;
             MatchDate = date;
             StadiumNumber = _StadiumNumber;
