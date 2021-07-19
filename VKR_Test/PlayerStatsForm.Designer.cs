@@ -37,9 +37,9 @@ namespace VKR_Test
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerStatsForm));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -79,18 +79,6 @@ namespace VKR_Test
             this.c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.btnHitting = new System.Windows.Forms.Button();
-            this.btnPitching = new System.Windows.Forms.Button();
-            this.btnStandardStats = new System.Windows.Forms.Button();
-            this.btnExpandedStats = new System.Windows.Forms.Button();
-            this.panelStandardBatterStats = new System.Windows.Forms.Panel();
-            this.panelExpandedBatterStats = new System.Windows.Forms.Panel();
-            this.panelStandardPitcherStats = new System.Windows.Forms.Panel();
-            this.panelExpandedPitcherStats = new System.Windows.Forms.Panel();
-            this.cbTeams = new System.Windows.Forms.ComboBox();
-            this.cbPlayers = new System.Windows.Forms.ComboBox();
-            this.cbPositions = new System.Windows.Forms.ComboBox();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,6 +98,7 @@ namespace VKR_Test
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -123,6 +112,17 @@ namespace VKR_Test
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnHitting = new System.Windows.Forms.Button();
+            this.btnPitching = new System.Windows.Forms.Button();
+            this.btnStandardStats = new System.Windows.Forms.Button();
+            this.btnExpandedStats = new System.Windows.Forms.Button();
+            this.panelStandardBatterStats = new System.Windows.Forms.Panel();
+            this.panelExpandedBatterStats = new System.Windows.Forms.Panel();
+            this.panelStandardPitcherStats = new System.Windows.Forms.Panel();
+            this.panelExpandedPitcherStats = new System.Windows.Forms.Panel();
+            this.cbTeams = new System.Windows.Forms.ComboBox();
+            this.cbPlayers = new System.Windows.Forms.ComboBox();
+            this.cbPositions = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -615,213 +615,6 @@ namespace VKR_Test
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView3_ColumnHeaderMouseClick);
             // 
-            // dataGridView4
-            // 
-            this.dataGridView4.AllowUserToAddRows = false;
-            this.dataGridView4.AllowUserToDeleteRows = false;
-            this.dataGridView4.AllowUserToResizeColumns = false;
-            this.dataGridView4.AllowUserToResizeRows = false;
-            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.dataGridView4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView4.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn27,
-            this.Column30,
-            this.dataGridViewTextBoxColumn28,
-            this.dataGridViewTextBoxColumn29,
-            this.dataGridViewTextBoxColumn30,
-            this.Column35,
-            this.dataGridViewTextBoxColumn31,
-            this.Column27,
-            this.Column20,
-            this.Column21,
-            this.Column22,
-            this.Column18,
-            this.Column19});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView4.EnableHeadersVisualStyles = false;
-            this.dataGridView4.GridColor = System.Drawing.Color.Silver;
-            this.dataGridView4.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.ReadOnly = true;
-            this.dataGridView4.RowHeadersVisible = false;
-            this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView4.Size = new System.Drawing.Size(1478, 523);
-            this.dataGridView4.TabIndex = 1;
-            this.dataGridView4.CellStyleChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellStyleChanged);
-            this.dataGridView4.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView4_ColumnHeaderMouseClick);
-            // 
-            // btnHitting
-            // 
-            this.btnHitting.BackColor = System.Drawing.Color.LightGray;
-            this.btnHitting.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.btnHitting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHitting.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.btnHitting.ForeColor = System.Drawing.Color.Black;
-            this.btnHitting.Location = new System.Drawing.Point(37, 12);
-            this.btnHitting.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.btnHitting.Name = "btnHitting";
-            this.btnHitting.Size = new System.Drawing.Size(120, 35);
-            this.btnHitting.TabIndex = 1;
-            this.btnHitting.Text = "Hitting";
-            this.btnHitting.UseVisualStyleBackColor = false;
-            this.btnHitting.Click += new System.EventHandler(this.btnHitting_Click);
-            // 
-            // btnPitching
-            // 
-            this.btnPitching.BackColor = System.Drawing.Color.LightGray;
-            this.btnPitching.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.btnPitching.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPitching.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.btnPitching.ForeColor = System.Drawing.Color.Black;
-            this.btnPitching.Location = new System.Drawing.Point(157, 12);
-            this.btnPitching.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.btnPitching.Name = "btnPitching";
-            this.btnPitching.Size = new System.Drawing.Size(120, 35);
-            this.btnPitching.TabIndex = 2;
-            this.btnPitching.Text = "Pitching";
-            this.btnPitching.UseVisualStyleBackColor = false;
-            this.btnPitching.Click += new System.EventHandler(this.btnPitching_Click);
-            // 
-            // btnStandardStats
-            // 
-            this.btnStandardStats.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStandardStats.BackColor = System.Drawing.Color.LightGray;
-            this.btnStandardStats.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.btnStandardStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStandardStats.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.btnStandardStats.ForeColor = System.Drawing.Color.Black;
-            this.btnStandardStats.Location = new System.Drawing.Point(1214, 12);
-            this.btnStandardStats.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.btnStandardStats.Name = "btnStandardStats";
-            this.btnStandardStats.Size = new System.Drawing.Size(120, 35);
-            this.btnStandardStats.TabIndex = 3;
-            this.btnStandardStats.Text = "Standard";
-            this.btnStandardStats.UseVisualStyleBackColor = false;
-            this.btnStandardStats.Click += new System.EventHandler(this.btnStandardStats_Click);
-            // 
-            // btnExpandedStats
-            // 
-            this.btnExpandedStats.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExpandedStats.BackColor = System.Drawing.Color.LightGray;
-            this.btnExpandedStats.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.btnExpandedStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExpandedStats.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.btnExpandedStats.ForeColor = System.Drawing.Color.Black;
-            this.btnExpandedStats.Location = new System.Drawing.Point(1334, 12);
-            this.btnExpandedStats.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.btnExpandedStats.Name = "btnExpandedStats";
-            this.btnExpandedStats.Size = new System.Drawing.Size(120, 35);
-            this.btnExpandedStats.TabIndex = 4;
-            this.btnExpandedStats.Text = "Expanded";
-            this.btnExpandedStats.UseVisualStyleBackColor = false;
-            this.btnExpandedStats.Click += new System.EventHandler(this.btnExpandedStats_Click);
-            // 
-            // panelStandardBatterStats
-            // 
-            this.panelStandardBatterStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelStandardBatterStats.Controls.Add(this.dataGridView1);
-            this.panelStandardBatterStats.Location = new System.Drawing.Point(12, 53);
-            this.panelStandardBatterStats.Name = "panelStandardBatterStats";
-            this.panelStandardBatterStats.Size = new System.Drawing.Size(1478, 523);
-            this.panelStandardBatterStats.TabIndex = 0;
-            // 
-            // panelExpandedBatterStats
-            // 
-            this.panelExpandedBatterStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelExpandedBatterStats.Controls.Add(this.dataGridView2);
-            this.panelExpandedBatterStats.Location = new System.Drawing.Point(12, 53);
-            this.panelExpandedBatterStats.Name = "panelExpandedBatterStats";
-            this.panelExpandedBatterStats.Size = new System.Drawing.Size(1478, 523);
-            this.panelExpandedBatterStats.TabIndex = 5;
-            // 
-            // panelStandardPitcherStats
-            // 
-            this.panelStandardPitcherStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelStandardPitcherStats.Controls.Add(this.dataGridView3);
-            this.panelStandardPitcherStats.Location = new System.Drawing.Point(12, 53);
-            this.panelStandardPitcherStats.Name = "panelStandardPitcherStats";
-            this.panelStandardPitcherStats.Size = new System.Drawing.Size(1478, 523);
-            this.panelStandardPitcherStats.TabIndex = 6;
-            // 
-            // panelExpandedPitcherStats
-            // 
-            this.panelExpandedPitcherStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelExpandedPitcherStats.Controls.Add(this.dataGridView4);
-            this.panelExpandedPitcherStats.Location = new System.Drawing.Point(12, 53);
-            this.panelExpandedPitcherStats.Name = "panelExpandedPitcherStats";
-            this.panelExpandedPitcherStats.Size = new System.Drawing.Size(1478, 523);
-            this.panelExpandedPitcherStats.TabIndex = 7;
-            // 
-            // cbTeams
-            // 
-            this.cbTeams.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbTeams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTeams.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.cbTeams.FormattingEnabled = true;
-            this.cbTeams.Location = new System.Drawing.Point(1002, 18);
-            this.cbTeams.Name = "cbTeams";
-            this.cbTeams.Size = new System.Drawing.Size(206, 25);
-            this.cbTeams.TabIndex = 8;
-            this.cbTeams.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
-            // 
-            // cbPlayers
-            // 
-            this.cbPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbPlayers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPlayers.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.cbPlayers.FormattingEnabled = true;
-            this.cbPlayers.Items.AddRange(new object[] {
-            "Qualified Players",
-            "All Players"});
-            this.cbPlayers.Location = new System.Drawing.Point(790, 18);
-            this.cbPlayers.Name = "cbPlayers";
-            this.cbPlayers.Size = new System.Drawing.Size(206, 25);
-            this.cbPlayers.TabIndex = 9;
-            this.cbPlayers.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
-            // 
-            // cbPositions
-            // 
-            this.cbPositions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbPositions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPositions.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.cbPositions.FormattingEnabled = true;
-            this.cbPositions.Items.AddRange(new object[] {
-            "Qualified Players",
-            "All Players"});
-            this.cbPositions.Location = new System.Drawing.Point(578, 18);
-            this.cbPositions.Name = "cbPositions";
-            this.cbPositions.Size = new System.Drawing.Size(206, 25);
-            this.cbPositions.TabIndex = 11;
-            this.cbPositions.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
-            // 
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -995,6 +788,61 @@ namespace VKR_Test
             this.dataGridViewTextBoxColumn24.ReadOnly = true;
             this.dataGridViewTextBoxColumn24.Width = 72;
             // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.AllowUserToResizeColumns = false;
+            this.dataGridView4.AllowUserToResizeRows = false;
+            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dataGridView4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView4.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn27,
+            this.Column30,
+            this.dataGridViewTextBoxColumn28,
+            this.dataGridViewTextBoxColumn29,
+            this.dataGridViewTextBoxColumn30,
+            this.Column35,
+            this.dataGridViewTextBoxColumn31,
+            this.Column27,
+            this.Column20,
+            this.Column21,
+            this.Column22,
+            this.Column18,
+            this.Column19});
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView4.EnableHeadersVisualStyles = false;
+            this.dataGridView4.GridColor = System.Drawing.Color.Silver;
+            this.dataGridView4.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
+            this.dataGridView4.RowHeadersVisible = false;
+            this.dataGridView4.RowTemplate.Height = 25;
+            this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView4.Size = new System.Drawing.Size(1478, 523);
+            this.dataGridView4.TabIndex = 1;
+            this.dataGridView4.CellStyleChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellStyleChanged);
+            this.dataGridView4.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView4_ColumnHeaderMouseClick);
+            // 
             // dataGridViewTextBoxColumn27
             // 
             this.dataGridViewTextBoxColumn27.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -1107,6 +955,157 @@ namespace VKR_Test
             this.Column19.Name = "Column19";
             this.Column19.ReadOnly = true;
             this.Column19.Width = 70;
+            // 
+            // btnHitting
+            // 
+            this.btnHitting.BackColor = System.Drawing.Color.LightGray;
+            this.btnHitting.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btnHitting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHitting.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.btnHitting.ForeColor = System.Drawing.Color.Black;
+            this.btnHitting.Location = new System.Drawing.Point(37, 12);
+            this.btnHitting.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.btnHitting.Name = "btnHitting";
+            this.btnHitting.Size = new System.Drawing.Size(120, 35);
+            this.btnHitting.TabIndex = 1;
+            this.btnHitting.Text = "Hitting";
+            this.btnHitting.UseVisualStyleBackColor = false;
+            this.btnHitting.Click += new System.EventHandler(this.btnHitting_Click);
+            // 
+            // btnPitching
+            // 
+            this.btnPitching.BackColor = System.Drawing.Color.LightGray;
+            this.btnPitching.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btnPitching.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPitching.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.btnPitching.ForeColor = System.Drawing.Color.Black;
+            this.btnPitching.Location = new System.Drawing.Point(157, 12);
+            this.btnPitching.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.btnPitching.Name = "btnPitching";
+            this.btnPitching.Size = new System.Drawing.Size(120, 35);
+            this.btnPitching.TabIndex = 2;
+            this.btnPitching.Text = "Pitching";
+            this.btnPitching.UseVisualStyleBackColor = false;
+            this.btnPitching.Click += new System.EventHandler(this.btnPitching_Click);
+            // 
+            // btnStandardStats
+            // 
+            this.btnStandardStats.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStandardStats.BackColor = System.Drawing.Color.LightGray;
+            this.btnStandardStats.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btnStandardStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStandardStats.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.btnStandardStats.ForeColor = System.Drawing.Color.Black;
+            this.btnStandardStats.Location = new System.Drawing.Point(1214, 12);
+            this.btnStandardStats.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.btnStandardStats.Name = "btnStandardStats";
+            this.btnStandardStats.Size = new System.Drawing.Size(120, 35);
+            this.btnStandardStats.TabIndex = 3;
+            this.btnStandardStats.Text = "Standard";
+            this.btnStandardStats.UseVisualStyleBackColor = false;
+            this.btnStandardStats.Click += new System.EventHandler(this.btnStandardStats_Click);
+            // 
+            // btnExpandedStats
+            // 
+            this.btnExpandedStats.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExpandedStats.BackColor = System.Drawing.Color.LightGray;
+            this.btnExpandedStats.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btnExpandedStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExpandedStats.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.btnExpandedStats.ForeColor = System.Drawing.Color.Black;
+            this.btnExpandedStats.Location = new System.Drawing.Point(1334, 12);
+            this.btnExpandedStats.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.btnExpandedStats.Name = "btnExpandedStats";
+            this.btnExpandedStats.Size = new System.Drawing.Size(120, 35);
+            this.btnExpandedStats.TabIndex = 4;
+            this.btnExpandedStats.Text = "Expanded";
+            this.btnExpandedStats.UseVisualStyleBackColor = false;
+            this.btnExpandedStats.Click += new System.EventHandler(this.btnExpandedStats_Click);
+            // 
+            // panelStandardBatterStats
+            // 
+            this.panelStandardBatterStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelStandardBatterStats.Controls.Add(this.dataGridView1);
+            this.panelStandardBatterStats.Location = new System.Drawing.Point(12, 53);
+            this.panelStandardBatterStats.Name = "panelStandardBatterStats";
+            this.panelStandardBatterStats.Size = new System.Drawing.Size(1478, 523);
+            this.panelStandardBatterStats.TabIndex = 0;
+            // 
+            // panelExpandedBatterStats
+            // 
+            this.panelExpandedBatterStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelExpandedBatterStats.Controls.Add(this.dataGridView2);
+            this.panelExpandedBatterStats.Location = new System.Drawing.Point(12, 53);
+            this.panelExpandedBatterStats.Name = "panelExpandedBatterStats";
+            this.panelExpandedBatterStats.Size = new System.Drawing.Size(1478, 523);
+            this.panelExpandedBatterStats.TabIndex = 5;
+            // 
+            // panelStandardPitcherStats
+            // 
+            this.panelStandardPitcherStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelStandardPitcherStats.Controls.Add(this.dataGridView3);
+            this.panelStandardPitcherStats.Location = new System.Drawing.Point(12, 53);
+            this.panelStandardPitcherStats.Name = "panelStandardPitcherStats";
+            this.panelStandardPitcherStats.Size = new System.Drawing.Size(1478, 523);
+            this.panelStandardPitcherStats.TabIndex = 6;
+            // 
+            // panelExpandedPitcherStats
+            // 
+            this.panelExpandedPitcherStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelExpandedPitcherStats.Controls.Add(this.dataGridView4);
+            this.panelExpandedPitcherStats.Location = new System.Drawing.Point(12, 53);
+            this.panelExpandedPitcherStats.Name = "panelExpandedPitcherStats";
+            this.panelExpandedPitcherStats.Size = new System.Drawing.Size(1478, 523);
+            this.panelExpandedPitcherStats.TabIndex = 7;
+            // 
+            // cbTeams
+            // 
+            this.cbTeams.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTeams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTeams.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.cbTeams.FormattingEnabled = true;
+            this.cbTeams.Location = new System.Drawing.Point(1002, 18);
+            this.cbTeams.Name = "cbTeams";
+            this.cbTeams.Size = new System.Drawing.Size(206, 25);
+            this.cbTeams.TabIndex = 8;
+            this.cbTeams.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            // 
+            // cbPlayers
+            // 
+            this.cbPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbPlayers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPlayers.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.cbPlayers.FormattingEnabled = true;
+            this.cbPlayers.Items.AddRange(new object[] {
+            "Qualified Players",
+            "Active and Reserve Players",
+            "Free Agents",
+            "All Players"});
+            this.cbPlayers.Location = new System.Drawing.Point(790, 18);
+            this.cbPlayers.Name = "cbPlayers";
+            this.cbPlayers.Size = new System.Drawing.Size(206, 25);
+            this.cbPlayers.TabIndex = 9;
+            this.cbPlayers.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            // 
+            // cbPositions
+            // 
+            this.cbPositions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbPositions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPositions.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.cbPositions.FormattingEnabled = true;
+            this.cbPositions.Location = new System.Drawing.Point(578, 18);
+            this.cbPositions.Name = "cbPositions";
+            this.cbPositions.Size = new System.Drawing.Size(206, 25);
+            this.cbPositions.TabIndex = 11;
+            this.cbPositions.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
             // 
             // PlayerStatsForm
             // 

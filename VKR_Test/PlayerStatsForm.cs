@@ -1111,6 +1111,7 @@ namespace VKR_Test
 
         private void SelectedIndexChanged(object sender, EventArgs e)
         {
+            cbTeams.Visible = cbPlayers.Text != "Free Agents";
             if (cbTeams.Items != null && cbPositions.DataSource != null)
             {
                 if (cbPositions.SelectedValue is PlayerPosition)

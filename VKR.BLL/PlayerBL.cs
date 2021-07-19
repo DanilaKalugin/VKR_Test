@@ -31,7 +31,6 @@ namespace VKR.BLL
             {
                 if (Positions == "OF")
                 {
-
                     List<Batter> lf = batters.Where(batter => batter.PlayerPositions.IndexOf("LF") != -1).ToList();
                     List<Batter> cf = batters.Where(batter => batter.PlayerPositions.IndexOf("CF") != -1).ToList();
                     List<Batter> rf = batters.Where(batter => batter.PlayerPositions.IndexOf("RF") != -1).ToList();
@@ -44,7 +43,15 @@ namespace VKR.BLL
             }
             if (Qualifying == "Qualified Players")
             {
-                batters = batters.Where(player => (double)player.PA / player.TGP >= 3.1).ToList();
+                batters = batters.Where(player => (double)player.PA / player.TGP >= 3.1 && player.Team != "").ToList();
+            }
+            else if (Qualifying == "Active and Reserve Players")
+            {
+                batters = batters.Where(player => player.Team != "").ToList();
+            }
+            else if (Qualifying == "Free Agents")
+            {
+                batters = batters.Where(player => player.Team == "").ToList();
             }
             return batters;
         }
