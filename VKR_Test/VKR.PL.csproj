@@ -291,14 +291,6 @@
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="000.png" />
-    <Resource Include="003.png" />
-    <Resource Include="020.png" />
-    <Resource Include="023.png" />
-    <Resource Include="100.png" />
-    <Resource Include="103.png" />
-    <Resource Include="120.png" />
-    <Resource Include="123.png" />
     <Content Include="Icon.ico" />
     <EmbeddedResource Include="SmallTeamLogos\ARI.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -398,6 +390,14 @@
     <None Include="ImagesForMenu\Error.png" />
     <None Include="ImagesForMenu\Error2.png" />
     <None Include="ImagesForMenu\NewConnection.png" />
+    <Content Include="ImagesForBaseSituation\000.png" />
+    <Content Include="ImagesForBaseSituation\003.png" />
+    <Content Include="ImagesForBaseSituation\020.png" />
+    <Content Include="ImagesForBaseSituation\023.png" />
+    <Content Include="ImagesForBaseSituation\100.png" />
+    <Content Include="ImagesForBaseSituation\103.png" />
+    <Content Include="ImagesForBaseSituation\120.png" />
+    <Content Include="ImagesForBaseSituation\123.png" />
     <Content Include="PlayerPhotosForSubstitution\Player0001.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
