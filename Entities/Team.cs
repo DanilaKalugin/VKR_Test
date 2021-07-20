@@ -28,8 +28,10 @@ namespace Entities
         public int DoublePlayProbabilty;
         public int SacrificeFlyProbability;
         public int StealingBaseProbability;
+        public int SuccessfulStelingBaseAttemptProbabilty;
         public int SuccessfulBuntAttemptProbabilty;
         public int HitByPitchProbability;
+
         public int NormalizedOffensiveRating;
         public int NormalizedDefensiveRating;
         public int Stadium;
@@ -67,7 +69,7 @@ namespace Entities
 
         public double DefensiveRating()
         {
-            double PitchingComponent = (double)(470 * 3 - StrikeZoneProbabilty) / 36;
+            double PitchingComponent = (double)(1410 - StrikeZoneProbabilty - (3000 - HitByPitchProbability)) / 36;
             double GroundoutComponent = (double)(GroundoutProbability * 1.1) / 20;
             double OutfieldComponent = (double)(FlyoutProbability - GroundoutProbability) / 20;
             double DoublePlayComponent = (double)DoublePlayProbabilty / 3;
@@ -78,13 +80,19 @@ namespace Entities
 
         public double OffensiveRating()
         {
-            double DoubleComponent = (double)(DoubleProbability - SingleProbability) / 6;
-            double HomeRunComponent = (double)(HomeRunProbabilty - DoubleProbability) / 2;
-            double TripleComponent = (2000 - HomeRunProbabilty) / 2.5;
-            double SingleComponent = (double)(SingleProbability - FoulProbability) / 30;
-            double BaseStealingComponent = (double)StealingBaseProbability / 5;
-            double HittingComponent = (double)HittingProbability / 25;
-            return Math.Round(SingleComponent + DoubleComponent + HomeRunComponent + TripleComponent + BaseStealingComponent + HittingComponent, 2);
+            double FullHitiingProbabilty = (double)(2000 - HittingProbability) / 2000;
+            double FullSingleProbability = (double)(SingleProbability - FoulProbability) / 2000;
+            double FullDoubleProbability = (double)(DoubleProbability - SingleProbability) / 2000;
+            double FullHRProbability = (double)(HomeRunProbabilty - DoubleProbability) / 2000;
+            double FullTripleProbability = (double)(2000 - HomeRunProbabilty) / 2000;
+
+            double DoubleComponent = FullHitiingProbabilty * FullDoubleProbability * 75;
+            double HomeRunComponent = FullHitiingProbabilty * FullHRProbability * 225;
+            double TripleComponent = FullHitiingProbabilty * FullTripleProbability * 150;
+            double SingleComponent = FullHitiingProbabilty * FullSingleProbability * 50;
+
+            double BaseStealingComponent = (double)(StealingBaseProbability * SuccessfulStelingBaseAttemptProbabilty) / 20000 * 3;
+            return Math.Round(SingleComponent + DoubleComponent + HomeRunComponent + TripleComponent + BaseStealingComponent, 2);
         }
 
         //Batting stats
@@ -291,7 +299,8 @@ namespace Entities
         public Team(string abbreviation, string city, string name, int _StrikeZoneProbability, int _Swing_SZ_Probability, int _Swing_NotSZ_Probability,
                     int _Hit_Probability, int _Foul_Probability, int _Single_Probability, int _Double_Probability, int _HR_Probability,
                     int _PopoutOnFoul_Probability, int _FlyoutOnHR_Probability, int _Groundout_Probability, int _Flyout_Probability, int _sacFly_Probability,
-                    int _DoublePlayProbability, int _SuccessfulBaseSteling_Probability, int _SuccessfulBunt_Probability, int _Stadium, bool _DHRule, int w, int l, int _HBP)
+                    int _DoublePlayProbability, int _SuccessfulBaseSteling_Probability, int _SuccessfulBunt_Probability, int _Stadium, bool _DHRule,
+                    int w, int l, int _HBP, int _sb)
         {
             TeamAbbreviation = abbreviation;
             TeamCity = city;
@@ -310,7 +319,7 @@ namespace Entities
             FlyoutProbability = _Flyout_Probability;
             DoublePlayProbabilty = _DoublePlayProbability;
             SacrificeFlyProbability = _sacFly_Probability;
-            StealingBaseProbability = _SuccessfulBaseSteling_Probability;
+            SuccessfulStelingBaseAttemptProbabilty = _SuccessfulBaseSteling_Probability;
             SuccessfulBuntAttemptProbabilty = _SuccessfulBunt_Probability;
             Stadium = _Stadium;
             PitchersPlayedInMatch = new List<Pitcher>();
@@ -318,6 +327,7 @@ namespace Entities
             Wins = w;
             Losses = l;
             HitByPitchProbability = _HBP;
+            StealingBaseProbability = _sb;
         }
 
         public Team(string abbreviation, string name, int _games,

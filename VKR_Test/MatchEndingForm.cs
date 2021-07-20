@@ -120,13 +120,15 @@ namespace VKR_Test
             {
                 if (awayTeam.TeamAbbreviation == WinningTeam.TeamAbbreviation)
                 {
-                    results[0].IsWin = results[0].IsCompleteGame;
+                    results[0].matchResult = results[0].IsCompleteGame ? PitcherResults.MatchResultForPitcher.Win: PitcherResults.MatchResultForPitcher.NoDecision;
                     WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].Losses})";
                     WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
+                    PitcherWithSave.Text = "-";
+                    PitcherWithSave.BackColor = awayTeam.TeamColorForThisMatch;
                 }
                 else
                 {
-                    results[0].IsLoss = results[0].IsCompleteGame;
+                    results[0].matchResult = results[0].IsCompleteGame ? PitcherResults.MatchResultForPitcher.Loss : PitcherResults.MatchResultForPitcher.NoDecision;
                     LosingPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].Wins} - {awayTeam.PitchersPlayedInMatch[0].Losses + 1})";
                     LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
                 }
@@ -146,16 +148,16 @@ namespace VKR_Test
                     {
                         for (int i = 0; i < WinningPitcherIndex; i++)
                         {
-                            results[i].IsNoDecision = true;
+                            results[i].matchResult = PitcherResults.MatchResultForPitcher.NoDecision;
                         }
-                        results[WinningPitcherIndex].IsWin = true;
+                        results[WinningPitcherIndex].matchResult = PitcherResults.MatchResultForPitcher.Win;
                         WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[WinningPitcherIndex].FullName} ({awayTeam.PitchersPlayedInMatch[WinningPitcherIndex].Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].Losses})";
                         WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
 
                         if (WinningPitcherIndex < awayTeam.PitchersPlayedInMatch.Count - 1)
                         {
-                            results[awayTeam.PitchersPlayedInMatch.Count - 1].IsSave = true;
-                            PitcherWithSave.Text = $"{awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].FullName} ({awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].Saves +1})";
+                            results[awayTeam.PitchersPlayedInMatch.Count - 1].matchResult = PitcherResults.MatchResultForPitcher.Save;
+                            PitcherWithSave.Text = $"{awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].FullName} ({awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].Saves + 1})";
                         }
                         else
                         {
@@ -165,7 +167,7 @@ namespace VKR_Test
 
                         for (int i = WinningPitcherIndex + 1; i < awayTeam.PitchersPlayedInMatch.Count - 1; i++)
                         {
-                            results[i].IsHold = true;
+                            results[i].matchResult = PitcherResults.MatchResultForPitcher.Hold;
                         }
                     }
                 }
@@ -174,14 +176,14 @@ namespace VKR_Test
                     int LosingPitcherIndex = awayTeam.PitchersPlayedInMatch.IndexOf(awayTeam.PitchersPlayedInMatch.Where(pitcher => pitcher.id == LosingPitcherID).First());
                     if (LosingPitcherIndex != -1)
                     {
-                        results[LosingPitcherIndex].IsLoss = true;
+                        results[LosingPitcherIndex].matchResult = PitcherResults.MatchResultForPitcher.Loss;
                         LosingPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[LosingPitcherIndex].FullName} ({awayTeam.PitchersPlayedInMatch[LosingPitcherIndex].Wins} - {awayTeam.PitchersPlayedInMatch[LosingPitcherIndex].Losses + 1})";
                         LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
                         for (int i = 0; i < awayTeam.PitchersPlayedInMatch.Count; i++)
                         {
                             if (i != LosingPitcherIndex)
                             {
-                                results[i].IsNoDecision = true;
+                                results[i].matchResult = PitcherResults.MatchResultForPitcher.NoDecision;
                             }
                         }
                     }

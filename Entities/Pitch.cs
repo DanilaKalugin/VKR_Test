@@ -267,18 +267,18 @@ namespace Entities
             }
         }
 
-        private OutType OutType_Definition(HitType TypeOfHit, int PopoutOnFoul_probability, int FlyoutOnHomeRun_probability, int Groundout_probability, int Flyout_probability)
+        private OutType OutType_Definition(HitType TypeOfHit, GameSituation situation, int PopoutOnFoul_probability, int FlyoutOnHomeRun_probability, int Groundout_probability, int Flyout_probability)
         {
             int OutType_RandomValue = OutType_RandomGenerator.Next(1, 1000);
             if (TypeOfHit != HitType.NoResult)
             {
                 if (TypeOfHit == HitType.Foul)
                 {
-                    if (OutType_RandomValue < PopoutOnFoul_probability)
+                    if (OutType_RandomValue < PopoutOnFoul_probability - (situation.inningNumber - 1) * 5)
                     {
                         return OutType.Popout;
                     }
-                    else if (OutType_RandomValue < PopoutOnFoul_probability + (Flyout_probability - Groundout_probability) / 6)
+                    else if (OutType_RandomValue < PopoutOnFoul_probability - (situation.inningNumber - 1) * 5 + (Flyout_probability - Groundout_probability) / 6)
                     {
                         return OutType.Flyout;
                     }
@@ -362,17 +362,17 @@ namespace Entities
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability, situation);
             newPitch_Hitting = Hitting_Definition(newPitch_Swing_Result, Offense.HittingProbability, BatterNumberComponent, PitcherCoefficient, numberOfPitches, situation, HandsCoefficient);
             newPitch_HitType = HitType_Definition(newPitch_Hitting, Offense.FoulProbability, Offense.SingleProbability, Offense.DoubleProbability, Offense.HomeRunProbabilty, BatterNumberComponent, numberOfPitches, StadiumCoefficient, CountOfNotEmptyBases, situation, CurrentBatter);
-            newPitch_OutType = OutType_Definition(newPitch_HitType, Defense.PopoutOnFoulProbability, Defense.FlyoutOnHomeRunProbability, Defense.GroundoutProbability, Defense.FlyoutProbability);
+            newPitch_OutType = OutType_Definition(newPitch_HitType, situation, Defense.PopoutOnFoulProbability, Defense.FlyoutOnHomeRunProbability, Defense.GroundoutProbability, Defense.FlyoutProbability);
             newPitch_OtherCondition = OtherCondition_Definition(newPitch_OutType, situation, Defense.SacrificeFlyProbability, Defense.DoublePlayProbabilty, CountOfNotEmptyBases);
             pitchResult = pitchResult_Definition(newPitch_GettingIntoStrikeZone_Result, newPitch_Swing_Result, newPitch_Hitting, newPitch_HitType, newPitch_OutType, newPitch_OtherCondition);
         }
 
-        public static StealingAttempt stealingAttempt_Definition(BaseNumberForStealing baseNumber, int sbAttempt_Probability, GameSituation situation, Team HomeTeam, Team AwayTeam)
+        public static StealingAttempt stealingAttempt_Definition(BaseNumberForStealing baseNumber, GameSituation situation, Team AwayTeam)
         {
             int StealingAttempt_RandomValue = StealingAttempt_RandomGenerator.Next(1, 1000);
             Team Offense = situation.offense;
             int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
-            int SbAttempt_ProbabilityWithAllCoefficients = sbAttempt_Probability + BatterNumberComponent * 2 + situation.balls * 10 - situation.strikes * 15 - situation.strikes * 5;
+            int SbAttempt_ProbabilityWithAllCoefficients = Offense.StealingBaseProbability + BatterNumberComponent * 2 + situation.balls * 10 - situation.strikes * 15 - situation.strikes * 5;
 
             if (baseNumber == BaseNumberForStealing.Third)
             {
@@ -518,7 +518,7 @@ namespace Entities
                         break;
                     }
             }
-            newStealingAttempt_result = StealingAttempt_Result_Definition(Offense.StealingBaseProbability, RunnerPositionInDefense, stealingType);
+            newStealingAttempt_result = StealingAttempt_Result_Definition(Offense.SuccessfulStelingBaseAttemptProbabilty, RunnerPositionInDefense, stealingType);
             pitchResult = pitchResult_Definition(newStealingAttempt_result);
         }
 

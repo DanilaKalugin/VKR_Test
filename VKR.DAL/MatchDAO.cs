@@ -24,11 +24,7 @@ namespace VKR.DAL
                 command.Parameters.Add("@isQS", SqlDbType.Bit);
                 command.Parameters.Add("@isCG", SqlDbType.Bit);
                 command.Parameters.Add("@isSHO", SqlDbType.Bit);
-                command.Parameters.Add("@isW", SqlDbType.Bit);
-                command.Parameters.Add("@isL", SqlDbType.Bit);
-                command.Parameters.Add("@isSV", SqlDbType.Bit);
-                command.Parameters.Add("@isHLD", SqlDbType.Bit);
-                command.Parameters.Add("@isND", SqlDbType.Bit);
+                command.Parameters.Add("@matchResult", SqlDbType.Int);
 
                 command.Prepare();
                 command.Parameters[0].Value = pitcherResults.Match;
@@ -37,11 +33,7 @@ namespace VKR.DAL
                 command.Parameters[3].Value = pitcherResults.IsQualityStart;
                 command.Parameters[4].Value = pitcherResults.IsCompleteGame;
                 command.Parameters[5].Value = pitcherResults.IsShutout;
-                command.Parameters[6].Value = pitcherResults.IsWin;
-                command.Parameters[7].Value = pitcherResults.IsLoss;
-                command.Parameters[8].Value = pitcherResults.IsSave;
-                command.Parameters[9].Value = pitcherResults.IsHold;
-                command.Parameters[10].Value = pitcherResults.IsNoDecision;
+                command.Parameters[6].Value = (int)pitcherResults.matchResult;
 
                 var result = command.ExecuteNonQuery();
             }

@@ -497,13 +497,13 @@ namespace VKR_Test
             Pitch.StealingAttempt thirdBaseStealingAttempt, secondBaseStealingAttempt;
             if (newGameSituation.RunnerOnSecond.IsBaseNotEmpty && !newGameSituation.RunnerOnThird.IsBaseNotEmpty)
             {
-                thirdBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Third, 250, newGameSituation, currentMatch.HomeTeam, currentMatch.AwayTeam);
+                thirdBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Third, newGameSituation, currentMatch.AwayTeam);
                 if (thirdBaseStealingAttempt == Pitch.StealingAttempt.Attempt)
                 {
                     lb_Runner2_Name.ForeColor = Color.DarkGoldenrod;
                     if (newGameSituation.RunnerOnFirst.IsBaseNotEmpty && newGameSituation.RunnerOnSecond.IsBaseNotEmpty)
                     {
-                        secondBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Second, 250, newGameSituation, currentMatch.HomeTeam, currentMatch.AwayTeam);
+                        secondBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Second, newGameSituation, currentMatch.AwayTeam);
                         if (secondBaseStealingAttempt == Pitch.StealingAttempt.Attempt)
                         {
                             lb_Runner1_Name.ForeColor = Color.DarkGoldenrod;
@@ -513,7 +513,7 @@ namespace VKR_Test
             }
             if (newGameSituation.RunnerOnFirst.IsBaseNotEmpty && !newGameSituation.RunnerOnSecond.IsBaseNotEmpty)
             {
-                secondBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Second, 250, newGameSituation, currentMatch.HomeTeam, currentMatch.AwayTeam);
+                secondBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Second, newGameSituation, currentMatch.AwayTeam);
                 if (secondBaseStealingAttempt == Pitch.StealingAttempt.Attempt)
                 {
                     lb_Runner1_Name.ForeColor = Color.DarkGoldenrod;
@@ -708,6 +708,7 @@ namespace VKR_Test
             PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id.ToString("0000")}.png");
             PitcherName.Text = Defense.CurrentPitcher.FullName.ToUpper();
             PitcherGames.Text = Defense.CurrentPitcher.Games.ToString();
+            PitcherRecord.Text = $"{Defense.CurrentPitcher.Wins}-{Defense.CurrentPitcher.Losses}";
             PitcherBAA.Text = Defense.CurrentPitcher.BAA.ToString("#.000", new CultureInfo("en-US"));
             PitcherERA.Text = Defense.CurrentPitcher.ERA.ToString("##0.00", new CultureInfo("en-US"));
             PitcherIP.Text = Defense.CurrentPitcher.IP.ToString("0.0", new CultureInfo("en-US"));
