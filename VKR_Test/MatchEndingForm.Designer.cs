@@ -79,6 +79,12 @@ namespace VKR_Test
             this.lb4thInning = new System.Windows.Forms.Label();
             this.lb3rdInning = new System.Windows.Forms.Label();
             this.lb2ndInning = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.WinningPitcher = new System.Windows.Forms.Label();
+            this.PitcherWithSave = new System.Windows.Forms.Label();
+            this.LosingPitcher = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -516,10 +522,11 @@ namespace VKR_Test
             // 
             // btnClose
             // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("MicroFLF", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(871, 473);
+            this.btnClose.Location = new System.Drawing.Point(871, 673);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(117, 44);
             this.btnClose.TabIndex = 84;
@@ -667,12 +674,99 @@ namespace VKR_Test
             this.lb2ndInning.Text = "2";
             this.lb2ndInning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
+            this.label1.Font = new System.Drawing.Font("MicroFLF", 15.75F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(49, 541);
+            this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 1, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 28);
+            this.label1.TabIndex = 96;
+            this.label1.Text = "Win";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Gainsboro;
+            this.label2.Font = new System.Drawing.Font("MicroFLF", 15.75F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(49, 571);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 28);
+            this.label2.TabIndex = 97;
+            this.label2.Text = "Save";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.Gainsboro;
+            this.label4.Font = new System.Drawing.Font("MicroFLF", 15.75F);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(49, 601);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 1, 1, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 28);
+            this.label4.TabIndex = 98;
+            this.label4.Text = "Loss";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // WinningPitcher
+            // 
+            this.WinningPitcher.BackColor = System.Drawing.Color.Gainsboro;
+            this.WinningPitcher.Font = new System.Drawing.Font("MicroFLF", 15.75F);
+            this.WinningPitcher.ForeColor = System.Drawing.Color.White;
+            this.WinningPitcher.Location = new System.Drawing.Point(136, 541);
+            this.WinningPitcher.Margin = new System.Windows.Forms.Padding(1, 3, 3, 1);
+            this.WinningPitcher.Name = "WinningPitcher";
+            this.WinningPitcher.Size = new System.Drawing.Size(581, 28);
+            this.WinningPitcher.TabIndex = 99;
+            this.WinningPitcher.Text = "Win";
+            this.WinningPitcher.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.WinningPitcher.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            // 
+            // PitcherWithSave
+            // 
+            this.PitcherWithSave.BackColor = System.Drawing.Color.Gainsboro;
+            this.PitcherWithSave.Font = new System.Drawing.Font("MicroFLF", 15.75F);
+            this.PitcherWithSave.ForeColor = System.Drawing.Color.White;
+            this.PitcherWithSave.Location = new System.Drawing.Point(136, 571);
+            this.PitcherWithSave.Margin = new System.Windows.Forms.Padding(1, 1, 3, 1);
+            this.PitcherWithSave.Name = "PitcherWithSave";
+            this.PitcherWithSave.Size = new System.Drawing.Size(581, 28);
+            this.PitcherWithSave.TabIndex = 100;
+            this.PitcherWithSave.Text = "Win";
+            this.PitcherWithSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PitcherWithSave.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            // 
+            // LosingPitcher
+            // 
+            this.LosingPitcher.BackColor = System.Drawing.Color.Gainsboro;
+            this.LosingPitcher.Font = new System.Drawing.Font("MicroFLF", 15.75F);
+            this.LosingPitcher.ForeColor = System.Drawing.Color.White;
+            this.LosingPitcher.Location = new System.Drawing.Point(136, 601);
+            this.LosingPitcher.Margin = new System.Windows.Forms.Padding(1, 1, 3, 3);
+            this.LosingPitcher.Name = "LosingPitcher";
+            this.LosingPitcher.Size = new System.Drawing.Size(581, 28);
+            this.LosingPitcher.TabIndex = 101;
+            this.LosingPitcher.Text = "Win";
+            this.LosingPitcher.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LosingPitcher.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            // 
             // MatchEndingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1000, 529);
+            this.ClientSize = new System.Drawing.Size(1000, 729);
+            this.Controls.Add(this.LosingPitcher);
+            this.Controls.Add(this.PitcherWithSave);
+            this.Controls.Add(this.WinningPitcher);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lb1stInning);
             this.Controls.Add(this.lb10thInning);
             this.Controls.Add(this.lb9thInning);
@@ -781,5 +875,11 @@ namespace VKR_Test
         private System.Windows.Forms.Label lb2ndInning;
         private System.Windows.Forms.Label lbHomeBalance;
         private System.Windows.Forms.Label lbAwayBalance;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label WinningPitcher;
+        private System.Windows.Forms.Label PitcherWithSave;
+        private System.Windows.Forms.Label LosingPitcher;
     }
 }

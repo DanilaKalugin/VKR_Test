@@ -115,49 +115,74 @@ namespace VKR_Test
             results[0].IsQualityStart = RunsForThisPitcher <= 3 && OutsPlayedForThisPitcher / 3 >= 6;
             results[0].IsCompleteGame = OutsPlayedForThisPitcher == OutsPlayedForThisTeam;
             results[0].IsShutout = results[0].IsCompleteGame && RunsForThisPitcher == 0;
-            results[0].IsWin = results[0].IsCompleteGame && awayTeam.TeamAbbreviation == WinningTeam.TeamAbbreviation;
-            results[0].IsLoss = results[0].IsCompleteGame && awayTeam.TeamAbbreviation != WinningTeam.TeamAbbreviation;
 
-            List<string> LeadersAfyerEachAtBat = endedmatch.GetMatchLeaderAfterEachPitch();
-
-            int winningPitchID = Array.FindLastIndex(LeadersAfyerEachAtBat.ToArray(), leader => leader != WinningTeam.TeamAbbreviation);
-                
-            GameSituation winningPitch = endedmatch.gameSituations[winningPitchID + 1];
-            int LosingPitcherID = winningPitch.PitcherID;
-            if (awayTeam.TeamAbbreviation == WinningTeam.TeamAbbreviation)
+            if (awayTeam.PitchersPlayedInMatch.Count == 1)
             {
-                int InningNumber = winningPitch.inningNumber;
-                int WinningPitcherID = endedmatch.gameSituations.Where(gs => gs.inningNumber == InningNumber && gs.offense.TeamAbbreviation != awayTeam.TeamAbbreviation && gs.id > 0).First().PitcherID;
-                int WinningPitcherIndex = awayTeam.PitchersPlayedInMatch.IndexOf(awayTeam.PitchersPlayedInMatch.Where(pitcher => pitcher.id == WinningPitcherID).First());
-                if (WinningPitcherIndex != -1)
+                if (awayTeam.TeamAbbreviation == WinningTeam.TeamAbbreviation)
                 {
-                    for (int i = 0; i < WinningPitcherIndex; i++)
-                    {
-                        results[i].IsNoDecision = true;
-                    }
-                    results[WinningPitcherIndex].IsWin = true;
-
-                    if (WinningPitcherIndex < awayTeam.PitchersPlayedInMatch.Count - 1)
-                    {
-                        results[awayTeam.PitchersPlayedInMatch.Count - 1].IsSave = true;
-                    }
-                    for (int i = WinningPitcherIndex + 1; i < awayTeam.PitchersPlayedInMatch.Count - 1; i++)
-                    {
-                        results[i].IsHold = true;
-                    }
+                    results[0].IsWin = results[0].IsCompleteGame;
+                    WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].Losses})";
+                    WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
+                }
+                else
+                {
+                    results[0].IsLoss = results[0].IsCompleteGame;
+                    LosingPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].Wins} - {awayTeam.PitchersPlayedInMatch[0].Losses + 1})";
+                    LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
                 }
             }
             else
             {
-                int LosingPitcherIndex = awayTeam.PitchersPlayedInMatch.IndexOf(awayTeam.PitchersPlayedInMatch.Where(pitcher => pitcher.id == LosingPitcherID).First());
-                if (LosingPitcherIndex != -1)
+                List<string> LeadersAfyerEachAtBat = endedmatch.GetMatchLeaderAfterEachPitch();
+                int winningPitchID = Array.FindLastIndex(LeadersAfyerEachAtBat.ToArray(), leader => leader != WinningTeam.TeamAbbreviation);
+                GameSituation winningPitch = endedmatch.gameSituations[winningPitchID + 1];
+                int LosingPitcherID = winningPitch.PitcherID;
+                if (awayTeam.TeamAbbreviation == WinningTeam.TeamAbbreviation)
                 {
-                    results[LosingPitcherIndex].IsLoss = true;
-                    for (int i = 0; i < awayTeam.PitchersPlayedInMatch.Count; i++)
+                    int InningNumber = winningPitch.inningNumber;
+                    int WinningPitcherID = endedmatch.gameSituations.Where(gs => gs.inningNumber == InningNumber && gs.offense.TeamAbbreviation != awayTeam.TeamAbbreviation && gs.id > 0).First().PitcherID;
+                    int WinningPitcherIndex = awayTeam.PitchersPlayedInMatch.IndexOf(awayTeam.PitchersPlayedInMatch.Where(pitcher => pitcher.id == WinningPitcherID).First());
+                    if (WinningPitcherIndex != -1)
                     {
-                        if (i != LosingPitcherIndex)
+                        for (int i = 0; i < WinningPitcherIndex; i++)
                         {
                             results[i].IsNoDecision = true;
+                        }
+                        results[WinningPitcherIndex].IsWin = true;
+                        WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[WinningPitcherIndex].FullName} ({awayTeam.PitchersPlayedInMatch[WinningPitcherIndex].Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].Losses})";
+                        WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
+
+                        if (WinningPitcherIndex < awayTeam.PitchersPlayedInMatch.Count - 1)
+                        {
+                            results[awayTeam.PitchersPlayedInMatch.Count - 1].IsSave = true;
+                            PitcherWithSave.Text = $"{awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].FullName} ({awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].Saves +1})";
+                        }
+                        else
+                        {
+                            PitcherWithSave.Text = "-";
+                        }
+                        PitcherWithSave.BackColor = awayTeam.TeamColorForThisMatch;
+
+                        for (int i = WinningPitcherIndex + 1; i < awayTeam.PitchersPlayedInMatch.Count - 1; i++)
+                        {
+                            results[i].IsHold = true;
+                        }
+                    }
+                }
+                else
+                {
+                    int LosingPitcherIndex = awayTeam.PitchersPlayedInMatch.IndexOf(awayTeam.PitchersPlayedInMatch.Where(pitcher => pitcher.id == LosingPitcherID).First());
+                    if (LosingPitcherIndex != -1)
+                    {
+                        results[LosingPitcherIndex].IsLoss = true;
+                        LosingPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[LosingPitcherIndex].FullName} ({awayTeam.PitchersPlayedInMatch[LosingPitcherIndex].Wins} - {awayTeam.PitchersPlayedInMatch[LosingPitcherIndex].Losses + 1})";
+                        LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
+                        for (int i = 0; i < awayTeam.PitchersPlayedInMatch.Count; i++)
+                        {
+                            if (i != LosingPitcherIndex)
+                            {
+                                results[i].IsNoDecision = true;
+                            }
                         }
                     }
                 }

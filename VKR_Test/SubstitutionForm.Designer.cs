@@ -114,7 +114,7 @@ namespace VKR_Test
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvAvailablePlayers.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAvailablePlayers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAvailablePlayers.EnableHeadersVisualStyles = false;
