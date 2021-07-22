@@ -707,8 +707,25 @@ namespace VKR_Test
             PitchingTeam.BackgroundImage = Image.FromFile($"SmallTeamLogos/{Defense.TeamAbbreviation}.png");
             PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id.ToString("0000")}.png");
             PitcherName.Text = Defense.CurrentPitcher.FullName.ToUpper();
+
+            PitcherGames.Visible = Defense.PitchersPlayedInMatch.Count > 1;
+            labelGames.Visible = Defense.PitchersPlayedInMatch.Count > 1;
             PitcherGames.Text = Defense.CurrentPitcher.Games.ToString();
-            PitcherRecord.Text = $"{Defense.CurrentPitcher.Wins}-{Defense.CurrentPitcher.Losses}";
+            if (Defense.PitchersPlayedInMatch.Count == 1)
+            {
+                labelGS.Text = "STARTS";
+                PitcherGS.Text = $"{Defense.CurrentPitcher.GamesStarted}";
+                labelRecord.Text = "RECORD";
+                PitcherRecord.Text = $"{Defense.CurrentPitcher.Wins}-{Defense.CurrentPitcher.Losses}";
+            }
+            else
+            {
+                labelGS.Text = "RECORD";
+                PitcherGS.Text = $"{Defense.CurrentPitcher.Wins}-{Defense.CurrentPitcher.Losses}";
+                labelRecord.Text = "SAVES";
+                PitcherRecord.Text = $"{Defense.CurrentPitcher.Saves}";
+            }
+
             PitcherBAA.Text = Defense.CurrentPitcher.BAA.ToString("#.000", new CultureInfo("en-US"));
             PitcherERA.Text = Defense.CurrentPitcher.ERA.ToString("##0.00", new CultureInfo("en-US"));
             PitcherIP.Text = Defense.CurrentPitcher.IP.ToString("0.0", new CultureInfo("en-US"));

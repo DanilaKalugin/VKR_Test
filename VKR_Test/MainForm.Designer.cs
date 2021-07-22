@@ -152,7 +152,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.panelCurrentPitcher = new System.Windows.Forms.Panel();
             this.PitcherRecord = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
+            this.labelRecord = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.PitcherHomeRunsToday = new System.Windows.Forms.Label();
@@ -174,7 +174,7 @@
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
+            this.labelGames = new System.Windows.Forms.Label();
             this.PitchingTeamColor = new System.Windows.Forms.Panel();
             this.PitcherName = new System.Windows.Forms.Label();
             this.PitchingTeam = new System.Windows.Forms.Panel();
@@ -205,6 +205,8 @@
             this.label27 = new System.Windows.Forms.Label();
             this.panelLastAtBat = new System.Windows.Forms.Panel();
             this.btnTeamStats = new System.Windows.Forms.Button();
+            this.PitcherGS = new System.Windows.Forms.Label();
+            this.labelGS = new System.Windows.Forms.Label();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -1719,8 +1721,10 @@
             // panelCurrentPitcher
             // 
             this.panelCurrentPitcher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.panelCurrentPitcher.Controls.Add(this.PitcherGS);
+            this.panelCurrentPitcher.Controls.Add(this.labelGS);
             this.panelCurrentPitcher.Controls.Add(this.PitcherRecord);
-            this.panelCurrentPitcher.Controls.Add(this.label28);
+            this.panelCurrentPitcher.Controls.Add(this.labelRecord);
             this.panelCurrentPitcher.Controls.Add(this.label26);
             this.panelCurrentPitcher.Controls.Add(this.label25);
             this.panelCurrentPitcher.Controls.Add(this.PitcherHomeRunsToday);
@@ -1742,18 +1746,18 @@
             this.panelCurrentPitcher.Controls.Add(this.label39);
             this.panelCurrentPitcher.Controls.Add(this.label38);
             this.panelCurrentPitcher.Controls.Add(this.label35);
-            this.panelCurrentPitcher.Controls.Add(this.label37);
+            this.panelCurrentPitcher.Controls.Add(this.labelGames);
             this.panelCurrentPitcher.Controls.Add(this.PitchingTeamColor);
             this.panelCurrentPitcher.Location = new System.Drawing.Point(1179, 167);
             this.panelCurrentPitcher.Name = "panelCurrentPitcher";
-            this.panelCurrentPitcher.Size = new System.Drawing.Size(234, 204);
+            this.panelCurrentPitcher.Size = new System.Drawing.Size(234, 219);
             this.panelCurrentPitcher.TabIndex = 48;
             // 
             // PitcherRecord
             // 
             this.PitcherRecord.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherRecord.ForeColor = System.Drawing.Color.White;
-            this.PitcherRecord.Location = new System.Drawing.Point(166, 76);
+            this.PitcherRecord.Location = new System.Drawing.Point(166, 91);
             this.PitcherRecord.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherRecord.Name = "PitcherRecord";
             this.PitcherRecord.Size = new System.Drawing.Size(65, 15);
@@ -1761,16 +1765,16 @@
             this.PitcherRecord.Text = "0";
             this.PitcherRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label28
+            // labelRecord
             // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label28.Location = new System.Drawing.Point(10, 76);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(59, 15);
-            this.label28.TabIndex = 26;
-            this.label28.Text = "RECORD";
+            this.labelRecord.AutoSize = true;
+            this.labelRecord.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.labelRecord.Location = new System.Drawing.Point(10, 91);
+            this.labelRecord.Name = "labelRecord";
+            this.labelRecord.Size = new System.Drawing.Size(59, 15);
+            this.labelRecord.TabIndex = 26;
+            this.labelRecord.Text = "RECORD";
             // 
             // label26
             // 
@@ -1798,7 +1802,7 @@
             // 
             this.PitcherHomeRunsToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherHomeRunsToday.ForeColor = System.Drawing.Color.White;
-            this.PitcherHomeRunsToday.Location = new System.Drawing.Point(126, 151);
+            this.PitcherHomeRunsToday.Location = new System.Drawing.Point(126, 166);
             this.PitcherHomeRunsToday.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherHomeRunsToday.Name = "PitcherHomeRunsToday";
             this.PitcherHomeRunsToday.Size = new System.Drawing.Size(39, 15);
@@ -1810,7 +1814,7 @@
             // 
             this.PitcherStrikeoutsToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherStrikeoutsToday.ForeColor = System.Drawing.Color.White;
-            this.PitcherStrikeoutsToday.Location = new System.Drawing.Point(126, 136);
+            this.PitcherStrikeoutsToday.Location = new System.Drawing.Point(126, 151);
             this.PitcherStrikeoutsToday.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherStrikeoutsToday.Name = "PitcherStrikeoutsToday";
             this.PitcherStrikeoutsToday.Size = new System.Drawing.Size(39, 15);
@@ -1822,7 +1826,7 @@
             // 
             this.PitcherWalksToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherWalksToday.ForeColor = System.Drawing.Color.White;
-            this.PitcherWalksToday.Location = new System.Drawing.Point(126, 121);
+            this.PitcherWalksToday.Location = new System.Drawing.Point(126, 136);
             this.PitcherWalksToday.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherWalksToday.Name = "PitcherWalksToday";
             this.PitcherWalksToday.Size = new System.Drawing.Size(39, 15);
@@ -1834,7 +1838,7 @@
             // 
             this.PitcherIPToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherIPToday.ForeColor = System.Drawing.Color.White;
-            this.PitcherIPToday.Location = new System.Drawing.Point(126, 106);
+            this.PitcherIPToday.Location = new System.Drawing.Point(126, 121);
             this.PitcherIPToday.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherIPToday.Name = "PitcherIPToday";
             this.PitcherIPToday.Size = new System.Drawing.Size(39, 15);
@@ -1846,7 +1850,7 @@
             // 
             this.PitcherBAA.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherBAA.ForeColor = System.Drawing.Color.White;
-            this.PitcherBAA.Location = new System.Drawing.Point(166, 181);
+            this.PitcherBAA.Location = new System.Drawing.Point(166, 196);
             this.PitcherBAA.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherBAA.Name = "PitcherBAA";
             this.PitcherBAA.Size = new System.Drawing.Size(65, 15);
@@ -1858,7 +1862,7 @@
             // 
             this.PitcherWHIP.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherWHIP.ForeColor = System.Drawing.Color.White;
-            this.PitcherWHIP.Location = new System.Drawing.Point(166, 166);
+            this.PitcherWHIP.Location = new System.Drawing.Point(166, 181);
             this.PitcherWHIP.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherWHIP.Name = "PitcherWHIP";
             this.PitcherWHIP.Size = new System.Drawing.Size(65, 15);
@@ -1870,7 +1874,7 @@
             // 
             this.PitcherHomeRuns.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherHomeRuns.ForeColor = System.Drawing.Color.White;
-            this.PitcherHomeRuns.Location = new System.Drawing.Point(166, 151);
+            this.PitcherHomeRuns.Location = new System.Drawing.Point(166, 166);
             this.PitcherHomeRuns.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherHomeRuns.Name = "PitcherHomeRuns";
             this.PitcherHomeRuns.Size = new System.Drawing.Size(65, 15);
@@ -1882,7 +1886,7 @@
             // 
             this.PitcherStrikeouts.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherStrikeouts.ForeColor = System.Drawing.Color.White;
-            this.PitcherStrikeouts.Location = new System.Drawing.Point(166, 136);
+            this.PitcherStrikeouts.Location = new System.Drawing.Point(166, 151);
             this.PitcherStrikeouts.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherStrikeouts.Name = "PitcherStrikeouts";
             this.PitcherStrikeouts.Size = new System.Drawing.Size(65, 15);
@@ -1894,7 +1898,7 @@
             // 
             this.PitcherWalks.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherWalks.ForeColor = System.Drawing.Color.White;
-            this.PitcherWalks.Location = new System.Drawing.Point(166, 121);
+            this.PitcherWalks.Location = new System.Drawing.Point(166, 136);
             this.PitcherWalks.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherWalks.Name = "PitcherWalks";
             this.PitcherWalks.Size = new System.Drawing.Size(65, 15);
@@ -1906,7 +1910,7 @@
             // 
             this.PitcherIP.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherIP.ForeColor = System.Drawing.Color.White;
-            this.PitcherIP.Location = new System.Drawing.Point(166, 106);
+            this.PitcherIP.Location = new System.Drawing.Point(166, 121);
             this.PitcherIP.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherIP.Name = "PitcherIP";
             this.PitcherIP.Size = new System.Drawing.Size(65, 15);
@@ -1918,7 +1922,7 @@
             // 
             this.PitcherERA.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PitcherERA.ForeColor = System.Drawing.Color.White;
-            this.PitcherERA.Location = new System.Drawing.Point(166, 91);
+            this.PitcherERA.Location = new System.Drawing.Point(166, 106);
             this.PitcherERA.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.PitcherERA.Name = "PitcherERA";
             this.PitcherERA.Size = new System.Drawing.Size(65, 15);
@@ -1943,7 +1947,7 @@
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label43.Location = new System.Drawing.Point(10, 181);
+            this.label43.Location = new System.Drawing.Point(10, 196);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(111, 15);
             this.label43.TabIndex = 9;
@@ -1954,7 +1958,7 @@
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label42.Location = new System.Drawing.Point(10, 166);
+            this.label42.Location = new System.Drawing.Point(10, 181);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(41, 15);
             this.label42.TabIndex = 8;
@@ -1965,7 +1969,7 @@
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label41.Location = new System.Drawing.Point(10, 151);
+            this.label41.Location = new System.Drawing.Point(10, 166);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(86, 15);
             this.label41.TabIndex = 7;
@@ -1976,7 +1980,7 @@
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label40.Location = new System.Drawing.Point(10, 136);
+            this.label40.Location = new System.Drawing.Point(10, 151);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(87, 15);
             this.label40.TabIndex = 6;
@@ -1987,7 +1991,7 @@
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label39.Location = new System.Drawing.Point(10, 121);
+            this.label39.Location = new System.Drawing.Point(10, 136);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(55, 15);
             this.label39.TabIndex = 5;
@@ -1998,7 +2002,7 @@
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label38.Location = new System.Drawing.Point(10, 106);
+            this.label38.Location = new System.Drawing.Point(10, 121);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(63, 15);
             this.label38.TabIndex = 4;
@@ -2009,21 +2013,21 @@
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label35.Location = new System.Drawing.Point(10, 91);
+            this.label35.Location = new System.Drawing.Point(10, 106);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(32, 15);
             this.label35.TabIndex = 3;
             this.label35.Text = "ERA";
             // 
-            // label37
+            // labelGames
             // 
-            this.label37.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.label37.Location = new System.Drawing.Point(10, 61);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(57, 15);
-            this.label37.TabIndex = 2;
-            this.label37.Text = "GAMES";
+            this.labelGames.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGames.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.labelGames.Location = new System.Drawing.Point(10, 61);
+            this.labelGames.Name = "labelGames";
+            this.labelGames.Size = new System.Drawing.Size(57, 15);
+            this.labelGames.TabIndex = 2;
+            this.labelGames.Text = "GAMES";
             // 
             // PitchingTeamColor
             // 
@@ -2059,10 +2063,10 @@
             // PitcherPhoto
             // 
             this.PitcherPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PitcherPhoto.Location = new System.Drawing.Point(1041, 167);
+            this.PitcherPhoto.Location = new System.Drawing.Point(1033, 167);
             this.PitcherPhoto.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PitcherPhoto.Name = "PitcherPhoto";
-            this.PitcherPhoto.Size = new System.Drawing.Size(138, 204);
+            this.PitcherPhoto.Size = new System.Drawing.Size(146, 219);
             this.PitcherPhoto.TabIndex = 49;
             // 
             // panel2Base
@@ -2285,9 +2289,9 @@
             this.btnShowAvailablePitchers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowAvailablePitchers.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowAvailablePitchers.ForeColor = System.Drawing.Color.White;
-            this.btnShowAvailablePitchers.Location = new System.Drawing.Point(1041, 371);
+            this.btnShowAvailablePitchers.Location = new System.Drawing.Point(1033, 386);
             this.btnShowAvailablePitchers.Name = "btnShowAvailablePitchers";
-            this.btnShowAvailablePitchers.Size = new System.Drawing.Size(372, 35);
+            this.btnShowAvailablePitchers.Size = new System.Drawing.Size(380, 35);
             this.btnShowAvailablePitchers.TabIndex = 57;
             this.btnShowAvailablePitchers.Text = "CHANGE PITCHER";
             this.btnShowAvailablePitchers.UseVisualStyleBackColor = true;
@@ -2370,6 +2374,29 @@
             this.btnTeamStats.Text = "TEAM STATS";
             this.btnTeamStats.UseVisualStyleBackColor = false;
             this.btnTeamStats.Click += new System.EventHandler(this.btnTeamStats_Click);
+            // 
+            // PitcherGS
+            // 
+            this.PitcherGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherGS.ForeColor = System.Drawing.Color.White;
+            this.PitcherGS.Location = new System.Drawing.Point(166, 76);
+            this.PitcherGS.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
+            this.PitcherGS.Name = "PitcherGS";
+            this.PitcherGS.Size = new System.Drawing.Size(65, 15);
+            this.PitcherGS.TabIndex = 29;
+            this.PitcherGS.Text = "0";
+            this.PitcherGS.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelGS
+            // 
+            this.labelGS.AutoSize = true;
+            this.labelGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.labelGS.Location = new System.Drawing.Point(10, 76);
+            this.labelGS.Name = "labelGS";
+            this.labelGS.Size = new System.Drawing.Size(116, 15);
+            this.labelGS.TabIndex = 28;
+            this.labelGS.Text = "GAMES STARTED";
             // 
             // MainForm
             // 
@@ -2584,7 +2611,7 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label labelGames;
         private System.Windows.Forms.Panel PitchingTeamColor;
         private System.Windows.Forms.Label PitcherName;
         private System.Windows.Forms.Panel PitchingTeam;
@@ -2622,7 +2649,9 @@
         private System.Windows.Forms.Panel panelLastAtBat;
         private System.Windows.Forms.Button btnTeamStats;
         private System.Windows.Forms.Label PitcherRecord;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label labelRecord;
+        private System.Windows.Forms.Label PitcherGS;
+        private System.Windows.Forms.Label labelGS;
     }
 }
 
