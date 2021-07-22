@@ -733,7 +733,7 @@ namespace VKR_Test
 
         private void btnBuntAttempt_Click(object sender, EventArgs e)
         {
-            Pitch pitch = new Pitch(newGameSituation, currentMatch.AwayTeam);
+            Pitch pitch = new Pitch(newGameSituation, currentMatch.AwayTeam, currentMatch.HomeTeam);
             AddnewGameSituation(pitch);
         }
 
@@ -748,7 +748,6 @@ namespace VKR_Test
                     lb_Runner2_Name.ForeColor = Color.DarkGoldenrod;
                 }
             }
-
         }
 
         private void lb_Runner2_Name_Click(object sender, EventArgs e)
@@ -810,19 +809,13 @@ namespace VKR_Test
 
         private void btnOtherResults_Click(object sender, EventArgs e)
         {
-            MatchResultsForm form = new MatchResultsForm(currentMatch.MatchDate, true, MatchResultsForm.TableType.Results);
+            ScheduleAndResultsForm form = new ScheduleAndResultsForm(currentMatch);
             form.ShowDialog();
         }
 
         private void btnPlayerStats_Click(object sender, EventArgs e)
         {
             PlayerStatsForm form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players);
-            form.ShowDialog();
-        }
-
-        private void btnSeriesHistory_Click(object sender, EventArgs e)
-        {
-            MatchResultsForm form = new MatchResultsForm(currentMatch.HomeTeam, currentMatch.AwayTeam);
             form.ShowDialog();
         }
 

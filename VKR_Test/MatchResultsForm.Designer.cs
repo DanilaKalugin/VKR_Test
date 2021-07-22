@@ -92,7 +92,7 @@ namespace VKR_Test
             this.dgvMatches.ReadOnly = true;
             this.dgvMatches.RowHeadersVisible = false;
             this.dgvMatches.RowTemplate.Height = 50;
-            this.dgvMatches.Size = new System.Drawing.Size(994, 453);
+            this.dgvMatches.Size = new System.Drawing.Size(994, 503);
             this.dgvMatches.TabIndex = 0;
             // 
             // Column3
@@ -271,7 +271,7 @@ namespace VKR_Test
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(994, 550);
+            this.ClientSize = new System.Drawing.Size(994, 600);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbHeader);

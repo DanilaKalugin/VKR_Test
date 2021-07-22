@@ -28,7 +28,6 @@ namespace VKR_Test
             List<string> teamsInComboBox = teams.Select(team => team.TeamTitle).ToList();
             cbTeam.DataSource = teamsInComboBox;
             panel2.Visible = false;
-
         }
 
         public MatchResultsForm(DateTime dateTime, bool IsCurrentDayResults, TableType _tableType)
@@ -43,13 +42,41 @@ namespace VKR_Test
             panel2.Visible = !IsCurrentDayResults;
         }
 
-        public MatchResultsForm(Team homeTeam, Team AwayTeam)
+        public MatchResultsForm(Team homeTeam, Team AwayTeam, TableType _tableType)
         {
             InitializeComponent();
+            tableType = _tableType;
             matchBL = new MatchBL();
             teamsBL = new TeamsBL();
-            matches = matchBL.GetResultsForallMatches().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
-                                                                       (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).ToList();
+            if (tableType == TableType.Results)
+            {
+                matches = matchBL.GetResultsForallMatches().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
+                                                                           (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).ToList();
+            }
+            else
+            {
+                matches = matchBL.GetSchedule().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
+                                                                           (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).ToList();
+            }
+            FillResultsTable(dgvMatches, matches);
+            panel1.Visible = false;
+            panel2.Visible = false;
+        }
+
+        public MatchResultsForm(Team team1, TableType _tableType)
+        {
+            InitializeComponent();
+            tableType = _tableType;
+            matchBL = new MatchBL();
+            teamsBL = new TeamsBL();
+            if (tableType == TableType.Results)
+            {
+                matches = matchBL.GetResultsForallMatches().Where(match => match.AwayTeamAbbreviation == team1.TeamAbbreviation || match.HomeTeamAbbreviation == team1.TeamAbbreviation).OrderByDescending(match => match.MatchDate).Take(10).ToList();
+            }
+            else
+            {
+                matches = matchBL.GetSchedule().Where(match => match.AwayTeamAbbreviation == team1.TeamAbbreviation || match.HomeTeamAbbreviation == team1.TeamAbbreviation).OrderBy(match => match.MatchDate).Take(10).ToList();
+            }
             FillResultsTable(dgvMatches, matches);
             panel1.Visible = false;
             panel2.Visible = false;

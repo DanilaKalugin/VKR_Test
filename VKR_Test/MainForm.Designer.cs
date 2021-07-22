@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label36;
             System.Windows.Forms.Panel panel27;
             System.Windows.Forms.Label label24;
@@ -149,7 +148,6 @@
             this.homeNextNumber1 = new System.Windows.Forms.Label();
             this.homeTeamNextBatters = new System.Windows.Forms.Panel();
             this.home_DueUP = new System.Windows.Forms.Label();
-            this.btnSeriesHistory = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.panelCurrentPitcher = new System.Windows.Forms.Panel();
@@ -206,7 +204,6 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.label27 = new System.Windows.Forms.Label();
             this.panelLastAtBat = new System.Windows.Forms.Panel();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnTeamStats = new System.Windows.Forms.Button();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
@@ -243,7 +240,6 @@
             this.panel3Base.SuspendLayout();
             this.panel36.SuspendLayout();
             this.panelLastAtBat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label36
@@ -318,10 +314,10 @@
             // 
             this.BatterStats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BatterStats.ForeColor = System.Drawing.Color.White;
-            this.BatterStats.Location = new System.Drawing.Point(168, 5);
+            this.BatterStats.Location = new System.Drawing.Point(163, 5);
             this.BatterStats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.BatterStats.Name = "BatterStats";
-            this.BatterStats.Size = new System.Drawing.Size(81, 20);
+            this.BatterStats.Size = new System.Drawing.Size(86, 20);
             this.BatterStats.TabIndex = 4;
             this.BatterStats.Text = "0";
             this.BatterStats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -370,6 +366,7 @@
             this.btnNewPitch.Name = "btnNewPitch";
             this.btnNewPitch.Size = new System.Drawing.Size(300, 35);
             this.btnNewPitch.TabIndex = 0;
+            this.btnNewPitch.TabStop = false;
             this.btnNewPitch.Text = "NEXT PITCH";
             this.btnNewPitch.UseVisualStyleBackColor = false;
             this.btnNewPitch.Click += new System.EventHandler(this.button1_Click);
@@ -1257,7 +1254,6 @@
             // 
             this.panelScoreBoard.Controls.Add(this.panel18);
             this.panelScoreBoard.Controls.Add(this.panel16);
-            this.panelScoreBoard.Controls.Add(this.btnSeriesHistory);
             this.panelScoreBoard.Controls.Add(this.label23);
             this.panelScoreBoard.Controls.Add(this.label22);
             this.panelScoreBoard.Controls.Add(this.label18);
@@ -1341,10 +1337,10 @@
             // 
             this.AwayNext3Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AwayNext3Stats.ForeColor = System.Drawing.Color.White;
-            this.AwayNext3Stats.Location = new System.Drawing.Point(175, 5);
+            this.AwayNext3Stats.Location = new System.Drawing.Point(170, 5);
             this.AwayNext3Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.AwayNext3Stats.Name = "AwayNext3Stats";
-            this.AwayNext3Stats.Size = new System.Drawing.Size(81, 20);
+            this.AwayNext3Stats.Size = new System.Drawing.Size(86, 20);
             this.AwayNext3Stats.TabIndex = 6;
             this.AwayNext3Stats.Text = "0";
             this.AwayNext3Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1387,10 +1383,10 @@
             // 
             this.AwayNext2Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AwayNext2Stats.ForeColor = System.Drawing.Color.White;
-            this.AwayNext2Stats.Location = new System.Drawing.Point(175, 5);
+            this.AwayNext2Stats.Location = new System.Drawing.Point(170, 5);
             this.AwayNext2Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.AwayNext2Stats.Name = "AwayNext2Stats";
-            this.AwayNext2Stats.Size = new System.Drawing.Size(81, 20);
+            this.AwayNext2Stats.Size = new System.Drawing.Size(86, 20);
             this.AwayNext2Stats.TabIndex = 6;
             this.AwayNext2Stats.Text = "0";
             this.AwayNext2Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1434,10 +1430,10 @@
             // 
             this.AwayNext1Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AwayNext1Stats.ForeColor = System.Drawing.Color.White;
-            this.AwayNext1Stats.Location = new System.Drawing.Point(175, 5);
+            this.AwayNext1Stats.Location = new System.Drawing.Point(170, 5);
             this.AwayNext1Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.AwayNext1Stats.Name = "AwayNext1Stats";
-            this.AwayNext1Stats.Size = new System.Drawing.Size(81, 20);
+            this.AwayNext1Stats.Size = new System.Drawing.Size(86, 20);
             this.AwayNext1Stats.TabIndex = 5;
             this.AwayNext1Stats.Text = "0";
             this.AwayNext1Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1524,10 +1520,10 @@
             // 
             this.HomeNext3Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HomeNext3Stats.ForeColor = System.Drawing.Color.White;
-            this.HomeNext3Stats.Location = new System.Drawing.Point(175, 5);
+            this.HomeNext3Stats.Location = new System.Drawing.Point(170, 5);
             this.HomeNext3Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.HomeNext3Stats.Name = "HomeNext3Stats";
-            this.HomeNext3Stats.Size = new System.Drawing.Size(81, 20);
+            this.HomeNext3Stats.Size = new System.Drawing.Size(86, 20);
             this.HomeNext3Stats.TabIndex = 8;
             this.HomeNext3Stats.Text = "0";
             this.HomeNext3Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1570,10 +1566,10 @@
             // 
             this.HomeNext2Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HomeNext2Stats.ForeColor = System.Drawing.Color.White;
-            this.HomeNext2Stats.Location = new System.Drawing.Point(175, 5);
+            this.HomeNext2Stats.Location = new System.Drawing.Point(170, 5);
             this.HomeNext2Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.HomeNext2Stats.Name = "HomeNext2Stats";
-            this.HomeNext2Stats.Size = new System.Drawing.Size(81, 20);
+            this.HomeNext2Stats.Size = new System.Drawing.Size(86, 20);
             this.HomeNext2Stats.TabIndex = 8;
             this.HomeNext2Stats.Text = "0";
             this.HomeNext2Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1619,10 +1615,10 @@
             // 
             this.HomeNext1Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HomeNext1Stats.ForeColor = System.Drawing.Color.White;
-            this.HomeNext1Stats.Location = new System.Drawing.Point(175, 5);
+            this.HomeNext1Stats.Location = new System.Drawing.Point(170, 5);
             this.HomeNext1Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.HomeNext1Stats.Name = "HomeNext1Stats";
-            this.HomeNext1Stats.Size = new System.Drawing.Size(81, 20);
+            this.HomeNext1Stats.Size = new System.Drawing.Size(86, 20);
             this.HomeNext1Stats.TabIndex = 7;
             this.HomeNext1Stats.Text = "0";
             this.HomeNext1Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1695,20 +1691,6 @@
             this.home_DueUP.Text = "label32";
             this.home_DueUP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.home_DueUP.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
-            // 
-            // btnSeriesHistory
-            // 
-            this.btnSeriesHistory.BackColor = System.Drawing.Color.LightGray;
-            this.btnSeriesHistory.FlatAppearance.BorderSize = 0;
-            this.btnSeriesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeriesHistory.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeriesHistory.Location = new System.Drawing.Point(64, 9);
-            this.btnSeriesHistory.Name = "btnSeriesHistory";
-            this.btnSeriesHistory.Size = new System.Drawing.Size(323, 40);
-            this.btnSeriesHistory.TabIndex = 61;
-            this.btnSeriesHistory.Text = "SERIES HISTORY";
-            this.btnSeriesHistory.UseVisualStyleBackColor = false;
-            this.btnSeriesHistory.Click += new System.EventHandler(this.btnSeriesHistory_Click);
             // 
             // label23
             // 
@@ -2278,6 +2260,7 @@
             this.btnBuntAttempt.Name = "btnBuntAttempt";
             this.btnBuntAttempt.Size = new System.Drawing.Size(250, 35);
             this.btnBuntAttempt.TabIndex = 55;
+            this.btnBuntAttempt.TabStop = false;
             this.btnBuntAttempt.Text = "BUNT ATTEMPT";
             this.btnBuntAttempt.UseVisualStyleBackColor = false;
             this.btnBuntAttempt.Click += new System.EventHandler(this.btnBuntAttempt_Click);
@@ -2322,7 +2305,7 @@
             this.btnOtherResults.Name = "btnOtherResults";
             this.btnOtherResults.Size = new System.Drawing.Size(300, 35);
             this.btnOtherResults.TabIndex = 59;
-            this.btnOtherResults.Text = "OTHER RESULTS";
+            this.btnOtherResults.Text = "SCHEDULE AND RESULTS";
             this.btnOtherResults.UseVisualStyleBackColor = false;
             this.btnOtherResults.Click += new System.EventHandler(this.btnOtherResults_Click);
             // 
@@ -2373,10 +2356,6 @@
             this.panelLastAtBat.Size = new System.Drawing.Size(770, 31);
             this.panelLastAtBat.TabIndex = 63;
             this.panelLastAtBat.Visible = false;
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
             // 
             // btnTeamStats
             // 
@@ -2465,7 +2444,6 @@
             this.panel3Base.ResumeLayout(false);
             this.panel36.ResumeLayout(false);
             this.panelLastAtBat.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2635,7 +2613,6 @@
         private System.Windows.Forms.Button btnShowAvailablePitchers;
         private System.Windows.Forms.Button btnOtherResults;
         private System.Windows.Forms.Button btnPlayerStats;
-        private System.Windows.Forms.Button btnSeriesHistory;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btnChangeBatter;
@@ -2643,7 +2620,6 @@
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Panel panelLastAtBat;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnTeamStats;
         private System.Windows.Forms.Label PitcherRecord;
         private System.Windows.Forms.Label label28;
