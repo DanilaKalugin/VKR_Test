@@ -21,5 +21,10 @@ namespace VKR_Test
         {
             Application.Exit();
         }
+
+        private void ServerNotFoundForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

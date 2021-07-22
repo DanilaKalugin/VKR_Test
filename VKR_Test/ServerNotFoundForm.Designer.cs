@@ -117,6 +117,7 @@ namespace VKR_Test
             this.MinimizeBox = false;
             this.Name = "ServerNotFoundForm";
             this.Text = "Server not found";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerNotFoundForm_FormClosing);
             this.ResumeLayout(false);
 
         }
