@@ -120,11 +120,13 @@ namespace Entities
             }
         }
 
-
+        /// <summary>
+        /// Full Batting stats
+        /// </summary>
         public Batter(int _id, string _FirstName, string _secondName, int _Number, int _games,
                       int _singles, int _doubles, int _triples, int _hr, int _sf, int _sac,
                       int _rbi, int _hbp, int _sb, int _cs, int _runs, int _bb, int _k, int _go,
-                      int _ao, int _po, int _pa, int _gidp, int _tgp, string _b, string _t, string team)
+                      int _ao, int _po, int _pa, int _gidp, int _tgp, string _b, string _t, string team, bool _InActiveRoster)
         {
             id = _id;
             FirstName = _FirstName;
@@ -153,6 +155,7 @@ namespace Entities
             Team = team;
             BattingHand = _b;
             Pitchinghand = _t;
+            InActiveRoster = _InActiveRoster;
         }
 
         public Batter(int _id, string _firstName, string _secondName, int _Number, int _games, int _singles, int _doubles,
@@ -183,6 +186,39 @@ namespace Entities
             Groundouts = _go;
             Flyouts = _ao;
             Poputs = _po;
+            BattingHand = _b;
+            Pitchinghand = _t;
+        }
+        
+        public Batter(int _id, string _FirstName, string _secondName, int _Number, int _games,
+                      int _singles, int _doubles, int _triples, int _hr, int _sf, int _sac,
+                      int _rbi, int _hbp, int _sb, int _cs, int _runs, int _bb, int _k, int _go,
+                      int _ao, int _po, int _pa, int _gidp, int _tgp, string _b, string _t)
+        {
+            id = _id;
+            FirstName = _FirstName;
+            SecondName = _secondName;
+            PlayerNumber = _Number;
+            Games = _games;
+            Singles = _singles;
+            Doubles = _doubles;
+            Triples = _triples;
+            HomeRuns = _hr;
+            SacrificeFlies = _sf;
+            SacrificeBunts = _sac;
+            RBI = _rbi;
+            HitByPitch = _hbp;
+            StolenBases = _sb;
+            CaughtStealing = _cs;
+            Runs = _runs;
+            Walks = _bb;
+            Strikeouts = _k;
+            Groundouts = _go;
+            Flyouts = _ao;
+            Poputs = _po;
+            PA = _pa;
+            DoublePlay = _gidp;
+            TGP = _tgp;
             BattingHand = _b;
             Pitchinghand = _t;
         }

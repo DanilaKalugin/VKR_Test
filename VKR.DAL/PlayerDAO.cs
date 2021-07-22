@@ -52,10 +52,11 @@ namespace VKR.DAL
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
                         string team = (string)reader["TeamID"];
+                        int InActiveRoster = (int)reader["InActiveRoster"];
                         yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple,
                                                 HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
                                                 Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP,
-                                                Batting, Pitching, team);
+                                                Batting, Pitching, team, InActiveRoster > 0);
                     }
                 }
             }
@@ -79,6 +80,7 @@ namespace VKR.DAL
                         string SecondName = (string)reader["PlayerSecondName"];
                         int number = (int)reader["PlayerNumber"];
                         int Games = (int)reader["G"];
+                        int GamesStarted = (int)reader["GS"];
                         int Strikeouts = (int)reader["K"];
                         int Outs = (int)reader["Outs"];
                         int Runs = (int)reader["R"];
@@ -106,11 +108,11 @@ namespace VKR.DAL
                         int Holds = (int)reader["HLD"];
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs,
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GamesStarted, Strikeouts, Outs,
                                                  Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced,
                                                  QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds,
                                                  HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, TGP,
-                                                 Groundout, Flyout, "", Batting, Pitching);
+                                                 Groundout, Flyout, Batting, Pitching);
                     }
                 }
             }
@@ -158,7 +160,7 @@ namespace VKR.DAL
                         yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple,
                                                 HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
                                                 Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP,
-                                                Batting, Pitching, "");
+                                                Batting, Pitching);
                     }
                 }
             }
@@ -180,6 +182,7 @@ namespace VKR.DAL
                         string SecondName = (string)reader["PlayerSecondName"];
                         int number = (int)reader["PlayerNumber"];
                         int Games = (int)reader["G"];
+                        int GS = (int)reader["GS"];
                         int Strikeouts = (int)reader["K"];
                         int Outs = (int)reader["Outs"];
                         int Runs = (int)reader["R"];
@@ -208,11 +211,12 @@ namespace VKR.DAL
                         int Holds = (int)reader["HLD"];
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs,
+                        int InActiveRoster = (int)reader["InActiveRoster"];
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GS, Strikeouts, Outs,
                                                  Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced,
                                                  QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds,
                                                  HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, TGP,
-                                                 Groundout, Flyout, team, Batting, Pitching);
+                                                 Groundout, Flyout, team, Batting, Pitching, InActiveRoster > 0);
                     }
                 }
             }

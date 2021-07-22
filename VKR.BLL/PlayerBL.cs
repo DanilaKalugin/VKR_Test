@@ -45,6 +45,10 @@ namespace VKR.BLL
             {
                 batters = batters.Where(player => (double)player.PA / player.TGP >= 3.1 && player.Team != "").ToList();
             }
+            else if (Qualifying == "Active Players")
+            {
+                batters = batters.Where(player => player.InActiveRoster).ToList();
+            }
             else if (Qualifying == "Active and Reserve Players")
             {
                 batters = batters.Where(player => player.Team != "").ToList();
@@ -78,7 +82,19 @@ namespace VKR.BLL
             pitchers = pitchers.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
             if (Qualifying == "Qualified Players")
             {
-                pitchers = pitchers.Where(player => player.IP / player.TGP >= 1.1).ToList();
+                pitchers = pitchers.Where(player => player.IP / player.TGP >= 1.1 && player.Team != "").ToList();
+            }
+            else if (Qualifying == "Active Players")
+            {
+                pitchers = pitchers.Where(player => player.InActiveRoster).ToList();
+            }
+            else if (Qualifying == "Active and Reserve Players")
+            {
+                pitchers = pitchers.Where(player => player.Team != "").ToList();
+            }
+            else if (Qualifying == "Free Agents")
+            {
+                pitchers = pitchers.Where(player => player.Team == "").ToList();
             }
             return pitchers;
         }

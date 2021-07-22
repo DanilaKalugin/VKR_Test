@@ -195,6 +195,7 @@ namespace VKR.DAL
                         string SecondName = (string)reader["PlayerSecondName"];
                         int number = (int)reader["PlayerNumber"];
                         int Games = (int)reader["G"];
+                        int GamesStarted = (int)reader["GS"];
                         int Strikeouts = (int)reader["K"];
                         int Outs = (int)reader["Outs"];
                         int Runs = (int)reader["R"];
@@ -218,7 +219,7 @@ namespace VKR.DAL
                         int Holds = (int)reader["HLD"];
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Pitcher(_id, FirstName, SecondName, number, Games, Strikeouts, Outs, 
+                        yield return new Pitcher(_id, FirstName, SecondName, number, Games, GamesStarted, Strikeouts, Outs, 
                                                  Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
                                                  QualityStarts, Shutouts, CompleteGames, Wins, Losses, Holds, Saves, 
                                                  HitByPitch, Single, Double, Triple, HomeRun, Runs, Batting, Pitching);
@@ -294,6 +295,7 @@ namespace VKR.DAL
                         string SecondName = (string)reader["PlayerSecondName"];
                         int number = (int)reader["PlayerNumber"];
                         int Games = (int)reader["G"];
+                        int GS = (int)reader["GS"];
                         int Strikeouts = (int)reader["K"];
                         int Outs = (int)reader["Outs"];
                         int Runs = (int)reader["R"];
@@ -318,7 +320,7 @@ namespace VKR.DAL
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
                         int PositionInLineup = (int)reader["PlayerPositionInLineup"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, 
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GS, Strikeouts, Outs, 
                                                  Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
                                                  QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
                                                  HitByPitch, Single, Double, Triple, HomeRun, Runs, PositionInLineup, 
@@ -345,6 +347,7 @@ namespace VKR.DAL
                         string SecondName = (string)reader["PlayerSecondName"];
                         int number = (int)reader["PlayerNumber"];
                         int Games = (int)reader["G"];
+                        int GS = (int)reader["GS"];
                         int Strikeouts = (int)reader["K"];
                         int Outs = (int)reader["Outs"];
                         int Runs = (int)reader["R"];
@@ -368,7 +371,7 @@ namespace VKR.DAL
                         int Holds = (int)reader["HLD"];
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, 
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GS, Strikeouts, Outs, 
                                                  Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
                                                  QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
                                                  HitByPitch, Single, Double, Triple, HomeRun, Runs, Batting, Pitching);
@@ -443,6 +446,7 @@ namespace VKR.DAL
                         string SecondName = (string)reader["PlayerSecondName"];
                         int number = (int)reader["PlayerNumber"];
                         int Games = (int)reader["G"];
+                        int GamesStarted = (int)reader["GS"];
                         int Strikeouts = (int)reader["K"];
                         int Outs = (int)reader["Outs"];
                         int Runs = (int)reader["R"];
@@ -466,7 +470,7 @@ namespace VKR.DAL
                         int Holds = (int)reader["HLD"];
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, Strikeouts, Outs, 
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GamesStarted, Strikeouts, Outs, 
                                                  Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
                                                  QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
                                                  HitByPitch, Single, Double, Triple, HomeRun, Runs, Batting, Pitching);

@@ -10,5 +10,6 @@ namespace Entities
         public int Games;
         public string BattingHand;
         public string Pitchinghand;
+        public bool InActiveRoster;
     }
 }

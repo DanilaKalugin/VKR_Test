@@ -61,7 +61,7 @@ namespace VKR_Test
         {
             if (e.ColumnIndex > 2)
             {
-                sortModes[0][e.ColumnIndex - 3] = sortModes[0][e.ColumnIndex - 3] == SortMode.Ascending ? SortMode.Descending : SortMode.Ascending;
+                sortModes[0][e.ColumnIndex - 3] = (sortModes[0][e.ColumnIndex - 3] == SortMode.Descending && lastBattingSort == e.ColumnIndex - 3) ? SortMode.Ascending : SortMode.Descending;
                 lastBattingSort = e.ColumnIndex - 3;
             }
             GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
@@ -71,7 +71,14 @@ namespace VKR_Test
         {
             if (e.ColumnIndex > 2)
             {
-                sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] = sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Ascending ? SortMode.Descending : SortMode.Ascending;
+                if (e.ColumnIndex == 8 || e.ColumnIndex == 12 || e.ColumnIndex == 15)
+                {
+                    sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] = (sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Ascending && lastBattingSort == dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3) ? SortMode.Descending : SortMode.Ascending;
+                }
+                else
+                {
+                    sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] = (sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Descending && lastBattingSort == dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3) ? SortMode.Ascending : SortMode.Descending;
+                }
                 lastBattingSort = dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3;
             }
             GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
@@ -534,7 +541,21 @@ namespace VKR_Test
                     }
                 case 4:
                     {
-                        if (sortModes[1][4] == SortMode.Descending)
+                        if (sortModes[1][3] == SortMode.Descending)
+                        {
+                            pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.GamesStarted);
+                            teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.TGP);
+                        }
+                        else
+                        {
+                            pitchers = playersBL.GetSortedPitchersStats(pitchers, batter => batter.GamesStarted);
+                            teamPitchingStats = teamsBL.GetSortedTeamStats(teamPitchingStats, team => team.TGP);
+                        }
+                        break;
+                    }
+                case 5:
+                    {
+                        if (sortModes[1][5] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.CompleteGames);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.CompleteGames);
@@ -546,9 +567,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 5:
+                case 6:
                     {
-                        if (sortModes[1][5] == SortMode.Descending)
+                        if (sortModes[1][6] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.Shutouts);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.Shutouts);
@@ -560,9 +581,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 6:
+                case 7:
                     {
-                        if (sortModes[1][6] == SortMode.Descending)
+                        if (sortModes[1][7] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.Saves);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.Saves);
@@ -574,9 +595,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 7:
+                case 8:
                     {
-                        if (sortModes[1][7] == SortMode.Descending)
+                        if (sortModes[1][8] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.IP);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.IP);
@@ -588,9 +609,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 8:
+                case 9:
                     {
-                        if (sortModes[1][8] == SortMode.Descending)
+                        if (sortModes[1][9] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.HitsAllowed);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.HitsAllowed);
@@ -602,9 +623,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 9:
+                case 10:
                     {
-                        if (sortModes[1][9] == SortMode.Descending)
+                        if (sortModes[1][10] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.RunsAllowed);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.RunsAllowed);
@@ -616,9 +637,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 10:
+                case 11:
                     {
-                        if (sortModes[1][10] == SortMode.Descending)
+                        if (sortModes[1][11] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.HomeRunsAllowed);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.HomeRunsAllowed);
@@ -630,9 +651,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 11:
+                case 12:
                     {
-                        if (sortModes[1][11] == SortMode.Descending)
+                        if (sortModes[1][12] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.HitByPitch);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.HitByPitch);
@@ -644,9 +665,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 12:
+                case 13:
                     {
-                        if (sortModes[1][12] == SortMode.Descending)
+                        if (sortModes[1][13] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.WalksAllowed);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.WalksAllowed);
@@ -658,9 +679,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 13:
+                case 14:
                     {
-                        if (sortModes[1][13] == SortMode.Descending)
+                        if (sortModes[1][14] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.Strikeouts);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.Strikeouts);
@@ -672,9 +693,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 14:
+                case 15:
                     {
-                        if (sortModes[1][14] == SortMode.Descending)
+                        if (sortModes[1][15] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.WHIP);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.WHIP);
@@ -686,9 +707,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 15:
+                case 16:
                     {
-                        if (sortModes[1][15] == SortMode.Descending)
+                        if (sortModes[1][16] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.BAA);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.BAA);
@@ -700,9 +721,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 16:
+                case 17:
                     {
-                        if (sortModes[1][16] == SortMode.Descending)
+                        if (sortModes[1][17] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.TotalBattersFaced);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.TotalBattersFaced);
@@ -714,9 +735,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 17:
+                case 18:
                     {
-                        if (sortModes[1][17] == SortMode.Descending)
+                        if (sortModes[1][18] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.QualityStarts);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.QualityStarts);
@@ -728,9 +749,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 18:
+                case 19:
                     {
-                        if (sortModes[1][18] == SortMode.Descending)
+                        if (sortModes[1][19] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.Holds);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.Holds);
@@ -742,9 +763,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 19:
+                case 20:
                     {
-                        if (sortModes[1][19] == SortMode.Descending)
+                        if (sortModes[1][20] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.DoublePlays);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.DoublePlays);
@@ -756,9 +777,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 20:
+                case 21:
                     {
-                        if (sortModes[1][20] == SortMode.Descending)
+                        if (sortModes[1][21] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.GOtoAO);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.GOtoAO);
@@ -770,9 +791,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 21:
+                case 22:
                     {
-                        if (sortModes[1][21] == SortMode.Descending)
+                        if (sortModes[1][22] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.KperNineInnings);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.KperNineInnings);
@@ -784,9 +805,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 22:
+                case 23:
                     {
-                        if (sortModes[1][22] == SortMode.Descending)
+                        if (sortModes[1][23] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.BBperNineInnings);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.BBperNineInnings);
@@ -798,9 +819,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 23:
+                case 24:
                     {
-                        if (sortModes[1][23] == SortMode.Descending)
+                        if (sortModes[1][24] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.KperBB);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.KperBB);
@@ -812,9 +833,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 24:
+                case 25:
                     {
-                        if (sortModes[1][24] == SortMode.Descending)
+                        if (sortModes[1][25] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.StolenBasesAllowed);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.StolenBasesAllowed);
@@ -826,9 +847,9 @@ namespace VKR_Test
                         }
                         break;
                     }
-                case 25:
+                case 26:
                     {
-                        if (sortModes[1][25] == SortMode.Descending)
+                        if (sortModes[1][26] == SortMode.Descending)
                         {
                             pitchers = playersBL.GetSortedPitchersStatsDesc(pitchers, batter => batter.CaughtStealing);
                             teamPitchingStats = teamsBL.GetSortedTeamStatsDesc(teamPitchingStats, team => team.CaughtStealing);
@@ -848,7 +869,7 @@ namespace VKR_Test
         {
             if (e.ColumnIndex > 2)
             {
-                sortModes[1][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] = (sortModes[1][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Ascending && lastPitchingSort == dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3) ? SortMode.Descending : SortMode.Ascending;
+                sortModes[1][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] = (sortModes[1][dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Descending && lastPitchingSort == dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3) ? SortMode.Ascending : SortMode.Descending;
                 lastPitchingSort = dataGridView3.ColumnCount - 3 + e.ColumnIndex - 3;
             }
             GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
@@ -952,6 +973,7 @@ namespace VKR_Test
                                             pitchers[i].Losses,
                                             pitchers[i].ERA.ToString("0.00", new CultureInfo("en-US")),
                                             pitchers[i].Games,
+                                            pitchers[i].GamesStarted,
                                             pitchers[i].CompleteGames,
                                             pitchers[i].Shutouts,
                                             pitchers[i].Saves,
@@ -1032,6 +1054,7 @@ namespace VKR_Test
                                             teamPitching[i].Wins,
                                             teamPitching[i].Losses,
                                             teamPitching[i].ERA.ToString("0.00", new CultureInfo("en-US")),
+                                            teamPitching[i].TGP,
                                             teamPitching[i].TGP,
                                             teamPitching[i].CompleteGames,
                                             teamPitching[i].Shutouts,
