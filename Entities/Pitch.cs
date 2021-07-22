@@ -33,6 +33,7 @@ namespace Entities
 
         private enum OtherCondition { SacFly, DoublePlay, NoOtherCondition };
         OtherCondition newPitch_OtherCondition;
+        OtherCondition newBunt_OtherConditions;
 
         public enum BuntResult { SuccessfulBunt, FoulOnBunt, SingleOnBunt, HitByPitch };
         BuntResult newBunt_result;
@@ -349,10 +350,9 @@ namespace Entities
 
             int numberOfPitches = match.Where(gameSituation => gameSituation.PitcherID == Defense.CurrentPitcher.id).Count();
             int StadiumCoefficient = stadium.stadiumDistanceToCenterfield - 400;
-            int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty);
+            int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty) * 2 + Convert.ToInt32(situation.RunnerOnThird.IsBaseNotEmpty) * 3;
             int PitcherCoefficient = GetPitcherCoeffitientForThisPitcher(Defense);
             int HandsCoefficient = CurrentBatter.BattingHand == Defense.CurrentPitcher.Pitchinghand || CurrentBatter.BattingHand == "Switch" ? 0 : 20;
-
 
             if (numberOfPitches > PitcherCoefficient)
             {
@@ -412,39 +412,62 @@ namespace Entities
         /// <summary>
         /// Bunt generator
         /// </summary>
-        public Pitch(GameSituation situation, Team AwayTeam)
+        public Pitch(GameSituation situation, Team AwayTeam, Team HomeTeam)
         {
             Team Offense = situation.offense;
+            Team Defense = situation.offense == AwayTeam ? HomeTeam : AwayTeam;
             int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
+            int CountOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty) * 2 + Convert.ToInt32(situation.RunnerOnThird.IsBaseNotEmpty) * 3;
 
             newBunt_result = BuntResult_Definition(Offense.SuccessfulBuntAttemptProbabilty, BatterNumberComponent);
-            pitchResult = pitchResult_Definition(newBunt_result);
+            newBunt_OtherConditions = OtherCondition_Definition(newBunt_result, situation, Defense.DoublePlayProbabilty, CountOfNotEmptyBases);
+            pitchResult = pitchResult_Definition(newBunt_result, newBunt_OtherConditions);
         }
 
-        private PitchResult pitchResult_Definition(BuntResult newBunt_result)
+        private OtherCondition OtherCondition_Definition(BuntResult newBunt_result, GameSituation situation, int DoublePlay_Probability, int CountOfNotEmptyBases)
         {
-            switch (newBunt_result)
+            int OtherCondition_RandomValue = OtherCondition_RandomGenerator.Next(1, 100);
+            if (newBunt_result == BuntResult.SuccessfulBunt && situation.RunnerOnFirst.IsBaseNotEmpty && situation.outs <= 1 && OtherCondition_RandomValue <= DoublePlay_Probability + CountOfNotEmptyBases)
             {
-                case BuntResult.FoulOnBunt:
-                    {
-                        return PitchResult.Strike;
-                    }
-                case BuntResult.SuccessfulBunt:
-                    {
-                        return PitchResult.SacrificeBunt;
-                    }
-                case BuntResult.SingleOnBunt:
-                    {
-                        return PitchResult.Single;
-                    }
-                case BuntResult.HitByPitch:
-                    {
-                        return PitchResult.HitByPitch;
-                    }
-                default:
-                    {
-                        return PitchResult.Null;
-                    }
+                return OtherCondition.DoublePlay;
+            }
+            else
+            {
+                return OtherCondition.NoOtherCondition;
+            }
+        }
+
+        private PitchResult pitchResult_Definition(BuntResult newBunt_result, OtherCondition otherCondition)
+        {
+            if (otherCondition == OtherCondition.NoOtherCondition)
+            {
+                switch (newBunt_result)
+                {
+                    case BuntResult.FoulOnBunt:
+                        {
+                            return PitchResult.Strike;
+                        }
+                    case BuntResult.SuccessfulBunt:
+                        {
+                            return PitchResult.SacrificeBunt;
+                        }
+                    case BuntResult.SingleOnBunt:
+                        {
+                            return PitchResult.Single;
+                        }
+                    case BuntResult.HitByPitch:
+                        {
+                            return PitchResult.HitByPitch;
+                        }
+                    default:
+                        {
+                            return PitchResult.Null;
+                        }
+                }
+            }
+            else
+            {
+                return PitchResult.DoublePlay;
             }
         }
 
