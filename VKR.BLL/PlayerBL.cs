@@ -176,6 +176,12 @@ namespace VKR.BLL
             return $"{PlayerByCode.FirstName[0]}. {PlayerByCode.SecondName}";
         }
 
+        public string GetFullPlayerNameByID(int code)
+        {
+            Player PlayerByCode = playerDAO.GetPlayerNameByID(code).First();
+            return $"{PlayerByCode.FullName}";
+        }
+
         public Batter GetBatterByCode(int code)
         {
             return playerDAO.GetBatterByCode(code).First();

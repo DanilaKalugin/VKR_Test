@@ -480,7 +480,15 @@ namespace VKR_Test
                 string LastAtBatOffense = currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Offense;
                 label27.BackColor = LastAtBatOffense == currentMatch.AwayTeam.TeamAbbreviation ? currentMatch.AwayTeam.TeamColorForThisMatch : currentMatch.HomeTeam.TeamColorForThisMatch;
                 panel15.BackgroundImage = Image.FromFile($"SmallTeamLogos/{LastAtBatOffense}.png");
-                label27.Text = playerBL.GetPlayerNameByID(currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Batter);
+
+                if (ClientSize.Width > 1920)
+                {
+                    label27.Text = playerBL.GetFullPlayerNameByID(currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Batter);
+                }
+                else
+                {
+                    label27.Text = playerBL.GetPlayerNameByID(currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Batter);
+                }
                 label44.Text = currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().ToString();
             }
 
@@ -897,6 +905,18 @@ namespace VKR_Test
         {
             PlayerStatsForm form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Teams);
             form.ShowDialog();
+        }
+
+        private void MainForm_ClientSizeChanged(object sender, EventArgs e)
+        {
+            panel1Base.Location = new Point(ClientSize.Width - 211, ClientSize.Height / 2 - 50);
+            RunnerOn1Photo.Location = new Point(ClientSize.Width - 278, ClientSize.Height / 2 - 50);
+
+            panel3Base.Location = new Point(79, ClientSize.Height / 2 - 50);
+            RunnerOn3Photo.Location = new Point(12, ClientSize.Height / 2 - 50);
+
+            RunnerOn2Photo.Location = new Point(ClientSize.Width / 2 - 132, 144);
+            panel2Base.Location = new Point(ClientSize.Width / 2 - 65, 144);
         }
     }
 }

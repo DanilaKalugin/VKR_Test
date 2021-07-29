@@ -151,6 +151,8 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.panelCurrentPitcher = new System.Windows.Forms.Panel();
+            this.PitcherGS = new System.Windows.Forms.Label();
+            this.labelGS = new System.Windows.Forms.Label();
             this.PitcherRecord = new System.Windows.Forms.Label();
             this.labelRecord = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -205,8 +207,6 @@
             this.label27 = new System.Windows.Forms.Label();
             this.panelLastAtBat = new System.Windows.Forms.Panel();
             this.btnTeamStats = new System.Windows.Forms.Button();
-            this.PitcherGS = new System.Windows.Forms.Label();
-            this.labelGS = new System.Windows.Forms.Label();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -258,6 +258,7 @@
             // 
             // panel27
             // 
+            panel27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             panel27.BackColor = System.Drawing.Color.Gray;
             panel27.Controls.Add(this.panelCurrentSituationPitcher);
             panel27.Controls.Add(this.panelCurrentSituationBatter);
@@ -350,6 +351,7 @@
             // 
             // label24
             // 
+            label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             label24.Font = new System.Drawing.Font("MicroFLF", 12F);
             label24.Location = new System.Drawing.Point(1179, 144);
             label24.Name = "label24";
@@ -360,6 +362,7 @@
             // 
             // btnNewPitch
             // 
+            this.btnNewPitch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNewPitch.BackColor = System.Drawing.Color.Gainsboro;
             this.btnNewPitch.FlatAppearance.BorderSize = 0;
             this.btnNewPitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -375,6 +378,7 @@
             // 
             // panelSmallScoreBoard
             // 
+            this.panelSmallScoreBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panelSmallScoreBoard.Controls.Add(this.panel5);
             this.panelSmallScoreBoard.Controls.Add(this.panel4);
             this.panelSmallScoreBoard.Controls.Add(this.panel3);
@@ -471,6 +475,7 @@
             // 
             // panelCurrentSituation
             // 
+            this.panelCurrentSituation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCurrentSituation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.panelCurrentSituation.Controls.Add(this.label5);
             this.panelCurrentSituation.Controls.Add(this.label4);
@@ -544,6 +549,8 @@
             // 
             // panelCurrentBatter
             // 
+            this.panelCurrentBatter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCurrentBatter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.panelCurrentBatter.Controls.Add(this.label14);
             this.panelCurrentBatter.Controls.Add(this.label15);
@@ -773,6 +780,8 @@
             // 
             // lbTodayStats
             // 
+            this.lbTodayStats.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTodayStats.BackColor = System.Drawing.Color.Black;
             this.lbTodayStats.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
@@ -785,6 +794,7 @@
             // 
             // pbCurrentBatterPhoto
             // 
+            this.pbCurrentBatterPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbCurrentBatterPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbCurrentBatterPhoto.Location = new System.Drawing.Point(198, 749);
             this.pbCurrentBatterPhoto.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -794,6 +804,7 @@
             // 
             // pbCurrentOffenseLogo
             // 
+            this.pbCurrentOffenseLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbCurrentOffenseLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbCurrentOffenseLogo.Location = new System.Drawing.Point(88, 889);
             this.pbCurrentOffenseLogo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
@@ -1304,9 +1315,10 @@
             // 
             // panel18
             // 
+            this.panel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel18.Controls.Add(this.panelNextAwayBatters);
             this.panel18.Controls.Add(this.AwayTeamNextBatters);
-            this.panel18.Location = new System.Drawing.Point(901, 0);
+            this.panel18.Location = new System.Drawing.Point(900, 0);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(260, 138);
             this.panel18.TabIndex = 1;
@@ -1487,6 +1499,7 @@
             // 
             // panel16
             // 
+            this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel16.Controls.Add(this.panelNextHomeBatters);
             this.panel16.Controls.Add(this.homeTeamNextBatters);
             this.panel16.Location = new System.Drawing.Point(1162, 0);
@@ -1720,6 +1733,7 @@
             // 
             // panelCurrentPitcher
             // 
+            this.panelCurrentPitcher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCurrentPitcher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.panelCurrentPitcher.Controls.Add(this.PitcherGS);
             this.panelCurrentPitcher.Controls.Add(this.labelGS);
@@ -1752,6 +1766,29 @@
             this.panelCurrentPitcher.Name = "panelCurrentPitcher";
             this.panelCurrentPitcher.Size = new System.Drawing.Size(234, 219);
             this.panelCurrentPitcher.TabIndex = 48;
+            // 
+            // PitcherGS
+            // 
+            this.PitcherGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherGS.ForeColor = System.Drawing.Color.White;
+            this.PitcherGS.Location = new System.Drawing.Point(166, 76);
+            this.PitcherGS.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
+            this.PitcherGS.Name = "PitcherGS";
+            this.PitcherGS.Size = new System.Drawing.Size(65, 15);
+            this.PitcherGS.TabIndex = 29;
+            this.PitcherGS.Text = "0";
+            this.PitcherGS.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelGS
+            // 
+            this.labelGS.AutoSize = true;
+            this.labelGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.labelGS.Location = new System.Drawing.Point(10, 76);
+            this.labelGS.Name = "labelGS";
+            this.labelGS.Size = new System.Drawing.Size(116, 15);
+            this.labelGS.TabIndex = 28;
+            this.labelGS.Text = "GAMES STARTED";
             // 
             // PitcherRecord
             // 
@@ -2062,6 +2099,7 @@
             // 
             // PitcherPhoto
             // 
+            this.PitcherPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PitcherPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PitcherPhoto.Location = new System.Drawing.Point(1033, 167);
             this.PitcherPhoto.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
@@ -2075,7 +2113,7 @@
             this.panel2Base.Controls.Add(this.panel31);
             this.panel2Base.Location = new System.Drawing.Point(643, 144);
             this.panel2Base.Name = "panel2Base";
-            this.panel2Base.Size = new System.Drawing.Size(196, 100);
+            this.panel2Base.Size = new System.Drawing.Size(197, 100);
             this.panel2Base.TabIndex = 50;
             this.panel2Base.Visible = false;
             // 
@@ -2088,7 +2126,7 @@
             this.lb_Runner2_Name.Location = new System.Drawing.Point(0, 23);
             this.lb_Runner2_Name.Name = "lb_Runner2_Name";
             this.lb_Runner2_Name.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.lb_Runner2_Name.Size = new System.Drawing.Size(196, 77);
+            this.lb_Runner2_Name.Size = new System.Drawing.Size(197, 77);
             this.lb_Runner2_Name.TabIndex = 2;
             this.lb_Runner2_Name.Text = "label32";
             this.lb_Runner2_Name.Click += new System.EventHandler(this.lb_Runner2_Name_Click);
@@ -2099,7 +2137,7 @@
             this.panel31.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel31.Location = new System.Drawing.Point(0, 0);
             this.panel31.Name = "panel31";
-            this.panel31.Size = new System.Drawing.Size(196, 23);
+            this.panel31.Size = new System.Drawing.Size(197, 23);
             this.panel31.TabIndex = 1;
             // 
             // lb2ndBase
@@ -2109,7 +2147,7 @@
             this.lb2ndBase.ForeColor = System.Drawing.Color.White;
             this.lb2ndBase.Location = new System.Drawing.Point(0, 0);
             this.lb2ndBase.Name = "lb2ndBase";
-            this.lb2ndBase.Size = new System.Drawing.Size(196, 23);
+            this.lb2ndBase.Size = new System.Drawing.Size(197, 23);
             this.lb2ndBase.TabIndex = 0;
             this.lb2ndBase.Text = "2ND BASE";
             this.lb2ndBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2127,10 +2165,10 @@
             // 
             this.panel1Base.Controls.Add(this.lb_Runner1_Name);
             this.panel1Base.Controls.Add(this.panel33);
-            this.panel1Base.Location = new System.Drawing.Point(1215, 505);
+            this.panel1Base.Location = new System.Drawing.Point(1214, 490);
             this.panel1Base.Margin = new System.Windows.Forms.Padding(0);
             this.panel1Base.Name = "panel1Base";
-            this.panel1Base.Size = new System.Drawing.Size(196, 100);
+            this.panel1Base.Size = new System.Drawing.Size(197, 100);
             this.panel1Base.TabIndex = 51;
             this.panel1Base.Visible = false;
             // 
@@ -2143,7 +2181,7 @@
             this.lb_Runner1_Name.Location = new System.Drawing.Point(0, 23);
             this.lb_Runner1_Name.Name = "lb_Runner1_Name";
             this.lb_Runner1_Name.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.lb_Runner1_Name.Size = new System.Drawing.Size(196, 77);
+            this.lb_Runner1_Name.Size = new System.Drawing.Size(197, 77);
             this.lb_Runner1_Name.TabIndex = 2;
             this.lb_Runner1_Name.Text = "label44";
             this.lb_Runner1_Name.Click += new System.EventHandler(this.lb_Runner1_Name_Click);
@@ -2154,7 +2192,7 @@
             this.panel33.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel33.Location = new System.Drawing.Point(0, 0);
             this.panel33.Name = "panel33";
-            this.panel33.Size = new System.Drawing.Size(196, 23);
+            this.panel33.Size = new System.Drawing.Size(197, 23);
             this.panel33.TabIndex = 1;
             // 
             // lb1stBase
@@ -2164,7 +2202,7 @@
             this.lb1stBase.ForeColor = System.Drawing.Color.White;
             this.lb1stBase.Location = new System.Drawing.Point(0, 0);
             this.lb1stBase.Name = "lb1stBase";
-            this.lb1stBase.Size = new System.Drawing.Size(196, 23);
+            this.lb1stBase.Size = new System.Drawing.Size(197, 23);
             this.lb1stBase.TabIndex = 1;
             this.lb1stBase.Text = "1ST BASE";
             this.lb1stBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2173,7 +2211,7 @@
             // RunnerOn1Photo
             // 
             this.RunnerOn1Photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RunnerOn1Photo.Location = new System.Drawing.Point(1148, 505);
+            this.RunnerOn1Photo.Location = new System.Drawing.Point(1147, 490);
             this.RunnerOn1Photo.Name = "RunnerOn1Photo";
             this.RunnerOn1Photo.Size = new System.Drawing.Size(67, 100);
             this.RunnerOn1Photo.TabIndex = 0;
@@ -2184,7 +2222,7 @@
             this.panel3Base.Controls.Add(this.panel36);
             this.panel3Base.Location = new System.Drawing.Point(79, 505);
             this.panel3Base.Name = "panel3Base";
-            this.panel3Base.Size = new System.Drawing.Size(196, 100);
+            this.panel3Base.Size = new System.Drawing.Size(197, 100);
             this.panel3Base.TabIndex = 52;
             this.panel3Base.Visible = false;
             // 
@@ -2197,7 +2235,7 @@
             this.lb_Runner3_Name.Location = new System.Drawing.Point(0, 23);
             this.lb_Runner3_Name.Name = "lb_Runner3_Name";
             this.lb_Runner3_Name.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.lb_Runner3_Name.Size = new System.Drawing.Size(196, 77);
+            this.lb_Runner3_Name.Size = new System.Drawing.Size(197, 77);
             this.lb_Runner3_Name.TabIndex = 2;
             this.lb_Runner3_Name.Text = "label45";
             // 
@@ -2207,7 +2245,7 @@
             this.panel36.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel36.Location = new System.Drawing.Point(0, 0);
             this.panel36.Name = "panel36";
-            this.panel36.Size = new System.Drawing.Size(196, 23);
+            this.panel36.Size = new System.Drawing.Size(197, 23);
             this.panel36.TabIndex = 1;
             // 
             // lb3rdBase
@@ -2217,7 +2255,7 @@
             this.lb3rdBase.ForeColor = System.Drawing.Color.White;
             this.lb3rdBase.Location = new System.Drawing.Point(0, 0);
             this.lb3rdBase.Name = "lb3rdBase";
-            this.lb3rdBase.Size = new System.Drawing.Size(196, 23);
+            this.lb3rdBase.Size = new System.Drawing.Size(197, 23);
             this.lb3rdBase.TabIndex = 1;
             this.lb3rdBase.Text = "3RD BASE";
             this.lb3rdBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2233,9 +2271,11 @@
             // 
             // label32
             // 
+            this.label32.Dock = System.Windows.Forms.DockStyle.Left;
             this.label32.Font = new System.Drawing.Font("MicroFLF", 12F);
             this.label32.Location = new System.Drawing.Point(0, 0);
             this.label32.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.label32.MaximumSize = new System.Drawing.Size(140, 31);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(124, 31);
             this.label32.TabIndex = 53;
@@ -2245,9 +2285,11 @@
             // 
             // label44
             // 
+            this.label44.Dock = System.Windows.Forms.DockStyle.Right;
             this.label44.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label44.ForeColor = System.Drawing.Color.White;
             this.label44.Location = new System.Drawing.Point(400, 0);
+            this.label44.MaximumSize = new System.Drawing.Size(400, 31);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(370, 31);
             this.label44.TabIndex = 54;
@@ -2256,6 +2298,7 @@
             // 
             // btnBuntAttempt
             // 
+            this.btnBuntAttempt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBuntAttempt.BackColor = System.Drawing.Color.Gainsboro;
             this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
             this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2285,6 +2328,7 @@
             // 
             // btnShowAvailablePitchers
             // 
+            this.btnShowAvailablePitchers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShowAvailablePitchers.FlatAppearance.BorderSize = 0;
             this.btnShowAvailablePitchers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowAvailablePitchers.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2330,19 +2374,22 @@
             // panel15
             // 
             this.panel15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel15.Location = new System.Drawing.Point(124, 0);
             this.panel15.Margin = new System.Windows.Forms.Padding(0, 3, 3, 1);
+            this.panel15.MaximumSize = new System.Drawing.Size(31, 31);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(31, 31);
             this.panel15.TabIndex = 61;
             // 
             // label27
             // 
+            this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label27.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Bold);
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(155, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(247, 31);
+            this.label27.Size = new System.Drawing.Size(245, 31);
             this.label27.TabIndex = 62;
             this.label27.Text = "00";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2350,6 +2397,8 @@
             // 
             // panelLastAtBat
             // 
+            this.panelLastAtBat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelLastAtBat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.panelLastAtBat.Controls.Add(this.label27);
             this.panelLastAtBat.Controls.Add(this.panel15);
@@ -2374,29 +2423,6 @@
             this.btnTeamStats.Text = "TEAM STATS";
             this.btnTeamStats.UseVisualStyleBackColor = false;
             this.btnTeamStats.Click += new System.EventHandler(this.btnTeamStats_Click);
-            // 
-            // PitcherGS
-            // 
-            this.PitcherGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PitcherGS.ForeColor = System.Drawing.Color.White;
-            this.PitcherGS.Location = new System.Drawing.Point(166, 76);
-            this.PitcherGS.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.PitcherGS.Name = "PitcherGS";
-            this.PitcherGS.Size = new System.Drawing.Size(65, 15);
-            this.PitcherGS.TabIndex = 29;
-            this.PitcherGS.Text = "0";
-            this.PitcherGS.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelGS
-            // 
-            this.labelGS.AutoSize = true;
-            this.labelGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.labelGS.Location = new System.Drawing.Point(10, 76);
-            this.labelGS.Name = "labelGS";
-            this.labelGS.Size = new System.Drawing.Size(116, 15);
-            this.labelGS.TabIndex = 28;
-            this.labelGS.Text = "GAMES STARTED";
             // 
             // MainForm
             // 
@@ -2430,13 +2456,13 @@
             this.Controls.Add(this.panelCurrentSituation);
             this.Controls.Add(this.panelLastAtBat);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1439, 1080);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.ClientSizeChanged += new System.EventHandler(this.MainForm_ClientSizeChanged);
             panel27.ResumeLayout(false);
             this.panelCurrentSituationPitcher.ResumeLayout(false);
             this.panelCurrentSituationBatter.ResumeLayout(false);
