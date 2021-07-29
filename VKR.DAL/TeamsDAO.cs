@@ -102,6 +102,7 @@ namespace VKR.DAL
                         int Single = (int)reader["SingleProbability"];
                         int Double = (int)reader["DoubleProbability"];
                         int HomeRun = (int)reader["HomeRunProbability"];
+                        int Triple = (int)reader["TripleProbability"];
                         int PopoutOnFoul = (int)reader["PopoutOnFoulProbability"];
                         int FlyoutOnHR = (int)reader["FlyoutOnHomerunProbability"];
                         int Groundout = (int)reader["GroundoutProbability"];
@@ -118,7 +119,7 @@ namespace VKR.DAL
                         teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
                                               Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
                                               FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, SuccesfullSB,
-                                              Bunt, stadium, DHRule, W, L, HBP, SB));
+                                              Bunt, stadium, DHRule, W, L, HBP, SB, Triple));
                     }
                 }
             }
@@ -155,6 +156,7 @@ namespace VKR.DAL
                         int Single = (int)reader["SingleProbability"];
                         int Double = (int)reader["DoubleProbability"];
                         int HomeRun = (int)reader["HomeRunProbability"];
+                        int Triple = (int)reader["TripleProbability"];
                         int PopoutOnFoul = (int)reader["PopoutOnFoulProbability"];
                         int FlyoutOnHR = (int)reader["FlyoutOnHomerunProbability"];
                         int Groundout = (int)reader["GroundoutProbability"];
@@ -171,7 +173,7 @@ namespace VKR.DAL
                         teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
                                               Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
                                               FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, StealingBase,
-                                              Bunt, stadium, DHRule, W, L, HBP, SB));
+                                              Bunt, stadium, DHRule, W, L, HBP, SB, Triple));
                     }
                 }
             }

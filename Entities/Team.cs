@@ -21,6 +21,7 @@ namespace Entities
         public int SingleProbability;
         public int DoubleProbability;
         public int HomeRunProbabilty;
+        public int TripleProbability;
         public int PopoutOnFoulProbability;
         public int FlyoutOnHomeRunProbability;
         public int GroundoutProbability;
@@ -69,7 +70,7 @@ namespace Entities
 
         public double DefensiveRating()
         {
-            double PitchingComponent = (double)(1410 - StrikeZoneProbabilty - (3000 - HitByPitchProbability)) / 36;
+            double PitchingComponent = (double)(1600 - StrikeZoneProbabilty - (3000 - HitByPitchProbability)) / 36;
             double GroundoutComponent = (double)(GroundoutProbability * 1.1) / 20;
             double OutfieldComponent = (double)(FlyoutProbability - GroundoutProbability) / 20;
             double DoublePlayComponent = (double)DoublePlayProbabilty / 3;
@@ -81,10 +82,10 @@ namespace Entities
         public double OffensiveRating()
         {
             double FullHitiingProbabilty = (double)(2000 - HittingProbability) / 2000;
-            double FullSingleProbability = (double)(SingleProbability - FoulProbability) / 2000;
-            double FullDoubleProbability = (double)(DoubleProbability - SingleProbability) / 2000;
-            double FullHRProbability = (double)(HomeRunProbabilty - DoubleProbability) / 2000;
-            double FullTripleProbability = (double)(2000 - HomeRunProbabilty) / 2000;
+            double FullSingleProbability = (double)SingleProbability / 2000;
+            double FullDoubleProbability = (double)DoubleProbability / 2000;
+            double FullHRProbability = (double)HomeRunProbabilty / 2000;
+            double FullTripleProbability = (double)TripleProbability / 2000;
 
             double DoubleComponent = FullHitiingProbabilty * FullDoubleProbability * 75;
             double HomeRunComponent = FullHitiingProbabilty * FullHRProbability * 225;
@@ -300,7 +301,7 @@ namespace Entities
                     int _Hit_Probability, int _Foul_Probability, int _Single_Probability, int _Double_Probability, int _HR_Probability,
                     int _PopoutOnFoul_Probability, int _FlyoutOnHR_Probability, int _Groundout_Probability, int _Flyout_Probability, int _sacFly_Probability,
                     int _DoublePlayProbability, int _SuccessfulBaseSteling_Probability, int _SuccessfulBunt_Probability, int _Stadium, bool _DHRule,
-                    int w, int l, int _HBP, int _sb)
+                    int w, int l, int _HBP, int _sb, int _TripleProbability)
         {
             TeamAbbreviation = abbreviation;
             TeamCity = city;
@@ -328,6 +329,7 @@ namespace Entities
             Losses = l;
             HitByPitchProbability = _HBP;
             StealingBaseProbability = _sb;
+            TripleProbability = _TripleProbability;
         }
 
         public Team(string abbreviation, string name, int _games,
