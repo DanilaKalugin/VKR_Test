@@ -47,7 +47,7 @@ namespace VKR_Test
                     }
                 case RosterType.FreeAgents:
                     {
-                        lineups = players.GetRoster("GetActivePlayersAndReserves");
+                        lineups = players.GetRoster("GetReserves");
                         bench = players.GetFreeAgents();
                         break;
                     }
