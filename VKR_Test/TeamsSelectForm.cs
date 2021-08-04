@@ -51,9 +51,15 @@ namespace VKR_Test
                 matchNumber = 0;
                 AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].AwayTeamAbbreviation);
                 HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
+                dataGridView1.Rows.Clear();
+                for (int i = 0; i < matches.Count; i++)
+                {
+                    dataGridView1.Rows.Add(Image.FromFile($"TeamLogosForSubstitution/{matches[i].AwayTeamAbbreviation}.png"), Image.FromFile($"TeamLogosForSubstitution/{matches[i].HomeTeamAbbreviation}.png"));
+                }
+
             }
             btnSwap.Visible = match.IsQuickMatch;
-            btnNextMatch.Visible = !match.IsQuickMatch && matches.Count > 1;
+            dataGridView1.Visible = !match.IsQuickMatch;
         }
 
         private void TeamsSelectForm_Load(object sender, EventArgs e)
@@ -201,11 +207,19 @@ namespace VKR_Test
 
         private void btnNextMatch_Click(object sender, EventArgs e)
         {
-            matchNumber = matchNumber < matches.Count - 1 ? matchNumber + 1 : 0;
-            AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[matchNumber].AwayTeamAbbreviation);
-            HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[matchNumber].HomeTeamAbbreviation);
-            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
-            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
+
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                matchNumber = dataGridView1.SelectedRows[0].Index;
+                AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[matchNumber].AwayTeamAbbreviation);
+                HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[matchNumber].HomeTeamAbbreviation);
+                DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
+                DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
+            }
         }
     }
 }

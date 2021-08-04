@@ -29,6 +29,7 @@ namespace VKR_Test
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamsSelectForm));
             this.pbAwayLogo = new System.Windows.Forms.Panel();
             this.lbAwayCity = new System.Windows.Forms.Label();
@@ -64,9 +65,12 @@ namespace VKR_Test
             this.AwayTeamBalance = new System.Windows.Forms.Label();
             this.HomeTeamBalance = new System.Windows.Forms.Label();
             this.btnSwap = new System.Windows.Forms.Button();
-            this.btnNextMatch = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numAwayTeamColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHomeTeamColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // pbAwayLogo
@@ -140,7 +144,7 @@ namespace VKR_Test
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(728, 413);
+            this.label5.Location = new System.Drawing.Point(778, 413);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(177, 26);
             this.label5.TabIndex = 12;
@@ -152,7 +156,7 @@ namespace VKR_Test
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(619, 418);
+            this.label6.Location = new System.Drawing.Point(669, 418);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 23);
             this.label6.TabIndex = 6;
@@ -162,7 +166,7 @@ namespace VKR_Test
             // 
             this.numHomeTeamColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numHomeTeamColor.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numHomeTeamColor.Location = new System.Drawing.Point(728, 413);
+            this.numHomeTeamColor.Location = new System.Drawing.Point(778, 413);
             this.numHomeTeamColor.Name = "numHomeTeamColor";
             this.numHomeTeamColor.Size = new System.Drawing.Size(194, 26);
             this.numHomeTeamColor.TabIndex = 11;
@@ -173,7 +177,7 @@ namespace VKR_Test
             this.lbHomeTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbHomeTitle.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHomeTitle.ForeColor = System.Drawing.Color.White;
-            this.lbHomeTitle.Location = new System.Drawing.Point(622, 82);
+            this.lbHomeTitle.Location = new System.Drawing.Point(672, 82);
             this.lbHomeTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbHomeTitle.Name = "lbHomeTitle";
             this.lbHomeTitle.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
@@ -188,7 +192,7 @@ namespace VKR_Test
             this.lbHomeCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbHomeCity.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHomeCity.ForeColor = System.Drawing.Color.White;
-            this.lbHomeCity.Location = new System.Drawing.Point(622, 59);
+            this.lbHomeCity.Location = new System.Drawing.Point(672, 59);
             this.lbHomeCity.Margin = new System.Windows.Forms.Padding(0);
             this.lbHomeCity.Name = "lbHomeCity";
             this.lbHomeCity.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
@@ -202,7 +206,7 @@ namespace VKR_Test
             // 
             this.pbHomeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbHomeLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbHomeLogo.Location = new System.Drawing.Point(622, 107);
+            this.pbHomeLogo.Location = new System.Drawing.Point(672, 107);
             this.pbHomeLogo.Name = "pbHomeLogo";
             this.pbHomeLogo.Size = new System.Drawing.Size(300, 300);
             this.pbHomeLogo.TabIndex = 7;
@@ -243,7 +247,7 @@ namespace VKR_Test
             this.btnIncreaseHomeTeamNumberBy1.FlatAppearance.BorderSize = 0;
             this.btnIncreaseHomeTeamNumberBy1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIncreaseHomeTeamNumberBy1.ForeColor = System.Drawing.Color.White;
-            this.btnIncreaseHomeTeamNumberBy1.Location = new System.Drawing.Point(905, 59);
+            this.btnIncreaseHomeTeamNumberBy1.Location = new System.Drawing.Point(955, 59);
             this.btnIncreaseHomeTeamNumberBy1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.btnIncreaseHomeTeamNumberBy1.Name = "btnIncreaseHomeTeamNumberBy1";
             this.btnIncreaseHomeTeamNumberBy1.Size = new System.Drawing.Size(17, 45);
@@ -259,7 +263,7 @@ namespace VKR_Test
             this.btnDecreaseHomeTeamNumberBy1.FlatAppearance.BorderSize = 0;
             this.btnDecreaseHomeTeamNumberBy1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecreaseHomeTeamNumberBy1.ForeColor = System.Drawing.Color.White;
-            this.btnDecreaseHomeTeamNumberBy1.Location = new System.Drawing.Point(622, 59);
+            this.btnDecreaseHomeTeamNumberBy1.Location = new System.Drawing.Point(672, 59);
             this.btnDecreaseHomeTeamNumberBy1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.btnDecreaseHomeTeamNumberBy1.Name = "btnDecreaseHomeTeamNumberBy1";
             this.btnDecreaseHomeTeamNumberBy1.Size = new System.Drawing.Size(17, 45);
@@ -271,7 +275,6 @@ namespace VKR_Test
             // 
             // AwayOverallRating
             // 
-            this.AwayOverallRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AwayOverallRating.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
             this.AwayOverallRating.AnimationSpeed = 500;
             this.AwayOverallRating.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -305,7 +308,6 @@ namespace VKR_Test
             // 
             // AwayOffensiveRating
             // 
-            this.AwayOffensiveRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AwayOffensiveRating.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
             this.AwayOffensiveRating.AnimationSpeed = 500;
             this.AwayOffensiveRating.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -339,7 +341,6 @@ namespace VKR_Test
             // 
             // AwayDefensiveRating
             // 
-            this.AwayDefensiveRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AwayDefensiveRating.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
             this.AwayDefensiveRating.AnimationSpeed = 500;
             this.AwayDefensiveRating.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -382,7 +383,7 @@ namespace VKR_Test
             this.HomeDefensiveRating.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.HomeDefensiveRating.InnerMargin = 0;
             this.HomeDefensiveRating.InnerWidth = 21;
-            this.HomeDefensiveRating.Location = new System.Drawing.Point(543, 320);
+            this.HomeDefensiveRating.Location = new System.Drawing.Point(593, 320);
             this.HomeDefensiveRating.MarqueeAnimationSpeed = 2000;
             this.HomeDefensiveRating.Maximum = 99;
             this.HomeDefensiveRating.Name = "HomeDefensiveRating";
@@ -416,7 +417,7 @@ namespace VKR_Test
             this.HomeOffensiveRating.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.HomeOffensiveRating.InnerMargin = 0;
             this.HomeOffensiveRating.InnerWidth = 21;
-            this.HomeOffensiveRating.Location = new System.Drawing.Point(543, 226);
+            this.HomeOffensiveRating.Location = new System.Drawing.Point(593, 226);
             this.HomeOffensiveRating.MarqueeAnimationSpeed = 2000;
             this.HomeOffensiveRating.Maximum = 99;
             this.HomeOffensiveRating.Name = "HomeOffensiveRating";
@@ -450,7 +451,7 @@ namespace VKR_Test
             this.HomeOverallRating.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.HomeOverallRating.InnerMargin = 0;
             this.HomeOverallRating.InnerWidth = 21;
-            this.HomeOverallRating.Location = new System.Drawing.Point(543, 132);
+            this.HomeOverallRating.Location = new System.Drawing.Point(593, 132);
             this.HomeOverallRating.MarqueeAnimationSpeed = 2000;
             this.HomeOverallRating.Maximum = 99;
             this.HomeOverallRating.Name = "HomeOverallRating";
@@ -511,9 +512,10 @@ namespace VKR_Test
             // 
             // label12
             // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.Font = new System.Drawing.Font("MicroFLF", 11F);
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(532, 107);
+            this.label12.Location = new System.Drawing.Point(582, 107);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(84, 22);
@@ -523,9 +525,10 @@ namespace VKR_Test
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.Font = new System.Drawing.Font("MicroFLF", 11F);
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(532, 201);
+            this.label13.Location = new System.Drawing.Point(582, 201);
             this.label13.Margin = new System.Windows.Forms.Padding(0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(84, 22);
@@ -535,9 +538,10 @@ namespace VKR_Test
             // 
             // label14
             // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.Font = new System.Drawing.Font("MicroFLF", 11F);
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(532, 295);
+            this.label14.Location = new System.Drawing.Point(582, 295);
             this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(84, 22);
@@ -553,7 +557,7 @@ namespace VKR_Test
             this.btnAcceptTeamsSelection.ForeColor = System.Drawing.Color.White;
             this.btnAcceptTeamsSelection.Location = new System.Drawing.Point(318, 413);
             this.btnAcceptTeamsSelection.Name = "btnAcceptTeamsSelection";
-            this.btnAcceptTeamsSelection.Size = new System.Drawing.Size(298, 28);
+            this.btnAcceptTeamsSelection.Size = new System.Drawing.Size(345, 28);
             this.btnAcceptTeamsSelection.TabIndex = 26;
             this.btnAcceptTeamsSelection.Text = "CONFIRM";
             this.btnAcceptTeamsSelection.UseVisualStyleBackColor = true;
@@ -576,7 +580,7 @@ namespace VKR_Test
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(639, 21);
+            this.label16.Location = new System.Drawing.Point(689, 21);
             this.label16.Margin = new System.Windows.Forms.Padding(0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(266, 22);
@@ -597,9 +601,10 @@ namespace VKR_Test
             // 
             // HomeTeamBalance
             // 
+            this.HomeTeamBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.HomeTeamBalance.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HomeTeamBalance.ForeColor = System.Drawing.Color.White;
-            this.HomeTeamBalance.Location = new System.Drawing.Point(532, 59);
+            this.HomeTeamBalance.Location = new System.Drawing.Point(582, 59);
             this.HomeTeamBalance.Name = "HomeTeamBalance";
             this.HomeTeamBalance.Size = new System.Drawing.Size(84, 45);
             this.HomeTeamBalance.TabIndex = 28;
@@ -612,35 +617,65 @@ namespace VKR_Test
             this.btnSwap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwap.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwap.ForeColor = System.Drawing.Color.White;
-            this.btnSwap.Location = new System.Drawing.Point(319, 19);
+            this.btnSwap.Location = new System.Drawing.Point(325, 19);
             this.btnSwap.Name = "btnSwap";
-            this.btnSwap.Size = new System.Drawing.Size(298, 28);
+            this.btnSwap.Size = new System.Drawing.Size(334, 28);
             this.btnSwap.TabIndex = 29;
             this.btnSwap.Text = "SWAP";
             this.btnSwap.UseVisualStyleBackColor = true;
             this.btnSwap.Click += new System.EventHandler(this.btnSwap_Click);
             // 
-            // btnNextMatch
+            // dataGridView1
             // 
-            this.btnNextMatch.FlatAppearance.BorderSize = 0;
-            this.btnNextMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNextMatch.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNextMatch.ForeColor = System.Drawing.Color.White;
-            this.btnNextMatch.Location = new System.Drawing.Point(319, 19);
-            this.btnNextMatch.Name = "btnNextMatch";
-            this.btnNextMatch.Size = new System.Drawing.Size(298, 28);
-            this.btnNextMatch.TabIndex = 30;
-            this.btnNextMatch.Text = "NEXT MATCH";
-            this.btnNextMatch.UseVisualStyleBackColor = true;
-            this.btnNextMatch.Click += new System.EventHandler(this.btnNextMatch_Click);
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
+            this.dataGridView1.Location = new System.Drawing.Point(417, 33);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(6);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.RowTemplate.Height = 37;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(150, 371);
+            this.dataGridView1.TabIndex = 31;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // TeamsSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(934, 450);
-            this.Controls.Add(this.btnNextMatch);
+            this.ClientSize = new System.Drawing.Size(984, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnSwap);
             this.Controls.Add(this.HomeTeamBalance);
             this.Controls.Add(this.AwayTeamBalance);
@@ -684,6 +719,7 @@ namespace VKR_Test
             this.Load += new System.EventHandler(this.TeamsSelectForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numAwayTeamColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHomeTeamColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -724,6 +760,8 @@ namespace VKR_Test
         private System.Windows.Forms.Label AwayTeamBalance;
         private System.Windows.Forms.Label HomeTeamBalance;
         private System.Windows.Forms.Button btnSwap;
-        private System.Windows.Forms.Button btnNextMatch;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewImageColumn Column1;
+        private System.Windows.Forms.DataGridViewImageColumn Column2;
     }
 }
