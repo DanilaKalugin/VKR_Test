@@ -119,11 +119,13 @@ namespace Entities
                 case Pitch.PitchResult.Flyout:
                 case Pitch.PitchResult.Single:
                 case Pitch.PitchResult.Double:
+                case Pitch.PitchResult.GroundRuleDouble:
                 case Pitch.PitchResult.Triple:
                 case Pitch.PitchResult.HomeRun:
                 case Pitch.PitchResult.SacrificeFly:
                 case Pitch.PitchResult.SacrificeBunt:
                 case Pitch.PitchResult.DoublePlay:
+                case Pitch.PitchResult.DoublePlayOnFlyout:
                     {
                         return 0;
                     }
@@ -147,11 +149,28 @@ namespace Entities
             {
                 return situation.outs + 1;
             }
-            else if (result == Pitch.PitchResult.DoublePlay)
+            else if (result == Pitch.PitchResult.DoublePlay || 
+                     result == Pitch.PitchResult.DoublePlayOnFlyout)
             {
                 return situation.outs + 2;
             }
             else return situation.outs;
+        }
+
+        private Runner ReturnNewRunner(Match match)
+        {
+            if (offense == match.AwayTeam)
+            {
+                Batter batter = match.AwayTeam.BattingLineup[BatterNumber_AwayTeam - 1];
+                Pitcher pitcher = match.HomeTeam.CurrentPitcher;
+                return new Runner(batter, pitcher);
+            }
+            else
+            {
+                Batter batter = match.HomeTeam.BattingLineup[BatterNumber_HomeTeam - 1];
+                Pitcher pitcher = match.AwayTeam.CurrentPitcher;
+                return new Runner(batter, pitcher);
+            }
         }
 
         public Runner HavingARunnerOnFirstBase(Pitch.PitchResult result, GameSituation situation, Match match, int balls)
@@ -211,22 +230,6 @@ namespace Entities
             }
         }
 
-        private Runner ReturnNewRunner(Match match)
-        {
-            if (offense == match.AwayTeam)
-            {
-                Batter batter = match.AwayTeam.BattingLineup[BatterNumber_AwayTeam - 1];
-                Pitcher pitcher = match.HomeTeam.CurrentPitcher;
-                return new Runner(batter, pitcher);
-            }
-            else
-            {
-                Batter batter = match.HomeTeam.BattingLineup[BatterNumber_HomeTeam - 1];
-                Pitcher pitcher = match.AwayTeam.CurrentPitcher;
-                return new Runner(batter, pitcher);
-            }
-        }
-
         public Runner HavingARunnerOnThirdBase(Pitch.PitchResult result, GameSituation situation, Match match, int balls)
         {
             if (result == Pitch.PitchResult.Triple)
@@ -249,7 +252,8 @@ namespace Entities
             else if ((result == Pitch.PitchResult.HomeRun) ||
                     (result == Pitch.PitchResult.CaughtStealingOnThird) ||
                     ((result == Pitch.PitchResult.SacrificeBunt || result == Pitch.PitchResult.DoublePlay || result == Pitch.PitchResult.Groundout) && outs < 3 && situation.RunnerOnThird.IsBaseNotEmpty) ||
-                    (result == Pitch.PitchResult.SacrificeFly && situation.RunnerOnThird.IsBaseNotEmpty))
+                    (result == Pitch.PitchResult.SacrificeFly && situation.RunnerOnThird.IsBaseNotEmpty) ||
+                    (result == Pitch.PitchResult.DoublePlayOnFlyout && situation.RunnerOnThird.IsBaseNotEmpty))
             {
                 return new Runner();
             }

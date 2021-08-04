@@ -31,14 +31,18 @@ namespace Entities
         private enum OutType { Flyout, Groundout, Popout, NoResult, NoOut }
         OutType newPitch_OutType;
 
-        private enum OtherCondition { SacFly, DoublePlay, NoOtherCondition };
+        private enum OtherCondition { SacFly, DoublePlay, NoOtherCondition, DoublePlayOnFlyout };
         OtherCondition newPitch_OtherCondition;
         OtherCondition newBunt_OtherConditions;
 
         public enum BuntResult { SuccessfulBunt, FoulOnBunt, SingleOnBunt, HitByPitch, Ball };
         BuntResult newBunt_result;
 
-        public enum PitchResult { HitByPitch, Ball, Strike, Null, Foul, Single, Double, Triple, HomeRun, Flyout, Groundout, Popout, DoublePlay, SacrificeFly, SacrificeBunt, SecondBaseStolen, ThirdBaseStolen, CaughtStealingOnSecond, CaughtStealingOnThird, GroundRuleDouble }
+        public enum PitchResult
+        {
+            HitByPitch, Ball, Strike, Null, Foul, Single, Double, Triple, HomeRun, Flyout, Groundout, Popout, DoublePlay, SacrificeFly, SacrificeBunt, SecondBaseStolen, ThirdBaseStolen, CaughtStealingOnSecond, CaughtStealingOnThird, GroundRuleDouble,
+            DoublePlayOnFlyout
+        }
         public PitchResult pitchResult;
 
         public enum StealingType { OnlySecondBase, OnlyThirdBase, ThirdBaseBeforeSecond, SecondBaseAfterThird }
@@ -137,6 +141,10 @@ namespace Entities
                     case OtherCondition.SacFly:
                         {
                             return PitchResult.SacrificeFly;
+                        }
+                    case OtherCondition.DoublePlayOnFlyout:
+                        {
+                            return PitchResult.DoublePlayOnFlyout;
                         }
                     default:
                         {
@@ -325,6 +333,10 @@ namespace Entities
             {
                 return OtherCondition.SacFly;
             }
+            else if (outType == OutType.Flyout && situation.RunnerOnThird.IsBaseNotEmpty && situation.outs < 2 && OtherCondition_RandomValue <= SacrificeFly_Probability + DoublePlay_Probability / 10)
+            {
+                return OtherCondition.DoublePlayOnFlyout;
+            }
             else if (outType == OutType.Groundout && situation.RunnerOnFirst.IsBaseNotEmpty && situation.outs <= 1 && OtherCondition_RandomValue <= DoublePlay_Probability + CountOfNotEmptyBases)
             {
                 return OtherCondition.DoublePlay;
@@ -354,9 +366,21 @@ namespace Entities
             int PitcherCoefficient = GetPitcherCoeffitientForThisPitcher(Defense);
             int HandsCoefficient = CurrentBatter.BattingHand == Defense.CurrentPitcher.Pitchinghand || CurrentBatter.BattingHand == "Switch" ? 0 : 20;
 
+            if (Defense.CurrentPitcher.OutsPlayedInLast5Days > 18)
+            {
+                numberOfPitches = (int)(numberOfPitches * (1 + (Defense.CurrentPitcher.OutsPlayedInLast5Days - 18) / 2) * 0.1);
+            }
             if (numberOfPitches > PitcherCoefficient)
             {
-                numberOfPitches += numberOfPitches - PitcherCoefficient;
+                if (Defense.PitchersPlayedInMatch.Count > 1)
+                {
+                    numberOfPitches += (Defense.PitchersPlayedInMatch.Count / 2 + 1) * (numberOfPitches - PitcherCoefficient);
+                }
+                else
+                {
+                    numberOfPitches += numberOfPitches - PitcherCoefficient;
+                }
+
             }
             newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, Defense.HitByPitchProbability, numberOfPitches, PitcherCoefficient, situation);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability, situation);
@@ -388,7 +412,7 @@ namespace Entities
             }
         }
 
-        private BuntResult BuntResult_Definition(GameSituation situation,int successfulBuntAttemptProbabilty, int strikeZoneProbability, int hitByPitchProbability, int batterNumberComponent)
+        private BuntResult BuntResult_Definition(GameSituation situation, int successfulBuntAttemptProbabilty, int strikeZoneProbability, int hitByPitchProbability, int batterNumberComponent)
         {
             int Bunt_RandomValue = BuntResult_RandomGenerator.Next(1, 1000);
             if (Bunt_RandomValue <= 50)

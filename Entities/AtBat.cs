@@ -43,6 +43,7 @@ namespace Entities
                         return AtBatType.Groundout;
                     }
                 case Pitch.PitchResult.Flyout:
+                case Pitch.PitchResult.DoublePlayOnFlyout:
                     {
                         return AtBatType.Flyout;
                     }
