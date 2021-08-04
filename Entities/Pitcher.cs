@@ -33,6 +33,7 @@ namespace Entities
         public int HomeRunsAllowed;
         public int DoublePlays;
         public int TGP;
+        public double OutsPlayedInLast5Days;
 
         public int HitsAllowed { get { return SinglesAllowed + DoublesAllowed + TriplesAllowed + HomeRunsAllowed; } }
 

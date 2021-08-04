@@ -36,10 +36,10 @@ namespace VKR_Test
 
             matchBL.StartNewMatch(newMatch);
             newMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(newMatch.AwayTeam.TeamAbbreviation, MatchID);
-            newMatch.AwayTeam.PitchersPlayedInMatch.AddRange(teamsBL.GetStartingPitcherForThisTeam(newMatch.AwayTeam, newMatch));
+            newMatch.AwayTeam.PitchersPlayedInMatch.Add(teamsBL.GetStartingPitcherForThisTeam(newMatch.AwayTeam, newMatch));
 
             newMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(newMatch.HomeTeam.TeamAbbreviation, MatchID);
-            newMatch.HomeTeam.PitchersPlayedInMatch.AddRange(teamsBL.GetStartingPitcherForThisTeam(newMatch.HomeTeam, newMatch));
+            newMatch.HomeTeam.PitchersPlayedInMatch.Add(teamsBL.GetStartingPitcherForThisTeam(newMatch.HomeTeam, newMatch));
 
             MainForm newMatchForm = new MainForm(newMatch);
             Visible = false;

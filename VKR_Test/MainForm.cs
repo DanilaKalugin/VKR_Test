@@ -121,8 +121,9 @@ namespace VKR_Test
             label4.Text = gameSituation.outs <= 1 ? "Out" : "Outs";
             label5.Text = $"{gameSituation.balls}-{gameSituation.strikes}";
             lbPitcherSecondName.Text = gameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.CurrentPitcher.SecondName : currentMatch.AwayTeam.CurrentPitcher.SecondName;
-            int CurrentPitcherId = gameSituation.offense.TeamAbbreviation == currentMatch.AwayTeam.TeamAbbreviation ? currentMatch.HomeTeam.CurrentPitcher.id : currentMatch.AwayTeam.CurrentPitcher.id;
-            lbPitchCountForThisPitcher.Text = currentMatch.gameSituations.Where(situation => situation.PitcherID == CurrentPitcherId &&
+            Pitcher CurrentPitcher = gameSituation.offense.TeamAbbreviation == currentMatch.AwayTeam.TeamAbbreviation ? currentMatch.HomeTeam.CurrentPitcher : currentMatch.AwayTeam.CurrentPitcher;
+
+            lbPitchCountForThisPitcher.Text = currentMatch.gameSituations.Where(situation => situation.PitcherID == CurrentPitcher.id &&
                                                                                                !(situation.result == Pitch.PitchResult.CaughtStealingOnSecond || situation.result == Pitch.PitchResult.CaughtStealingOnThird ||
                                                                                                  situation.result == Pitch.PitchResult.SecondBaseStolen || situation.result == Pitch.PitchResult.ThirdBaseStolen)).Count().ToString();
 
@@ -414,8 +415,8 @@ namespace VKR_Test
             currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
             currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
 
-            teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
-            teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
+            teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
+            teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
 
             UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, currentMatch, currentMatch.AwayTeam);
             UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, currentMatch, currentMatch.HomeTeam);
@@ -742,6 +743,21 @@ namespace VKR_Test
             PitcherWalks.Text = Defense.CurrentPitcher.WalksAllowed.ToString();
             PitcherWHIP.Text = Defense.CurrentPitcher.WHIP.ToString("0.00", new CultureInfo("en-US"));
 
+            Defense.CurrentPitcher.OutsPlayedInLast5Days = teamsBL.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Defense.CurrentPitcher, currentMatch);
+
+
+            if (Defense.CurrentPitcher.OutsPlayedInLast5Days >= 18)
+            {
+                pb_stamina.Value = 1;
+                pb_stamina.MainColor = Color.Maroon;
+            }
+            else
+            {
+                pb_stamina.Value = (int)((18 - Defense.CurrentPitcher.OutsPlayedInLast5Days) * 2);
+                pb_stamina.MainColor = Defense.TeamColorForThisMatch;
+            }
+
+
             int OutsToday = currentMatch.atBats.Where(atBat => atBat.Pitcher == Defense.CurrentPitcher.id).Select(atBat => atBat.outs).Sum();
             int StrikeoutsToday = currentMatch.atBats.Where(atBat => atBat.Pitcher == Defense.CurrentPitcher.id && atBat.AtBatResult == AtBat.AtBatType.Strikeout).Count();
             int WalksToday = currentMatch.atBats.Where(atBat => atBat.Pitcher == Defense.CurrentPitcher.id && atBat.AtBatResult == AtBat.AtBatType.Walk).Count();
@@ -817,8 +833,8 @@ namespace VKR_Test
                     currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
                     currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
 
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
+                    teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
+                    teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
 
                     Defense.PitchersPlayedInMatch.Add(form.newPitcherForThisTeam);
                     DisplayingCurrentSituation(newGameSituation);
@@ -869,8 +885,8 @@ namespace VKR_Test
                         Pitcher newPitcher = teamsBL.GetPitcherByID(form.newBatterForThisTeam.id);
                         Offense.PitchersPlayedInMatch.Add(newPitcher);
                     }
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher);
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher);
+                    teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
+                    teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
                     DisplayingCurrentSituation(newGameSituation);
                 }
             }

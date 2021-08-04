@@ -63,12 +63,14 @@ namespace VKR.BLL
             return teams;
         }
 
-        public List<Pitcher> GetStartingPitcherForThisTeam(Team team, Match match)
+        public Pitcher GetStartingPitcherForThisTeam(Team team, Match match)
         {
-            return teamsDAO.GetStartingPitcherForThisTeam(team, match.MatchID).ToList();
+            Pitcher pitcher = teamsDAO.GetStartingPitcherForThisTeam(team, match.MatchID).First();
+            pitcher.OutsPlayedInLast5Days = teamsDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(match, pitcher);
+            return pitcher;
         }
 
-        public void UpdateStatsForThisPitcher(Pitcher pitcher)
+        public void UpdateStatsForThisPitcher(Pitcher pitcher, Match match)
         {
             Pitcher PitcherWithNewStats = teamsDAO.UpdateStatsForThisPitcher(pitcher).First();
             pitcher.CaughtStealing = PitcherWithNewStats.CaughtStealing;
@@ -86,6 +88,11 @@ namespace VKR.BLL
             pitcher.TriplesAllowed = PitcherWithNewStats.TriplesAllowed;
             pitcher.WalksAllowed = PitcherWithNewStats.WalksAllowed;
             pitcher.RunsAllowed = PitcherWithNewStats.RunsAllowed;
+        }
+
+        public double ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Pitcher pitcher, Match match)
+        {
+            return teamsDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(match, pitcher);
         }
 
         public List<Batter> GetCurrentLineupForThisMatch(string Team, int Match)
