@@ -19,6 +19,7 @@ namespace VKR_Test
         private readonly MatchBL matchBL;
         private readonly PlayerBL playerBL;
         public bool DeleteThisMatch;
+        private bool IsAutoSimulation;
 
         public MainForm(Match match)
         {
@@ -27,6 +28,7 @@ namespace VKR_Test
             matchBL = new MatchBL();
             playerBL = new PlayerBL();
             currentMatch = match;
+            IsAutoSimulation = false;
             StartingLineupForm lineup = new StartingLineupForm(currentMatch.AwayTeam);
             lineup.ShowDialog();
             previousSituation = currentMatch.gameSituations.Last();
@@ -357,6 +359,11 @@ namespace VKR_Test
             AddNewStatsForTodayStatsLabel(SACs, "SAC", lbTodayStats);
             AddNewStatsForTodayStatsLabel(Ks, "SO", lbTodayStats);
             lbTodayStats.Visible = lbTodayStats.Text != "►TODAY: " && panelCurrentBatter.Visible;
+
+            panelCurrentBatter.Height = lbTodayStats.Text != "►TODAY: " ? 110 : 140;
+            pbCurrentOffenseLogo.Width = lbTodayStats.Text != "►TODAY: " ? 110 : 140;
+            pbCurrentOffenseLogo.Height = lbTodayStats.Text != "►TODAY: " ? 110 : 140;
+            pbCurrentOffenseLogo.Left = lbTodayStats.Text != "►TODAY: " ? 88 : 58;
         }
 
         private void AddNewStatsForTodayStatsLabel(int value, string text, Label lb)
@@ -388,6 +395,7 @@ namespace VKR_Test
         {
             if (pitch.pitchResult == Pitch.PitchResult.HomeRun)
             {
+                timer1.Stop();
                 string title;
                 if (runs == 1)
                 {
@@ -407,6 +415,10 @@ namespace VKR_Test
                 }
                 HomeRunCelebrationForm hr = new HomeRunCelebrationForm(newGameSituation.offense, title, GetBatterByGameSituation(newGameSituation), currentMatch.atBats, currentMatch.IsQuickMatch);
                 hr.ShowDialog();
+                if (IsAutoSimulation)
+                {
+                    timer1.Start();
+                }
             }
         }
 
@@ -461,9 +473,14 @@ namespace VKR_Test
             newGameSituation.PrepareForNextPitch(currentMatch.gameSituations.Last(), currentMatch.AwayTeam, currentMatch.HomeTeam, currentMatch.MatchLength);
             if (currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam && currentMatch.gameSituations.Last().outs == 3 && currentMatch.gameSituations.Last().inningNumber == 1)
             {
+                timer1.Stop();
                 StartingLineupForm form = new StartingLineupForm(currentMatch.HomeTeam);
                 form.ShowDialog();
                 DisplayPitcherStats();
+                if (IsAutoSimulation)
+                {
+                    timer1.Start();
+                }
             }
 
             DisplayingCurrentSituation(newGameSituation);
@@ -606,6 +623,7 @@ namespace VKR_Test
             {
                 MatchEndingForm form = new MatchEndingForm(currentMatch);
                 matchBL.FinishMatch(currentMatch);
+                timer1.Dispose();
                 Visible = false;
                 form.ShowDialog();
                 if (form.DialogResult == DialogResult.OK)
@@ -662,6 +680,8 @@ namespace VKR_Test
                 situation.result == Pitch.PitchResult.CaughtStealingOnThird ||
                 situation.result == Pitch.PitchResult.SecondBaseStolen ||
                 situation.result == Pitch.PitchResult.ThirdBaseStolen ||
+                situation.result == Pitch.PitchResult.GroundRuleDouble ||
+                situation.result == Pitch.PitchResult.DoublePlayOnFlyout ||
                 (situation.result == Pitch.PitchResult.Ball && situation.balls == 0) ||
                 (situation.result == Pitch.PitchResult.Strike && situation.strikes == 0))
             {
@@ -745,18 +765,16 @@ namespace VKR_Test
 
             Defense.CurrentPitcher.OutsPlayedInLast5Days = teamsBL.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Defense.CurrentPitcher, currentMatch);
 
+            pb_stamina.MainColor = Defense.CurrentPitcher.OutsPlayedInLast5Days > (16.5 - 1E-5) ? Color.Maroon : Defense.TeamColorForThisMatch;
 
-            if (Defense.CurrentPitcher.OutsPlayedInLast5Days >= 18)
+            if (Defense.CurrentPitcher.OutsPlayedInLast5Days > 18 - 1E-5)
             {
-                pb_stamina.Value = 1;
-                pb_stamina.MainColor = Color.Maroon;
+                pb_stamina.Value = 5;
             }
             else
             {
-                pb_stamina.Value = (int)((18 - Defense.CurrentPitcher.OutsPlayedInLast5Days) * 2);
-                pb_stamina.MainColor = Defense.TeamColorForThisMatch;
+                pb_stamina.Value = (int)((18 - Defense.CurrentPitcher.OutsPlayedInLast5Days) * 10);
             }
-
 
             int OutsToday = currentMatch.atBats.Where(atBat => atBat.Pitcher == Defense.CurrentPitcher.id).Select(atBat => atBat.outs).Sum();
             int StrikeoutsToday = currentMatch.atBats.Where(atBat => atBat.Pitcher == Defense.CurrentPitcher.id && atBat.AtBatResult == AtBat.AtBatType.Strikeout).Count();
@@ -780,22 +798,28 @@ namespace VKR_Test
 
         private void lb_Runner1_Name_Click(object sender, EventArgs e)
         {
-            if (!(lb_Runner3_Name.Visible && lb_Runner2_Name.Visible))
+            if (!IsAutoSimulation)
             {
-                lb_Runner1_Name.ForeColor = lb_Runner1_Name.ForeColor == Color.DarkGoldenrod ? Color.Gainsboro : Color.DarkGoldenrod;
-
-                if (lb_Runner2_Name.Visible)
+                if (!(lb_Runner3_Name.Visible && lb_Runner2_Name.Visible))
                 {
-                    lb_Runner2_Name.ForeColor = Color.DarkGoldenrod;
+                    lb_Runner1_Name.ForeColor = lb_Runner1_Name.ForeColor == Color.DarkGoldenrod ? Color.Gainsboro : Color.DarkGoldenrod;
+
+                    if (lb_Runner2_Name.Visible)
+                    {
+                        lb_Runner2_Name.ForeColor = Color.DarkGoldenrod;
+                    }
                 }
             }
         }
 
         private void lb_Runner2_Name_Click(object sender, EventArgs e)
         {
-            if (!lb_Runner3_Name.Visible)
+            if (!IsAutoSimulation)
             {
-                lb_Runner2_Name.ForeColor = lb_Runner2_Name.ForeColor == Color.DarkGoldenrod ? Color.Gainsboro : Color.DarkGoldenrod;
+                if (!lb_Runner3_Name.Visible)
+                {
+                    lb_Runner2_Name.ForeColor = lb_Runner2_Name.ForeColor == Color.DarkGoldenrod ? Color.Gainsboro : Color.DarkGoldenrod;
+                }
             }
         }
 
@@ -815,12 +839,18 @@ namespace VKR_Test
 
         private void btnStandings_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             StandingsForm form = new StandingsForm(currentMatch.HomeTeam, currentMatch.AwayTeam);
             form.ShowDialog();
+            if (IsAutoSimulation)
+            {
+                timer1.Start();
+            }
         }
 
         private void btnShowAvailablePitchers_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
             List<Pitcher> pitchers = teamsBL.GetAvailablePitchers(currentMatch, Defense);
             if (pitchers.Count > 0)
@@ -846,18 +876,32 @@ namespace VKR_Test
                 ErrorForm form = new ErrorForm();
                 form.ShowDialog();
             }
+            if (IsAutoSimulation)
+            {
+                timer1.Start();
+            }
         }
 
         private void btnOtherResults_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             ScheduleAndResultsForm form = new ScheduleAndResultsForm(currentMatch);
             form.ShowDialog();
+            if (IsAutoSimulation)
+            {
+                timer1.Start();
+            }
         }
 
         private void btnPlayerStats_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             PlayerStatsForm form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players);
             form.ShowDialog();
+            if (IsAutoSimulation)
+            {
+                timer1.Start();
+            }
         }
 
         private void panel6_VisibleChanged(object sender, EventArgs e)
@@ -868,6 +912,7 @@ namespace VKR_Test
 
         private void btnChangeBatter_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             Team Offense = newGameSituation.offense;
             List<Batter> batters = teamsBL.GetAvailableBatters(currentMatch, Offense, GetBatterByGameSituation(newGameSituation));
             if (batters.Count > 0)
@@ -895,14 +940,10 @@ namespace VKR_Test
                 ErrorForm form = new ErrorForm();
                 form.ShowDialog();
             }
-        }
-
-        private void lbTodayStats_VisibleChanged(object sender, EventArgs e)
-        {
-            panelCurrentBatter.Height = lbTodayStats.Visible ? 110 : 140;
-            pbCurrentOffenseLogo.Width = lbTodayStats.Visible ? 110 : 140;
-            pbCurrentOffenseLogo.Height = lbTodayStats.Visible ? 110 : 140;
-            pbCurrentOffenseLogo.Left = lbTodayStats.Visible ? 88 : 58;
+            if (IsAutoSimulation)
+            {
+                timer1.Start();
+            }
         }
 
         private void BackColorChanging_label(object sender, EventArgs e)
@@ -919,8 +960,13 @@ namespace VKR_Test
 
         private void btnTeamStats_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             PlayerStatsForm form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Teams);
             form.ShowDialog();
+            if (IsAutoSimulation)
+            {
+                timer1.Start();
+            }
         }
 
         private void MainForm_ClientSizeChanged(object sender, EventArgs e)
@@ -933,6 +979,19 @@ namespace VKR_Test
 
             RunnerOn2Photo.Location = new Point(ClientSize.Width / 2 - 132, 144);
             panel2Base.Location = new Point(ClientSize.Width / 2 - 65, 144);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            GenerateNewPitch();
+        }
+
+        private void btnAutoMode_Click(object sender, EventArgs e)
+        {
+            IsAutoSimulation = !IsAutoSimulation;
+            timer1.Enabled = IsAutoSimulation;
+            btnNewPitch.Enabled = !IsAutoSimulation;
+            btnAutoMode.Text = IsAutoSimulation ? "MANUAL" : "AUTOMATIC";
         }
     }
 }

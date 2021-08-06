@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label36;
             System.Windows.Forms.Panel panel27;
             System.Windows.Forms.Label label24;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.pb_stamina = new ExtendedDotNET.Controls.Progress.ProgressBar();
             this.panelCurrentSituationPitcher = new System.Windows.Forms.Panel();
             this.lbPitcherSecondName = new System.Windows.Forms.Label();
             this.lbPitchCountForThisPitcher = new System.Windows.Forms.Label();
@@ -207,7 +209,8 @@
             this.label27 = new System.Windows.Forms.Label();
             this.panelLastAtBat = new System.Windows.Forms.Panel();
             this.btnTeamStats = new System.Windows.Forms.Button();
-            this.pb_stamina = new ExtendedDotNET.Controls.Progress.ProgressBar();
+            this.btnAutoMode = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -268,6 +271,42 @@
             panel27.Name = "panel27";
             panel27.Size = new System.Drawing.Size(250, 66);
             panel27.TabIndex = 47;
+            // 
+            // pb_stamina
+            // 
+            this.pb_stamina.BackColor = System.Drawing.Color.Gray;
+            this.pb_stamina.BarOffset = 0;
+            this.pb_stamina.Caption = "";
+            this.pb_stamina.CaptionColor = System.Drawing.Color.Black;
+            this.pb_stamina.CaptionMode = ExtendedDotNET.Controls.Progress.ProgressCaptionMode.None;
+            this.pb_stamina.CaptionShadowColor = System.Drawing.Color.White;
+            this.pb_stamina.ChangeByMouse = false;
+            this.pb_stamina.DashSpace = 0;
+            this.pb_stamina.DashWidth = 0;
+            this.pb_stamina.Edge = ExtendedDotNET.Controls.Progress.ProgressBarEdge.Rectangle;
+            this.pb_stamina.EdgeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.pb_stamina.EdgeLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.pb_stamina.EdgeWidth = 0;
+            this.pb_stamina.FloodPercentage = 0F;
+            this.pb_stamina.FloodStyle = ExtendedDotNET.Controls.Progress.ProgressFloodStyle.Standard;
+            this.pb_stamina.Invert = false;
+            this.pb_stamina.Location = new System.Drawing.Point(0, 28);
+            this.pb_stamina.MainColor = System.Drawing.Color.Gainsboro;
+            this.pb_stamina.Maximum = 180;
+            this.pb_stamina.Minimum = 0;
+            this.pb_stamina.Name = "pb_stamina";
+            this.pb_stamina.Orientation = ExtendedDotNET.Controls.Progress.ProgressBarDirection.Horizontal;
+            this.pb_stamina.ProgressBackColor = System.Drawing.Color.Gray;
+            this.pb_stamina.ProgressBarStyle = ExtendedDotNET.Controls.Progress.ProgressStyle.Solid;
+            this.pb_stamina.SecondColor = System.Drawing.Color.White;
+            this.pb_stamina.Shadow = true;
+            this.pb_stamina.ShadowOffset = 0;
+            this.pb_stamina.Size = new System.Drawing.Size(250, 8);
+            this.pb_stamina.Step = 0;
+            this.pb_stamina.TabIndex = 65;
+            this.pb_stamina.TabStop = false;
+            this.pb_stamina.TextAntialias = true;
+            this.pb_stamina.Value = 10;
             // 
             // panelCurrentSituationPitcher
             // 
@@ -792,7 +831,6 @@
             this.lbTodayStats.Size = new System.Drawing.Size(1013, 30);
             this.lbTodayStats.TabIndex = 22;
             this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbTodayStats.VisibleChanged += new System.EventHandler(this.lbTodayStats_VisibleChanged);
             // 
             // pbCurrentBatterPhoto
             // 
@@ -2426,41 +2464,26 @@
             this.btnTeamStats.UseVisualStyleBackColor = false;
             this.btnTeamStats.Click += new System.EventHandler(this.btnTeamStats_Click);
             // 
-            // pb_stamina
+            // btnAutoMode
             // 
-            this.pb_stamina.BackColor = System.Drawing.Color.Gray;
-            this.pb_stamina.BarOffset = 0;
-            this.pb_stamina.Caption = "";
-            this.pb_stamina.CaptionColor = System.Drawing.Color.Black;
-            this.pb_stamina.CaptionMode = ExtendedDotNET.Controls.Progress.ProgressCaptionMode.None;
-            this.pb_stamina.CaptionShadowColor = System.Drawing.Color.White;
-            this.pb_stamina.ChangeByMouse = false;
-            this.pb_stamina.DashSpace = 0;
-            this.pb_stamina.DashWidth = 0;
-            this.pb_stamina.Edge = ExtendedDotNET.Controls.Progress.ProgressBarEdge.Rectangle;
-            this.pb_stamina.EdgeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.pb_stamina.EdgeLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.pb_stamina.EdgeWidth = 0;
-            this.pb_stamina.FloodPercentage = 0F;
-            this.pb_stamina.FloodStyle = ExtendedDotNET.Controls.Progress.ProgressFloodStyle.Standard;
-            this.pb_stamina.Invert = false;
-            this.pb_stamina.Location = new System.Drawing.Point(0, 28);
-            this.pb_stamina.MainColor = System.Drawing.Color.Gainsboro;
-            this.pb_stamina.Maximum = 36;
-            this.pb_stamina.Minimum = 0;
-            this.pb_stamina.Name = "pb_stamina";
-            this.pb_stamina.Orientation = ExtendedDotNET.Controls.Progress.ProgressBarDirection.Horizontal;
-            this.pb_stamina.ProgressBackColor = System.Drawing.Color.Gray;
-            this.pb_stamina.ProgressBarStyle = ExtendedDotNET.Controls.Progress.ProgressStyle.Solid;
-            this.pb_stamina.SecondColor = System.Drawing.Color.White;
-            this.pb_stamina.Shadow = true;
-            this.pb_stamina.ShadowOffset = 0;
-            this.pb_stamina.Size = new System.Drawing.Size(250, 8);
-            this.pb_stamina.Step = 0;
-            this.pb_stamina.TabIndex = 65;
-            this.pb_stamina.TabStop = false;
-            this.pb_stamina.TextAntialias = true;
-            this.pb_stamina.Value = 10;
+            this.btnAutoMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAutoMode.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnAutoMode.FlatAppearance.BorderSize = 0;
+            this.btnAutoMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAutoMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoMode.Location = new System.Drawing.Point(545, 770);
+            this.btnAutoMode.Name = "btnAutoMode";
+            this.btnAutoMode.Size = new System.Drawing.Size(300, 35);
+            this.btnAutoMode.TabIndex = 65;
+            this.btnAutoMode.TabStop = false;
+            this.btnAutoMode.Text = "AUTOMATIC";
+            this.btnAutoMode.UseVisualStyleBackColor = false;
+            this.btnAutoMode.Click += new System.EventHandler(this.btnAutoMode_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MainForm
             // 
@@ -2468,6 +2491,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(this.btnAutoMode);
             this.Controls.Add(this.btnTeamStats);
             this.Controls.Add(this.lbTodayStats);
             this.Controls.Add(this.btnPlayerStats);
@@ -2717,6 +2741,8 @@
         private System.Windows.Forms.Label PitcherGS;
         private System.Windows.Forms.Label labelGS;
         private ExtendedDotNET.Controls.Progress.ProgressBar pb_stamina;
+        private System.Windows.Forms.Button btnAutoMode;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
