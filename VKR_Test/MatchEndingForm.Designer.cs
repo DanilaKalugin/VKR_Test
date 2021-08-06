@@ -85,6 +85,9 @@ namespace VKR_Test
             this.WinningPitcher = new System.Windows.Forms.Label();
             this.PitcherWithSave = new System.Windows.Forms.Label();
             this.LosingPitcher = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.homeLOB = new System.Windows.Forms.Label();
+            this.awayLOB = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -755,12 +758,52 @@ namespace VKR_Test
             this.LosingPitcher.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LosingPitcher.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(717, 396);
+            this.label5.Margin = new System.Windows.Forms.Padding(0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 39);
+            this.label5.TabIndex = 104;
+            this.label5.Text = "LOB";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // homeLOB
+            // 
+            this.homeLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.homeLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.homeLOB.ForeColor = System.Drawing.Color.White;
+            this.homeLOB.Location = new System.Drawing.Point(717, 481);
+            this.homeLOB.Margin = new System.Windows.Forms.Padding(0);
+            this.homeLOB.Name = "homeLOB";
+            this.homeLOB.Size = new System.Drawing.Size(60, 39);
+            this.homeLOB.TabIndex = 103;
+            this.homeLOB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // awayLOB
+            // 
+            this.awayLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.awayLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.awayLOB.ForeColor = System.Drawing.Color.White;
+            this.awayLOB.Location = new System.Drawing.Point(717, 440);
+            this.awayLOB.Margin = new System.Windows.Forms.Padding(0);
+            this.awayLOB.Name = "awayLOB";
+            this.awayLOB.Size = new System.Drawing.Size(60, 39);
+            this.awayLOB.TabIndex = 102;
+            this.awayLOB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MatchEndingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1000, 729);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.homeLOB);
+            this.Controls.Add(this.awayLOB);
             this.Controls.Add(this.LosingPitcher);
             this.Controls.Add(this.PitcherWithSave);
             this.Controls.Add(this.WinningPitcher);
@@ -881,5 +924,8 @@ namespace VKR_Test
         private System.Windows.Forms.Label WinningPitcher;
         private System.Windows.Forms.Label PitcherWithSave;
         private System.Windows.Forms.Label LosingPitcher;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label homeLOB;
+        private System.Windows.Forms.Label awayLOB;
     }
 }

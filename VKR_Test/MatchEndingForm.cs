@@ -23,7 +23,7 @@ namespace VKR_Test
             endedmatch = match;
         }
 
-        private void UpdateScoreboard(Label FirstInning, Label SecondInning, Label ThirdInning, Label FourthInning, Label FifthInning, Label SixthInning, Label SeventhInning, Label EigthInning, Label NinthInning, Label ExtraInnings, Label Runs, Label Hits, Match match, Team team)
+        private void UpdateScoreboard(Label FirstInning, Label SecondInning, Label ThirdInning, Label FourthInning, Label FifthInning, Label SixthInning, Label SeventhInning, Label EigthInning, Label NinthInning, Label ExtraInnings, Label Runs, Label Hits, Label LeftOnBase, Match match, Team team)
         {
             FirstInning.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb1stInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
             SecondInning.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb2ndInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
@@ -35,6 +35,12 @@ namespace VKR_Test
             EigthInning.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb8thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
             NinthInning.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb9thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
             ExtraInnings.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb10thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
+
+            int LeftOnFirstBase = match.gameSituations.Where(gs => gs.outs == 3 && gs.offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnFirst.IsBaseNotEmpty).Count();
+            int LeftOnSecondBase = match.gameSituations.Where(gs => gs.outs == 3 && gs.offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnSecond.IsBaseNotEmpty).Count();
+            int LeftOnThirdBase = match.gameSituations.Where(gs => gs.outs == 3 && gs.offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnThird.IsBaseNotEmpty).Count();
+
+            LeftOnBase.Text = (LeftOnFirstBase + LeftOnSecondBase + LeftOnThirdBase).ToString();
 
             bool DisplayingCriterion = team == endedmatch.AwayTeam ? (endedmatch.gameSituations.Last().offense == endedmatch.AwayTeam || endedmatch.gameSituations.Last().offense == endedmatch.HomeTeam) : endedmatch.gameSituations.Last().offense == endedmatch.HomeTeam;
 
@@ -80,8 +86,8 @@ namespace VKR_Test
             lbAwayRuns.Text = endedmatch.gameSituations.Last().AwayTeamRuns.ToString();
             lbHomeRuns.Text = endedmatch.gameSituations.Last().HomeTeamRuns.ToString();
 
-            UpdateScoreboard(away1, away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, endedmatch, endedmatch.AwayTeam);
-            UpdateScoreboard(home1, home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, endedmatch, endedmatch.HomeTeam);
+            UpdateScoreboard(away1, away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, awayLOB, endedmatch, endedmatch.AwayTeam);
+            UpdateScoreboard(home1, home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, homeLOB, endedmatch, endedmatch.HomeTeam);
 
             MatchResultForPitcherAnalysis(endedmatch, endedmatch.AwayTeam);
             MatchResultForPitcherAnalysis(endedmatch, endedmatch.HomeTeam);
