@@ -51,12 +51,14 @@ namespace VKR_Test
             if (tableType == TableType.Results)
             {
                 matches = matchBL.GetResultsForallMatches().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
-                                                                           (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).ToList();
+                                                                           (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).
+                                                                           OrderBy(match => match.MatchDate).ToList();
             }
             else
             {
                 matches = matchBL.GetSchedule().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
-                                                               (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).ToList();
+                                                               (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).
+                                                               OrderBy(match => match.MatchDate).ToList();
             }
             FillResultsTable(dgvMatches, matches);
             panel1.Visible = false;

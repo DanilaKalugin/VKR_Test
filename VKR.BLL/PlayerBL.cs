@@ -70,7 +70,7 @@ namespace VKR.BLL
             return batters.OrderBy(key).ToList();
         }
 
-        public List<Pitcher> GetPitchersStats(string TeamFilter = "MLB", string Qualifying = "Qualified Players")
+        public List<Pitcher> GetPitchersStats(string Qualifying = "Qualified Players", string TeamFilter = "MLB")
         {
             List<string> abbreviations = GetTeamsForFilter(TeamFilter);
 

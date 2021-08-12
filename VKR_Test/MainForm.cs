@@ -773,7 +773,7 @@ namespace VKR_Test
             }
             else
             {
-                pb_stamina.Value = (int)((18 - Defense.CurrentPitcher.OutsPlayedInLast5Days) * 10);
+                pb_stamina.Value = 180 - (int)(Defense.CurrentPitcher.OutsPlayedInLast5Days * 10);
             }
 
             int OutsToday = currentMatch.atBats.Where(atBat => atBat.Pitcher == Defense.CurrentPitcher.id).Select(atBat => atBat.outs).Sum();

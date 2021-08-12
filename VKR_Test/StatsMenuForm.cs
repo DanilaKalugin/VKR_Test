@@ -61,6 +61,12 @@ namespace VKR_Test
             return pitchers.Select(key).Min();
         }
 
+        private TKey ReturnMaxStatsValueForPitcher<TKey>(Func<Pitcher, TKey> key, string Qualyfing)
+        {
+            List<Pitcher> pitchers = playersBL.GetPitchersStats(Qualyfing);
+            return pitchers.Select(key).Max();
+        }
+
         private string GetFullNameOfLeaderForThisBattingParameter(Func<Batter, bool> key)
         {
             int countOfBattersWithThisAVG = batters.Where(key).Count();
@@ -77,7 +83,20 @@ namespace VKR_Test
         private string GetFullNameOfLeaderForThisPitchingParameter(Func<Pitcher, bool> key)
         {
             int countOfBattersWithThisAVG = pitchers.Where(key).Count();
-            if (countOfBattersWithThisAVG == 1)
+            if (countOfBattersWithThisAVG == 0)
+            {
+                List<Pitcher> pitchers = playersBL.GetPitchersStats("All Players");
+                countOfBattersWithThisAVG = pitchers.Where(key).Count();
+                if (countOfBattersWithThisAVG == 1)
+                {
+                    return pitchers.Where(key).Select(pitcher => pitcher.FullName).First();
+                }
+                else
+                {
+                    return "Tied";
+                }
+            }
+            else if (countOfBattersWithThisAVG == 1)
             {
                 return pitchers.Where(key).Select(pitcher => pitcher.FullName).First();
             }
@@ -106,14 +125,18 @@ namespace VKR_Test
                 }
                 else
                 {
-                    dgvBattingLeaders.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(220, 220, 220);
-                    dgvBattingLeaders.Rows[i].Cells[0].Style.SelectionBackColor = Color.FromArgb(220, 220, 220);
+                    dgvBattingLeaders.Rows[i].Cells[1].Style.BackColor = Color.FromArgb(220, 220, 220);
+                    dgvBattingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = Color.FromArgb(220, 220, 220);
                 }
             }
 
             dgvPitchingLeaders.Rows.Clear();
+
+            int maxSaves = ReturnMaxStatsValueForPitcher(batter1 => batter1.Saves, "All Players");
+
+
             dgvPitchingLeaders.Rows.Add("W", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.Wins == ReturnMaxStatsValueForPitcher(batter1 => batter1.Wins)), ReturnMaxStatsValueForPitcher(batter1 => batter1.Wins));
-            dgvPitchingLeaders.Rows.Add("SV", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.Saves == ReturnMaxStatsValueForPitcher(batter1 => batter1.Saves)), ReturnMaxStatsValueForPitcher(batter1 => batter1.Saves));
+            dgvPitchingLeaders.Rows.Add("SV", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.Saves == maxSaves), maxSaves);
             dgvPitchingLeaders.Rows.Add("ERA", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.ERA == ReturnMinStatsValueForPitcher(batter1 => batter1.ERA)), ReturnMinStatsValueForPitcher(batter1 => batter1.ERA).ToString("0.00", new CultureInfo("en-US")));
             dgvPitchingLeaders.Rows.Add("SO", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.Strikeouts == ReturnMaxStatsValueForPitcher(batter1 => batter1.Strikeouts)), ReturnMaxStatsValueForPitcher(batter1 => batter1.Strikeouts));
             dgvPitchingLeaders.Rows.Add("WHIP", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.WHIP == ReturnMinStatsValueForPitcher(batter1 => batter1.WHIP)), ReturnMinStatsValueForPitcher(batter1 => batter1.WHIP).ToString("0.00", new CultureInfo("en-US")));
@@ -121,15 +144,25 @@ namespace VKR_Test
             {
                 if (dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString() != "Tied")
                 {
-                    Pitcher currentbatter = pitchers.Where(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString()).First();
+                    List<Pitcher> pitchersWithThisValue = pitchers.Where(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString()).ToList();
+                    Pitcher currentbatter;
+                    if (pitchersWithThisValue.Count == 0)
+                    {
+                        List<Pitcher> allPitchers = playersBL.GetPitchersStats("All Players").ToList();
+                        currentbatter = allPitchers.Where(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString()).First();
+                    }
+                    else
+                    {
+                        currentbatter = pitchersWithThisValue.First();
+                    }
                     Team ManTeam = teams.Where(team => team.TeamAbbreviation == currentbatter.Team).First();
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = ManTeam.TeamColor[0];
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = ManTeam.TeamColor[0];
                 }
                 else
                 {
-                    dgvPitchingLeaders.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(220, 220, 220);
-                    dgvPitchingLeaders.Rows[i].Cells[0].Style.SelectionBackColor = Color.FromArgb(220, 220, 220);
+                    dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = Color.FromArgb(220, 220, 220);
+                    dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = Color.FromArgb(220, 220, 220);
                 }
             }
         }

@@ -342,3 +342,4 @@ healthchecksdb
 *.xlsx
 /VKR.iss
 /VKR_setup.exe
+/VKR_Test/Новая папка/*
