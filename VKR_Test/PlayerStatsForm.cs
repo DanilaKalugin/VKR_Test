@@ -1120,7 +1120,9 @@ namespace VKR_Test
             ShowNewStats(playerType, statsType);
             List<string> teamsInComboBox = new List<string>
             {
-                "MLB"
+                "MLB",
+                "AL",
+                "NL"
             };
             teamsInComboBox.AddRange(teams.Select(team => team.TeamTitle).ToList());
             cbTeams.DataSource = teamsInComboBox;
@@ -1149,7 +1151,7 @@ namespace VKR_Test
                 {
                     batters = playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, cbPositions.SelectedValue.ToString());
                 }
-                pitchers = playersBL.GetPitchersStats(cbTeams.Text, cbPlayers.Text);
+                pitchers = playersBL.GetPitchersStats(cbPlayers.Text, cbTeams.SelectedValue.ToString());
                 GetSortedListsBySortingCodes(lastBattingSort, lastPitchingSort);
             }
         }

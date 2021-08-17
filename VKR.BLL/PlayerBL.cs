@@ -118,6 +118,10 @@ namespace VKR.BLL
                 teamsabbreviations.AddRange(teams.Select(team => team.TeamAbbreviation).ToList());
                 teamsabbreviations.Add("");
             }
+            else if (TeamFilter == "AL" || TeamFilter == "NL")
+            {
+                teamsabbreviations.AddRange(teams.Where(team => team.League == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
+            }
             else teamsabbreviations.AddRange(teams.Where(team => team.TeamTitle == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
             return teamsabbreviations;
         }

@@ -301,6 +301,42 @@ namespace Entities
                     int _Hit_Probability, int _Foul_Probability, int _Single_Probability, int _Double_Probability, int _HR_Probability,
                     int _PopoutOnFoul_Probability, int _FlyoutOnHR_Probability, int _Groundout_Probability, int _Flyout_Probability, int _sacFly_Probability,
                     int _DoublePlayProbability, int _SuccessfulBaseSteling_Probability, int _SuccessfulBunt_Probability, int _Stadium, bool _DHRule,
+                    int w, int l, int _HBP, int _sb, int _TripleProbability, string _League)
+        {
+            TeamAbbreviation = abbreviation;
+            TeamCity = city;
+            TeamTitle = name;
+            StrikeZoneProbabilty = _StrikeZoneProbability;
+            SwingInStrikeZoneProbability = _Swing_SZ_Probability;
+            SwingOutsideStrikeZoneProbability = _Swing_NotSZ_Probability;
+            HittingProbability = _Hit_Probability;
+            FoulProbability = _Foul_Probability;
+            SingleProbability = _Single_Probability;
+            DoubleProbability = _Double_Probability;
+            HomeRunProbabilty = _HR_Probability;
+            PopoutOnFoulProbability = _PopoutOnFoul_Probability;
+            FlyoutOnHomeRunProbability = _FlyoutOnHR_Probability;
+            GroundoutProbability = _Groundout_Probability;
+            FlyoutProbability = _Flyout_Probability;
+            DoublePlayProbabilty = _DoublePlayProbability;
+            SacrificeFlyProbability = _sacFly_Probability;
+            SuccessfulStelingBaseAttemptProbabilty = _SuccessfulBaseSteling_Probability;
+            SuccessfulBuntAttemptProbabilty = _SuccessfulBunt_Probability;
+            Stadium = _Stadium;
+            PitchersPlayedInMatch = new List<Pitcher>();
+            DHRule = _DHRule;
+            Wins = w;
+            Losses = l;
+            HitByPitchProbability = _HBP;
+            StealingBaseProbability = _sb;
+            TripleProbability = _TripleProbability;
+            League = _League;
+        }
+
+        public Team(string abbreviation, string city, string name, int _StrikeZoneProbability, int _Swing_SZ_Probability, int _Swing_NotSZ_Probability,
+                    int _Hit_Probability, int _Foul_Probability, int _Single_Probability, int _Double_Probability, int _HR_Probability,
+                    int _PopoutOnFoul_Probability, int _FlyoutOnHR_Probability, int _Groundout_Probability, int _Flyout_Probability, int _sacFly_Probability,
+                    int _DoublePlayProbability, int _SuccessfulBaseSteling_Probability, int _SuccessfulBunt_Probability, int _Stadium, bool _DHRule,
                     int w, int l, int _HBP, int _sb, int _TripleProbability)
         {
             TeamAbbreviation = abbreviation;

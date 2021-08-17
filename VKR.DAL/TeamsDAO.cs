@@ -116,10 +116,11 @@ namespace VKR.DAL
                         int L = (int)reader["L"];
                         int HBP = (int)reader["HitByPitchProbability"];
                         int SB = (int)reader["StealingBaseProbability"];
+                        string League = (string)reader["League"];
                         teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
                                               Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
                                               FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, SuccesfullSB,
-                                              Bunt, stadium, DHRule, W, L, HBP, SB, Triple));
+                                              Bunt, stadium, DHRule, W, L, HBP, SB, Triple, League));
                     }
                 }
             }
