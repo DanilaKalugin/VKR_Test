@@ -1,6 +1,7 @@
 ﻿using Entities;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace VKR_Test
@@ -36,7 +37,16 @@ namespace VKR_Test
             {
                 photo.BackColor = team.TeamColor[1];
             }
-            photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+
+            if (File.Exists($"PlayerPhotos/Player{batter.id:0000}.png"))
+            {
+                photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+            }
+            else
+            {
+                photo.BackgroundImage = null;
+            }
+
             Name.Text = batter.FirstName.ToUpper();
             SecondName.Text = batter.SecondName.ToUpper();
             Number.Text = batter.PlayerNumber.ToString();

@@ -447,7 +447,7 @@
             this.HomeTeam_Abbreviation.Location = new System.Drawing.Point(0, 0);
             this.HomeTeam_Abbreviation.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.HomeTeam_Abbreviation.Name = "HomeTeam_Abbreviation";
-            this.HomeTeam_Abbreviation.Size = new System.Drawing.Size(99, 39);
+            this.HomeTeam_Abbreviation.Size = new System.Drawing.Size(120, 39);
             this.HomeTeam_Abbreviation.TabIndex = 1;
             this.HomeTeam_Abbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.HomeTeam_Abbreviation.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
@@ -457,12 +457,12 @@
             this.HomeTeam_RunsScored.Dock = System.Windows.Forms.DockStyle.Right;
             this.HomeTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.HomeTeam_RunsScored.ForeColor = System.Drawing.Color.White;
-            this.HomeTeam_RunsScored.Location = new System.Drawing.Point(98, 0);
+            this.HomeTeam_RunsScored.Location = new System.Drawing.Point(120, 0);
             this.HomeTeam_RunsScored.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.HomeTeam_RunsScored.Name = "HomeTeam_RunsScored";
-            this.HomeTeam_RunsScored.Size = new System.Drawing.Size(62, 39);
+            this.HomeTeam_RunsScored.Size = new System.Drawing.Size(40, 39);
             this.HomeTeam_RunsScored.TabIndex = 3;
-            this.HomeTeam_RunsScored.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.HomeTeam_RunsScored.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.HomeTeam_RunsScored.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel4
@@ -482,12 +482,12 @@
             this.AwayTeam_RunsScored.Dock = System.Windows.Forms.DockStyle.Right;
             this.AwayTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
             this.AwayTeam_RunsScored.ForeColor = System.Drawing.Color.White;
-            this.AwayTeam_RunsScored.Location = new System.Drawing.Point(98, 0);
+            this.AwayTeam_RunsScored.Location = new System.Drawing.Point(120, 0);
             this.AwayTeam_RunsScored.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.AwayTeam_RunsScored.Name = "AwayTeam_RunsScored";
-            this.AwayTeam_RunsScored.Size = new System.Drawing.Size(62, 39);
+            this.AwayTeam_RunsScored.Size = new System.Drawing.Size(40, 39);
             this.AwayTeam_RunsScored.TabIndex = 2;
-            this.AwayTeam_RunsScored.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.AwayTeam_RunsScored.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.AwayTeam_RunsScored.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // AwayTeam_Abbreviation
@@ -498,7 +498,7 @@
             this.AwayTeam_Abbreviation.Location = new System.Drawing.Point(0, 0);
             this.AwayTeam_Abbreviation.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.AwayTeam_Abbreviation.Name = "AwayTeam_Abbreviation";
-            this.AwayTeam_Abbreviation.Size = new System.Drawing.Size(99, 39);
+            this.AwayTeam_Abbreviation.Size = new System.Drawing.Size(120, 39);
             this.AwayTeam_Abbreviation.TabIndex = 0;
             this.AwayTeam_Abbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.AwayTeam_Abbreviation.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);

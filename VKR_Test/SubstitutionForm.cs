@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace VKR_Test
@@ -28,7 +29,14 @@ namespace VKR_Test
             dgvAvailablePlayers.Columns[3].HeaderText = "SO";
             foreach (Pitcher pitcher in Pitchers)
             {
-                dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"{pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"{pitcher.Strikeouts}");
+                if (File.Exists($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"))
+                {
+                    dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"{pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"{pitcher.Strikeouts}");
+                }
+                else
+                {
+                    dgvAvailablePlayers.Rows.Add(null, pitcher.FullName, $"{pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"{pitcher.Strikeouts}");
+                }
             }
         }
 
@@ -52,7 +60,14 @@ namespace VKR_Test
             dgvAvailablePlayers.Columns[3].HeaderText = "HR";
             for (int i = 0; i < Batters.Count; i++)
             {
-                dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"{Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"{Batters[i].HomeRuns}");
+                if (File.Exists($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"))
+                {
+                    dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{Batters[i].id:0000}.jpg"), Batters[i].FullName, $"{Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"{Batters[i].HomeRuns}");
+                }
+                else
+                {
+                    dgvAvailablePlayers.Rows.Add(null, Batters[i].FullName, $"{Batters[i].AVG.ToString("#.000", new CultureInfo("en-US"))}", $"{Batters[i].HomeRuns}");
+                }
             }
         }
 

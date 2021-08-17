@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,7 +18,14 @@ namespace VKR_Test
             timer2.Start();
             panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            pbPatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+            if (File.Exists($"PlayerPhotos/Player{batter.id:0000}.png"))
+            {
+                pbPatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+            }
+            else
+            {
+                pbPatterPhoto.BackgroundImage = null;
+            }
             lbBatterName.Text = batter.FullName.ToUpper();
 
             int HRTodayForThisBatter = allAtBats.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.id).Count();

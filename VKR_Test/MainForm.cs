@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Entities;
@@ -214,27 +215,41 @@ namespace VKR_Test
             lb2ndBase.BackColor = situation.offense.TeamColorForThisMatch;
             lb3rdBase.BackColor = situation.offense.TeamColorForThisMatch;
 
-            RunnerOn1Photo.BackgroundImage = situation.RunnerOnFirst.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID:0000}.png") : null;
-            RunnerOn2Photo.BackgroundImage = situation.RunnerOnSecond.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID:0000}.png") : null;
-            RunnerOn3Photo.BackgroundImage = situation.RunnerOnThird.IsBaseNotEmpty ? Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnThird.runnerID:0000}.png") : null;
-
             if (situation.RunnerOnFirst.IsBaseNotEmpty)
             {
                 Batter runneron1St = situation.offense.BattingLineup.Where(Batter => Batter.id == situation.RunnerOnFirst.runnerID).First();
                 lb_Runner1_Name.Text = runneron1St.FullName.ToUpper();
+                if (File.Exists($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID:0000}.png"))
+                {
+                    RunnerOn1Photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID:0000}.png");
+                }
+                else RunnerOn1Photo.BackgroundImage = null;
             }
+            else RunnerOn1Photo.BackgroundImage = null;
 
             if (situation.RunnerOnSecond.IsBaseNotEmpty)
             {
                 Batter runneron2nd = situation.offense.BattingLineup.Where(Batter => Batter.id == situation.RunnerOnSecond.runnerID).First();
                 lb_Runner2_Name.Text = runneron2nd.FullName.ToUpper();
+                if (File.Exists($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID:0000}.png"))
+                {
+                    RunnerOn2Photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID:0000}.png");
+                }
+                else RunnerOn2Photo.BackgroundImage = null;
             }
+            else RunnerOn2Photo.BackgroundImage = null;
 
             if (situation.RunnerOnThird.IsBaseNotEmpty)
             {
                 Batter runneron3rd = situation.offense.BattingLineup.Where(Batter => Batter.id == situation.RunnerOnThird.runnerID).First();
                 lb_Runner3_Name.Text = runneron3rd.FullName.ToUpper();
+                if (File.Exists($"PlayerPhotos/Player{situation.RunnerOnThird.runnerID:0000}.png"))
+                {
+                    RunnerOn3Photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnThird.runnerID:0000}.png");
+                }
+                else RunnerOn3Photo.BackgroundImage = null;
             }
+            else RunnerOn3Photo.BackgroundImage = null;
         }
 
         private Batter GetBatterByGameSituation(GameSituation gameSituation)
@@ -307,7 +322,14 @@ namespace VKR_Test
             ShowBatterStats(batter, BatterStats);
             ShowStatsForThisMatch(batter, lbTodayStats);
 
-            pbCurrentBatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id.ToString("0000")}.png");
+            if (File.Exists($"PlayerPhotos/Player{batter.id:0000}.png"))
+            {
+                pbCurrentBatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+            }
+            else
+            {
+                pbCurrentBatterPhoto.BackgroundImage = null;
+            }
             lblPlayerPosition.Text = batter.PositionForThisMatch;
             lblPlayerNumber.Text = batter.PlayerNumber.ToString();
             lblPlayerName.Text = batter.FullName.ToUpper();
@@ -734,7 +756,14 @@ namespace VKR_Test
             PitchingTeamColor.BackColor = Defense.TeamColorForThisMatch;
             btnShowAvailablePitchers.BackColor = Defense.TeamColorForThisMatch;
             PitchingTeam.BackgroundImage = Image.FromFile($"SmallTeamLogos/{Defense.TeamAbbreviation}.png");
-            PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id.ToString("0000")}.png");
+            if (File.Exists($"PlayerPhotos/Player{Defense.CurrentPitcher.id:0000}.png"))
+            {
+                PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id:0000}.png");
+            }
+            else
+            {
+                PitcherPhoto.BackgroundImage = null;
+            }
             PitcherName.Text = Defense.CurrentPitcher.FullName.ToUpper();
 
             PitcherGames.Visible = Defense.PitchersPlayedInMatch.Count > 1;
@@ -827,6 +856,7 @@ namespace VKR_Test
         {
             if (DialogResult != DialogResult.OK)
             {
+                e.Cancel = true;
                 if (MessageBox.Show("Do you want to close this window?\nThis match will be deleted from database", "Graduation paper", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     DeleteThisMatch = true;
@@ -834,7 +864,6 @@ namespace VKR_Test
                     DialogResult = DialogResult.Yes;
                 }
             }
-
         }
 
         private void btnStandings_Click(object sender, EventArgs e)
@@ -983,15 +1012,25 @@ namespace VKR_Test
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            GenerateNewPitch();
+            IsAutoSimulation = pb_stamina.Value > 15;
+            SimulationModeChanged(IsAutoSimulation);
+            if (IsAutoSimulation)
+            {
+                GenerateNewPitch();
+            }
         }
 
         private void btnAutoMode_Click(object sender, EventArgs e)
         {
             IsAutoSimulation = !IsAutoSimulation;
-            timer1.Enabled = IsAutoSimulation;
-            btnNewPitch.Enabled = !IsAutoSimulation;
-            btnAutoMode.Text = IsAutoSimulation ? "MANUAL" : "AUTOMATIC";
+            SimulationModeChanged(IsAutoSimulation);
+        }
+
+        private void SimulationModeChanged(bool isAutoSim)
+        {
+            timer1.Enabled = isAutoSim;
+            btnNewPitch.Enabled = !isAutoSim;
+            btnAutoMode.Text = isAutoSim ? "MANUAL" : "AUTOMATIC";
         }
     }
 }

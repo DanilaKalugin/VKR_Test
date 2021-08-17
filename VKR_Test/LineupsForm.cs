@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using VKR.BLL;
 
@@ -223,7 +224,14 @@ namespace VKR_Test
 
             if (dgv1.SelectedRows.Count > 0)
             {
-                pbPlayerPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.png");
+                if (File.Exists($"PlayerPhotos/Player{player.id:0000}.png"))
+                {
+                    pbPlayerPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.id:0000}.png");
+                }
+                else
+                {
+                    pbPlayerPhoto.BackgroundImage = null;
+                }
                 lbPlayerNumber.Text = $"#{player.PlayerNumber}";
                 lbPlayerName.Text = player.FullName.ToUpper();
                 lbPlayerPlace_and_DateOfBirth.Text = $"{player.PlaceOfBirth.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";

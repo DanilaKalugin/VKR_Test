@@ -180,6 +180,7 @@ namespace VKR_Test
             this.ClientSize = new System.Drawing.Size(524, 725);
             this.Controls.Add(this.dgvAvailablePlayers);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SubstitutionForm";
