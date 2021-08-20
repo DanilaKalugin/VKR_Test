@@ -87,7 +87,6 @@ namespace VKR_Test
             lbLineUpType.ForeColor = teams[TeamNumber].TeamColor[0];
             lbPlayerName.ForeColor = teams[TeamNumber].TeamColor[0];
 
-
             lbPlayerNumber.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.7), (int)(teams[TeamNumber].TeamColor[0].G * 0.7), (int)(teams[TeamNumber].TeamColor[0].B * 0.7));
             dgvBench.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb((int)(teams[TeamNumber].TeamColor[0].R * 0.65), (int)(teams[TeamNumber].TeamColor[0].G * 0.65), (int)(teams[TeamNumber].TeamColor[0].B * 0.65));
 

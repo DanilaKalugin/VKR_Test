@@ -181,6 +181,10 @@ namespace VKR_Test
                 Hide();
                 DialogResult = DialogResult.Yes;
             }
+            else
+            {
+                Visible = true;
+            }
         }
 
         private void btnSwap_Click(object sender, EventArgs e)

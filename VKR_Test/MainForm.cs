@@ -854,14 +854,13 @@ namespace VKR_Test
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult != DialogResult.OK)
+            if (DialogResult != DialogResult.OK && !DeleteThisMatch)
             {
                 e.Cancel = true;
                 if (MessageBox.Show("Do you want to close this window?\nThis match will be deleted from database", "Graduation paper", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     DeleteThisMatch = true;
-                    Hide();
-                    DialogResult = DialogResult.Yes;
+                    Dispose();
                 }
             }
         }
@@ -1012,7 +1011,7 @@ namespace VKR_Test
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IsAutoSimulation = pb_stamina.Value > 15;
+            IsAutoSimulation = pb_stamina.Value > 20 && int.Parse(lbPitchCountForThisPitcher.Text) < 105;
             SimulationModeChanged(IsAutoSimulation);
             if (IsAutoSimulation)
             {

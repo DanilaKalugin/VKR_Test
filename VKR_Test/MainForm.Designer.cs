@@ -323,7 +323,7 @@
             // 
             this.lbPitcherSecondName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPitcherSecondName.ForeColor = System.Drawing.Color.White;
-            this.lbPitcherSecondName.Location = new System.Drawing.Point(32, 5);
+            this.lbPitcherSecondName.Location = new System.Drawing.Point(28, 5);
             this.lbPitcherSecondName.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.lbPitcherSecondName.Name = "lbPitcherSecondName";
             this.lbPitcherSecondName.Size = new System.Drawing.Size(149, 20);
@@ -370,7 +370,7 @@
             // 
             this.lbBatterSecondName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBatterSecondName.ForeColor = System.Drawing.Color.White;
-            this.lbBatterSecondName.Location = new System.Drawing.Point(32, 5);
+            this.lbBatterSecondName.Location = new System.Drawing.Point(28, 5);
             this.lbBatterSecondName.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
             this.lbBatterSecondName.Name = "lbBatterSecondName";
             this.lbBatterSecondName.Size = new System.Drawing.Size(149, 20);
@@ -431,8 +431,8 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
-            this.panel5.Controls.Add(this.HomeTeam_Abbreviation);
             this.panel5.Controls.Add(this.HomeTeam_RunsScored);
+            this.panel5.Controls.Add(this.HomeTeam_Abbreviation);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 39);
             this.panel5.Name = "panel5";
@@ -442,12 +442,13 @@
             // HomeTeam_Abbreviation
             // 
             this.HomeTeam_Abbreviation.Dock = System.Windows.Forms.DockStyle.Left;
-            this.HomeTeam_Abbreviation.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.HomeTeam_Abbreviation.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
             this.HomeTeam_Abbreviation.ForeColor = System.Drawing.Color.White;
             this.HomeTeam_Abbreviation.Location = new System.Drawing.Point(0, 0);
             this.HomeTeam_Abbreviation.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.HomeTeam_Abbreviation.Name = "HomeTeam_Abbreviation";
-            this.HomeTeam_Abbreviation.Size = new System.Drawing.Size(120, 39);
+            this.HomeTeam_Abbreviation.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.HomeTeam_Abbreviation.Size = new System.Drawing.Size(121, 39);
             this.HomeTeam_Abbreviation.TabIndex = 1;
             this.HomeTeam_Abbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.HomeTeam_Abbreviation.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
@@ -455,7 +456,7 @@
             // HomeTeam_RunsScored
             // 
             this.HomeTeam_RunsScored.Dock = System.Windows.Forms.DockStyle.Right;
-            this.HomeTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.HomeTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
             this.HomeTeam_RunsScored.ForeColor = System.Drawing.Color.White;
             this.HomeTeam_RunsScored.Location = new System.Drawing.Point(120, 0);
             this.HomeTeam_RunsScored.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -480,7 +481,7 @@
             // AwayTeam_RunsScored
             // 
             this.AwayTeam_RunsScored.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AwayTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.AwayTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
             this.AwayTeam_RunsScored.ForeColor = System.Drawing.Color.White;
             this.AwayTeam_RunsScored.Location = new System.Drawing.Point(120, 0);
             this.AwayTeam_RunsScored.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -493,12 +494,13 @@
             // AwayTeam_Abbreviation
             // 
             this.AwayTeam_Abbreviation.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AwayTeam_Abbreviation.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.AwayTeam_Abbreviation.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
             this.AwayTeam_Abbreviation.ForeColor = System.Drawing.Color.White;
             this.AwayTeam_Abbreviation.Location = new System.Drawing.Point(0, 0);
             this.AwayTeam_Abbreviation.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.AwayTeam_Abbreviation.Name = "AwayTeam_Abbreviation";
-            this.AwayTeam_Abbreviation.Size = new System.Drawing.Size(120, 39);
+            this.AwayTeam_Abbreviation.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.AwayTeam_Abbreviation.Size = new System.Drawing.Size(121, 39);
             this.AwayTeam_Abbreviation.TabIndex = 0;
             this.AwayTeam_Abbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.AwayTeam_Abbreviation.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);

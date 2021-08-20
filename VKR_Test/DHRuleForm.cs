@@ -42,7 +42,7 @@ namespace VKR_Test
             newMatch.HomeTeam.PitchersPlayedInMatch.Add(teamsBL.GetStartingPitcherForThisTeam(newMatch.HomeTeam, newMatch));
 
             MainForm newMatchForm = new MainForm(newMatch);
-            Visible = false;
+            //Visible = false;
             newMatchForm.ShowDialog();
 
             if (newMatchForm.DialogResult == DialogResult.OK)
@@ -51,7 +51,7 @@ namespace VKR_Test
                 newMatchForm.Dispose();
                 Hide();
             }
-            else if (newMatchForm.DialogResult == DialogResult.Yes)
+            else if (newMatchForm.DeleteThisMatch)
             {
                 ExitFromCurrentMatch = newMatchForm.DeleteThisMatch;
                 MatchNumber = newMatchForm.currentMatch.MatchID;
