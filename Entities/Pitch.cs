@@ -366,10 +366,11 @@ namespace Entities
             int PitcherCoefficient = GetPitcherCoeffitientForThisPitcher(Defense);
             int HandsCoefficient = CurrentBatter.BattingHand == Defense.CurrentPitcher.Pitchinghand || CurrentBatter.BattingHand == "Switch" ? 0 : 20;
 
-            if (Defense.CurrentPitcher.OutsPlayedInLast5Days > 18)
+            if (Defense.CurrentPitcher.RemainingStamina < 0)
             {
-                numberOfPitches = (int)(numberOfPitches * (1 + (Defense.CurrentPitcher.OutsPlayedInLast5Days - 18) / 2) * 0.1);
+                numberOfPitches = (int)(numberOfPitches * (1 + Math.Abs(Defense.CurrentPitcher.RemainingStamina) / 5) * 0.2);
             }
+
             if (numberOfPitches > PitcherCoefficient)
             {
                 if (Defense.PitchersPlayedInMatch.Count > 1)

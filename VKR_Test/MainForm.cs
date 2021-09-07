@@ -792,17 +792,17 @@ namespace VKR_Test
             PitcherWalks.Text = Defense.CurrentPitcher.WalksAllowed.ToString();
             PitcherWHIP.Text = Defense.CurrentPitcher.WHIP.ToString("0.00", new CultureInfo("en-US"));
 
-            Defense.CurrentPitcher.OutsPlayedInLast5Days = teamsBL.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Defense.CurrentPitcher, currentMatch);
+            Defense.CurrentPitcher.RemainingStamina = teamsBL.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Defense.CurrentPitcher, currentMatch);
 
-            pb_stamina.MainColor = Defense.CurrentPitcher.OutsPlayedInLast5Days > (16.5 - 1E-5) ? Color.Maroon : Defense.TeamColorForThisMatch;
+            pb_stamina.MainColor = Defense.CurrentPitcher.RemainingStamina < (25 - 1E-5) ? Color.Maroon : Defense.TeamColorForThisMatch;
 
-            if (Defense.CurrentPitcher.OutsPlayedInLast5Days > 18 - 1E-5)
+            if (Defense.CurrentPitcher.RemainingStamina < 5 - 1E-5)
             {
                 pb_stamina.Value = 5;
             }
             else
             {
-                pb_stamina.Value = 180 - (int)(Defense.CurrentPitcher.OutsPlayedInLast5Days * 10);
+                pb_stamina.Value = (int)Defense.CurrentPitcher.RemainingStamina;
             }
 
             int OutsToday = currentMatch.atBats.Where(atBat => atBat.Pitcher == Defense.CurrentPitcher.id).Select(atBat => atBat.outs).Sum();
@@ -1011,7 +1011,7 @@ namespace VKR_Test
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IsAutoSimulation = pb_stamina.Value > 20 && int.Parse(lbPitchCountForThisPitcher.Text) < 105;
+            IsAutoSimulation = pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105;
             SimulationModeChanged(IsAutoSimulation);
             if (IsAutoSimulation)
             {
@@ -1030,6 +1030,12 @@ namespace VKR_Test
             timer1.Enabled = isAutoSim;
             btnNewPitch.Enabled = !isAutoSim;
             btnAutoMode.Text = isAutoSim ? "MANUAL" : "AUTOMATIC";
+        }
+
+        private void panel9_Paint(object sender, PaintEventArgs e)
+        {
+            Color borderColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(panel9.BackColor, false);
+            ControlPaint.DrawBorder(e.Graphics, this.panel9.ClientRectangle, borderColor, ButtonBorderStyle.Solid);
         }
     }
 }

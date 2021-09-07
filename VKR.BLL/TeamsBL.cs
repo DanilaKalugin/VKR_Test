@@ -66,7 +66,7 @@ namespace VKR.BLL
         public Pitcher GetStartingPitcherForThisTeam(Team team, Match match)
         {
             Pitcher pitcher = teamsDAO.GetStartingPitcherForThisTeam(team, match.MatchID).First();
-            pitcher.OutsPlayedInLast5Days = teamsDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(match, pitcher);
+            pitcher.RemainingStamina = teamsDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(match, pitcher);
             return pitcher;
         }
 
@@ -90,7 +90,7 @@ namespace VKR.BLL
             pitcher.RunsAllowed = PitcherWithNewStats.RunsAllowed;
         }
 
-        public double ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Pitcher pitcher, Match match)
+        public int ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Pitcher pitcher, Match match)
         {
             return teamsDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(match, pitcher);
         }
