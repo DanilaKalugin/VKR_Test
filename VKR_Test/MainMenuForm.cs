@@ -118,8 +118,7 @@ namespace VKR_Test
 
         private void btnNewMatch_Click(object sender, EventArgs e)
         {
-            Program.MatchDate = matchBL.GetDateForNextMatch();
-            Match match = new Match(Program.MatchDate, true);
+            Match match = new Match(DateTime.Now, true);
             Visible = false;
             TeamsSelectForm form = new TeamsSelectForm(match);
             form.ShowDialog();

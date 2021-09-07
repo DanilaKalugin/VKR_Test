@@ -209,11 +209,6 @@ namespace VKR_Test
             l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
         }
 
-        private void btnNextMatch_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -223,6 +218,30 @@ namespace VKR_Test
                 HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[matchNumber].HomeTeamAbbreviation);
                 DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
                 DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
+            }
+        }
+
+        private void TeamsSelectForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F5:
+                    {
+                        if (!newMatch.IsQuickMatch)
+                        {
+                            Program.MatchDate = matchBL.GetDateForNextMatch();
+                            matches = matchBL.GetMatchesForThisDay(Program.MatchDate);
+                            matchNumber = 0;
+                            AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].AwayTeamAbbreviation);
+                            HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
+                            dataGridView1.Rows.Clear();
+                            for (int i = 0; i < matches.Count; i++)
+                            {
+                                dataGridView1.Rows.Add(Image.FromFile($"TeamLogosForSubstitution/{matches[i].AwayTeamAbbreviation}.png"), Image.FromFile($"TeamLogosForSubstitution/{matches[i].HomeTeamAbbreviation}.png"));
+                            }
+                        }
+                        break;
+                    }
             }
         }
     }
