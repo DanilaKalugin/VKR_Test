@@ -542,17 +542,17 @@ namespace VKR_Test
 
         private void BasesStealingAttempt_Definition()
         {
-            Pitch.StealingAttempt thirdBaseStealingAttempt, secondBaseStealingAttempt;
+            RandomGenerators.StealingAttempt thirdBaseStealingAttempt, secondBaseStealingAttempt;
             if (newGameSituation.RunnerOnSecond.IsBaseNotEmpty && !newGameSituation.RunnerOnThird.IsBaseNotEmpty)
             {
-                thirdBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Third, newGameSituation, currentMatch.AwayTeam);
-                if (thirdBaseStealingAttempt == Pitch.StealingAttempt.Attempt)
+                thirdBaseStealingAttempt = RandomGenerators.stealingAttempt_Definition(RandomGenerators.BaseNumberForStealing.Third, newGameSituation, currentMatch.AwayTeam);
+                if (thirdBaseStealingAttempt == RandomGenerators.StealingAttempt.Attempt)
                 {
                     lb_Runner2_Name.ForeColor = Color.DarkGoldenrod;
                     if (newGameSituation.RunnerOnFirst.IsBaseNotEmpty && newGameSituation.RunnerOnSecond.IsBaseNotEmpty)
                     {
-                        secondBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Second, newGameSituation, currentMatch.AwayTeam);
-                        if (secondBaseStealingAttempt == Pitch.StealingAttempt.Attempt)
+                        secondBaseStealingAttempt = RandomGenerators.stealingAttempt_Definition(RandomGenerators.BaseNumberForStealing.Second, newGameSituation, currentMatch.AwayTeam);
+                        if (secondBaseStealingAttempt == RandomGenerators.StealingAttempt.Attempt)
                         {
                             lb_Runner1_Name.ForeColor = Color.DarkGoldenrod;
                         }
@@ -561,21 +561,29 @@ namespace VKR_Test
             }
             if (newGameSituation.RunnerOnFirst.IsBaseNotEmpty && !newGameSituation.RunnerOnSecond.IsBaseNotEmpty)
             {
-                secondBaseStealingAttempt = Pitch.stealingAttempt_Definition(Pitch.BaseNumberForStealing.Second, newGameSituation, currentMatch.AwayTeam);
-                if (secondBaseStealingAttempt == Pitch.StealingAttempt.Attempt)
+                secondBaseStealingAttempt = RandomGenerators.stealingAttempt_Definition(RandomGenerators.BaseNumberForStealing.Second, newGameSituation, currentMatch.AwayTeam);
+                if (secondBaseStealingAttempt == RandomGenerators.StealingAttempt.Attempt)
                 {
                     lb_Runner1_Name.ForeColor = Color.DarkGoldenrod;
                 }
             }
         }
 
+        private bool BuntAttemptDefinition()
+        {
+            RandomGenerators.BuntAttempt buntAttempt = RandomGenerators.BuntAttempt_Definition(newGameSituation, currentMatch.AwayTeam);
+            return buntAttempt == RandomGenerators.BuntAttempt.Attempt;
+        }
+
         private void GenerateNewPitch()
         {
             Pitch pitch;
-            BasesStealingAttempt_Definition();
             bool StealingAttempt = lb_Runner1_Name.ForeColor == Color.DarkGoldenrod || lb_Runner2_Name.ForeColor == Color.DarkGoldenrod;
             int CountOfAtBats = currentMatch.atBats.Count();
             int TypeOfStealing = 0;
+
+
+
             if (StealingAttempt)
             {
                 pitch = new Pitch(newGameSituation, currentMatch.gameSituations, currentMatch.HomeTeam, currentMatch.AwayTeam);
@@ -821,8 +829,7 @@ namespace VKR_Test
 
         private void btnBuntAttempt_Click(object sender, EventArgs e)
         {
-            Pitch pitch = new Pitch(newGameSituation, currentMatch.AwayTeam, currentMatch.HomeTeam);
-            AddnewGameSituation(pitch);
+            GenerateNewBunt();
         }
 
         private void lb_Runner1_Name_Click(object sender, EventArgs e)
@@ -1012,10 +1019,27 @@ namespace VKR_Test
         private void timer1_Tick(object sender, EventArgs e)
         {
             IsAutoSimulation = pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105;
+            bool IsBunt;
             SimulationModeChanged(IsAutoSimulation);
             if (IsAutoSimulation)
             {
-                GenerateNewPitch();
+                BasesStealingAttempt_Definition();
+                if (lb_Runner1_Name.ForeColor != Color.DarkGoldenrod && lb_Runner2_Name.ForeColor != Color.DarkGoldenrod)
+                {
+                    IsBunt = BuntAttemptDefinition();
+                }
+                else
+                {
+                    IsBunt = false;
+                }
+                if (IsBunt)
+                {
+                    GenerateNewBunt();
+                }
+                else
+                {
+                    GenerateNewPitch();
+                }
             }
         }
 
@@ -1032,10 +1056,16 @@ namespace VKR_Test
             btnAutoMode.Text = isAutoSim ? "MANUAL" : "AUTOMATIC";
         }
 
+        private void GenerateNewBunt()
+        {
+            Pitch pitch = new Pitch(newGameSituation, currentMatch.AwayTeam, currentMatch.HomeTeam);
+            AddnewGameSituation(pitch);
+        }
+
         private void panel9_Paint(object sender, PaintEventArgs e)
         {
             Color borderColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(panel9.BackColor, false);
-            ControlPaint.DrawBorder(e.Graphics, this.panel9.ClientRectangle, borderColor, ButtonBorderStyle.Solid);
+            ControlPaint.DrawBorder(e.Graphics, panel9.ClientRectangle, borderColor, ButtonBorderStyle.Solid);
         }
     }
 }

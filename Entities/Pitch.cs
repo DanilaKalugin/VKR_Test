@@ -14,7 +14,6 @@ namespace Entities
         private readonly static Random OtherCondition_RandomGenerator;
         private readonly static Random BuntResult_RandomGenerator;
         private readonly static Random StealingResult_RandomGenerator;
-        private readonly static Random StealingAttempt_RandomGenerator;
 
         private enum GettingIntoStrikeZone_TypeOfResult { BallInTheStrikeZone, BallIsOutOfTheStrikeZone, HitByPitch }
         GettingIntoStrikeZone_TypeOfResult newPitch_GettingIntoStrikeZone_Result;
@@ -50,9 +49,6 @@ namespace Entities
         public enum StealingResult { SecondBaseStolen, ThirdBaseStolen, NoResult, CaughtStealingOnSecond, CaughtStealingOnThird }
         public StealingResult newStealingAttempt_result;
 
-        public enum BaseNumberForStealing { Second, Third }
-
-        public enum StealingAttempt { Attempt, NoAttempt }
 
 
         private PitchResult pitchResult_Definition(GettingIntoStrikeZone_TypeOfResult gettingIntoStrikeZone_Result,
@@ -392,27 +388,6 @@ namespace Entities
             pitchResult = pitchResult_Definition(newPitch_GettingIntoStrikeZone_Result, newPitch_Swing_Result, newPitch_Hitting, newPitch_HitType, newPitch_OutType, newPitch_OtherCondition);
         }
 
-        public static StealingAttempt stealingAttempt_Definition(BaseNumberForStealing baseNumber, GameSituation situation, Team AwayTeam)
-        {
-            int StealingAttempt_RandomValue = StealingAttempt_RandomGenerator.Next(1, 1000);
-            Team Offense = situation.offense;
-            int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
-            int SbAttempt_ProbabilityWithAllCoefficients = Offense.StealingBaseProbability + BatterNumberComponent * 2 + situation.balls * 10 - situation.strikes * 15 - situation.strikes * 5;
-
-            if (baseNumber == BaseNumberForStealing.Third)
-            {
-                SbAttempt_ProbabilityWithAllCoefficients /= 2;
-            }
-            if (StealingAttempt_RandomValue <= SbAttempt_ProbabilityWithAllCoefficients)
-            {
-                return StealingAttempt.Attempt;
-            }
-            else
-            {
-                return StealingAttempt.NoAttempt;
-            }
-        }
-
         private BuntResult BuntResult_Definition(GameSituation situation, int successfulBuntAttemptProbabilty, int strikeZoneProbability, int hitByPitchProbability, int batterNumberComponent)
         {
             int Bunt_RandomValue = BuntResult_RandomGenerator.Next(1, 1000);
@@ -515,7 +490,6 @@ namespace Entities
             OtherCondition_RandomGenerator = new Random(13 + InitializeRandomGenerator.Next(1, 1000));
             BuntResult_RandomGenerator = new Random(17 + InitializeRandomGenerator.Next(1, 1000));
             StealingResult_RandomGenerator = new Random(19 + InitializeRandomGenerator.Next(1, 1000));
-            StealingAttempt_RandomGenerator = new Random(23 + InitializeRandomGenerator.Next(1, 1000));
         }
 
         /// <summary>
