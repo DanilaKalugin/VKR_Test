@@ -712,11 +712,13 @@ namespace VKR_Test
             this.Controls.Add(this.pbAwayLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "TeamsSelectForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Teams selection";
             this.Load += new System.EventHandler(this.TeamsSelectForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TeamsSelectForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.numAwayTeamColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHomeTeamColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -30,8 +30,8 @@ namespace VKR_Test
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatchEndingForm));
-            this.pbHomeLogo = new System.Windows.Forms.Panel();
-            this.pbAwayLogo = new System.Windows.Forms.Panel();
+            this.pbHomeLogo_border = new System.Windows.Forms.Panel();
+            this.pbAwayLogo_border = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbHomeBalance = new System.Windows.Forms.Label();
             this.lbAwayBalance = new System.Windows.Forms.Label();
@@ -88,27 +88,33 @@ namespace VKR_Test
             this.label5 = new System.Windows.Forms.Label();
             this.homeLOB = new System.Windows.Forms.Label();
             this.awayLOB = new System.Windows.Forms.Label();
+            this.pbAwayLogo = new System.Windows.Forms.Panel();
+            this.pbHomeLogo = new System.Windows.Forms.Panel();
+            this.pbHomeLogo_border.SuspendLayout();
+            this.pbAwayLogo_border.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pbHomeLogo
+            // pbHomeLogo_border
             // 
-            this.pbHomeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbHomeLogo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pbHomeLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbHomeLogo.Location = new System.Drawing.Point(650, 75);
-            this.pbHomeLogo.Name = "pbHomeLogo";
-            this.pbHomeLogo.Size = new System.Drawing.Size(300, 300);
-            this.pbHomeLogo.TabIndex = 9;
+            this.pbHomeLogo_border.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbHomeLogo_border.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pbHomeLogo_border.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbHomeLogo_border.Controls.Add(this.pbHomeLogo);
+            this.pbHomeLogo_border.Location = new System.Drawing.Point(650, 75);
+            this.pbHomeLogo_border.Name = "pbHomeLogo_border";
+            this.pbHomeLogo_border.Size = new System.Drawing.Size(300, 300);
+            this.pbHomeLogo_border.TabIndex = 9;
             // 
-            // pbAwayLogo
+            // pbAwayLogo_border
             // 
-            this.pbAwayLogo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pbAwayLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbAwayLogo.Location = new System.Drawing.Point(50, 75);
-            this.pbAwayLogo.Name = "pbAwayLogo";
-            this.pbAwayLogo.Size = new System.Drawing.Size(300, 300);
-            this.pbAwayLogo.TabIndex = 8;
+            this.pbAwayLogo_border.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pbAwayLogo_border.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbAwayLogo_border.Controls.Add(this.pbAwayLogo);
+            this.pbAwayLogo_border.Location = new System.Drawing.Point(50, 75);
+            this.pbAwayLogo_border.Name = "pbAwayLogo_border";
+            this.pbAwayLogo_border.Size = new System.Drawing.Size(300, 300);
+            this.pbAwayLogo_border.TabIndex = 8;
             // 
             // panel3
             // 
@@ -795,6 +801,24 @@ namespace VKR_Test
             this.awayLOB.TabIndex = 102;
             this.awayLOB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pbAwayLogo
+            // 
+            this.pbAwayLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbAwayLogo.Location = new System.Drawing.Point(10, 10);
+            this.pbAwayLogo.Margin = new System.Windows.Forms.Padding(10);
+            this.pbAwayLogo.Name = "pbAwayLogo";
+            this.pbAwayLogo.Size = new System.Drawing.Size(280, 280);
+            this.pbAwayLogo.TabIndex = 0;
+            // 
+            // pbHomeLogo
+            // 
+            this.pbHomeLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbHomeLogo.Location = new System.Drawing.Point(10, 10);
+            this.pbHomeLogo.Margin = new System.Windows.Forms.Padding(10);
+            this.pbHomeLogo.Name = "pbHomeLogo";
+            this.pbHomeLogo.Size = new System.Drawing.Size(280, 280);
+            this.pbHomeLogo.TabIndex = 1;
+            // 
             // MatchEndingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -853,8 +877,8 @@ namespace VKR_Test
             this.Controls.Add(this.home6);
             this.Controls.Add(this.home7);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.pbHomeLogo);
-            this.Controls.Add(this.pbAwayLogo);
+            this.Controls.Add(this.pbHomeLogo_border);
+            this.Controls.Add(this.pbAwayLogo_border);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -862,6 +886,8 @@ namespace VKR_Test
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Match ended";
             this.Load += new System.EventHandler(this.MatchEndingForm_Load);
+            this.pbHomeLogo_border.ResumeLayout(false);
+            this.pbAwayLogo_border.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -869,8 +895,8 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Panel pbHomeLogo;
-        private System.Windows.Forms.Panel pbAwayLogo;
+        private System.Windows.Forms.Panel pbHomeLogo_border;
+        private System.Windows.Forms.Panel pbAwayLogo_border;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbAwayRuns;
         private System.Windows.Forms.Label lbHomeRuns;
@@ -927,5 +953,7 @@ namespace VKR_Test
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label homeLOB;
         private System.Windows.Forms.Label awayLOB;
+        private System.Windows.Forms.Panel pbAwayLogo;
+        private System.Windows.Forms.Panel pbHomeLogo;
     }
 }

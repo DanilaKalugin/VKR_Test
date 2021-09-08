@@ -127,6 +127,7 @@
     <Compile Include="NewConnectionForm.Designer.cs">
       <DependentUpon>NewConnectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RandomGenerators.cs" />
     <Compile Include="RostersMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>

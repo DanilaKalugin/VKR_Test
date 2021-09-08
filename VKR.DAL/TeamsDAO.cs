@@ -333,9 +333,9 @@ namespace VKR.DAL
             }
         }
 
-        public double GetNumberOfOutsPlayedByThisPitcherInLast5Days(Match match, Pitcher pitcher)
+        public int GetNumberOfOutsPlayedByThisPitcherInLast5Days(Match match, Pitcher pitcher)
         {
-            using (SqlCommand command = new SqlCommand("GetNumberOfOutsPlayedByThisPitcherInLast5Days", _connection))
+            using (SqlCommand command = new SqlCommand("GetRemainingStaminaForThisPitcher", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Pitcher", SqlDbType.Int);
@@ -344,7 +344,7 @@ namespace VKR.DAL
                 command.Parameters[0].Value = pitcher.id;
                 command.Parameters[1].Value = match.MatchDate;
 
-                return (double)command.ExecuteScalar();
+                return (int)command.ExecuteScalar();
             }
         }
 

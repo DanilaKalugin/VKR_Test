@@ -44,8 +44,8 @@
             this.btnNewPitch = new System.Windows.Forms.Button();
             this.panelSmallScoreBoard = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.HomeTeam_Abbreviation = new System.Windows.Forms.Label();
             this.HomeTeam_RunsScored = new System.Windows.Forms.Label();
+            this.HomeTeam_Abbreviation = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.AwayTeam_RunsScored = new System.Windows.Forms.Label();
             this.AwayTeam_Abbreviation = new System.Windows.Forms.Label();
@@ -292,7 +292,7 @@
             this.pb_stamina.Invert = false;
             this.pb_stamina.Location = new System.Drawing.Point(0, 28);
             this.pb_stamina.MainColor = System.Drawing.Color.Gainsboro;
-            this.pb_stamina.Maximum = 180;
+            this.pb_stamina.Maximum = 200;
             this.pb_stamina.Minimum = 0;
             this.pb_stamina.Name = "pb_stamina";
             this.pb_stamina.Orientation = ExtendedDotNET.Controls.Progress.ProgressBarDirection.Horizontal;
@@ -439,6 +439,19 @@
             this.panel5.Size = new System.Drawing.Size(160, 39);
             this.panel5.TabIndex = 4;
             // 
+            // HomeTeam_RunsScored
+            // 
+            this.HomeTeam_RunsScored.Dock = System.Windows.Forms.DockStyle.Right;
+            this.HomeTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
+            this.HomeTeam_RunsScored.ForeColor = System.Drawing.Color.White;
+            this.HomeTeam_RunsScored.Location = new System.Drawing.Point(120, 0);
+            this.HomeTeam_RunsScored.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.HomeTeam_RunsScored.Name = "HomeTeam_RunsScored";
+            this.HomeTeam_RunsScored.Size = new System.Drawing.Size(40, 39);
+            this.HomeTeam_RunsScored.TabIndex = 3;
+            this.HomeTeam_RunsScored.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.HomeTeam_RunsScored.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            // 
             // HomeTeam_Abbreviation
             // 
             this.HomeTeam_Abbreviation.Dock = System.Windows.Forms.DockStyle.Left;
@@ -452,19 +465,6 @@
             this.HomeTeam_Abbreviation.TabIndex = 1;
             this.HomeTeam_Abbreviation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.HomeTeam_Abbreviation.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
-            // 
-            // HomeTeam_RunsScored
-            // 
-            this.HomeTeam_RunsScored.Dock = System.Windows.Forms.DockStyle.Right;
-            this.HomeTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
-            this.HomeTeam_RunsScored.ForeColor = System.Drawing.Color.White;
-            this.HomeTeam_RunsScored.Location = new System.Drawing.Point(120, 0);
-            this.HomeTeam_RunsScored.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.HomeTeam_RunsScored.Name = "HomeTeam_RunsScored";
-            this.HomeTeam_RunsScored.Size = new System.Drawing.Size(40, 39);
-            this.HomeTeam_RunsScored.TabIndex = 3;
-            this.HomeTeam_RunsScored.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.HomeTeam_RunsScored.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel4
             // 
@@ -788,7 +788,6 @@
             // 
             // panel9
             // 
-            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel9.Controls.Add(this.lblPlayerPosition);
             this.panel9.Controls.Add(this.lblPlayerNumber);
             this.panel9.ForeColor = System.Drawing.Color.White;
@@ -796,6 +795,7 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(89, 30);
             this.panel9.TabIndex = 0;
+            this.panel9.Paint += new System.Windows.Forms.PaintEventHandler(this.panel9_Paint);
             // 
             // lblPlayerPosition
             // 
@@ -838,10 +838,10 @@
             // 
             this.pbCurrentBatterPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbCurrentBatterPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbCurrentBatterPhoto.Location = new System.Drawing.Point(198, 749);
+            this.pbCurrentBatterPhoto.Location = new System.Drawing.Point(201, 755);
             this.pbCurrentBatterPhoto.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.pbCurrentBatterPhoto.Name = "pbCurrentBatterPhoto";
-            this.pbCurrentBatterPhoto.Size = new System.Drawing.Size(93, 140);
+            this.pbCurrentBatterPhoto.Size = new System.Drawing.Size(89, 134);
             this.pbCurrentBatterPhoto.TabIndex = 5;
             // 
             // pbCurrentOffenseLogo
@@ -2330,10 +2330,10 @@
             this.label44.Dock = System.Windows.Forms.DockStyle.Right;
             this.label44.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label44.ForeColor = System.Drawing.Color.White;
-            this.label44.Location = new System.Drawing.Point(400, 0);
+            this.label44.Location = new System.Drawing.Point(430, 0);
             this.label44.MaximumSize = new System.Drawing.Size(400, 31);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(370, 31);
+            this.label44.Size = new System.Drawing.Size(340, 31);
             this.label44.TabIndex = 54;
             this.label44.Text = "00";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2431,7 +2431,7 @@
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(155, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(245, 31);
+            this.label27.Size = new System.Drawing.Size(275, 31);
             this.label27.TabIndex = 62;
             this.label27.Text = "00";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

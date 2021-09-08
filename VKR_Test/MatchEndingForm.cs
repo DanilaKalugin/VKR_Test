@@ -80,8 +80,8 @@ namespace VKR_Test
             teamsBL.UpdateTeamBalance(endedmatch.AwayTeam);
             teamsBL.UpdateTeamBalance(endedmatch.HomeTeam);
 
-            GetInformationAboutTeam(endedmatch.AwayTeam, lbAwayTeamAbbreviation, AwayTeamSmallLogo, lbAwayBalance, pbAwayLogo);
-            GetInformationAboutTeam(endedmatch.HomeTeam, lbHomeTeamAbbreviation, HomeTeamSmallLogo, lbHomeBalance, pbHomeLogo);
+            GetInformationAboutTeam(endedmatch.AwayTeam, lbAwayTeamAbbreviation, AwayTeamSmallLogo, lbAwayBalance, pbAwayLogo_border, pbAwayLogo);
+            GetInformationAboutTeam(endedmatch.HomeTeam, lbHomeTeamAbbreviation, HomeTeamSmallLogo, lbHomeBalance, pbHomeLogo_border, pbHomeLogo);
 
             lbAwayRuns.Text = endedmatch.gameSituations.Last().AwayTeamRuns.ToString();
             lbHomeRuns.Text = endedmatch.gameSituations.Last().HomeTeamRuns.ToString();
@@ -93,7 +93,7 @@ namespace VKR_Test
             MatchResultForPitcherAnalysis(endedmatch, endedmatch.HomeTeam);
         }
 
-        private void GetInformationAboutTeam(Team team, Label Abbreviation, Panel panelSmallLogo, Label Balance, Panel panelBigLogo)
+        private void GetInformationAboutTeam(Team team, Label Abbreviation, Panel panelSmallLogo, Label Balance, Panel panelBorder, Panel BigLogo)
         {
             Abbreviation.BackColor = team.TeamColorForThisMatch;
             Abbreviation.Text = team.TeamAbbreviation.ToUpper();
@@ -101,8 +101,9 @@ namespace VKR_Test
             Balance.Visible = !endedmatch.IsQuickMatch;
             Balance.Text = $"{team.Wins}-{team.Losses}";
             Balance.ForeColor = team.TeamColorForThisMatch;
-            panelBigLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            panelBigLogo.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.85), (int)(team.TeamColorForThisMatch.G * 0.85), (int)(team.TeamColorForThisMatch.B * 0.85));
+            BigLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            BigLogo.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.85), (int)(team.TeamColorForThisMatch.G * 0.85), (int)(team.TeamColorForThisMatch.B * 0.85));
+            panelBorder.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.85), (int)(team.TeamColorForThisMatch.G * 0.85), (int)(team.TeamColorForThisMatch.B * 0.85));
         }
 
         private void MatchResultForPitcherAnalysis(Match endedmatch, Team awayTeam)
@@ -126,7 +127,7 @@ namespace VKR_Test
             {
                 if (awayTeam.TeamAbbreviation == WinningTeam.TeamAbbreviation)
                 {
-                    results[0].matchResult = results[0].IsCompleteGame ? PitcherResults.MatchResultForPitcher.Win: PitcherResults.MatchResultForPitcher.NoDecision;
+                    results[0].matchResult = results[0].IsCompleteGame ? PitcherResults.MatchResultForPitcher.Win : PitcherResults.MatchResultForPitcher.NoDecision;
                     WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].Losses})";
                     WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
                     PitcherWithSave.Text = "-";
