@@ -40,7 +40,7 @@
       <HintPath>..\packages\CircularProgressBar.2.8.0.16\lib\net40\CircularProgressBar.dll</HintPath>
     </Reference>
     <Reference Include="extendeddotnet.controls">
-      <HintPath>D:\Kursach5\extendeddotnet.controls.dll</HintPath>
+      <HintPath>G:\extendeddotnet.controls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
