@@ -94,10 +94,12 @@ namespace VKR_Test
             if (tableType == TableType.Results)
             {
                 matches = matchBL.GetResultsForallMatches(teams[cbTeam.SelectedIndex].TeamAbbreviation);
+                matches = matches.OrderByDescending(match => match.MatchDate).ToList();
             }
             else
             {
                 matches = matchBL.GetSchedule(teams[cbTeam.SelectedIndex].TeamAbbreviation);
+                matches = matches.OrderBy(match => match.MatchDate).ToList();
             }
             FillResultsTable(dgvMatches, matches);
         }

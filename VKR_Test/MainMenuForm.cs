@@ -33,6 +33,7 @@ namespace VKR_Test
                 ShowInTaskbar = false;
                 ServerNotFoundForm form = new ServerNotFoundForm();
                 form.ShowDialog();
+                Environment.Exit(0);
             }
         }
 
