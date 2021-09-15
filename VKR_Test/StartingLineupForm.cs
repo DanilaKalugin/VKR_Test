@@ -11,7 +11,7 @@ namespace VKR_Test
         public StartingLineupForm(Team team)
         {
             InitializeComponent();
-            Text = $"{team.TeamTitle.ToUpper()} Batting Order".ToUpper();
+            Text = $"{team.TeamCity} {team.TeamTitle.ToUpper()}";
             lbTeamTitle.Text = $"{team.TeamTitle.ToUpper()} Batting Order".ToUpper();
             teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             BackColor = team.TeamColorForThisMatch;
