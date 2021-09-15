@@ -87,6 +87,7 @@ namespace VKR_Test
                 Hide();
                 DialogResult = DialogResult.Yes;
             }
+            else Visible = true;
         }
     }
 }

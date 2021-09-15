@@ -29,9 +29,9 @@ namespace VKR_Test
             matchBL = new MatchBL();
             playerBL = new PlayerBL();
             currentMatch = match;
-            IsAutoSimulation = false;
             StartingLineupForm lineup = new StartingLineupForm(currentMatch.AwayTeam);
             lineup.ShowDialog();
+
             previousSituation = currentMatch.gameSituations.Last();
             newGameSituation = new GameSituation(match.AwayTeam);
 
@@ -41,6 +41,8 @@ namespace VKR_Test
 
             DisplayNextBatters(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, currentMatch.gameSituations.Last());
             DisplayNextBatters(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, currentMatch.gameSituations.Last());
+            pb_stamina.Value = (int)currentMatch.HomeTeam.CurrentPitcher.RemainingStamina;
+            SimulationModeChanged(!match.IsQuickMatch);
         }
 
         private void PrepareForThisTeam(Team team, Label teamAbbreviation, Label RunsScored, Label teamTitle, Panel TeamLogo, Label teamBalance, Match match, Panel NextBatters, Label NextBattersHeader)
@@ -207,49 +209,26 @@ namespace VKR_Test
 
         public void DisplayCurrentRunners(GameSituation situation)
         {
-            panel1Base.Visible = situation.RunnerOnFirst.IsBaseNotEmpty;
-            panel2Base.Visible = situation.RunnerOnSecond.IsBaseNotEmpty;
-            panel3Base.Visible = situation.RunnerOnThird.IsBaseNotEmpty;
+            RunnerOnBase_Displaying(situation.RunnerOnFirst, lb_Runner1_Name, RunnerOn1Photo, situation.offense, situation, panel1Base, lb1stBase);
+            RunnerOnBase_Displaying(situation.RunnerOnSecond, lb_Runner2_Name, RunnerOn2Photo, situation.offense, situation, panel2Base, lb2ndBase);
+            RunnerOnBase_Displaying(situation.RunnerOnThird, lb_Runner3_Name, RunnerOn3Photo, situation.offense, situation, panel3Base, lb3rdBase);
+        }
 
-            lb1stBase.BackColor = situation.offense.TeamColorForThisMatch;
-            lb2ndBase.BackColor = situation.offense.TeamColorForThisMatch;
-            lb3rdBase.BackColor = situation.offense.TeamColorForThisMatch;
-
-            if (situation.RunnerOnFirst.IsBaseNotEmpty)
+        private void RunnerOnBase_Displaying(Runner runner, Label RunnerName, Panel RunnerPhoto, Team offense, GameSituation situation, Panel basePanel, Label panelHeader)
+        {
+            basePanel.Visible = runner.IsBaseNotEmpty;
+            panelHeader.BackColor = situation.offense.TeamColorForThisMatch;
+            if (runner.IsBaseNotEmpty)
             {
-                Batter runneron1St = situation.offense.BattingLineup.Where(Batter => Batter.id == situation.RunnerOnFirst.runnerID).First();
-                lb_Runner1_Name.Text = runneron1St.FullName.ToUpper();
-                if (File.Exists($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID:0000}.png"))
+                Batter runneron3rd = offense.BattingLineup.Where(Batter => Batter.id == runner.runnerID).First();
+                RunnerName.Text = runneron3rd.FullName.ToUpper();
+                if (File.Exists($"PlayerPhotos/Player{runner.runnerID:0000}.png"))
                 {
-                    RunnerOn1Photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnFirst.runnerID:0000}.png");
+                    RunnerPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{runner.runnerID:0000}.png");
                 }
-                else RunnerOn1Photo.BackgroundImage = null;
+                else RunnerPhoto.BackgroundImage = null;
             }
-            else RunnerOn1Photo.BackgroundImage = null;
-
-            if (situation.RunnerOnSecond.IsBaseNotEmpty)
-            {
-                Batter runneron2nd = situation.offense.BattingLineup.Where(Batter => Batter.id == situation.RunnerOnSecond.runnerID).First();
-                lb_Runner2_Name.Text = runneron2nd.FullName.ToUpper();
-                if (File.Exists($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID:0000}.png"))
-                {
-                    RunnerOn2Photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnSecond.runnerID:0000}.png");
-                }
-                else RunnerOn2Photo.BackgroundImage = null;
-            }
-            else RunnerOn2Photo.BackgroundImage = null;
-
-            if (situation.RunnerOnThird.IsBaseNotEmpty)
-            {
-                Batter runneron3rd = situation.offense.BattingLineup.Where(Batter => Batter.id == situation.RunnerOnThird.runnerID).First();
-                lb_Runner3_Name.Text = runneron3rd.FullName.ToUpper();
-                if (File.Exists($"PlayerPhotos/Player{situation.RunnerOnThird.runnerID:0000}.png"))
-                {
-                    RunnerOn3Photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{situation.RunnerOnThird.runnerID:0000}.png");
-                }
-                else RunnerOn3Photo.BackgroundImage = null;
-            }
-            else RunnerOn3Photo.BackgroundImage = null;
+            else RunnerPhoto.BackgroundImage = null;
         }
 
         private Batter GetBatterByGameSituation(GameSituation gameSituation)
@@ -571,7 +550,7 @@ namespace VKR_Test
 
         private bool BuntAttemptDefinition()
         {
-            RandomGenerators.BuntAttempt buntAttempt = RandomGenerators.BuntAttempt_Definition(newGameSituation, currentMatch.AwayTeam);
+            RandomGenerators.BuntAttempt buntAttempt = RandomGenerators.BuntAttempt_Definition(newGameSituation, currentMatch.AwayTeam, currentMatch.atBats);
             return buntAttempt == RandomGenerators.BuntAttempt.Attempt;
         }
 
@@ -581,9 +560,6 @@ namespace VKR_Test
             bool StealingAttempt = lb_Runner1_Name.ForeColor == Color.DarkGoldenrod || lb_Runner2_Name.ForeColor == Color.DarkGoldenrod;
             int CountOfAtBats = currentMatch.atBats.Count();
             int TypeOfStealing = 0;
-
-
-
             if (StealingAttempt)
             {
                 pitch = new Pitch(newGameSituation, currentMatch.gameSituations, currentMatch.HomeTeam, currentMatch.AwayTeam);
@@ -641,7 +617,6 @@ namespace VKR_Test
                             break;
                         }
                 }
-
             }
         }
 
@@ -904,6 +879,7 @@ namespace VKR_Test
                     Defense.PitchersPlayedInMatch.Add(form.newPitcherForThisTeam);
                     DisplayingCurrentSituation(newGameSituation);
                     DisplayPitcherStats();
+                    SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105);
                 }
             }
             else
@@ -1018,9 +994,8 @@ namespace VKR_Test
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IsAutoSimulation = pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105;
             bool IsBunt;
-            SimulationModeChanged(IsAutoSimulation);
+            SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105);
             if (IsAutoSimulation)
             {
                 BasesStealingAttempt_Definition();
@@ -1045,15 +1020,18 @@ namespace VKR_Test
 
         private void btnAutoMode_Click(object sender, EventArgs e)
         {
-            IsAutoSimulation = !IsAutoSimulation;
-            SimulationModeChanged(IsAutoSimulation);
+            SimulationModeChanged(true);
         }
 
         private void SimulationModeChanged(bool isAutoSim)
         {
+            IsAutoSimulation = isAutoSim;
             timer1.Enabled = isAutoSim;
             btnNewPitch.Enabled = !isAutoSim;
-            btnAutoMode.Text = isAutoSim ? "MANUAL" : "AUTOMATIC";
+            btnBuntAttempt.Enabled = !isAutoSim;
+            btnManualMode.BackColor = IsAutoSimulation ? Color.DimGray : Color.Gainsboro;
+            btnAutoMode.BackColor = !IsAutoSimulation ? Color.DimGray : Color.Gainsboro;
+            panel1.Visible = !IsAutoSimulation;
         }
 
         private void GenerateNewBunt()
@@ -1066,6 +1044,11 @@ namespace VKR_Test
         {
             Color borderColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(panel9.BackColor, false);
             ControlPaint.DrawBorder(e.Graphics, panel9.ClientRectangle, borderColor, ButtonBorderStyle.Solid);
+        }
+
+        private void btnManualMode_Click(object sender, EventArgs e)
+        {
+            SimulationModeChanged(false);
         }
     }
 }

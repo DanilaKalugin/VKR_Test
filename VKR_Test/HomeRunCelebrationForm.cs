@@ -15,6 +15,7 @@ namespace VKR_Test
             InitializeComponent();
             BackColor = team.TeamColorForThisMatch;
             lbHomeRunType.Text = HRType;
+            Text = HRType;
             timer2.Start();
             panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");

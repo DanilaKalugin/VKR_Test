@@ -209,8 +209,10 @@
             this.label27 = new System.Windows.Forms.Label();
             this.panelLastAtBat = new System.Windows.Forms.Panel();
             this.btnTeamStats = new System.Windows.Forms.Button();
-            this.btnAutoMode = new System.Windows.Forms.Button();
+            this.btnManualMode = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnAutoMode = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -246,6 +248,7 @@
             this.panel3Base.SuspendLayout();
             this.panel36.SuspendLayout();
             this.panelLastAtBat.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label36
@@ -403,12 +406,11 @@
             // 
             // btnNewPitch
             // 
-            this.btnNewPitch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNewPitch.BackColor = System.Drawing.Color.Gainsboro;
             this.btnNewPitch.FlatAppearance.BorderSize = 0;
             this.btnNewPitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewPitch.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewPitch.Location = new System.Drawing.Point(545, 811);
+            this.btnNewPitch.Location = new System.Drawing.Point(82, 10);
             this.btnNewPitch.Name = "btnNewPitch";
             this.btnNewPitch.Size = new System.Drawing.Size(300, 35);
             this.btnNewPitch.TabIndex = 0;
@@ -2330,24 +2332,23 @@
             this.label44.Dock = System.Windows.Forms.DockStyle.Right;
             this.label44.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label44.ForeColor = System.Drawing.Color.White;
-            this.label44.Location = new System.Drawing.Point(430, 0);
+            this.label44.Location = new System.Drawing.Point(448, 0);
             this.label44.MaximumSize = new System.Drawing.Size(400, 31);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(340, 31);
+            this.label44.Size = new System.Drawing.Size(322, 31);
             this.label44.TabIndex = 54;
             this.label44.Text = "00";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnBuntAttempt
             // 
-            this.btnBuntAttempt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBuntAttempt.BackColor = System.Drawing.Color.Gainsboro;
             this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
             this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuntAttempt.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuntAttempt.Location = new System.Drawing.Point(851, 811);
+            this.btnBuntAttempt.Location = new System.Drawing.Point(388, 10);
             this.btnBuntAttempt.Name = "btnBuntAttempt";
-            this.btnBuntAttempt.Size = new System.Drawing.Size(250, 35);
+            this.btnBuntAttempt.Size = new System.Drawing.Size(300, 35);
             this.btnBuntAttempt.TabIndex = 55;
             this.btnBuntAttempt.TabStop = false;
             this.btnBuntAttempt.Text = "BUNT ATTEMPT";
@@ -2431,7 +2432,7 @@
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(155, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(275, 31);
+            this.label27.Size = new System.Drawing.Size(293, 31);
             this.label27.TabIndex = 62;
             this.label27.Text = "00";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2466,6 +2467,27 @@
             this.btnTeamStats.UseVisualStyleBackColor = false;
             this.btnTeamStats.Click += new System.EventHandler(this.btnTeamStats_Click);
             // 
+            // btnManualMode
+            // 
+            this.btnManualMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnManualMode.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnManualMode.FlatAppearance.BorderSize = 0;
+            this.btnManualMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManualMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualMode.Location = new System.Drawing.Point(413, 750);
+            this.btnManualMode.Name = "btnManualMode";
+            this.btnManualMode.Size = new System.Drawing.Size(300, 35);
+            this.btnManualMode.TabIndex = 65;
+            this.btnManualMode.TabStop = false;
+            this.btnManualMode.Text = "MANUAL";
+            this.btnManualMode.UseVisualStyleBackColor = false;
+            this.btnManualMode.Click += new System.EventHandler(this.btnManualMode_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // btnAutoMode
             // 
             this.btnAutoMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -2473,19 +2495,23 @@
             this.btnAutoMode.FlatAppearance.BorderSize = 0;
             this.btnAutoMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAutoMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAutoMode.Location = new System.Drawing.Point(545, 770);
+            this.btnAutoMode.Location = new System.Drawing.Point(719, 750);
             this.btnAutoMode.Name = "btnAutoMode";
             this.btnAutoMode.Size = new System.Drawing.Size(300, 35);
-            this.btnAutoMode.TabIndex = 65;
+            this.btnAutoMode.TabIndex = 66;
             this.btnAutoMode.TabStop = false;
             this.btnAutoMode.Text = "AUTOMATIC";
             this.btnAutoMode.UseVisualStyleBackColor = false;
             this.btnAutoMode.Click += new System.EventHandler(this.btnAutoMode_Click);
             // 
-            // timer1
+            // panel1
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.panel1.Controls.Add(this.btnNewPitch);
+            this.panel1.Controls.Add(this.btnBuntAttempt);
+            this.panel1.Location = new System.Drawing.Point(331, 791);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(770, 55);
+            this.panel1.TabIndex = 67;
             // 
             // MainForm
             // 
@@ -2493,7 +2519,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnAutoMode);
+            this.Controls.Add(this.btnManualMode);
             this.Controls.Add(this.btnTeamStats);
             this.Controls.Add(this.lbTodayStats);
             this.Controls.Add(this.btnPlayerStats);
@@ -2504,7 +2532,6 @@
             this.Controls.Add(label24);
             this.Controls.Add(this.btnShowAvailablePitchers);
             this.Controls.Add(this.btnStandings);
-            this.Controls.Add(this.btnBuntAttempt);
             this.Controls.Add(this.panel3Base);
             this.Controls.Add(this.panel1Base);
             this.Controls.Add(this.panel2Base);
@@ -2516,7 +2543,6 @@
             this.Controls.Add(this.panelScoreBoard);
             this.Controls.Add(this.panelCurrentBatter);
             this.Controls.Add(this.panelSmallScoreBoard);
-            this.Controls.Add(this.btnNewPitch);
             this.Controls.Add(this.panelCurrentSituation);
             this.Controls.Add(this.panelLastAtBat);
             this.DoubleBuffered = true;
@@ -2561,6 +2587,7 @@
             this.panel3Base.ResumeLayout(false);
             this.panel36.ResumeLayout(false);
             this.panelLastAtBat.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2743,8 +2770,10 @@
         private System.Windows.Forms.Label PitcherGS;
         private System.Windows.Forms.Label labelGS;
         private ExtendedDotNET.Controls.Progress.ProgressBar pb_stamina;
-        private System.Windows.Forms.Button btnAutoMode;
+        private System.Windows.Forms.Button btnManualMode;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnAutoMode;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

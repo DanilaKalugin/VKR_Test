@@ -38,12 +38,14 @@ namespace VKR_Test
             }
         }
 
-        public static BuntAttempt BuntAttempt_Definition(GameSituation situation, Team AwayTeam)
+        public static BuntAttempt BuntAttempt_Definition(GameSituation situation, Team AwayTeam, List<AtBat> atbats)
         {
             int StealingAttempt_RandomValue = BuntAttempt_RandomGenerator.Next(1, 1000);
             Team Offense = situation.offense;
             int BatterNumberComponent = Offense == AwayTeam ? situation.BatterNumber_AwayTeam : situation.BatterNumber_HomeTeam;
-            if (StealingAttempt_RandomValue <= BatterNumberComponent * (18 - BatterNumberComponent) * 5)
+            int BatterID = situation.offense.BattingLineup[BatterNumberComponent - 1].id;
+            int BuntsCount = atbats.Where(atbat => atbat.AtBatResult == AtBat.AtBatType.SacrificeBunt && atbat.Batter == BatterID).Count();
+            if (StealingAttempt_RandomValue <= BatterNumberComponent * (18 - BatterNumberComponent - BuntsCount) * 5 / 2)
             {
                 return BuntAttempt.Attempt;
             }
