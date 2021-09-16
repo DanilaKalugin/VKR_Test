@@ -213,6 +213,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnAutoMode = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.homeLOB = new System.Windows.Forms.Label();
+            this.awayLOB = new System.Windows.Forms.Label();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -1350,6 +1353,9 @@
             this.panelScoreBoard.Controls.Add(this.home8);
             this.panelScoreBoard.Controls.Add(this.home6);
             this.panelScoreBoard.Controls.Add(this.home7);
+            this.panelScoreBoard.Controls.Add(this.label28);
+            this.panelScoreBoard.Controls.Add(this.awayLOB);
+            this.panelScoreBoard.Controls.Add(this.homeLOB);
             this.panelScoreBoard.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelScoreBoard.Location = new System.Drawing.Point(0, 0);
             this.panelScoreBoard.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
@@ -1546,7 +1552,7 @@
             this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel16.Controls.Add(this.panelNextHomeBatters);
             this.panel16.Controls.Add(this.homeTeamNextBatters);
-            this.panel16.Location = new System.Drawing.Point(1162, 0);
+            this.panel16.Location = new System.Drawing.Point(1163, 0);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(260, 138);
             this.panel16.TabIndex = 0;
@@ -2342,6 +2348,7 @@
             // 
             // btnBuntAttempt
             // 
+            this.btnBuntAttempt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuntAttempt.BackColor = System.Drawing.Color.Gainsboro;
             this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
             this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2490,7 +2497,7 @@
             // 
             // btnAutoMode
             // 
-            this.btnAutoMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAutoMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAutoMode.BackColor = System.Drawing.Color.Gainsboro;
             this.btnAutoMode.FlatAppearance.BorderSize = 0;
             this.btnAutoMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2506,13 +2513,54 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.btnNewPitch);
             this.panel1.Controls.Add(this.btnBuntAttempt);
             this.panel1.Location = new System.Drawing.Point(331, 791);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(770, 55);
             this.panel1.TabIndex = 67;
+            // 
+            // label28
+            // 
+            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.label28.ForeColor = System.Drawing.Color.White;
+            this.label28.Location = new System.Drawing.Point(887, 9);
+            this.label28.Margin = new System.Windows.Forms.Padding(0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(60, 39);
+            this.label28.TabIndex = 107;
+            this.label28.Text = "LOB";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label28.Visible = false;
+            // 
+            // homeLOB
+            // 
+            this.homeLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.homeLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.homeLOB.ForeColor = System.Drawing.Color.White;
+            this.homeLOB.Location = new System.Drawing.Point(887, 94);
+            this.homeLOB.Margin = new System.Windows.Forms.Padding(0);
+            this.homeLOB.Name = "homeLOB";
+            this.homeLOB.Size = new System.Drawing.Size(60, 39);
+            this.homeLOB.TabIndex = 106;
+            this.homeLOB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.homeLOB.Visible = false;
+            // 
+            // awayLOB
+            // 
+            this.awayLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.awayLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.awayLOB.ForeColor = System.Drawing.Color.White;
+            this.awayLOB.Location = new System.Drawing.Point(887, 53);
+            this.awayLOB.Margin = new System.Windows.Forms.Padding(0);
+            this.awayLOB.Name = "awayLOB";
+            this.awayLOB.Size = new System.Drawing.Size(60, 39);
+            this.awayLOB.TabIndex = 105;
+            this.awayLOB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.awayLOB.Visible = false;
             // 
             // MainForm
             // 
@@ -2548,7 +2596,7 @@
             this.Controls.Add(this.panelLastAtBat);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1439, 1030);
+            this.MinimumSize = new System.Drawing.Size(1439, 1000);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -2775,6 +2823,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnAutoMode;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label awayLOB;
+        private System.Windows.Forms.Label homeLOB;
     }
 }
 

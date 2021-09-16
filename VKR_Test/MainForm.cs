@@ -203,8 +203,8 @@ namespace VKR_Test
             lb2ndInning.Text = (int.Parse(lb3rdInning.Text) - 1).ToString();
             lb1stInning.Text = (int.Parse(lb2ndInning.Text) - 1).ToString();
 
-            UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, currentMatch, currentMatch.AwayTeam);
-            UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, currentMatch, currentMatch.HomeTeam);
+            UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayLOB, awayRuns, awayHits, currentMatch, currentMatch.AwayTeam);
+            UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeLOB, homeRuns, homeHits, currentMatch, currentMatch.HomeTeam);
         }
 
         public void DisplayCurrentRunners(GameSituation situation)
@@ -431,8 +431,8 @@ namespace VKR_Test
             teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
             teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
 
-            UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, currentMatch, currentMatch.AwayTeam);
-            UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, currentMatch, currentMatch.HomeTeam);
+            UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayLOB, awayRuns, awayHits, currentMatch, currentMatch.AwayTeam);
+            UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeLOB, homeRuns, homeHits, currentMatch, currentMatch.HomeTeam);
         }
 
 
@@ -640,7 +640,7 @@ namespace VKR_Test
             }
         }
 
-        private void UpdateScoreboard(Label FirstInning, Label SecondInning, Label ThirdInning, Label FourthInning, Label FifthInning, Label SixthInning, Label SeventhInning, Label EigthInning, Label NinthInning, Label Runs, Label Hits, Match match, Team team)
+        private void UpdateScoreboard(Label FirstInning, Label SecondInning, Label ThirdInning, Label FourthInning, Label FifthInning, Label SixthInning, Label SeventhInning, Label EigthInning, Label NinthInning, Label LeftOnBase, Label Runs, Label Hits, Match match, Team team)
         {
             FirstInning.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb1stInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
             SecondInning.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb2ndInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
@@ -651,6 +651,12 @@ namespace VKR_Test
             SeventhInning.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb7thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
             EigthInning.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb8thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
             NinthInning.Text = match.atBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb9thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
+
+            int LeftOnFirstBase = match.gameSituations.Where(gs => gs.outs == 3 && gs.offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnFirst.IsBaseNotEmpty).Count();
+            int LeftOnSecondBase = match.gameSituations.Where(gs => gs.outs == 3 && gs.offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnSecond.IsBaseNotEmpty).Count();
+            int LeftOnThirdBase = match.gameSituations.Where(gs => gs.outs == 3 && gs.offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnThird.IsBaseNotEmpty).Count();
+
+            LeftOnBase.Text = (LeftOnFirstBase + LeftOnSecondBase + LeftOnThirdBase).ToString();
 
             bool DisplayingCriterion = team == currentMatch.AwayTeam ? (newGameSituation.offense == currentMatch.AwayTeam || newGameSituation.offense == currentMatch.HomeTeam) : newGameSituation.offense == currentMatch.HomeTeam;
 
@@ -990,6 +996,15 @@ namespace VKR_Test
 
             RunnerOn2Photo.Location = new Point(ClientSize.Width / 2 - 132, 144);
             panel2Base.Location = new Point(ClientSize.Width / 2 - 65, 144);
+
+            btnNewPitch.Location = new Point(panel1.Width / 2 - 303, 10);
+            btnBuntAttempt.Location = new Point(panel1.Width / 2 + 3, 10);
+            btnManualMode.Location = new Point(ClientSize.Width / 2 - 298, ClientSize.Height - 291);
+            btnAutoMode.Location = new Point(ClientSize.Width / 2 + 8, ClientSize.Height - 291);
+
+            label28.Visible = ClientSize.Width > 1480;
+            awayLOB.Visible = ClientSize.Width > 1480;
+            homeLOB.Visible = ClientSize.Width > 1480;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
