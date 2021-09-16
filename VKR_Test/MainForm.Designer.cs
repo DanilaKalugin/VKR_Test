@@ -2506,6 +2506,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Controls.Add(this.btnNewPitch);
             this.panel1.Controls.Add(this.btnBuntAttempt);
             this.panel1.Location = new System.Drawing.Point(331, 791);
@@ -2547,7 +2548,7 @@
             this.Controls.Add(this.panelLastAtBat);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1439, 1080);
+            this.MinimumSize = new System.Drawing.Size(1439, 1030);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
