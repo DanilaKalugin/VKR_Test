@@ -871,7 +871,7 @@ namespace VKR_Test
             List<Pitcher> pitchers = teamsBL.GetAvailablePitchers(currentMatch, Defense);
             if (pitchers.Count > 0)
             {
-                SubstitutionForm form = new SubstitutionForm(Defense, pitchers);
+                PitcherSubstitutionForm form = new PitcherSubstitutionForm(Defense, pitchers);
                 form.ShowDialog();
                 if (form.DialogResult == DialogResult.OK)
                 {

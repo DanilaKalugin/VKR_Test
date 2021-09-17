@@ -128,6 +128,12 @@
     <Compile Include="NewConnectionForm.Designer.cs">
       <DependentUpon>NewConnectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PitcherSubstitutionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PitcherSubstitutionForm.Designer.cs">
+      <DependentUpon>PitcherSubstitutionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RandomGenerators.cs" />
     <Compile Include="RostersMenuForm.cs">
       <SubType>Form</SubType>
@@ -229,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewConnectionForm.resx">
       <DependentUpon>NewConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PitcherSubstitutionForm.resx">
+      <DependentUpon>PitcherSubstitutionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RostersMenuForm.resx">
       <DependentUpon>RostersMenuForm.cs</DependentUpon>

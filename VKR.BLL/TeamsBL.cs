@@ -102,7 +102,12 @@ namespace VKR.BLL
 
         public List<Pitcher> GetAvailablePitchers(Match match, Team team)
         {
-            return teamsDAO.GetAvailablePitchers(match, team).ToList();
+            List<Pitcher> pitchers = teamsDAO.GetAvailablePitchers(match, team).ToList();
+            foreach (Pitcher p in pitchers)
+            {
+                p.RemainingStamina = teamsDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(match, p);
+            }
+            return pitchers;
         }
 
         public void SubstitutePitcher(Match match, Team team, Pitcher pitcher)

@@ -11,34 +11,8 @@ namespace VKR_Test
     public partial class SubstitutionForm : Form
     {
         private Team CurrentTeam;
-        List<Pitcher> Pitchers;
         List<Batter> Batters;
-        public Pitcher newPitcherForThisTeam;
         public Batter newBatterForThisTeam;
-
-        public SubstitutionForm(Team defense, List<Pitcher> pitchers)
-        {
-            InitializeComponent();
-            CurrentTeam = defense;
-            Pitchers = pitchers;
-            lbTeamTitle.Text = defense.TeamTitle.ToUpper();
-            lbTeamTitle.ForeColor = defense.TeamColorForThisMatch;
-            Text = $"New pitcher for {defense.TeamTitle}";
-            lbHeader.Text = "BULLPEN";
-            dgvAvailablePlayers.Columns[2].HeaderText = "ERA";
-            dgvAvailablePlayers.Columns[3].HeaderText = "SO";
-            foreach (Pitcher pitcher in Pitchers)
-            {
-                if (File.Exists($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"))
-                {
-                    dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{pitcher.id:0000}.jpg"), pitcher.FullName, $"{pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"{pitcher.Strikeouts}");
-                }
-                else
-                {
-                    dgvAvailablePlayers.Rows.Add(null, pitcher.FullName, $"{pitcher.ERA.ToString("0.00", new CultureInfo("en-US"))}", $"{pitcher.Strikeouts}");
-                }
-            }
-        }
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
         {
@@ -73,14 +47,7 @@ namespace VKR_Test
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (Pitchers == null)
-            {
-                newBatterForThisTeam = Batters[dgvAvailablePlayers.SelectedRows[0].Index];
-            }
-            else
-            {
-                newPitcherForThisTeam = Pitchers[dgvAvailablePlayers.SelectedRows[0].Index];
-            }
+            newBatterForThisTeam = Batters[dgvAvailablePlayers.SelectedRows[0].Index];
             DialogResult = DialogResult.OK;
         }
     }
