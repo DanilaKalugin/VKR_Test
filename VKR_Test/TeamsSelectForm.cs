@@ -157,6 +157,12 @@ namespace VKR_Test
 
         private void btnAcceptTeamsSelection_Click(object sender, EventArgs e)
         {
+            StartNewMatch();
+        }
+
+
+        private void StartNewMatch()
+        {
             Team HomeTeam = teams[HomeTeamNumber];
             Team AwayTeam = teams[AwayTeamNumber];
             HomeTeam.TeamColorForThisMatch = HomeTeam.TeamColor[CurrentHomeColor];
@@ -243,6 +249,11 @@ namespace VKR_Test
                         break;
                     }
             }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            StartNewMatch();
         }
     }
 }

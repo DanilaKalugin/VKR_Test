@@ -56,7 +56,7 @@ namespace VKR_Test
 
         private void timer_LineupForm_Tick(object sender, EventArgs e)
         {
-            Opacity -= 0.04;
+            Opacity -= 0.01;
             if (Opacity == 0)
             {
                 Close();

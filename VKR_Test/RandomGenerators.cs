@@ -45,7 +45,7 @@ namespace VKR_Test
             int BatterNumberComponent = Offense == AwayTeam ? situation.BatterNumber_AwayTeam : situation.BatterNumber_HomeTeam;
             int BatterID = situation.offense.BattingLineup[BatterNumberComponent - 1].id;
             int BuntsCount = atbats.Where(atbat => atbat.AtBatResult == AtBat.AtBatType.SacrificeBunt && atbat.Batter == BatterID).Count();
-            if (StealingAttempt_RandomValue <= BatterNumberComponent * (18 - BatterNumberComponent - BuntsCount) * 5 / 2)
+            if (StealingAttempt_RandomValue <= BatterNumberComponent * (18 - BatterNumberComponent - BuntsCount) * 5)
             {
                 return BuntAttempt.Attempt;
             }

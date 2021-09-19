@@ -29,8 +29,11 @@ namespace VKR_Test
             matchBL = new MatchBL();
             playerBL = new PlayerBL();
             currentMatch = match;
+
             StartingLineupForm lineup = new StartingLineupForm(currentMatch.AwayTeam);
             lineup.ShowDialog();
+            DefenseForm defense = new DefenseForm(currentMatch.HomeTeam);
+            defense.ShowDialog();
 
             previousSituation = currentMatch.gameSituations.Last();
             newGameSituation = new GameSituation(match.AwayTeam);
@@ -175,6 +178,7 @@ namespace VKR_Test
                         break;
                     }
             }
+
             AwayTeam_RunsScored.Text = gameSituation.AwayTeamRuns.ToString();
             HomeTeam_RunsScored.Text = gameSituation.HomeTeamRuns.ToString();
 
@@ -477,6 +481,8 @@ namespace VKR_Test
                 timer1.Stop();
                 StartingLineupForm form = new StartingLineupForm(currentMatch.HomeTeam);
                 form.ShowDialog();
+                DefenseForm defense = new DefenseForm(currentMatch.AwayTeam);
+                defense.ShowDialog();
                 DisplayPitcherStats();
                 if (IsAutoSimulation)
                 {
@@ -1014,7 +1020,8 @@ namespace VKR_Test
             if (IsAutoSimulation)
             {
                 BasesStealingAttempt_Definition();
-                if (lb_Runner1_Name.ForeColor != Color.DarkGoldenrod && lb_Runner2_Name.ForeColor != Color.DarkGoldenrod)
+                if (lb_Runner1_Name.ForeColor != Color.DarkGoldenrod && lb_Runner2_Name.ForeColor != Color.DarkGoldenrod && 
+                    (newGameSituation.RunnerOnFirst.IsBaseNotEmpty || newGameSituation.RunnerOnSecond.IsBaseNotEmpty || newGameSituation.RunnerOnThird.IsBaseNotEmpty))
                 {
                     IsBunt = BuntAttemptDefinition();
                 }

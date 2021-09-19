@@ -68,6 +68,12 @@
     <Compile Include="DBDeploymentResultForm.Designer.cs">
       <DependentUpon>DBDeploymentResultForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DefenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DefenseForm.Designer.cs">
+      <DependentUpon>DefenseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DHRuleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </Compile>
     <EmbeddedResource Include="DBDeploymentResultForm.resx">
       <DependentUpon>DBDeploymentResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefenseForm.resx">
+      <DependentUpon>DefenseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DHRuleForm.resx">
       <DependentUpon>DHRuleForm.cs</DependentUpon>
