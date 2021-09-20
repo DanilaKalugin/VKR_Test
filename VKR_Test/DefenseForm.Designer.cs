@@ -81,6 +81,7 @@ namespace VKR_Test
             this.p_SecondName = new System.Windows.Forms.Label();
             this.p = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer_Defense = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -704,8 +705,13 @@ namespace VKR_Test
             // 
             // timer1
             // 
-            this.timer1.Interval = 2;
+            this.timer1.Interval = 5;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer_Defense
+            // 
+            this.timer_Defense.Interval = 4000;
+            this.timer_Defense.Tick += new System.EventHandler(this.timer_Defense_Tick);
             // 
             // DefenseForm
             // 
@@ -796,6 +802,7 @@ namespace VKR_Test
         private System.Windows.Forms.Label cf_SecondName;
         private System.Windows.Forms.Label cf_FirstName;
         private System.Windows.Forms.Label cf;
+        private System.Windows.Forms.Timer timer_Defense;
         private System.Windows.Forms.Timer timer1;
     }
 }

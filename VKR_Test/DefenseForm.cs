@@ -50,7 +50,7 @@ namespace VKR_Test
             else
             {
                 Batter batter = Defense.BattingLineup.Where(_batter => _batter.PositionForThisMatch == PositionTitle).FirstOrDefault();
-                DDEDFirstName.Text = batter.FirstName.ToUpper();
+                FirstName.Text = batter.FirstName.ToUpper();
                 SecondName.Text = batter.SecondName.ToUpper();
             }
         }
@@ -58,10 +58,16 @@ namespace VKR_Test
         private void timer1_Tick(object sender, EventArgs e)
         {
             Opacity -= 0.005;
-            if (Opacity < 0.1 - 1E-7)
+            if (Opacity < 1E-7)
             {
                 Close();
             }
+        }
+
+        private void timer_Defense_Tick(object sender, EventArgs e)
+        {
+            timer1.Start();
+            timer_Defense.Stop();
         }
     }
 }
