@@ -23,7 +23,7 @@ namespace VKR_Test
             matchBL = new MatchBL();
             Program.MatchDate = matchBL.GetMaxDateForAllMatches();
             dtpStandingsDate.Value = Program.MatchDate;
-            cbFilter.Text = "MLB";
+            cbFilter.Text = "League";
         }
 
         public StandingsForm(Team Home, Team Away)
@@ -35,7 +35,7 @@ namespace VKR_Test
             dtpStandingsDate.Value = Program.MatchDate;
             HomeTeam = Home;
             AwayTeam = Away;
-            cbFilter.Text = "MLB";
+            cbFilter.Text = "League";
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)

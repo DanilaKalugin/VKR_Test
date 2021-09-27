@@ -35,7 +35,7 @@ namespace VKR_Test
             DisplayInfoAboutPlayer(rf_FirstName, rf_SecondName, rf, "RF");
             DisplayInfoAboutPlayer(lf_FirstName, lf_SecondName, lf, "LF");
             DisplayInfoAboutPlayer(p_FirstName, p_SecondName, p, "P");
-            timer1.Start();
+            timer_Defense.Start();
         }
 
         private void DisplayInfoAboutPlayer(Label FirstName, Label SecondName, Label Position, string PositionTitle)

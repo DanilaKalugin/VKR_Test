@@ -789,7 +789,7 @@ namespace VKR_Test
 
             Defense.CurrentPitcher.RemainingStamina = teamsBL.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Defense.CurrentPitcher, currentMatch);
 
-            pb_stamina.MainColor = Defense.CurrentPitcher.RemainingStamina < (25 - 1E-5) ? Color.Maroon : Defense.TeamColorForThisMatch;
+            pb_stamina.MainColor = Defense.CurrentPitcher.RemainingStamina < (45 - 1E-5) ? Color.Maroon : Defense.TeamColorForThisMatch;
 
             if (Defense.CurrentPitcher.RemainingStamina < 5 - 1E-5)
             {

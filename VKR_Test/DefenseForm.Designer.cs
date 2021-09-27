@@ -710,6 +710,7 @@ namespace VKR_Test
             // 
             // timer_Defense
             // 
+            this.timer_Defense.Enabled = true;
             this.timer_Defense.Interval = 4000;
             this.timer_Defense.Tick += new System.EventHandler(this.timer_Defense_Tick);
             // 

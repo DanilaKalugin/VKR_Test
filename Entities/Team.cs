@@ -92,7 +92,7 @@ namespace Entities
             double TripleComponent = FullHitiingProbabilty * FullTripleProbability * 150;
             double SingleComponent = FullHitiingProbabilty * FullSingleProbability * 50;
 
-            double BaseStealingComponent = (double)(StealingBaseProbability * SuccessfulStelingBaseAttemptProbabilty) / 20000 * 3;
+            double BaseStealingComponent = (double)(StealingBaseProbability * SuccessfulStelingBaseAttemptProbabilty) / 8000;
             return Math.Round(SingleComponent + DoubleComponent + HomeRunComponent + TripleComponent + BaseStealingComponent, 2);
         }
 

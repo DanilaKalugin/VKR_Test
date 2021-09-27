@@ -52,7 +52,7 @@ namespace VKR_Test
         private void DoubleClickOnTableLayoutPanel(object sender, MouseEventArgs e)
         {
             int RowNumber = tableLayoutPanel1.GetRow((Control)sender);
-            if (RowNumber > 0)
+            if (RowNumber > 0 && RowNumber < Pitchers.Count)
             {
                 newPitcherForThisTeam = Pitchers[playerIndex + RowNumber - 1];
                 DialogResult = DialogResult.OK;
@@ -118,10 +118,9 @@ namespace VKR_Test
         public void ClickOnTableLayoutPanel(object sender, MouseEventArgs e)
         {
             int RowNumber = tableLayoutPanel1.GetRow((Control)sender);
-
             for (int i = 1; i < tableLayoutPanel1.RowCount; i++)
             {
-                if (i == RowNumber)
+                if (i == RowNumber && RowNumber < Pitchers.Count)
                 {
                     for (int j = 1; j < tableLayoutPanel1.ColumnCount - 1; j++)
                     {

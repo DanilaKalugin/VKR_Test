@@ -152,6 +152,9 @@
             this.home_DueUP = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.awayLOB = new System.Windows.Forms.Label();
+            this.homeLOB = new System.Windows.Forms.Label();
             this.panelCurrentPitcher = new System.Windows.Forms.Panel();
             this.PitcherGS = new System.Windows.Forms.Label();
             this.labelGS = new System.Windows.Forms.Label();
@@ -213,9 +216,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnAutoMode = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label28 = new System.Windows.Forms.Label();
-            this.homeLOB = new System.Windows.Forms.Label();
-            this.awayLOB = new System.Windows.Forms.Label();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -298,7 +298,7 @@
             this.pb_stamina.Invert = false;
             this.pb_stamina.Location = new System.Drawing.Point(0, 28);
             this.pb_stamina.MainColor = System.Drawing.Color.Gainsboro;
-            this.pb_stamina.Maximum = 200;
+            this.pb_stamina.Maximum = 250;
             this.pb_stamina.Minimum = 0;
             this.pb_stamina.Name = "pb_stamina";
             this.pb_stamina.Orientation = ExtendedDotNET.Controls.Progress.ProgressBarDirection.Horizontal;
@@ -1781,6 +1781,46 @@
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label22.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
+            // label28
+            // 
+            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.label28.ForeColor = System.Drawing.Color.White;
+            this.label28.Location = new System.Drawing.Point(887, 9);
+            this.label28.Margin = new System.Windows.Forms.Padding(0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(60, 39);
+            this.label28.TabIndex = 107;
+            this.label28.Text = "LOB";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label28.Visible = false;
+            // 
+            // awayLOB
+            // 
+            this.awayLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.awayLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.awayLOB.ForeColor = System.Drawing.Color.White;
+            this.awayLOB.Location = new System.Drawing.Point(887, 53);
+            this.awayLOB.Margin = new System.Windows.Forms.Padding(0);
+            this.awayLOB.Name = "awayLOB";
+            this.awayLOB.Size = new System.Drawing.Size(60, 39);
+            this.awayLOB.TabIndex = 105;
+            this.awayLOB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.awayLOB.Visible = false;
+            // 
+            // homeLOB
+            // 
+            this.homeLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.homeLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.homeLOB.ForeColor = System.Drawing.Color.White;
+            this.homeLOB.Location = new System.Drawing.Point(887, 94);
+            this.homeLOB.Margin = new System.Windows.Forms.Padding(0);
+            this.homeLOB.Name = "homeLOB";
+            this.homeLOB.Size = new System.Drawing.Size(60, 39);
+            this.homeLOB.TabIndex = 106;
+            this.homeLOB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.homeLOB.Visible = false;
+            // 
             // panelCurrentPitcher
             // 
             this.panelCurrentPitcher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2521,46 +2561,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(770, 55);
             this.panel1.TabIndex = 67;
-            // 
-            // label28
-            // 
-            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label28.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.label28.ForeColor = System.Drawing.Color.White;
-            this.label28.Location = new System.Drawing.Point(887, 9);
-            this.label28.Margin = new System.Windows.Forms.Padding(0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(60, 39);
-            this.label28.TabIndex = 107;
-            this.label28.Text = "LOB";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label28.Visible = false;
-            // 
-            // homeLOB
-            // 
-            this.homeLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.homeLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.homeLOB.ForeColor = System.Drawing.Color.White;
-            this.homeLOB.Location = new System.Drawing.Point(887, 94);
-            this.homeLOB.Margin = new System.Windows.Forms.Padding(0);
-            this.homeLOB.Name = "homeLOB";
-            this.homeLOB.Size = new System.Drawing.Size(60, 39);
-            this.homeLOB.TabIndex = 106;
-            this.homeLOB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.homeLOB.Visible = false;
-            // 
-            // awayLOB
-            // 
-            this.awayLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.awayLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
-            this.awayLOB.ForeColor = System.Drawing.Color.White;
-            this.awayLOB.Location = new System.Drawing.Point(887, 53);
-            this.awayLOB.Margin = new System.Windows.Forms.Padding(0);
-            this.awayLOB.Name = "awayLOB";
-            this.awayLOB.Size = new System.Drawing.Size(60, 39);
-            this.awayLOB.TabIndex = 105;
-            this.awayLOB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.awayLOB.Visible = false;
             // 
             // MainForm
             // 
