@@ -194,8 +194,6 @@ namespace VKR_Test
             DisplayNextBatters(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, gameSituation);
             DisplayPitcherStats();
             Text = $"{currentMatch.AwayTeam.TeamAbbreviation} {gameSituation.AwayTeamRuns} - {gameSituation.HomeTeamRuns} {currentMatch.HomeTeam.TeamAbbreviation} @ {currentMatch.stadium.StadiumTitle}";
-            lb_Runner1_Name.ForeColor = Color.Gainsboro;
-            lb_Runner2_Name.ForeColor = Color.Gainsboro;
 
             lb9thInning.Text = gameSituation.inningNumber <= 9 ? 9.ToString() : gameSituation.inningNumber.ToString();
             lb8thInning.Text = (int.Parse(lb9thInning.Text) - 1).ToString();
@@ -231,6 +229,7 @@ namespace VKR_Test
                     RunnerPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{runner.runnerID:0000}.png");
                 }
                 else RunnerPhoto.BackgroundImage = null;
+                RunnerName.ForeColor = runner.IsBaseStealingAttempt ? Color.Goldenrod : Color.Gainsboro;
             }
             else RunnerPhoto.BackgroundImage = null;
         }
@@ -506,7 +505,7 @@ namespace VKR_Test
                 label27.BackColor = LastAtBatOffense == currentMatch.AwayTeam.TeamAbbreviation ? currentMatch.AwayTeam.TeamColorForThisMatch : currentMatch.HomeTeam.TeamColorForThisMatch;
                 panel15.BackgroundImage = Image.FromFile($"SmallTeamLogos/{LastAtBatOffense}.png");
 
-                if (ClientSize.Width > 1920)
+                if (ClientSize.Width > 1680)
                 {
                     label27.Text = playerBL.GetFullPlayerNameByID(currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Batter);
                 }
@@ -533,13 +532,13 @@ namespace VKR_Test
                 thirdBaseStealingAttempt = RandomGenerators.stealingAttempt_Definition(RandomGenerators.BaseNumberForStealing.Third, newGameSituation, currentMatch.AwayTeam);
                 if (thirdBaseStealingAttempt == RandomGenerators.StealingAttempt.Attempt)
                 {
-                    lb_Runner2_Name.ForeColor = Color.DarkGoldenrod;
+                    newGameSituation.RunnerOnSecond.IsBaseStealingAttempt = true;
                     if (newGameSituation.RunnerOnFirst.IsBaseNotEmpty && newGameSituation.RunnerOnSecond.IsBaseNotEmpty)
                     {
                         secondBaseStealingAttempt = RandomGenerators.stealingAttempt_Definition(RandomGenerators.BaseNumberForStealing.Second, newGameSituation, currentMatch.AwayTeam);
                         if (secondBaseStealingAttempt == RandomGenerators.StealingAttempt.Attempt)
                         {
-                            lb_Runner1_Name.ForeColor = Color.DarkGoldenrod;
+                            newGameSituation.RunnerOnFirst.IsBaseStealingAttempt = true;
                         }
                     }
                 }
@@ -549,7 +548,7 @@ namespace VKR_Test
                 secondBaseStealingAttempt = RandomGenerators.stealingAttempt_Definition(RandomGenerators.BaseNumberForStealing.Second, newGameSituation, currentMatch.AwayTeam);
                 if (secondBaseStealingAttempt == RandomGenerators.StealingAttempt.Attempt)
                 {
-                    lb_Runner1_Name.ForeColor = Color.DarkGoldenrod;
+                    newGameSituation.RunnerOnFirst.IsBaseStealingAttempt = true;
                 }
             }
         }
@@ -563,15 +562,15 @@ namespace VKR_Test
         private void GenerateNewPitch()
         {
             Pitch pitch;
-            bool StealingAttempt = lb_Runner1_Name.ForeColor == Color.DarkGoldenrod || lb_Runner2_Name.ForeColor == Color.DarkGoldenrod;
+            bool StealingAttempt = newGameSituation.RunnerOnFirst.IsBaseStealingAttempt || newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
             int CountOfAtBats = currentMatch.atBats.Count();
             int TypeOfStealing = 0;
             if (StealingAttempt)
             {
                 pitch = new Pitch(newGameSituation, currentMatch.gameSituations, currentMatch.HomeTeam, currentMatch.AwayTeam);
-                if (lb_Runner1_Name.ForeColor == Color.DarkGoldenrod)
+                if (newGameSituation.RunnerOnFirst.IsBaseStealingAttempt)
                 {
-                    if (lb_Runner2_Name.ForeColor == Color.DarkGoldenrod)
+                    if (newGameSituation.RunnerOnSecond.IsBaseStealingAttempt)
                     {
                         TypeOfStealing = 3;
                     }
@@ -580,7 +579,7 @@ namespace VKR_Test
                         TypeOfStealing = 1;
                     }
                 }
-                else if (lb_Runner2_Name.ForeColor == Color.DarkGoldenrod)
+                else if (newGameSituation.RunnerOnSecond.IsBaseStealingAttempt)
                 {
                     TypeOfStealing = 2;
                 }
@@ -597,33 +596,32 @@ namespace VKR_Test
                 {
                     case 1:
                         {
-                            Pitch stealingSecondBaseAttempt = new Pitch(newGameSituation, Pitch.StealingType.OnlySecondBase);
-                            AddnewGameSituation(stealingSecondBaseAttempt);
-                            DisplayCurrentRunners(newGameSituation);
+                            BaseStealing(Pitch.StealingType.OnlySecondBase);
                             break;
                         }
                     case 2:
                         {
-                            Pitch stealingThirdBaseAttempt = new Pitch(newGameSituation, Pitch.StealingType.OnlyThirdBase);
-                            AddnewGameSituation(stealingThirdBaseAttempt);
-                            DisplayCurrentRunners(newGameSituation);
+                            BaseStealing(Pitch.StealingType.OnlyThirdBase);
                             break;
                         }
                     case 3:
                         {
-                            Pitch stealingThirdBaseAttemptBeforeSecond = new Pitch(newGameSituation, Pitch.StealingType.ThirdBaseBeforeSecond);
-                            AddnewGameSituation(stealingThirdBaseAttemptBeforeSecond);
-                            DisplayCurrentRunners(newGameSituation);
+                            BaseStealing(Pitch.StealingType.ThirdBaseBeforeSecond);
                             if (currentMatch.gameSituations.Last().outs != 3)
                             {
-                                Pitch stealingSecondBaseAfterThird = new Pitch(newGameSituation, Pitch.StealingType.SecondBaseAfterThird);
-                                AddnewGameSituation(stealingSecondBaseAfterThird);
-                                DisplayCurrentRunners(newGameSituation);
+                                BaseStealing(Pitch.StealingType.SecondBaseAfterThird);
                             }
                             break;
                         }
                 }
             }
+        }
+
+        private void BaseStealing(Pitch.StealingType stealingType)
+        {
+            Pitch pitch = new Pitch(newGameSituation, stealingType);
+            AddnewGameSituation(pitch);
+            DisplayCurrentRunners(newGameSituation);
         }
 
         private void IsFinishOfMatch(Match currentMatch)
@@ -825,14 +823,16 @@ namespace VKR_Test
             {
                 if (!(lb_Runner3_Name.Visible && lb_Runner2_Name.Visible))
                 {
-                    lb_Runner1_Name.ForeColor = lb_Runner1_Name.ForeColor == Color.DarkGoldenrod ? Color.Gainsboro : Color.DarkGoldenrod;
+                    newGameSituation.RunnerOnFirst.IsBaseStealingAttempt = !newGameSituation.RunnerOnFirst.IsBaseStealingAttempt;
 
                     if (lb_Runner2_Name.Visible)
                     {
-                        lb_Runner2_Name.ForeColor = Color.DarkGoldenrod;
+                        newGameSituation.RunnerOnSecond.IsBaseStealingAttempt = true;
                     }
                 }
             }
+            lb_Runner1_Name.ForeColor = newGameSituation.RunnerOnFirst.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
+            lb_Runner2_Name.ForeColor = newGameSituation.RunnerOnSecond.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
         }
 
         private void lb_Runner2_Name_Click(object sender, EventArgs e)
@@ -841,9 +841,10 @@ namespace VKR_Test
             {
                 if (!lb_Runner3_Name.Visible)
                 {
-                    lb_Runner2_Name.ForeColor = lb_Runner2_Name.ForeColor == Color.DarkGoldenrod ? Color.Gainsboro : Color.DarkGoldenrod;
+                    newGameSituation.RunnerOnSecond.IsBaseStealingAttempt = !newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
                 }
             }
+            lb_Runner2_Name.ForeColor = newGameSituation.RunnerOnSecond.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -6,6 +6,7 @@
         public string runnerPosition;
         public int pitcherID;
         public bool IsBaseNotEmpty;
+        public bool IsBaseStealingAttempt;
 
         public Runner()
         {
@@ -31,6 +32,7 @@
                 pitcherID = 0;
                 IsBaseNotEmpty = false;
             }
+            IsBaseStealingAttempt = false;
         }
 
         public Runner(Batter batter, Pitcher pitcher)

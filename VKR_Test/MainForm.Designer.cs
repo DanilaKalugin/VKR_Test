@@ -1761,10 +1761,10 @@
             // 
             this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label23.Location = new System.Drawing.Point(319, 98);
+            this.label23.Location = new System.Drawing.Point(305, 98);
             this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(64, 31);
+            this.label23.Size = new System.Drawing.Size(78, 31);
             this.label23.TabIndex = 46;
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label23.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
@@ -1773,10 +1773,10 @@
             // 
             this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label22.Location = new System.Drawing.Point(319, 57);
+            this.label22.Location = new System.Drawing.Point(305, 57);
             this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(64, 31);
+            this.label22.Size = new System.Drawing.Size(78, 31);
             this.label22.TabIndex = 45;
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label22.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);

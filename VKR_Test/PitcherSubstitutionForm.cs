@@ -52,7 +52,7 @@ namespace VKR_Test
         private void DoubleClickOnTableLayoutPanel(object sender, MouseEventArgs e)
         {
             int RowNumber = tableLayoutPanel1.GetRow((Control)sender);
-            if (RowNumber > 0 && RowNumber < Pitchers.Count)
+            if (RowNumber > 0 && RowNumber <= Pitchers.Count)
             {
                 newPitcherForThisTeam = Pitchers[playerIndex + RowNumber - 1];
                 DialogResult = DialogResult.OK;
@@ -73,7 +73,7 @@ namespace VKR_Test
 
         private void RowChanging(int step, Label PlayerName, Label playerERA, Label playerSO, ProgressBar progressBar, PictureBox pb)
         {
-            if (playerIndex + step < Pitchers.Count)
+            if (playerIndex + step <= Pitchers.Count)
             {
                 if (File.Exists($"PlayerPhotos/Player{Pitchers[playerIndex + step].id:0000}.png"))
                 {
@@ -120,7 +120,7 @@ namespace VKR_Test
             int RowNumber = tableLayoutPanel1.GetRow((Control)sender);
             for (int i = 1; i < tableLayoutPanel1.RowCount; i++)
             {
-                if (i == RowNumber && RowNumber < Pitchers.Count)
+                if (i == RowNumber && RowNumber <= Pitchers.Count)
                 {
                     for (int j = 1; j < tableLayoutPanel1.ColumnCount - 1; j++)
                     {
