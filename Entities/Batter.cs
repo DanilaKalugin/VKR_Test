@@ -158,10 +158,13 @@ namespace Entities
             InActiveRoster = _InActiveRoster;
         }
 
-        public Batter(int _id, string _firstName, string _secondName, int _Number, int _games, int _singles, int _doubles,
-                              int _triples, int _hr, int _sf, int _sac, int _rbi, int _hbp, int _sb,
-                              int _cs, int _runs, int _bb, string _position, int _numberInLineup,
-                              int _k, int _go, int _ao, int _po, string _b, string _t)
+        /// <summary>
+        /// Batter In lineup
+        /// </summary>
+        public Batter(int _id, string _firstName, string _secondName, int _Number, int _games, 
+                      int _singles, int _doubles, int _triples, int _hr, int _sf, int _sac, 
+                      int _rbi, int _hbp, int _sb, int _cs, int _runs, int _bb, string _position, 
+                      int _numberInLineup, int _k, int _go, int _ao, int _po, string _b, string _t)
         {
             id = _id;
             FirstName = _firstName;
@@ -193,7 +196,7 @@ namespace Entities
         public Batter(int _id, string _FirstName, string _secondName, int _Number, int _games,
                       int _singles, int _doubles, int _triples, int _hr, int _sf, int _sac,
                       int _rbi, int _hbp, int _sb, int _cs, int _runs, int _bb, int _k, int _go,
-                      int _ao, int _po, int _pa, int _gidp, int _tgp, string _b, string _t)
+                      int _ao, int _po, int _pa, int _gidp, string _b, string _t)
         {
             id = _id;
             FirstName = _FirstName;
@@ -218,7 +221,6 @@ namespace Entities
             Poputs = _po;
             PA = _pa;
             DoublePlay = _gidp;
-            TGP = _tgp;
             BattingHand = _b;
             Pitchinghand = _t;
         }

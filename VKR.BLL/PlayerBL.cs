@@ -49,14 +49,6 @@ namespace VKR.BLL
             {
                 batters = batters.Where(player => player.InActiveRoster).ToList();
             }
-            else if (Qualifying == "Active and Reserve Players")
-            {
-                batters = batters.Where(player => player.Team != "").ToList();
-            }
-            else if (Qualifying == "Free Agents")
-            {
-                batters = batters.Where(player => player.Team == "").ToList();
-            }
             return batters;
         }
 
@@ -79,24 +71,18 @@ namespace VKR.BLL
             {
                 pitcher.PlayerPositions = playerDAO.GetPositionsForThisPlayer(pitcher.id).ToList();
             }
-            pitchers = pitchers.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
+            List<Pitcher> pitchersFilteredByTeam = pitchers.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
+            List<Pitcher> pitchersFilteredByCriterion = new List<Pitcher>();
             if (Qualifying == "Qualified Players")
             {
-                pitchers = pitchers.Where(player => player.IP / player.TGP >= 1.1 && player.Team != "").ToList();
+                pitchersFilteredByCriterion.AddRange(pitchersFilteredByTeam.Where(player => player.IP / player.TGP >= 1.1 && player.Team != "").ToList());
             }
             else if (Qualifying == "Active Players")
             {
-                pitchers = pitchers.Where(player => player.InActiveRoster).ToList();
+                pitchersFilteredByCriterion.AddRange(pitchersFilteredByTeam.Where(player => player.InActiveRoster).ToList());
             }
-            else if (Qualifying == "Active and Reserve Players")
-            {
-                pitchers = pitchers.Where(player => player.Team != "").ToList();
-            }
-            else if (Qualifying == "Free Agents")
-            {
-                pitchers = pitchers.Where(player => player.Team == "").ToList();
-            }
-            return pitchers;
+            else pitchersFilteredByCriterion.AddRange(pitchersFilteredByTeam);
+            return pitchersFilteredByCriterion;
         }
 
         public List<Pitcher> GetSortedPitchersStatsDesc<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)

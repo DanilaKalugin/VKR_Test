@@ -52,11 +52,11 @@ namespace VKR.DAL
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
                         string team = (string)reader["TeamID"];
-                        int InActiveRoster = (int)reader["InActiveRoster"];
+                        bool InActiveRoster = (bool)reader["InActiveRoster"];
                         yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple,
                                                 HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
                                                 Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP,
-                                                Batting, Pitching, team, InActiveRoster > 0);
+                                                Batting, Pitching, team, InActiveRoster);
                     }
                 }
             }
@@ -101,7 +101,6 @@ namespace VKR.DAL
                         int Shutouts = (int)reader["SHO"];
                         int Flyout = (int)reader["AO"];
                         int Groundout = (int)reader["GO"];
-                        int TGP = (int)reader["TGP"];
                         int Wins = (int)reader["W"];
                         int Losses = (int)reader["L"];
                         int Saves = (int)reader["SV"];
@@ -111,7 +110,7 @@ namespace VKR.DAL
                         yield return new Pitcher(id, FirstName, SecondName, number, Games, GamesStarted, Strikeouts, Outs,
                                                  Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced,
                                                  QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds,
-                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, TGP,
+                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay,
                                                  Groundout, Flyout, Batting, Pitching);
                     }
                 }
@@ -154,12 +153,11 @@ namespace VKR.DAL
                         int RBI = (int)reader["RBI"]; ;
                         int PA = (int)reader["PA"];
                         int GIDP = (int)reader["GIDP"];
-                        int TGP = (int)reader["TGP"];
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
                         yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple,
                                                 HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
-                                                Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP,
+                                                Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP,
                                                 Batting, Pitching);
                     }
                 }
@@ -211,12 +209,12 @@ namespace VKR.DAL
                         int Holds = (int)reader["HLD"];
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
-                        int InActiveRoster = (int)reader["InActiveRoster"];
+                        bool InActiveRoster = (bool)reader["InActiveRoster"];
                         yield return new Pitcher(id, FirstName, SecondName, number, Games, GS, Strikeouts, Outs,
                                                  Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced,
                                                  QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds,
                                                  HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay, TGP,
-                                                 Groundout, Flyout, team, Batting, Pitching, InActiveRoster > 0);
+                                                 Groundout, Flyout, team, Batting, Pitching, InActiveRoster);
                     }
                 }
             }

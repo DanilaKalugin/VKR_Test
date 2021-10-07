@@ -38,18 +38,21 @@ namespace VKR_Test
                     {
                         lineups = players.GetRoster("GetStartingLineups");
                         bench = players.GetRoster("GetBench");
+                        Text = "Starting lineups";
                         break;
                     }
                 case RosterType.Reserves:
                     {
                         lineups = players.GetRoster("GetActivePlayers");
                         bench = players.GetRoster("GetReserves");
+                        Text = "Reserves";
                         break;
                     }
                 case RosterType.FreeAgents:
                     {
                         lineups = players.GetRoster("GetReserves");
                         bench = players.GetFreeAgents();
+                        Text = "Free Agents";
                         break;
                     }
             }
