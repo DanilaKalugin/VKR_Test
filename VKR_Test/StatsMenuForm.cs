@@ -134,7 +134,6 @@ namespace VKR_Test
 
             int maxSaves = ReturnMaxStatsValueForPitcher(batter1 => batter1.Saves, "All Players");
 
-
             dgvPitchingLeaders.Rows.Add("W", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.Wins == ReturnMaxStatsValueForPitcher(batter1 => batter1.Wins)), ReturnMaxStatsValueForPitcher(batter1 => batter1.Wins));
             dgvPitchingLeaders.Rows.Add("SV", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.Saves == maxSaves), maxSaves);
             dgvPitchingLeaders.Rows.Add("ERA", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.ERA == ReturnMinStatsValueForPitcher(batter1 => batter1.ERA)), ReturnMinStatsValueForPitcher(batter1 => batter1.ERA).ToString("0.00", new CultureInfo("en-US")));

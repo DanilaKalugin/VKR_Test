@@ -8,7 +8,6 @@ namespace VKR.DAL
 {
     public class PlayerDAO : DAO
     {
-
         public PlayerDAO()
         {
             InitConnection();

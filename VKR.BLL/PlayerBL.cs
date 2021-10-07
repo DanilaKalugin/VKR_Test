@@ -71,18 +71,16 @@ namespace VKR.BLL
             {
                 pitcher.PlayerPositions = playerDAO.GetPositionsForThisPlayer(pitcher.id).ToList();
             }
-            List<Pitcher> pitchersFilteredByTeam = pitchers.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
-            List<Pitcher> pitchersFilteredByCriterion = new List<Pitcher>();
+            pitchers = pitchers.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
             if (Qualifying == "Qualified Players")
             {
-                pitchersFilteredByCriterion.AddRange(pitchersFilteredByTeam.Where(player => player.IP / player.TGP >= 1.1 && player.Team != "").ToList());
+                pitchers = pitchers.Where(player => player.IP / player.TGP >= 1.1 && player.Team != "").ToList();
             }
             else if (Qualifying == "Active Players")
             {
-                pitchersFilteredByCriterion.AddRange(pitchersFilteredByTeam.Where(player => player.InActiveRoster).ToList());
+                pitchers = pitchers.Where(player => player.InActiveRoster).ToList();
             }
-            else pitchersFilteredByCriterion.AddRange(pitchersFilteredByTeam);
-            return pitchersFilteredByCriterion;
+            return pitchers;
         }
 
         public List<Pitcher> GetSortedPitchersStatsDesc<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)
