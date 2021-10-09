@@ -745,10 +745,19 @@ namespace VKR_Test
         private void DisplayPitcherStats()
         {
             Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
-
             PitchingTeamColor.BackColor = Defense.TeamColorForThisMatch;
             btnShowAvailablePitchers.BackColor = Defense.TeamColorForThisMatch;
             PitchingTeam.BackgroundImage = Image.FromFile($"SmallTeamLogos/{Defense.TeamAbbreviation}.png");
+
+            if (Defense.CurrentPitcher.IsPinchHitter && newGameSituation.outs == 0 && newGameSituation.balls == 0 && newGameSituation.strikes == 0)
+            {
+                if (MessageBox.Show("The player on mound is not a pitcher.\nWould you like to replace him?", "Pinch hitter", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    PitcherSubstitution();
+                }
+
+            }
+
             if (File.Exists($"PlayerPhotos/Player{Defense.CurrentPitcher.id:0000}.png"))
             {
                 PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id:0000}.png");
@@ -873,37 +882,7 @@ namespace VKR_Test
 
         private void btnShowAvailablePitchers_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
-            Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
-            List<Pitcher> pitchers = teamsBL.GetAvailablePitchers(currentMatch, Defense);
-            if (pitchers.Count > 0)
-            {
-                PitcherSubstitutionForm form = new PitcherSubstitutionForm(Defense, pitchers);
-                form.ShowDialog();
-                if (form.DialogResult == DialogResult.OK)
-                {
-                    teamsBL.SubstitutePitcher(currentMatch, Defense, form.newPitcherForThisTeam);
-                    currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
-                    currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
-
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
-
-                    Defense.PitchersPlayedInMatch.Add(form.newPitcherForThisTeam);
-                    DisplayingCurrentSituation(newGameSituation);
-                    DisplayPitcherStats();
-                    SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105);
-                }
-            }
-            else
-            {
-                ErrorForm form = new ErrorForm();
-                form.ShowDialog();
-            }
-            if (IsAutoSimulation)
-            {
-                timer1.Start();
-            }
+            PitcherSubstitution();
         }
 
         private void btnOtherResults_Click(object sender, EventArgs e)
@@ -935,6 +914,11 @@ namespace VKR_Test
         }
 
         private void btnChangeBatter_Click(object sender, EventArgs e)
+        {
+            BatterSubstitution();
+        }
+
+        private void BatterSubstitution()
         {
             timer1.Stop();
             Team Offense = newGameSituation.offense;
@@ -1021,7 +1005,7 @@ namespace VKR_Test
             if (IsAutoSimulation)
             {
                 BasesStealingAttempt_Definition();
-                if (lb_Runner1_Name.ForeColor != Color.DarkGoldenrod && lb_Runner2_Name.ForeColor != Color.DarkGoldenrod && 
+                if (lb_Runner1_Name.ForeColor != Color.DarkGoldenrod && lb_Runner2_Name.ForeColor != Color.DarkGoldenrod &&
                     (newGameSituation.RunnerOnFirst.IsBaseNotEmpty || newGameSituation.RunnerOnSecond.IsBaseNotEmpty || newGameSituation.RunnerOnThird.IsBaseNotEmpty))
                 {
                     IsBunt = BuntAttemptDefinition();
@@ -1072,6 +1056,41 @@ namespace VKR_Test
         private void btnManualMode_Click(object sender, EventArgs e)
         {
             SimulationModeChanged(false);
+        }
+
+        private void PitcherSubstitution()
+        {
+            timer1.Stop();
+            Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
+            List<Pitcher> pitchers = teamsBL.GetAvailablePitchers(currentMatch, Defense);
+            if (pitchers.Count > 0)
+            {
+                PitcherSubstitutionForm form = new PitcherSubstitutionForm(Defense, pitchers);
+                form.ShowDialog();
+                if (form.DialogResult == DialogResult.OK)
+                {
+                    teamsBL.SubstitutePitcher(currentMatch, Defense, form.newPitcherForThisTeam);
+                    currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
+                    currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
+
+                    teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
+                    teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
+
+                    Defense.PitchersPlayedInMatch.Add(form.newPitcherForThisTeam);
+                    DisplayingCurrentSituation(newGameSituation);
+                    DisplayPitcherStats();
+                    SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105);
+                }
+            }
+            else
+            {
+                ErrorForm form = new ErrorForm();
+                form.ShowDialog();
+            }
+            if (IsAutoSimulation)
+            {
+                timer1.Start();
+            }
         }
     }
 }

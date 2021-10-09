@@ -519,7 +519,11 @@ namespace Entities
 
         private int GetPitcherCoeffitientForThisPitcher(Team defense)
         {
-            if (defense.PitchersPlayedInMatch.Count > 1)
+            if (defense.CurrentPitcher.IsPinchHitter)
+            {
+                return 0;
+            }
+            else if (defense.PitchersPlayedInMatch.Count > 1)
             {
                 return 28 - defense.PitchersPlayedInMatch.Count;
             }

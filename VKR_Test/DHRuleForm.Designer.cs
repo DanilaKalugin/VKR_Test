@@ -99,7 +99,7 @@ namespace VKR_Test
             this.dtpMatchDate.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpMatchDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpMatchDate.Location = new System.Drawing.Point(168, 76);
-            this.dtpMatchDate.MaxDate = new System.DateTime(2021, 10, 3, 0, 0, 0, 0);
+            this.dtpMatchDate.MaxDate = new System.DateTime(2021, 12, 31, 0, 0, 0, 0);
             this.dtpMatchDate.MinDate = new System.DateTime(2021, 4, 1, 0, 0, 0, 0);
             this.dtpMatchDate.Name = "dtpMatchDate";
             this.dtpMatchDate.Size = new System.Drawing.Size(241, 27);

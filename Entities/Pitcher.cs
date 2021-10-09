@@ -34,6 +34,7 @@ namespace Entities
         public int DoublePlays;
         public int TGP;
         public double RemainingStamina;
+        public bool IsPinchHitter;
 
         public int HitsAllowed { get { return SinglesAllowed + DoublesAllowed + TriplesAllowed + HomeRunsAllowed; } }
 
@@ -225,6 +226,47 @@ namespace Entities
             BattingHand = _b;
             Pitchinghand = _t;
             InActiveRoster = _InActiveRoster;
+        }
+
+        public Pitcher(int id, string firstName, string secondName, int number, int games, int gamesStarted,
+                       int strikeouts, int outs, int walks, int bunts, int sacFlies, int stolenBase, int caughtStealing,
+                       int battersFaced, int qualityStarts, int shutouts, int completeGames, int wins, int losses,
+                       int saves, int holds, int hitByPitch, int single, int doubles, int triple, int homeRun, int runs,
+                       int doublePlay, int groundout, int flyout, string batting, string pitching, bool Position)
+        {
+            this.id = id;
+            FirstName = firstName;
+            SecondName = secondName;
+            PlayerNumber = number;
+            Games = games;
+            GamesStarted = gamesStarted;
+            Strikeouts = strikeouts;
+            Outs = outs;
+            WalksAllowed = walks;
+            SacrificeBunts = bunts;
+            SacrificeFlies = sacFlies;
+            StolenBasesAllowed = stolenBase;
+            CaughtStealing = caughtStealing;
+            TotalBattersFaced = battersFaced;
+            QualityStarts = qualityStarts;
+            Shutouts = shutouts;
+            CompleteGames = completeGames;
+            Wins = wins;
+            Losses = losses;
+            Saves = saves;
+            Holds = holds;
+            HitByPitch = hitByPitch;
+            SinglesAllowed = single;
+            DoublesAllowed = doubles;
+            TriplesAllowed = triple;
+            HomeRunsAllowed = homeRun;
+            RunsAllowed = runs;
+            DoublePlays = doublePlay;
+            Groundouts = groundout;
+            Flyouts = flyout;
+            BattingHand = batting;
+            Pitchinghand = pitching;
+            IsPinchHitter = Position;
         }
 
         public Pitcher(int id, string firstName, string secondName, int number, int games, int gamesStarted,

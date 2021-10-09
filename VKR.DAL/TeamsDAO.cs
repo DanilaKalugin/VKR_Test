@@ -181,19 +181,20 @@ namespace VKR.DAL
             return teams;
         }
 
-        public IEnumerable<Pitcher> GetPitcherByID(int id)
+        public IEnumerable<Pitcher> GetPitcherByID(int _id)
         {
             using (SqlCommand command = new SqlCommand("UpdatePitcherStats", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Player", SqlDbType.Int);
                 command.Prepare();
-                command.Parameters[0].Value = id;
+                command.Parameters[0].Value = _id;
+
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int _id = (int)reader["PlayerID"];
+                        int id = (int)reader["PlayerID"];
                         string FirstName = (string)reader["PlayerFirstName"];
                         string SecondName = (string)reader["PlayerSecondName"];
                         int number = (int)reader["PlayerNumber"];
@@ -213,19 +214,24 @@ namespace VKR.DAL
                         int Bunts = (int)reader["SAC"];
                         int StolenBase = (int)reader["SB"];
                         int CaughtStealing = (int)reader["CS"];
+                        int DoublePlay = (int)reader["GIDP"];
                         int QualityStarts = (int)reader["QS"];
                         int CompleteGames = (int)reader["CG"];
                         int Shutouts = (int)reader["SHO"];
+                        int Flyout = (int)reader["AO"];
+                        int Groundout = (int)reader["GO"];
                         int Wins = (int)reader["W"];
                         int Losses = (int)reader["L"];
                         int Saves = (int)reader["SV"];
                         int Holds = (int)reader["HLD"];
                         string Batting = (string)reader["PlayerBattingHand"];
                         string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Pitcher(_id, FirstName, SecondName, number, Games, GamesStarted, Strikeouts, Outs, 
-                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
-                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Holds, Saves, 
-                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, Batting, Pitching);
+                        string Position = (string)reader["PositionID"];
+                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GamesStarted, Strikeouts, Outs,
+                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced,
+                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds,
+                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay,
+                                                 Groundout, Flyout, Batting, Pitching, Position != "P");
                     }
                 }
             }
