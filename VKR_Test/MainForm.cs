@@ -748,16 +748,6 @@ namespace VKR_Test
             PitchingTeamColor.BackColor = Defense.TeamColorForThisMatch;
             btnShowAvailablePitchers.BackColor = Defense.TeamColorForThisMatch;
             PitchingTeam.BackgroundImage = Image.FromFile($"SmallTeamLogos/{Defense.TeamAbbreviation}.png");
-
-            if (Defense.CurrentPitcher.IsPinchHitter && newGameSituation.outs == 0 && newGameSituation.balls == 0 && newGameSituation.strikes == 0)
-            {
-                if (MessageBox.Show("The player on mound is not a pitcher.\nWould you like to replace him?", "Pinch hitter", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-                {
-                    PitcherSubstitution();
-                }
-
-            }
-
             if (File.Exists($"PlayerPhotos/Player{Defense.CurrentPitcher.id:0000}.png"))
             {
                 PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{Defense.CurrentPitcher.id:0000}.png");
@@ -819,6 +809,16 @@ namespace VKR_Test
 
             int TBFinThisMatch = currentMatch.atBats.Where(atBat => atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.AtBatResult != AtBat.AtBatType.StolenBase && atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.Pitcher == Defense.CurrentPitcher.id).Count();
             btnShowAvailablePitchers.Visible = TBFinThisMatch >= 3 && newGameSituation.balls == 0 && newGameSituation.strikes == 0;
+
+            if (Defense.CurrentPitcher.IsPinchHitter && newGameSituation.outs == 0 && newGameSituation.balls == 0 && newGameSituation.strikes == 0)
+            {
+                timer1.Stop();
+                if (MessageBox.Show("The player on mound is not a pitcher.\nWould you like to replace him?", "Pinch hitter", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    PitcherSubstitution();
+                }
+
+            }
         }
 
         private void btnBuntAttempt_Click(object sender, EventArgs e)
