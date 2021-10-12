@@ -1005,7 +1005,7 @@ namespace VKR_Test
             if (IsAutoSimulation)
             {
                 BasesStealingAttempt_Definition();
-                if (lb_Runner1_Name.ForeColor != Color.DarkGoldenrod && lb_Runner2_Name.ForeColor != Color.DarkGoldenrod &&
+                if (!newGameSituation.RunnerOnFirst.IsBaseStealingAttempt && !newGameSituation.RunnerOnSecond.IsBaseStealingAttempt &&
                     (newGameSituation.RunnerOnFirst.IsBaseNotEmpty || newGameSituation.RunnerOnSecond.IsBaseNotEmpty || newGameSituation.RunnerOnThird.IsBaseNotEmpty))
                 {
                     IsBunt = BuntAttemptDefinition();
@@ -1039,6 +1039,10 @@ namespace VKR_Test
             btnManualMode.BackColor = IsAutoSimulation ? Color.DimGray : Color.Gainsboro;
             btnAutoMode.BackColor = !IsAutoSimulation ? Color.DimGray : Color.Gainsboro;
             panel1.Visible = !IsAutoSimulation;
+            if (!isAutoSim)
+            {
+                PitcherSubstitution();
+            }
         }
 
         private void GenerateNewBunt()
