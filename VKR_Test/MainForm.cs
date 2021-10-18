@@ -45,7 +45,7 @@ namespace VKR_Test
             DisplayNextBatters(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, currentMatch.gameSituations.Last());
             DisplayNextBatters(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, currentMatch.gameSituations.Last());
             pb_stamina.Value = (int)currentMatch.HomeTeam.CurrentPitcher.RemainingStamina;
-            SimulationModeChanged(!match.IsQuickMatch);
+            SimulationModeChanged(!match.IsQuickMatch, false);
         }
 
         private void PrepareForThisTeam(Team team, Label teamAbbreviation, Label RunsScored, Label teamTitle, Panel TeamLogo, Label teamBalance, Match match, Panel NextBatters, Label NextBattersHeader)
@@ -979,11 +979,11 @@ namespace VKR_Test
 
         private void MainForm_ClientSizeChanged(object sender, EventArgs e)
         {
-            panel1Base.Location = new Point(ClientSize.Width - 211, ClientSize.Height / 2 - 50);
-            RunnerOn1Photo.Location = new Point(ClientSize.Width - 278, ClientSize.Height / 2 - 50);
+            panel1Base.Location = new Point(ClientSize.Width - 211, ClientSize.Height / 2 - 30);
+            RunnerOn1Photo.Location = new Point(ClientSize.Width - 278, ClientSize.Height / 2 - 30);
 
-            panel3Base.Location = new Point(79, ClientSize.Height / 2 - 50);
-            RunnerOn3Photo.Location = new Point(12, ClientSize.Height / 2 - 50);
+            panel3Base.Location = new Point(79, ClientSize.Height / 2 - 30);
+            RunnerOn3Photo.Location = new Point(12, ClientSize.Height / 2 - 30);
 
             RunnerOn2Photo.Location = new Point(ClientSize.Width / 2 - 132, 144);
             panel2Base.Location = new Point(ClientSize.Width / 2 - 65, 144);
@@ -1001,7 +1001,7 @@ namespace VKR_Test
         private void timer1_Tick(object sender, EventArgs e)
         {
             bool IsBunt;
-            SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105);
+            SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105, true);
             if (IsAutoSimulation)
             {
                 BasesStealingAttempt_Definition();
@@ -1027,10 +1027,10 @@ namespace VKR_Test
 
         private void btnAutoMode_Click(object sender, EventArgs e)
         {
-            SimulationModeChanged(true);
+            SimulationModeChanged(true, false);
         }
 
-        private void SimulationModeChanged(bool isAutoSim)
+        private void SimulationModeChanged(bool isAutoSim, bool PitcherSubstitutionEnabled)
         {
             IsAutoSimulation = isAutoSim;
             timer1.Enabled = isAutoSim;
@@ -1039,7 +1039,7 @@ namespace VKR_Test
             btnManualMode.BackColor = IsAutoSimulation ? Color.DimGray : Color.Gainsboro;
             btnAutoMode.BackColor = !IsAutoSimulation ? Color.DimGray : Color.Gainsboro;
             panel1.Visible = !IsAutoSimulation;
-            if (!isAutoSim)
+            if (!isAutoSim && PitcherSubstitutionEnabled)
             {
                 PitcherSubstitution();
             }
@@ -1059,7 +1059,7 @@ namespace VKR_Test
 
         private void btnManualMode_Click(object sender, EventArgs e)
         {
-            SimulationModeChanged(false);
+            SimulationModeChanged(false, false);
         }
 
         private void PitcherSubstitution()
@@ -1083,7 +1083,7 @@ namespace VKR_Test
                     Defense.PitchersPlayedInMatch.Add(form.newPitcherForThisTeam);
                     DisplayingCurrentSituation(newGameSituation);
                     DisplayPitcherStats();
-                    SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105);
+                    SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105, true);
                 }
             }
             else

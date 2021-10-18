@@ -255,7 +255,8 @@ namespace VKR_Test
             this.cbFilter.Items.AddRange(new object[] {
             "MLB",
             "League",
-            "Division"});
+            "Division",
+            "Wild card"});
             this.cbFilter.Location = new System.Drawing.Point(453, 9);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(121, 27);

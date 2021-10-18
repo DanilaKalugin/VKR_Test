@@ -63,6 +63,25 @@ namespace VKR.BLL
             return teams;
         }
 
+        public List<Team> GetWCStandings(string Filter, DateTime date)
+        {
+            List<Team> teams = GetStandings(Filter, date).ToList();
+            List<Team> allTeams = teamsDAO.GetList().ToList();
+            Team WestLeader = teams.Where(team => team.Division == $"{Filter} West").First();
+            Team CentralLeader = teams.Where(team => team.Division == $"{Filter} Central").First();
+            Team EastLeader = teams.Where(team => team.Division == $"{Filter} East").First();
+            teams = teams.Where(team => team.TeamAbbreviation != WestLeader.TeamAbbreviation && team.TeamAbbreviation != EastLeader.TeamAbbreviation && team.TeamAbbreviation != CentralLeader.TeamAbbreviation).ToList();
+            int LeaderW = teams[1].Wins;
+            int LeaderL = teams[1].Losses;
+
+            foreach (Team team in teams)
+            {
+                team.GamesBehind = (double)(LeaderW - LeaderL - (team.Wins - team.Losses)) / 2;
+            }
+            return teams;
+        }
+
+
         public Pitcher GetStartingPitcherForThisTeam(Team team, Match match)
         {
             Pitcher pitcher = teamsDAO.GetStartingPitcherForThisTeam(team, match.MatchID).First();
