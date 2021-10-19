@@ -73,7 +73,7 @@ namespace VKR_Test
 
         private void RowChanging(int step, Label PlayerName, Label playerERA, Label playerSO, ProgressBar progressBar, PictureBox pb)
         {
-            if (playerIndex + step <= Pitchers.Count)
+            if (playerIndex + step < Pitchers.Count)
             {
                 if (File.Exists($"PlayerPhotos/Player{Pitchers[playerIndex + step].id:0000}.png"))
                 {
