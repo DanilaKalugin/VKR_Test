@@ -172,6 +172,7 @@ namespace VKR_Test
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1120, 561);
             this.tableLayoutPanel1.TabIndex = 57;
+            this.tableLayoutPanel1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tableLayoutPanel1_MouseDoubleClick);
             // 
             // panel19
             // 
@@ -726,6 +727,7 @@ namespace VKR_Test
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "DefenseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

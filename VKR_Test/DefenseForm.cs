@@ -69,5 +69,10 @@ namespace VKR_Test
             timer1.Start();
             timer_Defense.Stop();
         }
+
+        private void tableLayoutPanel1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Close();
+        }
     }
 }
