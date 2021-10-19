@@ -12,10 +12,13 @@ namespace VKR_Test
     {
         private readonly static Random StealingAttempt_RandomGenerator;
         private readonly static Random BuntAttempt_RandomGenerator;
+        private readonly static Random PitcherSubstitution_RandomGenerator;
+
 
         public enum BaseNumberForStealing { Second, Third }
         public enum StealingAttempt { Attempt, NoAttempt }
         public enum BuntAttempt { Attempt, NoAttempt }
+        public enum PitcherSubstitution { Substitution, NoSubstitution }
 
         public static StealingAttempt stealingAttempt_Definition(BaseNumberForStealing baseNumber, GameSituation situation, Team AwayTeam)
         {
@@ -55,11 +58,27 @@ namespace VKR_Test
             }
         }
 
+        public static PitcherSubstitution PitcherSubstitution_Definition(Pitcher pitcher, List<AtBat> atBats)
+        {
+            int StealingAttempt_RandomValue = BuntAttempt_RandomGenerator.Next(1, 1250);
+            int RunsByThisPitcher = atBats.Where(atBat => atBat.Pitcher == pitcher.id && atBat.AtBatResult == AtBat.AtBatType.Run).Count();
+            if (StealingAttempt_RandomValue <= Math.Pow(pitcher.RemainingStamina / 10 - 25, 2) + Math.Pow(RunsByThisPitcher + 1, 2)) 
+            {
+                return PitcherSubstitution.Substitution;
+            }
+            else
+            {
+                return PitcherSubstitution.NoSubstitution;
+            }
+        }
+
+
         static RandomGenerators()
         {
             Random InitializeRandomGenerator = new Random(DateTime.Now.Second);
             StealingAttempt_RandomGenerator = new Random(23 + InitializeRandomGenerator.Next(1, 1000));
             BuntAttempt_RandomGenerator = new Random(29 + InitializeRandomGenerator.Next(1, 1000));
+            PitcherSubstitution_RandomGenerator = new Random(31 + InitializeRandomGenerator.Next(1, 1000));
         }
     }
 }

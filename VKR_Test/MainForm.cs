@@ -45,7 +45,7 @@ namespace VKR_Test
             DisplayNextBatters(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, currentMatch, currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, currentMatch.gameSituations.Last());
             DisplayNextBatters(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, currentMatch, currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, currentMatch.gameSituations.Last());
             pb_stamina.Value = (int)currentMatch.HomeTeam.CurrentPitcher.RemainingStamina;
-            SimulationModeChanged(!match.IsQuickMatch, false);
+            SimulationModeChanged(!match.IsQuickMatch);
         }
 
         private void PrepareForThisTeam(Team team, Label teamAbbreviation, Label RunsScored, Label teamTitle, Panel TeamLogo, Label teamBalance, Match match, Panel NextBatters, Label NextBattersHeader)
@@ -931,15 +931,13 @@ namespace VKR_Test
                 {
                     Batter oldBatter = GetBatterByGameSituation(newGameSituation);
                     teamsBL.SubstituteBatter(currentMatch, Offense, oldBatter, form.newBatterForThisTeam);
-                    currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
-                    currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
+                    currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(Offense.TeamAbbreviation, currentMatch.MatchID);
                     if (!currentMatch.DHRule && oldBatter.NumberInBattingLineup == 9)
                     {
                         Pitcher newPitcher = teamsBL.GetPitcherByID(form.newBatterForThisTeam.id);
                         Offense.PitchersPlayedInMatch.Add(newPitcher);
                     }
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
+                    teamsBL.UpdateStatsForThisPitcher(Offense.CurrentPitcher, currentMatch);
                     DisplayingCurrentSituation(newGameSituation);
                 }
             }
@@ -1001,9 +999,14 @@ namespace VKR_Test
         private void timer1_Tick(object sender, EventArgs e)
         {
             bool IsBunt;
-            SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105, true);
+            Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
             if (IsAutoSimulation)
             {
+                int TBFinThisMatch = currentMatch.atBats.Where(atBat => atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.AtBatResult != AtBat.AtBatType.StolenBase && atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.Pitcher == Defense.CurrentPitcher.id).Count();
+                if (TBFinThisMatch >= 3 && newGameSituation.balls == 0 && newGameSituation.strikes == 0)
+                {
+                    PitcherSubstion_Definition(Defense.CurrentPitcher);
+                }
                 BasesStealingAttempt_Definition();
                 if (!newGameSituation.RunnerOnFirst.IsBaseStealingAttempt && !newGameSituation.RunnerOnSecond.IsBaseStealingAttempt &&
                     (newGameSituation.RunnerOnFirst.IsBaseNotEmpty || newGameSituation.RunnerOnSecond.IsBaseNotEmpty || newGameSituation.RunnerOnThird.IsBaseNotEmpty))
@@ -1025,12 +1028,21 @@ namespace VKR_Test
             }
         }
 
-        private void btnAutoMode_Click(object sender, EventArgs e)
+        private void PitcherSubstion_Definition(Pitcher pitcher)
         {
-            SimulationModeChanged(true, false);
+            RandomGenerators.PitcherSubstitution pitcherSubstion = RandomGenerators.PitcherSubstitution_Definition(pitcher, currentMatch.atBats);
+            if (pitcherSubstion == RandomGenerators.PitcherSubstitution.Substitution)
+            {
+                PitcherSubstitution(IsAutoSimulation);
+            }
         }
 
-        private void SimulationModeChanged(bool isAutoSim, bool PitcherSubstitutionEnabled)
+        private void btnAutoMode_Click(object sender, EventArgs e)
+        {
+            SimulationModeChanged(true);
+        }
+
+        private void SimulationModeChanged(bool isAutoSim)
         {
             IsAutoSimulation = isAutoSim;
             timer1.Enabled = isAutoSim;
@@ -1039,10 +1051,6 @@ namespace VKR_Test
             btnManualMode.BackColor = IsAutoSimulation ? Color.DimGray : Color.Gainsboro;
             btnAutoMode.BackColor = !IsAutoSimulation ? Color.DimGray : Color.Gainsboro;
             panel1.Visible = !IsAutoSimulation;
-            if (!isAutoSim && PitcherSubstitutionEnabled)
-            {
-                PitcherSubstitution();
-            }
         }
 
         private void GenerateNewBunt()
@@ -1059,12 +1067,11 @@ namespace VKR_Test
 
         private void btnManualMode_Click(object sender, EventArgs e)
         {
-            SimulationModeChanged(false, false);
+            SimulationModeChanged(false);
         }
 
         private void PitcherSubstitution()
         {
-            timer1.Stop();
             Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
             List<Pitcher> pitchers = teamsBL.GetAvailablePitchers(currentMatch, Defense);
             if (pitchers.Count > 0)
@@ -1074,16 +1081,23 @@ namespace VKR_Test
                 if (form.DialogResult == DialogResult.OK)
                 {
                     teamsBL.SubstitutePitcher(currentMatch, Defense, form.newPitcherForThisTeam);
-                    currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
-                    currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
-
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
-                    teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
-
+                    if (Defense.TeamAbbreviation == currentMatch.AwayTeamAbbreviation)
+                    {
+                        currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
+                        teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
+                    }
+                    else
+                    {
+                        currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
+                        teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
+                    }
                     Defense.PitchersPlayedInMatch.Add(form.newPitcherForThisTeam);
                     DisplayingCurrentSituation(newGameSituation);
                     DisplayPitcherStats();
-                    SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105, true);
+                    if (IsAutoSimulation)
+                    {
+                        SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105);
+                    }
                 }
             }
             else
@@ -1091,10 +1105,49 @@ namespace VKR_Test
                 ErrorForm form = new ErrorForm();
                 form.ShowDialog();
             }
-            if (IsAutoSimulation)
+        }
+
+        private void PitcherSubstitution(bool isAutoSimulation)
+        {
+            timer1.Stop();
+            Team Defense = newGameSituation.offense == currentMatch.AwayTeam ? currentMatch.HomeTeam : currentMatch.AwayTeam;
+            List<Pitcher> pitchers = teamsBL.GetAvailablePitchers(currentMatch, Defense);
+            if (pitchers.Count > 0)
             {
-                timer1.Start();
+                Pitcher closer = pitchers.Where(pitcher => pitcher.Saves == pitchers.Max(pitcher1 => pitcher1.Saves)).First();
+                Pitcher newPitcher;
+                if (pitchers.Count > 1)
+                {
+                    if (newGameSituation.inningNumber < 9)
+                    {
+                        newPitcher = pitchers.Where(pitcher => pitcher.RemainingStamina == pitchers.Min(pitcher1 => pitcher1.RemainingStamina)).First();
+                    }
+                    else
+                    {
+                        newPitcher = closer;
+                    }
+                }
+                else
+                {
+                    newPitcher = closer;
+                }
+                teamsBL.SubstitutePitcher(currentMatch, Defense, newPitcher);
+                if (Defense.TeamAbbreviation == currentMatch.AwayTeamAbbreviation)
+                {
+                    currentMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.AwayTeam.TeamAbbreviation, currentMatch.MatchID);
+                    teamsBL.UpdateStatsForThisPitcher(currentMatch.AwayTeam.CurrentPitcher, currentMatch);
+                }
+                else
+                {
+                    currentMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(currentMatch.HomeTeam.TeamAbbreviation, currentMatch.MatchID);
+                    teamsBL.UpdateStatsForThisPitcher(currentMatch.HomeTeam.CurrentPitcher, currentMatch);
+                }
+                Defense.PitchersPlayedInMatch.Add(newPitcher);
+                DisplayingCurrentSituation(newGameSituation);
+                DisplayPitcherStats();
+                SimulationModeChanged(pb_stamina.Value > 25 && int.Parse(lbPitchCountForThisPitcher.Text) < 105);
             }
+            timer1.Start();
         }
     }
 }
