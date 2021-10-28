@@ -13,12 +13,13 @@ namespace VKR_Test
         private readonly static Random StealingAttempt_RandomGenerator;
         private readonly static Random BuntAttempt_RandomGenerator;
         private readonly static Random PitcherSubstitution_RandomGenerator;
-
+        private readonly static Random BatterSubstitution_RandomGenerator; 
 
         public enum BaseNumberForStealing { Second, Third }
         public enum StealingAttempt { Attempt, NoAttempt }
         public enum BuntAttempt { Attempt, NoAttempt }
         public enum PitcherSubstitution { Substitution, NoSubstitution }
+        public enum BatterSubstitution { Substitution, NoSubstitution }
 
         public static StealingAttempt stealingAttempt_Definition(BaseNumberForStealing baseNumber, GameSituation situation, Team AwayTeam)
         {
@@ -60,9 +61,9 @@ namespace VKR_Test
 
         public static PitcherSubstitution PitcherSubstitution_Definition(Pitcher pitcher, List<AtBat> atBats)
         {
-            int StealingAttempt_RandomValue = BuntAttempt_RandomGenerator.Next(1, 1250);
+            int PitchingSubstituion_RandomValue = PitcherSubstitution_RandomGenerator.Next(1, 1250);
             int RunsByThisPitcher = atBats.Where(atBat => atBat.Pitcher == pitcher.id && atBat.AtBatResult == AtBat.AtBatType.Run).Count();
-            if (StealingAttempt_RandomValue <= Math.Pow(pitcher.RemainingStamina / 10 - 25, 2) + Math.Pow(RunsByThisPitcher + 1, 2)) 
+            if (PitchingSubstituion_RandomValue <= Math.Pow(pitcher.RemainingStamina / 10 - 25, 2) + Math.Pow(RunsByThisPitcher + 1, 2)) 
             {
                 return PitcherSubstitution.Substitution;
             }
@@ -71,6 +72,11 @@ namespace VKR_Test
                 return PitcherSubstitution.NoSubstitution;
             }
         }
+
+        /*public static BatterSubstitution BatterSubstitution_Definition()
+        {
+            
+        }*/
 
 
         static RandomGenerators()
