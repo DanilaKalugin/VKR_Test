@@ -2378,10 +2378,10 @@
             this.label44.Dock = System.Windows.Forms.DockStyle.Right;
             this.label44.Font = new System.Drawing.Font("MicroFLF", 14F);
             this.label44.ForeColor = System.Drawing.Color.White;
-            this.label44.Location = new System.Drawing.Point(448, 0);
+            this.label44.Location = new System.Drawing.Point(520, 0);
             this.label44.MaximumSize = new System.Drawing.Size(400, 31);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(322, 31);
+            this.label44.Size = new System.Drawing.Size(250, 31);
             this.label44.TabIndex = 54;
             this.label44.Text = "00";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2479,7 +2479,7 @@
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(155, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(293, 31);
+            this.label27.Size = new System.Drawing.Size(365, 31);
             this.label27.TabIndex = 62;
             this.label27.Text = "00";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

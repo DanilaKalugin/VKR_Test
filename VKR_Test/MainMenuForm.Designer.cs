@@ -75,7 +75,7 @@ namespace VKR_Test
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvBirthDays.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBirthDays.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBirthDays.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dgvBirthDays.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvBirthDays.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBirthDays.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBirthDays.ColumnHeadersVisible = false;

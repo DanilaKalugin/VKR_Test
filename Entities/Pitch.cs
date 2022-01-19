@@ -90,6 +90,10 @@ namespace Entities
                         {
                             return PitchResult.Double;
                         }
+                    case HitType.GroundRuleDouble:
+                        {
+                            return PitchResult.GroundRuleDouble;
+                        }
                     case HitType.Triple:
                         {
                             return PitchResult.Triple;
@@ -158,7 +162,7 @@ namespace Entities
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallIsOutOfTheStrikeZone;
             }
-            else if (GettingIntoStrikeZone_RandomValue <= hitByPitch_probability)
+            else if (GettingIntoStrikeZone_RandomValue < hitByPitch_probability)
             {
                 return GettingIntoStrikeZone_TypeOfResult.BallInTheStrikeZone;
             }
@@ -171,6 +175,7 @@ namespace Entities
         private Swing_ResultType Swing_Definition(GettingIntoStrikeZone_TypeOfResult ballInStrikeZone, int swingProbabilityInStrikeZone, int swingProbabilityOutsideStrikeZone, GameSituation situation)
         {
             int Swing_RandomValue = Swing_RandomGenerator.Next(1, 100);
+
             if (ballInStrikeZone == GettingIntoStrikeZone_TypeOfResult.HitByPitch)
             {
                 return Swing_ResultType.NoResult;
@@ -202,6 +207,7 @@ namespace Entities
         private Hitting_ResultType Hitting_Definition(Swing_ResultType swingResult, int Hitting_probability, int BatterNumberComponent, int pitcherCoefficient, int numberOfPitches, GameSituation situation, int handsCoefficient)
         {
             int Hitting_RandomValue = Hitting_RandomGenerator.Next(1, 2000);
+
             if (swingResult == Swing_ResultType.Swing)
             {
                 if (Hitting_RandomValue > Hitting_probability + pitcherCoefficient - BatterNumberComponent * 3 - numberOfPitches / 3 - situation.balls * 25 + situation.strikes * 20 - handsCoefficient)
@@ -221,22 +227,11 @@ namespace Entities
 
         private HitType HitType_Definition(Hitting_ResultType hitting_Result, int Foul_Probability, int single_probability, int double_probability, int homeRun_Probability, int triple_Probability, int BatterNumberComponent, int numberOfPitches, int StadiumCoefficient, int countOfNotEmptyBases, GameSituation situation, Batter currentBatter)
         {
-            int TripleProbabilityNormalizedByBatterPosition, HRProbabilityNormalizedByBatterPosition, DoubleProbabilityNormalizedByBatterPosition, SingleProbabnilityNormalizedByBatterPosition, FoulProbabilityNormalizedByBatterPosition;
-            if (currentBatter.PositionForThisMatch == "P")
-            {
-                TripleProbabilityNormalizedByBatterPosition = triple_Probability / 5;
-                HRProbabilityNormalizedByBatterPosition = homeRun_Probability / 8;
-                DoubleProbabilityNormalizedByBatterPosition = double_probability / 4;
-                SingleProbabnilityNormalizedByBatterPosition = (int)(single_probability * 1.1);
-            }
-            else
-            {
-                TripleProbabilityNormalizedByBatterPosition = triple_Probability;
-                HRProbabilityNormalizedByBatterPosition = homeRun_Probability;
-                DoubleProbabilityNormalizedByBatterPosition = double_probability;
-                SingleProbabnilityNormalizedByBatterPosition = single_probability;
-            }
-            FoulProbabilityNormalizedByBatterPosition = 2000 - TripleProbabilityNormalizedByBatterPosition - HRProbabilityNormalizedByBatterPosition - DoubleProbabilityNormalizedByBatterPosition - SingleProbabnilityNormalizedByBatterPosition;
+            var TripleProbabilityNormalizedByBatterPosition = currentBatter.PositionForThisMatch == "P" ? triple_Probability / 5 : triple_Probability;
+            var HRProbabilityNormalizedByBatterPosition = currentBatter.PositionForThisMatch == "P" ? homeRun_Probability / 8 : homeRun_Probability;
+            var DoubleProbabilityNormalizedByBatterPosition = currentBatter.PositionForThisMatch == "P" ? double_probability / 4 : double_probability;
+            var SingleProbabnilityNormalizedByBatterPosition = currentBatter.PositionForThisMatch == "P" ? (int)(single_probability * 1.1) : single_probability;
+            var FoulProbabilityNormalizedByBatterPosition = 2000 - TripleProbabilityNormalizedByBatterPosition - HRProbabilityNormalizedByBatterPosition - DoubleProbabilityNormalizedByBatterPosition - SingleProbabnilityNormalizedByBatterPosition;
 
             int HitType_RandomValue = HitType_RandomGenerator.Next(1, 2000);
             if (hitting_Result == Hitting_ResultType.Hit)
@@ -333,7 +328,7 @@ namespace Entities
             {
                 return OtherCondition.DoublePlayOnFlyout;
             }
-            else if (outType == OutType.Groundout && situation.RunnerOnFirst.IsBaseNotEmpty && situation.outs <= 1 && OtherCondition_RandomValue <= DoublePlay_Probability + CountOfNotEmptyBases)
+            else if (outType == OutType.Groundout && situation.RunnerOnFirst.IsBaseNotEmpty && situation.outs < 2 && OtherCondition_RandomValue <= DoublePlay_Probability + CountOfNotEmptyBases)
             {
                 return OtherCondition.DoublePlay;
             }
@@ -377,8 +372,8 @@ namespace Entities
                 {
                     numberOfPitches += numberOfPitches - PitcherCoefficient;
                 }
-
             }
+
             newPitch_GettingIntoStrikeZone_Result = GettingIntoStrikeZone_Definition(Defense.StrikeZoneProbabilty, Defense.HitByPitchProbability, numberOfPitches, PitcherCoefficient, situation);
             newPitch_Swing_Result = Swing_Definition(newPitch_GettingIntoStrikeZone_Result, Offense.SwingInStrikeZoneProbability, Offense.SwingOutsideStrikeZoneProbability, situation);
             newPitch_Hitting = Hitting_Definition(newPitch_Swing_Result, Offense.HittingProbability, BatterNumberComponent, PitcherCoefficient, numberOfPitches, situation, HandsCoefficient);

@@ -501,18 +501,12 @@ namespace VKR_Test
 
             if (currentMatch.atBats.Count > 0)
             {
-                string LastAtBatOffense = currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Offense;
+                var LastAtBatOffense = currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Offense;
                 label27.BackColor = LastAtBatOffense == currentMatch.AwayTeam.TeamAbbreviation ? currentMatch.AwayTeam.TeamColorForThisMatch : currentMatch.HomeTeam.TeamColorForThisMatch;
                 panel15.BackgroundImage = Image.FromFile($"SmallTeamLogos/{LastAtBatOffense}.png");
 
-                if (ClientSize.Width > 1680)
-                {
-                    label27.Text = playerBL.GetFullPlayerNameByID(currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Batter);
-                }
-                else
-                {
-                    label27.Text = playerBL.GetPlayerNameByID(currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Batter);
-                }
+                var lastBatter = playerBL.GetPlayerByID(currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().Batter);
+                label27.Text = Width >= 960 ? lastBatter.FullName : $"{lastBatter.FirstName[0]}. {lastBatter.SecondName}";
                 label44.Text = currentMatch.atBats.Where(atbat => atbat.AtBatResult != AtBat.AtBatType.Run).Last().ToString();
             }
 
@@ -808,16 +802,15 @@ namespace VKR_Test
             PitcherHomeRunsToday.Text = HRToday.ToString();
 
             int TBFinThisMatch = currentMatch.atBats.Where(atBat => atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.AtBatResult != AtBat.AtBatType.StolenBase && atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.Pitcher == Defense.CurrentPitcher.id).Count();
-            btnShowAvailablePitchers.Visible = TBFinThisMatch >= 3 && newGameSituation.balls == 0 && newGameSituation.strikes == 0;
+            btnShowAvailablePitchers.Visible = !IsAutoSimulation && TBFinThisMatch >= 3 && newGameSituation.balls == 0 && newGameSituation.strikes == 0;
 
             if (Defense.CurrentPitcher.IsPinchHitter && newGameSituation.outs == 0 && newGameSituation.balls == 0 && newGameSituation.strikes == 0)
             {
                 timer1.Stop();
-                if (MessageBox.Show("The player on mound is not a pitcher.\nWould you like to replace him?", "Pinch hitter", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                if (MessageBox.Show("The player on mound is not a pitcher.\nWould you like to replace him?", "New pitcher", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                 {
                     PitcherSubstitution();
                 }
-
             }
         }
 
