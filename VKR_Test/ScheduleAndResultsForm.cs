@@ -16,10 +16,10 @@ namespace VKR_Test
         private Match currentMatch;
         private MatchResultsForm form;
 
-        public ScheduleAndResultsForm(Match _match)
+        public ScheduleAndResultsForm(Match match)
         {
             InitializeComponent();
-            currentMatch = _match;
+            currentMatch = match;
             seriesHeader.Text = $"{currentMatch.AwayTeam.TeamAbbreviation} - {currentMatch.HomeTeam.TeamAbbreviation} series";
             team1Header.Text = currentMatch.AwayTeam.TeamTitle;
             team2Header.Text = currentMatch.HomeTeam.TeamTitle;

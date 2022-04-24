@@ -4,10 +4,10 @@
     {
         public string ShortTitle { get; private set; }
         public string FullTitle { get; private set; }
-        public PlayerPosition(string _short, string full)
+        public PlayerPosition(string shortTitle, string fullTitle)
         {
-            ShortTitle = _short;
-            FullTitle = full;
+            ShortTitle = shortTitle;
+            FullTitle = fullTitle;
         }
     }
 }

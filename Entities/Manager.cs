@@ -4,13 +4,13 @@ namespace Entities
 {
     public class Manager: Man
     {
-        public Manager(int _id, string  _FirstName, string _SecondName, string _PlaceOfBirth, DateTime _DateOfBirth)
+        public Manager(int id, string  firstName, string secondName, string placeOfBirth, DateTime dateOfBirth)
         {
-            id = _id;
-            FirstName = _FirstName;
-            SecondName = _SecondName;
-            PlaceOfBirth = _PlaceOfBirth;
-            DateOfBirth = _DateOfBirth;
+            Id = id;
+            FirstName = firstName;
+            SecondName = secondName;
+            PlaceOfBirth = placeOfBirth;
+            DateOfBirth = dateOfBirth;
         }
     }
 }

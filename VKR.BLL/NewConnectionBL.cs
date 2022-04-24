@@ -9,16 +9,16 @@ namespace VKR.BLL
 {
     public class NewConnectionBL
     {
-        private readonly NewConnectionDAO newConnectionDAO;
+        private readonly NewConnectionDAO _newConnectionDAO;
 
         public NewConnectionBL()
         {
-            newConnectionDAO = new NewConnectionDAO();
+            _newConnectionDAO = new NewConnectionDAO();
         }
 
         public void DeployDatabase(string ConnectionTitle, string ServerName, bool IntegratedSecurity, out int result, out string message, string UserName = "", string UserPassword = "")
         {
-            newConnectionDAO.DeployDataBase(ConnectionTitle, ServerName, IntegratedSecurity, out result, out message, UserName, UserPassword);
+            _newConnectionDAO.DeployDataBase(ConnectionTitle, ServerName, IntegratedSecurity, out result, out message, UserName, UserPassword);
         }
     }
 }

@@ -7,16 +7,16 @@ namespace VKR.BLL
 {
     public class StadiumsBL
     {
-        private readonly StadiumsDAO stadiumsDAO;
+        private readonly StadiumsDAO _stadiumsDAO;
 
         public StadiumsBL()
         {
-            stadiumsDAO = new StadiumsDAO();
+            _stadiumsDAO = new StadiumsDAO();
         }
 
         public List<Stadium> GetAllStadims()
         {
-            return stadiumsDAO.GetAllStadiums().OrderBy(stadium => stadium.StadiumTitle).ToList();
+            return _stadiumsDAO.GetAllStadiums().OrderBy(stadium => stadium.StadiumTitle).ToList();
         }
     }
 }

@@ -2,19 +2,19 @@
 {
     public class Stadium
     {
-        public int stadiumId;
+        public int StadiumId;
         public string StadiumTitle;
-        public string stadiumLocation;
-        public int stadiumCapacity;
-        public int stadiumDistanceToCenterfield;
+        public string StadiumLocation;
+        public int StadiumCapacity;
+        public int StadiumDistanceToCenterfield;
 
-        public Stadium(int _id, string _title, string _Location, int _Capacity, int _distanceToCenterField)
+        public Stadium(int id, string title, string location, int capacity, int distanceToCenterField)
         {
-            stadiumId = _id;
-            StadiumTitle = _title;
-            stadiumLocation = _Location;
-            stadiumCapacity = _Capacity;
-            stadiumDistanceToCenterfield = _distanceToCenterField;
+            StadiumId = id;
+            StadiumTitle = title;
+            StadiumLocation = location;
+            StadiumCapacity = capacity;
+            StadiumDistanceToCenterfield = distanceToCenterField;
         }
     }
 }

@@ -19,9 +19,9 @@ namespace VKR_Test
             timer2.Start();
             panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            if (File.Exists($"PlayerPhotos/Player{batter.id:0000}.png"))
+            if (File.Exists($"PlayerPhotos/Player{batter.Id:0000}.png"))
             {
-                pbPatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+                pbPatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.Id:0000}.png");
             }
             else
             {
@@ -29,12 +29,12 @@ namespace VKR_Test
             }
             lbBatterName.Text = batter.FullName.ToUpper();
 
-            int HRTodayForThisBatter = allAtBats.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.id).Count();
+            int HRTodayForThisBatter = allAtBats.Where(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.Id).Count();
 
             lbBatterHRNumber.Visible = !isQuickMatch;
             lbBatterHRNumberInThisMatch.Visible = !isQuickMatch;
 
-            lbBatterHRNumber.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.HomeRuns + 1)} HR in career";
+            lbBatterHRNumber.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.battingStats.HomeRuns + 1)} HR in career";
             lbBatterHRNumberInThisMatch.Text = $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(HRTodayForThisBatter + 1)} HR in this match";
             lbBatterHRNumberInThisMatch.Visible = HRTodayForThisBatter > 0;
         }

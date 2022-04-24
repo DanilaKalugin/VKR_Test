@@ -8,19 +8,19 @@ namespace VKR.BLL
 {
     public class MatchBL
     {
-        private readonly MatchDAO matchDAO;
-        private readonly StadiumsDAO stadiumsDAO;
+        private readonly MatchDAO _matchDAO;
+        private readonly StadiumsDAO _stadiumsDAO;
 
         public MatchBL()
         {
-            matchDAO = new MatchDAO();
-            stadiumsDAO = new StadiumsDAO();
+            _matchDAO = new MatchDAO();
+            _stadiumsDAO = new StadiumsDAO();
         }
 
         public void StartNewMatch(Match match)
         {
-            matchDAO.StartNewMatch(match);
-            match.gameSituations = new List<GameSituation>
+            _matchDAO.StartNewMatch(match);
+            match.GameSituations = new List<GameSituation>
             {
                 new GameSituation(match.AwayTeam)
             };
@@ -28,37 +28,37 @@ namespace VKR.BLL
 
         public int GetNumberOfMatchesPlayed(Match newMatch)
         {
-            return matchDAO.GetNumberOfMatchesPlayed(newMatch);
+            return _matchDAO.GetNumberOfMatchesPlayed(newMatch);
         }
 
         public void AddNewAtBat(AtBat atBat, Match currentMatch)
         {
             if (!currentMatch.IsQuickMatch)
             {
-                matchDAO.AddNewAtBat(atBat);
+                _matchDAO.AddNewAtBat(atBat);
             }
         }
 
         public void FinishMatch(Match match)
         {
-            matchDAO.FinishMatch(match);
+            _matchDAO.FinishMatch(match);
         }
 
         public void AddMatchResultForThisPitcher(PitcherResults pitcherResults, Match currentMatch)
         {
             if (!currentMatch.IsQuickMatch)
             {
-                matchDAO.AddMatchResultForThisPitcher(pitcherResults);
+                _matchDAO.AddMatchResultForThisPitcher(pitcherResults);
             }
         }
 
         public List<Match> GetResultsForallMatches(string team = "")
         {
-            List<Match> matches = matchDAO.GetResultsForAllMatches().ToList();
-            List<Stadium> stadiums = stadiumsDAO.GetAllStadiums().ToList();
+            List<Match> matches = _matchDAO.GetResultsForAllMatches().ToList();
+            List<Stadium> stadiums = _stadiumsDAO.GetAllStadiums().ToList();
             foreach (Match match in matches)
             {
-                match.stadium = stadiums.Where(stadium => stadium.stadiumId == match.StadiumNumber).First();
+                match.Stadium = stadiums.Where(stadium => stadium.StadiumId == match.StadiumNumber).First();
             }
             if (team != "")
             {
@@ -72,7 +72,7 @@ namespace VKR.BLL
 
         public void DeleteThisMatch(int matchNumberForDelete)
         {
-            matchDAO.DeleteThisMatch(matchNumberForDelete);
+            _matchDAO.DeleteThisMatch(matchNumberForDelete);
         }
 
         public DateTime GetMaxDateForAllMatches()
@@ -83,21 +83,21 @@ namespace VKR.BLL
 
         public DateTime GetDateForNextMatch()
         {
-            return matchDAO.GetDateForNextMatch();
+            return _matchDAO.GetDateForNextMatch();
         }
 
         public List<Match> GetMatchesForThisDay(DateTime date)
         {
-            return matchDAO.GetMatchesForThisDay(date).ToList();
+            return _matchDAO.GetMatchesForThisDay(date).ToList();
         }
 
         public List<Match> GetSchedule(string team = "")
         {
-            List<Match> matches = matchDAO.GetSchedule().ToList();
-            List<Stadium> stadiums = stadiumsDAO.GetAllStadiums().ToList();
+            List<Match> matches = _matchDAO.GetSchedule().ToList();
+            List<Stadium> stadiums = _stadiumsDAO.GetAllStadiums().ToList();
             foreach (Match match in matches)
             {
-                match.stadium = stadiums.Where(stadium => stadium.stadiumId == match.StadiumNumber).First();
+                match.Stadium = stadiums.Where(stadium => stadium.StadiumId == match.StadiumNumber).First();
             }
             if (team != "")
             {

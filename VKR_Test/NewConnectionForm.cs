@@ -11,11 +11,11 @@ namespace VKR_Test
 {
     public partial class NewConnectionForm : Form
     {
-        private readonly NewConnectionBL newConnectionBL;
+        private readonly NewConnectionBL _newConnectionBL;
         public NewConnectionForm()
         {
             InitializeComponent();
-            newConnectionBL = new NewConnectionBL();
+            _newConnectionBL = new NewConnectionBL();
         }
 
         private void cb_IntegratedSecurity_CheckedChanged(object sender, EventArgs e)
@@ -84,11 +84,11 @@ namespace VKR_Test
             {
                 if (!cb_IntegratedSecurity.Checked)
                 {
-                    newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message);
+                    _newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message);
                 }
                 else
                 {
-                    newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message, txtLogin.Text, txtPassword.Text);
+                    _newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message, txtLogin.Text, txtPassword.Text);
                 }
                 bool DeploymentResult = result == 0;
                 DBDeploymentResultForm form = new DBDeploymentResultForm(DeploymentResult, message);

@@ -7,16 +7,16 @@ namespace VKR.BLL
 {
     public class ManBL
     {
-        private readonly ManDAO manDAO;
+        private readonly ManDAO _manDAO;
 
         public ManBL()
         {
-            manDAO = new ManDAO();
+            _manDAO = new ManDAO();
         }
 
         public List<ManInTeam> GetListOfPeopleWithBirthdayToday()
         {
-            return manDAO.GetListOfPeopleWithBirthdayToday().ToList();
+            return _manDAO.GetListOfPeopleWithBirthdayToday().ToList();
         }
     }
 }

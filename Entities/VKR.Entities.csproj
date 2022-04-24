@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AtBat.cs" />
     <Compile Include="Batter.cs" />
+    <Compile Include="BattingStats.cs" />
     <Compile Include="GameSituation.cs" />
     <Compile Include="Man.cs" />
     <Compile Include="Manager.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Pitch.cs" />
     <Compile Include="Pitcher.cs" />
     <Compile Include="PitcherResults.cs" />
+    <Compile Include="PitchingStats.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerInLineup.cs" />
     <Compile Include="PlayerPosition.cs" />

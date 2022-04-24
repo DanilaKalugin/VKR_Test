@@ -6,10 +6,7 @@ namespace VKR.DAL
 {
     public class StadiumsDAO : DAO
     {
-        public StadiumsDAO()
-        {
-            InitConnection();
-        }
+        public StadiumsDAO() : base() { }
 
         public IEnumerable<Stadium> GetAllStadiums()
         {

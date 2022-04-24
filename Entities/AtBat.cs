@@ -12,13 +12,13 @@ namespace Entities
         public AtBatType AtBatResult;
         public string Defense;
         public int Pitcher;
-        public int outs;
+        public int Outs;
         public int RBI;
         public int Inning;
 
         public AtBatType TypeDefinitionForLastAtBat(GameSituation situation)
         {
-            switch (situation.result)
+            switch (situation.Result)
             {
                 case Pitch.PitchResult.Single:
                     {
@@ -61,25 +61,19 @@ namespace Entities
                     }
                 case Pitch.PitchResult.Ball:
                     {
-                        if (situation.balls == 0)
+                        if (situation.Balls == 0)
                         {
                             return AtBatType.Walk;
                         }
-                        else
-                        {
-                            return AtBatType.NoResult;
-                        }
+                        return AtBatType.NoResult;
                     }
                 case Pitch.PitchResult.Strike:
                     {
-                        if (situation.strikes == 0)
+                        if (situation.Strikes == 0)
                         {
                             return AtBatType.Strikeout;
                         }
-                        else
-                        {
-                            return AtBatType.NoResult;
-                        }
+                        return AtBatType.NoResult;
                     }
                 case Pitch.PitchResult.SacrificeBunt:
                     {
@@ -171,11 +165,11 @@ namespace Entities
 
         public int OutsForThisAtBat(GameSituation LastSituation, GameSituation previousSituation)
         {
-            if (LastSituation.offense.TeamAbbreviation == previousSituation.offense.TeamAbbreviation)
+            if (LastSituation.Offense.TeamAbbreviation == previousSituation.Offense.TeamAbbreviation)
             {
-                return LastSituation.outs - previousSituation.outs;
+                return LastSituation.Outs - previousSituation.Outs;
             }
-            else return LastSituation.outs;
+            return LastSituation.Outs;
         }
 
         /// <summary>
@@ -183,25 +177,25 @@ namespace Entities
         /// </summary>
         public AtBat(Match currentMatch, int runs)
         {
-            AtBatResult = TypeDefinitionForLastAtBat(currentMatch.gameSituations.Last());
+            AtBatResult = TypeDefinitionForLastAtBat(currentMatch.GameSituations.Last());
             MatchId = currentMatch.MatchID;
-            Offense = currentMatch.gameSituations.Last().offense.TeamAbbreviation;
-            Defense = currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
+            Offense = currentMatch.GameSituations.Last().Offense.TeamAbbreviation;
+            Defense = currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
 
-            if (currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam)
+            if (currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam)
             {
-                Batter = currentMatch.AwayTeam.BattingLineup[currentMatch.gameSituations.Last().BatterNumber_AwayTeam - 1].id;
-                Pitcher = currentMatch.HomeTeam.CurrentPitcher.id;
+                Batter = currentMatch.AwayTeam.BattingLineup[currentMatch.GameSituations.Last().NumberOfBatterFromHomeTeam - 1].Id;
+                Pitcher = currentMatch.HomeTeam.CurrentPitcher.Id;
             }
             else
             {
-                Batter = currentMatch.HomeTeam.BattingLineup[currentMatch.gameSituations.Last().BatterNumber_HomeTeam - 1].id;
-                Pitcher = currentMatch.AwayTeam.CurrentPitcher.id;
+                Batter = currentMatch.HomeTeam.BattingLineup[currentMatch.GameSituations.Last().NumberOfBatterFromAwayTeam - 1].Id;
+                Pitcher = currentMatch.AwayTeam.CurrentPitcher.Id;
             }
 
-            outs = OutsForThisAtBat(currentMatch.gameSituations.Last(), currentMatch.gameSituations[currentMatch.gameSituations.Count - 2]);
+            Outs = OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[currentMatch.GameSituations.Count - 2]);
             RBI = runs;
-            Inning = currentMatch.gameSituations.Last().inningNumber;
+            Inning = currentMatch.GameSituations.Last().InningNumber;
         }
 
         /// <summary>
@@ -211,14 +205,14 @@ namespace Entities
         {
             AtBatResult = AtBatType.Run;
             MatchId = currentMatch.MatchID;
-            Offense = currentMatch.gameSituations.Last().offense.TeamAbbreviation;
-            Defense = currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
-            Batter = runner.runnerID;
-            Pitcher = runner.pitcherID;
+            Offense = currentMatch.GameSituations.Last().Offense.TeamAbbreviation;
+            Defense = currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
+            Batter = runner.RunnerID;
+            Pitcher = runner.PitcherID;
 
-            outs = 0;
+            Outs = 0;
             RBI = 0;
-            Inning = currentMatch.gameSituations.Last().inningNumber;
+            Inning = currentMatch.GameSituations.Last().InningNumber;
         }
 
         /// <summary>
@@ -226,25 +220,25 @@ namespace Entities
         /// </summary>
         public AtBat(Match currentMatch, int runnerID, bool isBaseStealingAttempt)
         {
-            AtBatResult = TypeDefinitionForLastAtBat(currentMatch.gameSituations.Last());
+            AtBatResult = TypeDefinitionForLastAtBat(currentMatch.GameSituations.Last());
             MatchId = currentMatch.MatchID;
-            Offense = currentMatch.gameSituations.Last().offense.TeamAbbreviation;
-            Defense = currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
+            Offense = currentMatch.GameSituations.Last().Offense.TeamAbbreviation;
+            Defense = currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
 
-            if (currentMatch.gameSituations.Last().offense == currentMatch.AwayTeam)
+            if (currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam)
             {
                 Batter = runnerID;
-                Pitcher = currentMatch.HomeTeam.CurrentPitcher.id;
+                Pitcher = currentMatch.HomeTeam.CurrentPitcher.Id;
             }
             else
             {
                 Batter = runnerID;
-                Pitcher = currentMatch.AwayTeam.CurrentPitcher.id;
+                Pitcher = currentMatch.AwayTeam.CurrentPitcher.Id;
             }
 
-            outs = OutsForThisAtBat(currentMatch.gameSituations.Last(), currentMatch.gameSituations[currentMatch.gameSituations.Count - 2]);
+            Outs = OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[currentMatch.GameSituations.Count - 2]);
             RBI = 0;
-            Inning = currentMatch.gameSituations.Last().inningNumber;
+            Inning = currentMatch.GameSituations.Last().InningNumber;
         }
     }
 }

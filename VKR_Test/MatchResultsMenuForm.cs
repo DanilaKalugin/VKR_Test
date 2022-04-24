@@ -6,17 +6,17 @@ namespace VKR_Test
 {
     public partial class MatchResultsMenuForm : Form
     {
-        private readonly MatchBL matchBL;
+        private readonly MatchBL _matchBL;
 
         public MatchResultsMenuForm()
         {
             InitializeComponent();
-            matchBL = new MatchBL();
+            _matchBL = new MatchBL();
         }
 
         private void btnResultsByDate_Click(object sender, EventArgs e)
         {
-            MatchResultsForm form = new MatchResultsForm(matchBL.GetMaxDateForAllMatches(), false, MatchResultsForm.TableType.Results);
+            var form = new MatchResultsForm(_matchBL.GetMaxDateForAllMatches(), false, MatchResultsForm.TableType.Results);
             Visible = false;
             form.ShowDialog();
             Visible = true;
@@ -24,7 +24,7 @@ namespace VKR_Test
 
         private void btnResults_Click(object sender, EventArgs e)
         {
-            MatchResultsForm form = new MatchResultsForm(MatchResultsForm.TableType.Results);
+            var form = new MatchResultsForm(MatchResultsForm.TableType.Results);
             Visible = false;
             form.ShowDialog();
             Visible = true;
@@ -37,7 +37,7 @@ namespace VKR_Test
 
         private void btnScheduleByTeam_Click(object sender, EventArgs e)
         {
-            MatchResultsForm form = new MatchResultsForm(MatchResultsForm.TableType.Schedule);
+            var form = new MatchResultsForm(MatchResultsForm.TableType.Schedule);
             Visible = false;
             form.ShowDialog();
             Visible = true;
@@ -45,7 +45,7 @@ namespace VKR_Test
 
         private void btnScheduleByDate_Click(object sender, EventArgs e)
         {
-            MatchResultsForm form = new MatchResultsForm(matchBL.GetMaxDateForAllMatches(), false, MatchResultsForm.TableType.Schedule);
+            var form = new MatchResultsForm(_matchBL.GetMaxDateForAllMatches(), false, MatchResultsForm.TableType.Schedule);
             Visible = false;
             form.ShowDialog();
             Visible = true;

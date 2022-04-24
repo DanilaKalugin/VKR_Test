@@ -13,7 +13,7 @@ namespace VKR_Test
 {
     public partial class DefenseForm : Form
     {
-        private Team Defense;
+        private Team _defense;
 
         public DefenseForm(Team team)
         {
@@ -21,7 +21,7 @@ namespace VKR_Test
             Text = $"{team.TeamCity} {team.TeamTitle}";
             lbTeamTitle.Text = $"{team.TeamTitle.ToUpper()} Defense".ToUpper();
             teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            Defense = team;
+            _defense = team;
         }
 
         private void DefenseForm_Load(object sender, EventArgs e)
@@ -40,16 +40,16 @@ namespace VKR_Test
 
         private void DisplayInfoAboutPlayer(Label FirstName, Label SecondName, Label Position, string PositionTitle)
         {
-            Position.BackColor = Defense.TeamColorForThisMatch;
+            Position.BackColor = _defense.TeamColorForThisMatch;
             Position.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(Position.BackColor, false);
             if (PositionTitle == "P")
             {
-                FirstName.Text = Defense.CurrentPitcher.FirstName.ToUpper();
-                SecondName.Text = Defense.CurrentPitcher.SecondName.ToUpper();
+                FirstName.Text = _defense.CurrentPitcher.FirstName.ToUpper();
+                SecondName.Text = _defense.CurrentPitcher.SecondName.ToUpper();
             }
             else
             {
-                Batter batter = Defense.BattingLineup.Where(_batter => _batter.PositionForThisMatch == PositionTitle).FirstOrDefault();
+                Batter batter = _defense.BattingLineup.Where(_batter => _batter.PositionForThisMatch == PositionTitle).FirstOrDefault();
                 FirstName.Text = batter.FirstName.ToUpper();
                 SecondName.Text = batter.SecondName.ToUpper();
             }

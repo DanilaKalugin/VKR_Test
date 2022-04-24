@@ -2,17 +2,17 @@
 {
     public class Runner
     {
-        public int runnerID;
-        public string runnerPosition;
-        public int pitcherID;
+        public int RunnerID;
+        public string RunnerPosition;
+        public int PitcherID;
         public bool IsBaseNotEmpty;
         public bool IsBaseStealingAttempt;
 
         public Runner()
         {
-            runnerID = 0;
-            runnerPosition = "";
-            pitcherID = 0;
+            RunnerID = 0;
+            RunnerPosition = "";
+            PitcherID = 0;
             IsBaseNotEmpty = false;
         }
 
@@ -20,16 +20,16 @@
         {
             if (runnerOnFirst.IsBaseNotEmpty)
             {
-                runnerID = runnerOnFirst.runnerID;
-                runnerPosition = runnerOnFirst.runnerPosition;
-                pitcherID = runnerOnFirst.pitcherID;
+                RunnerID = runnerOnFirst.RunnerID;
+                RunnerPosition = runnerOnFirst.RunnerPosition;
+                PitcherID = runnerOnFirst.PitcherID;
                 IsBaseNotEmpty = true;
             }
             else
             {
-                runnerID = 0;
-                runnerPosition = "";
-                pitcherID = 0;
+                RunnerID = 0;
+                RunnerPosition = "";
+                PitcherID = 0;
                 IsBaseNotEmpty = false;
             }
             IsBaseStealingAttempt = false;
@@ -37,9 +37,9 @@
 
         public Runner(Batter batter, Pitcher pitcher)
         {
-            runnerID = batter.id;
-            runnerPosition = batter.PositionForThisMatch;
-            pitcherID = pitcher.id;
+            RunnerID = batter.Id;
+            RunnerPosition = batter.PositionForThisMatch;
+            PitcherID = pitcher.Id;
             IsBaseNotEmpty = true;
         }
     }

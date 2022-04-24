@@ -17,23 +17,22 @@ namespace VKR_Test
 
         private void btnLineups_Click(object sender, EventArgs e)
         {
-            LineupsForm form = new LineupsForm(LineupsForm.RosterType.StartingLineups);
-            Visible = false;
-            form.ShowDialog();
-            Visible = true;
+            OpenLineupsForm(LineupsForm.RosterType.StartingLineups);
         }
 
         private void btnReserves_Click(object sender, EventArgs e)
         {
-            LineupsForm form = new LineupsForm(LineupsForm.RosterType.Reserves);
-            Visible = false;
-            form.ShowDialog();
-            Visible = true;
+            OpenLineupsForm(LineupsForm.RosterType.Reserves);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LineupsForm form = new LineupsForm(LineupsForm.RosterType.FreeAgents);
+            OpenLineupsForm(LineupsForm.RosterType.FreeAgents);
+        }
+
+        private void OpenLineupsForm(LineupsForm.RosterType rosterType)
+        {
+            var form = new LineupsForm(rosterType);
             Visible = false;
             form.ShowDialog();
             Visible = true;

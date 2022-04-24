@@ -5,59 +5,59 @@ namespace Entities
 {
     public class GameSituation
     {
-        public int id;
-        public int inningNumber;
-        public Team offense;
-        public Pitch.PitchResult result;
-        public int balls;
-        public int strikes;
-        public int outs;
+        public int Id;
+        public int InningNumber;
+        public Team Offense;
+        public Pitch.PitchResult Result;
+        public int Balls;
+        public int Strikes;
+        public int Outs;
         public Runner RunnerOnFirst;
         public Runner RunnerOnSecond;
         public Runner RunnerOnThird;
         public int AwayTeamRuns;
         public int HomeTeamRuns;
-        public int BatterNumber_AwayTeam;
-        public int BatterNumber_HomeTeam;
+        public int NumberOfBatterFromHomeTeam;
+        public int NumberOfBatterFromAwayTeam;
         public List<Runner> RunsByThisPitch;
         public int PitcherID;
 
         public GameSituation(Team offenseTeam)
         {
-            id = 0;
-            inningNumber = 1;
-            offense = offenseTeam;
-            result = Pitch.PitchResult.Null;
-            balls = 0;
-            strikes = 0;
-            outs = 0;
+            Id = 0;
+            InningNumber = 1;
+            Offense = offenseTeam;
+            Result = Pitch.PitchResult.Null;
+            Balls = 0;
+            Strikes = 0;
+            Outs = 0;
             RunnerOnFirst = new Runner();
             RunnerOnSecond = new Runner();
             RunnerOnThird = new Runner();
             AwayTeamRuns = 0;
             HomeTeamRuns = 0;
-            BatterNumber_AwayTeam = 1;
-            BatterNumber_HomeTeam = 1;
+            NumberOfBatterFromHomeTeam = 1;
+            NumberOfBatterFromAwayTeam = 1;
             PitcherID = -1;
         }
 
-        public GameSituation(int _id, int _inning, Team _offense, Pitch.PitchResult _result, int _balls, int _strikes, int _outs, Runner _RunnerOn1, Runner _RunnerOn2, Runner _RunnerOn3, int _AwayRuns, int _HomeRuns, int _Batter_Away, int _Batter_Home, int _Pitcher)
+        public GameSituation(int id, int inning, Team offense, Pitch.PitchResult result, int balls, int strikes, int outs, Runner runnerOn1, Runner runnerOn2, Runner runnerOn3, int awayRuns, int homeRuns, int batterAway, int batterHome, int pitcherId)
         {
-            id = _id;
-            inningNumber = _inning;
-            offense = _offense;
-            result = _result;
-            balls = _balls;
-            strikes = _strikes;
-            outs = _outs;
-            RunnerOnFirst = _RunnerOn1;
-            RunnerOnSecond = _RunnerOn2;
-            RunnerOnThird = _RunnerOn3;
-            AwayTeamRuns = _AwayRuns;
-            HomeTeamRuns = _HomeRuns;
-            BatterNumber_AwayTeam = _Batter_Away;
-            BatterNumber_HomeTeam = _Batter_Home;
-            PitcherID = _Pitcher;
+            Id = id;
+            InningNumber = inning;
+            Offense = offense;
+            Result = result;
+            Balls = balls;
+            Strikes = strikes;
+            Outs = outs;
+            RunnerOnFirst = runnerOn1;
+            RunnerOnSecond = runnerOn2;
+            RunnerOnThird = runnerOn3;
+            AwayTeamRuns = awayRuns;
+            HomeTeamRuns = homeRuns;
+            NumberOfBatterFromHomeTeam = batterAway;
+            NumberOfBatterFromAwayTeam = batterHome;
+            PitcherID = pitcherId;
         }
 
         public int NumberOfBallsDetrmining(Pitch.PitchResult result, GameSituation situation)
@@ -66,15 +66,15 @@ namespace Entities
             {
                 case Pitch.PitchResult.Ball:
                     {
-                        return situation.balls == 3 ? 0 : situation.balls + 1;
+                        return situation.Balls == 3 ? 0 : situation.Balls + 1;
                     }
                 case Pitch.PitchResult.Foul:
                     {
-                        return situation.balls;
+                        return situation.Balls;
                     }
                 case Pitch.PitchResult.Strike:
                     {
-                        return situation.strikes == 2 ? 0 : situation.balls;
+                        return situation.Strikes == 2 ? 0 : situation.Balls;
                     }
                 case Pitch.PitchResult.HitByPitch:
                 case Pitch.PitchResult.Groundout:
@@ -92,7 +92,7 @@ namespace Entities
                     }
                 default:
                     {
-                        return situation.balls;
+                        return situation.Balls;
                     }
             }
         }
@@ -103,15 +103,15 @@ namespace Entities
             {
                 case Pitch.PitchResult.Ball:
                     {
-                        return situation.balls == 3 ? 0 : situation.strikes;
+                        return situation.Balls == 3 ? 0 : situation.Strikes;
                     }
                 case Pitch.PitchResult.Foul:
                     {
-                        return situation.strikes < 2 ? situation.strikes + 1 : situation.strikes;
+                        return situation.Strikes < 2 ? situation.Strikes + 1 : situation.Strikes;
                     }
                 case Pitch.PitchResult.Strike:
                     {
-                        return situation.strikes == 2 ? 0 : situation.strikes + 1;
+                        return situation.Strikes == 2 ? 0 : situation.Strikes + 1;
                     }
                 case Pitch.PitchResult.HitByPitch:
                 case Pitch.PitchResult.Groundout:
@@ -131,7 +131,7 @@ namespace Entities
                     }
                 default:
                     {
-                        return situation.strikes;
+                        return situation.Strikes;
                     }
             }
         }
@@ -147,27 +147,27 @@ namespace Entities
                 (result == Pitch.PitchResult.CaughtStealingOnSecond) ||
                 (result == Pitch.PitchResult.CaughtStealingOnThird))
             {
-                return situation.outs + 1;
+                return situation.Outs + 1;
             }
             else if (result == Pitch.PitchResult.DoublePlay || 
                      result == Pitch.PitchResult.DoublePlayOnFlyout)
             {
-                return situation.outs + 2;
+                return situation.Outs + 2;
             }
-            else return situation.outs;
+            else return situation.Outs;
         }
 
         private Runner ReturnNewRunner(Match match)
         {
-            if (offense == match.AwayTeam)
+            if (Offense == match.AwayTeam)
             {
-                Batter batter = match.AwayTeam.BattingLineup[BatterNumber_AwayTeam - 1];
+                Batter batter = match.AwayTeam.BattingLineup[NumberOfBatterFromHomeTeam - 1];
                 Pitcher pitcher = match.HomeTeam.CurrentPitcher;
                 return new Runner(batter, pitcher);
             }
             else
             {
-                Batter batter = match.HomeTeam.BattingLineup[BatterNumber_HomeTeam - 1];
+                Batter batter = match.HomeTeam.BattingLineup[NumberOfBatterFromAwayTeam - 1];
                 Pitcher pitcher = match.AwayTeam.CurrentPitcher;
                 return new Runner(batter, pitcher);
             }
@@ -203,7 +203,7 @@ namespace Entities
             if ((((result == Pitch.PitchResult.Ball && balls == 0) ||
                 (result == Pitch.PitchResult.HitByPitch)) && situation.RunnerOnFirst.IsBaseNotEmpty) ||
                 (result == Pitch.PitchResult.Single) ||
-                (result == Pitch.PitchResult.SacrificeBunt && outs < 3 && !situation.RunnerOnSecond.IsBaseNotEmpty) ||
+                (result == Pitch.PitchResult.SacrificeBunt && Outs < 3 && !situation.RunnerOnSecond.IsBaseNotEmpty) ||
                 (result == Pitch.PitchResult.SecondBaseStolen))
             {
                 return new Runner(situation.RunnerOnFirst);
@@ -215,7 +215,7 @@ namespace Entities
             else if ((result == Pitch.PitchResult.HomeRun) ||
                     (result == Pitch.PitchResult.Triple) ||
                     (result == Pitch.PitchResult.SacrificeFly && !situation.RunnerOnThird.IsBaseNotEmpty) ||
-                    ((result == Pitch.PitchResult.SacrificeBunt || result == Pitch.PitchResult.Groundout || result == Pitch.PitchResult.DoublePlay) && outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
+                    ((result == Pitch.PitchResult.SacrificeBunt || result == Pitch.PitchResult.Groundout || result == Pitch.PitchResult.DoublePlay) && Outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.Popout) ||
                     (result == Pitch.PitchResult.ThirdBaseStolen) ||
                     (result == Pitch.PitchResult.CaughtStealingOnSecond) ||
@@ -240,7 +240,7 @@ namespace Entities
                      result == Pitch.PitchResult.Single ||
                     (result == Pitch.PitchResult.SacrificeFly && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                      result == Pitch.PitchResult.Popout ||
-                    ((result == Pitch.PitchResult.Groundout || result == Pitch.PitchResult.DoublePlay || result == Pitch.PitchResult.SacrificeBunt) && outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
+                    ((result == Pitch.PitchResult.Groundout || result == Pitch.PitchResult.DoublePlay || result == Pitch.PitchResult.SacrificeBunt) && Outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.ThirdBaseStolen))
             {
                 return new Runner(situation.RunnerOnSecond);
@@ -251,7 +251,7 @@ namespace Entities
             }
             else if ((result == Pitch.PitchResult.HomeRun) ||
                     (result == Pitch.PitchResult.CaughtStealingOnThird) ||
-                    ((result == Pitch.PitchResult.SacrificeBunt || result == Pitch.PitchResult.DoublePlay || result == Pitch.PitchResult.Groundout) && outs < 3 && situation.RunnerOnThird.IsBaseNotEmpty) ||
+                    ((result == Pitch.PitchResult.SacrificeBunt || result == Pitch.PitchResult.DoublePlay || result == Pitch.PitchResult.Groundout) && Outs < 3 && situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.SacrificeFly && situation.RunnerOnThird.IsBaseNotEmpty) ||
                     (result == Pitch.PitchResult.DoublePlayOnFlyout && situation.RunnerOnThird.IsBaseNotEmpty))
             {
@@ -266,12 +266,12 @@ namespace Entities
         public int NumberOfRunsScoredForLastPitch(Pitch.PitchResult result, GameSituation situation, int balls)
         {
             if (result == Pitch.PitchResult.Single ||
-               (result == Pitch.PitchResult.SacrificeFly && outs < 3) ||
+               (result == Pitch.PitchResult.SacrificeFly && Outs < 3) ||
                ((result == Pitch.PitchResult.HitByPitch || (result == Pitch.PitchResult.Ball && balls == 0)) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty && situation.RunnerOnThird.IsBaseNotEmpty) ||
-               (result == Pitch.PitchResult.Groundout && outs < 3) ||
-               (result == Pitch.PitchResult.DoublePlay && outs < 3) ||
-               (result == Pitch.PitchResult.Popout && outs < 3) ||
-               (result == Pitch.PitchResult.SacrificeBunt && outs < 3))
+               (result == Pitch.PitchResult.Groundout && Outs < 3) ||
+               (result == Pitch.PitchResult.DoublePlay && Outs < 3) ||
+               (result == Pitch.PitchResult.Popout && Outs < 3) ||
+               (result == Pitch.PitchResult.SacrificeBunt && Outs < 3))
             {
                 return Convert.ToInt32(situation.RunnerOnThird.IsBaseNotEmpty);
             }
@@ -297,12 +297,12 @@ namespace Entities
         {
             List<Runner> runners = new List<Runner>();
             if (result == Pitch.PitchResult.Single ||
-               (result == Pitch.PitchResult.SacrificeFly && outs < 3) ||
+               (result == Pitch.PitchResult.SacrificeFly && Outs < 3) ||
                ((result == Pitch.PitchResult.HitByPitch || (result == Pitch.PitchResult.Ball && balls == 0)) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty && situation.RunnerOnThird.IsBaseNotEmpty) ||
-               (result == Pitch.PitchResult.Groundout && outs < 3) ||
-               (result == Pitch.PitchResult.DoublePlay && outs < 3) ||
-               (result == Pitch.PitchResult.Popout && outs < 3) ||
-               (result == Pitch.PitchResult.SacrificeBunt && outs < 3))
+               (result == Pitch.PitchResult.Groundout && Outs < 3) ||
+               (result == Pitch.PitchResult.DoublePlay && Outs < 3) ||
+               (result == Pitch.PitchResult.Popout && Outs < 3) ||
+               (result == Pitch.PitchResult.SacrificeBunt && Outs < 3))
             {
                 if (situation.RunnerOnThird.IsBaseNotEmpty)
                 {
@@ -356,60 +356,60 @@ namespace Entities
 
         public void PrepareForNextPitch(GameSituation gameSituation, Team team1, Team team2, int matchLength)
         {
-            if ((gameSituation.result == Pitch.PitchResult.Ball && gameSituation.balls == 0) ||
-                (gameSituation.result == Pitch.PitchResult.Strike && gameSituation.strikes == 0) ||
-                (gameSituation.result == Pitch.PitchResult.HitByPitch) ||
-                (gameSituation.result == Pitch.PitchResult.Groundout) ||
-                (gameSituation.result == Pitch.PitchResult.Popout) ||
-                (gameSituation.result == Pitch.PitchResult.Flyout) ||
-                (gameSituation.result == Pitch.PitchResult.Single) ||
-                (gameSituation.result == Pitch.PitchResult.Double) ||
-                (gameSituation.result == Pitch.PitchResult.GroundRuleDouble) ||
-                (gameSituation.result == Pitch.PitchResult.Triple) ||
-                (gameSituation.result == Pitch.PitchResult.HomeRun) ||
-                (gameSituation.result == Pitch.PitchResult.DoublePlay) ||
-                (gameSituation.result == Pitch.PitchResult.SacrificeFly) ||
-                (gameSituation.result == Pitch.PitchResult.SacrificeBunt))
+            if ((gameSituation.Result == Pitch.PitchResult.Ball && gameSituation.Balls == 0) ||
+                (gameSituation.Result == Pitch.PitchResult.Strike && gameSituation.Strikes == 0) ||
+                (gameSituation.Result == Pitch.PitchResult.HitByPitch) ||
+                (gameSituation.Result == Pitch.PitchResult.Groundout) ||
+                (gameSituation.Result == Pitch.PitchResult.Popout) ||
+                (gameSituation.Result == Pitch.PitchResult.Flyout) ||
+                (gameSituation.Result == Pitch.PitchResult.Single) ||
+                (gameSituation.Result == Pitch.PitchResult.Double) ||
+                (gameSituation.Result == Pitch.PitchResult.GroundRuleDouble) ||
+                (gameSituation.Result == Pitch.PitchResult.Triple) ||
+                (gameSituation.Result == Pitch.PitchResult.HomeRun) ||
+                (gameSituation.Result == Pitch.PitchResult.DoublePlay) ||
+                (gameSituation.Result == Pitch.PitchResult.SacrificeFly) ||
+                (gameSituation.Result == Pitch.PitchResult.SacrificeBunt))
             {
-                if (gameSituation.offense == team1)
+                if (gameSituation.Offense == team1)
                 {
-                    BatterNumber_AwayTeam = gameSituation.BatterNumber_AwayTeam == 9 ? 1 : gameSituation.BatterNumber_AwayTeam + 1;
+                    NumberOfBatterFromHomeTeam = gameSituation.NumberOfBatterFromHomeTeam == 9 ? 1 : gameSituation.NumberOfBatterFromHomeTeam + 1;
                 }
                 else
                 {
-                    BatterNumber_HomeTeam = gameSituation.BatterNumber_HomeTeam == 9 ? 1 : gameSituation.BatterNumber_HomeTeam + 1;
+                    NumberOfBatterFromAwayTeam = gameSituation.NumberOfBatterFromAwayTeam == 9 ? 1 : gameSituation.NumberOfBatterFromAwayTeam + 1;
                 }
             }
             else
             {
-                BatterNumber_HomeTeam = gameSituation.BatterNumber_HomeTeam;
-                BatterNumber_AwayTeam = gameSituation.BatterNumber_AwayTeam;
+                NumberOfBatterFromAwayTeam = gameSituation.NumberOfBatterFromAwayTeam;
+                NumberOfBatterFromHomeTeam = gameSituation.NumberOfBatterFromHomeTeam;
             }
 
-            if (gameSituation.outs == 3)
+            if (gameSituation.Outs == 3)
             {
-                if (gameSituation.offense == team2)
+                if (gameSituation.Offense == team2)
                 {
-                    offense = team1;
-                    inningNumber = gameSituation.inningNumber + 1;
-                    RunnerOnSecond = inningNumber > matchLength ? new Runner(offense.BattingLineup[(gameSituation.BatterNumber_AwayTeam == 1 ? 9 : gameSituation.BatterNumber_AwayTeam - 1) - 1], team2.CurrentPitcher) : new Runner();
+                    Offense = team1;
+                    InningNumber = gameSituation.InningNumber + 1;
+                    RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromHomeTeam == 1 ? 9 : gameSituation.NumberOfBatterFromHomeTeam - 1) - 1], team2.CurrentPitcher) : new Runner();
                 }
                 else
                 {
-                    offense = team2;
-                    inningNumber = gameSituation.inningNumber;
-                    RunnerOnSecond = inningNumber > matchLength ? new Runner(offense.BattingLineup[(gameSituation.BatterNumber_HomeTeam == 1 ? 9 : gameSituation.BatterNumber_HomeTeam - 1) - 1], team1.CurrentPitcher) : new Runner();
+                    Offense = team2;
+                    InningNumber = gameSituation.InningNumber;
+                    RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromAwayTeam == 1 ? 9 : gameSituation.NumberOfBatterFromAwayTeam - 1) - 1], team1.CurrentPitcher) : new Runner();
                 }
-                balls = 0;
-                strikes = 0;
-                outs = 0;
+                Balls = 0;
+                Strikes = 0;
+                Outs = 0;
                 RunnerOnFirst = new Runner();
                 RunnerOnThird = new Runner();
             }
             else
             {
-                offense = gameSituation.offense;
-                inningNumber = gameSituation.inningNumber;
+                Offense = gameSituation.Offense;
+                InningNumber = gameSituation.InningNumber;
             }
         }
     }

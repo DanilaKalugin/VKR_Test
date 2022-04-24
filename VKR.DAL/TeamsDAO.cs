@@ -10,10 +10,7 @@ namespace VKR.DAL
 {
     public class TeamsDAO : DAO
     {
-        public TeamsDAO()
-        {
-            InitConnection();
-        }
+        public TeamsDAO() : base() { }
 
         public IEnumerable<Team> GetStandings(DateTime date)
         {
@@ -128,6 +125,8 @@ namespace VKR.DAL
             {
                 teams[i].TeamColor = GetAllColorsForThisTeam(teams[i].TeamAbbreviation).ToList();
                 teams[i].TeamManager = GetManagerForThisTeam(teams[i]).First();
+                teams[i].battingStats = ReturnTeamBattingStats(teams[i].TeamAbbreviation).First();
+                teams[i].pitchingStats = ReturnTeamPitchingStats(teams[i].TeamAbbreviation).First();
             }
             return teams;
         }
@@ -181,230 +180,6 @@ namespace VKR.DAL
             return teams;
         }
 
-        public IEnumerable<Pitcher> GetPitcherByID(int _id)
-        {
-            using (SqlCommand command = new SqlCommand("UpdatePitcherStats", _connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@Player", SqlDbType.Int);
-                command.Prepare();
-                command.Parameters[0].Value = _id;
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = (int)reader["PlayerID"];
-                        string FirstName = (string)reader["PlayerFirstName"];
-                        string SecondName = (string)reader["PlayerSecondName"];
-                        int number = (int)reader["PlayerNumber"];
-                        int Games = (int)reader["G"];
-                        int GamesStarted = (int)reader["GS"];
-                        int Strikeouts = (int)reader["K"];
-                        int Outs = (int)reader["Outs"];
-                        int Runs = (int)reader["R"];
-                        int Walks = (int)reader["BB"];
-                        int Single = (int)reader["1B"];
-                        int Double = (int)reader["2B"];
-                        int Triple = (int)reader["3B"];
-                        int HomeRun = (int)reader["HR"];
-                        int BattersFaced = (int)reader["TBF"];
-                        int HitByPitch = (int)reader["HBP"];
-                        int SacFlies = (int)reader["SF"];
-                        int Bunts = (int)reader["SAC"];
-                        int StolenBase = (int)reader["SB"];
-                        int CaughtStealing = (int)reader["CS"];
-                        int DoublePlay = (int)reader["GIDP"];
-                        int QualityStarts = (int)reader["QS"];
-                        int CompleteGames = (int)reader["CG"];
-                        int Shutouts = (int)reader["SHO"];
-                        int Flyout = (int)reader["AO"];
-                        int Groundout = (int)reader["GO"];
-                        int Wins = (int)reader["W"];
-                        int Losses = (int)reader["L"];
-                        int Saves = (int)reader["SV"];
-                        int Holds = (int)reader["HLD"];
-                        string Batting = (string)reader["PlayerBattingHand"];
-                        string Pitching = (string)reader["PlayerPitchingHand"];
-                        string Position = (string)reader["PositionID"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GamesStarted, Strikeouts, Outs,
-                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced,
-                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds,
-                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, DoublePlay,
-                                                 Groundout, Flyout, Batting, Pitching, Position != "P");
-                    }
-                }
-            }
-        }
-
-        public IEnumerable<Batter> GetCurrentLineupForThisMatch(string team, int Match)
-        {
-            using (SqlCommand command = new SqlCommand("GetCurrentLineupForThisMatch", _connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
-                command.Parameters.Add("@Match", SqlDbType.Int);
-                command.Prepare();
-                command.Parameters[0].Value = team;
-                command.Parameters[1].Value = Match;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = (int)reader["PlayerID"];
-                        string FirstName = (string)reader["PlayerFirstName"];
-                        string SecondName = (string)reader["PlayerSecondName"];
-                        int number = (int)reader["PlayerNumber"];
-                        int PositionInLineup = (int)reader["NumberInLineup"];
-                        string Position = (string)reader["PlayerPosition"];
-                        int Games = (int)reader["G"];
-                        int Strikeouts = (int)reader["K"];
-                        int Walks = (int)reader["BB"];
-                        int HitByPitch = (int)reader["HBP"];
-                        int Flyout = (int)reader["AO"];
-                        int Groundout = (int)reader["GO"];
-                        int Popout = (int)reader["PO"];
-                        int Single = (int)reader["1B"];
-                        int Double = (int)reader["2B"];
-                        int Triple = (int)reader["3B"];
-                        int HomeRun = (int)reader["HR"];
-                        int StolenBase = (int)reader["SB"];
-                        int CaughtStealing = (int)reader["CS"];
-                        int Runs = (int)reader["R"];
-                        int SacFlies = (int)reader["SF"];
-                        int Bunts = (int)reader["SAC"];
-                        int RBI = (int)reader["RBI"];
-                        string Batting = (string)reader["PlayerBattingHand"];
-                        string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, 
-                                                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, 
-                                                Runs, Walks, Position, PositionInLineup, Strikeouts, Groundout, Flyout, 
-                                                Popout, Batting, Pitching);
-                    }
-                }
-            }
-        }
-
-        public IEnumerable<Pitcher> GetStartingPitcherForThisTeam(Team team, int matchID)
-        {
-            using (SqlCommand command = new SqlCommand("GetStartingPitcherForThisTeam", _connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@Match", SqlDbType.Int);
-                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
-                command.Prepare();
-                command.Parameters[0].Value = matchID;
-                command.Parameters[1].Value = team.TeamAbbreviation;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = (int)reader["PlayerID"];
-                        string FirstName = (string)reader["PlayerFirstName"];
-                        string SecondName = (string)reader["PlayerSecondName"];
-                        int number = (int)reader["PlayerNumber"];
-                        int Games = (int)reader["G"];
-                        int GS = (int)reader["GS"];
-                        int Strikeouts = (int)reader["K"];
-                        int Outs = (int)reader["Outs"];
-                        int Runs = (int)reader["R"];
-                        int Walks = (int)reader["BB"];
-                        int Single = (int)reader["1B"];
-                        int Double = (int)reader["2B"];
-                        int Triple = (int)reader["3B"];
-                        int HomeRun = (int)reader["HR"];
-                        int BattersFaced = (int)reader["TBF"];
-                        int HitByPitch = (int)reader["HBP"];
-                        int SacFlies = (int)reader["SF"];
-                        int Bunts = (int)reader["SAC"];
-                        int StolenBase = (int)reader["SB"];
-                        int CaughtStealing = (int)reader["CS"];
-                        int QualityStarts = (int)reader["QS"];
-                        int CompleteGames = (int)reader["CG"];
-                        int Shutouts = (int)reader["SHO"];
-                        int Wins = (int)reader["W"];
-                        int Losses = (int)reader["L"];
-                        int Saves = (int)reader["SV"];
-                        int Holds = (int)reader["HLD"];
-                        string Batting = (string)reader["PlayerBattingHand"];
-                        string Pitching = (string)reader["PlayerPitchingHand"];
-                        int PositionInLineup = (int)reader["PlayerPositionInLineup"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GS, Strikeouts, Outs, 
-                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
-                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
-                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, PositionInLineup, 
-                                                 Batting, Pitching);
-                    }
-                }
-            }
-        }
-
-        public int GetNumberOfOutsPlayedByThisPitcherInLast5Days(Match match, Pitcher pitcher)
-        {
-            using (SqlCommand command = new SqlCommand("GetRemainingStaminaForThisPitcher", _connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@Pitcher", SqlDbType.Int);
-                command.Parameters.Add("@MatchDate", SqlDbType.Date);
-                command.Prepare();
-                command.Parameters[0].Value = pitcher.id;
-                command.Parameters[1].Value = match.MatchDate;
-
-                return (int)command.ExecuteScalar();
-            }
-        }
-
-
-        public IEnumerable<Pitcher> UpdateStatsForThisPitcher(Pitcher pitcher)
-        {
-            using (SqlCommand command = new SqlCommand("UpdatePitcherStats", _connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@Player", SqlDbType.Int);
-                command.Prepare();
-                command.Parameters[0].Value = pitcher.id;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = (int)reader["PlayerID"];
-                        string FirstName = (string)reader["PlayerFirstName"];
-                        string SecondName = (string)reader["PlayerSecondName"];
-                        int number = (int)reader["PlayerNumber"];
-                        int Games = (int)reader["G"];
-                        int GS = (int)reader["GS"];
-                        int Strikeouts = (int)reader["K"];
-                        int Outs = (int)reader["Outs"];
-                        int Runs = (int)reader["R"];
-                        int Walks = (int)reader["BB"];
-                        int Single = (int)reader["1B"];
-                        int Double = (int)reader["2B"];
-                        int Triple = (int)reader["3B"];
-                        int HomeRun = (int)reader["HR"];
-                        int BattersFaced = (int)reader["TBF"];
-                        int HitByPitch = (int)reader["HBP"];
-                        int SacFlies = (int)reader["SF"];
-                        int Bunts = (int)reader["SAC"];
-                        int StolenBase = (int)reader["SB"];
-                        int CaughtStealing = (int)reader["CS"];
-                        int QualityStarts = (int)reader["QS"];
-                        int CompleteGames = (int)reader["CG"];
-                        int Shutouts = (int)reader["SHO"];
-                        int Wins = (int)reader["W"];
-                        int Losses = (int)reader["L"];
-                        int Saves = (int)reader["SV"];
-                        int Holds = (int)reader["HLD"];
-                        string Batting = (string)reader["PlayerBattingHand"];
-                        string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GS, Strikeouts, Outs, 
-                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
-                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
-                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, Batting, Pitching);
-                    }
-                }
-            }
-        }
-
         public IEnumerable<Color> GetAllColorsForThisTeam(string abbreviation)
         {
             List<Color> colors = new List<Color>();
@@ -452,58 +227,6 @@ namespace VKR.DAL
             }
         }
 
-        public IEnumerable<Pitcher> GetAvailablePitchers(Match match, Team team)
-        {
-            using (SqlCommand command = new SqlCommand("GetAvailablePitchersForSubstitution", _connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@Match", SqlDbType.Int);
-                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
-                command.Prepare();
-                command.Parameters[0].Value = match.MatchID;
-                command.Parameters[1].Value = team.TeamAbbreviation;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = (int)reader["PlayerID"];
-                        string FirstName = (string)reader["PlayerFirstName"];
-                        string SecondName = (string)reader["PlayerSecondName"];
-                        int number = (int)reader["PlayerNumber"];
-                        int Games = (int)reader["G"];
-                        int GamesStarted = (int)reader["GS"];
-                        int Strikeouts = (int)reader["K"];
-                        int Outs = (int)reader["Outs"];
-                        int Runs = (int)reader["R"];
-                        int Walks = (int)reader["BB"];
-                        int Single = (int)reader["1B"];
-                        int Double = (int)reader["2B"];
-                        int Triple = (int)reader["3B"];
-                        int HomeRun = (int)reader["HR"];
-                        int BattersFaced = (int)reader["TBF"];
-                        int HitByPitch = (int)reader["HBP"];
-                        int SacFlies = (int)reader["SF"];
-                        int Bunts = (int)reader["SAC"];
-                        int StolenBase = (int)reader["SB"];
-                        int CaughtStealing = (int)reader["CS"];
-                        int QualityStarts = (int)reader["QS"];
-                        int CompleteGames = (int)reader["CG"];
-                        int Shutouts = (int)reader["SHO"];
-                        int Wins = (int)reader["W"];
-                        int Losses = (int)reader["L"];
-                        int Saves = (int)reader["SV"];
-                        int Holds = (int)reader["HLD"];
-                        string Batting = (string)reader["PlayerBattingHand"];
-                        string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Pitcher(id, FirstName, SecondName, number, Games, GamesStarted, Strikeouts, Outs, 
-                                                 Walks, Bunts, SacFlies, StolenBase, CaughtStealing, BattersFaced, 
-                                                 QualityStarts, Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
-                                                 HitByPitch, Single, Double, Triple, HomeRun, Runs, Batting, Pitching);
-                    }
-                }
-            }
-        }
-
         public void SubstitutePitcher(Match match, Team team, Pitcher pitcher)
         {
             using (SqlCommand command = new SqlCommand("SubstitutePitcher", _connection))
@@ -517,7 +240,7 @@ namespace VKR.DAL
 
                 command.Parameters[0].Value = match.MatchID;
                 command.Parameters[1].Value = team.TeamAbbreviation;
-                command.Parameters[2].Value = pitcher.id;
+                command.Parameters[2].Value = pitcher.Id;
 
                 var result = command.ExecuteNonQuery();
             }
@@ -540,32 +263,75 @@ namespace VKR.DAL
                     while (reader.Read())
                     {
                         int id = (int)reader["PlayerID"];
-                        string FirstName = (string)reader["PlayerFirstName"];
-                        string SecondName = (string)reader["PlayerSecondName"];
+                        string firstName = (string)reader["PlayerFirstName"];
+                        string secondName = (string)reader["PlayerSecondName"];
                         int number = (int)reader["PlayerNumber"];
-                        int Games = (int)reader["G"];
-                        int Strikeouts = (int)reader["K"];
-                        int Walks = (int)reader["BB"];
-                        int HitByPitch = (int)reader["HBP"];
-                        int Flyout = (int)reader["AO"];
-                        int Groundout = (int)reader["GO"];
-                        int Popout = (int)reader["PO"];
-                        int Single = (int)reader["1B"];
-                        int Double = (int)reader["2B"];
-                        int Triple = (int)reader["3B"];
-                        int HomeRun = (int)reader["HR"];
-                        int StolenBase = (int)reader["SB"];
-                        int CaughtStealing = (int)reader["CS"];
-                        int Runs = (int)reader["R"];
-                        int SacFlies = (int)reader["SF"];
-                        int Bunts = (int)reader["SAC"];
-                        int RBI = (int)reader["RBI"];
-                        string Batting = (string)reader["PlayerBattingHand"];
-                        string Pitching = (string)reader["PlayerPitchingHand"];
-                        yield return new Batter(id, FirstName, SecondName, number, Games, Single, Double, Triple, 
-                                                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing, 
-                                                Runs, Walks, batter.PositionForThisMatch, batter.NumberInBattingLineup, 
-                                                Strikeouts, Groundout, Flyout, Popout, Batting, Pitching);
+                        string placeOfBirth = (string)reader["PlaceOfBirth"];
+                        DateTime dateOfBirth = (DateTime)reader["PlayerDateOfBirth"];
+                        string battingHand = (string)reader["PlayerBattingHand"];
+                        string pitchingHand = (string)reader["PlayerPitchingHand"];
+                        string teamID = (string)reader["TeamID"];
+                        bool inActiveRoster = (bool)reader["InActiveRoster"];
+                        int PositionInLineup = (int)reader["NumberInLineup"];
+                        string Position = (string)reader["PlayerPosition"];
+
+                        int Games = (int)reader["BatterG"];
+                        int Strikeouts = (int)reader["BatterK"];
+                        int Walks = (int)reader["BatterBB"];
+                        int HitByPitch = (int)reader["BatterHBP"];
+                        int Flyout = (int)reader["BatterAO"];
+                        int Groundout = (int)reader["BatterGO"];
+                        int Popout = (int)reader["BatterPO"];
+                        int Single = (int)reader["Batter1B"];
+                        int Double = (int)reader["Batter2B"];
+                        int Triple = (int)reader["Batter3B"];
+                        int HomeRun = (int)reader["BatterHR"];
+                        int StolenBase = (int)reader["BatterSB"];
+                        int CaughtStealing = (int)reader["BatterCS"];
+                        int Runs = (int)reader["BatterR"];
+                        int SacFlies = (int)reader["BatterSF"];
+                        int Bunts = (int)reader["BatterSAC"];
+                        int RBI = (int)reader["BatterRBI"];
+                        int PA = (int)reader["BatterPA"];
+                        int GIDP = (int)reader["BatterGIDP"];
+                        int TGP = (int)reader["BatterTGP"];
+                        var batting = new BattingStats(Games, Single, Double, Triple,
+                                                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
+                                                Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
+
+                        int PitcherG = (int)reader["PitcherG"];
+                        int PitcherGS = (int)reader["PitcherGS"];
+                        int PitcherK = (int)reader["PitcherK"];
+                        int PitcherOuts = (int)reader["PitcherOuts"];
+                        int PitcherR = (int)reader["PitcherR"];
+                        int PitcherBB = (int)reader["PitcherBB"];
+                        int Pitcher1B = (int)reader["Pitcher1B"];
+                        int Pitcher2B = (int)reader["Pitcher2B"];
+                        int Pitcher3B = (int)reader["Pitcher3B"];
+                        int PitcherHR = (int)reader["PitcherHR"];
+                        int PitcherTBF = (int)reader["PitcherTBF"];
+                        int PitcherHBP = (int)reader["PitcherHBP"];
+                        int PitcherSF = (int)reader["PitcherSF"];
+                        int PitcherSAC = (int)reader["PitcherSAC"];
+                        int PitcherSB = (int)reader["PitcherSB"];
+                        int PitcherCS = (int)reader["PitcherCS"];
+                        int PitcherGIDP = (int)reader["PitcherGIDP"];
+                        int PitcherQS = (int)reader["PitcherQS"];
+                        int PitcherCG = (int)reader["PitcherCG"];
+                        int PitcherSHO = (int)reader["PitcherSHO"];
+                        int PitcherAO = (int)reader["PitcherAO"];
+                        int PitcherGO = (int)reader["PitcherGO"];
+                        int PitcherW = (int)reader["PitcherW"];
+                        int PitcherL = (int)reader["PitcherL"];
+                        int PitcherSV = (int)reader["PitcherSV"];
+                        int PitcherHLD = (int)reader["PitcherHLD"];
+                        var pitching = new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
+                                                 PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
+                                                 PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
+                                                 PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
+                                                 PitcherGO, PitcherAO, TGP);
+
+                        yield return new Batter(id, firstName, secondName, number, placeOfBirth, dateOfBirth, battingHand, pitchingHand, teamID, inActiveRoster, Position, PositionInLineup, batting, pitching);
                     }
                 }
             }
@@ -586,7 +352,7 @@ namespace VKR.DAL
 
                 command.Parameters[0].Value = match.MatchID;
                 command.Parameters[1].Value = team.TeamAbbreviation;
-                command.Parameters[2].Value = newBatter.id;
+                command.Parameters[2].Value = newBatter.Id;
                 command.Parameters[3].Value = oldBatter.PositionForThisMatch;
                 command.Parameters[4].Value = oldBatter.NumberInBattingLineup;
 
@@ -594,20 +360,20 @@ namespace VKR.DAL
             }
         }
 
-        public IEnumerable<Team> ReturnTeamBattingStats()
+        public IEnumerable<BattingStats> ReturnTeamBattingStats(string code)
         {
-            List<Team> teams = new List<Team>();
-            using (SqlCommand command = new SqlCommand("ReturnTeamBattingStats", _connection))
+            using (SqlCommand command = new SqlCommand("ReturnBattingStatsByTeamCode", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Code", SqlDbType.NVarChar, 3));
                 command.Prepare();
+
+                command.Parameters[0].Value = code;
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        string team = (string)reader["TeamAbbreviation"];
-                        string Name = (string)reader["TeamName"];
                         int TGP = (int)reader["TGP"];
                         int Strikeouts = (int)reader["K"];
                         int Walks = (int)reader["BB"];
@@ -627,36 +393,28 @@ namespace VKR.DAL
                         int RBI = (int)reader["RBI"]; ;
                         int PA = (int)reader["PA"];
                         int GIDP = (int)reader["GIDP"];
-                        teams.Add(new Team(team, Name, TGP, Single, Double, Triple, HomeRun, 
+                        yield return new BattingStats(TGP, Single, Double, Triple, HomeRun, 
                                            SacFlies, Bunts, RBI, HitByPitch, StolenBase, 
                                            CaughtStealing, Runs, Walks, Strikeouts, Groundout, 
-                                           Flyout, Popout, PA, GIDP));
+                                           Flyout, Popout, PA, GIDP, TGP);
                     }
                 }
             }
-            for (int i = 0; i < teams.Count; i++)
-            {
-                teams[i].TeamColor = GetAllColorsForThisTeam(teams[i].TeamAbbreviation).ToList();
-                teams[i].TeamManager = GetManagerForThisTeam(teams[i]).First();
-            }
-            return teams;
         }
 
-        public IEnumerable<Team> ReturnTeamPitchingStats()
+        public IEnumerable<PitchingStats> ReturnTeamPitchingStats(string code)
         {
-            List<Team> teams = new List<Team>();
             using (SqlCommand command = new SqlCommand("ReturnTeamPitchingStats", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Code", SqlDbType.NVarChar, 3));
                 command.Prepare();
+                command.Parameters[0].Value = code;
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-
-                        string team = (string)reader["TeamAbbreviation"];
-                        string Name = (string)reader["TeamName"];
                         int TGP = (int)reader["TGP"];
                         int Strikeouts = (int)reader["K"];
                         int Outs = (int)reader["Outs"];
@@ -682,20 +440,14 @@ namespace VKR.DAL
                         int Losses = (int)reader["L"];
                         int Saves = (int)reader["SV"];
                         int Holds = (int)reader["HLD"];
-                        teams.Add(new Team(team, Name, TGP, Strikeouts, Outs, Walks, Bunts, SacFlies, 
+                        yield return new PitchingStats(TGP, TGP, Strikeouts, Outs, Walks, Bunts, SacFlies, 
                                            StolenBase, CaughtStealing, BattersFaced, QualityStarts, 
                                            Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
                                            HitByPitch, Single, Double, Triple, HomeRun, Runs, 
-                                           DoublePlay, Groundout, Flyout));
+                                           DoublePlay, Groundout, Flyout, TGP);
                     }
                 }
             }
-            for (int i = 0; i < teams.Count; i++)
-            {
-                teams[i].TeamColor = GetAllColorsForThisTeam(teams[i].TeamAbbreviation).ToList();
-                teams[i].TeamManager = GetManagerForThisTeam(teams[i]).First();
-            }
-            return teams;
         }
     }
 }

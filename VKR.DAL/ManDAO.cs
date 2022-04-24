@@ -8,10 +8,7 @@ namespace VKR.DAL
 {
     public class ManDAO : DAO
     {
-        public ManDAO()
-        {
-            InitConnection();
-        }
+        public ManDAO() :base() { }
 
         public IEnumerable<ManInTeam> GetListOfPeopleWithBirthdayToday()
         {
@@ -29,8 +26,9 @@ namespace VKR.DAL
                         string FirstName = (string)reader["PlayerFirstName"];
                         string SecondName = (string)reader["PlayerSecondName"];
                         DateTime date = (DateTime)reader["PlayerDateOfBirth"];
+                        string placeOfBirth = (string)reader["PlaceOfBirth"];
 
-                        yield return new ManInTeam(PlayerID, FirstName, SecondName, TeamID, date);
+                        yield return new ManInTeam(PlayerID, FirstName, SecondName, TeamID, date, placeOfBirth);
                     }
                 }
             }

@@ -12,19 +12,19 @@ namespace VKR_Test
 {
     public partial class MainMenuForm : Form
     {
-        private readonly ManBL manBL;
-        private readonly TeamsBL teams;
-        private readonly MatchBL matchBL;
-        private int MatchNumberForDelete;
+        private readonly ManBL _manBL;
+        private readonly TeamsBL _teamsBL;
+        private readonly MatchBL _matchBL;
+        private int _matchNumberForDelete;
 
         public MainMenuForm()
         {
             try
             {
                 InitializeComponent();
-                manBL = new ManBL();
-                teams = new TeamsBL();
-                matchBL = new MatchBL();
+                _manBL = new ManBL();
+                _teamsBL = new TeamsBL();
+                _matchBL = new MatchBL();
                 TitleForm title = new TitleForm();
                 title.ShowDialog();
             }
@@ -45,8 +45,8 @@ namespace VKR_Test
         private void GetListOfPeopleWithBirthdayToday()
         {
             Visible = true;
-            List<ManInTeam> men = manBL.GetListOfPeopleWithBirthdayToday();
-            List<Team> teamsList = teams.GetAllTeams();
+            List<ManInTeam> men = _manBL.GetListOfPeopleWithBirthdayToday();
+            List<Team> teamsList = _teamsBL.GetAllTeams();
             dgvBirthDays.Rows.Clear();
             foreach (ManInTeam man in men)
             {
@@ -72,14 +72,14 @@ namespace VKR_Test
 
         private void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
-            Program.MatchDate = matchBL.GetDateForNextMatch();
+            Program.MatchDate = _matchBL.GetDateForNextMatch();
             Match match = new Match(Program.MatchDate, false);
             TeamsSelectForm form = new TeamsSelectForm(match);
             form.ShowDialog();
             if (form.DialogResult == DialogResult.Yes)
             {
-                MatchNumberForDelete = form.MatchNumberForDelete;
-                matchBL.DeleteThisMatch(MatchNumberForDelete);
+                _matchNumberForDelete = form.MatchNumberForDelete;
+                _matchBL.DeleteThisMatch(_matchNumberForDelete);
             }
             form.Dispose();
             GetListOfPeopleWithBirthdayToday();
@@ -123,12 +123,14 @@ namespace VKR_Test
             Visible = false;
             TeamsSelectForm form = new TeamsSelectForm(match);
             form.ShowDialog();
+
             if (form.DialogResult == DialogResult.Yes)
             {
-                MatchNumberForDelete = form.MatchNumberForDelete;
+                _matchNumberForDelete = form.MatchNumberForDelete;
                 form.Dispose();
-                matchBL.DeleteThisMatch(MatchNumberForDelete);
+                _matchBL.DeleteThisMatch(_matchNumberForDelete);
             }
+
             GetListOfPeopleWithBirthdayToday();
         }
 

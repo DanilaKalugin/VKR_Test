@@ -8,40 +8,40 @@ namespace VKR_Test
     public partial class DHRuleForm : Form
     {
         public bool ExitFromCurrentMatch;
-        private readonly MatchBL matchBL;
-        private readonly TeamsBL teamsBL;
+        private readonly MatchBL _matchBL;
+        private readonly PlayerBL _playerBL;
         public int MatchNumber;
-        public Match newMatch;
+        public Match NewMatch;
 
         public DHRuleForm(Match match)
         {
             InitializeComponent();
-            matchBL = new MatchBL();
-            teamsBL = new TeamsBL();
-            Program.MatchDate = matchBL.GetMaxDateForAllMatches();
-            newMatch = match;
+            _matchBL = new MatchBL();
+            _playerBL = new PlayerBL();
+            Program.MatchDate = _matchBL.GetMaxDateForAllMatches();
+            NewMatch = match;
             numMatchLength.Value = 9;
             dtpMatchDate.Value = match.MatchDate;
-            rbPlayWithDH.Checked = newMatch.HomeTeam.DHRule;
-            rbPlayWithoutDH.Checked = !newMatch.HomeTeam.DHRule;
+            rbPlayWithDH.Checked = NewMatch.HomeTeam.DHRule;
+            rbPlayWithoutDH.Checked = !NewMatch.HomeTeam.DHRule;
         }
 
         private void btnAcceptDHRule_Click(object sender, EventArgs e)
         {
-            int MatchID = matchBL.GetNumberOfMatchesPlayed(newMatch);
-            newMatch.MatchDate = dtpMatchDate.Value;
-            newMatch.DHRule = rbPlayWithDH.Checked;
-            newMatch.MatchID = MatchID;
-            newMatch.MatchLength = (int)numMatchLength.Value;
+            int MatchID = _matchBL.GetNumberOfMatchesPlayed(NewMatch);
+            NewMatch.MatchDate = dtpMatchDate.Value;
+            NewMatch.DHRule = rbPlayWithDH.Checked;
+            NewMatch.MatchID = MatchID;
+            NewMatch.MatchLength = (int)numMatchLength.Value;
 
-            matchBL.StartNewMatch(newMatch);
-            newMatch.AwayTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(newMatch.AwayTeam.TeamAbbreviation, MatchID);
-            newMatch.AwayTeam.PitchersPlayedInMatch.Add(teamsBL.GetStartingPitcherForThisTeam(newMatch.AwayTeam, newMatch));
+            _matchBL.StartNewMatch(NewMatch);
+            NewMatch.AwayTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.AwayTeam.TeamAbbreviation, MatchID);
+            NewMatch.AwayTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.AwayTeam, NewMatch));
 
-            newMatch.HomeTeam.BattingLineup = teamsBL.GetCurrentLineupForThisMatch(newMatch.HomeTeam.TeamAbbreviation, MatchID);
-            newMatch.HomeTeam.PitchersPlayedInMatch.Add(teamsBL.GetStartingPitcherForThisTeam(newMatch.HomeTeam, newMatch));
+            NewMatch.HomeTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.HomeTeam.TeamAbbreviation, MatchID);
+            NewMatch.HomeTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch));
 
-            MainForm newMatchForm = new MainForm(newMatch);
+            MainForm newMatchForm = new MainForm(NewMatch);
             Visible = false;
             newMatchForm.ShowDialog();
 

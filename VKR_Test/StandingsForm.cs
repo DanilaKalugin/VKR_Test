@@ -10,31 +10,25 @@ namespace VKR_Test
 {
     public partial class StandingsForm : Form
     {
-        private readonly TeamsBL teamsBl;
-        private readonly MatchBL matchBL;
-        List<Team> teams;
-        private Team HomeTeam;
-        private Team AwayTeam;
+        private readonly TeamsBL _teamsBl;
+        private readonly MatchBL _matchBL;
+        List<Team> _teams;
+        private Team _homeTeam;
+        private Team _awayTeam;
+
+        public StandingsForm(Team home, Team away) : this()
+        {
+            _homeTeam = home;
+            _awayTeam = away;
+        }
 
         public StandingsForm()
         {
             InitializeComponent();
-            teamsBl = new TeamsBL();
-            matchBL = new MatchBL();
-            Program.MatchDate = matchBL.GetMaxDateForAllMatches();
+            _teamsBl = new TeamsBL();
+            _matchBL = new MatchBL();
+            Program.MatchDate = _matchBL.GetMaxDateForAllMatches();
             dtpStandingsDate.Value = Program.MatchDate;
-            cbFilter.Text = "League";
-        }
-
-        public StandingsForm(Team Home, Team Away)
-        {
-            InitializeComponent();
-            teamsBl = new TeamsBL();
-            matchBL = new MatchBL();
-            Program.MatchDate = matchBL.GetMaxDateForAllMatches();
-            dtpStandingsDate.Value = Program.MatchDate;
-            HomeTeam = Home;
-            AwayTeam = Away;
             cbFilter.Text = "League";
         }
 
@@ -43,45 +37,45 @@ namespace VKR_Test
             GetNewTable(cbFilter);
         }
 
-        private void GetStandingsForThisGroup(string group, int TeamsInGroup, int GroupNumber, bool isWC = false)
+        private void GetStandingsForThisGroup(string group, int groupNumber, bool isWC = false)
         {
-            if (!isWC)
+            if (isWC)
             {
-                teams = teamsBl.GetStandings(group, dtpStandingsDate.Value);
+                _teams = _teamsBl.GetWCStandings(group, dtpStandingsDate.Value);
             }
             else
             {
-                teams = teamsBl.GetWCStandings(group, dtpStandingsDate.Value);
+                _teams = _teamsBl.GetStandings(group, dtpStandingsDate.Value);
             }
 
+            var teamsInGroup = _teams.Count;
             dgvStandings.Rows.Add("", group, "W", "L", "GB", "PCT", "RS", "RA", "DIFF", "HOME", "AWAY");
-            dgvStandings.Rows[(TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
-            dgvStandings.Rows[(TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.Font = new Font(dgvStandings.DefaultCellStyle.Font, FontStyle.Bold);
+            dgvStandings.Rows[dgvStandings.Rows.Count - 1].DefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
+            dgvStandings.Rows[dgvStandings.Rows.Count - 1].DefaultCellStyle.Font = new Font(dgvStandings.DefaultCellStyle.Font, FontStyle.Bold);
 
-            dgvStandings.Rows[(TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 30, 30);
-            dgvStandings.Rows[(TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvStandings.Rows[dgvStandings.Rows.Count - 1].DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 30, 30);
+            dgvStandings.Rows[dgvStandings.Rows.Count - 1].DefaultCellStyle.SelectionForeColor = Color.White;
 
-            for (int i = 0; i < teams.Count; i++)
+            for (var i = 0; i < _teams.Count; i++)
             {
-                if (teams[i].GamesBehind < 0)
+                var gamesBehind = Math.Abs(_teams[i].GamesBehind).ToString("0.0", new CultureInfo("en-US"));
+                if (_teams[i].GamesBehind < 0)
                 {
-                    dgvStandings.Rows.Add("", teams[i].TeamTitle, teams[i].Wins, teams[i].Losses, $"+{Math.Abs(teams[i].GamesBehind).ToString("0.0", new CultureInfo("en-US"))}", teams[i].PCT.ToString("#.000", new CultureInfo("en-US")), teams[i].RunsScored, teams[i].RunsAllowed, teams[i].RunDifferential, teams[i].HomeBalance, teams[i].AwayBalance);
-                }
-                else
-                {
-                    dgvStandings.Rows.Add("", teams[i].TeamTitle, teams[i].Wins, teams[i].Losses, teams[i].GamesBehind.ToString("0.0", new CultureInfo("en-US")), teams[i].PCT.ToString("#.000", new CultureInfo("en-US")), teams[i].RunsScored, teams[i].RunsAllowed, teams[i].RunDifferential, teams[i].HomeBalance, teams[i].AwayBalance);
+                    gamesBehind = $"+{gamesBehind}";
                 }
 
-                if ((HomeTeam != null && HomeTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].Cells[1].Value) ||
-                    (AwayTeam != null && AwayTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].Cells[1].Value))
+                dgvStandings.Rows.Add("", _teams[i].TeamTitle, _teams[i].Wins, _teams[i].Losses, gamesBehind, _teams[i].PCT.ToString("#.000", new CultureInfo("en-US")), _teams[i].RunsScored, _teams[i].RunsAllowed, _teams[i].RunDifferential, _teams[i].HomeBalance, _teams[i].AwayBalance);
+
+                if ((_homeTeam != null && _homeTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value) ||
+                    (_awayTeam != null && _awayTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value))
                 {
-                    dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.BackColor = Color.WhiteSmoke;
-                    dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.ForeColor = Color.Black;
-                    dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
-                    dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].DefaultCellStyle.SelectionForeColor = Color.Black;
+                    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.BackColor = Color.WhiteSmoke;
+                    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.ForeColor = Color.Black;
+                    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
+                    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.SelectionForeColor = Color.Black;
                 }
-                dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].Cells[0].Style.BackColor = teams[i].TeamColor[0];
-                dgvStandings.Rows[i + 1 + (TeamsInGroup + 1) * GroupNumber].Cells[0].Style.SelectionBackColor = teams[i].TeamColor[0];
+                dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[0].Style.BackColor = _teams[i].TeamColor[0];
+                dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[0].Style.SelectionBackColor = _teams[i].TeamColor[0];
             }
         }
 
@@ -97,32 +91,33 @@ namespace VKR_Test
             {
                 case 0:
                     {
-                        GetStandingsForThisGroup("MLB", 30, 0);
+                        GetStandingsForThisGroup("MLB", 0);
                         break;
                     }
                 case 1:
                     {
-                        GetStandingsForThisGroup("AL", 15, 0);
-                        GetStandingsForThisGroup("NL", 15, 1);
+                        GetStandingsForThisGroup("AL", 0);
+                        GetStandingsForThisGroup("NL", 1);
                         break;
                     }
                 case 2:
                     {
-                        GetStandingsForThisGroup("AL East", 5, 0);
-                        GetStandingsForThisGroup("AL Central", 5, 1);
-                        GetStandingsForThisGroup("AL West", 5, 2);
-                        GetStandingsForThisGroup("NL East", 5, 3);
-                        GetStandingsForThisGroup("NL Central", 5, 4);
-                        GetStandingsForThisGroup("NL West", 5, 5);
+                        GetStandingsForThisGroup("AL East", 0);
+                        GetStandingsForThisGroup("AL Central", 1);
+                        GetStandingsForThisGroup("AL West", 2);
+                        GetStandingsForThisGroup("NL East", 3);
+                        GetStandingsForThisGroup("NL Central", 4);
+                        GetStandingsForThisGroup("NL West", 5);
                         break;
                     }
                 case 3:
                     {
-                        GetStandingsForThisGroup("AL", 12, 0, true);
-                        GetStandingsForThisGroup("NL", 12, 1, true);
+                        GetStandingsForThisGroup("AL", 0, true);
+                        GetStandingsForThisGroup("NL", 1, true);
                         break;
                     }
             }
+
             if (dgvStandings.RowCount < Screen.PrimaryScreen.Bounds.Size.Height)
             {
                 Height = 97 + dgvStandings.RowTemplate.Height * dgvStandings.RowCount;

@@ -9,17 +9,25 @@ namespace Entities
         {
             get
             {
-                return DateTime.Now.Year - DateOfBirth.Year;
+                var now = DateTime.Today;
+                var age = now.Year - DateOfBirth.Year;
+                if (DateOfBirth > now.AddYears(-age)) age--;
+                return age;
             }
         }
 
-        public ManInTeam(int _id, string _FirstName, string _SecondName, string _Team, DateTime date)
+        public ManInTeam(int id, string firstName, string secondName, string team, DateTime date, string placeOfBirth)
         {
-            id = _id;
-            FirstName = _FirstName;
-            SecondName = _SecondName;
-            Team = _Team;
+            Id = id;
+            FirstName = firstName;
+            SecondName = secondName;
+            Team = team;
             DateOfBirth = date;
+            PlaceOfBirth = placeOfBirth;
+        }
+
+        public ManInTeam()
+        {
         }
     }
 }

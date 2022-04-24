@@ -28,7 +28,7 @@ namespace VKR_Test
             timer1.Start();
         }
 
-        public void GetInfoAboutBatter(Batter batter, Panel photo, Label Name, Label SecondName, Label Number, Label Position, Team team)
+        public void GetInfoAboutBatter(Batter batter, Panel photo, Label name, Label secondName, Label number, Label position, Team team)
         {
             if (BackColor == team.TeamColor[1])
             {
@@ -39,19 +39,19 @@ namespace VKR_Test
                 photo.BackColor = team.TeamColor[1];
             }
 
-            if (File.Exists($"PlayerPhotos/Player{batter.id:0000}.png"))
+            if (File.Exists($"PlayerPhotos/Player{batter.Id:0000}.png"))
             {
-                photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.id:0000}.png");
+                photo.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.Id:0000}.png");
             }
             else
             {
                 photo.BackgroundImage = null;
             }
 
-            Name.Text = batter.FirstName.ToUpper();
-            SecondName.Text = batter.SecondName.ToUpper();
-            Number.Text = batter.PlayerNumber.ToString();
-            Position.Text = batter.PositionForThisMatch;
+            name.Text = batter.FirstName.ToUpper();
+            secondName.Text = batter.SecondName.ToUpper();
+            number.Text = batter.PlayerNumber.ToString();
+            position.Text = batter.PositionForThisMatch;
         }
 
         private void timer_LineupForm_Tick(object sender, EventArgs e)

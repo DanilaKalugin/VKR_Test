@@ -32,11 +32,8 @@ namespace VKR_Test
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TitleForm));
             this.button1 = new System.Windows.Forms.Button();
             this.lbTitleEnglish = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -63,16 +60,14 @@ namespace VKR_Test
             this.lbTitleEnglish.TabIndex = 2;
             this.lbTitleEnglish.Text = "Predicting the results of baseball matches";
             // 
-            // label1
+            // panel1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.label1.Location = new System.Drawing.Point(13, 480);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(266, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Выпускная квалификационная работа";
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.TabIndex = 0;
             // 
             // label2
             // 
@@ -85,47 +80,13 @@ namespace VKR_Test
             this.label2.TabIndex = 4;
             this.label2.Text = "Информационная система пронозирования результатов бейсбольных матчей";
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(14, 542);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(265, 19);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Выполнил: ст. гр. 744 Калунин Д. И.";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(14, 565);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(375, 19);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Научный руководитель: к. т. н. Проказникова Е. Н.";
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
-            this.panel1.TabIndex = 0;
-            // 
             // TitleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbTitleEnglish);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
@@ -145,9 +106,6 @@ namespace VKR_Test
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lbTitleEnglish;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
     }
 }

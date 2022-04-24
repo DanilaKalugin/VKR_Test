@@ -15,22 +15,13 @@ namespace VKR_Test
                 {
                     return Color.WhiteSmoke;
                 }
-                else
-                {
-                    return Color.Black;
-                }
+                return Color.Black;
             }
-            else
+            if (colorcomponents.Min() >= 195)
             {
-                if (colorcomponents.Min() >= 195)
-                {
-                    return Color.Black;
-                }
-                else
-                {
-                    return Color.White;
-                }
+                return Color.Black;
             }
+            return Color.White;
         }
     }
 }

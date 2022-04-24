@@ -10,10 +10,10 @@ namespace VKR_Test
 {
     class RandomGenerators
     {
-        private readonly static Random StealingAttempt_RandomGenerator;
-        private readonly static Random BuntAttempt_RandomGenerator;
-        private readonly static Random PitcherSubstitution_RandomGenerator;
-        private readonly static Random BatterSubstitution_RandomGenerator; 
+        private readonly static Random _stealingAttemptRandomGenerator;
+        private readonly static Random _buntAttemptRandomGenerator;
+        private readonly static Random _pitcherSubstitutionRandomGenerator;
+        private readonly static Random _batterSubstitutionRandomGenerator;
 
         public enum BaseNumberForStealing { Second, Third }
         public enum StealingAttempt { Attempt, NoAttempt }
@@ -21,56 +21,53 @@ namespace VKR_Test
         public enum PitcherSubstitution { Substitution, NoSubstitution }
         public enum BatterSubstitution { Substitution, NoSubstitution }
 
-        public static StealingAttempt stealingAttempt_Definition(BaseNumberForStealing baseNumber, GameSituation situation, Team AwayTeam)
+        public static StealingAttempt stealingAttempt_Definition(BaseNumberForStealing baseNumber, GameSituation situation, Team awayTeam)
         {
-            int StealingAttempt_RandomValue = StealingAttempt_RandomGenerator.Next(1, 1000);
-            Team Offense = situation.offense;
-            int BatterNumberComponent = 5 - Math.Abs(Offense == AwayTeam ? situation.BatterNumber_AwayTeam - 3 : situation.BatterNumber_HomeTeam - 3);
-            int SbAttempt_ProbabilityWithAllCoefficients = Offense.StealingBaseProbability + BatterNumberComponent * 2 + situation.balls * 10 - situation.strikes * 15 - situation.strikes * 5;
+            var stealingAttemptRandomValue = _stealingAttemptRandomGenerator.Next(1, 1000);
+            var offense = situation.Offense;
+            var batterNumberComponent = 5 - Math.Abs(offense == awayTeam ? situation.NumberOfBatterFromHomeTeam - 3 : situation.NumberOfBatterFromAwayTeam - 3);
+            var correctedStealingBaseProbability = offense.StealingBaseProbability + batterNumberComponent * 2 + situation.Balls * 10 - situation.Strikes * 15 - situation.Strikes * 5;
 
             if (baseNumber == BaseNumberForStealing.Third)
             {
-                SbAttempt_ProbabilityWithAllCoefficients /= 2;
+                correctedStealingBaseProbability /= 2;
             }
-            if (StealingAttempt_RandomValue <= SbAttempt_ProbabilityWithAllCoefficients)
+
+            if (stealingAttemptRandomValue <= correctedStealingBaseProbability)
             {
                 return StealingAttempt.Attempt;
             }
-            else
-            {
-                return StealingAttempt.NoAttempt;
-            }
+
+            return StealingAttempt.NoAttempt;
         }
 
-        public static BuntAttempt BuntAttempt_Definition(GameSituation situation, Team AwayTeam, List<AtBat> atbats)
+        public static BuntAttempt BuntAttempt_Definition(GameSituation situation, Team awayTeam, List<AtBat> atBats)
         {
-            int StealingAttempt_RandomValue = BuntAttempt_RandomGenerator.Next(1, 1000);
-            Team Offense = situation.offense;
-            int BatterNumberComponent = Offense == AwayTeam ? situation.BatterNumber_AwayTeam : situation.BatterNumber_HomeTeam;
-            int BatterID = situation.offense.BattingLineup[BatterNumberComponent - 1].id;
-            int BuntsCount = atbats.Where(atbat => atbat.AtBatResult == AtBat.AtBatType.SacrificeBunt && atbat.Batter == BatterID).Count();
-            if (StealingAttempt_RandomValue <= BatterNumberComponent * (18 - BatterNumberComponent - BuntsCount) * 5)
+            var stealingAttemptRandomValue = _buntAttemptRandomGenerator.Next(1, 1000);
+            var offense = situation.Offense;
+            var batterNumberComponent = offense == awayTeam ? situation.NumberOfBatterFromHomeTeam : situation.NumberOfBatterFromAwayTeam;
+            var batterID = situation.Offense.BattingLineup[batterNumberComponent - 1].Id;
+            var buntsCount = atBats.Where(atbat => atbat.AtBatResult == AtBat.AtBatType.SacrificeBunt && atbat.Batter == batterID).Count();
+            
+            if (stealingAttemptRandomValue <= batterNumberComponent * (18 - batterNumberComponent - buntsCount) * 5)
             {
                 return BuntAttempt.Attempt;
             }
-            else
-            {
-                return BuntAttempt.NoAttempt;
-            }
+            
+            return BuntAttempt.NoAttempt;
         }
 
         public static PitcherSubstitution PitcherSubstitution_Definition(Pitcher pitcher, List<AtBat> atBats)
         {
-            int PitchingSubstituion_RandomValue = PitcherSubstitution_RandomGenerator.Next(1, 1250);
-            int RunsByThisPitcher = atBats.Where(atBat => atBat.Pitcher == pitcher.id && atBat.AtBatResult == AtBat.AtBatType.Run).Count();
-            if (PitchingSubstituion_RandomValue <= Math.Pow(pitcher.RemainingStamina / 10 - 25, 2) + Math.Pow(RunsByThisPitcher + 1, 2)) 
+            var pitchingSubstituionRandomValue = _pitcherSubstitutionRandomGenerator.Next(1, 1250);
+            var runsByThisPitcher = atBats.Where(atBat => atBat.Pitcher == pitcher.Id && atBat.AtBatResult == AtBat.AtBatType.Run).Count();
+
+            if (pitchingSubstituionRandomValue <= Math.Pow(pitcher.RemainingStamina / 10 - 25, 2) + Math.Pow(runsByThisPitcher + 1, 2))
             {
                 return PitcherSubstitution.Substitution;
             }
-            else
-            {
-                return PitcherSubstitution.NoSubstitution;
-            }
+
+            return PitcherSubstitution.NoSubstitution;
         }
 
         /*public static BatterSubstitution BatterSubstitution_Definition()
@@ -82,9 +79,9 @@ namespace VKR_Test
         static RandomGenerators()
         {
             Random InitializeRandomGenerator = new Random(DateTime.Now.Second);
-            StealingAttempt_RandomGenerator = new Random(23 + InitializeRandomGenerator.Next(1, 1000));
-            BuntAttempt_RandomGenerator = new Random(29 + InitializeRandomGenerator.Next(1, 1000));
-            PitcherSubstitution_RandomGenerator = new Random(31 + InitializeRandomGenerator.Next(1, 1000));
+            _stealingAttemptRandomGenerator = new Random(23 + InitializeRandomGenerator.Next(1, 1000));
+            _buntAttemptRandomGenerator = new Random(29 + InitializeRandomGenerator.Next(1, 1000));
+            _pitcherSubstitutionRandomGenerator = new Random(31 + InitializeRandomGenerator.Next(1, 1000));
         }
     }
 }

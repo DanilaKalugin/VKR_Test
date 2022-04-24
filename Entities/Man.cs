@@ -2,9 +2,9 @@
 
 namespace Entities
 {
-    public class Man
+    abstract public class Man
     {
-        public int id;
+        public int Id;
         public string FirstName;
         public string SecondName;
         public DateTime DateOfBirth;

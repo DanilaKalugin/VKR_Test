@@ -8,95 +8,73 @@ namespace VKR.BLL
 {
     public class PlayerBL
     {
-        private readonly PlayerDAO playerDAO;
-        private readonly TeamsDAO teamsDAO;
+        private readonly PlayerDAO _playerDAO;
+        private readonly TeamsDAO _teamsDAO;
+        private List<Player> _players;
 
         public PlayerBL()
         {
-            teamsDAO = new TeamsDAO();
-            playerDAO = new PlayerDAO();
+            _teamsDAO = new TeamsDAO();
+            _playerDAO = new PlayerDAO();
+            _players = _playerDAO.GetAllPlayers().ToList();
         }
 
-        public List<Batter> GetBattersStats(string TeamFilter = "MLB", string Qualifying = "Qualified Players", string Positions = "")
+        public List<Player> GetBattersStats(string TeamFilter = "MLB", string Qualifying = "Qualified Players", string Positions = "")
         {
             List<string> abbreviations = GetTeamsForFilter(TeamFilter);
-
-            List<Batter> batters = playerDAO.GetBattersStats().ToList();
-            foreach (Batter batter in batters)
-            {
-                batter.PlayerPositions = playerDAO.GetPositionsForThisPlayer(batter.id).ToList();
-            }
-            batters = batters.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
+            var fplayers = _players.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
             if (Positions != "")
             {
                 if (Positions == "OF")
                 {
-                    List<Batter> lf = batters.Where(batter => batter.PlayerPositions.IndexOf("LF") != -1).ToList();
-                    List<Batter> cf = batters.Where(batter => batter.PlayerPositions.IndexOf("CF") != -1).ToList();
-                    List<Batter> rf = batters.Where(batter => batter.PlayerPositions.IndexOf("RF") != -1).ToList();
-                    batters = lf.Union(cf).Union(rf).Distinct().ToList();
+                    List<Player> lf = fplayers.Where(batter => batter.PlayerPositions.IndexOf("LF") != -1).ToList();
+                    List<Player> cf = fplayers.Where(batter => batter.PlayerPositions.IndexOf("CF") != -1).ToList();
+                    List<Player> rf = fplayers.Where(batter => batter.PlayerPositions.IndexOf("RF") != -1).ToList();
+                    fplayers = lf.Union(cf).Union(rf).Distinct().ToList();
                 }
                 else
                 {
-                    batters = batters.Where(player => player.PlayerPositions.IndexOf(Positions) != -1).ToList();
+                    fplayers = fplayers.Where(player => player.PlayerPositions.IndexOf(Positions) != -1).ToList();
                 }
             }
             if (Qualifying == "Qualified Players")
             {
-                batters = batters.Where(player => (double)player.PA / player.TGP >= 3.1 && player.Team != "").ToList();
+                fplayers = fplayers.Where(player => (double)player.battingStats.PA / player.battingStats.TGP >= 3.1 && player.Team != "").ToList();
             }
             else if (Qualifying == "Active Players")
             {
-                batters = batters.Where(player => player.InActiveRoster).ToList();
+                fplayers = fplayers.Where(player => player.InActiveRoster).ToList();
             }
-            return batters;
+            return fplayers;
         }
 
-        public List<Batter> GetSortedBattersStatsDesc<Tkey>(List<Batter> batters, Func<Batter, Tkey> key)
-        {
-            return batters.OrderByDescending(key).ToList();
-        }
+        public List<Player> GetSortedBattersStatsDesc<Tkey>(List<Player> batters, Func<Player, Tkey> key) => batters.OrderByDescending(key).ToList();
 
-        public List<Batter> GetSortedBattersStats<Tkey>(List<Batter> batters, Func<Batter, Tkey> key)
-        {
-            return batters.OrderBy(key).ToList();
-        }
+        public List<Player> GetSortedBattersStats<Tkey>(List<Player> batters, Func<Player, Tkey> key) => batters.OrderBy(key).ToList();
 
-        public List<Pitcher> GetPitchersStats(string Qualifying = "Qualified Players", string TeamFilter = "MLB")
+        public List<Player> GetPitchersStats(string Qualifying = "Qualified Players", string TeamFilter = "MLB")
         {
             List<string> abbreviations = GetTeamsForFilter(TeamFilter);
-
-            List<Pitcher> pitchers = playerDAO.GetPitchersStats().ToList();
-            foreach (Pitcher pitcher in pitchers)
-            {
-                pitcher.PlayerPositions = playerDAO.GetPositionsForThisPlayer(pitcher.id).ToList();
-            }
-            pitchers = pitchers.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
+            var fplayers = _players.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
             if (Qualifying == "Qualified Players")
             {
-                pitchers = pitchers.Where(player => player.IP / player.TGP >= 1.1 && player.Team != "").ToList();
+                fplayers = fplayers.Where(player => player.pitchingStats.IP / player.pitchingStats.TGP >= 1.1 && player.Team != "").ToList();
             }
             else if (Qualifying == "Active Players")
             {
-                pitchers = pitchers.Where(player => player.InActiveRoster).ToList();
+                fplayers = fplayers.Where(player => player.InActiveRoster && player.PlayerPositions.IndexOf("P") != -1).ToList();
             }
-            return pitchers;
+            return fplayers;
         }
 
-        public List<Pitcher> GetSortedPitchersStatsDesc<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)
-        {
-            return pitchers.OrderByDescending(key).ToList();
-        }
+        public List<Player> GetSortedPitchersStatsDesc<Tkey>(List<Player> pitchers, Func<Player, Tkey> key) => pitchers.OrderByDescending(key).ToList();
 
-        public List<Pitcher> GetSortedPitchersStats<Tkey>(List<Pitcher> pitchers, Func<Pitcher, Tkey> key)
-        {
-            return pitchers.OrderBy(key).ToList();
-        }
+        public List<Player> GetSortedPitchersStats<Tkey>(List<Player> pitchers, Func<Player, Tkey> key) => pitchers.OrderBy(key).ToList();
 
         private List<string> GetTeamsForFilter(string TeamFilter)
         {
             List<string> teamsabbreviations = new List<string>();
-            List<Team> teams = teamsDAO.GetList().ToList();
+            List<Team> teams = _teamsDAO.GetList().ToList();
             if (TeamFilter == "MLB")
             {
                 teamsabbreviations.AddRange(teams.Select(team => team.TeamAbbreviation).ToList());
@@ -115,17 +93,17 @@ namespace VKR.BLL
             List<PlayerInLineup> ungroupedPlayers;
             if (rosterType == "GetStartingLineups")
             {
-                ungroupedPlayers = playerDAO.GetStartingLineups().ToList();
+                ungroupedPlayers = _playerDAO.GetStartingLineups().ToList();
             }
             else
             {
-                ungroupedPlayers = playerDAO.GetRoster(rosterType).ToList();
+                ungroupedPlayers = _playerDAO.GetRoster(rosterType).ToList();
             }
             for (int i = 0; i < ungroupedPlayers.Count; i++)
             {
-                ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();
+                ungroupedPlayers[i].PlayerPositions = _playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].Id).ToList();
             }
-            List<Team> Teams = teamsDAO.GetList().ToList();
+            List<Team> Teams = _teamsDAO.GetList().ToList();
             List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
 
             List<List<List<PlayerInLineup>>> groupedPlayers = new List<List<List<PlayerInLineup>>>();
@@ -142,10 +120,10 @@ namespace VKR.BLL
 
         public List<List<List<PlayerInLineup>>> GetFreeAgents()
         {
-            List<PlayerInLineup> ungroupedPlayers = playerDAO.GetRoster("GetFreeAgents").ToList();
+            List<PlayerInLineup> ungroupedPlayers = _playerDAO.GetRoster("GetFreeAgents").ToList();
             for (int i = 0; i < ungroupedPlayers.Count; i++)
             {
-                ungroupedPlayers[i].PlayerPositions = playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].id).ToList();
+                ungroupedPlayers[i].PlayerPositions = _playerDAO.GetPositionsForThisPlayer(ungroupedPlayers[i].Id).ToList();
             }
             List<int> Lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
 
@@ -158,24 +136,63 @@ namespace VKR.BLL
             return groupedPlayers;
         }
 
-        public Player GetPlayerByID(int code)
+        public Player GetPlayerByCode(int code)
         {
-            return playerDAO.GetPlayerNameByID(code).First();
-        }
-
-        public Batter GetBatterByCode(int code)
-        {
-            return playerDAO.GetBatterByCode(code).First();
-        }
-
-        public Pitcher GetPitcherByCode(int code)
-        {
-            return playerDAO.GetPitcherByCode(code).First();
+            return _playerDAO.GetPlayerByCode(code).First();
         }
 
         public List<PlayerPosition> GetPlayerPositions()
         {
-            return playerDAO.GetPlayerPositions().ToList();
+            return _playerDAO.GetPlayerPositions().ToList();
+        }
+
+        public List<Batter> GetCurrentLineupForThisMatch(string Team, int Match)
+        {
+            return _playerDAO.GetCurrentLineupForThisMatch(Team, Match).ToList();
+        }
+
+        public void UpdateStatsForThisPitcher(Pitcher pitcher, Match match)
+        {
+            pitcher.pitchingStats = _playerDAO.GetPitchingStatsByCode(pitcher).FirstOrDefault();
+        }
+
+        public Pitcher GetStartingPitcherForThisTeam(Team team, Match match)
+        {
+            var pitcher = _playerDAO.GetStartingPitcherForThisTeam(team, match).First();
+            pitcher.RemainingStamina = _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id);
+            return pitcher;
+        }
+
+        public List<Pitcher> GetAvailablePitchers(Match match, Team team)
+        {
+            return _playerDAO.GetAvailablePitchers(match, team).ToList();
+        }
+
+        public void SubstitutePitcher(Match match, Team team, Pitcher pitcher)
+        {
+            _teamsDAO.SubstitutePitcher(match, team, pitcher);
+        }
+
+        public List<Batter> GetAvailableBatters(Match match, Team team, Batter batter)
+        {
+            return _teamsDAO.GetAvailableBatters(match, team, batter).ToList();
+        }
+
+        public void SubstituteBatter(Match match, Team team, Batter oldBatter, Batter newBatter)
+        {
+            _teamsDAO.SubstituteBatter(match, team, oldBatter, newBatter);
+        }
+
+        public int ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Pitcher pitcher)
+        {
+            return _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id);
+        }
+
+        public Pitcher GetPitcherByCode(int id)
+        {
+            var pitcher = new Pitcher(_playerDAO.GetPlayerByCode(id).First());
+            pitcher.RemainingStamina = _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id);
+            return pitcher;
         }
     }
 }

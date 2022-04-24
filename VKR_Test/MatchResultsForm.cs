@@ -10,98 +10,94 @@ namespace VKR_Test
 {
     public partial class MatchResultsForm : Form
     {
-        private readonly MatchBL matchBL;
-        private readonly TeamsBL teamsBL;
-        IList<Team> teams;
-        List<Match> matches;
+        private readonly MatchBL _matchBL;
+        private readonly TeamsBL _teamsBL;
+        private readonly List<Team> _teams;
+        private List<Match> _matches;
         public enum TableType { Results, Schedule };
-        private TableType tableType;
+        private TableType _tableType;
 
-
-        public MatchResultsForm(TableType _tableType)
+        private MatchResultsForm()
         {
             InitializeComponent();
-            tableType = _tableType;
-            matchBL = new MatchBL();
-            teamsBL = new TeamsBL();
-            teams = teamsBL.GetAllTeams().ToList();
-            List<string> teamsInComboBox = teams.Select(team => team.TeamTitle).ToList();
+            _matchBL = new MatchBL();
+            _teamsBL = new TeamsBL();
+        }
+
+
+
+        public MatchResultsForm(TableType tableType) : this()
+        {
+            _tableType = tableType;
+            _teams = _teamsBL.GetAllTeams().ToList();
+            List<string> teamsInComboBox = _teams.Select(team => team.TeamTitle).ToList();
             cbTeam.DataSource = teamsInComboBox;
             panel2.Visible = false;
         }
 
-        public MatchResultsForm(DateTime dateTime, bool IsCurrentDayResults, TableType _tableType)
+        public MatchResultsForm(DateTime dateTime, bool IsCurrentDayResults, TableType tableType)
         {
-            InitializeComponent();
-            tableType = _tableType;
-            matchBL = new MatchBL();
-            teamsBL = new TeamsBL();
+            _tableType = tableType;
             dtpMatchDate.Value = dateTime;
-            FillResultsTable(dgvMatches, matches);
+            FillResultsTable(dgvMatches, _matches);
             panel1.Visible = false;
             panel2.Visible = !IsCurrentDayResults;
         }
 
-        public MatchResultsForm(Team homeTeam, Team AwayTeam, TableType _tableType)
+        public MatchResultsForm(Team homeTeam, Team AwayTeam, TableType tableType)
         {
-            InitializeComponent();
-            tableType = _tableType;
-            matchBL = new MatchBL();
-            teamsBL = new TeamsBL();
-            if (tableType == TableType.Results)
+            _tableType = tableType;
+            if (_tableType == TableType.Results)
             {
-                matches = matchBL.GetResultsForallMatches().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
+                _matches = _matchBL.GetResultsForallMatches().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
                                                                            (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).
                                                                            OrderBy(match => match.MatchDate).ToList();
             }
             else
             {
-                matches = matchBL.GetSchedule().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
+                _matches = _matchBL.GetSchedule().Where(match => (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
                                                                (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).
                                                                OrderBy(match => match.MatchDate).ToList();
             }
-            FillResultsTable(dgvMatches, matches);
+            FillResultsTable(dgvMatches, _matches);
             panel1.Visible = false;
             panel2.Visible = false;
         }
 
-        public MatchResultsForm(Team team1, TableType _tableType)
+        public MatchResultsForm(Team team1, TableType tableType)
         {
-            InitializeComponent();
-            tableType = _tableType;
-            matchBL = new MatchBL();
-            teamsBL = new TeamsBL();
-            if (tableType == TableType.Results)
+            _tableType = tableType;
+            if (_tableType == TableType.Results)
             {
-                matches = matchBL.GetResultsForallMatches().Where(match => match.AwayTeamAbbreviation == team1.TeamAbbreviation || match.HomeTeamAbbreviation == team1.TeamAbbreviation).OrderByDescending(match => match.MatchDate).Take(10).ToList();
+                _matches = _matchBL.GetResultsForallMatches().Where(match => match.AwayTeamAbbreviation == team1.TeamAbbreviation || match.HomeTeamAbbreviation == team1.TeamAbbreviation).OrderByDescending(match => match.MatchDate).Take(10).ToList();
             }
             else
             {
-                matches = matchBL.GetSchedule().Where(match => match.AwayTeamAbbreviation == team1.TeamAbbreviation || match.HomeTeamAbbreviation == team1.TeamAbbreviation).OrderBy(match => match.MatchDate).Take(10).ToList();
+                _matches = _matchBL.GetSchedule().Where(match => match.AwayTeamAbbreviation == team1.TeamAbbreviation || match.HomeTeamAbbreviation == team1.TeamAbbreviation).OrderBy(match => match.MatchDate).Take(10).ToList();
             }
-            FillResultsTable(dgvMatches, matches);
+            FillResultsTable(dgvMatches, _matches);
             panel1.Visible = false;
             panel2.Visible = false;
         }
 
         private void MatchResultsForm_Load(object sender, EventArgs e)
         {
-            lbHeader.Text = tableType == TableType.Results ? "MATCH RESULTS" : "SCHEDULE";
+            lbHeader.Text = _tableType == TableType.Results ? "MATCH RESULTS" : "SCHEDULE";
         }
 
         private void cbTeam_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (tableType == TableType.Results)
+            if (_tableType == TableType.Results)
             {
-                matches = matchBL.GetResultsForallMatches(teams[cbTeam.SelectedIndex].TeamAbbreviation);
-                matches = matches.OrderByDescending(match => match.MatchDate).ToList();
+                _matches = _matchBL.GetResultsForallMatches(_teams[cbTeam.SelectedIndex].TeamAbbreviation);
+                _matches = _matches.OrderByDescending(match => match.MatchDate).ToList();
             }
             else
             {
-                matches = matchBL.GetSchedule(teams[cbTeam.SelectedIndex].TeamAbbreviation);
-                matches = matches.OrderBy(match => match.MatchDate).ToList();
+                _matches = _matchBL.GetSchedule(_teams[cbTeam.SelectedIndex].TeamAbbreviation);
+                _matches = _matches.OrderBy(match => match.MatchDate).ToList();
             }
-            FillResultsTable(dgvMatches, matches);
+            FillResultsTable(dgvMatches, _matches);
         }
 
         private void FillResultsTable(DataGridView dgv, List<Match> matches)
@@ -124,21 +120,21 @@ namespace VKR_Test
                                        match.HomeTeamAbbreviation,
                                        Image.FromFile($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
                                        match.MatchStatus,
-                                       $"{match.stadium.StadiumTitle} - {match.stadium.stadiumLocation}");
+                                       $"{match.Stadium.StadiumTitle} - {match.Stadium.StadiumLocation}");
             }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            if (tableType == TableType.Results)
+            if (_tableType == TableType.Results)
             {
-                matches = matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dtpMatchDate.Value).ToList();
+                _matches = _matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dtpMatchDate.Value).ToList();
             }
             else
             {
-                matches = matchBL.GetSchedule().Where(match => match.MatchDate == dtpMatchDate.Value).ToList();
+                _matches = _matchBL.GetSchedule().Where(match => match.MatchDate == dtpMatchDate.Value).ToList();
             }
-            FillResultsTable(dgvMatches, matches);
+            FillResultsTable(dgvMatches, _matches);
         }
     }
 }

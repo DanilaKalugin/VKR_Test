@@ -8,35 +8,19 @@ namespace Entities
         public string Position;
         public int NumberInLineup;
 
-        public PlayerInLineup(int _id, string _FirstName, string _SecondName, DateTime dob, string _PlaceOfBirth, int Number, int _LineupType, string _Team, int _NumberInLineup, string _b, string _t)
+        public PlayerInLineup(int id, string firstName, string secondName, DateTime dob, string placeOfBirth, int number, int lineupType, string team, int numberInLineup, string b, string t, BattingStats battingStats, PitchingStats pitchingStats) 
+            : base (id, firstName, secondName, number, placeOfBirth, dob, b, t, team, true, battingStats, pitchingStats)
         {
-            id = _id;
-            FirstName = _FirstName;
-            SecondName = _SecondName;
-            DateOfBirth = dob;
-            PlaceOfBirth = _PlaceOfBirth;
-            PlayerNumber = Number;
-            LineupType = _LineupType;
-            Team = _Team;
-            NumberInLineup = _NumberInLineup;
-            BattingHand = _b;
-            Pitchinghand = _t;
+            LineupType = lineupType;
+            NumberInLineup = numberInLineup;
         }
 
-        public PlayerInLineup(int _id, string _FirstName, string _SecondName, DateTime dob, string _PlaceOfBirth, int Number, int _LineupType, string _Team, string _Position, int _NumberInLineup, string _b, string _t)
+        public PlayerInLineup(int id, string firstName, string secondName, DateTime dob, string placeOfBirth, int number, int lineupType, string team, string position, int numberInLineup, string b, string t, BattingStats battingStats, PitchingStats pitchingStats) 
+            : base (id, firstName, secondName, number, placeOfBirth, dob, b, t, team, true, battingStats, pitchingStats)
         {
-            id = _id;
-            FirstName = _FirstName;
-            SecondName = _SecondName;
-            DateOfBirth = dob;
-            PlaceOfBirth = _PlaceOfBirth;
-            PlayerNumber = Number;
-            LineupType = _LineupType;
-            Team = _Team;
-            Position = _Position;
-            NumberInLineup = _NumberInLineup;
-            BattingHand = _b;
-            Pitchinghand = _t;
+            LineupType = lineupType;
+            Position = position;
+            NumberInLineup = numberInLineup;
         }
     }
 }

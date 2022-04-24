@@ -9,7 +9,7 @@
         public bool IsQualityStart;
         public bool IsCompleteGame;
         public bool IsShutout;
-        public MatchResultForPitcher matchResult;
+        public MatchResultForPitcher MatchResult;
 
         public PitcherResults(int Pitcher, string Team, int Match)
         {
@@ -19,7 +19,7 @@
             IsQualityStart = false;
             IsCompleteGame = false;
             IsShutout = false; 
-            matchResult = MatchResultForPitcher.NoDecision;
+            MatchResult = MatchResultForPitcher.NoDecision;
         }
     }
 }

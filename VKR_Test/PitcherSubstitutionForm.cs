@@ -17,16 +17,16 @@ namespace VKR_Test
 {
     public partial class PitcherSubstitutionForm : Form
     {
-        private Team CurrentTeam;
-        List<Pitcher> Pitchers;
-        int playerIndex;
-        List<ProgressBar> progressBars;
-        public Pitcher newPitcherForThisTeam;
+        private Team _currentTeam;
+        private List<Pitcher> _pitchers;
+        private int _playerIndex;
+        private List<ProgressBar> _progressBars;
+        public Pitcher NewPitcherForThisTeam;
 
         public PitcherSubstitutionForm(Team defense, List<Pitcher> pitchers)
         {
             InitializeComponent();
-            progressBars = new List<ProgressBar>
+            _progressBars = new List<ProgressBar>
             {
                 pb_stamina1,
                 pb_stamina2,
@@ -34,8 +34,8 @@ namespace VKR_Test
                 pb_stamina4,
                 pb_stamina5
             };
-            CurrentTeam = defense;
-            Pitchers = pitchers;
+            _currentTeam = defense;
+            _pitchers = pitchers;
 
             vScrollBar1.Maximum = pitchers.Count > 5 ? pitchers.Count - 5 : 0;
             lbTeamTitle.Text = defense.TeamTitle.ToUpper();
@@ -51,21 +51,21 @@ namespace VKR_Test
 
         private void DoubleClickOnTableLayoutPanel(object sender, MouseEventArgs e)
         {
-            int RowNumber = tableLayoutPanel1.GetRow((Control)sender);
-            if (RowNumber > 0 && RowNumber <= Pitchers.Count)
+            int rowNumber = tableLayoutPanel1.GetRow((Control)sender);
+            if (rowNumber > 0 && rowNumber <= _pitchers.Count)
             {
-                newPitcherForThisTeam = Pitchers[playerIndex + RowNumber - 1];
+                NewPitcherForThisTeam = _pitchers[_playerIndex + rowNumber - 1];
                 DialogResult = DialogResult.OK;
             }
         }
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
         {
-            foreach (ProgressBar pb in progressBars)
+            foreach (ProgressBar pb in _progressBars)
             {
-                pb.MainColor = CurrentTeam.TeamColorForThisMatch;
+                pb.MainColor = _currentTeam.TeamColorForThisMatch;
             }
-            panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{CurrentTeam.TeamAbbreviation}.png");
+            panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{_currentTeam.TeamAbbreviation}.png");
 
             PlayersChaging();
         }
@@ -73,20 +73,20 @@ namespace VKR_Test
 
         private void RowChanging(int step, Label PlayerName, Label playerERA, Label playerSO, ProgressBar progressBar, PictureBox pb)
         {
-            if (playerIndex + step < Pitchers.Count)
+            if (_playerIndex + step < _pitchers.Count)
             {
-                if (File.Exists($"PlayerPhotos/Player{Pitchers[playerIndex + step].id:0000}.png"))
+                if (File.Exists($"PlayerPhotos/Player{_pitchers[_playerIndex + step].Id:0000}.png"))
                 {
-                    pb.Image = Image.FromFile($"PlayerPhotos/Player{Pitchers[playerIndex + step].id:0000}.png");
+                    pb.Image = Image.FromFile($"PlayerPhotos/Player{_pitchers[_playerIndex + step].Id:0000}.png");
                 }
                 else
                 {
                     pb.Image = null;
                 }
-                PlayerName.Text = Pitchers[playerIndex + step].FullName;
-                playerERA.Text = $"{Pitchers[playerIndex + step].ERA.ToString("0.00", new CultureInfo("en-US"))}";
-                playerSO.Text = Pitchers[playerIndex + step].Strikeouts.ToString();
-                progressBar.Value = (int)Pitchers[playerIndex + step].RemainingStamina;
+                PlayerName.Text = _pitchers[_playerIndex + step].FullName;
+                playerERA.Text = $"{_pitchers[_playerIndex + step].pitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"))}";
+                playerSO.Text = _pitchers[_playerIndex + step].pitchingStats.Strikeouts.ToString();
+                progressBar.Value = (int)_pitchers[_playerIndex + step].RemainingStamina;
                 progressBar.Visible = true;
             }
             else
@@ -102,17 +102,17 @@ namespace VKR_Test
 
         private void vScrollBar1_ValueChanged(object sender, EventArgs e)
         {
-            playerIndex = vScrollBar1.Value;
+            _playerIndex = vScrollBar1.Value;
             PlayersChaging();
         }
 
         private void PlayersChaging()
         {
-            RowChanging(0, label1, label6, label11, progressBars[0], pictureBox1);
-            RowChanging(1, label2, label7, label12, progressBars[1], pictureBox2);
-            RowChanging(2, label3, label8, label13, progressBars[2], pictureBox3);
-            RowChanging(3, label4, label9, label14, progressBars[3], pictureBox4);
-            RowChanging(4, label5, label10, label15, progressBars[4], pictureBox5);
+            RowChanging(0, label1, label6, label11, _progressBars[0], pictureBox1);
+            RowChanging(1, label2, label7, label12, _progressBars[1], pictureBox2);
+            RowChanging(2, label3, label8, label13, _progressBars[2], pictureBox3);
+            RowChanging(3, label4, label9, label14, _progressBars[3], pictureBox4);
+            RowChanging(4, label5, label10, label15, _progressBars[4], pictureBox5);
         }
 
         public void ClickOnTableLayoutPanel(object sender, MouseEventArgs e)
@@ -120,12 +120,12 @@ namespace VKR_Test
             int RowNumber = tableLayoutPanel1.GetRow((Control)sender);
             for (int i = 1; i < tableLayoutPanel1.RowCount; i++)
             {
-                if (i == RowNumber && RowNumber <= Pitchers.Count)
+                if (i == RowNumber && RowNumber <= _pitchers.Count)
                 {
                     for (int j = 1; j < tableLayoutPanel1.ColumnCount - 1; j++)
                     {
-                        tableLayoutPanel1.GetControlFromPosition(j, i).BackColor = CurrentTeam.TeamColorForThisMatch;
-                        tableLayoutPanel1.GetControlFromPosition(j, i).ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(CurrentTeam.TeamColorForThisMatch, false);
+                        tableLayoutPanel1.GetControlFromPosition(j, i).BackColor = _currentTeam.TeamColorForThisMatch;
+                        tableLayoutPanel1.GetControlFromPosition(j, i).ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(_currentTeam.TeamColorForThisMatch, false);
                     }
                 }
                 else

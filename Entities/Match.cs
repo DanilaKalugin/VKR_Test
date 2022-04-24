@@ -8,10 +8,10 @@ namespace Entities
         public int MatchID;
         public Team HomeTeam;
         public Team AwayTeam;
-        public Stadium stadium;
+        public Stadium Stadium;
         public bool DHRule;
-        public List<GameSituation> gameSituations;
-        public List<AtBat> atBats;
+        public List<GameSituation> GameSituations;
+        public List<AtBat> AtBats;
         public int HomeTeamRuns;
         public int AwayTeamRuns;
         public int InningNumber;
@@ -21,6 +21,7 @@ namespace Entities
         public DateTime MatchDate;
         public bool IsQuickMatch;
         public int MatchLength;
+
         public string MatchStatus
         {
             get
@@ -50,18 +51,19 @@ namespace Entities
                 }
             }
         }
+
         public string MatchWinner;
 
         public List<string> GetMatchLeaderAfterEachPitch()
         {
             List<string> leaderAfterEachAtBat = new List<string>();
-            for (int i = 0; i < gameSituations.Count; i++)
+            for (int i = 0; i < GameSituations.Count; i++)
             {
-                if (gameSituations[i].AwayTeamRuns > gameSituations[i].HomeTeamRuns)
+                if (GameSituations[i].AwayTeamRuns > GameSituations[i].HomeTeamRuns)
                 {
                     leaderAfterEachAtBat.Add(AwayTeam.TeamAbbreviation);
                 }
-                else if (gameSituations[i].AwayTeamRuns < gameSituations[i].HomeTeamRuns)
+                else if (GameSituations[i].AwayTeamRuns < GameSituations[i].HomeTeamRuns)
                 {
                     leaderAfterEachAtBat.Add(HomeTeam.TeamAbbreviation);
                 }
@@ -70,56 +72,56 @@ namespace Entities
             return leaderAfterEachAtBat;
         }
 
-        public Match(int _id, Team _homeTeam, Team _awayTeam, Stadium _stadium, bool _dh, DateTime date)
+        public Match(int id, Team homeTeam, Team awayTeam, Stadium stadium, bool dh, DateTime date)
         {
-            MatchID = _id;
-            HomeTeam = _homeTeam;
-            AwayTeam = _awayTeam;
-            stadium = _stadium;
-            DHRule = _dh;
-            gameSituations = new List<GameSituation>
+            MatchID = id;
+            HomeTeam = homeTeam;
+            AwayTeam = awayTeam;
+            Stadium = stadium;
+            DHRule = dh;
+            GameSituations = new List<GameSituation>
             {
                 new GameSituation(AwayTeam)
             };
-            atBats = new List<AtBat>();
+            AtBats = new List<AtBat>();
             MatchDate = date;
         }
 
-        public Match(int _id, string _AwayTeam, int _AwayRuns, int _homeRuns, string _homeTeam, int _StadiumNumber, string Winner, int Inning, DateTime date)
+        public Match(int id, string AwayTeam, int AwayRuns, int homeRuns, string homeTeam, int stadiumNumber, string winner, int inning, DateTime date)
         {
-            MatchID = _id;
-            AwayTeamAbbreviation = _AwayTeam;
-            AwayTeamRuns = _AwayRuns;
-            HomeTeamRuns = _homeRuns;
-            HomeTeamAbbreviation = _homeTeam;
-            StadiumNumber = _StadiumNumber;
-            MatchWinner = Winner;
-            InningNumber = Inning;
+            MatchID = id;
+            AwayTeamAbbreviation = AwayTeam;
+            AwayTeamRuns = AwayRuns;
+            HomeTeamRuns = homeRuns;
+            HomeTeamAbbreviation = homeTeam;
+            StadiumNumber = stadiumNumber;
+            MatchWinner = winner;
+            InningNumber = inning;
             MatchDate = date;
         }
 
-        public Match(int _id, string _AwayTeam, string _homeTeam, DateTime date)
+        public Match(int id, string awayTeam, string homeTeam, DateTime date)
         {
-            MatchID = _id;
-            AwayTeamAbbreviation = _AwayTeam;
-            HomeTeamAbbreviation = _homeTeam;
+            MatchID = id;
+            AwayTeamAbbreviation = awayTeam;
+            HomeTeamAbbreviation = homeTeam;
             MatchDate = date;
         }
 
-        public Match(int _id, string _AwayTeam, string _homeTeam, int _StadiumNumber, DateTime date)
+        public Match(int id, string AwayTeam, string homeTeam, int stadiumNumber, DateTime date)
         {
-            MatchID = _id;
-            AwayTeamAbbreviation = _AwayTeam;
-            HomeTeamAbbreviation = _homeTeam;
+            MatchID = id;
+            AwayTeamAbbreviation = AwayTeam;
+            HomeTeamAbbreviation = homeTeam;
             MatchDate = date;
-            StadiumNumber = _StadiumNumber;
+            StadiumNumber = stadiumNumber;
         }
 
-        public Match(DateTime date, bool QuickMatch)
+        public Match(DateTime date, bool quickMatch)
         {
             MatchDate = date;
-            IsQuickMatch = QuickMatch;
-            atBats = new List<AtBat>();
+            IsQuickMatch = quickMatch;
+            AtBats = new List<AtBat>();
         }
     }
 }

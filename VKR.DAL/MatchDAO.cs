@@ -8,10 +8,7 @@ namespace VKR.DAL
 {
     public class MatchDAO : DAO
     {
-        public MatchDAO()
-        {
-            InitConnection();
-        }
+        public MatchDAO() : base() { }
 
         public void AddMatchResultForThisPitcher(PitcherResults pitcherResults)
         {
@@ -33,7 +30,7 @@ namespace VKR.DAL
                 command.Parameters[3].Value = pitcherResults.IsQualityStart;
                 command.Parameters[4].Value = pitcherResults.IsCompleteGame;
                 command.Parameters[5].Value = pitcherResults.IsShutout;
-                command.Parameters[6].Value = (int)pitcherResults.matchResult;
+                command.Parameters[6].Value = (int)pitcherResults.MatchResult;
 
                 var result = command.ExecuteNonQuery();
             }
@@ -86,7 +83,7 @@ namespace VKR.DAL
                 command.Prepare();
                 command.Parameters[0].Value = newMatch.AwayTeam.TeamAbbreviation;
                 command.Parameters[1].Value = newMatch.HomeTeam.TeamAbbreviation;
-                command.Parameters[2].Value = newMatch.stadium.stadiumId;
+                command.Parameters[2].Value = newMatch.Stadium.StadiumId;
                 command.Parameters[3].Value = newMatch.DHRule;
                 command.Parameters[4].Value = newMatch.MatchDate;
                 command.Parameters[5].Value = newMatch.IsQuickMatch;
@@ -130,7 +127,7 @@ namespace VKR.DAL
                 command.Parameters[3].Value = atbat.AtBatResult + 1;
                 command.Parameters[4].Value = atbat.Defense;
                 command.Parameters[5].Value = atbat.Pitcher;
-                command.Parameters[6].Value = atbat.outs;
+                command.Parameters[6].Value = atbat.Outs;
                 command.Parameters[7].Value = atbat.RBI;
                 command.Parameters[8].Value = atbat.Inning;
 

@@ -10,25 +10,25 @@ namespace VKR_Test
 {
     public partial class TeamsSelectForm : Form
     {
-        private readonly TeamsBL teamsBL;
-        private readonly MatchBL matchBL;
-        List<Team> teams;
-        List<Match> matches;
-        int CurrentHomeColor;
-        int CurrentAwayColor;
-        int AwayTeamNumber;
-        int HomeTeamNumber;
+        private readonly TeamsBL _teamsBL;
+        private readonly MatchBL _matchBL;
+        private readonly List<Team> _teams;
+        private List<Match> _matches;
+        private int _currentHomeColor;
+        private int _currentAwayColor;
+        private int _awayTeamNumber;
+        private int _homeTeamNumber;
+        private Match _newMatch;
+        private int _matchNumber;
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
-        Match newMatch;
-        int matchNumber = 0;
 
         public TeamsSelectForm(Match match)
         {
             InitializeComponent();
-            newMatch = match;
-            teamsBL = new TeamsBL();
-            matchBL = new MatchBL();
+            _newMatch = match;
+            _teamsBL = new TeamsBL();
+            _matchBL = new MatchBL();
 
             btnDecreaseAwayTeamNumberBy1.Visible = match.IsQuickMatch;
             btnIncreaseAwayTeamNumberBy1.Visible = match.IsQuickMatch;
@@ -38,25 +38,25 @@ namespace VKR_Test
             AwayTeamBalance.Visible = !match.IsQuickMatch;
             HomeTeamBalance.Visible = !match.IsQuickMatch;
 
-            matches = matchBL.GetMatchesForThisDay(Program.MatchDate);
-            teams = teamsBL.GetAllTeams().ToList();
+            _matches = _matchBL.GetMatchesForThisDay(Program.MatchDate);
+            _teams = _teamsBL.GetAllTeams().ToList();
 
             if (match.IsQuickMatch)
             {
-                AwayTeamNumber = 0;
-                HomeTeamNumber = 1;
+                _awayTeamNumber = 0;
+                _homeTeamNumber = 1;
             }
             else
             {
-                matchNumber = 0;
-                AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].AwayTeamAbbreviation);
-                HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
+                _matchNumber = 0;
+                _awayTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].AwayTeamAbbreviation);
+                _homeTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].HomeTeamAbbreviation);
                 dataGridView1.Rows.Clear();
-                for (int i = 0; i < matches.Count; i++)
-                {
-                    dataGridView1.Rows.Add(Image.FromFile($"TeamLogosForSubstitution/{matches[i].AwayTeamAbbreviation}.png"), Image.FromFile($"TeamLogosForSubstitution/{matches[i].HomeTeamAbbreviation}.png"));
-                }
 
+                for (int i = 0; i < _matches.Count; i++)
+                {
+                    dataGridView1.Rows.Add(Image.FromFile($"TeamLogosForSubstitution/{_matches[i].AwayTeamAbbreviation}.png"), Image.FromFile($"TeamLogosForSubstitution/{_matches[i].HomeTeamAbbreviation}.png"));
+                }
             }
             btnSwap.Visible = match.IsQuickMatch;
             dataGridView1.Visible = !match.IsQuickMatch;
@@ -64,26 +64,26 @@ namespace VKR_Test
 
         private void TeamsSelectForm_Load(object sender, EventArgs e)
         {
-            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
-            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
+            DisplayTeam(_awayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, _currentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(_homeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, _currentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
         private void DisplayTeam(int TeamNumber, NumericUpDown teamColorsForMatch, Label teamCity, Label teamTitle, Panel teamLogo, int teamColorNumber, Label TeamColorHeader,
                                  CircularProgressBar.CircularProgressBar Overall, CircularProgressBar.CircularProgressBar Defense, CircularProgressBar.CircularProgressBar Offense,
                                  Button increaseNumber, Button DecreaseNumber, Label Balance)
         {
-            teamColorsForMatch.Maximum = teams[TeamNumber].TeamColor.Count - 1;
-            teamCity.Text = teams[TeamNumber].TeamCity.ToUpper();
-            teamTitle.Text = teams[TeamNumber].TeamTitle.ToUpper();
-            teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{teams[TeamNumber].TeamAbbreviation}.png");
-            Balance.Text = $"{teams[TeamNumber].Wins}-{teams[TeamNumber].Losses}";
+            teamColorsForMatch.Maximum = _teams[TeamNumber].TeamColor.Count - 1;
+            teamCity.Text = _teams[TeamNumber].TeamCity.ToUpper();
+            teamTitle.Text = _teams[TeamNumber].TeamTitle.ToUpper();
+            teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{_teams[TeamNumber].TeamAbbreviation}.png");
+            Balance.Text = $"{_teams[TeamNumber].Wins}-{_teams[TeamNumber].Losses}";
 
             teamColorNumber = 0;
             teamColorsForMatch.Value = 0;
 
-            RatingChanged(Overall, teams[TeamNumber].OverallRating, teams[TeamNumber].TeamColor[0]);
-            RatingChanged(Defense, teams[TeamNumber].NormalizedDefensiveRating, teams[TeamNumber].TeamColor[0]);
-            RatingChanged(Offense, teams[TeamNumber].NormalizedOffensiveRating, teams[TeamNumber].TeamColor[0]);
+            RatingChanged(Overall, _teams[TeamNumber].OverallRating, _teams[TeamNumber].TeamColor[0]);
+            RatingChanged(Defense, _teams[TeamNumber].NormalizedDefensiveRating, _teams[TeamNumber].TeamColor[0]);
+            RatingChanged(Offense, _teams[TeamNumber].NormalizedOffensiveRating, _teams[TeamNumber].TeamColor[0]);
             CurrentTeamColorChanged(TeamNumber, teamColorNumber, teamCity, teamTitle, TeamColorHeader, increaseNumber, DecreaseNumber);
         }
 
@@ -97,62 +97,62 @@ namespace VKR_Test
         private void CurrentTeamColorChanged(int teamNumber, int teamColorNumber, Label teamCity, Label teamTitle, Label TeamColorHeader, Button increaseBtn, Button decreaseBtn)
         {
             TeamColorHeader.Text = $"Color #{teamColorNumber + 1}";
-            teamCity.BackColor = teams[teamNumber].TeamColor[teamColorNumber];
-            teamTitle.BackColor = teams[teamNumber].TeamColor[teamColorNumber];
-            increaseBtn.BackColor = teams[teamNumber].TeamColor[teamColorNumber];
-            decreaseBtn.BackColor = teams[teamNumber].TeamColor[teamColorNumber];
+            teamCity.BackColor = _teams[teamNumber].TeamColor[teamColorNumber];
+            teamTitle.BackColor = _teams[teamNumber].TeamColor[teamColorNumber];
+            increaseBtn.BackColor = _teams[teamNumber].TeamColor[teamColorNumber];
+            decreaseBtn.BackColor = _teams[teamNumber].TeamColor[teamColorNumber];
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            CurrentAwayColor = (int)numAwayTeamColor.Value;
-            CurrentTeamColorChanged(AwayTeamNumber, CurrentAwayColor, lbAwayCity, lbAwayTitle, label4, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1);
+            _currentAwayColor = (int)numAwayTeamColor.Value;
+            CurrentTeamColorChanged(_awayTeamNumber, _currentAwayColor, lbAwayCity, lbAwayTitle, label4, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1);
         }
 
         private void btnIncreaseAwayTeamNumberBy1_Click(object sender, EventArgs e)
         {
-            AwayTeamNumber = AwayTeamNumber == teams.Count - 1 ? 0 : AwayTeamNumber + 1;
-            if (AwayTeamNumber == HomeTeamNumber)
+            _awayTeamNumber = _awayTeamNumber == _teams.Count - 1 ? 0 : _awayTeamNumber + 1;
+            if (_awayTeamNumber == _homeTeamNumber)
             {
-                AwayTeamNumber = AwayTeamNumber == teams.Count - 1 ? 0 : AwayTeamNumber + 1;
+                _awayTeamNumber = _awayTeamNumber == _teams.Count - 1 ? 0 : _awayTeamNumber + 1;
             }
-            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(_awayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, _currentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1, AwayTeamBalance);
         }
 
         private void btnIncreaseHomeTeamNumberBy1_Click(object sender, EventArgs e)
         {
-            HomeTeamNumber = HomeTeamNumber == teams.Count - 1 ? 0 : HomeTeamNumber + 1;
-            if (AwayTeamNumber == HomeTeamNumber)
+            _homeTeamNumber = _homeTeamNumber == _teams.Count - 1 ? 0 : _homeTeamNumber + 1;
+            if (_awayTeamNumber == _homeTeamNumber)
             {
-                HomeTeamNumber = HomeTeamNumber == teams.Count - 1 ? 0 : HomeTeamNumber + 1;
+                _homeTeamNumber = _homeTeamNumber == _teams.Count - 1 ? 0 : _homeTeamNumber + 1;
             }
-            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1, HomeTeamBalance);
+            DisplayTeam(_homeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, _currentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
         private void btnDecreaseHomeTeamNumberBy1_Click(object sender, EventArgs e)
         {
-            HomeTeamNumber = HomeTeamNumber == 0 ? teams.Count - 1 : HomeTeamNumber - 1;
-            if (AwayTeamNumber == HomeTeamNumber)
+            _homeTeamNumber = _homeTeamNumber == 0 ? _teams.Count - 1 : _homeTeamNumber - 1;
+            if (_awayTeamNumber == _homeTeamNumber)
             {
-                HomeTeamNumber = HomeTeamNumber == 0 ? teams.Count - 1 : HomeTeamNumber - 1;
+                _homeTeamNumber = _homeTeamNumber == 0 ? _teams.Count - 1 : _homeTeamNumber - 1;
             }
-            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1, HomeTeamBalance);
+            DisplayTeam(_homeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, _currentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
         private void btnDecreaseAwayTeamNumberBy1_Click(object sender, EventArgs e)
         {
-            AwayTeamNumber = AwayTeamNumber == 0 ? teams.Count - 1 : AwayTeamNumber - 1;
-            if (AwayTeamNumber == HomeTeamNumber)
+            _awayTeamNumber = _awayTeamNumber == 0 ? _teams.Count - 1 : _awayTeamNumber - 1;
+            if (_awayTeamNumber == _homeTeamNumber)
             {
-                AwayTeamNumber = AwayTeamNumber == 0 ? teams.Count - 1 : AwayTeamNumber - 1;
+                _awayTeamNumber = _awayTeamNumber == 0 ? _teams.Count - 1 : _awayTeamNumber - 1;
             }
-            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(_awayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, _currentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1, AwayTeamBalance);
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-            CurrentHomeColor = (int)numHomeTeamColor.Value;
-            CurrentTeamColorChanged(HomeTeamNumber, CurrentHomeColor, lbHomeCity, lbHomeTitle, label5, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1);
+            _currentHomeColor = (int)numHomeTeamColor.Value;
+            CurrentTeamColorChanged(_homeTeamNumber, _currentHomeColor, lbHomeCity, lbHomeTitle, label5, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1);
         }
 
         private void btnAcceptTeamsSelection_Click(object sender, EventArgs e)
@@ -163,13 +163,13 @@ namespace VKR_Test
 
         private void StartNewMatch()
         {
-            Team HomeTeam = teams[HomeTeamNumber];
-            Team AwayTeam = teams[AwayTeamNumber];
-            HomeTeam.TeamColorForThisMatch = HomeTeam.TeamColor[CurrentHomeColor];
-            AwayTeam.TeamColorForThisMatch = AwayTeam.TeamColor[CurrentAwayColor];
-            newMatch.HomeTeam = HomeTeam;
-            newMatch.AwayTeam = AwayTeam;
-            StadiumSelectionForm stadiumSelection = new StadiumSelectionForm(newMatch);
+            var homeTeam = _teams[_homeTeamNumber];
+            var awayTeam = _teams[_awayTeamNumber];
+            homeTeam.TeamColorForThisMatch = homeTeam.TeamColor[_currentHomeColor];
+            awayTeam.TeamColorForThisMatch = awayTeam.TeamColor[_currentAwayColor];
+            _newMatch.HomeTeam = homeTeam;
+            _newMatch.AwayTeam = awayTeam;
+            StadiumSelectionForm stadiumSelection = new StadiumSelectionForm(_newMatch);
             Visible = false;
             stadiumSelection.ShowDialog();
 
@@ -195,23 +195,17 @@ namespace VKR_Test
 
         private void btnSwap_Click(object sender, EventArgs e)
         {
-            int Buf = AwayTeamNumber;
-            AwayTeamNumber = HomeTeamNumber;
-            HomeTeamNumber = Buf;
+            int Buf = _awayTeamNumber;
+            _awayTeamNumber = _homeTeamNumber;
+            _homeTeamNumber = Buf;
 
-            DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
-            DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
+            DisplayTeam(_awayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, _currentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
+            DisplayTeam(_homeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, _currentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
         private void BackColorChanging_label(object sender, EventArgs e)
         {
-            Label l = sender as Label;
-            l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
-        }
-
-        private void BackColorChanging_button(object sender, EventArgs e)
-        {
-            Button l = sender as Button;
+            Control l = sender as Control;
             l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
         }
 
@@ -219,11 +213,11 @@ namespace VKR_Test
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                matchNumber = dataGridView1.SelectedRows[0].Index;
-                AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[matchNumber].AwayTeamAbbreviation);
-                HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[matchNumber].HomeTeamAbbreviation);
-                DisplayTeam(AwayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, CurrentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
-                DisplayTeam(HomeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, CurrentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
+                _matchNumber = dataGridView1.SelectedRows[0].Index;
+                _awayTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[_matchNumber].AwayTeamAbbreviation);
+                _homeTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[_matchNumber].HomeTeamAbbreviation);
+                DisplayTeam(_awayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, _currentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
+                DisplayTeam(_homeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, _currentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
             }
         }
 
@@ -233,17 +227,17 @@ namespace VKR_Test
             {
                 case Keys.F5:
                     {
-                        if (!newMatch.IsQuickMatch)
+                        if (!_newMatch.IsQuickMatch)
                         {
-                            Program.MatchDate = matchBL.GetDateForNextMatch();
-                            matches = matchBL.GetMatchesForThisDay(Program.MatchDate);
-                            matchNumber = 0;
-                            AwayTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].AwayTeamAbbreviation);
-                            HomeTeamNumber = teams.FindIndex(team => team.TeamAbbreviation == matches[0].HomeTeamAbbreviation);
+                            Program.MatchDate = _matchBL.GetDateForNextMatch();
+                            _matches = _matchBL.GetMatchesForThisDay(Program.MatchDate);
+                            _matchNumber = 0;
+                            _awayTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].AwayTeamAbbreviation);
+                            _homeTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].HomeTeamAbbreviation);
                             dataGridView1.Rows.Clear();
-                            for (int i = 0; i < matches.Count; i++)
+                            for (int i = 0; i < _matches.Count; i++)
                             {
-                                dataGridView1.Rows.Add(Image.FromFile($"TeamLogosForSubstitution/{matches[i].AwayTeamAbbreviation}.png"), Image.FromFile($"TeamLogosForSubstitution/{matches[i].HomeTeamAbbreviation}.png"));
+                                dataGridView1.Rows.Add(Image.FromFile($"TeamLogosForSubstitution/{_matches[i].AwayTeamAbbreviation}.png"), Image.FromFile($"TeamLogosForSubstitution/{_matches[i].HomeTeamAbbreviation}.png"));
                             }
                         }
                         break;
