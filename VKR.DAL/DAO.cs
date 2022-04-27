@@ -16,10 +16,7 @@ namespace VKR.DAL
             return connectionString;
         }
 
-        public DAO()
-        {
-            InitConnection();
-        }
+        public DAO() => InitConnection();
 
         protected void InitConnection()
         {
@@ -30,16 +27,9 @@ namespace VKR.DAL
 
         public void ConnectionStateChange(object sender, StateChangeEventArgs e)
         {
-            if (e.CurrentState == ConnectionState.Broken)
-            {
-                InitConnection();
-            }
+            if (e.CurrentState == ConnectionState.Broken) InitConnection();
         }
 
-        public void Dispose()
-        {
-            if (_connection != null)
-                _connection.Dispose();
-        }
+        public void Dispose() => _connection?.Dispose();
     }
 }

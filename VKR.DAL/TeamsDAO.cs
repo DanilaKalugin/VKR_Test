@@ -1,56 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using Entities;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using Entities;
 
 namespace VKR.DAL
 {
     public class TeamsDAO : DAO
     {
-        public TeamsDAO() : base() { }
-
         public IEnumerable<Team> GetStandings(DateTime date)
         {
-            List<Team> teams = new List<Team>();
-            using (SqlCommand command = new SqlCommand("GetStandings", _connection))
+            using (var command = new SqlCommand("GetStandings", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Date", SqlDbType.Date);
                 command.Prepare();
                 command.Parameters[0].Value = date;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
+                using (var reader = command.ExecuteReader())
                     while (reader.Read())
                     {
-                        string Abbreviation = (string)reader["TeamAbbreviation"];
-                        string Name = (string)reader["TeamName"];
-                        string League = (string)reader["LeagueID"];
-                        int W = (int)reader["W"];
-                        int L = (int)reader["L"];
-                        string Division = (string)reader["DivisionTitle"];
-                        int HW = (int)reader["HW"];
-                        int HL = (int)reader["HL"];
-                        int AW = (int)reader["AW"];
-                        int AL = (int)reader["AL"];
-                        teams.Add(new Team(Abbreviation, Name, W, L, League, Division, HW, HL, AW, AL));
+                        var Abbreviation = (string)reader["TeamAbbreviation"];
+                        var Name = (string)reader["TeamName"];
+                        var League = (string)reader["LeagueID"];
+                        var W = (int)reader["W"];
+                        var L = (int)reader["L"];
+                        var Division = (string)reader["DivisionTitle"];
+                        var HW = (int)reader["HW"];
+                        var HL = (int)reader["HL"];
+                        var AW = (int)reader["AW"];
+                        var AL = (int)reader["AL"];
+                        yield return new Team(Abbreviation, Name, W, L, League, Division, HW, HL, AW, AL);
                     }
-                }
             }
-            for (int i = 0; i < teams.Count; i++)
-            {
-                teams[i].TeamColor = GetAllColorsForThisTeam(teams[i].TeamAbbreviation).ToList();
-                teams[i].RunsScored = GetRunsScoredByTeamAfterThisDate(teams[i], date);
-                teams[i].RunsAllowed = GetRunsAllowedByTeamAfterThisDate(teams[i], date);
-            }
-            return teams;
         }
 
         public int GetRunsScoredByTeamAfterThisDate(Team team, DateTime date)
         {
-            using (SqlCommand command = new SqlCommand("GetRunsScoredByTeamBAfterThisDate", _connection))
+            using (var command = new SqlCommand("GetRunsScoredByTeamBAfterThisDate", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
@@ -65,7 +53,7 @@ namespace VKR.DAL
 
         public int GetRunsAllowedByTeamAfterThisDate(Team team, DateTime date)
         {
-            using (SqlCommand command = new SqlCommand("GetRunsAllowedByTeamBAfterThisDate", _connection))
+            using (var command = new SqlCommand("GetRunsAllowedByTeamBAfterThisDate", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
@@ -80,156 +68,144 @@ namespace VKR.DAL
 
         public IEnumerable<Team> GetList()
         {
-            List<Team> teams = new List<Team>(); 
-            using (SqlCommand command = new SqlCommand("GetAllTeams", _connection))
+            var teams = new List<Team>(); 
+            using (var command = new SqlCommand("GetAllTeams", _connection))
             {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
+                using (var reader = command.ExecuteReader())
                     while (reader.Read())
                     {
-                        string Abbreviation = (string)reader["TeamAbbreviation"];
-                        string City = (string)reader["TeamCity"];
-                        string Name = (string)reader["TeamName"];
-                        int stadium = (int)reader["TeamStadium"];
-                        int SZ = (int)reader["StrikeZoneProbability"];
-                        int Swing_SZ = (int)reader["SwingInStrikeZoneProbability"];
-                        int Swing_NotSZ = (int)reader["SwingOutsideStrikeZoneProbability"];
-                        int Hitting = (int)reader["HittingProbability"];
-                        int Foul = (int)reader["FoulProbability"];
-                        int Single = (int)reader["SingleProbability"];
-                        int Double = (int)reader["DoubleProbability"];
-                        int HomeRun = (int)reader["HomeRunProbability"];
-                        int Triple = (int)reader["TripleProbability"];
-                        int PopoutOnFoul = (int)reader["PopoutOnFoulProbability"];
-                        int FlyoutOnHR = (int)reader["FlyoutOnHomerunProbability"];
-                        int Groundout = (int)reader["GroundoutProbability"];
-                        int Flyout = (int)reader["FlyoutProbability"];
-                        int SF = (int)reader["SacrificeFlyProbability"];
-                        int DoublePlay = (int)reader["DoublePlayProbability"];
-                        int SuccesfullSB = (int)reader["StealingBaseSuccessfulAttemptProbability"];
-                        int Bunt = (int)reader["SuccessfulBuntAttemptProbability"];
-                        bool DHRule = (bool)reader["LeagueDHRule"];
-                        int W = (int)reader["W"];
-                        int L = (int)reader["L"];
-                        int HBP = (int)reader["HitByPitchProbability"];
-                        int SB = (int)reader["StealingBaseProbability"];
-                        string League = (string)reader["League"];
+                        var Abbreviation = (string)reader["TeamAbbreviation"];
+                        var City = (string)reader["TeamCity"];
+                        var Name = (string)reader["TeamName"];
+                        var stadium = (int)reader["TeamStadium"];
+                        var SZ = (int)reader["StrikeZoneProbability"];
+                        var Swing_SZ = (int)reader["SwingInStrikeZoneProbability"];
+                        var Swing_NotSZ = (int)reader["SwingOutsideStrikeZoneProbability"];
+                        var Hitting = (int)reader["HittingProbability"];
+                        var Foul = (int)reader["FoulProbability"];
+                        var Single = (int)reader["SingleProbability"];
+                        var Double = (int)reader["DoubleProbability"];
+                        var HomeRun = (int)reader["HomeRunProbability"];
+                        var Triple = (int)reader["TripleProbability"];
+                        var PopoutOnFoul = (int)reader["PopoutOnFoulProbability"];
+                        var FlyoutOnHR = (int)reader["FlyoutOnHomerunProbability"];
+                        var Groundout = (int)reader["GroundoutProbability"];
+                        var Flyout = (int)reader["FlyoutProbability"];
+                        var SF = (int)reader["SacrificeFlyProbability"];
+                        var DoublePlay = (int)reader["DoublePlayProbability"];
+                        var SuccesfullSB = (int)reader["StealingBaseSuccessfulAttemptProbability"];
+                        var Bunt = (int)reader["SuccessfulBuntAttemptProbability"];
+                        var DHRule = (bool)reader["LeagueDHRule"];
+                        var W = (int)reader["W"];
+                        var L = (int)reader["L"];
+                        var HBP = (int)reader["HitByPitchProbability"];
+                        var SB = (int)reader["StealingBaseProbability"];
+                        var League = (string)reader["League"];
                         teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
-                                              Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
-                                              FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, SuccesfullSB,
-                                              Bunt, stadium, DHRule, W, L, HBP, SB, Triple, League));
+                            Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
+                            FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, SuccesfullSB,
+                            Bunt, stadium, DHRule, W, L, HBP, SB, Triple, League));
                     }
-                }
             }
-            for (int i = 0; i < teams.Count; i++)
+            foreach (var team in teams)
             {
-                teams[i].TeamColor = GetAllColorsForThisTeam(teams[i].TeamAbbreviation).ToList();
-                teams[i].TeamManager = GetManagerForThisTeam(teams[i]).First();
-                teams[i].battingStats = ReturnTeamBattingStats(teams[i].TeamAbbreviation).First();
-                teams[i].pitchingStats = ReturnTeamPitchingStats(teams[i].TeamAbbreviation).First();
+                team.TeamColor = GetAllColorsForThisTeam(team.TeamAbbreviation).ToList();
+                team.TeamManager = GetManagerForThisTeam(team).First();
+                team.BattingStats = ReturnTeamBattingStats(team.TeamAbbreviation).First();
+                team.PitchingStats = ReturnTeamPitchingStats(team.TeamAbbreviation).First();
             }
             return teams;
         }
 
         public IEnumerable<Team> UpdateBalanceForThisTeam(Team team)
         {
-            List<Team> teams = new List<Team>();
-            using (SqlCommand command = new SqlCommand("UpdateBalanceForThisTeam", _connection))
+            using (var command = new SqlCommand("UpdateBalanceForThisTeam", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
                 command.Prepare();
                 command.Parameters[0].Value = team.TeamAbbreviation;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
+                using (var reader = command.ExecuteReader())
                     while (reader.Read())
                     {
-                        string Abbreviation = (string)reader["TeamAbbreviation"];
-                        string City = (string)reader["TeamCity"];
-                        string Name = (string)reader["TeamName"];
-                        int stadium = (int)reader["TeamStadium"];
-                        int SZ = (int)reader["StrikeZoneProbability"];
-                        int Swing_SZ = (int)reader["SwingInStrikeZoneProbability"];
-                        int Swing_NotSZ = (int)reader["SwingOutsideStrikeZoneProbability"];
-                        int Hitting = (int)reader["HittingProbability"];
-                        int Foul = (int)reader["FoulProbability"];
-                        int Single = (int)reader["SingleProbability"];
-                        int Double = (int)reader["DoubleProbability"];
-                        int HomeRun = (int)reader["HomeRunProbability"];
-                        int Triple = (int)reader["TripleProbability"];
-                        int PopoutOnFoul = (int)reader["PopoutOnFoulProbability"];
-                        int FlyoutOnHR = (int)reader["FlyoutOnHomerunProbability"];
-                        int Groundout = (int)reader["GroundoutProbability"];
-                        int Flyout = (int)reader["FlyoutProbability"];
-                        int SF = (int)reader["SacrificeFlyProbability"];
-                        int DoublePlay = (int)reader["DoublePlayProbability"];
-                        int StealingBase = (int)reader["StealingBaseSuccessfulAttemptProbability"];
-                        int Bunt = (int)reader["SuccessfulBuntAttemptProbability"];
-                        bool DHRule = (bool)reader["LeagueDHRule"];
-                        int W = (int)reader["W"];
-                        int L = (int)reader["L"];
-                        int HBP = (int)reader["HitByPitchProbability"];
-                        int SB = (int)reader["StealingBaseProbability"];
-                        teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
-                                              Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
-                                              FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, StealingBase,
-                                              Bunt, stadium, DHRule, W, L, HBP, SB, Triple));
+                        var Abbreviation = (string)reader["TeamAbbreviation"];
+                        var City = (string)reader["TeamCity"];
+                        var Name = (string)reader["TeamName"];
+                        var stadium = (int)reader["TeamStadium"];
+                        var SZ = (int)reader["StrikeZoneProbability"];
+                        var Swing_SZ = (int)reader["SwingInStrikeZoneProbability"];
+                        var Swing_NotSZ = (int)reader["SwingOutsideStrikeZoneProbability"];
+                        var Hitting = (int)reader["HittingProbability"];
+                        var Foul = (int)reader["FoulProbability"];
+                        var Single = (int)reader["SingleProbability"];
+                        var Double = (int)reader["DoubleProbability"];
+                        var HomeRun = (int)reader["HomeRunProbability"];
+                        var Triple = (int)reader["TripleProbability"];
+                        var PopoutOnFoul = (int)reader["PopoutOnFoulProbability"];
+                        var FlyoutOnHR = (int)reader["FlyoutOnHomerunProbability"];
+                        var Groundout = (int)reader["GroundoutProbability"];
+                        var Flyout = (int)reader["FlyoutProbability"];
+                        var SF = (int)reader["SacrificeFlyProbability"];
+                        var DoublePlay = (int)reader["DoublePlayProbability"];
+                        var StealingBase = (int)reader["StealingBaseSuccessfulAttemptProbability"];
+                        var Bunt = (int)reader["SuccessfulBuntAttemptProbability"];
+                        var DHRule = (bool)reader["LeagueDHRule"];
+                        var W = (int)reader["W"];
+                        var L = (int)reader["L"];
+                        var HBP = (int)reader["HitByPitchProbability"];
+                        var SB = (int)reader["StealingBaseProbability"];
+                        yield return new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
+                            Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
+                            FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, StealingBase,
+                            Bunt, stadium, DHRule, W, L, HBP, SB, Triple);
                     }
-                }
             }
-            return teams;
         }
 
         public IEnumerable<Color> GetAllColorsForThisTeam(string abbreviation)
         {
-            List<Color> colors = new List<Color>();
-            using (SqlCommand command = new SqlCommand("GetColorsForThisTeam", _connection))
+            using (var command = new SqlCommand("GetColorsForThisTeam", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
                 command.Prepare();
                 command.Parameters[0].Value = abbreviation;
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
+                using (var reader = command.ExecuteReader())
                     while (reader.Read())
                     {
-                        int Red = (int)reader["RedComponent"];
-                        int Green = (int)reader["GreenComponent"];
-                        int Blue = (int)reader["BlueComponent"];
-                        colors.Add(Color.FromArgb(Red, Green, Blue));
+                        var Red = (int)reader["RedComponent"];
+                        var Green = (int)reader["GreenComponent"];
+                        var Blue = (int)reader["BlueComponent"];
+                        yield return Color.FromArgb(Red, Green, Blue);
                     }
-                }
             }
-            return colors;
         }
 
         public IEnumerable<Manager> GetManagerForThisTeam(Team team)
         {
-            using (SqlCommand command = new SqlCommand("GetManagerForThisTeam", _connection))
+            using (var command = new SqlCommand("GetManagerForThisTeam", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
                 command.Prepare();
                 command.Parameters[0].Value = team.TeamAbbreviation;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
+                using (var reader = command.ExecuteReader())
                     while (reader.Read())
                     {
-                        int id = (int)reader["ManagerID"];
-                        string FirstName = (string)reader["ManagerFirstName"];
-                        string SecondName = (string)reader["ManagerSecondName"];
-                        string PlaceOfBirth = (string)reader["PlaceOfBirth"];
-                        DateTime dob = (DateTime)reader["ManagerDateOfBirth"];
+                        var id = (int)reader["ManagerID"];
+                        var FirstName = (string)reader["ManagerFirstName"];
+                        var SecondName = (string)reader["ManagerSecondName"];
+                        var PlaceOfBirth = (string)reader["PlaceOfBirth"];
+                        var dob = (DateTime)reader["ManagerDateOfBirth"];
                         yield return new Manager(id, FirstName, SecondName, PlaceOfBirth, dob);
                     }
-                }
             }
         }
 
         public void SubstitutePitcher(Match match, Team team, Pitcher pitcher)
         {
-            using (SqlCommand command = new SqlCommand("SubstitutePitcher", _connection))
+            using (var command = new SqlCommand("SubstitutePitcher", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new SqlParameter("@Match", SqlDbType.Int));
@@ -242,13 +218,13 @@ namespace VKR.DAL
                 command.Parameters[1].Value = team.TeamAbbreviation;
                 command.Parameters[2].Value = pitcher.Id;
 
-                var result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public IEnumerable<Batter> GetAvailableBatters(Match match, Team team, Batter batter)
         {
-            using (SqlCommand command = new SqlCommand("GetAvailableBattersForSubstitution", _connection))
+            using (var command = new SqlCommand("GetAvailableBattersForSubstitution", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Match", SqlDbType.Int);
@@ -258,88 +234,88 @@ namespace VKR.DAL
                 command.Parameters[0].Value = match.MatchID;
                 command.Parameters[1].Value = team.TeamAbbreviation;
                 command.Parameters[2].Value = batter.PositionForThisMatch;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
+                using (var reader = command.ExecuteReader())
                     while (reader.Read())
                     {
-                        int id = (int)reader["PlayerID"];
-                        string firstName = (string)reader["PlayerFirstName"];
-                        string secondName = (string)reader["PlayerSecondName"];
-                        int number = (int)reader["PlayerNumber"];
-                        string placeOfBirth = (string)reader["PlaceOfBirth"];
-                        DateTime dateOfBirth = (DateTime)reader["PlayerDateOfBirth"];
-                        string battingHand = (string)reader["PlayerBattingHand"];
-                        string pitchingHand = (string)reader["PlayerPitchingHand"];
-                        string teamID = (string)reader["TeamID"];
-                        bool inActiveRoster = (bool)reader["InActiveRoster"];
-                        int PositionInLineup = (int)reader["NumberInLineup"];
-                        string Position = (string)reader["PlayerPosition"];
+                        var id = (int)reader["PlayerID"];
+                        var firstName = (string)reader["PlayerFirstName"];
+                        var secondName = (string)reader["PlayerSecondName"];
+                        var number = (int)reader["PlayerNumber"];
+                        var placeOfBirth = (string)reader["PlaceOfBirth"];
+                        var dateOfBirth = (DateTime)reader["PlayerDateOfBirth"];
+                        var battingHand = (string)reader["PlayerBattingHand"];
+                        var pitchingHand = (string)reader["PlayerPitchingHand"];
+                        var teamID = (string)reader["TeamID"];
+                        var inActiveRoster = (bool)reader["InActiveRoster"];
+                        var PositionInLineup = (int)reader["NumberInLineup"];
+                        var Position = (string)reader["PlayerPosition"];
 
-                        int Games = (int)reader["BatterG"];
-                        int Strikeouts = (int)reader["BatterK"];
-                        int Walks = (int)reader["BatterBB"];
-                        int HitByPitch = (int)reader["BatterHBP"];
-                        int Flyout = (int)reader["BatterAO"];
-                        int Groundout = (int)reader["BatterGO"];
-                        int Popout = (int)reader["BatterPO"];
-                        int Single = (int)reader["Batter1B"];
-                        int Double = (int)reader["Batter2B"];
-                        int Triple = (int)reader["Batter3B"];
-                        int HomeRun = (int)reader["BatterHR"];
-                        int StolenBase = (int)reader["BatterSB"];
-                        int CaughtStealing = (int)reader["BatterCS"];
-                        int Runs = (int)reader["BatterR"];
-                        int SacFlies = (int)reader["BatterSF"];
-                        int Bunts = (int)reader["BatterSAC"];
-                        int RBI = (int)reader["BatterRBI"];
-                        int PA = (int)reader["BatterPA"];
-                        int GIDP = (int)reader["BatterGIDP"];
-                        int TGP = (int)reader["BatterTGP"];
+                        var Games = (int)reader["BatterG"];
+                        var Strikeouts = (int)reader["BatterK"];
+                        var Walks = (int)reader["BatterBB"];
+                        var HitByPitch = (int)reader["BatterHBP"];
+                        var Flyout = (int)reader["BatterAO"];
+                        var Groundout = (int)reader["BatterGO"];
+                        var Popout = (int)reader["BatterPO"];
+                        var Single = (int)reader["Batter1B"];
+                        var Double = (int)reader["Batter2B"];
+                        var Triple = (int)reader["Batter3B"];
+                        var HomeRun = (int)reader["BatterHR"];
+                        var StolenBase = (int)reader["BatterSB"];
+                        var CaughtStealing = (int)reader["BatterCS"];
+                        var Runs = (int)reader["BatterR"];
+                        var SacFlies = (int)reader["BatterSF"];
+                        var Bunts = (int)reader["BatterSAC"];
+                        var RBI = (int)reader["BatterRBI"];
+                        var PA = (int)reader["BatterPA"];
+                        var GIDP = (int)reader["BatterGIDP"];
+                        var TGP = (int)reader["BatterTGP"];
                         var batting = new BattingStats(Games, Single, Double, Triple,
-                                                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
-                                                Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
+                            HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
+                            Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
 
-                        int PitcherG = (int)reader["PitcherG"];
-                        int PitcherGS = (int)reader["PitcherGS"];
-                        int PitcherK = (int)reader["PitcherK"];
-                        int PitcherOuts = (int)reader["PitcherOuts"];
-                        int PitcherR = (int)reader["PitcherR"];
-                        int PitcherBB = (int)reader["PitcherBB"];
-                        int Pitcher1B = (int)reader["Pitcher1B"];
-                        int Pitcher2B = (int)reader["Pitcher2B"];
-                        int Pitcher3B = (int)reader["Pitcher3B"];
-                        int PitcherHR = (int)reader["PitcherHR"];
-                        int PitcherTBF = (int)reader["PitcherTBF"];
-                        int PitcherHBP = (int)reader["PitcherHBP"];
-                        int PitcherSF = (int)reader["PitcherSF"];
-                        int PitcherSAC = (int)reader["PitcherSAC"];
-                        int PitcherSB = (int)reader["PitcherSB"];
-                        int PitcherCS = (int)reader["PitcherCS"];
-                        int PitcherGIDP = (int)reader["PitcherGIDP"];
-                        int PitcherQS = (int)reader["PitcherQS"];
-                        int PitcherCG = (int)reader["PitcherCG"];
-                        int PitcherSHO = (int)reader["PitcherSHO"];
-                        int PitcherAO = (int)reader["PitcherAO"];
-                        int PitcherGO = (int)reader["PitcherGO"];
-                        int PitcherW = (int)reader["PitcherW"];
-                        int PitcherL = (int)reader["PitcherL"];
-                        int PitcherSV = (int)reader["PitcherSV"];
-                        int PitcherHLD = (int)reader["PitcherHLD"];
+                        var PitcherG = (int)reader["PitcherG"];
+                        var PitcherGS = (int)reader["PitcherGS"];
+                        var PitcherK = (int)reader["PitcherK"];
+                        var PitcherOuts = (int)reader["PitcherOuts"];
+                        var PitcherR = (int)reader["PitcherR"];
+                        var PitcherBB = (int)reader["PitcherBB"];
+                        var Pitcher1B = (int)reader["Pitcher1B"];
+                        var Pitcher2B = (int)reader["Pitcher2B"];
+                        var Pitcher3B = (int)reader["Pitcher3B"];
+                        var PitcherHR = (int)reader["PitcherHR"];
+                        var PitcherTBF = (int)reader["PitcherTBF"];
+                        var PitcherHBP = (int)reader["PitcherHBP"];
+                        var PitcherSF = (int)reader["PitcherSF"];
+                        var PitcherSAC = (int)reader["PitcherSAC"];
+                        var PitcherSB = (int)reader["PitcherSB"];
+                        var PitcherCS = (int)reader["PitcherCS"];
+                        var PitcherGIDP = (int)reader["PitcherGIDP"];
+                        var PitcherQS = (int)reader["PitcherQS"];
+                        var PitcherCG = (int)reader["PitcherCG"];
+                        var PitcherSHO = (int)reader["PitcherSHO"];
+                        var PitcherAO = (int)reader["PitcherAO"];
+                        var PitcherGO = (int)reader["PitcherGO"];
+                        var PitcherW = (int)reader["PitcherW"];
+                        var PitcherL = (int)reader["PitcherL"];
+                        var PitcherSV = (int)reader["PitcherSV"];
+                        var PitcherHLD = (int)reader["PitcherHLD"];
                         var pitching = new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
-                                                 PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
-                                                 PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
-                                                 PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
-                                                 PitcherGO, PitcherAO, TGP);
+                            PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
+                            PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
+                            PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
+                            PitcherGO, PitcherAO, TGP);
 
-                        yield return new Batter(id, firstName, secondName, number, placeOfBirth, dateOfBirth, battingHand, pitchingHand, teamID, inActiveRoster, Position, PositionInLineup, batting, pitching);
+                        yield return new Batter(id, firstName, secondName, number, placeOfBirth, dateOfBirth,
+                            battingHand, pitchingHand, teamID, inActiveRoster, Position, PositionInLineup, batting,
+                            pitching);
                     }
-                }
             }
         }
 
         public void SubstituteBatter(Match match, Team team, Batter oldBatter, Batter newBatter)
         {
-            using (SqlCommand command = new SqlCommand("SubstituteBatter", _connection))
+            using (var command = new SqlCommand("SubstituteBatter", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new SqlParameter("@Match", SqlDbType.Int));
@@ -356,13 +332,13 @@ namespace VKR.DAL
                 command.Parameters[3].Value = oldBatter.PositionForThisMatch;
                 command.Parameters[4].Value = oldBatter.NumberInBattingLineup;
 
-                var result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public IEnumerable<BattingStats> ReturnTeamBattingStats(string code)
         {
-            using (SqlCommand command = new SqlCommand("ReturnBattingStatsByTeamCode", _connection))
+            using (var command = new SqlCommand("ReturnBattingStatsByTeamCode", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new SqlParameter("@Code", SqlDbType.NVarChar, 3));
@@ -370,83 +346,80 @@ namespace VKR.DAL
 
                 command.Parameters[0].Value = code;
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
+                using (var reader = command.ExecuteReader())
                     while (reader.Read())
                     {
-                        int TGP = (int)reader["TGP"];
-                        int Strikeouts = (int)reader["K"];
-                        int Walks = (int)reader["BB"];
-                        int HitByPitch = (int)reader["HBP"];
-                        int Flyout = (int)reader["AO"];
-                        int Groundout = (int)reader["GO"];
-                        int Popout = (int)reader["PO"];
-                        int Single = (int)reader["1B"];
-                        int Double = (int)reader["2B"];
-                        int Triple = (int)reader["3B"];
-                        int HomeRun = (int)reader["HR"];
-                        int StolenBase = (int)reader["SB"];
-                        int CaughtStealing = (int)reader["CS"];
-                        int Runs = (int)reader["R"];
-                        int SacFlies = (int)reader["SF"];
-                        int Bunts = (int)reader["SAC"];
-                        int RBI = (int)reader["RBI"]; ;
-                        int PA = (int)reader["PA"];
-                        int GIDP = (int)reader["GIDP"];
-                        yield return new BattingStats(TGP, Single, Double, Triple, HomeRun, 
-                                           SacFlies, Bunts, RBI, HitByPitch, StolenBase, 
-                                           CaughtStealing, Runs, Walks, Strikeouts, Groundout, 
-                                           Flyout, Popout, PA, GIDP, TGP);
+                        var TGP = (int)reader["TGP"];
+                        var Strikeouts = (int)reader["K"];
+                        var Walks = (int)reader["BB"];
+                        var HitByPitch = (int)reader["HBP"];
+                        var Flyout = (int)reader["AO"];
+                        var Groundout = (int)reader["GO"];
+                        var Popout = (int)reader["PO"];
+                        var Single = (int)reader["1B"];
+                        var Double = (int)reader["2B"];
+                        var Triple = (int)reader["3B"];
+                        var HomeRun = (int)reader["HR"];
+                        var StolenBase = (int)reader["SB"];
+                        var CaughtStealing = (int)reader["CS"];
+                        var Runs = (int)reader["R"];
+                        var SacFlies = (int)reader["SF"];
+                        var Bunts = (int)reader["SAC"];
+                        var RBI = (int)reader["RBI"];
+                        ;
+                        var PA = (int)reader["PA"];
+                        var GIDP = (int)reader["GIDP"];
+                        yield return new BattingStats(TGP, Single, Double, Triple, HomeRun,
+                            SacFlies, Bunts, RBI, HitByPitch, StolenBase,
+                            CaughtStealing, Runs, Walks, Strikeouts, Groundout,
+                            Flyout, Popout, PA, GIDP, TGP);
                     }
-                }
             }
         }
 
         public IEnumerable<PitchingStats> ReturnTeamPitchingStats(string code)
         {
-            using (SqlCommand command = new SqlCommand("ReturnTeamPitchingStats", _connection))
+            using (var command = new SqlCommand("ReturnTeamPitchingStats", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new SqlParameter("@Code", SqlDbType.NVarChar, 3));
                 command.Prepare();
                 command.Parameters[0].Value = code;
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
+                using (var reader = command.ExecuteReader())
                     while (reader.Read())
                     {
-                        int TGP = (int)reader["TGP"];
-                        int Strikeouts = (int)reader["K"];
-                        int Outs = (int)reader["Outs"];
-                        int Runs = (int)reader["R"];
-                        int Walks = (int)reader["BB"];
-                        int Single = (int)reader["1B"];
-                        int Double = (int)reader["2B"];
-                        int Triple = (int)reader["3B"];
-                        int HomeRun = (int)reader["HR"];
-                        int BattersFaced = (int)reader["TBF"];
-                        int HitByPitch = (int)reader["HBP"];
-                        int SacFlies = (int)reader["SF"];
-                        int Bunts = (int)reader["SAC"];
-                        int StolenBase = (int)reader["SB"];
-                        int CaughtStealing = (int)reader["CS"];
-                        int DoublePlay = (int)reader["GIDP"];
-                        int QualityStarts = (int)reader["QS"];
-                        int CompleteGames = (int)reader["CG"];
-                        int Shutouts = (int)reader["SHO"];
-                        int Flyout = (int)reader["AO"];
-                        int Groundout = (int)reader["GO"];
-                        int Wins = (int)reader["W"];
-                        int Losses = (int)reader["L"];
-                        int Saves = (int)reader["SV"];
-                        int Holds = (int)reader["HLD"];
-                        yield return new PitchingStats(TGP, TGP, Strikeouts, Outs, Walks, Bunts, SacFlies, 
-                                           StolenBase, CaughtStealing, BattersFaced, QualityStarts, 
-                                           Shutouts, CompleteGames, Wins, Losses, Saves, Holds, 
-                                           HitByPitch, Single, Double, Triple, HomeRun, Runs, 
-                                           DoublePlay, Groundout, Flyout, TGP);
+                        var TGP = (int)reader["TGP"];
+                        var Strikeouts = (int)reader["K"];
+                        var Outs = (int)reader["Outs"];
+                        var Runs = (int)reader["R"];
+                        var Walks = (int)reader["BB"];
+                        var Single = (int)reader["1B"];
+                        var Double = (int)reader["2B"];
+                        var Triple = (int)reader["3B"];
+                        var HomeRun = (int)reader["HR"];
+                        var BattersFaced = (int)reader["TBF"];
+                        var HitByPitch = (int)reader["HBP"];
+                        var SacFlies = (int)reader["SF"];
+                        var Bunts = (int)reader["SAC"];
+                        var StolenBase = (int)reader["SB"];
+                        var CaughtStealing = (int)reader["CS"];
+                        var DoublePlay = (int)reader["GIDP"];
+                        var QualityStarts = (int)reader["QS"];
+                        var CompleteGames = (int)reader["CG"];
+                        var Shutouts = (int)reader["SHO"];
+                        var Flyout = (int)reader["AO"];
+                        var Groundout = (int)reader["GO"];
+                        var Wins = (int)reader["W"];
+                        var Losses = (int)reader["L"];
+                        var Saves = (int)reader["SV"];
+                        var Holds = (int)reader["HLD"];
+                        yield return new PitchingStats(TGP, TGP, Strikeouts, Outs, Walks, Bunts, SacFlies,
+                            StolenBase, CaughtStealing, BattersFaced, QualityStarts,
+                            Shutouts, CompleteGames, Wins, Losses, Saves, Holds,
+                            HitByPitch, Single, Double, Triple, HomeRun, Runs,
+                            DoublePlay, Groundout, Flyout, TGP);
                     }
-                }
             }
         }
     }

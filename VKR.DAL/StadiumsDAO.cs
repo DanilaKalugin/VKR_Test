@@ -6,25 +6,19 @@ namespace VKR.DAL
 {
     public class StadiumsDAO : DAO
     {
-        public StadiumsDAO() : base() { }
-
         public IEnumerable<Stadium> GetAllStadiums()
         {
-            using (SqlCommand command = new SqlCommand("GetAllStadiums", _connection))
-            {
-                using (SqlDataReader reader = command.ExecuteReader())
+            using (var command = new SqlCommand("GetAllStadiums", _connection))
+            using (var reader = command.ExecuteReader())
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        int ID = (int)reader["StadiumID"];
-                        string Title = (string)reader["StadiumTitle"];
-                        string Location = (string)reader["Location"];
-                        int Capacity = (int)reader["StadiumCapacity"];
-                        int DistanceToCF = (int)reader["StadiumDistanceToCenterField"];
-                        yield return new Stadium(ID, Title, Location, Capacity, DistanceToCF);
-                    }
+                    var ID = (int)reader["StadiumID"];
+                    var Title = (string)reader["StadiumTitle"];
+                    var Location = (string)reader["Location"];
+                    var Capacity = (int)reader["StadiumCapacity"];
+                    var DistanceToCF = (int)reader["StadiumDistanceToCenterField"];
+                    yield return new Stadium(ID, Title, Location, Capacity, DistanceToCF);
                 }
-            }
         }
     }
 }

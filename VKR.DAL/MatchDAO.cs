@@ -1,18 +1,16 @@
-﻿using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Entities;
 
 namespace VKR.DAL
 {
     public class MatchDAO : DAO
     {
-        public MatchDAO() : base() { }
-
         public void AddMatchResultForThisPitcher(PitcherResults pitcherResults)
         {
-            using (SqlCommand command = new SqlCommand("AddMatchResultsForThisPitcher", _connection))
+            using (var command = new SqlCommand("AddMatchResultsForThisPitcher", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Match", SqlDbType.Int);
@@ -32,45 +30,45 @@ namespace VKR.DAL
                 command.Parameters[5].Value = pitcherResults.IsShutout;
                 command.Parameters[6].Value = (int)pitcherResults.MatchResult;
 
-                var result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public void DeleteThisMatch(int matchNumberForDelete)
         {
-            using (SqlCommand command = new SqlCommand("DeleteMatch", _connection))
+            using (var command = new SqlCommand("DeleteMatch", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Match", SqlDbType.Int);
 
                 command.Prepare();
                 command.Parameters[0].Value = matchNumberForDelete;
-                var result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public int GetNumberOfMatchesPlayed(Match newMatch)
         {
-            using (SqlCommand command = new SqlCommand("GetNumberOfMatchesPlayed", _connection))
+            using (var command = new SqlCommand("GetNumberOfMatchesPlayed", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@QuickMatch", SqlDbType.Bit);
 
-                SqlParameter _MatchID = new SqlParameter("@MatchID", SqlDbType.Int)
+                var matchId = new SqlParameter("@MatchID", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Output
                 };
                 command.Prepare();
                 command.Parameters[0].Value = newMatch.IsQuickMatch;
-                command.Parameters.Add(_MatchID);
+                command.Parameters.Add(matchId);
                 _ = command.ExecuteNonQuery();
-                return (int)_MatchID.Value;
+                return (int)matchId.Value;
             }
         }
 
         public void StartNewMatch(Match newMatch)
         {
-            using (SqlCommand command = new SqlCommand("StartNewMatch", _connection))
+            using (var command = new SqlCommand("StartNewMatch", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@AwayTeam", SqlDbType.NVarChar, 3);
@@ -87,26 +85,26 @@ namespace VKR.DAL
                 command.Parameters[3].Value = newMatch.DHRule;
                 command.Parameters[4].Value = newMatch.MatchDate;
                 command.Parameters[5].Value = newMatch.IsQuickMatch;
-                var result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
         
         public void FinishMatch(Match newMatch)
         {
-            using (SqlCommand command = new SqlCommand("FinishMatch", _connection))
+            using (var command = new SqlCommand("FinishMatch", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Match", SqlDbType.Int);
 
                 command.Prepare();
                 command.Parameters[0].Value = newMatch.MatchID;
-                var result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public void AddNewAtBat(AtBat atbat)
         {
-            using (SqlCommand command = new SqlCommand("AddNewAtBat", _connection))
+            using (var command = new SqlCommand("AddNewAtBat", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new SqlParameter("@MatchID", SqlDbType.Int));
@@ -131,27 +129,27 @@ namespace VKR.DAL
                 command.Parameters[7].Value = atbat.RBI;
                 command.Parameters[8].Value = atbat.Inning;
 
-                var result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public IEnumerable<Match> GetResultsForAllMatches()
         {
-            using (SqlCommand command = new SqlCommand("GetResultsForAllMatches", _connection))
+            using (var command = new SqlCommand("GetResultsForAllMatches", _connection))
             {
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int MatchID = (int)reader["MatchID"];
-                        string AwayTeam = (string)reader["AwayTeam"];
-                        int AwayRuns = (int)reader["AwayRuns"];
-                        int HomeRuns = (int)reader["HomeRuns"];
-                        string HomeTeam = (string)reader["HomeTeam"];
-                        int Stadium = (int)reader["Stadium"];
-                        string Winner = (string)reader["Winner"];
-                        int Inning = (int)reader["InningNumber"];
-                        DateTime Date = (DateTime)reader["MatchDate"];
+                        var MatchID = (int)reader["MatchID"];
+                        var AwayTeam = (string)reader["AwayTeam"];
+                        var AwayRuns = (int)reader["AwayRuns"];
+                        var HomeRuns = (int)reader["HomeRuns"];
+                        var HomeTeam = (string)reader["HomeTeam"];
+                        var Stadium = (int)reader["Stadium"];
+                        var Winner = (string)reader["Winner"];
+                        var Inning = (int)reader["InningNumber"];
+                        var Date = (DateTime)reader["MatchDate"];
                         yield return new Match(MatchID, AwayTeam, AwayRuns, HomeRuns, HomeTeam, Stadium, Winner, Inning, Date);
                     }
                 }
@@ -160,17 +158,17 @@ namespace VKR.DAL
         
         public IEnumerable<Match> GetSchedule()
         {
-            using (SqlCommand command = new SqlCommand("GetSchedule", _connection))
+            using (var command = new SqlCommand("GetSchedule", _connection))
             {
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int MatchID = (int)reader["MatchID"];
-                        string AwayTeam = (string)reader["AwayTeam"];
-                        string HomeTeam = (string)reader["HomeTeam"];
-                        int Stadium = (int)reader["TeamStadium"];
-                        DateTime Date = (DateTime)reader["MatchDate"];
+                        var MatchID = (int)reader["MatchID"];
+                        var AwayTeam = (string)reader["AwayTeam"];
+                        var HomeTeam = (string)reader["HomeTeam"];
+                        var Stadium = (int)reader["TeamStadium"];
+                        var Date = (DateTime)reader["MatchDate"];
                         yield return new Match(MatchID, AwayTeam, HomeTeam, Stadium, Date);
                     }
                 }
@@ -179,7 +177,7 @@ namespace VKR.DAL
 
         public DateTime GetDateForNextMatch()
         {
-            using (SqlCommand command = new SqlCommand("GetDateForNextMatch", _connection))
+            using (var command = new SqlCommand("GetDateForNextMatch", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Prepare();
@@ -190,21 +188,21 @@ namespace VKR.DAL
 
         public IEnumerable<Match> GetMatchesForThisDay(DateTime date)
         {
-            using (SqlCommand command = new SqlCommand("GetAvailibleMatchesForThisDay", _connection))
+            using (var command = new SqlCommand("GetAvailibleMatchesForThisDay", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Date", SqlDbType.Date);
 
                 command.Prepare();
                 command.Parameters[0].Value = date;
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int MatchID = (int)reader["MatchID"];
-                        string AwayTeam = (string)reader["AwayTeam"];
-                        string HomeTeam = (string)reader["HomeTeam"];
-                        DateTime Date = (DateTime)reader["MatchDate"];
+                        var MatchID = (int)reader["MatchID"];
+                        var AwayTeam = (string)reader["AwayTeam"];
+                        var HomeTeam = (string)reader["HomeTeam"];
+                        var Date = (DateTime)reader["MatchDate"];
                         yield return new Match(MatchID, AwayTeam, HomeTeam, Date);
                     }
                 }

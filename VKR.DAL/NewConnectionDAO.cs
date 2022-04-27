@@ -1,52 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VKR.DAL
 {
     public class NewConnectionDAO
     {
-        public void DeployDataBase(string ConnectionTitle, string serverName, bool IntegratedSecurity, out int result, out string message, string UserName = "", string UserPassword = "")
+        public void DeployDataBase(string connectionTitle, string serverName, bool integratedSecurity, out int result, out string message, string userName = "", string userPassword = "")
         {
-            string newConnection = $"Data Source={serverName};" +
-                                           $"Initial Catalog=master;" +
-                                           $"Integrated Security={IntegratedSecurity};";
-            if (!IntegratedSecurity)
-            {
-                newConnection += $"User ID={UserName};Password={UserPassword}";
-            }
+            var newConnection = $"Data Source={serverName};" +
+                                "Initial Catalog=master;" +
+                                $"Integrated Security={integratedSecurity};";
+            
+            if (!integratedSecurity) newConnection += $"User ID={userName};Password={userPassword}";
+            
             try
             {
-                using (SqlConnection connection = new SqlConnection(newConnection))
+                using (var connection = new SqlConnection(newConnection))
                 {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand("CREATE DATABASE [VKRnew]", connection))
+                    using (var command = new SqlCommand("CREATE DATABASE [VKRnew]", connection))
                     {
                         command.ExecuteNonQuery();
                     }
                     connection.Close();
                 }
-                string DBConnection = $"Data Source={serverName};" +
-                                               $"Initial Catalog=VKRnew;" +
-                                               $"Integrated Security={IntegratedSecurity};";
-                if (!IntegratedSecurity)
-                {
-                    DBConnection += $"User ID={UserName};Password={UserPassword}";
-                }
 
-                Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                configuration.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings(ConnectionTitle, DBConnection));
+                var dbConnection = $"Data Source={serverName};" +
+                                   "Initial Catalog=VKRnew;" +
+                                   $"Integrated Security={integratedSecurity};";
+
+                if (!integratedSecurity) dbConnection += $"User ID={userName};Password={userPassword}";
+
+                var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                configuration.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings(connectionTitle, dbConnection));
                 configuration.Save();
+
                 ConfigurationManager.RefreshSection("ConnectionStrings");
-                configuration.AppSettings.Settings["CurrentConnectionString"].Value = ConnectionTitle;
+                configuration.AppSettings.Settings["CurrentConnectionString"].Value = connectionTitle;
                 configuration.Save();
+
                 ConfigurationManager.RefreshSection("AppSettings");
-                DeployScript(DBConnection);
+                DeployScript(dbConnection);
                 result = 0;
                 message = "The database deployment was successful";
             }
@@ -57,20 +53,15 @@ namespace VKR.DAL
             }
         }
 
-        private void DeployScript(string DBConnection)
+        private static void DeployScript(string dbConnection)
         {
-            List<string> scripts = Directory.GetFiles(@"Scripts\").OrderBy(str => str).ToList();
-            using (SqlConnection conn = new SqlConnection(DBConnection))
+            var scripts = Directory.GetFiles(@"Scripts\").OrderBy(str => str).ToList();
+            using (var conn = new SqlConnection(dbConnection))
             {
                 conn.Open();
-                foreach (string scriptFile in scripts)
+                foreach (var script in scripts.Select(File.ReadAllText))
                 {
-                    string script = File.ReadAllText(scriptFile);
-
-                    using (SqlCommand command = new SqlCommand(script, conn))
-                    {
-                        command.ExecuteNonQuery();
-                    }
+                    using (var command = new SqlCommand(script, conn)) command.ExecuteNonQuery();
                 }
                 conn.Close();
             }
