@@ -11,8 +11,8 @@ namespace Entities
         public string PitchingHand;
         public bool InActiveRoster;
 
-        public BattingStats battingStats;
-        public PitchingStats pitchingStats;
+        public BattingStats BattingStats;
+        public PitchingStats PitchingStats;
 
         public Player(int id, string firstName, string secondName, int number, string placeOfBirth, DateTime dateOfBirth, string battingHand, string pitchingHand, string team, bool inActiveRoster, BattingStats batting, PitchingStats pitching) : base(id, firstName, secondName, team, dateOfBirth, placeOfBirth)
         {
@@ -20,11 +20,11 @@ namespace Entities
             BattingHand = battingHand;
             PitchingHand = pitchingHand;
             InActiveRoster = inActiveRoster;
-            battingStats = batting;
-            pitchingStats = pitching;
+            BattingStats = batting;
+            PitchingStats = pitching;
         }
 
-        public Player() : base()
+        public Player()
         {
         }
     }

@@ -30,25 +30,13 @@ namespace Entities
                 {
                     return $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(InningNumber)} inning";
                 }
-                else
-                {
-                    if (InningNumber != 9)
-                    {
-                        if (InningNumber == 0)
-                        {
-                            return "";
-                        }
-                        else
-                        {
-                            return $"Final/{InningNumber}";
-                        }
-                    }
-                    else
-                    {
-                        return "Final";
-                    }
 
+                if (InningNumber != 9)
+                {
+                    return InningNumber == 0 ? "" : $"Final/{InningNumber}";
                 }
+
+                return "Final";
             }
         }
 
@@ -56,14 +44,14 @@ namespace Entities
 
         public List<string> GetMatchLeaderAfterEachPitch()
         {
-            List<string> leaderAfterEachAtBat = new List<string>();
-            for (int i = 0; i < GameSituations.Count; i++)
+            var leaderAfterEachAtBat = new List<string>();
+            foreach (var gameSituation in GameSituations)
             {
-                if (GameSituations[i].AwayTeamRuns > GameSituations[i].HomeTeamRuns)
+                if (gameSituation.AwayTeamRuns > gameSituation.HomeTeamRuns)
                 {
                     leaderAfterEachAtBat.Add(AwayTeam.TeamAbbreviation);
                 }
-                else if (GameSituations[i].AwayTeamRuns < GameSituations[i].HomeTeamRuns)
+                else if (gameSituation.AwayTeamRuns < gameSituation.HomeTeamRuns)
                 {
                     leaderAfterEachAtBat.Add(HomeTeam.TeamAbbreviation);
                 }
@@ -72,26 +60,11 @@ namespace Entities
             return leaderAfterEachAtBat;
         }
 
-        public Match(int id, Team homeTeam, Team awayTeam, Stadium stadium, bool dh, DateTime date)
+        public Match(int id, string awayTeam, int awayRuns, int homeRuns, string homeTeam, int stadiumNumber, string winner, int inning, DateTime date)
         {
             MatchID = id;
-            HomeTeam = homeTeam;
-            AwayTeam = awayTeam;
-            Stadium = stadium;
-            DHRule = dh;
-            GameSituations = new List<GameSituation>
-            {
-                new GameSituation(AwayTeam)
-            };
-            AtBats = new List<AtBat>();
-            MatchDate = date;
-        }
-
-        public Match(int id, string AwayTeam, int AwayRuns, int homeRuns, string homeTeam, int stadiumNumber, string winner, int inning, DateTime date)
-        {
-            MatchID = id;
-            AwayTeamAbbreviation = AwayTeam;
-            AwayTeamRuns = AwayRuns;
+            AwayTeamAbbreviation = awayTeam;
+            AwayTeamRuns = awayRuns;
             HomeTeamRuns = homeRuns;
             HomeTeamAbbreviation = homeTeam;
             StadiumNumber = stadiumNumber;
@@ -108,10 +81,10 @@ namespace Entities
             MatchDate = date;
         }
 
-        public Match(int id, string AwayTeam, string homeTeam, int stadiumNumber, DateTime date)
+        public Match(int id, string awayTeam, string homeTeam, int stadiumNumber, DateTime date)
         {
             MatchID = id;
-            AwayTeamAbbreviation = AwayTeam;
+            AwayTeamAbbreviation = awayTeam;
             HomeTeamAbbreviation = homeTeam;
             MatchDate = date;
             StadiumNumber = stadiumNumber;

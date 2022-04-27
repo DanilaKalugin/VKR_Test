@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Entities
 {
@@ -41,7 +37,8 @@ namespace Entities
                 {
                     return 0;
                 }
-                else return Math.Round((double)Hits / AtBats, 3);
+
+                return Math.Round((double)Hits / AtBats, 3);
             }
         }
 
@@ -53,7 +50,8 @@ namespace Entities
                 {
                     return 0;
                 }
-                else return Math.Round((double)(Hits + Walks + HitByPitch) / (AtBats + Walks + HitByPitch + SacrificeFlies), 3);
+
+                return Math.Round((double)(Hits + Walks + HitByPitch) / (AtBats + Walks + HitByPitch + SacrificeFlies), 3);
             }
         }
 
@@ -67,7 +65,8 @@ namespace Entities
                 {
                     return 0;
                 }
-                else return Math.Round((double)TotalBases / AtBats, 3);
+
+                return Math.Round((double)TotalBases / AtBats, 3);
             }
         }
 
@@ -87,28 +86,28 @@ namespace Entities
 
         public double StrikeoutPercentage => (double)Strikeouts / PA;
 
-        public BattingStats(int _g, int _singles, int _doubles, int _triples, int _hr, int _sf, int _sac, int _rbi, int _hbp, int _sb, int _cs, int _runs, int _bb, int _k, int _go, int _ao, int _po, int _pa, int _gidp, int _tgp)
+        public BattingStats(int g, int singles, int doubles, int triples, int hr, int sf, int sac, int rbi, int hbp, int sb, int cs, int runs, int bb, int k, int go, int ao, int po, int pa, int gidp, int tgp)
         {
-            Games = _g;
-            Singles = _singles;
-            Doubles = _doubles;
-            Triples = _triples;
-            HomeRuns = _hr;
-            SacrificeFlies = _sf;
-            SacrificeBunts = _sac;
-            RBI = _rbi;
-            HitByPitch = _hbp;
-            StolenBases = _sb;
-            CaughtStealing = _cs;
-            Runs = _runs;
-            Walks = _bb;
-            Strikeouts = _k;
-            Groundouts = _go;
-            Flyouts = _ao;
-            Poputs = _po;
-            PA = _pa;
-            DoublePlay = _gidp;
-            TGP = _tgp;
+            Games = g;
+            Singles = singles;
+            Doubles = doubles;
+            Triples = triples;
+            HomeRuns = hr;
+            SacrificeFlies = sf;
+            SacrificeBunts = sac;
+            RBI = rbi;
+            HitByPitch = hbp;
+            StolenBases = sb;
+            CaughtStealing = cs;
+            Runs = runs;
+            Walks = bb;
+            Strikeouts = k;
+            Groundouts = go;
+            Flyouts = ao;
+            Poputs = po;
+            PA = pa;
+            DoublePlay = gidp;
+            TGP = tgp;
         }
     }
 }

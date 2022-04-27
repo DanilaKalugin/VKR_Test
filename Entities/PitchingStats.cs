@@ -22,7 +22,6 @@ namespace Entities
         public int Saves;
         public int Holds;
         public int HitByPitch;
-        public int NumberInRotation;
         public int Groundouts;
         public int Flyouts;
         public int GamesStarted;
@@ -32,7 +31,7 @@ namespace Entities
         public int TriplesAllowed;
         public int HomeRunsAllowed;
         public int DoublePlays;
-        public int TGP;
+        public int Tgp;
 
         public int HitsAllowed => SinglesAllowed + DoublesAllowed + TriplesAllowed + HomeRunsAllowed;
 
@@ -46,11 +45,12 @@ namespace Entities
                 {
                     return 0;
                 }
-                else return Math.Round((WalksAllowed + HitsAllowed) / ((double)Outs / 3), 2);
+
+                return Math.Round((WalksAllowed + HitsAllowed) / ((double)Outs / 3), 2);
             }
         }
 
-        public double BAA
+        public double Baa
         {
             get
             {
@@ -58,7 +58,8 @@ namespace Entities
                 {
                     return 0;
                 }
-                else return Math.Round((double)HitsAllowed / (TotalBattersFaced - WalksAllowed - HitByPitch - SacrificeFlies - SacrificeBunts), 3);
+
+                return Math.Round((double)HitsAllowed / (TotalBattersFaced - WalksAllowed - HitByPitch - SacrificeFlies - SacrificeBunts), 3);
             }
         }
 
@@ -70,10 +71,8 @@ namespace Entities
                 {
                     return 0;
                 }
-                else
-                {
-                    return Math.Round(RunsAllowed / ((double)Outs / 3) * 9, 2);
-                }
+
+                return Math.Round(RunsAllowed / ((double)Outs / 3) * 9, 2);
             }
         }
 
@@ -82,9 +81,9 @@ namespace Entities
 
         public double BBperNineInnings => 9 * (double)WalksAllowed / (Outs / 3) * 9;
 
-        public double KperBB => (double)Strikeouts / WalksAllowed;
+        public double KperBb => (double)Strikeouts / WalksAllowed;
 
-        public double GOtoAO => (double)Groundouts / Flyouts;
+        public double GOtoAo => (double)Groundouts / Flyouts;
 
         public PitchingStats(int g, int gs, int k, int outs, int bb, int sac, int sf, int sb, int cs, int tbf,
                        int qs, int sho, int cg, int w, int l, int sv, int hld, int hbp,
@@ -116,7 +115,7 @@ namespace Entities
             DoublePlays = doublePlay;
             Groundouts = groundout;
             Flyouts = flyout;
-            TGP = tgp;
+            Tgp = tgp;
         }
     }
 }

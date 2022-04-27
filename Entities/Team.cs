@@ -12,7 +12,7 @@ namespace Entities
         public string TeamTitle;
         public List<Color> TeamColor;
         public Color TeamColorForThisMatch;
-        public bool DHRule;
+        public bool DhRule;
         public int StrikeZoneProbabilty;
         public int SwingInStrikeZoneProbability;
         public int SwingOutsideStrikeZoneProbability;
@@ -52,15 +52,14 @@ namespace Entities
         public int RunsAllowed;
         public int RunDifferential => RunsScored - RunsAllowed;
 
-        public double PCT
+        public double Pct
         {
             get
             {
                 if (Wins + Losses == 0)
-                {
                     return 0;
-                }
-                else return Math.Round(Wins / (double)(Wins + Losses), 3);
+
+                return Math.Round(Wins / (double)(Wins + Losses), 3);
             }
         }
 
@@ -69,7 +68,7 @@ namespace Entities
         public double DefensiveRating()
         {
             var pitchingComponent = (double)(1600 - StrikeZoneProbabilty - (3000 - HitByPitchProbability)) / 36;
-            var groundoutComponent = (double)(GroundoutProbability * 1.1) / 20;
+            var groundoutComponent = GroundoutProbability * 1.1 / 20;
             var outfieldComponent = (double)(FlyoutProbability - GroundoutProbability) / 20;
             var doublePlayComponent = (double)DoublePlayProbabilty / 3;
             var pitcherNumber = (Wins + Losses + 1) % 5 == 0 ? 1 : 6 - (Wins + Losses + 1) % 5;
@@ -79,28 +78,28 @@ namespace Entities
 
         public double OffensiveRating()
         {
-            var fullHitiingProbabilty = (double)(2000 - HittingProbability) / 2000;
+            var fullHittingProbability = (double)(2000 - HittingProbability) / 2000;
             var fullSingleProbability = (double)SingleProbability / 2000;
             var fullDoubleProbability = (double)DoubleProbability / 2000;
-            var fullHRProbability = (double)HomeRunProbabilty / 2000;
+            var fullHrProbability = (double)HomeRunProbabilty / 2000;
             var fullTripleProbability = (double)TripleProbability / 2000;
 
-            var doubleComponent = fullHitiingProbabilty * fullDoubleProbability * 75;
-            var homeRunComponent = fullHitiingProbabilty * fullHRProbability * 225;
-            var tripleComponent = fullHitiingProbabilty * fullTripleProbability * 150;
-            var singleComponent = fullHitiingProbabilty * fullSingleProbability * 50;
+            var doubleComponent = fullHittingProbability * fullDoubleProbability * 75;
+            var homeRunComponent = fullHittingProbability * fullHrProbability * 225;
+            var tripleComponent = fullHittingProbability * fullTripleProbability * 150;
+            var singleComponent = fullHittingProbability * fullSingleProbability * 50;
 
             var baseStealingComponent = (double)(StealingBaseProbability * SuccessfulStelingBaseAttemptProbabilty) / 8000;
             return Math.Round(singleComponent + doubleComponent + homeRunComponent + tripleComponent + baseStealingComponent, 2);
         }
 
         //Batting stats
-        public BattingStats battingStats;
-        public PitchingStats pitchingStats;
+        public BattingStats BattingStats;
+        public PitchingStats PitchingStats;
 
-        public Team(string abbreviation, string city, string name, int strikeZoneProbability, int swingSZProbability, int swingNotSZProbability,
+        public Team(string abbreviation, string city, string name, int strikeZoneProbability, int swingSzProbability, int swingNotSzProbability,
                     int hitProbability, int foulProbability, int singleProbability, int doubleProbability, int homeRunProbability,
-                    int popoutOnFoulProbability, int flyoutOnHRProbability, int groundoutProbability, int flyoutProbability, int sacFlyProbability,
+                    int popoutOnFoulProbability, int flyoutOnHrProbability, int groundoutProbability, int flyoutProbability, int sacFlyProbability,
                     int doublePlayProbability, int successfulBaseStelingProbability, int successfulBuntProbability, int stadium, bool dhRule,
                     int w, int l, int hitByPitch, int sb, int tripleProbability, string league = "")
         {
@@ -108,15 +107,15 @@ namespace Entities
             TeamCity = city;
             TeamTitle = name;
             StrikeZoneProbabilty = strikeZoneProbability;
-            SwingInStrikeZoneProbability = swingSZProbability;
-            SwingOutsideStrikeZoneProbability = swingNotSZProbability;
+            SwingInStrikeZoneProbability = swingSzProbability;
+            SwingOutsideStrikeZoneProbability = swingNotSzProbability;
             HittingProbability = hitProbability;
             FoulProbability = foulProbability;
             SingleProbability = singleProbability;
             DoubleProbability = doubleProbability;
             HomeRunProbabilty = homeRunProbability;
             PopoutOnFoulProbability = popoutOnFoulProbability;
-            FlyoutOnHomeRunProbability = flyoutOnHRProbability;
+            FlyoutOnHomeRunProbability = flyoutOnHrProbability;
             GroundoutProbability = groundoutProbability;
             FlyoutProbability = flyoutProbability;
             DoublePlayProbabilty = doublePlayProbability;
@@ -125,7 +124,7 @@ namespace Entities
             SuccessfulBuntAttemptProbabilty = successfulBuntProbability;
             Stadium = stadium;
             PitchersPlayedInMatch = new List<Pitcher>();
-            DHRule = dhRule;
+            DhRule = dhRule;
             Wins = w;
             Losses = l;
             HitByPitchProbability = hitByPitch;

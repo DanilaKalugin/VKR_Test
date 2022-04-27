@@ -6,20 +6,16 @@
         public int Pitcher;
         public string Team;
         public int Match;
-        public bool IsQualityStart;
-        public bool IsCompleteGame;
-        public bool IsShutout;
-        public MatchResultForPitcher MatchResult;
+        public bool IsQualityStart = false;
+        public bool IsCompleteGame = false;
+        public bool IsShutout = false;
+        public MatchResultForPitcher MatchResult = MatchResultForPitcher.NoDecision;
 
-        public PitcherResults(int Pitcher, string Team, int Match)
+        public PitcherResults(int pitcher, string team, int match)
         {
-            this.Pitcher = Pitcher;
-            this.Team = Team;
-            this.Match = Match;
-            IsQualityStart = false;
-            IsCompleteGame = false;
-            IsShutout = false; 
-            MatchResult = MatchResultForPitcher.NoDecision;
+            Pitcher = pitcher;
+            Team = team;
+            Match = match;
         }
     }
 }

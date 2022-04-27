@@ -54,7 +54,9 @@
     <Compile Include="Pitch.cs" />
     <Compile Include="Pitcher.cs" />
     <Compile Include="PitcherResults.cs" />
+    <Compile Include="PitchGenerator.cs" />
     <Compile Include="PitchingStats.cs" />
+    <Compile Include="PitchResult.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerInLineup.cs" />
     <Compile Include="PlayerPosition.cs" />

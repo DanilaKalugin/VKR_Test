@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    abstract public class Man
+    public abstract class Man
     {
         public int Id;
         public string FirstName;
@@ -10,12 +10,6 @@ namespace Entities
         public DateTime DateOfBirth;
         public string PlaceOfBirth;
 
-        public string FullName
-        {
-            get
-            {
-                return FirstName + " " + SecondName;
-            }
-        }
+        public string FullName => FirstName + " " + SecondName;
     }
 }

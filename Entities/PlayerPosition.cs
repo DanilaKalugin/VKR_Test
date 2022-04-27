@@ -2,8 +2,9 @@
 {
     public class PlayerPosition
     {
-        public string ShortTitle { get; private set; }
-        public string FullTitle { get; private set; }
+        public string ShortTitle { get; }
+        public string FullTitle { get; }
+
         public PlayerPosition(string shortTitle, string fullTitle)
         {
             ShortTitle = shortTitle;

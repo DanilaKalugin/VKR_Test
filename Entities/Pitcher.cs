@@ -16,8 +16,8 @@ namespace Entities
             PlayerNumber = player.PlayerNumber;
             PlaceOfBirth = player.PlaceOfBirth;
             DateOfBirth = player.DateOfBirth;
-            battingStats = player.battingStats;
-            pitchingStats = player.pitchingStats;
+            BattingStats = player.BattingStats;
+            PitchingStats = player.PitchingStats;
             BattingHand = player.BattingHand;
             PitchingHand = player.PitchingHand;
             Team = player.Team;
