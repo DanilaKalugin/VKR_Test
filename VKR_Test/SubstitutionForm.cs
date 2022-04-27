@@ -1,17 +1,17 @@
-﻿using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
+using Entities;
 
 namespace VKR_Test
 {
     public partial class SubstitutionForm : Form
     {
-        private Team _currentTeam;
-        private List<Batter> _batters;
+        private readonly Team _currentTeam;
+        private readonly List<Batter> _batters;
         public Batter NewBatterForThisTeam;
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
@@ -32,16 +32,13 @@ namespace VKR_Test
             lbHeader.Text = "PINCH HITTER";
             dgvAvailablePlayers.Columns[2].HeaderText = "AVG";
             dgvAvailablePlayers.Columns[3].HeaderText = "HR";
-            for (int i = 0; i < _batters.Count; i++)
+            foreach (var batter in _batters)
             {
-                if (File.Exists($"PlayerPhotosForSubstitution/Player{_batters[i].Id:0000}.jpg"))
-                {
-                    dgvAvailablePlayers.Rows.Add(Image.FromFile($"PlayerPhotosForSubstitution/Player{_batters[i].Id:0000}.jpg"), _batters[i].FullName, $"{_batters[i].battingStats.AVG.ToString("#.000", new CultureInfo("en-US"))}", $"{_batters[i].battingStats.HomeRuns}");
-                }
-                else
-                {
-                    dgvAvailablePlayers.Rows.Add(null, _batters[i].FullName, $"{_batters[i].battingStats.AVG.ToString("#.000", new CultureInfo("en-US"))}", $"{_batters[i].battingStats.HomeRuns}");
-                }
+                var imagePath = $"PlayerPhotosForSubstitution/Player{batter.Id:0000}.jpg";
+                var image = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
+                dgvAvailablePlayers.Rows.Add(image, batter.FullName,
+                        $"{batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"))}",
+                        $"{batter.BattingStats.HomeRuns}");
             }
         }
 

@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class MatchResultsMenuForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -151,11 +154,11 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnResults;
-        private System.Windows.Forms.Button btnResultsByDate;
-        private System.Windows.Forms.Button btnCloseResultsMenu;
-        private System.Windows.Forms.Button btnScheduleByTeam;
-        private System.Windows.Forms.Button btnScheduleByDate;
+        private Panel panel2;
+        private Button btnResults;
+        private Button btnResultsByDate;
+        private Button btnCloseResultsMenu;
+        private Button btnScheduleByTeam;
+        private Button btnScheduleByDate;
     }
 }

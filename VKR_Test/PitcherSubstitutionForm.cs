@@ -1,26 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ProgressBar = ExtendedDotNET.Controls.Progress.ProgressBar;
-using Entities;
-using VKR.BLL;
-using System.IO;
 using System.Globalization;
+using System.IO;
+using System.Windows.Forms;
+using Entities;
+using ProgressBar = ExtendedDotNET.Controls.Progress.ProgressBar;
 
 namespace VKR_Test
 {
     public partial class PitcherSubstitutionForm : Form
     {
-        private Team _currentTeam;
-        private List<Pitcher> _pitchers;
+        private readonly Team _currentTeam;
+        private readonly List<Pitcher> _pitchers;
         private int _playerIndex;
-        private List<ProgressBar> _progressBars;
+        private readonly List<ProgressBar> _progressBars;
         public Pitcher NewPitcherForThisTeam;
 
         public PitcherSubstitutionForm(Team defense, List<Pitcher> pitchers)
@@ -42,31 +36,32 @@ namespace VKR_Test
             lbTeamTitle.ForeColor = defense.TeamColorForThisMatch;
             Text = $"New pitcher for {defense.TeamTitle}";
             lbHeader.Text = "BULLPEN";
+
             foreach (Control c in tableLayoutPanel1.Controls)
             {
-                c.MouseClick += new MouseEventHandler(ClickOnTableLayoutPanel);
-                c.MouseDoubleClick += new MouseEventHandler(DoubleClickOnTableLayoutPanel);
+                c.MouseClick += ClickOnTableLayoutPanel;
+                c.MouseDoubleClick += DoubleClickOnTableLayoutPanel;
             }
         }
 
         private void DoubleClickOnTableLayoutPanel(object sender, MouseEventArgs e)
         {
-            int rowNumber = tableLayoutPanel1.GetRow((Control)sender);
-            if (rowNumber > 0 && rowNumber <= _pitchers.Count)
-            {
-                NewPitcherForThisTeam = _pitchers[_playerIndex + rowNumber - 1];
-                DialogResult = DialogResult.OK;
-            }
+            var rowNumber = tableLayoutPanel1.GetRow((Control)sender);
+
+            if (rowNumber <= 0 || rowNumber > _pitchers.Count) return;
+
+            NewPitcherForThisTeam = _pitchers[_playerIndex + rowNumber - 1];
+            DialogResult = DialogResult.OK;
         }
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
         {
-            foreach (ProgressBar pb in _progressBars)
+            foreach (var pb in _progressBars)
             {
                 pb.MainColor = _currentTeam.TeamColorForThisMatch;
             }
-            panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{_currentTeam.TeamAbbreviation}.png");
 
+            panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{_currentTeam.TeamAbbreviation}.png");
             PlayersChaging();
         }
 
@@ -76,16 +71,11 @@ namespace VKR_Test
             if (_playerIndex + step < _pitchers.Count)
             {
                 if (File.Exists($"PlayerPhotos/Player{_pitchers[_playerIndex + step].Id:0000}.png"))
-                {
                     pb.Image = Image.FromFile($"PlayerPhotos/Player{_pitchers[_playerIndex + step].Id:0000}.png");
-                }
-                else
-                {
-                    pb.Image = null;
-                }
+                else pb.Image = null;
                 PlayerName.Text = _pitchers[_playerIndex + step].FullName;
-                playerERA.Text = $"{_pitchers[_playerIndex + step].pitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"))}";
-                playerSO.Text = _pitchers[_playerIndex + step].pitchingStats.Strikeouts.ToString();
+                playerERA.Text = $"{_pitchers[_playerIndex + step].PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"))}";
+                playerSO.Text = _pitchers[_playerIndex + step].PitchingStats.Strikeouts.ToString();
                 progressBar.Value = (int)_pitchers[_playerIndex + step].RemainingStamina;
                 progressBar.Visible = true;
             }
@@ -117,24 +107,13 @@ namespace VKR_Test
 
         public void ClickOnTableLayoutPanel(object sender, MouseEventArgs e)
         {
-            int RowNumber = tableLayoutPanel1.GetRow((Control)sender);
-            for (int i = 1; i < tableLayoutPanel1.RowCount; i++)
+            var RowNumber = tableLayoutPanel1.GetRow((Control)sender);
+            for (var i = 1; i < tableLayoutPanel1.RowCount; i++)
             {
-                if (i == RowNumber && RowNumber <= _pitchers.Count)
+                for (var j = 1; j < tableLayoutPanel1.ColumnCount - 1; j++)
                 {
-                    for (int j = 1; j < tableLayoutPanel1.ColumnCount - 1; j++)
-                    {
-                        tableLayoutPanel1.GetControlFromPosition(j, i).BackColor = _currentTeam.TeamColorForThisMatch;
-                        tableLayoutPanel1.GetControlFromPosition(j, i).ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(_currentTeam.TeamColorForThisMatch, false);
-                    }
-                }
-                else
-                {
-                    for (int j = 1; j < tableLayoutPanel1.ColumnCount - 1; j++)
-                    {
-                        tableLayoutPanel1.GetControlFromPosition(j, i).BackColor = Color.White;
-                        tableLayoutPanel1.GetControlFromPosition(j, i).ForeColor = Color.Black;
-                    }
+                    tableLayoutPanel1.GetControlFromPosition(j, i).BackColor = i == RowNumber && RowNumber <= _pitchers.Count ? _currentTeam.TeamColorForThisMatch : Color.White;
+                    tableLayoutPanel1.GetControlFromPosition(j, i).ForeColor = i == RowNumber && RowNumber <= _pitchers.Count ? CorrectForeColorForAllBackColors.GetForeColorForThisSituation(_currentTeam.TeamColorForThisMatch, false) : Color.Black;
                 }
             }
         }

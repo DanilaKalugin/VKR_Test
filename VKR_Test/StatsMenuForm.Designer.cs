@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class StatsMenuForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -338,23 +341,23 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnCloseResultsMenu;
-        private System.Windows.Forms.Button btnTeamsStats;
-        private System.Windows.Forms.Button btnPlayersStats;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dgvBattingLeaders;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Parameter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeamColor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlayerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dgvPitchingLeaders;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.Label label2;
+        private Panel panel2;
+        private Button btnCloseResultsMenu;
+        private Button btnTeamsStats;
+        private Button btnPlayersStats;
+        private Panel panel1;
+        private DataGridView dgvBattingLeaders;
+        private Label label1;
+        private DataGridViewTextBoxColumn Parameter;
+        private DataGridViewTextBoxColumn TeamColor;
+        private DataGridViewTextBoxColumn PlayerName;
+        private DataGridViewTextBoxColumn Value;
+        private Panel panel3;
+        private DataGridView dgvPitchingLeaders;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private Label label2;
     }
 }

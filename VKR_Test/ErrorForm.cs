@@ -5,14 +5,8 @@ namespace VKR_Test
 {
     public partial class ErrorForm : Form
     {
-        public ErrorForm()
-        {
-            InitializeComponent();
-        }
+        public ErrorForm() => InitializeComponent();
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void btnClose_Click(object sender, EventArgs e) => Close();
     }
 }

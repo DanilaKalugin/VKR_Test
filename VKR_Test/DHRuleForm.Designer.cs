@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class DHRuleForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -191,14 +194,14 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.RadioButton rbPlayWithDH;
-        private System.Windows.Forms.RadioButton rbPlayWithoutDH;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAcceptDHRule;
-        private System.Windows.Forms.DateTimePicker dtpMatchDate;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label labelMatchLength;
-        private System.Windows.Forms.NumericUpDown numMatchLength;
+        private RadioButton rbPlayWithDH;
+        private RadioButton rbPlayWithoutDH;
+        private Label label1;
+        private Button btnAcceptDHRule;
+        private DateTimePicker dtpMatchDate;
+        private Label label2;
+        private Label label3;
+        private Label labelMatchLength;
+        private NumericUpDown numMatchLength;
     }
 }

@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class MainMenuForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -300,20 +303,20 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dgvBirthDays;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeamColor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeamName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlayerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Age;
-        private System.Windows.Forms.Button btn_StartMatchFromSchedule;
-        private System.Windows.Forms.Button btnStandings;
-        private System.Windows.Forms.Button btnPlayerStats;
-        private System.Windows.Forms.Button btnLineups;
-        private System.Windows.Forms.Button btnResults;
-        private System.Windows.Forms.Button btnNewMatch;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnClose;
+        private Panel panel1;
+        private DataGridView dgvBirthDays;
+        private Label label1;
+        private DataGridViewTextBoxColumn TeamColor;
+        private DataGridViewTextBoxColumn TeamName;
+        private DataGridViewTextBoxColumn PlayerName;
+        private DataGridViewTextBoxColumn Age;
+        private Button btn_StartMatchFromSchedule;
+        private Button btnStandings;
+        private Button btnPlayerStats;
+        private Button btnLineups;
+        private Button btnResults;
+        private Button btnNewMatch;
+        private Panel panel2;
+        private Button btnClose;
     }
 }

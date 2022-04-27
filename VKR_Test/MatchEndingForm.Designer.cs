@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class MatchEndingForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -895,65 +898,65 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Panel pbHomeLogo_border;
-        private System.Windows.Forms.Panel pbAwayLogo_border;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label lbAwayRuns;
-        private System.Windows.Forms.Label lbHomeRuns;
-        private System.Windows.Forms.Label lbAwayTeamAbbreviation;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label lbHomeTeamAbbreviation;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Panel AwayTeamSmallLogo;
-        private System.Windows.Forms.Panel HomeTeamSmallLogo;
-        private System.Windows.Forms.Label away1;
-        private System.Windows.Forms.Label away2;
-        private System.Windows.Forms.Label away3;
-        private System.Windows.Forms.Label away4;
-        private System.Windows.Forms.Label away5;
-        private System.Windows.Forms.Label away6;
-        private System.Windows.Forms.Label away7;
-        private System.Windows.Forms.Label away8;
-        private System.Windows.Forms.Label away9;
-        private System.Windows.Forms.Label homeHits;
-        private System.Windows.Forms.Label away10;
-        private System.Windows.Forms.Label awayHits;
-        private System.Windows.Forms.Label home1;
-        private System.Windows.Forms.Label homeRuns;
-        private System.Windows.Forms.Label home2;
-        private System.Windows.Forms.Label awayRuns;
-        private System.Windows.Forms.Label home3;
-        private System.Windows.Forms.Label home10;
-        private System.Windows.Forms.Label home4;
-        private System.Windows.Forms.Label home9;
-        private System.Windows.Forms.Label home5;
-        private System.Windows.Forms.Label home8;
-        private System.Windows.Forms.Label home6;
-        private System.Windows.Forms.Label home7;
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lb1stInning;
-        private System.Windows.Forms.Label lb10thInning;
-        private System.Windows.Forms.Label lb9thInning;
-        private System.Windows.Forms.Label lb8thInning;
-        private System.Windows.Forms.Label lb7thInning;
-        private System.Windows.Forms.Label lb6thInning;
-        private System.Windows.Forms.Label lb5thInning;
-        private System.Windows.Forms.Label lb4thInning;
-        private System.Windows.Forms.Label lb3rdInning;
-        private System.Windows.Forms.Label lb2ndInning;
-        private System.Windows.Forms.Label lbHomeBalance;
-        private System.Windows.Forms.Label lbAwayBalance;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label WinningPitcher;
-        private System.Windows.Forms.Label PitcherWithSave;
-        private System.Windows.Forms.Label LosingPitcher;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label homeLOB;
-        private System.Windows.Forms.Label awayLOB;
-        private System.Windows.Forms.Panel pbAwayLogo;
-        private System.Windows.Forms.Panel pbHomeLogo;
+        private Panel pbHomeLogo_border;
+        private Panel pbAwayLogo_border;
+        private Panel panel3;
+        private Label lbAwayRuns;
+        private Label lbHomeRuns;
+        private Label lbAwayTeamAbbreviation;
+        private Label label20;
+        private Label lbHomeTeamAbbreviation;
+        private Label label21;
+        private Panel AwayTeamSmallLogo;
+        private Panel HomeTeamSmallLogo;
+        private Label away1;
+        private Label away2;
+        private Label away3;
+        private Label away4;
+        private Label away5;
+        private Label away6;
+        private Label away7;
+        private Label away8;
+        private Label away9;
+        private Label homeHits;
+        private Label away10;
+        private Label awayHits;
+        private Label home1;
+        private Label homeRuns;
+        private Label home2;
+        private Label awayRuns;
+        private Label home3;
+        private Label home10;
+        private Label home4;
+        private Label home9;
+        private Label home5;
+        private Label home8;
+        private Label home6;
+        private Label home7;
+        private Button btnClose;
+        private Label label3;
+        private Label lb1stInning;
+        private Label lb10thInning;
+        private Label lb9thInning;
+        private Label lb8thInning;
+        private Label lb7thInning;
+        private Label lb6thInning;
+        private Label lb5thInning;
+        private Label lb4thInning;
+        private Label lb3rdInning;
+        private Label lb2ndInning;
+        private Label lbHomeBalance;
+        private Label lbAwayBalance;
+        private Label label1;
+        private Label label2;
+        private Label label4;
+        private Label WinningPitcher;
+        private Label PitcherWithSave;
+        private Label LosingPitcher;
+        private Label label5;
+        private Label homeLOB;
+        private Label awayLOB;
+        private Panel pbAwayLogo;
+        private Panel pbHomeLogo;
     }
 }

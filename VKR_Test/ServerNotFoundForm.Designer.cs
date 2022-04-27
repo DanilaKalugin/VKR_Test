@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class ServerNotFoundForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -124,10 +127,10 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lbMessage;
-        private System.Windows.Forms.Button btnDeployungAccepted;
-        private System.Windows.Forms.Button btnDeployingDenied;
-        private System.Windows.Forms.Panel panel2;
+        private Label label1;
+        private Label lbMessage;
+        private Button btnDeployungAccepted;
+        private Button btnDeployingDenied;
+        private Panel panel2;
     }
 }

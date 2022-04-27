@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class LineupsForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -461,31 +464,31 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvLineup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.Button btnDecreaseTeamNumberBy1;
-        private System.Windows.Forms.Button btnIncreaseTeamNumberBy1;
-        private System.Windows.Forms.Label lbTeamtitle;
-        private System.Windows.Forms.Button btnDecLineupTypeNumberBy1;
-        private System.Windows.Forms.Button btnIncLineupTypeNumberBy1;
-        private System.Windows.Forms.Label lbLineUpType;
-        private System.Windows.Forms.Label lbl_LineupHeader;
-        private System.Windows.Forms.Panel pbPlayerPhoto;
-        private System.Windows.Forms.Label lbPlayerNumber;
-        private System.Windows.Forms.Label lbPlayerName;
-        private System.Windows.Forms.Label lbPlayerPlace_and_DateOfBirth;
-        private System.Windows.Forms.DataGridView dgvBench;
-        private System.Windows.Forms.Panel panelTeamLogo;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label playerHands;
+        private DataGridView dgvLineup;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private Button btnDecreaseTeamNumberBy1;
+        private Button btnIncreaseTeamNumberBy1;
+        private Label lbTeamtitle;
+        private Button btnDecLineupTypeNumberBy1;
+        private Button btnIncLineupTypeNumberBy1;
+        private Label lbLineUpType;
+        private Label lbl_LineupHeader;
+        private Panel pbPlayerPhoto;
+        private Label lbPlayerNumber;
+        private Label lbPlayerName;
+        private Label lbPlayerPlace_and_DateOfBirth;
+        private DataGridView dgvBench;
+        private Panel panelTeamLogo;
+        private Label label1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label playerHands;
     }
 }

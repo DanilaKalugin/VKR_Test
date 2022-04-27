@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class SubstitutionForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -196,14 +199,14 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbHeader;
-        private System.Windows.Forms.Label lbTeamTitle;
-        private System.Windows.Forms.DataGridView dgvAvailablePlayers;
-        private System.Windows.Forms.Panel panelTeamLogo;
-        private System.Windows.Forms.DataGridViewImageColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private Panel panel1;
+        private Label lbHeader;
+        private Label lbTeamTitle;
+        private DataGridView dgvAvailablePlayers;
+        private Panel panelTeamLogo;
+        private DataGridViewImageColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
     }
 }

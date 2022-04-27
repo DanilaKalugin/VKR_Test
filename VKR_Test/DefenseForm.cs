@@ -1,25 +1,20 @@
-﻿using Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entities;
 
 namespace VKR_Test
 {
     public partial class DefenseForm : Form
     {
-        private Team _defense;
+        private readonly Team _defense;
 
         public DefenseForm(Team team)
         {
             InitializeComponent();
-            Text = $"{team.TeamCity} {team.TeamTitle}";
-            lbTeamTitle.Text = $"{team.TeamTitle.ToUpper()} Defense".ToUpper();
+            Text = $@"{team.TeamCity} {team.TeamTitle}";
+            lbTeamTitle.Text = $@"{team.TeamTitle.ToUpper()} Defense".ToUpper();
             teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             _defense = team;
         }
@@ -38,30 +33,28 @@ namespace VKR_Test
             timer_Defense.Start();
         }
 
-        private void DisplayInfoAboutPlayer(Label FirstName, Label SecondName, Label Position, string PositionTitle)
+        private void DisplayInfoAboutPlayer(Label firstName, Label secondName, Label position, string positionTitle)
         {
-            Position.BackColor = _defense.TeamColorForThisMatch;
-            Position.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(Position.BackColor, false);
-            if (PositionTitle == "P")
+            position.BackColor = _defense.TeamColorForThisMatch;
+
+            position.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(position.BackColor, false);
+            if (positionTitle == "P")
             {
-                FirstName.Text = _defense.CurrentPitcher.FirstName.ToUpper();
-                SecondName.Text = _defense.CurrentPitcher.SecondName.ToUpper();
+                firstName.Text = _defense.CurrentPitcher.FirstName.ToUpper();
+                secondName.Text = _defense.CurrentPitcher.SecondName.ToUpper();
             }
             else
             {
-                Batter batter = _defense.BattingLineup.Where(_batter => _batter.PositionForThisMatch == PositionTitle).FirstOrDefault();
-                FirstName.Text = batter.FirstName.ToUpper();
-                SecondName.Text = batter.SecondName.ToUpper();
+                var batter = _defense.BattingLineup.FirstOrDefault(batter1 => batter1.PositionForThisMatch == positionTitle);
+                firstName.Text = batter.FirstName.ToUpper();
+                secondName.Text = batter.SecondName.ToUpper();
             }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             Opacity -= 0.005;
-            if (Opacity < 1E-7)
-            {
-                Close();
-            }
+            if (Opacity < 1E-7) Close();
         }
 
         private void timer_Defense_Tick(object sender, EventArgs e)
@@ -70,9 +63,6 @@ namespace VKR_Test
             timer_Defense.Stop();
         }
 
-        private void tableLayoutPanel1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Close();
-        }
+        private void tableLayoutPanel1_MouseDoubleClick(object sender, MouseEventArgs e) => Close();
     }
 }

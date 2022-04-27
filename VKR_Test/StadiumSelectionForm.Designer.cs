@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class StadiumSelectionForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -250,20 +253,20 @@ namespace VKR_Test
         }
 
         #endregion
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnDecreaseStadiumNumberBy1;
-        private System.Windows.Forms.Button btnIncreaseStadiumNumberBy1;
-        private System.Windows.Forms.Label lbDistanceToCenterField;
-        private System.Windows.Forms.Label lbStadiumCapacity;
-        private System.Windows.Forms.Label lbStadiumLocation;
-        private System.Windows.Forms.Label lbStadiumName;
-        private System.Windows.Forms.Panel pbHomeTeamLogo;
-        private System.Windows.Forms.Panel pbAwayTeamLogo;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel pbStadiumPhoto;
-        private System.Windows.Forms.Button btnAcceptSelectedStadium;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Button btnDecreaseStadiumNumberBy1;
+        private Button btnIncreaseStadiumNumberBy1;
+        private Label lbDistanceToCenterField;
+        private Label lbStadiumCapacity;
+        private Label lbStadiumLocation;
+        private Label lbStadiumName;
+        private Panel pbHomeTeamLogo;
+        private Panel pbAwayTeamLogo;
+        private Label label8;
+        private Panel panel3;
+        private Panel pbStadiumPhoto;
+        private Button btnAcceptSelectedStadium;
     }
 }

@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class DBDeploymentResultForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -112,8 +115,8 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Label lbMessage;
-        private System.Windows.Forms.PictureBox pbResult;
+        private Button btnOK;
+        private Label lbMessage;
+        private PictureBox pbResult;
     }
 }

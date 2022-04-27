@@ -11,12 +11,9 @@ namespace VKR_Test
 {
     public partial class NewConnectionForm : Form
     {
-        private readonly NewConnectionBL _newConnectionBL;
-        public NewConnectionForm()
-        {
-            InitializeComponent();
-            _newConnectionBL = new NewConnectionBL();
-        }
+        private readonly NewConnectionBL _newConnectionBL = new NewConnectionBL();
+
+        public NewConnectionForm() => InitializeComponent();
 
         private void cb_IntegratedSecurity_CheckedChanged(object sender, EventArgs e)
         {
@@ -27,20 +24,17 @@ namespace VKR_Test
 
         private void txtLogin_Validating(object sender, CancelEventArgs e)
         {
-            if (!cb_IntegratedSecurity.Checked)
-            {
-                txt_Validating(txtLogin, e, ServerLoginErrorText, "Login");
-            }
+            if (!cb_IntegratedSecurity.Checked) txt_Validating(txtLogin, e, ServerLoginErrorText, "Login");
         }
 
 
-        private void txt_Validating(TextBox txt, CancelEventArgs e, Label l, string header)
+        private void txt_Validating(Control txt, CancelEventArgs e, Control l, string header)
         {
             if (string.IsNullOrWhiteSpace(txt.Text))
             {
                 txt.BackColor = Color.DarkRed;
                 e.Cancel = true;
-                l.Text = "Field \"" + header + "\" cannot be empty";
+                l.Text = $"Field \"{header}\" cannot be empty";
                 l.ForeColor = Color.Red;
             }
             else
@@ -54,52 +48,37 @@ namespace VKR_Test
 
         private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
-            if (!cb_IntegratedSecurity.Checked)
-            {
-                txt_Validating(txtPassword, e, ServerPasswordErrorText, "Password");
-            }
+            if (!cb_IntegratedSecurity.Checked) txt_Validating(txtPassword, e, ServerPasswordErrorText, "Password");
         }
 
-        private void cb_Servers_TextChanged(object sender, EventArgs e)
-        {
-            lbConnectionStringTitle.Text = cb_Servers.Text.Replace("\u005c", "_").ToLower() + "ConnectionString";
-        }
+        private void cb_Servers_TextChanged(object sender, EventArgs e) => lbConnectionStringTitle.Text = cb_Servers.Text.Replace("\u005c", "_").ToLower() + "ConnectionString";
 
         private void NewConnectionForm_Load(object sender, EventArgs e)
         {
-            DataTable table = SqlDataSourceEnumerator.Instance.GetDataSources();
-            List<string> servers = new List<string>();
-            foreach (DataRow row in table.Rows)
-            {
+            var table = SqlDataSourceEnumerator.Instance.GetDataSources();
+            var servers = new List<string>();
+            foreach (DataRow row in table.Rows) 
                 servers.Add(row[table.Columns[0]] + @"\" + row[table.Columns[1]]);
-            }
             cb_Servers.DataSource = servers;
         }
 
         private void btnDeployBaseOnNewServer_Click(object sender, EventArgs e)
         {
+            if (!ValidateChildren()) return;
+
             int result;
             string message;
-            if (ValidateChildren())
+            if (!cb_IntegratedSecurity.Checked) 
+                _newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message);
+            else _newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message, txtLogin.Text, txtPassword.Text);
+            var DeploymentResult = result == 0;
+            using (var form = new DBDeploymentResultForm(DeploymentResult, message))
             {
-                if (!cb_IntegratedSecurity.Checked)
-                {
-                    _newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message);
-                }
-                else
-                {
-                    _newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message, txtLogin.Text, txtPassword.Text);
-                }
-                bool DeploymentResult = result == 0;
-                DBDeploymentResultForm form = new DBDeploymentResultForm(DeploymentResult, message);
                 Visible = false;
                 form.ShowDialog();
             }
         }
 
-        private void NewConnectionForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
+        private void NewConnectionForm_FormClosing(object sender, FormClosingEventArgs e) => Application.Exit();
     }
 }

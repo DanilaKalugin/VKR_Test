@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class ScheduleAndResultsForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -322,23 +325,23 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Label lbHeader;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label team1Header;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label seriesHeader;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label team2Header;
-        private System.Windows.Forms.Button btnMatchDayUpcomingMatches;
-        private System.Windows.Forms.Button btnMatchDayResults;
-        private System.Windows.Forms.Button btnTeam1Next10Matches;
-        private System.Windows.Forms.Button btnTeam1Last10Matches;
-        private System.Windows.Forms.Button btnSeriesNextMatches;
-        private System.Windows.Forms.Button btnSeriesHistory;
-        private System.Windows.Forms.Button btnTeam2Next10Matches;
-        private System.Windows.Forms.Button btnTeam2Last10Matches;
+        private Label lbHeader;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
+        private Label label1;
+        private Panel panel2;
+        private Label team1Header;
+        private Panel panel3;
+        private Label seriesHeader;
+        private Panel panel4;
+        private Label team2Header;
+        private Button btnMatchDayUpcomingMatches;
+        private Button btnMatchDayResults;
+        private Button btnTeam1Next10Matches;
+        private Button btnTeam1Last10Matches;
+        private Button btnSeriesNextMatches;
+        private Button btnSeriesHistory;
+        private Button btnTeam2Next10Matches;
+        private Button btnTeam2Last10Matches;
     }
 }

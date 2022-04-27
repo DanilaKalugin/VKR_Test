@@ -1,20 +1,19 @@
-﻿using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Entities;
 using VKR.BLL;
 
 namespace VKR_Test
 {
     public partial class StadiumSelectionForm : Form
     {
-        private readonly StadiumsBL _stadiumsBL;
-        private List<Stadium> _stadiums;
+        private readonly StadiumsBL _stadiumsBL = new StadiumsBL();
+        private readonly List<Stadium> _stadiums;
         private int _stadiumNumber;
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
@@ -23,10 +22,9 @@ namespace VKR_Test
         public StadiumSelectionForm(Match match)
         {
             InitializeComponent();
-            _stadiumsBL = new StadiumsBL();
             NewMatch = match;
-            _stadiums = _stadiumsBL.GetAllStadims();
-            var HomeTeamStadium = _stadiums.Where(stadium => stadium.StadiumId == NewMatch.HomeTeam.Stadium).First();
+            _stadiums = _stadiumsBL.GetAllStadiums();
+            var HomeTeamStadium = _stadiums.First(stadium => stadium.StadiumId == NewMatch.HomeTeam.Stadium);
             _stadiumNumber = _stadiums.IndexOf(HomeTeamStadium);
             pbAwayTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{NewMatch.AwayTeam.TeamAbbreviation}.png");
             pbHomeTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{NewMatch.HomeTeam.TeamAbbreviation}.png");
@@ -40,19 +38,12 @@ namespace VKR_Test
             lbDistanceToCenterField.Text = _stadiums[number].StadiumDistanceToCenterfield + " ft";
 
             if (File.Exists($"Stadiums/Stadium{_stadiums[number].StadiumId:000}.jpg"))
-            {
                 pbStadiumPhoto.BackgroundImage = Image.FromFile($"Stadiums/Stadium{_stadiums[number].StadiumId:000}.jpg");
-            }
             else
-            {
                 pbStadiumPhoto.BackgroundImage = null;
-            }
         }
 
-        private void StadiumSelectionForm_Load(object sender, EventArgs e)
-        {
-            DisplayCurrentStadium(_stadiumNumber);
-        }
+        private void StadiumSelectionForm_Load(object sender, EventArgs e) => DisplayCurrentStadium(_stadiumNumber);
 
         private void btnIncreaseStadiumNumberBy1_Click(object sender, EventArgs e)
         {
@@ -70,25 +61,31 @@ namespace VKR_Test
         {
             var stadiumForThisMatch = _stadiums[_stadiumNumber];
             NewMatch.Stadium = stadiumForThisMatch;
-            var designatedHitterForm = new DHRuleForm(NewMatch);
-            Visible = false;
-            designatedHitterForm.ShowDialog();
 
-            if (designatedHitterForm.DialogResult == DialogResult.OK)
+            using (var designatedHitterForm = new DHRuleForm(NewMatch))
             {
-                DialogResult = DialogResult.OK;
-                designatedHitterForm.Dispose();
-                Hide();
+                Visible = false;
+                designatedHitterForm.ShowDialog();
+
+                switch (designatedHitterForm.DialogResult)
+                {
+                    case DialogResult.OK:
+                        DialogResult = DialogResult.OK;
+                        designatedHitterForm.Dispose();
+                        Hide();
+                        break;
+                    case DialogResult.Yes:
+                        ExitFromCurrentMatch = designatedHitterForm.ExitFromCurrentMatch;
+                        MatchNumberForDelete = designatedHitterForm.MatchNumber;
+                        designatedHitterForm.Dispose();
+                        Hide();
+                        DialogResult = DialogResult.Yes;
+                        break;
+                    default:
+                        Visible = true;
+                        break;
+                }
             }
-            else if (designatedHitterForm.DialogResult == DialogResult.Yes)
-            {
-                ExitFromCurrentMatch = designatedHitterForm.ExitFromCurrentMatch;
-                MatchNumberForDelete = designatedHitterForm.MatchNumber;
-                designatedHitterForm.Dispose();
-                Hide();
-                DialogResult = DialogResult.Yes;
-            }
-            else Visible = true;
         }
     }
 }

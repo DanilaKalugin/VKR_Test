@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class RostersMenuForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -134,10 +137,10 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Button btnCloseRostersMenu;
-        private System.Windows.Forms.Button btnLineups;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnReserves;
-        private System.Windows.Forms.Button button1;
+        private Button btnCloseRostersMenu;
+        private Button btnLineups;
+        private Panel panel2;
+        private Button btnReserves;
+        private Button button1;
     }
 }

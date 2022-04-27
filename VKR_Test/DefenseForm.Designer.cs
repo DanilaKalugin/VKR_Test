@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class DefenseForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -759,56 +762,56 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel teamLogo;
-        private System.Windows.Forms.Label lbTeamTitle;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Label c;
-        private System.Windows.Forms.Label c_SecondName;
-        private System.Windows.Forms.Label c_FirstName;
-        private System.Windows.Forms.Label _3b;
-        private System.Windows.Forms.Label _3b_SecondName;
-        private System.Windows.Forms.Label _3b_FirstName;
-        private System.Windows.Forms.Label _1b;
-        private System.Windows.Forms.Label _1b_SecondName;
-        private System.Windows.Forms.Label _1b_FirstName;
-        private System.Windows.Forms.Label p;
-        private System.Windows.Forms.Label p_SecondName;
-        private System.Windows.Forms.Label p_FirstName;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.Label _2b_SecondName;
-        private System.Windows.Forms.Label _2b_FirstName;
-        private System.Windows.Forms.Label _2b;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Label ss_SecondName;
-        private System.Windows.Forms.Label ss_FirstName;
-        private System.Windows.Forms.Label ss;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label rf_SecondName;
-        private System.Windows.Forms.Label rf_FirstName;
-        private System.Windows.Forms.Label rf;
-        private System.Windows.Forms.Panel panel19;
-        private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.Label lf_SecondName;
-        private System.Windows.Forms.Label lf_FirstName;
-        private System.Windows.Forms.Label lf;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.Label cf_SecondName;
-        private System.Windows.Forms.Label cf_FirstName;
-        private System.Windows.Forms.Label cf;
-        private System.Windows.Forms.Timer timer_Defense;
-        private System.Windows.Forms.Timer timer1;
+        private Panel panel1;
+        private Panel teamLogo;
+        private Label lbTeamTitle;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel9;
+        private Panel panel10;
+        private Panel panel11;
+        private Panel panel12;
+        private Label c;
+        private Label c_SecondName;
+        private Label c_FirstName;
+        private Label _3b;
+        private Label _3b_SecondName;
+        private Label _3b_FirstName;
+        private Label _1b;
+        private Label _1b_SecondName;
+        private Label _1b_FirstName;
+        private Label p;
+        private Label p_SecondName;
+        private Label p_FirstName;
+        private Panel panel13;
+        private Panel panel5;
+        private Panel panel15;
+        private Panel panel14;
+        private Panel panel8;
+        private Panel panel16;
+        private Label _2b_SecondName;
+        private Label _2b_FirstName;
+        private Label _2b;
+        private Panel panel7;
+        private Panel panel17;
+        private Label ss_SecondName;
+        private Label ss_FirstName;
+        private Label ss;
+        private Panel panel3;
+        private Panel panel4;
+        private Label rf_SecondName;
+        private Label rf_FirstName;
+        private Label rf;
+        private Panel panel19;
+        private Panel panel20;
+        private Label lf_SecondName;
+        private Label lf_FirstName;
+        private Label lf;
+        private Panel panel6;
+        private Panel panel18;
+        private Label cf_SecondName;
+        private Label cf_FirstName;
+        private Label cf;
+        private Timer timer_Defense;
+        private Timer timer1;
     }
 }

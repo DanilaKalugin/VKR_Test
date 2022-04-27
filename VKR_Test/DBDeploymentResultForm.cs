@@ -12,14 +12,8 @@ namespace VKR_Test
             lbMessage.Text = message;
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void btnOK_Click(object sender, EventArgs e) => Application.Exit();
 
-        private void DBDeploymentResultForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-        }
+        private void DBDeploymentResultForm_FormClosing(object sender, FormClosingEventArgs e) => e.Cancel = true;
     }
 }

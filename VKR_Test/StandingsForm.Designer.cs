@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class StandingsForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -317,20 +320,20 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvStandings;
-        private System.Windows.Forms.ComboBox cbFilter;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dtpStandingsDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeamColor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeamName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeamWins;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeamLosses;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeamGB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeamPCT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private DataGridView dgvStandings;
+        private ComboBox cbFilter;
+        private Label label2;
+        private DateTimePicker dtpStandingsDate;
+        private DataGridViewTextBoxColumn TeamColor;
+        private DataGridViewTextBoxColumn TeamName;
+        private DataGridViewTextBoxColumn TeamWins;
+        private DataGridViewTextBoxColumn TeamLosses;
+        private DataGridViewTextBoxColumn TeamGB;
+        private DataGridViewTextBoxColumn TeamPCT;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
     }
 }

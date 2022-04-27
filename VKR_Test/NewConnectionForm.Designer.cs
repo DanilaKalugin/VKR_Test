@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class NewConnectionForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -257,15 +260,15 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnDeployBaseOnNewServer;
-        private System.Windows.Forms.Label lbConnectionStringTitle;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label ServerLoginErrorText;
-        private System.Windows.Forms.Label ServerPasswordErrorText;
-        private System.Windows.Forms.TextBox txtLogin;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.CheckBox cb_IntegratedSecurity;
-        private System.Windows.Forms.ComboBox cb_Servers;
+        private PictureBox pictureBox1;
+        private Button btnDeployBaseOnNewServer;
+        private Label lbConnectionStringTitle;
+        private Panel panel1;
+        private Label ServerLoginErrorText;
+        private Label ServerPasswordErrorText;
+        private TextBox txtLogin;
+        private TextBox txtPassword;
+        private CheckBox cb_IntegratedSecurity;
+        private ComboBox cb_Servers;
     }
 }

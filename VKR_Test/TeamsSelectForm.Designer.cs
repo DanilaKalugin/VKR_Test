@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class TeamsSelectForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -32,8 +35,6 @@ namespace VKR_Test
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamsSelectForm));
             this.pbAwayLogo = new System.Windows.Forms.Panel();
-            this.lbAwayCity = new System.Windows.Forms.Label();
-            this.lbAwayTitle = new System.Windows.Forms.Label();
             this.numAwayTeamColor = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -68,9 +69,13 @@ namespace VKR_Test
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbAwayTitle = new System.Windows.Forms.Label();
+            this.lbAwayCity = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numAwayTeamColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHomeTeamColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pbAwayLogo
@@ -80,34 +85,6 @@ namespace VKR_Test
             this.pbAwayLogo.Name = "pbAwayLogo";
             this.pbAwayLogo.Size = new System.Drawing.Size(300, 300);
             this.pbAwayLogo.TabIndex = 0;
-            // 
-            // lbAwayCity
-            // 
-            this.lbAwayCity.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAwayCity.ForeColor = System.Drawing.Color.White;
-            this.lbAwayCity.Location = new System.Drawing.Point(12, 59);
-            this.lbAwayCity.Margin = new System.Windows.Forms.Padding(0);
-            this.lbAwayCity.Name = "lbAwayCity";
-            this.lbAwayCity.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
-            this.lbAwayCity.Size = new System.Drawing.Size(300, 23);
-            this.lbAwayCity.TabIndex = 2;
-            this.lbAwayCity.Text = "label1";
-            this.lbAwayCity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbAwayCity.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
-            // 
-            // lbAwayTitle
-            // 
-            this.lbAwayTitle.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAwayTitle.ForeColor = System.Drawing.Color.White;
-            this.lbAwayTitle.Location = new System.Drawing.Point(12, 82);
-            this.lbAwayTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lbAwayTitle.Name = "lbAwayTitle";
-            this.lbAwayTitle.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
-            this.lbAwayTitle.Size = new System.Drawing.Size(300, 22);
-            this.lbAwayTitle.TabIndex = 3;
-            this.lbAwayTitle.Text = "label2";
-            this.lbAwayTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbAwayTitle.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // numAwayTeamColor
             // 
@@ -670,12 +647,49 @@ namespace VKR_Test
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbAwayTitle);
+            this.panel1.Controls.Add(this.lbAwayCity);
+            this.panel1.Location = new System.Drawing.Point(12, 59);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(300, 45);
+            this.panel1.TabIndex = 32;
+            // 
+            // lbAwayTitle
+            // 
+            this.lbAwayTitle.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAwayTitle.ForeColor = System.Drawing.Color.White;
+            this.lbAwayTitle.Location = new System.Drawing.Point(0, 23);
+            this.lbAwayTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lbAwayTitle.Name = "lbAwayTitle";
+            this.lbAwayTitle.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
+            this.lbAwayTitle.Size = new System.Drawing.Size(300, 22);
+            this.lbAwayTitle.TabIndex = 3;
+            this.lbAwayTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbAwayTitle.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            // 
+            // lbAwayCity
+            // 
+            this.lbAwayCity.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAwayCity.ForeColor = System.Drawing.Color.White;
+            this.lbAwayCity.Location = new System.Drawing.Point(0, 0);
+            this.lbAwayCity.Margin = new System.Windows.Forms.Padding(0);
+            this.lbAwayCity.Name = "lbAwayCity";
+            this.lbAwayCity.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
+            this.lbAwayCity.Size = new System.Drawing.Size(300, 23);
+            this.lbAwayCity.TabIndex = 3;
+            this.lbAwayCity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbAwayCity.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            // 
             // TeamsSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(984, 450);
+            this.Controls.Add(this.btnDecreaseAwayTeamNumberBy1);
+            this.Controls.Add(this.btnIncreaseAwayTeamNumberBy1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnSwap);
             this.Controls.Add(this.HomeTeamBalance);
@@ -695,8 +709,6 @@ namespace VKR_Test
             this.Controls.Add(this.AwayOverallRating);
             this.Controls.Add(this.btnDecreaseHomeTeamNumberBy1);
             this.Controls.Add(this.btnIncreaseHomeTeamNumberBy1);
-            this.Controls.Add(this.btnDecreaseAwayTeamNumberBy1);
-            this.Controls.Add(this.btnIncreaseAwayTeamNumberBy1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.numHomeTeamColor);
@@ -708,9 +720,8 @@ namespace VKR_Test
             this.Controls.Add(this.label3);
             this.Controls.Add(this.numAwayTeamColor);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.lbAwayTitle);
-            this.Controls.Add(this.lbAwayCity);
             this.Controls.Add(this.pbAwayLogo);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -723,48 +734,50 @@ namespace VKR_Test
             ((System.ComponentModel.ISupportInitialize)(this.numAwayTeamColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHomeTeamColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pbAwayLogo;
-        private System.Windows.Forms.Label lbAwayCity;
-        private System.Windows.Forms.Label lbAwayTitle;
-        private System.Windows.Forms.NumericUpDown numAwayTeamColor;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numHomeTeamColor;
-        private System.Windows.Forms.Label lbHomeTitle;
-        private System.Windows.Forms.Label lbHomeCity;
-        private System.Windows.Forms.Panel pbHomeLogo;
-        private System.Windows.Forms.Button btnIncreaseAwayTeamNumberBy1;
-        private System.Windows.Forms.Button btnDecreaseAwayTeamNumberBy1;
-        private System.Windows.Forms.Button btnIncreaseHomeTeamNumberBy1;
-        private System.Windows.Forms.Button btnDecreaseHomeTeamNumberBy1;
+        private Panel pbAwayLogo;
+        private NumericUpDown numAwayTeamColor;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private NumericUpDown numHomeTeamColor;
+        private Label lbHomeTitle;
+        private Label lbHomeCity;
+        private Panel pbHomeLogo;
+        private Button btnIncreaseAwayTeamNumberBy1;
+        private Button btnDecreaseAwayTeamNumberBy1;
+        private Button btnIncreaseHomeTeamNumberBy1;
+        private Button btnDecreaseHomeTeamNumberBy1;
         private CircularProgressBar.CircularProgressBar AwayOverallRating;
         private CircularProgressBar.CircularProgressBar AwayOffensiveRating;
         private CircularProgressBar.CircularProgressBar AwayDefensiveRating;
         private CircularProgressBar.CircularProgressBar HomeDefensiveRating;
         private CircularProgressBar.CircularProgressBar HomeOffensiveRating;
         private CircularProgressBar.CircularProgressBar HomeOverallRating;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btnAcceptTeamsSelection;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label AwayTeamBalance;
-        private System.Windows.Forms.Label HomeTeamBalance;
-        private System.Windows.Forms.Button btnSwap;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewImageColumn Column1;
-        private System.Windows.Forms.DataGridViewImageColumn Column2;
+        private Label label9;
+        private Label label10;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Label label14;
+        private Button btnAcceptTeamsSelection;
+        private Label label15;
+        private Label label16;
+        private Label AwayTeamBalance;
+        private Label HomeTeamBalance;
+        private Button btnSwap;
+        private DataGridView dataGridView1;
+        private DataGridViewImageColumn Column1;
+        private DataGridViewImageColumn Column2;
+        private Panel panel1;
+        private Label lbAwayCity;
+        private Label lbAwayTitle;
     }
 }

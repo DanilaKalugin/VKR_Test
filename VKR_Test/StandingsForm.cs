@@ -1,20 +1,20 @@
-﻿using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using Entities;
 using VKR.BLL;
 
 namespace VKR_Test
 {
     public partial class StandingsForm : Form
     {
-        private readonly TeamsBL _teamsBl;
-        private readonly MatchBL _matchBL;
-        List<Team> _teams;
-        private Team _homeTeam;
-        private Team _awayTeam;
+        private readonly TeamsBL _teamsBl = new TeamsBL();
+        private readonly MatchBL _matchBL = new MatchBL();
+        private List<Team> _teams;
+        private readonly Team _homeTeam;
+        private readonly Team _awayTeam;
 
         public StandingsForm(Team home, Team away) : this()
         {
@@ -25,28 +25,16 @@ namespace VKR_Test
         public StandingsForm()
         {
             InitializeComponent();
-            _teamsBl = new TeamsBL();
-            _matchBL = new MatchBL();
             Program.MatchDate = _matchBL.GetMaxDateForAllMatches();
             dtpStandingsDate.Value = Program.MatchDate;
             cbFilter.Text = "League";
         }
 
-        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
-        {
-            GetNewTable(cbFilter);
-        }
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter);
 
-        private void GetStandingsForThisGroup(string group, int groupNumber, bool isWC = false)
+        private void GetStandingsForThisGroup(string group, int groupNumber, bool isWildCard = false)
         {
-            if (isWC)
-            {
-                _teams = _teamsBl.GetWCStandings(group, dtpStandingsDate.Value);
-            }
-            else
-            {
-                _teams = _teamsBl.GetStandings(group, dtpStandingsDate.Value);
-            }
+            _teams = isWildCard ? _teamsBl.GetWCStandings(group, dtpStandingsDate.Value) : _teamsBl.GetStandings(group, dtpStandingsDate.Value);
 
             var teamsInGroup = _teams.Count;
             dgvStandings.Rows.Add("", group, "W", "L", "GB", "PCT", "RS", "RA", "DIFF", "HOME", "AWAY");
@@ -59,12 +47,10 @@ namespace VKR_Test
             for (var i = 0; i < _teams.Count; i++)
             {
                 var gamesBehind = Math.Abs(_teams[i].GamesBehind).ToString("0.0", new CultureInfo("en-US"));
-                if (_teams[i].GamesBehind < 0)
-                {
-                    gamesBehind = $"+{gamesBehind}";
-                }
+                
+                if (_teams[i].GamesBehind < 0) gamesBehind = $"+{gamesBehind}";
 
-                dgvStandings.Rows.Add("", _teams[i].TeamTitle, _teams[i].Wins, _teams[i].Losses, gamesBehind, _teams[i].PCT.ToString("#.000", new CultureInfo("en-US")), _teams[i].RunsScored, _teams[i].RunsAllowed, _teams[i].RunDifferential, _teams[i].HomeBalance, _teams[i].AwayBalance);
+                dgvStandings.Rows.Add("", _teams[i].TeamTitle, _teams[i].Wins, _teams[i].Losses, gamesBehind, _teams[i].Pct.ToString("#.000", new CultureInfo("en-US")), _teams[i].RunsScored, _teams[i].RunsAllowed, _teams[i].RunDifferential, _teams[i].HomeBalance, _teams[i].AwayBalance);
 
                 if ((_homeTeam != null && _homeTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value) ||
                     (_awayTeam != null && _awayTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value))
@@ -79,53 +65,38 @@ namespace VKR_Test
             }
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            GetNewTable(cbFilter);
-        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter);
 
-        private void GetNewTable(ComboBox comboBox)
+        private void GetNewTable(ListControl comboBox)
         {
             dgvStandings.Rows.Clear();
             switch (comboBox.SelectedIndex)
             {
                 case 0:
-                    {
-                        GetStandingsForThisGroup("MLB", 0);
-                        break;
-                    }
+                    GetStandingsForThisGroup("MLB", 0);
+                    break;
                 case 1:
-                    {
-                        GetStandingsForThisGroup("AL", 0);
-                        GetStandingsForThisGroup("NL", 1);
-                        break;
-                    }
+                    GetStandingsForThisGroup("AL", 0);
+                    GetStandingsForThisGroup("NL", 1);
+                    break;
                 case 2:
-                    {
-                        GetStandingsForThisGroup("AL East", 0);
-                        GetStandingsForThisGroup("AL Central", 1);
-                        GetStandingsForThisGroup("AL West", 2);
-                        GetStandingsForThisGroup("NL East", 3);
-                        GetStandingsForThisGroup("NL Central", 4);
-                        GetStandingsForThisGroup("NL West", 5);
-                        break;
-                    }
+                    GetStandingsForThisGroup("AL East", 0);
+                    GetStandingsForThisGroup("AL Central", 1);
+                    GetStandingsForThisGroup("AL West", 2);
+                    GetStandingsForThisGroup("NL East", 3);
+                    GetStandingsForThisGroup("NL Central", 4);
+                    GetStandingsForThisGroup("NL West", 5);
+                    break;
                 case 3:
-                    {
-                        GetStandingsForThisGroup("AL", 0, true);
-                        GetStandingsForThisGroup("NL", 1, true);
-                        break;
-                    }
+                    GetStandingsForThisGroup("AL", 0, true);
+                    GetStandingsForThisGroup("NL", 1, true);
+                    break;
             }
 
             if (dgvStandings.RowCount < Screen.PrimaryScreen.Bounds.Size.Height)
-            {
                 Height = 97 + dgvStandings.RowTemplate.Height * dgvStandings.RowCount;
-            }
             else
-            {
-                Height = 97 + ((Screen.PrimaryScreen.Bounds.Size.Height - 97) / dgvStandings.RowTemplate.Height) * dgvStandings.RowTemplate.Height;
-            }
+                Height = 97 + (Screen.PrimaryScreen.Bounds.Size.Height - 97) / dgvStandings.RowTemplate.Height * dgvStandings.RowTemplate.Height;
         }
     }
 }

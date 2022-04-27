@@ -1,24 +1,24 @@
-﻿using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
+using Entities;
 using VKR.BLL;
 
 namespace VKR_Test
 {
     public partial class LineupsForm : Form
     {
-        public enum RosterType { StartingLineups, Reserves, FreeAgents };
+        public enum RosterType { StartingLineups, Reserves, FreeAgents }
         private RosterType _rosterType;
 
-        private readonly PlayerBL _players;
-        private readonly TeamsBL _teamsBL;
-        private List<List<List<PlayerInLineup>>> _teamsLineups;
-        private List<List<List<PlayerInLineup>>> _teamsBench;
-        private List<Team> _teams;
+        private readonly PlayerBL _players = new PlayerBL();
+        private readonly TeamsBL _teamsBL = new TeamsBL();
+        private readonly List<List<List<PlayerInLineup>>> _teamsLineups;
+        private readonly List<List<List<PlayerInLineup>>> _teamsBench;
+        private readonly List<Team> _teams;
         private int _teamNumber;
         private int _lineupNumber;
         private readonly string[] _typesOfLineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
@@ -28,10 +28,9 @@ namespace VKR_Test
         {
             InitializeComponent();
 
-            _players = new PlayerBL();
-            _teamsBL = new TeamsBL();
             _rosterType = rosterType;
             _teams = _teamsBL.GetAllTeams();
+
             switch (_rosterType)
             {
                 case RosterType.StartingLineups:
@@ -56,6 +55,7 @@ namespace VKR_Test
                         break;
                     }
             }
+
             TeamChanged(_teamNumber);
         }
 
@@ -104,7 +104,7 @@ namespace VKR_Test
             {
                 case RosterType.StartingLineups:
                     {
-                        foreach (PlayerInLineup player in _teamsLineups[teamNumber][lineupNumber])
+                        foreach (var player in _teamsLineups[teamNumber][lineupNumber])
                         {
                             dgvLineup.Rows.Add(player.NumberInLineup, player.Position, $"{player.FirstName[0]}. {player.SecondName}");
                         }
@@ -113,7 +113,7 @@ namespace VKR_Test
                     }
                 case RosterType.Reserves:
                     {
-                        foreach (PlayerInLineup player in _teamsLineups[teamNumber][lineupNumber])
+                        foreach (var player in _teamsLineups[teamNumber][lineupNumber])
                         {
                             dgvLineup.Rows.Add(player.NumberInLineup, player.PlayerPositions[0], $"{player.FirstName[0]}. {player.SecondName}");
                         }
@@ -123,7 +123,7 @@ namespace VKR_Test
                     }
                 case RosterType.FreeAgents:
                     {
-                        foreach (PlayerInLineup player in _teamsLineups[teamNumber][lineupNumber])
+                        foreach (var player in _teamsLineups[teamNumber][lineupNumber])
                         {
                             dgvLineup.Rows.Add(player.NumberInLineup, player.PlayerPositions[0], $"{player.FirstName[0]}. {player.SecondName}");
                         }
@@ -134,20 +134,13 @@ namespace VKR_Test
             }
             lbLineUpType.Text = _typesOfLineups[lineupNumber];
             dgvBench.Rows.Clear();
+
             if (_rosterType == RosterType.FreeAgents)
-            {
-                foreach (PlayerInLineup player in _teamsBench[0][0])
-                {
+                foreach (var player in _teamsBench[0][0])
                     dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
-                }
-            }
             else
-            {
-                foreach (PlayerInLineup player in _teamsBench[teamNumber][lineupNumber])
-                {
+                foreach (var player in _teamsBench[teamNumber][lineupNumber])
                     dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
-                }
-            }
 
             _LineupChanged = true;
         }
@@ -167,27 +160,18 @@ namespace VKR_Test
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvLineup.SelectedRows.Count > 0)
-            {
                 ShowNewPlayer(dgvLineup, dgvBench, _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index]);
-            }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            ShowNewPlayer(dgvLineup, dgvBench, _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index]);
-        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e) => ShowNewPlayer(dgvLineup, dgvBench, _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index]);
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             _LineupChanged = false;
             if (_rosterType == RosterType.FreeAgents)
-            {
                 ShowNewPlayer(dgvBench, dgvLineup, _teamsBench[0][0][dgvBench.SelectedRows[0].Index]);
-            }
             else
-            {
                 ShowNewPlayer(dgvBench, dgvLineup, _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index]);
-            }
         }
 
         private void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, PlayerInLineup player)
@@ -202,62 +186,50 @@ namespace VKR_Test
             dgv1.AlternatingRowsDefaultCellStyle.SelectionBackColor = _teams[_teamNumber].TeamColor[0];
             dgv1.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
 
-            Player batter = _players.GetPlayerByCode(player.Id);
+            var batter = _players.GetPlayerByCode(player.Id);
+
+            label4.Text = !player.PlayerPositions.Contains("P") ? "AVG" : "ERA";
+            label5.Text = !player.PlayerPositions.Contains("P") ? "HR" : "SO";
+            label6.Text = !player.PlayerPositions.Contains("P") ? "RBI" : "WHIP";
+
             if (player.PlayerPositions.IndexOf("P") == -1)
             {
-                label4.Text = "AVG";
-                label5.Text = "HR";
-                label6.Text = "RBI";
-                
-                label1.Text = batter.battingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
-                label2.Text = batter.battingStats.HomeRuns.ToString();
-                label3.Text = batter.battingStats.RBI.ToString();
+                label1.Text = batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
+                label2.Text = batter.BattingStats.HomeRuns.ToString();
+                label3.Text = batter.BattingStats.RBI.ToString();
             }
             else
             {
-                label4.Text = "ERA";
-                label5.Text = "SO";
-                label6.Text = "WHIP";
-
-                Pitcher pitcher = _players.GetPitcherByCode(player.Id);
+                var pitcher = _players.GetPitcherByCode(player.Id);
                 pitcher.RemainingStamina = _players.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher);
 
-                label1.Text = pitcher.pitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"));
-                label2.Text = pitcher.pitchingStats.Strikeouts.ToString();
-                label3.Text = pitcher.pitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
+                label1.Text = pitcher.PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"));
+                label2.Text = pitcher.PitchingStats.Strikeouts.ToString();
+                label3.Text = pitcher.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
             }
-            label7.Text = $"Positions: {string.Join(", ", player.PlayerPositions)}";
 
-            if (dgv1.SelectedRows.Count > 0)
-            {
-                if (File.Exists($"PlayerPhotos/Player{player.Id:0000}.png"))
-                {
-                    pbPlayerPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.Id:0000}.png");
-                }
-                else
-                {
-                    pbPlayerPhoto.BackgroundImage = null;
-                }
-                lbPlayerNumber.Text = $"#{player.PlayerNumber}";
-                lbPlayerName.Text = player.FullName.ToUpper();
-                lbPlayerPlace_and_DateOfBirth.Text = $"{player.PlaceOfBirth.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";
-                playerHands.Text = $"B/T: {player.BattingHand[0]}/{player.PitchingHand[0]}".ToUpper();
-            }
+            label7.Text = $@"Positions: {string.Join(", ", player.PlayerPositions)}";
+
+            if (dgv1.SelectedRows.Count <= 0) return;
+
+            if (File.Exists($"PlayerPhotos/Player{player.Id:0000}.png"))
+                pbPlayerPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.Id:0000}.png");
+            else pbPlayerPhoto.BackgroundImage = null;
+            
+            lbPlayerNumber.Text = $"#{player.PlayerNumber}";
+            lbPlayerName.Text = player.FullName.ToUpper();
+            lbPlayerPlace_and_DateOfBirth.Text = $"{player.PlaceOfBirth.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";
+            playerHands.Text = $"B/T: {player.BattingHand[0]}/{player.PitchingHand[0]}".ToUpper();
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvBench.SelectedRows.Count > 0 && !_LineupChanged)
-            {
-                if (_rosterType == RosterType.FreeAgents)
-                {
-                    ShowNewPlayer(dgvBench, dgvLineup, _teamsBench[0][0][dgvBench.SelectedRows[0].Index]);
-                }
-                else
-                {
-                    ShowNewPlayer(dgvBench, dgvLineup, _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index]);
-                }
-            }
+            if (dgvBench.SelectedRows.Count <= 0 || _LineupChanged) return;
+
+            ShowNewPlayer(dgvBench, dgvLineup,
+                _rosterType == RosterType.FreeAgents
+                    ? _teamsBench[0][0][dgvBench.SelectedRows[0].Index]
+                    : _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index]);
         }
 
         private void LineupsForm_Load(object sender, EventArgs e)

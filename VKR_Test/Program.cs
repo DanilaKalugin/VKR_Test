@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace VKR_Test
 {
-    static class Program
+    internal static class Program
     {
         public static DateTime MatchDate;
 
@@ -11,7 +11,7 @@ namespace VKR_Test
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

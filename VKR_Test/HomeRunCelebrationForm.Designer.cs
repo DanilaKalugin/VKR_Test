@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace VKR_Test
 {
     partial class HomeRunCelebrationForm
@@ -6,7 +9,7 @@ namespace VKR_Test
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -144,14 +147,14 @@ namespace VKR_Test
 
         #endregion
 
-        private System.Windows.Forms.Label lbHomeRunType;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel pbPatterPhoto;
-        private System.Windows.Forms.Label lbBatterName;
-        private System.Windows.Forms.Label lbBatterHRNumber;
-        private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Label lbBatterHRNumberInThisMatch;
+        private Label lbHomeRunType;
+        private Timer timer1;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel pbPatterPhoto;
+        private Label lbBatterName;
+        private Label lbBatterHRNumber;
+        private Timer timer2;
+        private Label lbBatterHRNumberInThisMatch;
     }
 }
