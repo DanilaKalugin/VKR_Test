@@ -318,6 +318,10 @@
       <Project>{eb513c16-3c1f-49cc-9476-bd1402537db6}</Project>
       <Name>VKR.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VKRControls\VKRControls.csproj">
+      <Project>{5E902CFA-16C6-4199-ADEC-246697777987}</Project>
+      <Name>VKRControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
