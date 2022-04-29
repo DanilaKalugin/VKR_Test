@@ -61,7 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CorrectForeColorForAllBackColors.cs" />
+    <Compile Include="Utils\CorrectForeColorForAllBackColors.cs" />
     <Compile Include="DBDeploymentResultForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,7 +140,7 @@
     <Compile Include="PitcherSubstitutionForm.Designer.cs">
       <DependentUpon>PitcherSubstitutionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RandomGenerators.cs" />
+    <Compile Include="Utils\RandomGenerators.cs" />
     <Compile Include="RostersMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
