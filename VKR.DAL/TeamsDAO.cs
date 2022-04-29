@@ -24,14 +24,12 @@ namespace VKR.DAL
                         var Abbreviation = (string)reader["TeamAbbreviation"];
                         var Name = (string)reader["TeamName"];
                         var League = (string)reader["LeagueID"];
-                        var W = (int)reader["W"];
-                        var L = (int)reader["L"];
                         var Division = (string)reader["DivisionTitle"];
                         var HW = (int)reader["HW"];
                         var HL = (int)reader["HL"];
                         var AW = (int)reader["AW"];
                         var AL = (int)reader["AL"];
-                        yield return new Team(Abbreviation, Name, W, L, League, Division, HW, HL, AW, AL);
+                        yield return new Team(Abbreviation, Name, League, Division, HW, HL, AW, AL);
                     }
             }
         }
@@ -247,8 +245,7 @@ namespace VKR.DAL
                         var pitchingHand = (string)reader["PlayerPitchingHand"];
                         var teamID = (string)reader["TeamID"];
                         var inActiveRoster = (bool)reader["InActiveRoster"];
-                        var PositionInLineup = (int)reader["NumberInLineup"];
-                        var Position = (string)reader["PlayerPosition"];
+                        var Position = (string)reader["PlayerPositionID"];
 
                         var Games = (int)reader["BatterG"];
                         var Strikeouts = (int)reader["BatterK"];
@@ -307,7 +304,7 @@ namespace VKR.DAL
                             PitcherGO, PitcherAO, TGP);
 
                         yield return new Batter(id, firstName, secondName, number, placeOfBirth, dateOfBirth,
-                            battingHand, pitchingHand, teamID, inActiveRoster, Position, PositionInLineup, batting,
+                            battingHand, pitchingHand, teamID, inActiveRoster, Position, batter.NumberInBattingLineup, batting,
                             pitching);
                     }
             }
