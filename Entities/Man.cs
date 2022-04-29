@@ -10,6 +10,6 @@ namespace Entities
         public DateTime DateOfBirth;
         public string PlaceOfBirth;
 
-        public string FullName => FirstName + " " + SecondName;
+        public string FullName => $"{FirstName} {SecondName}";
     }
 }
