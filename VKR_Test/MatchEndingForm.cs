@@ -10,14 +10,12 @@ namespace VKR_Test
     public partial class MatchEndingForm : Form
     {
         private readonly Match _endedMatch;
-        private readonly MatchBL _matchBL;
-        private readonly TeamsBL _teamsBL;
+        private readonly MatchBL _matchBL = new MatchBL();
+        private readonly TeamsBL _teamsBL = new TeamsBL();
 
         public MatchEndingForm(Match match)
         {
             InitializeComponent();
-            _matchBL = new MatchBL();
-            _teamsBL = new TeamsBL();
             _endedMatch = match;
         }
 

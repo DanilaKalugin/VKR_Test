@@ -28,7 +28,6 @@ namespace VKR_Test
             var HRTodayForThisBatter = allAtBats.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.Id);
 
             lbBatterHRNumber.Visible = !isQuickMatch;
-            lbBatterHRNumberInThisMatch.Visible = !isQuickMatch;
 
             lbBatterHRNumber.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.BattingStats.HomeRuns + 1)} HR in career";
             lbBatterHRNumberInThisMatch.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(HRTodayForThisBatter + 1)} HR in this match";

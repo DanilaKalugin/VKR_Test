@@ -17,10 +17,7 @@ namespace VKR_Test
         public enum TableType { Results, Schedule }
         private readonly TableType _tableType;
 
-        private MatchResultsForm()
-        {
-            InitializeComponent();
-        }
+        private MatchResultsForm() => InitializeComponent();
 
         public MatchResultsForm(TableType tableType) : this()
         {

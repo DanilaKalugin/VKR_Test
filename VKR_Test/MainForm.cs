@@ -229,7 +229,7 @@ namespace VKR_Test
 
             BatterStats.Text = ShowBatterStats(batter);
             ShowStatsForThisMatch(batter, lbTodayStats);
-
+            
             if (File.Exists($"PlayerPhotos/Player{batter.Id:0000}.png"))
                 pbCurrentBatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.Id:0000}.png");
             else
@@ -333,7 +333,6 @@ namespace VKR_Test
             UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayLOB, awayRuns, awayHits, _currentMatch, _currentMatch.AwayTeam);
             UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeLOB, homeRuns, homeHits, _currentMatch, _currentMatch.HomeTeam);
         }
-
 
         private void AddNewGameSituation(Pitch pitch)
         {
@@ -685,10 +684,7 @@ namespace VKR_Test
             if (_isAutoSimulation) timer1.Start();
         }
 
-        private void btnShowAvailablePitchers_Click(object sender, EventArgs e)
-        {
-            ChangePitcher(_isAutoSimulation);
-        }
+        private void btnShowAvailablePitchers_Click(object sender, EventArgs e) => ChangePitcher(_isAutoSimulation);
 
         private void btnOtherResults_Click(object sender, EventArgs e)
         {
@@ -847,10 +843,7 @@ namespace VKR_Test
             ControlPaint.DrawBorder(e.Graphics, panel9.ClientRectangle, borderColor, ButtonBorderStyle.Solid);
         }
 
-        private void btnManualMode_Click(object sender, EventArgs e)
-        {
-            SimulationModeChanged(false);
-        }
+        private void btnManualMode_Click(object sender, EventArgs e) => SimulationModeChanged(false);
 
         private void ChangePitcher(bool isAutoSimulation)
         {
@@ -876,9 +869,7 @@ namespace VKR_Test
             }
             else if (!_isAutoSimulation)
                 using (var form = new ErrorForm())
-                {
                     form.ShowDialog();
-                }
         }
 
         private Pitcher GetNewPitcherAutomatic(Team defense, List<Pitcher> pitchers)

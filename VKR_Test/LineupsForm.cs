@@ -105,18 +105,14 @@ namespace VKR_Test
                 case RosterType.StartingLineups:
                     {
                         foreach (var player in _teamsLineups[teamNumber][lineupNumber])
-                        {
                             dgvLineup.Rows.Add(player.NumberInLineup, player.Position, $"{player.FirstName[0]}. {player.SecondName}");
-                        }
                         dgvBench.Columns[0].HeaderText = lineupNumber != 4 ? "BENCH" : "BULLPEN";
                         break;
                     }
                 case RosterType.Reserves:
                     {
                         foreach (var player in _teamsLineups[teamNumber][lineupNumber])
-                        {
                             dgvLineup.Rows.Add(player.NumberInLineup, player.PlayerPositions[0], $"{player.FirstName[0]}. {player.SecondName}");
-                        }
                         dgvBench.Columns[0].HeaderText = "RESERVE";
                         dgvLineup.Columns[0].Visible = false;
                         break;
@@ -124,9 +120,7 @@ namespace VKR_Test
                 case RosterType.FreeAgents:
                     {
                         foreach (var player in _teamsLineups[teamNumber][lineupNumber])
-                        {
                             dgvLineup.Rows.Add(player.NumberInLineup, player.PlayerPositions[0], $"{player.FirstName[0]}. {player.SecondName}");
-                        }
                         dgvBench.Columns[0].HeaderText = "FREE AGENTS";
                         dgvLineup.Columns[0].Visible = false;
                         break;
