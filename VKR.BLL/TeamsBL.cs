@@ -79,8 +79,8 @@ namespace VKR.BLL
         public void UpdateTeamBalance(Team team)
         {
             var teamWithNewBalance = _teamsDAO.UpdateBalanceForThisTeam(team).First();
-            team.Wins = teamWithNewBalance.Wins;
-            team.Losses = teamWithNewBalance.Losses;
+            team.Wins = teamWithNewBalance.Item1;
+            team.Losses = teamWithNewBalance.Item2;
         }
 
         public List<Team> GetTeamBattingStats() => _teamsDAO.GetList().OrderByDescending(team => team.BattingStats.AVG).ToList();

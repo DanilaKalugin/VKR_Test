@@ -15,22 +15,18 @@ namespace VKR.BLL
         {
             _players = _playerDAO.GetAllPlayers().ToList();
             var abbreviations = GetTeamsForFilter(TeamFilter);
-            var fplayers = _players.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
+            var fplayers = _players.Where(player => abbreviations.Contains(player.Team)).ToList();
             
             if (Positions != "")
-            {
                 if (Positions == "OF")
                 {
-                    var lf = fplayers.Where(batter => batter.PlayerPositions.IndexOf("LF") != -1).ToList();
-                    var cf = fplayers.Where(batter => batter.PlayerPositions.IndexOf("CF") != -1).ToList();
-                    var rf = fplayers.Where(batter => batter.PlayerPositions.IndexOf("RF") != -1).ToList();
+                    var lf = fplayers.Where(batter => batter.PlayerPositions.Contains("LF")).ToList();
+                    var cf = fplayers.Where(batter => batter.PlayerPositions.Contains("CF")).ToList();
+                    var rf = fplayers.Where(batter => batter.PlayerPositions.Contains("RF")).ToList();
                     fplayers = lf.Union(cf).Union(rf).Distinct().ToList();
                 }
                 else
-                {
-                    fplayers = fplayers.Where(player => player.PlayerPositions.IndexOf(Positions) != -1).ToList();
-                }
-            }
+                    fplayers = fplayers.Where(player => player.PlayerPositions.Contains(Positions)).ToList();
 
             switch (Qualifying)
             {
@@ -48,7 +44,7 @@ namespace VKR.BLL
         {
             _players = _playerDAO.GetAllPlayers().ToList();
             var abbreviations = GetTeamsForFilter(TeamFilter);
-            var fplayers = _players.Where(player => abbreviations.IndexOf(player.Team) != -1).ToList();
+            var fplayers = _players.Where(player => abbreviations.Contains(player.Team)).ToList();
             
             switch (Qualifying)
             {
@@ -90,10 +86,8 @@ namespace VKR.BLL
             ungroupedPlayers = rosterType == "GetStartingLineups" ? _playerDAO.GetStartingLineups().ToList() : _playerDAO.GetRoster(rosterType).ToList();
             
             foreach (var playerInLineup in ungroupedPlayers)
-            {
                 playerInLineup.PlayerPositions = _playerDAO.GetPositionsForThisPlayer(playerInLineup.Id).ToList();
-            }
-            
+
             var teams = _teamsDAO.GetList().ToList();
             var lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
 
@@ -103,9 +97,8 @@ namespace VKR.BLL
             {
                 groupedPlayers.Add(new List<List<PlayerInLineup>>());
                 foreach (var lineupType in lineups)
-                {
-                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == teams[i].TeamAbbreviation && player.LineupType == lineupType).OrderBy(player => player.NumberInLineup).ToList());
-                }
+                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == teams[i].TeamAbbreviation && player.LineupType == lineupType)
+                                                              .OrderBy(player => player.NumberInLineup).ToList());
             }
 
             return groupedPlayers;
@@ -116,19 +109,15 @@ namespace VKR.BLL
             var ungroupedPlayers = _playerDAO.GetRoster("GetFreeAgents").ToList();
             
             foreach (var playerInLineup in ungroupedPlayers)
-            {
                 playerInLineup.PlayerPositions = _playerDAO.GetPositionsForThisPlayer(playerInLineup.Id).ToList();
-            }
-            
+
             var Lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
 
             var groupedPlayers = new List<List<List<PlayerInLineup>>> { new List<List<PlayerInLineup>>() };
             
             foreach (var lineupType in Lineups)
-            {
                 groupedPlayers[0].Add(ungroupedPlayers.Where(player => player.LineupType == lineupType).OrderBy(player => player.NumberInLineup).ToList());
-            }
-            
+
             return groupedPlayers;
         }
 
@@ -138,7 +127,7 @@ namespace VKR.BLL
 
         public List<Batter> GetCurrentLineupForThisMatch(string Team, int Match) => _playerDAO.GetCurrentLineupForThisMatch(Team, Match).ToList();
 
-        public void UpdateStatsForThisPitcher(Pitcher pitcher, Match match) => pitcher.PitchingStats = _playerDAO.GetPitchingStatsByCode(pitcher).FirstOrDefault();
+        public void UpdateStatsForThisPitcher(Pitcher pitcher) => pitcher.PitchingStats = _playerDAO.GetPitchingStatsByCode(pitcher).FirstOrDefault();
 
         public Pitcher GetStartingPitcherForThisTeam(Team team, Match match)
         {
@@ -151,7 +140,7 @@ namespace VKR.BLL
 
         public void SubstitutePitcher(Match match, Team team, Pitcher pitcher) => _teamsDAO.SubstitutePitcher(match, team, pitcher);
 
-        public List<Batter> GetAvailableBatters(Match match, Team team, Batter batter) => _teamsDAO.GetAvailableBatters(match, team, batter).ToList();
+        public List<Batter> GetAvailableBatters(Match match, Team team, Batter batter) => _playerDAO.GetAvailableBatters(match, team, batter).ToList();
 
         public void SubstituteBatter(Match match, Team team, Batter oldBatter, Batter newBatter) => _teamsDAO.SubstituteBatter(match, team, oldBatter, newBatter);
 

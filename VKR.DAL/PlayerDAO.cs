@@ -32,61 +32,8 @@ namespace VKR.DAL
                         var team = (string)reader["TeamID"];
                         var inActiveRoster = (bool)reader["InActiveRoster"];
 
-                        var Games = (int)reader["BatterG"];
-                        var Strikeouts = (int)reader["BatterK"];
-                        var Walks = (int)reader["BatterBB"];
-                        var HitByPitch = (int)reader["BatterHBP"];
-                        var Flyout = (int)reader["BatterAO"];
-                        var Groundout = (int)reader["BatterGO"];
-                        var Popout = (int)reader["BatterPO"];
-                        var Single = (int)reader["Batter1B"];
-                        var Double = (int)reader["Batter2B"];
-                        var Triple = (int)reader["Batter3B"];
-                        var HomeRun = (int)reader["BatterHR"];
-                        var StolenBase = (int)reader["BatterSB"];
-                        var CaughtStealing = (int)reader["BatterCS"];
-                        var Runs = (int)reader["BatterR"];
-                        var SacFlies = (int)reader["BatterSF"];
-                        var Bunts = (int)reader["BatterSAC"];
-                        var RBI = (int)reader["BatterRBI"];
-                        var PA = (int)reader["BatterPA"];
-                        var GIDP = (int)reader["BatterGIDP"];
-                        var TGP = (int)reader["BatterTGP"];
-                        var batting = new BattingStats(Games, Single, Double, Triple,
-                                                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
-                                                Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
-
-                        var PitcherG = (int)reader["PitcherG"];
-                        var PitcherGS = (int)reader["PitcherGS"];
-                        var PitcherK = (int)reader["PitcherK"];
-                        var PitcherOuts = (int)reader["PitcherOuts"];
-                        var PitcherR = (int)reader["PitcherR"];
-                        var PitcherBB = (int)reader["PitcherBB"];
-                        var Pitcher1B = (int)reader["Pitcher1B"];
-                        var Pitcher2B = (int)reader["Pitcher2B"];
-                        var Pitcher3B = (int)reader["Pitcher3B"];
-                        var PitcherHR = (int)reader["PitcherHR"];
-                        var PitcherTBF = (int)reader["PitcherTBF"];
-                        var PitcherHBP = (int)reader["PitcherHBP"];
-                        var PitcherSF = (int)reader["PitcherSF"];
-                        var PitcherSAC = (int)reader["PitcherSAC"];
-                        var PitcherSB = (int)reader["PitcherSB"];
-                        var PitcherCS = (int)reader["PitcherCS"];
-                        var PitcherGIDP = (int)reader["PitcherGIDP"];
-                        var PitcherQS = (int)reader["PitcherQS"];
-                        var PitcherCG = (int)reader["PitcherCG"];
-                        var PitcherSHO = (int)reader["PitcherSHO"];
-                        var PitcherAO = (int)reader["PitcherAO"];
-                        var PitcherGO = (int)reader["PitcherGO"];
-                        var PitcherW = (int)reader["PitcherW"];
-                        var PitcherL = (int)reader["PitcherL"];
-                        var PitcherSV = (int)reader["PitcherSV"];
-                        var PitcherHLD = (int)reader["PitcherHLD"];
-                        var pitching =  new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
-                                                 PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
-                                                 PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
-                                                 PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
-                                                 PitcherGO, PitcherAO, TGP);
+                        var batting = GetBattingStatsForPlayer(reader);
+                        var pitching = GetPitchingStatsForPlayer(reader);
 
                         var player = new Player(id, firstName, secondName, number, placeOfBirth, dateOfBirth, battingHand, pitchingHand, team, inActiveRoster, batting, pitching);
 
@@ -171,61 +118,8 @@ namespace VKR.DAL
                         var team = (string)reader["TeamID"];
                         var inActiveRoster = (bool)reader["InActiveRoster"];
 
-                        var Games = (int)reader["BatterG"];
-                        var Strikeouts = (int)reader["BatterK"];
-                        var Walks = (int)reader["BatterBB"];
-                        var HitByPitch = (int)reader["BatterHBP"];
-                        var Flyout = (int)reader["BatterAO"];
-                        var Groundout = (int)reader["BatterGO"];
-                        var Popout = (int)reader["BatterPO"];
-                        var Single = (int)reader["Batter1B"];
-                        var Double = (int)reader["Batter2B"];
-                        var Triple = (int)reader["Batter3B"];
-                        var HomeRun = (int)reader["BatterHR"];
-                        var StolenBase = (int)reader["BatterSB"];
-                        var CaughtStealing = (int)reader["BatterCS"];
-                        var Runs = (int)reader["BatterR"];
-                        var SacFlies = (int)reader["BatterSF"];
-                        var Bunts = (int)reader["BatterSAC"];
-                        var RBI = (int)reader["BatterRBI"];
-                        var PA = (int)reader["BatterPA"];
-                        var GIDP = (int)reader["BatterGIDP"];
-                        var TGP = (int)reader["BatterTGP"];
-                        var batting = new BattingStats(Games, Single, Double, Triple,
-                                                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
-                                                Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
-
-                        var PitcherG = (int)reader["PitcherG"];
-                        var PitcherGS = (int)reader["PitcherGS"];
-                        var PitcherK = (int)reader["PitcherK"];
-                        var PitcherOuts = (int)reader["PitcherOuts"];
-                        var PitcherR = (int)reader["PitcherR"];
-                        var PitcherBB = (int)reader["PitcherBB"];
-                        var Pitcher1B = (int)reader["Pitcher1B"];
-                        var Pitcher2B = (int)reader["Pitcher2B"];
-                        var Pitcher3B = (int)reader["Pitcher3B"];
-                        var PitcherHR = (int)reader["PitcherHR"];
-                        var PitcherTBF = (int)reader["PitcherTBF"];
-                        var PitcherHBP = (int)reader["PitcherHBP"];
-                        var PitcherSF = (int)reader["PitcherSF"];
-                        var PitcherSAC = (int)reader["PitcherSAC"];
-                        var PitcherSB = (int)reader["PitcherSB"];
-                        var PitcherCS = (int)reader["PitcherCS"];
-                        var PitcherGIDP = (int)reader["PitcherGIDP"];
-                        var PitcherQS = (int)reader["PitcherQS"];
-                        var PitcherCG = (int)reader["PitcherCG"];
-                        var PitcherSHO = (int)reader["PitcherSHO"];
-                        var PitcherAO = (int)reader["PitcherAO"];
-                        var PitcherGO = (int)reader["PitcherGO"];
-                        var PitcherW = (int)reader["PitcherW"];
-                        var PitcherL = (int)reader["PitcherL"];
-                        var PitcherSV = (int)reader["PitcherSV"];
-                        var PitcherHLD = (int)reader["PitcherHLD"];
-                        var pitching = new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
-                                                 PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
-                                                 PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
-                                                 PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
-                                                 PitcherGO, PitcherAO, TGP);
+                        var batting = GetBattingStatsForPlayer(reader);
+                        var pitching = GetPitchingStatsForPlayer(reader);
 
                         yield return new Player(id, firstName, secondName, number, placeOfBirth, dateOfBirth, battingHand, pitchingHand, team, inActiveRoster, batting, pitching);
                     }
@@ -288,61 +182,8 @@ namespace VKR.DAL
                         var BattingHand = (string)reader["PlayerBattingHand"];
                         var PitchingHand = (string)reader["PlayerPitchingHand"];
 
-                        var Games = (int)reader["BatterG"];
-                        var Strikeouts = (int)reader["BatterK"];
-                        var Walks = (int)reader["BatterBB"];
-                        var HitByPitch = (int)reader["BatterHBP"];
-                        var Flyout = (int)reader["BatterAO"];
-                        var Groundout = (int)reader["BatterGO"];
-                        var Popout = (int)reader["BatterPO"];
-                        var Single = (int)reader["Batter1B"];
-                        var Double = (int)reader["Batter2B"];
-                        var Triple = (int)reader["Batter3B"];
-                        var HomeRun = (int)reader["BatterHR"];
-                        var StolenBase = (int)reader["BatterSB"];
-                        var CaughtStealing = (int)reader["BatterCS"];
-                        var Runs = (int)reader["BatterR"];
-                        var SacFlies = (int)reader["BatterSF"];
-                        var Bunts = (int)reader["BatterSAC"];
-                        var RBI = (int)reader["BatterRBI"];
-                        var PA = (int)reader["BatterPA"];
-                        var GIDP = (int)reader["BatterGIDP"];
-                        var TGP = (int)reader["BatterTGP"];
-                        var batting = new BattingStats(Games, Single, Double, Triple,
-                                                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
-                                                Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
-
-                        var PitcherG = (int)reader["PitcherG"];
-                        var PitcherGS = (int)reader["PitcherGS"];
-                        var PitcherK = (int)reader["PitcherK"];
-                        var PitcherOuts = (int)reader["PitcherOuts"];
-                        var PitcherR = (int)reader["PitcherR"];
-                        var PitcherBB = (int)reader["PitcherBB"];
-                        var Pitcher1B = (int)reader["Pitcher1B"];
-                        var Pitcher2B = (int)reader["Pitcher2B"];
-                        var Pitcher3B = (int)reader["Pitcher3B"];
-                        var PitcherHR = (int)reader["PitcherHR"];
-                        var PitcherTBF = (int)reader["PitcherTBF"];
-                        var PitcherHBP = (int)reader["PitcherHBP"];
-                        var PitcherSF = (int)reader["PitcherSF"];
-                        var PitcherSAC = (int)reader["PitcherSAC"];
-                        var PitcherSB = (int)reader["PitcherSB"];
-                        var PitcherCS = (int)reader["PitcherCS"];
-                        var PitcherGIDP = (int)reader["PitcherGIDP"];
-                        var PitcherQS = (int)reader["PitcherQS"];
-                        var PitcherCG = (int)reader["PitcherCG"];
-                        var PitcherSHO = (int)reader["PitcherSHO"];
-                        var PitcherAO = (int)reader["PitcherAO"];
-                        var PitcherGO = (int)reader["PitcherGO"];
-                        var PitcherW = (int)reader["PitcherW"];
-                        var PitcherL = (int)reader["PitcherL"];
-                        var PitcherSV = (int)reader["PitcherSV"];
-                        var PitcherHLD = (int)reader["PitcherHLD"];
-                        var pitching = new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
-                                                 PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
-                                                 PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
-                                                 PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
-                                                 PitcherGO, PitcherAO, TGP);
+                        var batting = GetBattingStatsForPlayer(reader);
+                        var pitching = GetPitchingStatsForPlayer(reader);
 
                         yield return new PlayerInLineup(id, FirstName, SecondName, dob, Place, number, Lineup, Team, NumberInLineup, BattingHand, PitchingHand, batting, pitching);
                     }
@@ -372,62 +213,9 @@ namespace VKR.DAL
                         var Batting = (string)reader["PlayerBattingHand"];
                         var Pitching = (string)reader["PlayerPitchingHand"];
                         var Position = (string)reader["PlayerPosition"];
-
-                        var Games = (int)reader["BatterG"];
-                        var Strikeouts = (int)reader["BatterK"];
-                        var Walks = (int)reader["BatterBB"];
-                        var HitByPitch = (int)reader["BatterHBP"];
-                        var Flyout = (int)reader["BatterAO"];
-                        var Groundout = (int)reader["BatterGO"];
-                        var Popout = (int)reader["BatterPO"];
-                        var Single = (int)reader["Batter1B"];
-                        var Double = (int)reader["Batter2B"];
-                        var Triple = (int)reader["Batter3B"];
-                        var HomeRun = (int)reader["BatterHR"];
-                        var StolenBase = (int)reader["BatterSB"];
-                        var CaughtStealing = (int)reader["BatterCS"];
-                        var Runs = (int)reader["BatterR"];
-                        var SacFlies = (int)reader["BatterSF"];
-                        var Bunts = (int)reader["BatterSAC"];
-                        var RBI = (int)reader["BatterRBI"];
-                        var PA = (int)reader["BatterPA"];
-                        var GIDP = (int)reader["BatterGIDP"];
-                        var TGP = (int)reader["BatterTGP"];
-                        var batting = new BattingStats(Games, Single, Double, Triple,
-                            HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
-                            Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
-
-                        var PitcherG = (int)reader["PitcherG"];
-                        var PitcherGS = (int)reader["PitcherGS"];
-                        var PitcherK = (int)reader["PitcherK"];
-                        var PitcherOuts = (int)reader["PitcherOuts"];
-                        var PitcherR = (int)reader["PitcherR"];
-                        var PitcherBB = (int)reader["PitcherBB"];
-                        var Pitcher1B = (int)reader["Pitcher1B"];
-                        var Pitcher2B = (int)reader["Pitcher2B"];
-                        var Pitcher3B = (int)reader["Pitcher3B"];
-                        var PitcherHR = (int)reader["PitcherHR"];
-                        var PitcherTBF = (int)reader["PitcherTBF"];
-                        var PitcherHBP = (int)reader["PitcherHBP"];
-                        var PitcherSF = (int)reader["PitcherSF"];
-                        var PitcherSAC = (int)reader["PitcherSAC"];
-                        var PitcherSB = (int)reader["PitcherSB"];
-                        var PitcherCS = (int)reader["PitcherCS"];
-                        var PitcherGIDP = (int)reader["PitcherGIDP"];
-                        var PitcherQS = (int)reader["PitcherQS"];
-                        var PitcherCG = (int)reader["PitcherCG"];
-                        var PitcherSHO = (int)reader["PitcherSHO"];
-                        var PitcherAO = (int)reader["PitcherAO"];
-                        var PitcherGO = (int)reader["PitcherGO"];
-                        var PitcherW = (int)reader["PitcherW"];
-                        var PitcherL = (int)reader["PitcherL"];
-                        var PitcherSV = (int)reader["PitcherSV"];
-                        var PitcherHLD = (int)reader["PitcherHLD"];
-                        var pitching = new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
-                            PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
-                            PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
-                            PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
-                            PitcherGO, PitcherAO, TGP);
+                        
+                        var batting = GetBattingStatsForPlayer(reader);
+                        var pitching = GetPitchingStatsForPlayer(reader);
 
                         yield return new PlayerInLineup(id, FirstName, SecondName, dob, Place, number, Lineup, Team,
                             Position, NumberInLineup, Batting, Pitching, batting, pitching);
@@ -461,61 +249,8 @@ namespace VKR.DAL
                         var PositionInLineup = (int)reader["NumberInLineup"];
                         var Position = (string)reader["PlayerPosition"];
 
-                        var Games = (int)reader["BatterG"];
-                        var Strikeouts = (int)reader["BatterK"];
-                        var Walks = (int)reader["BatterBB"];
-                        var HitByPitch = (int)reader["BatterHBP"];
-                        var Flyout = (int)reader["BatterAO"];
-                        var Groundout = (int)reader["BatterGO"];
-                        var Popout = (int)reader["BatterPO"];
-                        var Single = (int)reader["Batter1B"];
-                        var Double = (int)reader["Batter2B"];
-                        var Triple = (int)reader["Batter3B"];
-                        var HomeRun = (int)reader["BatterHR"];
-                        var StolenBase = (int)reader["BatterSB"];
-                        var CaughtStealing = (int)reader["BatterCS"];
-                        var Runs = (int)reader["BatterR"];
-                        var SacFlies = (int)reader["BatterSF"];
-                        var Bunts = (int)reader["BatterSAC"];
-                        var RBI = (int)reader["BatterRBI"];
-                        var PA = (int)reader["BatterPA"];
-                        var GIDP = (int)reader["BatterGIDP"];
-                        var TGP = (int)reader["BatterTGP"];
-                        var batting = new BattingStats(Games, Single, Double, Triple,
-                            HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
-                            Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
-
-                        var PitcherG = (int)reader["PitcherG"];
-                        var PitcherGS = (int)reader["PitcherGS"];
-                        var PitcherK = (int)reader["PitcherK"];
-                        var PitcherOuts = (int)reader["PitcherOuts"];
-                        var PitcherR = (int)reader["PitcherR"];
-                        var PitcherBB = (int)reader["PitcherBB"];
-                        var Pitcher1B = (int)reader["Pitcher1B"];
-                        var Pitcher2B = (int)reader["Pitcher2B"];
-                        var Pitcher3B = (int)reader["Pitcher3B"];
-                        var PitcherHR = (int)reader["PitcherHR"];
-                        var PitcherTBF = (int)reader["PitcherTBF"];
-                        var PitcherHBP = (int)reader["PitcherHBP"];
-                        var PitcherSF = (int)reader["PitcherSF"];
-                        var PitcherSAC = (int)reader["PitcherSAC"];
-                        var PitcherSB = (int)reader["PitcherSB"];
-                        var PitcherCS = (int)reader["PitcherCS"];
-                        var PitcherGIDP = (int)reader["PitcherGIDP"];
-                        var PitcherQS = (int)reader["PitcherQS"];
-                        var PitcherCG = (int)reader["PitcherCG"];
-                        var PitcherSHO = (int)reader["PitcherSHO"];
-                        var PitcherAO = (int)reader["PitcherAO"];
-                        var PitcherGO = (int)reader["PitcherGO"];
-                        var PitcherW = (int)reader["PitcherW"];
-                        var PitcherL = (int)reader["PitcherL"];
-                        var PitcherSV = (int)reader["PitcherSV"];
-                        var PitcherHLD = (int)reader["PitcherHLD"];
-                        var pitching = new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
-                            PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
-                            PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
-                            PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
-                            PitcherGO, PitcherAO, TGP);
+                        var batting = GetBattingStatsForPlayer(reader);
+                        var pitching = GetPitchingStatsForPlayer(reader);
 
                         yield return new Batter(id, firstName, secondName, number, placeOfBirth, dateOfBirth,
                             battingHand, pitchingHand, teamID, inActiveRoster, Position, PositionInLineup, batting,
@@ -550,61 +285,9 @@ namespace VKR.DAL
                         var PositionInLineup = (int)reader["PlayerPositionInLineup"];
                         var Position = (string)reader["PlayerPosition"];
 
-                        var Games = (int)reader["BatterG"];
-                        var Strikeouts = (int)reader["BatterK"];
-                        var Walks = (int)reader["BatterBB"];
-                        var HitByPitch = (int)reader["BatterHBP"];
-                        var Flyout = (int)reader["BatterAO"];
-                        var Groundout = (int)reader["BatterGO"];
-                        var Popout = (int)reader["BatterPO"];
-                        var Single = (int)reader["Batter1B"];
-                        var Double = (int)reader["Batter2B"];
-                        var Triple = (int)reader["Batter3B"];
-                        var HomeRun = (int)reader["BatterHR"];
-                        var StolenBase = (int)reader["BatterSB"];
-                        var CaughtStealing = (int)reader["BatterCS"];
-                        var Runs = (int)reader["BatterR"];
-                        var SacFlies = (int)reader["BatterSF"];
-                        var Bunts = (int)reader["BatterSAC"];
-                        var RBI = (int)reader["BatterRBI"];
-                        var PA = (int)reader["BatterPA"];
-                        var GIDP = (int)reader["BatterGIDP"];
-                        var TGP = (int)reader["BatterTGP"];
-                        var batting = new BattingStats(Games, Single, Double, Triple,
-                            HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
-                            Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
+                        var batting = GetBattingStatsForPlayer(reader);
+                        var pitching = GetPitchingStatsForPlayer(reader);
 
-                        var PitcherG = (int)reader["PitcherG"];
-                        var PitcherGS = (int)reader["PitcherGS"];
-                        var PitcherK = (int)reader["PitcherK"];
-                        var PitcherOuts = (int)reader["PitcherOuts"];
-                        var PitcherR = (int)reader["PitcherR"];
-                        var PitcherBB = (int)reader["PitcherBB"];
-                        var Pitcher1B = (int)reader["Pitcher1B"];
-                        var Pitcher2B = (int)reader["Pitcher2B"];
-                        var Pitcher3B = (int)reader["Pitcher3B"];
-                        var PitcherHR = (int)reader["PitcherHR"];
-                        var PitcherTBF = (int)reader["PitcherTBF"];
-                        var PitcherHBP = (int)reader["PitcherHBP"];
-                        var PitcherSF = (int)reader["PitcherSF"];
-                        var PitcherSAC = (int)reader["PitcherSAC"];
-                        var PitcherSB = (int)reader["PitcherSB"];
-                        var PitcherCS = (int)reader["PitcherCS"];
-                        var PitcherGIDP = (int)reader["PitcherGIDP"];
-                        var PitcherQS = (int)reader["PitcherQS"];
-                        var PitcherCG = (int)reader["PitcherCG"];
-                        var PitcherSHO = (int)reader["PitcherSHO"];
-                        var PitcherAO = (int)reader["PitcherAO"];
-                        var PitcherGO = (int)reader["PitcherGO"];
-                        var PitcherW = (int)reader["PitcherW"];
-                        var PitcherL = (int)reader["PitcherL"];
-                        var PitcherSV = (int)reader["PitcherSV"];
-                        var PitcherHLD = (int)reader["PitcherHLD"];
-                        var pitching = new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
-                            PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
-                            PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
-                            PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
-                            PitcherGO, PitcherAO, TGP);
                         yield return new Pitcher(id, firstName, secondName, number, placeOfBirth, dateOfBirth,
                             battingHand, pitchingHand, teamID, inActiveRoster, PositionInLineup, Position != "P",
                             batting, pitching);
@@ -638,61 +321,8 @@ namespace VKR.DAL
                         var PositionInLineup = (int)reader["NumberInLineup"];
                         var Position = (string)reader["PlayerPosition"];
 
-                        var Games = (int)reader["BatterG"];
-                        var Strikeouts = (int)reader["BatterK"];
-                        var Walks = (int)reader["BatterBB"];
-                        var HitByPitch = (int)reader["BatterHBP"];
-                        var Flyout = (int)reader["BatterAO"];
-                        var Groundout = (int)reader["BatterGO"];
-                        var Popout = (int)reader["BatterPO"];
-                        var Single = (int)reader["Batter1B"];
-                        var Double = (int)reader["Batter2B"];
-                        var Triple = (int)reader["Batter3B"];
-                        var HomeRun = (int)reader["BatterHR"];
-                        var StolenBase = (int)reader["BatterSB"];
-                        var CaughtStealing = (int)reader["BatterCS"];
-                        var Runs = (int)reader["BatterR"];
-                        var SacFlies = (int)reader["BatterSF"];
-                        var Bunts = (int)reader["BatterSAC"];
-                        var RBI = (int)reader["BatterRBI"];
-                        var PA = (int)reader["BatterPA"];
-                        var GIDP = (int)reader["BatterGIDP"];
-                        var TGP = (int)reader["BatterTGP"];
-                        var batting = new BattingStats(Games, Single, Double, Triple,
-                            HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
-                            Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
-
-                        var PitcherG = (int)reader["PitcherG"];
-                        var PitcherGS = (int)reader["PitcherGS"];
-                        var PitcherK = (int)reader["PitcherK"];
-                        var PitcherOuts = (int)reader["PitcherOuts"];
-                        var PitcherR = (int)reader["PitcherR"];
-                        var PitcherBB = (int)reader["PitcherBB"];
-                        var Pitcher1B = (int)reader["Pitcher1B"];
-                        var Pitcher2B = (int)reader["Pitcher2B"];
-                        var Pitcher3B = (int)reader["Pitcher3B"];
-                        var PitcherHR = (int)reader["PitcherHR"];
-                        var PitcherTBF = (int)reader["PitcherTBF"];
-                        var PitcherHBP = (int)reader["PitcherHBP"];
-                        var PitcherSF = (int)reader["PitcherSF"];
-                        var PitcherSAC = (int)reader["PitcherSAC"];
-                        var PitcherSB = (int)reader["PitcherSB"];
-                        var PitcherCS = (int)reader["PitcherCS"];
-                        var PitcherGIDP = (int)reader["PitcherGIDP"];
-                        var PitcherQS = (int)reader["PitcherQS"];
-                        var PitcherCG = (int)reader["PitcherCG"];
-                        var PitcherSHO = (int)reader["PitcherSHO"];
-                        var PitcherAO = (int)reader["PitcherAO"];
-                        var PitcherGO = (int)reader["PitcherGO"];
-                        var PitcherW = (int)reader["PitcherW"];
-                        var PitcherL = (int)reader["PitcherL"];
-                        var PitcherSV = (int)reader["PitcherSV"];
-                        var PitcherHLD = (int)reader["PitcherHLD"];
-                        var pitching = new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
-                            PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
-                            PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
-                            PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
-                            PitcherGO, PitcherAO, TGP);
+                        var batting = GetBattingStatsForPlayer(reader);
+                        var pitching = GetPitchingStatsForPlayer(reader);
 
                         var player = new Pitcher(id, firstName, secondName, number, placeOfBirth, dateOfBirth,
                             battingHand, pitchingHand, teamID, inActiveRoster, PositionInLineup, Position != "P",
@@ -713,6 +343,105 @@ namespace VKR.DAL
 
                 return (int)command.ExecuteScalar();
             }
+        }
+
+        public IEnumerable<Batter> GetAvailableBatters(Match match, Team team, Batter batter)
+        {
+            using (var command = new SqlCommand("GetAvailableBattersForSubstitution", _connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Match", SqlDbType.Int);
+                command.Parameters.Add("@Team", SqlDbType.NVarChar, 3);
+                command.Parameters.Add("@Position", SqlDbType.NVarChar, 2);
+                command.Prepare();
+                command.Parameters[0].Value = match.MatchID;
+                command.Parameters[1].Value = team.TeamAbbreviation;
+                command.Parameters[2].Value = batter.PositionForThisMatch;
+                using (var reader = command.ExecuteReader())
+                    while (reader.Read())
+                    {
+                        var id = (int)reader["PlayerID"];
+                        var firstName = (string)reader["PlayerFirstName"];
+                        var secondName = (string)reader["PlayerSecondName"];
+                        var number = (int)reader["PlayerNumber"];
+                        var placeOfBirth = (string)reader["PlaceOfBirth"];
+                        var dateOfBirth = (DateTime)reader["PlayerDateOfBirth"];
+                        var battingHand = (string)reader["PlayerBattingHand"];
+                        var pitchingHand = (string)reader["PlayerPitchingHand"];
+                        var teamID = (string)reader["TeamID"];
+                        var inActiveRoster = (bool)reader["InActiveRoster"];
+                        var Position = (string)reader["PlayerPositionID"];
+
+                        var batting = GetBattingStatsForPlayer(reader);
+                        var pitching = GetPitchingStatsForPlayer(reader);
+
+                        yield return new Batter(id, firstName, secondName, number, placeOfBirth, dateOfBirth,
+                            battingHand, pitchingHand, teamID, inActiveRoster, Position, batter.NumberInBattingLineup, batting,
+                            pitching);
+                    }
+            }
+        }
+        public BattingStats GetBattingStatsForPlayer(SqlDataReader reader)
+        {
+            var Games = (int)reader["BatterG"];
+            var Strikeouts = (int)reader["BatterK"];
+            var Walks = (int)reader["BatterBB"];
+            var HitByPitch = (int)reader["BatterHBP"];
+            var Flyout = (int)reader["BatterAO"];
+            var Groundout = (int)reader["BatterGO"];
+            var Popout = (int)reader["BatterPO"];
+            var Single = (int)reader["Batter1B"];
+            var Double = (int)reader["Batter2B"];
+            var Triple = (int)reader["Batter3B"];
+            var HomeRun = (int)reader["BatterHR"];
+            var StolenBase = (int)reader["BatterSB"];
+            var CaughtStealing = (int)reader["BatterCS"];
+            var Runs = (int)reader["BatterR"];
+            var SacFlies = (int)reader["BatterSF"];
+            var Bunts = (int)reader["BatterSAC"];
+            var RBI = (int)reader["BatterRBI"];
+            var PA = (int)reader["BatterPA"];
+            var GIDP = (int)reader["BatterGIDP"];
+            var TGP = (int)reader["BatterTGP"];
+            return new BattingStats(Games, Single, Double, Triple,
+                HomeRun, SacFlies, Bunts, RBI, HitByPitch, StolenBase, CaughtStealing,
+                Runs, Walks, Strikeouts, Groundout, Flyout, Popout, PA, GIDP, TGP);
+        }
+
+        public PitchingStats GetPitchingStatsForPlayer(SqlDataReader reader)
+        {
+            var TGP = (int)reader["BatterTGP"];
+            var PitcherG = (int)reader["PitcherG"];
+            var PitcherGS = (int)reader["PitcherGS"];
+            var PitcherK = (int)reader["PitcherK"];
+            var PitcherOuts = (int)reader["PitcherOuts"];
+            var PitcherR = (int)reader["PitcherR"];
+            var PitcherBB = (int)reader["PitcherBB"];
+            var Pitcher1B = (int)reader["Pitcher1B"];
+            var Pitcher2B = (int)reader["Pitcher2B"];
+            var Pitcher3B = (int)reader["Pitcher3B"];
+            var PitcherHR = (int)reader["PitcherHR"];
+            var PitcherTBF = (int)reader["PitcherTBF"];
+            var PitcherHBP = (int)reader["PitcherHBP"];
+            var PitcherSF = (int)reader["PitcherSF"];
+            var PitcherSAC = (int)reader["PitcherSAC"];
+            var PitcherSB = (int)reader["PitcherSB"];
+            var PitcherCS = (int)reader["PitcherCS"];
+            var PitcherGIDP = (int)reader["PitcherGIDP"];
+            var PitcherQS = (int)reader["PitcherQS"];
+            var PitcherCG = (int)reader["PitcherCG"];
+            var PitcherSHO = (int)reader["PitcherSHO"];
+            var PitcherAO = (int)reader["PitcherAO"];
+            var PitcherGO = (int)reader["PitcherGO"];
+            var PitcherW = (int)reader["PitcherW"];
+            var PitcherL = (int)reader["PitcherL"];
+            var PitcherSV = (int)reader["PitcherSV"];
+            var PitcherHLD = (int)reader["PitcherHLD"];
+            return new PitchingStats(PitcherG, PitcherGS, PitcherK, PitcherOuts,
+                                     PitcherBB, PitcherSAC, PitcherSF, PitcherSB, PitcherCS, PitcherTBF,
+                                     PitcherQS, PitcherSHO, PitcherCG, PitcherW, PitcherL, PitcherSV, PitcherHLD,
+                                     PitcherHBP, Pitcher1B, Pitcher2B, Pitcher3B, PitcherHR, PitcherR, PitcherGIDP,
+                                     PitcherGO, PitcherAO, TGP);
         }
     }
 }
