@@ -26,8 +26,6 @@ namespace Entities
             PlaceOfBirth = placeOfBirth;
         }
 
-        public ManInTeam()
-        {
-        }
+        public ManInTeam() { }
     }
 }

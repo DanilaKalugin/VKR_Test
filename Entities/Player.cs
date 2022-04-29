@@ -24,8 +24,6 @@ namespace Entities
             PitchingStats = pitching;
         }
 
-        public Player()
-        {
-        }
+        public Player() { }
     }
 }

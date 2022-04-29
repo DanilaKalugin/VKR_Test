@@ -129,7 +129,9 @@ namespace VKR_Test
         private void btnDecreaseAwayTeamNumberBy1_Click(object sender, EventArgs e)
         {
             _awayTeamNumber = _awayTeamNumber == 0 ? _teams.Count - 1 : _awayTeamNumber - 1;
+
             if (_awayTeamNumber == _homeTeamNumber) _awayTeamNumber = _awayTeamNumber == 0 ? _teams.Count - 1 : _awayTeamNumber - 1;
+
             DisplayTeam(_awayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, _currentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnIncreaseAwayTeamNumberBy1, btnDecreaseAwayTeamNumberBy1, AwayTeamBalance);
         }
 
@@ -160,14 +162,12 @@ namespace VKR_Test
                 switch (stadiumSelection.DialogResult)
                 {
                     case DialogResult.OK:
-                        stadiumSelection.Dispose();
                         DialogResult = DialogResult.OK;
                         Hide();
                         break;
                     case DialogResult.Yes:
                         ExitFromCurrentMatch = stadiumSelection.ExitFromCurrentMatch;
                         MatchNumberForDelete = stadiumSelection.MatchNumberForDelete;
-                        stadiumSelection.Dispose();
                         Hide();
                         DialogResult = DialogResult.Yes;
                         break;

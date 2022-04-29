@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace Entities
+﻿namespace Entities
 {
     public class Pitch
     {

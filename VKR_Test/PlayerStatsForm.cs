@@ -227,7 +227,7 @@ namespace VKR_Test
                 _teamBattingStats = _sortModes[0][batting] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamBattingStats, teamBattingActions[batting]) 
                                                                                   : _sortingBL.GetSortedStats(_teamBattingStats, teamBattingActions[batting]);
 
-                _teamPitchingStats = _sortModes[0][pitching] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamPitchingStats, teamPitchingActions[pitching]) 
+                _teamPitchingStats = _sortModes[1][pitching] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamPitchingStats, teamPitchingActions[pitching]) 
                                                                                     : _sortingBL.GetSortedStats(_teamPitchingStats, teamPitchingActions[pitching]);
             }
 
@@ -517,13 +517,9 @@ namespace VKR_Test
             {
                 _pitchers = _playersBL.GetPitchersStats(cbPlayers.Text, cbTeams.SelectedValue.ToString());
                 if (cbPositions.SelectedValue is PlayerPosition position)
-                {
                     _batters = _playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, position.ShortTitle);
-                }
                 else
-                {
                     _batters = _playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, cbPositions.SelectedValue.ToString());
-                }
             }
 
             GetSortedListsBySortingCodes(_lastBattingSort, _lastPitchingSort, _objects);
