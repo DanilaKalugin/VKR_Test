@@ -43,23 +43,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtBat.cs" />
-    <Compile Include="BaseStealingGenerator.cs" />
+    <Compile Include="RandomGenerators\BaseStealingGenerator.cs" />
     <Compile Include="Batter.cs" />
     <Compile Include="BattingStats.cs" />
-    <Compile Include="BuntGenerator.cs" />
+    <Compile Include="RandomGenerators\BuntGenerator.cs" />
     <Compile Include="GameSituation.cs" />
     <Compile Include="Man.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="ManInTeam.cs" />
     <Compile Include="Match.cs" />
-    <Compile Include="NormalPitchGenerator.cs" />
+    <Compile Include="RandomGenerators\NormalPitchGenerator.cs" />
     <Compile Include="OrdinalNumerals.cs" />
     <Compile Include="OtherCondition.cs" />
     <Compile Include="Pitch.cs" />
-    <Compile Include="PitchBeforeBaseStealingGenerator.cs" />
+    <Compile Include="RandomGenerators\PitchBeforeBaseStealingGenerator.cs" />
     <Compile Include="Pitcher.cs" />
     <Compile Include="PitcherResults.cs" />
-    <Compile Include="PitchGenerator.cs" />
+    <Compile Include="RandomGenerators\PitchGenerator.cs" />
     <Compile Include="PitchingStats.cs" />
     <Compile Include="PitchResult.cs" />
     <Compile Include="Player.cs" />
@@ -70,5 +70,6 @@
     <Compile Include="Stadium.cs" />
     <Compile Include="Team.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

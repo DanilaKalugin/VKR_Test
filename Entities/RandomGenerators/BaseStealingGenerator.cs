@@ -111,9 +111,7 @@ namespace Entities
 
             if (baseNumber == BaseNumberForStealing.Third) correctedStealingBaseProbability /= 2;
 
-            if (stealingAttemptRandomValue <= correctedStealingBaseProbability) return StealingAttempt.Attempt;
-
-            return StealingAttempt.NoAttempt;
+            return stealingAttemptRandomValue <= correctedStealingBaseProbability ? StealingAttempt.Attempt : StealingAttempt.NoAttempt;
         }
     }
 }
