@@ -7,7 +7,7 @@ namespace VKR_Test
     {
         public ServerNotFoundForm() => InitializeComponent();
 
-        private void btnDeployungAccepted_Click(object sender, EventArgs e)
+        private void btnDeployingAccepted_Click(object sender, EventArgs e)
         {
             var form = new NewConnectionForm();
             Visible = false;

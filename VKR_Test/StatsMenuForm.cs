@@ -134,17 +134,17 @@ namespace VKR_Test
                 if (dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString() != "Tied")
                 {
                     var pitchersWithThisValue = pitchers.Where(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString()).ToList();
-                    Player currentbatter;
+                    Player currentPlayer;
                     if (pitchersWithThisValue.Count == 0)
                     {
                         var allPitchers = playersBL.GetPitchersStats("All Players").ToList();
-                        currentbatter = allPitchers.First(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString());
+                        currentPlayer = allPitchers.First(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString());
                     }
                     else
                     {
-                        currentbatter = pitchersWithThisValue.First();
+                        currentPlayer = pitchersWithThisValue.First();
                     }
-                    var ManTeam = teams.First(team => team.TeamAbbreviation == currentbatter.Team);
+                    var ManTeam = teams.First(team => team.TeamAbbreviation == currentPlayer.Team);
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = ManTeam.TeamColor[0];
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = ManTeam.TeamColor[0];
                 }

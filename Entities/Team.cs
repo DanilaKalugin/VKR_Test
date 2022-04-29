@@ -13,24 +13,24 @@ namespace Entities
         public List<Color> TeamColor;
         public Color TeamColorForThisMatch;
         public bool DhRule;
-        public int StrikeZoneProbabilty;
+        public int StrikeZoneProbability;
         public int SwingInStrikeZoneProbability;
         public int SwingOutsideStrikeZoneProbability;
         public int HittingProbability;
         public int FoulProbability;
         public int SingleProbability;
         public int DoubleProbability;
-        public int HomeRunProbabilty;
+        public int HomeRunProbability;
         public int TripleProbability;
         public int PopoutOnFoulProbability;
         public int FlyoutOnHomeRunProbability;
         public int GroundoutProbability;
         public int FlyoutProbability;
-        public int DoublePlayProbabilty;
+        public int DoublePlayProbability;
         public int SacrificeFlyProbability;
         public int StealingBaseProbability;
-        public int SuccessfulStelingBaseAttemptProbabilty;
-        public int SuccessfulBuntAttemptProbabilty;
+        public int SuccessfulStealingBaseAttemptProbability;
+        public int SuccessfulBuntAttemptProbability;
         public int HitByPitchProbability;
 
         public int NormalizedOffensiveRating;
@@ -67,10 +67,10 @@ namespace Entities
 
         public double DefensiveRating()
         {
-            var pitchingComponent = (double)(1600 - StrikeZoneProbabilty - (3000 - HitByPitchProbability)) / 36;
+            var pitchingComponent = (double)(1600 - StrikeZoneProbability - (3000 - HitByPitchProbability)) / 36;
             var groundoutComponent = GroundoutProbability * 1.1 / 20;
             var outfieldComponent = (double)(FlyoutProbability - GroundoutProbability) / 20;
-            var doublePlayComponent = (double)DoublePlayProbabilty / 3;
+            var doublePlayComponent = (double)DoublePlayProbability / 3;
             var pitcherNumber = (Wins + Losses + 1) % 5 == 0 ? 1 : 6 - (Wins + Losses + 1) % 5;
             var pitcherNumberComponent = (double)pitcherNumber / 2;
             return Math.Round(pitchingComponent + groundoutComponent + outfieldComponent + doublePlayComponent + pitcherNumberComponent, 2);
@@ -81,7 +81,7 @@ namespace Entities
             var fullHittingProbability = (double)(2000 - HittingProbability) / 2000;
             var fullSingleProbability = (double)SingleProbability / 2000;
             var fullDoubleProbability = (double)DoubleProbability / 2000;
-            var fullHrProbability = (double)HomeRunProbabilty / 2000;
+            var fullHrProbability = (double)HomeRunProbability / 2000;
             var fullTripleProbability = (double)TripleProbability / 2000;
 
             var doubleComponent = fullHittingProbability * fullDoubleProbability * 75;
@@ -89,7 +89,7 @@ namespace Entities
             var tripleComponent = fullHittingProbability * fullTripleProbability * 150;
             var singleComponent = fullHittingProbability * fullSingleProbability * 50;
 
-            var baseStealingComponent = (double)(StealingBaseProbability * SuccessfulStelingBaseAttemptProbabilty) / 8000;
+            var baseStealingComponent = (double)(StealingBaseProbability * SuccessfulStealingBaseAttemptProbability) / 8000;
             return Math.Round(singleComponent + doubleComponent + homeRunComponent + tripleComponent + baseStealingComponent, 2);
         }
 
@@ -100,28 +100,28 @@ namespace Entities
         public Team(string abbreviation, string city, string name, int strikeZoneProbability, int swingSzProbability, int swingNotSzProbability,
                     int hitProbability, int foulProbability, int singleProbability, int doubleProbability, int homeRunProbability,
                     int popoutOnFoulProbability, int flyoutOnHrProbability, int groundoutProbability, int flyoutProbability, int sacFlyProbability,
-                    int doublePlayProbability, int successfulBaseStelingProbability, int successfulBuntProbability, int stadium, bool dhRule,
+                    int doublePlayProbability, int successfulBaseStealingProbability, int successfulBuntProbability, int stadium, bool dhRule,
                     int w, int l, int hitByPitch, int sb, int tripleProbability, string league = "")
         {
             TeamAbbreviation = abbreviation;
             TeamCity = city;
             TeamTitle = name;
-            StrikeZoneProbabilty = strikeZoneProbability;
+            StrikeZoneProbability = strikeZoneProbability;
             SwingInStrikeZoneProbability = swingSzProbability;
             SwingOutsideStrikeZoneProbability = swingNotSzProbability;
             HittingProbability = hitProbability;
             FoulProbability = foulProbability;
             SingleProbability = singleProbability;
             DoubleProbability = doubleProbability;
-            HomeRunProbabilty = homeRunProbability;
+            HomeRunProbability = homeRunProbability;
             PopoutOnFoulProbability = popoutOnFoulProbability;
             FlyoutOnHomeRunProbability = flyoutOnHrProbability;
             GroundoutProbability = groundoutProbability;
             FlyoutProbability = flyoutProbability;
-            DoublePlayProbabilty = doublePlayProbability;
+            DoublePlayProbability = doublePlayProbability;
             SacrificeFlyProbability = sacFlyProbability;
-            SuccessfulStelingBaseAttemptProbabilty = successfulBaseStelingProbability;
-            SuccessfulBuntAttemptProbabilty = successfulBuntProbability;
+            SuccessfulStealingBaseAttemptProbability = successfulBaseStealingProbability;
+            SuccessfulBuntAttemptProbability = successfulBuntProbability;
             Stadium = stadium;
             PitchersPlayedInMatch = new List<Pitcher>();
             DhRule = dhRule;
@@ -133,16 +133,16 @@ namespace Entities
             League = league;
         }
 
-        public Team (string abbreviation, string name, int wins, int losses, string league, string division, int homeWins, int homeLosses, int awayWins, int awayLosses)
+        public Team (string abbreviation, string name, string league, string division, int homeWins, int homeLosses, int awayWins, int awayLosses)
         {
             TeamAbbreviation = abbreviation;
             TeamTitle = name;
             League = league;
-            Wins = wins;
-            Losses = losses;
             Division = division;
             HomeBalance = $"{homeWins}-{homeLosses}";
             AwayBalance = $"{awayWins}-{awayLosses}";
+            Wins = homeWins + awayWins;
+            Losses = homeLosses + awayLosses;
         }
     }
 }

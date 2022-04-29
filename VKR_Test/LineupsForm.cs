@@ -12,7 +12,7 @@ namespace VKR_Test
     public partial class LineupsForm : Form
     {
         public enum RosterType { StartingLineups, Reserves, FreeAgents }
-        private RosterType _rosterType;
+        private readonly RosterType _rosterType;
 
         private readonly PlayerBL _players = new PlayerBL();
         private readonly TeamsBL _teamsBL = new TeamsBL();
@@ -22,7 +22,7 @@ namespace VKR_Test
         private int _teamNumber;
         private int _lineupNumber;
         private readonly string[] _typesOfLineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
-        private bool _LineupChanged;
+        private bool _lineupChanged;
 
         public LineupsForm(RosterType rosterType)
         {
@@ -142,7 +142,7 @@ namespace VKR_Test
                 foreach (var player in _teamsBench[teamNumber][lineupNumber])
                     dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
 
-            _LineupChanged = true;
+            _lineupChanged = true;
         }
 
         private void btnIncLineupTypeNumberBy1_Click(object sender, EventArgs e)
@@ -167,7 +167,7 @@ namespace VKR_Test
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            _LineupChanged = false;
+            _lineupChanged = false;
             if (_rosterType == RosterType.FreeAgents)
                 ShowNewPlayer(dgvBench, dgvLineup, _teamsBench[0][0][dgvBench.SelectedRows[0].Index]);
             else
@@ -224,7 +224,7 @@ namespace VKR_Test
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvBench.SelectedRows.Count <= 0 || _LineupChanged) return;
+            if (dgvBench.SelectedRows.Count <= 0 || _lineupChanged) return;
 
             ShowNewPlayer(dgvBench, dgvLineup,
                 _rosterType == RosterType.FreeAgents

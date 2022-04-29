@@ -76,7 +76,7 @@ namespace VKR_Test
             this.btnDeployungAccepted.TabIndex = 11;
             this.btnDeployungAccepted.Text = "YES";
             this.btnDeployungAccepted.UseVisualStyleBackColor = false;
-            this.btnDeployungAccepted.Click += new System.EventHandler(this.btnDeployungAccepted_Click);
+            this.btnDeployungAccepted.Click += new System.EventHandler(this.btnDeployingAccepted_Click);
             // 
             // btnDeployingDenied
             // 
