@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Entities;
 using VKR.BLL;
@@ -21,10 +20,15 @@ namespace VKR_Test
         private readonly PlayerBL _playerBl = new PlayerBL();
         public bool DeleteThisMatch;
         private bool _isAutoSimulation;
+        private readonly BuntGenerator _buntGenerator = new BuntGenerator();
+        private readonly NormalPitchGenerator _normalPitchGenerator = new NormalPitchGenerator();
+        private readonly PitchBeforeBaseStealingGenerator _pitchBeforeBaseStealingGenerator = new PitchBeforeBaseStealingGenerator();
+        private readonly BaseStealingGenerator _baseStealingGenerator = new BaseStealingGenerator();
 
         public MainForm(Match match)
         {
             InitializeComponent();
+
             _currentMatch = match;
 
             using (var lineup = new StartingLineupForm(_currentMatch.AwayTeam)) lineup.ShowDialog();
@@ -393,17 +397,17 @@ namespace VKR_Test
 
         private void BasesStealingAttempt_Definition()
         {
-            RandomGenerators.StealingAttempt secondBaseStealingAttempt;
+            BaseStealingGenerator.StealingAttempt secondBaseStealingAttempt;
             if (_newGameSituation.RunnerOnSecond.IsBaseNotEmpty && !_newGameSituation.RunnerOnThird.IsBaseNotEmpty)
             {
-                var thirdBaseStealingAttempt = RandomGenerators.stealingAttempt_Definition(RandomGenerators.BaseNumberForStealing.Third, _newGameSituation, _currentMatch.AwayTeam);
-                if (thirdBaseStealingAttempt == RandomGenerators.StealingAttempt.Attempt)
+                var thirdBaseStealingAttempt = _baseStealingGenerator.StealingAttemptDefinition(BaseStealingGenerator.BaseNumberForStealing.Third, _newGameSituation, _currentMatch.AwayTeam);
+                if (thirdBaseStealingAttempt == BaseStealingGenerator.StealingAttempt.Attempt)
                 {
                     _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt = true;
                     if (_newGameSituation.RunnerOnFirst.IsBaseNotEmpty && _newGameSituation.RunnerOnSecond.IsBaseNotEmpty)
                     {
-                        secondBaseStealingAttempt = RandomGenerators.stealingAttempt_Definition(RandomGenerators.BaseNumberForStealing.Second, _newGameSituation, _currentMatch.AwayTeam);
-                        if (secondBaseStealingAttempt == RandomGenerators.StealingAttempt.Attempt)
+                        secondBaseStealingAttempt = _baseStealingGenerator.StealingAttemptDefinition(BaseStealingGenerator.BaseNumberForStealing.Second, _newGameSituation, _currentMatch.AwayTeam);
+                        if (secondBaseStealingAttempt == BaseStealingGenerator.StealingAttempt.Attempt)
                             _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt = true;
                     }
                 }
@@ -412,9 +416,9 @@ namespace VKR_Test
             if (!_newGameSituation.RunnerOnFirst.IsBaseNotEmpty ||
                 _newGameSituation.RunnerOnSecond.IsBaseNotEmpty) return;
 
-            secondBaseStealingAttempt = RandomGenerators.stealingAttempt_Definition(RandomGenerators.BaseNumberForStealing.Second, _newGameSituation, _currentMatch.AwayTeam);
+            secondBaseStealingAttempt = _baseStealingGenerator.StealingAttemptDefinition(BaseStealingGenerator.BaseNumberForStealing.Second, _newGameSituation, _currentMatch.AwayTeam);
 
-            if (secondBaseStealingAttempt == RandomGenerators.StealingAttempt.Attempt)
+            if (secondBaseStealingAttempt == BaseStealingGenerator.StealingAttempt.Attempt)
                 _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt = true;
         }
 
@@ -433,13 +437,13 @@ namespace VKR_Test
 
             if (stealingAttempt)
             {
-                pitch = PitchGenerator.CreatePitchBeforeBaseStealing(_newGameSituation, _currentMatch);
+                pitch = _pitchBeforeBaseStealingGenerator.CreatePitch(_newGameSituation, _currentMatch);
 
                 if (_newGameSituation.RunnerOnFirst.IsBaseStealingAttempt)
                     TypeOfStealing = _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt ? 3 : 1;
                 else if (_newGameSituation.RunnerOnSecond.IsBaseStealingAttempt) TypeOfStealing = 2;
             }
-            else pitch = PitchGenerator.CreateNormalPitch(_newGameSituation, _currentMatch);
+            else pitch = _normalPitchGenerator.CreatePitch(_newGameSituation, _currentMatch);
 
             AddNewGameSituation(pitch);
             var NewCountOfAtBats = _currentMatch.AtBats.Count;
@@ -449,24 +453,24 @@ namespace VKR_Test
             switch (TypeOfStealing)
             {
                 case 1:
-                    BaseStealing(PitchGenerator.StealingType.OnlySecondBase);
+                    BaseStealing(BaseStealingGenerator.StealingType.OnlySecondBase);
                     break;
                 case 2:
-                    BaseStealing(PitchGenerator.StealingType.OnlyThirdBase);
+                    BaseStealing(BaseStealingGenerator.StealingType.OnlyThirdBase);
                     break;
                 case 3:
                     {
-                        BaseStealing(PitchGenerator.StealingType.ThirdBaseBeforeSecond);
+                        BaseStealing(BaseStealingGenerator.StealingType.ThirdBaseBeforeSecond);
                         if (_currentMatch.GameSituations.Last().Outs != 3)
-                            BaseStealing(PitchGenerator.StealingType.SecondBaseAfterThird);
+                            BaseStealing(BaseStealingGenerator.StealingType.SecondBaseAfterThird);
                         break;
                     }
             }
         }
 
-        private void BaseStealing(PitchGenerator.StealingType stealingType)
+        private void BaseStealing(BaseStealingGenerator.StealingType stealingType)
         {
-            var pitch = PitchGenerator.CreateBaseStealing(_newGameSituation, stealingType);
+            var pitch = _baseStealingGenerator.CreateBaseStealing(_newGameSituation, stealingType);
             AddNewGameSituation(pitch);
             DisplayCurrentRunners(_newGameSituation);
         }
@@ -658,9 +662,15 @@ namespace VKR_Test
         {
             if (DialogResult == DialogResult.OK || DeleteThisMatch) return;
 
+            timer1.Stop();
+
             e.Cancel = true;
 
-            if (MessageBox.Show("Do you want to close this window?\nThis match will be deleted from database", "Graduation paper", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+            if (MessageBox.Show("Do you want to close this window?\nThis match will be deleted from database", "Graduation paper", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+            {
+                timer1.Start();
+                return;
+            }
 
             DeleteThisMatch = true;
             Dispose();
@@ -790,16 +800,16 @@ namespace VKR_Test
             if (TBFinThisMatch >= 3 && _newGameSituation.Balls == 0 && _newGameSituation.Strikes == 0) PitcherSubstion_Definition(defense.CurrentPitcher);
 
             BasesStealingAttempt_Definition();
-            bool IsBunt;
+            bool isBunt;
 
             if (!_newGameSituation.RunnerOnFirst.IsBaseStealingAttempt && !_newGameSituation.RunnerOnSecond.IsBaseStealingAttempt &&
                 (_newGameSituation.RunnerOnFirst.IsBaseNotEmpty || _newGameSituation.RunnerOnSecond.IsBaseNotEmpty || _newGameSituation.RunnerOnThird.IsBaseNotEmpty))
             {
-                IsBunt = BuntAttemptDefinition();
+                isBunt = BuntAttemptDefinition();
             }
-            else IsBunt = false;
+            else isBunt = false;
 
-            if (IsBunt) GenerateNewBunt();
+            if (isBunt) GenerateNewBunt();
             else GenerateNewPitch();
         }
 
@@ -827,7 +837,7 @@ namespace VKR_Test
 
         private void GenerateNewBunt()
         {
-            var pitch = PitchGenerator.CreateBunt(_newGameSituation, _currentMatch.AwayTeam, _currentMatch.HomeTeam);
+            var pitch = _buntGenerator.CreatePitch(_newGameSituation, _currentMatch);
             AddNewGameSituation(pitch);
         }
 

@@ -43,15 +43,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtBat.cs" />
+    <Compile Include="BaseStealingGenerator.cs" />
     <Compile Include="Batter.cs" />
     <Compile Include="BattingStats.cs" />
+    <Compile Include="BuntGenerator.cs" />
     <Compile Include="GameSituation.cs" />
     <Compile Include="Man.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="ManInTeam.cs" />
     <Compile Include="Match.cs" />
+    <Compile Include="NormalPitchGenerator.cs" />
     <Compile Include="OrdinalNumerals.cs" />
+    <Compile Include="OtherCondition.cs" />
     <Compile Include="Pitch.cs" />
+    <Compile Include="PitchBeforeBaseStealingGenerator.cs" />
     <Compile Include="Pitcher.cs" />
     <Compile Include="PitcherResults.cs" />
     <Compile Include="PitchGenerator.cs" />
