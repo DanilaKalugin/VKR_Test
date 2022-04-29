@@ -37,10 +37,9 @@ namespace VKR_Test
             lbStadiumCapacity.Text = _stadiums[number].StadiumCapacity.ToString("N0", CultureInfo.InvariantCulture);
             lbDistanceToCenterField.Text = _stadiums[number].StadiumDistanceToCenterfield + " ft";
 
-            if (File.Exists($"Stadiums/Stadium{_stadiums[number].StadiumId:000}.jpg"))
-                pbStadiumPhoto.BackgroundImage = Image.FromFile($"Stadiums/Stadium{_stadiums[number].StadiumId:000}.jpg");
-            else
-                pbStadiumPhoto.BackgroundImage = null;
+            var imagePath = $"Stadiums/Stadium{_stadiums[number].StadiumId:000}.jpg";
+            var image = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
+            pbStadiumPhoto.BackgroundImage = image;
         }
 
         private void StadiumSelectionForm_Load(object sender, EventArgs e) => DisplayCurrentStadium(_stadiumNumber);

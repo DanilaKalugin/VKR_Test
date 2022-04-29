@@ -19,10 +19,10 @@ namespace VKR_Test
             timer2.Start();
             panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            
-            if (File.Exists($"PlayerPhotos/Player{batter.Id:0000}.png"))
-                pbPatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.Id:0000}.png");
-            else pbPatterPhoto.BackgroundImage = null;
+
+            var imagePath = $"PlayerPhotos/Player{batter.Id:0000}.png";
+            var image = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
+            pbPatterPhoto.BackgroundImage = image;
             
             lbBatterName.Text = batter.FullName.ToUpper();
             var HRTodayForThisBatter = allAtBats.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.Id);
