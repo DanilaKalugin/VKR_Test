@@ -21,9 +21,7 @@ namespace VKR.DAL
                 {
                     connection.Open();
                     using (var command = new SqlCommand("CREATE DATABASE [VKRnew]", connection))
-                    {
                         command.ExecuteNonQuery();
-                    }
                     connection.Close();
                 }
 
@@ -60,9 +58,7 @@ namespace VKR.DAL
             {
                 conn.Open();
                 foreach (var script in scripts.Select(File.ReadAllText))
-                {
                     using (var command = new SqlCommand(script, conn)) command.ExecuteNonQuery();
-                }
                 conn.Close();
             }
         }

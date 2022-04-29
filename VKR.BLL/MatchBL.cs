@@ -38,10 +38,10 @@ namespace VKR.BLL
         {
             var matches = _matchDAO.GetResultsForAllMatches().ToList();
             var stadiums = _stadiumsDAO.GetAllStadiums().ToList();
+            
             foreach (var match in matches)
-            {
                 match.Stadium = stadiums.FirstOrDefault(stadium => stadium.StadiumId == match.StadiumNumber);
-            }
+            
             return team != "" ? matches.Where(match => match.AwayTeamAbbreviation == team || match.HomeTeamAbbreviation == team).ToList() : matches;
         }
 
@@ -63,16 +63,11 @@ namespace VKR.BLL
             var stadiums = _stadiumsDAO.GetAllStadiums().ToList();
 
             foreach (var match in matches)
-            {
                 match.Stadium = stadiums.First(stadium => stadium.StadiumId == match.StadiumNumber);
-            }
 
-            if (team != "")
-            {
-                return matches.Where(match => match.AwayTeamAbbreviation == team || match.HomeTeamAbbreviation == team).ToList();
-            }
-
-            return matches;
+            if (team == "") return matches;
+            
+            return matches.Where(match => match.AwayTeamAbbreviation == team || match.HomeTeamAbbreviation == team).ToList();
         }
     }
 }

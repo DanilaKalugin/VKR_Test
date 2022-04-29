@@ -129,12 +129,10 @@ namespace VKR_Test
             lbLineUpType.Text = _typesOfLineups[lineupNumber];
             dgvBench.Rows.Clear();
 
-            if (_rosterType == RosterType.FreeAgents)
-                foreach (var player in _teamsBench[0][0])
-                    dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
-            else
-                foreach (var player in _teamsBench[teamNumber][lineupNumber])
-                    dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
+            var bench = _rosterType == RosterType.FreeAgents ? _teamsBench[0][0] : _teamsBench[teamNumber][lineupNumber];
+
+            foreach (var player in bench)
+                dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
 
             _lineupChanged = true;
         }
@@ -209,7 +207,7 @@ namespace VKR_Test
             if (File.Exists($"PlayerPhotos/Player{player.Id:0000}.png"))
                 pbPlayerPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{player.Id:0000}.png");
             else pbPlayerPhoto.BackgroundImage = null;
-            
+
             lbPlayerNumber.Text = $"#{player.PlayerNumber}";
             lbPlayerName.Text = player.FullName.ToUpper();
             lbPlayerPlace_and_DateOfBirth.Text = $"{player.PlaceOfBirth.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";

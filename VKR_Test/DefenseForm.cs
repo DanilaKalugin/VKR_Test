@@ -33,22 +33,16 @@ namespace VKR_Test
             timer_Defense.Start();
         }
 
-        private void DisplayInfoAboutPlayer(Label firstName, Label secondName, Label position, string positionTitle)
+        private void DisplayInfoAboutPlayer(Control firstName, Control secondName, Control position, string positionTitle)
         {
             position.BackColor = _defense.TeamColorForThisMatch;
 
             position.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(position.BackColor, false);
-            if (positionTitle == "P")
-            {
-                firstName.Text = _defense.CurrentPitcher.FirstName.ToUpper();
-                secondName.Text = _defense.CurrentPitcher.SecondName.ToUpper();
-            }
-            else
-            {
-                var batter = _defense.BattingLineup.FirstOrDefault(batter1 => batter1.PositionForThisMatch == positionTitle);
-                firstName.Text = batter.FirstName.ToUpper();
-                secondName.Text = batter.SecondName.ToUpper();
-            }
+
+            var player = positionTitle == "P" ? (Player)_defense.CurrentPitcher : _defense.BattingLineup.FirstOrDefault(batter1 => batter1.PositionForThisMatch == positionTitle);
+
+            firstName.Text = player?.FirstName.ToUpper();
+            secondName.Text = player?.SecondName.ToUpper();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

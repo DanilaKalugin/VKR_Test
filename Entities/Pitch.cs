@@ -4,9 +4,6 @@
     {
         public PitchResult NewPitchResult;
 
-        public Pitch(PitchResult pitchResult)
-        {
-            NewPitchResult = pitchResult;
-        }
+        public Pitch(PitchResult pitchResult) => NewPitchResult = pitchResult;
     }
 }

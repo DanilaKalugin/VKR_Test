@@ -205,12 +205,9 @@ namespace VKR_Test
 
         private void TeamsSelectForm_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.F5:
-                    if (!_newMatch.IsQuickMatch) FillScheduleForToday();
-                    break;
-            }
+            if (e.KeyCode != Keys.F5) return;
+
+            if (!_newMatch.IsQuickMatch) FillScheduleForToday();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

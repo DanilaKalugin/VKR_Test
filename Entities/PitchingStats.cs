@@ -41,10 +41,7 @@ namespace Entities
         {
             get
             {
-                if (IP == 0)
-                {
-                    return 0;
-                }
+                if (Outs == 0) return 0;
 
                 return Math.Round((WalksAllowed + HitsAllowed) / ((double)Outs / 3), 2);
             }
@@ -55,9 +52,7 @@ namespace Entities
             get
             {
                 if (TotalBattersFaced - WalksAllowed - HitByPitch - SacrificeFlies - SacrificeBunts == 0)
-                {
                     return 0;
-                }
 
                 return Math.Round((double)HitsAllowed / (TotalBattersFaced - WalksAllowed - HitByPitch - SacrificeFlies - SacrificeBunts), 3);
             }
@@ -67,17 +62,13 @@ namespace Entities
         {
             get
             {
-                if (IP == 0)
-                {
-                    return 0;
-                }
+                if (Outs == 0) return 0;
 
                 return Math.Round(RunsAllowed / ((double)Outs / 3) * 9, 2);
             }
         }
 
-        public double KperNineInnings
-        => (double)Strikeouts / (Outs / 3) * 9;
+        public double KperNineInnings => Strikeouts / ((double)Outs / 3) * 9;
 
         public double BBperNineInnings => WalksAllowed / ((double)Outs / 3) * 9;
 

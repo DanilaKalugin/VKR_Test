@@ -487,12 +487,8 @@ namespace VKR_Test
             _statsType = StatsType.Standard;
             cbPlayers.DataSource = cbPlayers.Items;
             ShowNewStats(_playerType, _statsType);
-            var teamsInComboBox = new List<string>
-            {
-                "MLB",
-                "AL",
-                "NL"
-            };
+            
+            var teamsInComboBox = new List<string> { "MLB", "AL", "NL" };
             teamsInComboBox.AddRange(_teams.Select(team => team.TeamTitle).ToList());
             cbTeams.DataSource = teamsInComboBox;
 
