@@ -323,6 +323,9 @@ namespace Entities
                 NumberOfBatterFromHomeTeam = gameSituation.NumberOfBatterFromHomeTeam;
             }
 
+            AwayTeamRuns = gameSituation.AwayTeamRuns;
+            HomeTeamRuns = gameSituation.HomeTeamRuns;
+
             if (gameSituation.Outs == 3)
             {
                 if (gameSituation.Offense == homeTeam)
@@ -373,9 +376,15 @@ namespace Entities
             PitcherID = Offense == _currentMatch.AwayTeam ? _currentMatch.HomeTeam.CurrentPitcher.Id : _currentMatch.AwayTeam.CurrentPitcher.Id;
 
             if (Offense == _currentMatch.AwayTeam)
-                AwayTeamRuns += RunsByThisPitch.Count;
+            {
+                AwayTeamRuns = _previousSituation.AwayTeamRuns + RunsByThisPitch.Count;
+                HomeTeamRuns = _previousSituation.HomeTeamRuns;
+            }
             else
-                HomeTeamRuns += RunsByThisPitch.Count;
+            {
+                HomeTeamRuns = _previousSituation.HomeTeamRuns + RunsByThisPitch.Count;
+                AwayTeamRuns = _previousSituation.AwayTeamRuns;
+            }
         }
     }
 }
