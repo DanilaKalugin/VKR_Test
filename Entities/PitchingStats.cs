@@ -79,7 +79,7 @@ namespace Entities
         public double KperNineInnings
         => (double)Strikeouts / (Outs / 3) * 9;
 
-        public double BBperNineInnings => 9 * (double)WalksAllowed / (Outs / 3) * 9;
+        public double BBperNineInnings => WalksAllowed / ((double)Outs / 3) * 9;
 
         public double KperBb => (double)Strikeouts / WalksAllowed;
 
