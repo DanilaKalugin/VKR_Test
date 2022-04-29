@@ -34,10 +34,7 @@ namespace VKR_Test
         {
             Player = player;
 
-            var args = new PlayerChangedEventArgs
-            {
-                PlayerInfo = player
-            };
+            var args = new PlayerChangedEventArgs(playerInfo: player);
 
             PlayerChanging?.Invoke(this, args);
         }

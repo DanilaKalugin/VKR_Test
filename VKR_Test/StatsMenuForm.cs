@@ -64,25 +64,20 @@ namespace VKR_Test
         {
             var countOfBattersWithThisAVG = pitchers.Where(key).Count();
 
-            if (countOfBattersWithThisAVG == 0)
+            switch (countOfBattersWithThisAVG)
             {
-                var pitchers = playersBL.GetPitchersStats("All Players");
-                countOfBattersWithThisAVG = pitchers.Where(key).Count();
-
-                if (countOfBattersWithThisAVG == 1)
+                case 0:
                 {
-                    return pitchers.Where(key).Select(pitcher => pitcher.FullName).First();
+                    var pitchers = playersBL.GetPitchersStats("All Players");
+                    countOfBattersWithThisAVG = pitchers.Where(key).Count();
+
+                    return countOfBattersWithThisAVG == 1 ? pitchers.Where(key).Select(pitcher => pitcher.FullName).First() : "Tied";
                 }
-
-                return "Tied";
+                case 1:
+                    return pitchers.Where(key).Select(pitcher => pitcher.FullName).First();
+                default:
+                    return "Tied";
             }
-
-            if (countOfBattersWithThisAVG == 1)
-            {
-                return pitchers.Where(key).Select(pitcher => pitcher.FullName).First();
-            }
-
-            return "Tied";
         }
 
         private void GetBattingLeaders()
