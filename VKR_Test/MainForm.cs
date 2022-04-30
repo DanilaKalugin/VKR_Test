@@ -760,9 +760,9 @@ namespace VKR_Test
 
         private void PitcherSubstion_Definition(Pitcher pitcher)
         {
-            var pitcherSubstion = RandomGenerators.PitcherSubstitution_Definition(pitcher, _currentMatch.AtBats);
+            var pitcherSubstitution = RandomGenerators.PitcherSubstitution_Definition(pitcher, _currentMatch.AtBats);
 
-            if (pitcherSubstion != RandomGenerators.PitcherSubstitution.Substitution) return;
+            if (pitcherSubstitution != RandomGenerators.PitcherSubstitution.Substitution) return;
 
             ChangePitcher(_isAutoSimulation);
         }

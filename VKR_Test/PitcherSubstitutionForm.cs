@@ -57,13 +57,11 @@ namespace VKR_Test
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
         {
-            foreach (var pb in _progressBars)
-            {
+            foreach (var pb in _progressBars) 
                 pb.MainColor = _currentTeam.TeamColorForThisMatch;
-            }
 
             panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{_currentTeam.TeamAbbreviation}.png");
-            PlayersChaging();
+            PlayersChanging();
         }
 
 
@@ -94,10 +92,10 @@ namespace VKR_Test
         private void vScrollBar1_ValueChanged(object sender, EventArgs e)
         {
             _playerIndex = vScrollBar1.Value;
-            PlayersChaging();
+            PlayersChanging();
         }
 
-        private void PlayersChaging()
+        private void PlayersChanging()
         {
             RowChanging(0, label1, label6, label11, _progressBars[0], pictureBox1);
             RowChanging(1, label2, label7, label12, _progressBars[1], pictureBox2);
