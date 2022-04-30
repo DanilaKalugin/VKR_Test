@@ -9,9 +9,11 @@ namespace VKR_Test
 
         private void btnDeployingAccepted_Click(object sender, EventArgs e)
         {
-            var form = new NewConnectionForm();
-            Visible = false;
-            form.ShowDialog();
+            using (var form = new NewConnectionForm())
+            {
+                Visible = false;
+                form.ShowDialog();
+            }
         }
 
         private void btnDeployingDenied_Click(object sender, EventArgs e) => Application.Exit();

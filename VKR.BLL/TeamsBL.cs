@@ -54,7 +54,7 @@ namespace VKR.BLL
 
             var leadGB = teams[0].GamesBehind;
 
-            if (!(leadGB < 0)) return teams;
+            if (leadGB >= 0) return teams;
 
             foreach (var team in teams) team.GamesBehind -= leadGB;
 

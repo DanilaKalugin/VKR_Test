@@ -202,6 +202,7 @@ namespace VKR_Test
             void AddNewStatsForTodayStatsLabel(int value, string text, Label lb)
             {
                 if (value <= 0) return;
+
                 var valueWithText = value > 1 ? $"{value} {text}" : $"{text}";
 
                 lb.Text += lb.Text == "►TODAY: " ? $"{valueWithText}" : $", {valueWithText}";

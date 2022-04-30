@@ -44,7 +44,7 @@ namespace VKR_Test
             dgvStandings.Rows[dgvStandings.Rows.Count - 1].DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 30, 30);
             dgvStandings.Rows[dgvStandings.Rows.Count - 1].DefaultCellStyle.SelectionForeColor = Color.White;
 
-            for (var i = 0; i < _teams.Count; i++)
+            for (var i = 0; i < teamsInGroup; i++)
             {
                 var gamesBehind = Math.Abs(_teams[i].GamesBehind).ToString("0.0", new CultureInfo("en-US"));
                 

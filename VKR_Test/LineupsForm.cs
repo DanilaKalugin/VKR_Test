@@ -160,13 +160,13 @@ namespace VKR_Test
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             _lineupChanged = false;
-            if (_rosterType == RosterType.FreeAgents)
-                ShowNewPlayer(dgvBench, dgvLineup, _teamsBench[0][0][dgvBench.SelectedRows[0].Index]);
-            else
-                ShowNewPlayer(dgvBench, dgvLineup, _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index]);
+            var player = _rosterType == RosterType.FreeAgents
+                ? _teamsBench[0][0][dgvBench.SelectedRows[0].Index]
+                : _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index];
+            ShowNewPlayer(dgvBench, dgvLineup, player);
         }
 
-        private void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, PlayerInLineup player)
+        private void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, Player player)
         {
             dgv2.DefaultCellStyle.SelectionBackColor = Color.Gainsboro;
             dgv2.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.LightGray;
@@ -184,7 +184,7 @@ namespace VKR_Test
             label5.Text = !player.PlayerPositions.Contains("P") ? "HR" : "SO";
             label6.Text = !player.PlayerPositions.Contains("P") ? "RBI" : "WHIP";
 
-            if (player.PlayerPositions.IndexOf("P") == -1)
+            if (player.PlayerPositions.Contains("P"))
             {
                 label1.Text = batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
                 label2.Text = batter.BattingStats.HomeRuns.ToString();
@@ -218,10 +218,10 @@ namespace VKR_Test
         {
             if (dgvBench.SelectedRows.Count <= 0 || _lineupChanged) return;
 
-            ShowNewPlayer(dgvBench, dgvLineup,
-                _rosterType == RosterType.FreeAgents
-                    ? _teamsBench[0][0][dgvBench.SelectedRows[0].Index]
-                    : _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index]);
+            var player = _rosterType == RosterType.FreeAgents
+                ? _teamsBench[0][0][dgvBench.SelectedRows[0].Index]
+                : _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index];
+            ShowNewPlayer(dgvBench, dgvLineup, player);
         }
 
         private void LineupsForm_Load(object sender, EventArgs e)

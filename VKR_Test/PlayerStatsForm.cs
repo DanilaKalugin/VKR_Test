@@ -461,11 +461,10 @@ namespace VKR_Test
 
         private void GetCorrectColorForCell(DataGridView dgv, int RowNumber, string TeamForThisPlayer)
         {
-            if (TeamForThisPlayer != "")
-            {
-                dgv.Rows[RowNumber].Cells[1].Style.BackColor = _teams.First(team => team.TeamAbbreviation == TeamForThisPlayer).TeamColor[0];
-                dgv.Rows[RowNumber].Cells[1].Style.SelectionBackColor = _teams.First(team => team.TeamAbbreviation == TeamForThisPlayer).TeamColor[0];
-            }
+            if (TeamForThisPlayer == "") return;
+
+            dgv.Rows[RowNumber].Cells[1].Style.BackColor = _teams.First(team => team.TeamAbbreviation == TeamForThisPlayer).TeamColor[0];
+            dgv.Rows[RowNumber].Cells[1].Style.SelectionBackColor = _teams.First(team => team.TeamAbbreviation == TeamForThisPlayer).TeamColor[0];
         }
 
         private void dataGridView4_CellStyleChanged(object sender, DataGridViewCellEventArgs e) => dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.SelectionBackColor = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor;
@@ -512,10 +511,8 @@ namespace VKR_Test
             if (_objects == SortingObjects.Players)
             {
                 _pitchers = _playersBL.GetPitchersStats(cbPlayers.Text, cbTeams.SelectedValue.ToString());
-                if (cbPositions.SelectedValue is PlayerPosition position)
-                    _batters = _playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, position.ShortTitle);
-                else
-                    _batters = _playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, cbPositions.SelectedValue.ToString());
+                var positionTitle = cbPositions.SelectedValue is PlayerPosition position ? position.ShortTitle : cbPositions.SelectedValue.ToString();
+                _batters = _playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
             }
 
             GetSortedListsBySortingCodes(_lastBattingSort, _lastPitchingSort, _objects);
