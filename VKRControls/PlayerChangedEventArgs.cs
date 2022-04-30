@@ -1,18 +1,13 @@
 ﻿using System;
 using Entities;
 
-namespace VKR_Test
+namespace VKRControls
 {
     public class PlayerChangedEventArgs: EventArgs
     {
-        public PlayerChangedEventArgs()
-        {
-        }
+        public PlayerChangedEventArgs() { }
 
-        public PlayerChangedEventArgs(Batter playerInfo)
-        {
-            PlayerInfo = playerInfo;
-        }
+        public PlayerChangedEventArgs(Batter playerInfo) => PlayerInfo = playerInfo;
 
         public Batter PlayerInfo { get; set; }
     }

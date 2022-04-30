@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatterInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BatterInfo.Designer.cs">
+      <DependentUpon>BatterInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlayerChangedEventArgs.cs" />
     <Compile Include="PlayerInfoWithPhoto.cs">
       <SubType>UserControl</SubType>
@@ -53,6 +59,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BatterInfo.resx">
+      <DependentUpon>BatterInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PlayerInfoWithPhoto.resx">
       <DependentUpon>PlayerInfoWithPhoto.cs</DependentUpon>
     </EmbeddedResource>
@@ -61,6 +70,10 @@
     <ProjectReference Include="..\Entities\VKR.Entities.csproj">
       <Project>{19FFD1AA-E9A7-49D8-9E49-1E6ADFDA5875}</Project>
       <Name>VKR.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{13a342c2-03c0-4721-baf5-e541e8837a81}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

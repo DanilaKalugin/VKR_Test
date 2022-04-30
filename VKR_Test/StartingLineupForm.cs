@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Entities;
+using VKRControls;
 
 namespace VKR_Test
 {

@@ -32,7 +32,7 @@ namespace VKR_Test
             InitializeComponent();
 
             _currentMatch = match;
-
+            BatterInfo.SetMatch(_currentMatch);
             using (var lineup = new StartingLineupForm(_currentMatch.AwayTeam)) lineup.ShowDialog();
 
             using (var defense = new DefenseForm(_currentMatch.HomeTeam)) defense.ShowDialog();
@@ -44,8 +44,8 @@ namespace VKR_Test
             PrepareForThisTeam(match.HomeTeam, HomeTeam_Abbreviation, HomeTeam_RunsScored, label19, panel12, label23, _currentMatch, homeTeamNextBatters, home_DueUP);
             DisplayingCurrentSituation(match.GameSituations.Last());
 
-            DisplayNextBatters(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, _currentMatch, _currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, _currentMatch.GameSituations.Last());
-            DisplayNextBatters(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, _currentMatch, _currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, _currentMatch.GameSituations.Last());
+            DisplayNextBatters(_currentMatch, _currentMatch.AwayTeam, _currentMatch.GameSituations.Last(), awayNextBatter1, awayNextBatter2, awayNextBatter3);
+            DisplayNextBatters(_currentMatch, _currentMatch.HomeTeam, _currentMatch.GameSituations.Last(), homeNextBatter1, homeNextBatter2, homeNextBatter3);
             pb_stamina.Value = (int)_currentMatch.HomeTeam.CurrentPitcher.RemainingStamina;
             SimulationModeChanged(!match.IsQuickMatch);
         }
@@ -65,7 +65,7 @@ namespace VKR_Test
             NextBattersHeader.Text = $"{team.TeamTitle.ToUpper()} - DUE UP";
         }
 
-        private void DisplayNextBatters(Label awayNext1, Label awayNext2, Label awayNext3, Label awayNextNumber1, Label awayNextNumber2, Label awayNextNumber3, Match currentMatch, Team team, Label next1Stats, Label next2Stats, Label next3Stats, GameSituation situation)
+        private void DisplayNextBatters(Match currentMatch, Team team, GameSituation situation, params BatterInfo[] batters)
         {
             int GetNextNumber(int previousNumber) => previousNumber < 9 ? previousNumber + 1 : 1;
 
@@ -73,21 +73,12 @@ namespace VKR_Test
 
             if (situation.Offense != team) number--;
 
-            var batter1 = GetNextNumber(number);
-            var batter2 = GetNextNumber(batter1);
-            var batter3 = GetNextNumber(batter2);
-
-            awayNextNumber1.Text = $"{batter1}.";
-            awayNextNumber2.Text = $"{batter2}.";
-            awayNextNumber3.Text = $"{batter3}.";
-
-            awayNext1.Text = team.BattingLineup[batter1 - 1].SecondName;
-            awayNext2.Text = team.BattingLineup[batter2 - 1].SecondName;
-            awayNext3.Text = team.BattingLineup[batter3 - 1].SecondName;
-
-            next1Stats.Text = ShowBatterStats(team.BattingLineup[batter1 - 1]);
-            next2Stats.Text = ShowBatterStats(team.BattingLineup[batter2 - 1]);
-            next3Stats.Text = ShowBatterStats(team.BattingLineup[batter3 - 1]);
+            for (var i = 0; i < batters.Length; i++)
+            {
+                var nextNumber = GetNextNumber(number);
+                batters[i].SetPlayer(team.BattingLineup[nextNumber - 1]);
+                number = nextNumber;
+            }
         }
 
         private void DisplayingCurrentSituation(GameSituation gameSituation)
@@ -131,8 +122,8 @@ namespace VKR_Test
             var nextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(nextBatter);
 
-            DisplayNextBatters(AwayNext1, AwayNext2, AwayNext3, AwayNextNumber1, AwayNextNumber2, AwayNextNumber3, _currentMatch, _currentMatch.AwayTeam, AwayNext1Stats, AwayNext2Stats, AwayNext3Stats, gameSituation);
-            DisplayNextBatters(homeNext1, homeNext2, homeNext3, homeNextNumber1, homeNextNumber2, homeNextNumber3, _currentMatch, _currentMatch.HomeTeam, HomeNext1Stats, HomeNext2Stats, HomeNext3Stats, gameSituation);
+            DisplayNextBatters(_currentMatch, _currentMatch.AwayTeam, gameSituation, awayNextBatter1, awayNextBatter2, awayNextBatter3);
+            DisplayNextBatters(_currentMatch, _currentMatch.HomeTeam, gameSituation, homeNextBatter1, homeNextBatter2, homeNextBatter3);
 
             DisplayPitcherStats();
             Text = $"{_currentMatch.AwayTeam.TeamAbbreviation} {gameSituation.AwayTeamRuns} - {gameSituation.HomeTeamRuns} {_currentMatch.HomeTeam.TeamAbbreviation} @ {_currentMatch.Stadium.StadiumTitle}";
@@ -184,54 +175,12 @@ namespace VKR_Test
             return _currentMatch.HomeTeam.BattingLineup[gameSituation.NumberOfBatterFromHomeTeam - 1];
         }
 
-        private string ShowBatterStats(Batter batter)
-        {
-            var HitsForAtBats = GetHitsForAtBatsStats(batter);
-            if (!string.IsNullOrEmpty(HitsForAtBats)) return HitsForAtBats;
-
-            if (_currentMatch.AtBats.Any(atBat => atBat.Batter == batter.Id && atBat.AtBatResult == AtBat.AtBatType.HitByPitch)) return "HBP";
-
-            if (_currentMatch.AtBats.Any(atBat => atBat.Batter == batter.Id && atBat.AtBatResult == AtBat.AtBatType.Walk))
-            {
-                var numberOfWalks = _currentMatch.AtBats.Count(atBat => atBat.Batter == batter.Id && atBat.AtBatResult == AtBat.AtBatType.Walk);
-                return numberOfWalks == 1 ? "WALK" : $"{numberOfWalks} WALKS";
-            }
-
-            if (_currentMatch.AtBats.Any(atBat => atBat.Batter == batter.Id && atBat.AtBatResult == AtBat.AtBatType.SacrificeFly)) return "SAC FLY";
-
-            return batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
-        }
-
-        private string GetHitsForAtBatsStats(Batter batter)
-        {
-            var AtBatsForThisPitcher = _currentMatch.AtBats.Count(atBat => atBat.Batter == batter.Id && (atBat.AtBatResult == AtBat.AtBatType.Double ||
-                                                                                          atBat.AtBatResult == AtBat.AtBatType.Triple ||
-                                                                                          atBat.AtBatResult == AtBat.AtBatType.HomeRun ||
-                                                                                          atBat.AtBatResult == AtBat.AtBatType.Single ||
-                                                                                          atBat.AtBatResult == AtBat.AtBatType.Popout ||
-                                                                                          atBat.AtBatResult == AtBat.AtBatType.Strikeout ||
-                                                                                          atBat.AtBatResult == AtBat.AtBatType.Flyout ||
-                                                                                          atBat.AtBatResult == AtBat.AtBatType.Groundout));
-
-            if (AtBatsForThisPitcher > 0)
-            {
-                var Hits = _currentMatch.AtBats.Count(atBat => atBat.Batter == batter.Id && (atBat.AtBatResult == AtBat.AtBatType.Double ||
-                                                                               atBat.AtBatResult == AtBat.AtBatType.Triple ||
-                                                                               atBat.AtBatResult == AtBat.AtBatType.HomeRun ||
-                                                                               atBat.AtBatResult == AtBat.AtBatType.Single));
-                return Hits + " FOR " + AtBatsForThisPitcher;
-            }
-            return "";
-        }
-
         private void NewBatterDisplaying(Batter batter)
         {
-            lbBatterNumber.Text = batter.NumberInBattingLineup + ".";
-            lbBatterSecondName.Text = batter.SecondName;
-
-            BatterStats.Text = ShowBatterStats(batter);
-            ShowStatsForThisMatch(batter, lbTodayStats);
+            currentBatter.SetPlayer(batter);
             
+            ShowStatsForThisMatch(batter, lbTodayStats);
+
             if (File.Exists($"PlayerPhotos/Player{batter.Id:0000}.png"))
                 pbCurrentBatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.Id:0000}.png");
             else

@@ -45,10 +45,6 @@ namespace VKR_Test
             this.panelCurrentSituationPitcher = new System.Windows.Forms.Panel();
             this.lbPitcherSecondName = new System.Windows.Forms.Label();
             this.lbPitchCountForThisPitcher = new System.Windows.Forms.Label();
-            this.panelCurrentSituationBatter = new System.Windows.Forms.Panel();
-            this.BatterStats = new System.Windows.Forms.Label();
-            this.lbBatterSecondName = new System.Windows.Forms.Label();
-            this.lbBatterNumber = new System.Windows.Forms.Label();
             this.btnNewPitch = new System.Windows.Forms.Button();
             this.panelSmallScoreBoard = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -126,36 +122,10 @@ namespace VKR_Test
             this.panelScoreBoard = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panelNextAwayBatters = new System.Windows.Forms.Panel();
-            this.panel22 = new System.Windows.Forms.Panel();
-            this.AwayNext3Stats = new System.Windows.Forms.Label();
-            this.AwayNext3 = new System.Windows.Forms.Label();
-            this.AwayNextNumber3 = new System.Windows.Forms.Label();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.AwayNext2Stats = new System.Windows.Forms.Label();
-            this.AwayNext2 = new System.Windows.Forms.Label();
-            this.AwayNextNumber2 = new System.Windows.Forms.Label();
-            this.panel20 = new System.Windows.Forms.Panel();
-            this.AwayNext1Stats = new System.Windows.Forms.Label();
-            this.AwayNext1 = new System.Windows.Forms.Label();
-            this.AwayNextNumber1 = new System.Windows.Forms.Label();
             this.AwayTeamNextBatters = new System.Windows.Forms.Panel();
             this.away_DueUP = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panelNextHomeBatters = new System.Windows.Forms.Panel();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.HomeNext3Stats = new System.Windows.Forms.Label();
-            this.homeNext3 = new System.Windows.Forms.Label();
-            this.homeNextNumber3 = new System.Windows.Forms.Label();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.HomeNext2Stats = new System.Windows.Forms.Label();
-            this.homeNext2 = new System.Windows.Forms.Label();
-            this.homeNextNumber2 = new System.Windows.Forms.Label();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.HomeNext1Stats = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.homeNext1 = new System.Windows.Forms.Label();
-            this.homeNextNumber1 = new System.Windows.Forms.Label();
             this.homeTeamNextBatters = new System.Windows.Forms.Panel();
             this.home_DueUP = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -224,12 +194,18 @@ namespace VKR_Test
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnAutoMode = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.currentBatter = new VKRControls.BatterInfo();
+            this.awayNextBatter3 = new VKRControls.BatterInfo();
+            this.awayNextBatter2 = new VKRControls.BatterInfo();
+            this.awayNextBatter1 = new VKRControls.BatterInfo();
+            this.homeNextBatter3 = new VKRControls.BatterInfo();
+            this.homeNextBatter2 = new VKRControls.BatterInfo();
+            this.homeNextBatter1 = new VKRControls.BatterInfo();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
             panel27.SuspendLayout();
             this.panelCurrentSituationPitcher.SuspendLayout();
-            this.panelCurrentSituationBatter.SuspendLayout();
             this.panelSmallScoreBoard.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -240,15 +216,9 @@ namespace VKR_Test
             this.panelScoreBoard.SuspendLayout();
             this.panel18.SuspendLayout();
             this.panelNextAwayBatters.SuspendLayout();
-            this.panel22.SuspendLayout();
-            this.panel21.SuspendLayout();
-            this.panel20.SuspendLayout();
             this.AwayTeamNextBatters.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panelNextHomeBatters.SuspendLayout();
-            this.panel23.SuspendLayout();
-            this.panel24.SuspendLayout();
-            this.panel25.SuspendLayout();
             this.homeTeamNextBatters.SuspendLayout();
             this.panelCurrentPitcher.SuspendLayout();
             this.PitchingTeamColor.SuspendLayout();
@@ -278,9 +248,9 @@ namespace VKR_Test
             // 
             panel27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             panel27.BackColor = System.Drawing.Color.Gray;
+            panel27.Controls.Add(this.currentBatter);
             panel27.Controls.Add(this.pb_stamina);
             panel27.Controls.Add(this.panelCurrentSituationPitcher);
-            panel27.Controls.Add(this.panelCurrentSituationBatter);
             panel27.Location = new System.Drawing.Point(1163, 846);
             panel27.Name = "panel27";
             panel27.Size = new System.Drawing.Size(250, 66);
@@ -356,53 +326,6 @@ namespace VKR_Test
             this.lbPitchCountForThisPitcher.TabIndex = 4;
             this.lbPitchCountForThisPitcher.Text = "0";
             this.lbPitchCountForThisPitcher.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panelCurrentSituationBatter
-            // 
-            this.panelCurrentSituationBatter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panelCurrentSituationBatter.Controls.Add(this.BatterStats);
-            this.panelCurrentSituationBatter.Controls.Add(this.lbBatterSecondName);
-            this.panelCurrentSituationBatter.Controls.Add(this.lbBatterNumber);
-            this.panelCurrentSituationBatter.Location = new System.Drawing.Point(0, 36);
-            this.panelCurrentSituationBatter.Name = "panelCurrentSituationBatter";
-            this.panelCurrentSituationBatter.Size = new System.Drawing.Size(250, 30);
-            this.panelCurrentSituationBatter.TabIndex = 44;
-            // 
-            // BatterStats
-            // 
-            this.BatterStats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BatterStats.ForeColor = System.Drawing.Color.White;
-            this.BatterStats.Location = new System.Drawing.Point(163, 5);
-            this.BatterStats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.BatterStats.Name = "BatterStats";
-            this.BatterStats.Size = new System.Drawing.Size(86, 20);
-            this.BatterStats.TabIndex = 4;
-            this.BatterStats.Text = "0";
-            this.BatterStats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lbBatterSecondName
-            // 
-            this.lbBatterSecondName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBatterSecondName.ForeColor = System.Drawing.Color.White;
-            this.lbBatterSecondName.Location = new System.Drawing.Point(28, 5);
-            this.lbBatterSecondName.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.lbBatterSecondName.Name = "lbBatterSecondName";
-            this.lbBatterSecondName.Size = new System.Drawing.Size(149, 20);
-            this.lbBatterSecondName.TabIndex = 3;
-            this.lbBatterSecondName.Text = "0";
-            this.lbBatterSecondName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbBatterNumber
-            // 
-            this.lbBatterNumber.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBatterNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.lbBatterNumber.Location = new System.Drawing.Point(3, 5);
-            this.lbBatterNumber.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.lbBatterNumber.Name = "lbBatterNumber";
-            this.lbBatterNumber.Size = new System.Drawing.Size(25, 20);
-            this.lbBatterNumber.TabIndex = 1;
-            this.lbBatterNumber.Text = "1.";
-            this.lbBatterNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label24
             // 
@@ -1379,162 +1302,23 @@ namespace VKR_Test
             this.panel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel18.Controls.Add(this.panelNextAwayBatters);
             this.panel18.Controls.Add(this.AwayTeamNextBatters);
-            this.panel18.Location = new System.Drawing.Point(900, 0);
+            this.panel18.Location = new System.Drawing.Point(920, 0);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(260, 138);
+            this.panel18.Size = new System.Drawing.Size(250, 138);
             this.panel18.TabIndex = 1;
             // 
             // panelNextAwayBatters
             // 
             this.panelNextAwayBatters.BackColor = System.Drawing.Color.White;
-            this.panelNextAwayBatters.Controls.Add(this.panel22);
-            this.panelNextAwayBatters.Controls.Add(this.panel21);
-            this.panelNextAwayBatters.Controls.Add(this.panel20);
+            this.panelNextAwayBatters.Controls.Add(this.awayNextBatter3);
+            this.panelNextAwayBatters.Controls.Add(this.awayNextBatter2);
+            this.panelNextAwayBatters.Controls.Add(this.awayNextBatter1);
             this.panelNextAwayBatters.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelNextAwayBatters.ForeColor = System.Drawing.Color.White;
             this.panelNextAwayBatters.Location = new System.Drawing.Point(0, 33);
             this.panelNextAwayBatters.Name = "panelNextAwayBatters";
-            this.panelNextAwayBatters.Size = new System.Drawing.Size(260, 105);
+            this.panelNextAwayBatters.Size = new System.Drawing.Size(250, 105);
             this.panelNextAwayBatters.TabIndex = 1;
-            // 
-            // panel22
-            // 
-            this.panel22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel22.Controls.Add(this.AwayNext3Stats);
-            this.panel22.Controls.Add(this.AwayNext3);
-            this.panel22.Controls.Add(this.AwayNextNumber3);
-            this.panel22.Location = new System.Drawing.Point(0, 62);
-            this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(260, 30);
-            this.panel22.TabIndex = 47;
-            // 
-            // AwayNext3Stats
-            // 
-            this.AwayNext3Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwayNext3Stats.ForeColor = System.Drawing.Color.White;
-            this.AwayNext3Stats.Location = new System.Drawing.Point(170, 5);
-            this.AwayNext3Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.AwayNext3Stats.Name = "AwayNext3Stats";
-            this.AwayNext3Stats.Size = new System.Drawing.Size(86, 20);
-            this.AwayNext3Stats.TabIndex = 6;
-            this.AwayNext3Stats.Text = "0";
-            this.AwayNext3Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // AwayNext3
-            // 
-            this.AwayNext3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwayNext3.ForeColor = System.Drawing.Color.White;
-            this.AwayNext3.Location = new System.Drawing.Point(32, 7);
-            this.AwayNext3.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.AwayNext3.Name = "AwayNext3";
-            this.AwayNext3.Size = new System.Drawing.Size(149, 20);
-            this.AwayNext3.TabIndex = 3;
-            this.AwayNext3.Text = "0";
-            // 
-            // AwayNextNumber3
-            // 
-            this.AwayNextNumber3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwayNextNumber3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.AwayNextNumber3.Location = new System.Drawing.Point(3, 5);
-            this.AwayNextNumber3.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.AwayNextNumber3.Name = "AwayNextNumber3";
-            this.AwayNextNumber3.Size = new System.Drawing.Size(30, 20);
-            this.AwayNextNumber3.TabIndex = 1;
-            this.AwayNextNumber3.Text = "1.";
-            this.AwayNextNumber3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel21
-            // 
-            this.panel21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel21.Controls.Add(this.AwayNext2Stats);
-            this.panel21.Controls.Add(this.AwayNext2);
-            this.panel21.Controls.Add(this.AwayNextNumber2);
-            this.panel21.Location = new System.Drawing.Point(0, 31);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(260, 30);
-            this.panel21.TabIndex = 46;
-            // 
-            // AwayNext2Stats
-            // 
-            this.AwayNext2Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwayNext2Stats.ForeColor = System.Drawing.Color.White;
-            this.AwayNext2Stats.Location = new System.Drawing.Point(170, 5);
-            this.AwayNext2Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.AwayNext2Stats.Name = "AwayNext2Stats";
-            this.AwayNext2Stats.Size = new System.Drawing.Size(86, 20);
-            this.AwayNext2Stats.TabIndex = 6;
-            this.AwayNext2Stats.Text = "0";
-            this.AwayNext2Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // AwayNext2
-            // 
-            this.AwayNext2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwayNext2.ForeColor = System.Drawing.Color.White;
-            this.AwayNext2.Location = new System.Drawing.Point(32, 7);
-            this.AwayNext2.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.AwayNext2.Name = "AwayNext2";
-            this.AwayNext2.Size = new System.Drawing.Size(149, 20);
-            this.AwayNext2.TabIndex = 3;
-            this.AwayNext2.Text = "0";
-            // 
-            // AwayNextNumber2
-            // 
-            this.AwayNextNumber2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwayNextNumber2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.AwayNextNumber2.Location = new System.Drawing.Point(3, 5);
-            this.AwayNextNumber2.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.AwayNextNumber2.Name = "AwayNextNumber2";
-            this.AwayNextNumber2.Size = new System.Drawing.Size(30, 20);
-            this.AwayNextNumber2.TabIndex = 1;
-            this.AwayNextNumber2.Text = "1.";
-            this.AwayNextNumber2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel20
-            // 
-            this.panel20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel20.Controls.Add(this.AwayNext1Stats);
-            this.panel20.Controls.Add(this.AwayNext1);
-            this.panel20.Controls.Add(this.AwayNextNumber1);
-            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel20.Location = new System.Drawing.Point(0, 0);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(260, 30);
-            this.panel20.TabIndex = 45;
-            // 
-            // AwayNext1Stats
-            // 
-            this.AwayNext1Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwayNext1Stats.ForeColor = System.Drawing.Color.White;
-            this.AwayNext1Stats.Location = new System.Drawing.Point(170, 5);
-            this.AwayNext1Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.AwayNext1Stats.Name = "AwayNext1Stats";
-            this.AwayNext1Stats.Size = new System.Drawing.Size(86, 20);
-            this.AwayNext1Stats.TabIndex = 5;
-            this.AwayNext1Stats.Text = "0";
-            this.AwayNext1Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // AwayNext1
-            // 
-            this.AwayNext1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwayNext1.ForeColor = System.Drawing.Color.White;
-            this.AwayNext1.Location = new System.Drawing.Point(32, 7);
-            this.AwayNext1.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.AwayNext1.Name = "AwayNext1";
-            this.AwayNext1.Size = new System.Drawing.Size(149, 20);
-            this.AwayNext1.TabIndex = 3;
-            this.AwayNext1.Text = "0";
-            // 
-            // AwayNextNumber1
-            // 
-            this.AwayNextNumber1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwayNextNumber1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.AwayNextNumber1.Location = new System.Drawing.Point(3, 5);
-            this.AwayNextNumber1.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.AwayNextNumber1.Name = "AwayNextNumber1";
-            this.AwayNextNumber1.Size = new System.Drawing.Size(30, 20);
-            this.AwayNextNumber1.TabIndex = 1;
-            this.AwayNextNumber1.Text = "1.";
-            this.AwayNextNumber1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // AwayTeamNextBatters
             // 
@@ -1542,7 +1326,7 @@ namespace VKR_Test
             this.AwayTeamNextBatters.Dock = System.Windows.Forms.DockStyle.Top;
             this.AwayTeamNextBatters.Location = new System.Drawing.Point(0, 0);
             this.AwayTeamNextBatters.Name = "AwayTeamNextBatters";
-            this.AwayTeamNextBatters.Size = new System.Drawing.Size(260, 30);
+            this.AwayTeamNextBatters.Size = new System.Drawing.Size(250, 30);
             this.AwayTeamNextBatters.TabIndex = 0;
             // 
             // away_DueUP
@@ -1552,7 +1336,7 @@ namespace VKR_Test
             this.away_DueUP.ForeColor = System.Drawing.Color.White;
             this.away_DueUP.Location = new System.Drawing.Point(0, 0);
             this.away_DueUP.Name = "away_DueUP";
-            this.away_DueUP.Size = new System.Drawing.Size(260, 30);
+            this.away_DueUP.Size = new System.Drawing.Size(250, 30);
             this.away_DueUP.TabIndex = 0;
             this.away_DueUP.Text = "label32";
             this.away_DueUP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1563,188 +1347,23 @@ namespace VKR_Test
             this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel16.Controls.Add(this.panelNextHomeBatters);
             this.panel16.Controls.Add(this.homeTeamNextBatters);
-            this.panel16.Location = new System.Drawing.Point(1163, 0);
+            this.panel16.Location = new System.Drawing.Point(1173, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(260, 138);
+            this.panel16.Size = new System.Drawing.Size(250, 138);
             this.panel16.TabIndex = 0;
             // 
             // panelNextHomeBatters
             // 
             this.panelNextHomeBatters.BackColor = System.Drawing.Color.White;
-            this.panelNextHomeBatters.Controls.Add(this.panel23);
-            this.panelNextHomeBatters.Controls.Add(this.panel24);
-            this.panelNextHomeBatters.Controls.Add(this.panel25);
+            this.panelNextHomeBatters.Controls.Add(this.homeNextBatter3);
+            this.panelNextHomeBatters.Controls.Add(this.homeNextBatter2);
+            this.panelNextHomeBatters.Controls.Add(this.homeNextBatter1);
             this.panelNextHomeBatters.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelNextHomeBatters.ForeColor = System.Drawing.Color.White;
             this.panelNextHomeBatters.Location = new System.Drawing.Point(0, 33);
             this.panelNextHomeBatters.Name = "panelNextHomeBatters";
-            this.panelNextHomeBatters.Size = new System.Drawing.Size(260, 105);
+            this.panelNextHomeBatters.Size = new System.Drawing.Size(250, 105);
             this.panelNextHomeBatters.TabIndex = 2;
-            // 
-            // panel23
-            // 
-            this.panel23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel23.Controls.Add(this.HomeNext3Stats);
-            this.panel23.Controls.Add(this.homeNext3);
-            this.panel23.Controls.Add(this.homeNextNumber3);
-            this.panel23.Location = new System.Drawing.Point(0, 62);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(260, 30);
-            this.panel23.TabIndex = 50;
-            // 
-            // HomeNext3Stats
-            // 
-            this.HomeNext3Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HomeNext3Stats.ForeColor = System.Drawing.Color.White;
-            this.HomeNext3Stats.Location = new System.Drawing.Point(170, 5);
-            this.HomeNext3Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.HomeNext3Stats.Name = "HomeNext3Stats";
-            this.HomeNext3Stats.Size = new System.Drawing.Size(86, 20);
-            this.HomeNext3Stats.TabIndex = 8;
-            this.HomeNext3Stats.Text = "0";
-            this.HomeNext3Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // homeNext3
-            // 
-            this.homeNext3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeNext3.ForeColor = System.Drawing.Color.White;
-            this.homeNext3.Location = new System.Drawing.Point(32, 7);
-            this.homeNext3.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.homeNext3.Name = "homeNext3";
-            this.homeNext3.Size = new System.Drawing.Size(149, 20);
-            this.homeNext3.TabIndex = 3;
-            this.homeNext3.Text = "0";
-            // 
-            // homeNextNumber3
-            // 
-            this.homeNextNumber3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeNextNumber3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.homeNextNumber3.Location = new System.Drawing.Point(3, 5);
-            this.homeNextNumber3.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.homeNextNumber3.Name = "homeNextNumber3";
-            this.homeNextNumber3.Size = new System.Drawing.Size(30, 20);
-            this.homeNextNumber3.TabIndex = 1;
-            this.homeNextNumber3.Text = "1.";
-            this.homeNextNumber3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel24
-            // 
-            this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel24.Controls.Add(this.HomeNext2Stats);
-            this.panel24.Controls.Add(this.homeNext2);
-            this.panel24.Controls.Add(this.homeNextNumber2);
-            this.panel24.Location = new System.Drawing.Point(0, 31);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(260, 30);
-            this.panel24.TabIndex = 49;
-            // 
-            // HomeNext2Stats
-            // 
-            this.HomeNext2Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HomeNext2Stats.ForeColor = System.Drawing.Color.White;
-            this.HomeNext2Stats.Location = new System.Drawing.Point(170, 5);
-            this.HomeNext2Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.HomeNext2Stats.Name = "HomeNext2Stats";
-            this.HomeNext2Stats.Size = new System.Drawing.Size(86, 20);
-            this.HomeNext2Stats.TabIndex = 8;
-            this.HomeNext2Stats.Text = "0";
-            this.HomeNext2Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // homeNext2
-            // 
-            this.homeNext2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeNext2.ForeColor = System.Drawing.Color.White;
-            this.homeNext2.Location = new System.Drawing.Point(32, 7);
-            this.homeNext2.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.homeNext2.Name = "homeNext2";
-            this.homeNext2.Size = new System.Drawing.Size(149, 20);
-            this.homeNext2.TabIndex = 3;
-            this.homeNext2.Text = "0";
-            // 
-            // homeNextNumber2
-            // 
-            this.homeNextNumber2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeNextNumber2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.homeNextNumber2.Location = new System.Drawing.Point(3, 5);
-            this.homeNextNumber2.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.homeNextNumber2.Name = "homeNextNumber2";
-            this.homeNextNumber2.Size = new System.Drawing.Size(30, 20);
-            this.homeNextNumber2.TabIndex = 1;
-            this.homeNextNumber2.Text = "1.";
-            this.homeNextNumber2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel25
-            // 
-            this.panel25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panel25.Controls.Add(this.HomeNext1Stats);
-            this.panel25.Controls.Add(this.label33);
-            this.panel25.Controls.Add(this.label34);
-            this.panel25.Controls.Add(this.homeNext1);
-            this.panel25.Controls.Add(this.homeNextNumber1);
-            this.panel25.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel25.Location = new System.Drawing.Point(0, 0);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(260, 30);
-            this.panel25.TabIndex = 48;
-            // 
-            // HomeNext1Stats
-            // 
-            this.HomeNext1Stats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HomeNext1Stats.ForeColor = System.Drawing.Color.White;
-            this.HomeNext1Stats.Location = new System.Drawing.Point(170, 5);
-            this.HomeNext1Stats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.HomeNext1Stats.Name = "HomeNext1Stats";
-            this.HomeNext1Stats.Size = new System.Drawing.Size(86, 20);
-            this.HomeNext1Stats.TabIndex = 7;
-            this.HomeNext1Stats.Text = "0";
-            this.HomeNext1Stats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label33
-            // 
-            this.label33.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.ForeColor = System.Drawing.Color.White;
-            this.label33.Location = new System.Drawing.Point(179, 5);
-            this.label33.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(71, 20);
-            this.label33.TabIndex = 8;
-            this.label33.Text = "0";
-            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label34
-            // 
-            this.label34.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.Color.White;
-            this.label34.Location = new System.Drawing.Point(179, 5);
-            this.label34.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(71, 20);
-            this.label34.TabIndex = 9;
-            this.label34.Text = "0";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // homeNext1
-            // 
-            this.homeNext1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeNext1.ForeColor = System.Drawing.Color.White;
-            this.homeNext1.Location = new System.Drawing.Point(32, 7);
-            this.homeNext1.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.homeNext1.Name = "homeNext1";
-            this.homeNext1.Size = new System.Drawing.Size(149, 20);
-            this.homeNext1.TabIndex = 3;
-            this.homeNext1.Text = "0";
-            // 
-            // homeNextNumber1
-            // 
-            this.homeNextNumber1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeNextNumber1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.homeNextNumber1.Location = new System.Drawing.Point(3, 5);
-            this.homeNextNumber1.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.homeNextNumber1.Name = "homeNextNumber1";
-            this.homeNextNumber1.Size = new System.Drawing.Size(30, 20);
-            this.homeNextNumber1.TabIndex = 1;
-            this.homeNextNumber1.Text = "1.";
-            this.homeNextNumber1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // homeTeamNextBatters
             // 
@@ -1752,7 +1371,7 @@ namespace VKR_Test
             this.homeTeamNextBatters.Dock = System.Windows.Forms.DockStyle.Top;
             this.homeTeamNextBatters.Location = new System.Drawing.Point(0, 0);
             this.homeTeamNextBatters.Name = "homeTeamNextBatters";
-            this.homeTeamNextBatters.Size = new System.Drawing.Size(260, 30);
+            this.homeTeamNextBatters.Size = new System.Drawing.Size(250, 30);
             this.homeTeamNextBatters.TabIndex = 0;
             // 
             // home_DueUP
@@ -1762,7 +1381,7 @@ namespace VKR_Test
             this.home_DueUP.ForeColor = System.Drawing.Color.White;
             this.home_DueUP.Location = new System.Drawing.Point(0, 0);
             this.home_DueUP.Name = "home_DueUP";
-            this.home_DueUP.Size = new System.Drawing.Size(260, 30);
+            this.home_DueUP.Size = new System.Drawing.Size(250, 30);
             this.home_DueUP.TabIndex = 0;
             this.home_DueUP.Text = "label32";
             this.home_DueUP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2572,6 +2191,55 @@ namespace VKR_Test
             this.panel1.Size = new System.Drawing.Size(770, 55);
             this.panel1.TabIndex = 67;
             // 
+            // currentBatter
+            // 
+            this.currentBatter.Location = new System.Drawing.Point(0, 36);
+            this.currentBatter.Name = "currentBatter";
+            this.currentBatter.Size = new System.Drawing.Size(250, 30);
+            this.currentBatter.TabIndex = 68;
+            // 
+            // awayNextBatter3
+            // 
+            this.awayNextBatter3.Location = new System.Drawing.Point(0, 62);
+            this.awayNextBatter3.Name = "awayNextBatter3";
+            this.awayNextBatter3.Size = new System.Drawing.Size(250, 30);
+            this.awayNextBatter3.TabIndex = 50;
+            // 
+            // awayNextBatter2
+            // 
+            this.awayNextBatter2.Location = new System.Drawing.Point(0, 31);
+            this.awayNextBatter2.Name = "awayNextBatter2";
+            this.awayNextBatter2.Size = new System.Drawing.Size(250, 30);
+            this.awayNextBatter2.TabIndex = 49;
+            // 
+            // awayNextBatter1
+            // 
+            this.awayNextBatter1.Location = new System.Drawing.Point(0, 0);
+            this.awayNextBatter1.Name = "awayNextBatter1";
+            this.awayNextBatter1.Size = new System.Drawing.Size(250, 30);
+            this.awayNextBatter1.TabIndex = 48;
+            // 
+            // homeNextBatter3
+            // 
+            this.homeNextBatter3.Location = new System.Drawing.Point(0, 62);
+            this.homeNextBatter3.Name = "homeNextBatter3";
+            this.homeNextBatter3.Size = new System.Drawing.Size(250, 30);
+            this.homeNextBatter3.TabIndex = 51;
+            // 
+            // homeNextBatter2
+            // 
+            this.homeNextBatter2.Location = new System.Drawing.Point(0, 31);
+            this.homeNextBatter2.Name = "homeNextBatter2";
+            this.homeNextBatter2.Size = new System.Drawing.Size(250, 30);
+            this.homeNextBatter2.TabIndex = 50;
+            // 
+            // homeNextBatter1
+            // 
+            this.homeNextBatter1.Location = new System.Drawing.Point(0, 0);
+            this.homeNextBatter1.Name = "homeNextBatter1";
+            this.homeNextBatter1.Size = new System.Drawing.Size(250, 30);
+            this.homeNextBatter1.TabIndex = 49;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2614,7 +2282,6 @@ namespace VKR_Test
             this.ClientSizeChanged += new System.EventHandler(this.MainForm_ClientSizeChanged);
             panel27.ResumeLayout(false);
             this.panelCurrentSituationPitcher.ResumeLayout(false);
-            this.panelCurrentSituationBatter.ResumeLayout(false);
             this.panelSmallScoreBoard.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -2626,15 +2293,9 @@ namespace VKR_Test
             this.panelScoreBoard.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
             this.panelNextAwayBatters.ResumeLayout(false);
-            this.panel22.ResumeLayout(false);
-            this.panel21.ResumeLayout(false);
-            this.panel20.ResumeLayout(false);
             this.AwayTeamNextBatters.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panelNextHomeBatters.ResumeLayout(false);
-            this.panel23.ResumeLayout(false);
-            this.panel24.ResumeLayout(false);
-            this.panel25.ResumeLayout(false);
             this.homeTeamNextBatters.ResumeLayout(false);
             this.panelCurrentPitcher.ResumeLayout(false);
             this.panelCurrentPitcher.PerformLayout();
@@ -2725,9 +2386,6 @@ namespace VKR_Test
         private Label lb3rdInning;
         private Label lb2ndInning;
         private Label lb1stInning;
-        private Panel panelCurrentSituationBatter;
-        private Label lbBatterSecondName;
-        private Label lbBatterNumber;
         private Panel panelScoreBoard;
         private Panel panel18;
         private Panel AwayTeamNextBatters;
@@ -2736,34 +2394,7 @@ namespace VKR_Test
         private Label away_DueUP;
         private Label home_DueUP;
         private Panel panelNextAwayBatters;
-        private Panel panel22;
-        private Label AwayNext3;
-        private Label AwayNextNumber3;
-        private Panel panel21;
-        private Label AwayNext2;
-        private Label AwayNextNumber2;
-        private Panel panel20;
-        private Label AwayNext1;
-        private Label AwayNextNumber1;
         private Panel panelNextHomeBatters;
-        private Panel panel23;
-        private Label homeNext3;
-        private Label homeNextNumber3;
-        private Panel panel24;
-        private Label homeNext2;
-        private Label homeNextNumber2;
-        private Panel panel25;
-        private Label homeNext1;
-        private Label homeNextNumber1;
-        private Label BatterStats;
-        private Label AwayNext3Stats;
-        private Label AwayNext2Stats;
-        private Label AwayNext1Stats;
-        private Label HomeNext3Stats;
-        private Label HomeNext2Stats;
-        private Label HomeNext1Stats;
-        private Label label33;
-        private Label label34;
         private Panel panelCurrentSituationPitcher;
         private Label lbPitchCountForThisPitcher;
         private Label lbPitcherSecondName;
@@ -2836,6 +2467,13 @@ namespace VKR_Test
         private Label label28;
         private Label awayLOB;
         private Label homeLOB;
+        private VKRControls.BatterInfo currentBatter;
+        private VKRControls.BatterInfo awayNextBatter3;
+        private VKRControls.BatterInfo awayNextBatter2;
+        private VKRControls.BatterInfo awayNextBatter1;
+        private VKRControls.BatterInfo homeNextBatter3;
+        private VKRControls.BatterInfo homeNextBatter2;
+        private VKRControls.BatterInfo homeNextBatter1;
     }
 }
 

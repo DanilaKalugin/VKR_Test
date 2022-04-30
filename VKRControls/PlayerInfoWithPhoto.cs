@@ -4,11 +4,10 @@ using System.IO;
 using System.Windows.Forms;
 using Entities;
 
-namespace VKR_Test
+namespace VKRControls
 {
     public partial class PlayerInfoWithPhoto : UserControl
     {
-        public Batter Player;
         public event EventHandler<PlayerChangedEventArgs> PlayerChanging;
 
         public PlayerInfoWithPhoto()
@@ -32,8 +31,6 @@ namespace VKR_Test
 
         public void SetPlayer(Batter player)
         {
-            Player = player;
-
             var args = new PlayerChangedEventArgs(playerInfo: player);
 
             PlayerChanging?.Invoke(this, args);

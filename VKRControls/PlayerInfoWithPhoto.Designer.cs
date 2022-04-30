@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace VKR_Test
+namespace VKRControls
 {
     partial class PlayerInfoWithPhoto
     {

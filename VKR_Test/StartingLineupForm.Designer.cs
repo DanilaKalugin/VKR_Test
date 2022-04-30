@@ -1,6 +1,7 @@
 ﻿
 using System.ComponentModel;
 using System.Windows.Forms;
+using VKRControls;
 
 namespace VKR_Test
 {
@@ -41,15 +42,15 @@ namespace VKR_Test
             this.panel2 = new System.Windows.Forms.Panel();
             this.teamManager = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.FirstPlayerInLineup = new VKR_Test.PlayerInfoWithPhoto();
-            this.SecondPlayerInLineup = new VKR_Test.PlayerInfoWithPhoto();
-            this.ThirdPlayerInLineup = new VKR_Test.PlayerInfoWithPhoto();
-            this.ForthPlayerInLineup = new VKR_Test.PlayerInfoWithPhoto();
-            this.FifthPlayerInLineup = new VKR_Test.PlayerInfoWithPhoto();
-            this.SixthPlayerInLineup = new VKR_Test.PlayerInfoWithPhoto();
-            this.SeventhPlayerInLineup = new VKR_Test.PlayerInfoWithPhoto();
-            this.EighthPlayerInLineup = new VKR_Test.PlayerInfoWithPhoto();
-            this.NinethPlayerInLineup = new VKR_Test.PlayerInfoWithPhoto();
+            this.FirstPlayerInLineup = new PlayerInfoWithPhoto();
+            this.SecondPlayerInLineup = new PlayerInfoWithPhoto();
+            this.ThirdPlayerInLineup = new PlayerInfoWithPhoto();
+            this.ForthPlayerInLineup = new PlayerInfoWithPhoto();
+            this.FifthPlayerInLineup = new PlayerInfoWithPhoto();
+            this.SixthPlayerInLineup = new PlayerInfoWithPhoto();
+            this.SeventhPlayerInLineup = new PlayerInfoWithPhoto();
+            this.EighthPlayerInLineup = new PlayerInfoWithPhoto();
+            this.NinethPlayerInLineup = new PlayerInfoWithPhoto();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
