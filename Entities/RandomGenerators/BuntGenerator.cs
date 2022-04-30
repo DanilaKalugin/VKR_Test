@@ -82,8 +82,8 @@ namespace Entities
 
         static BuntGenerator()
         {
-            _buntResultRandomGenerator = new Random(17 + initializeRandomGenerator.Next(1, 1000));
-            _otherConditionRandomGenerator = new Random(19 + initializeRandomGenerator.Next(1, 1000));
+            _buntResultRandomGenerator = new Random(17 + InitializeRandomGenerator.Next(1, 1000));
+            _otherConditionRandomGenerator = new Random(19 + InitializeRandomGenerator.Next(1, 1000));
         }
     }
 }

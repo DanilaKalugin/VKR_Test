@@ -263,12 +263,12 @@ namespace Entities
 
         static NormalPitchGenerator()
         {
-            _gettingIntoStrikeZoneRandomGenerator = new Random(2 + initializeRandomGenerator.Next(1, 1000));
-            _swingRandomGenerator = new Random(3 + initializeRandomGenerator.Next(1, 1000));
-            _hittingRandomGenerator = new Random(5 + initializeRandomGenerator.Next(1, 1000));
-            _hitTypeRandomGenerator = new Random(7 + initializeRandomGenerator.Next(1, 1000));
-            _outTypeRandomGenerator = new Random(11 + initializeRandomGenerator.Next(1, 1000));
-            _otherConditionRandomGenerator = new Random(13 + initializeRandomGenerator.Next(1, 1000));
+            _gettingIntoStrikeZoneRandomGenerator = new Random(2 + InitializeRandomGenerator.Next(1, 1000));
+            _swingRandomGenerator = new Random(3 + InitializeRandomGenerator.Next(1, 1000));
+            _hittingRandomGenerator = new Random(5 + InitializeRandomGenerator.Next(1, 1000));
+            _hitTypeRandomGenerator = new Random(7 + InitializeRandomGenerator.Next(1, 1000));
+            _outTypeRandomGenerator = new Random(11 + InitializeRandomGenerator.Next(1, 1000));
+            _otherConditionRandomGenerator = new Random(13 + InitializeRandomGenerator.Next(1, 1000));
         }
     }
 }
