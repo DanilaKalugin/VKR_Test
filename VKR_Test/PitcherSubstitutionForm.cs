@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using Entities;
+using VKR.PL.Utils;
 using ProgressBar = ExtendedDotNET.Controls.Progress.ProgressBar;
 
 namespace VKR_Test
@@ -109,12 +110,10 @@ namespace VKR_Test
         {
             var RowNumber = tableLayoutPanel1.GetRow((Control)sender);
             for (var i = 1; i < tableLayoutPanel1.RowCount; i++)
+            for (var j = 1; j < tableLayoutPanel1.ColumnCount - 1; j++)
             {
-                for (var j = 1; j < tableLayoutPanel1.ColumnCount - 1; j++)
-                {
-                    tableLayoutPanel1.GetControlFromPosition(j, i).BackColor = i == RowNumber && RowNumber <= _pitchers.Count ? _currentTeam.TeamColorForThisMatch : Color.White;
-                    tableLayoutPanel1.GetControlFromPosition(j, i).ForeColor = i == RowNumber && RowNumber <= _pitchers.Count ? CorrectForeColorForAllBackColors.GetForeColorForThisSituation(_currentTeam.TeamColorForThisMatch, false) : Color.Black;
-                }
+                tableLayoutPanel1.GetControlFromPosition(j, i).BackColor = i == RowNumber && RowNumber <= _pitchers.Count ? _currentTeam.TeamColorForThisMatch : Color.White;
+                tableLayoutPanel1.GetControlFromPosition(j, i).ForeColor = i == RowNumber && RowNumber <= _pitchers.Count ? CorrectForeColorForAllBackColors.GetForeColorForThisSituation(_currentTeam.TeamColorForThisMatch, false) : Color.Black;
             }
         }
     }

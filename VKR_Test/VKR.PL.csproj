@@ -61,7 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Utils\CorrectForeColorForAllBackColors.cs" />
     <Compile Include="DBDeploymentResultForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,7 +139,6 @@
     <Compile Include="PitcherSubstitutionForm.Designer.cs">
       <DependentUpon>PitcherSubstitutionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\RandomGenerators.cs" />
     <Compile Include="RostersMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,6 +311,10 @@
     <ProjectReference Include="..\Entities\VKR.Entities.csproj">
       <Project>{19ffd1aa-e9a7-49d8-9e49-1e6adfda5875}</Project>
       <Name>VKR.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{13a342c2-03c0-4721-baf5-e541e8837a81}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\VKR.BLL\VKR.BLL.csproj">
       <Project>{eb513c16-3c1f-49cc-9476-bd1402537db6}</Project>

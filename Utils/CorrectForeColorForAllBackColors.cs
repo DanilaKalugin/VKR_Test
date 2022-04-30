@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Linq;
 
-namespace VKR_Test
+namespace VKR.PL.Utils
 {
-    internal static class CorrectForeColorForAllBackColors
+    public static class CorrectForeColorForAllBackColors
     {
         public static Color GetForeColorForThisSituation(Color color, bool standardColorIsBlack)
         {

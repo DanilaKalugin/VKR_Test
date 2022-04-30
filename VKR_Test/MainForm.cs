@@ -7,7 +7,9 @@ using System.Linq;
 using System.Windows.Forms;
 using Entities;
 using VKR.BLL;
+using VKR.PL.Utils;
 using VKR_Test.Properties;
+using VKRControls;
 
 namespace VKR_Test
 {
@@ -269,7 +271,8 @@ namespace VKR_Test
             var SBs = atBatsForThisBatter.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.StolenBase);
             lbTodayStats.Text = "►TODAY: ";
 
-            var hitsForAtBats = GetHitsForAtBatsStats(batter);
+            var hitsForAtBats = HitsForAtBatsHelper.GetHitsForAtBats(batter, _currentMatch);
+            
             if (!string.IsNullOrEmpty(hitsForAtBats))
             {
                 lbTodayStats.Text += hitsForAtBats;

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Entities;
 using VKR.BLL;
+using VKR.PL.Utils;
 
 namespace VKR_Test
 {
@@ -223,7 +224,8 @@ namespace VKR_Test
             _awayTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].AwayTeamAbbreviation);
             _homeTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].HomeTeamAbbreviation);
             dataGridView1.Rows.Clear();
-            foreach (var match in _matches) dataGridView1.Rows.Add(Image.FromFile($"TeamLogosForSubstitution/{match.AwayTeamAbbreviation}.png"), Image.FromFile($"TeamLogosForSubstitution/{match.HomeTeamAbbreviation}.png"));
+            foreach (var match in _matches) 
+                dataGridView1.Rows.Add(Image.FromFile($"TeamLogosForSubstitution/{match.AwayTeamAbbreviation}.png"), Image.FromFile($"TeamLogosForSubstitution/{match.HomeTeamAbbreviation}.png"));
         }
     }
 }

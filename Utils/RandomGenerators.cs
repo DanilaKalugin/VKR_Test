@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Entities;
 
-namespace VKR_Test
+namespace VKR.PL.Utils
 {
-    internal class RandomGenerators
+    public class RandomGenerators
     {
         private static readonly Random _buntAttemptRandomGenerator;
         private static readonly Random _pitcherSubstitutionRandomGenerator;

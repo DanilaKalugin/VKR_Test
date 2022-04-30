@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Entities;
+using VKR.PL.Utils;
 
 namespace VKR_Test
 {
@@ -44,7 +45,8 @@ namespace VKR_Test
 
         private void BackColorChanging(object sender, EventArgs e)
         {
-            if (sender is Label l) l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(BackColor, true);
+            if (sender is Label l) l.ForeColor = 
+                CorrectForeColorForAllBackColors.GetForeColorForThisSituation(BackColor, true);
         }
 
         private void HomeRunCelebrationForm_DoubleClick(object sender, EventArgs e) => Close();
