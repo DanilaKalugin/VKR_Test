@@ -428,22 +428,19 @@ namespace VKR_Test
 
         private void IsFinishOfMatch(Match currentMatch)
         {
-            if ((currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam && currentMatch.GameSituations.Last().Outs == 3 && currentMatch.GameSituations.Last().AwayTeamRuns < currentMatch.GameSituations.Last().HomeTeamRuns && currentMatch.GameSituations.Last().InningNumber == currentMatch.MatchLength) ||
-                (currentMatch.GameSituations.Last().Offense == currentMatch.HomeTeam && currentMatch.GameSituations.Last().Outs == 3 && currentMatch.GameSituations.Last().AwayTeamRuns > currentMatch.GameSituations.Last().HomeTeamRuns && currentMatch.GameSituations.Last().InningNumber >= currentMatch.MatchLength) ||
-                (currentMatch.GameSituations.Last().Offense == currentMatch.HomeTeam && currentMatch.GameSituations.Last().AwayTeamRuns < currentMatch.GameSituations.Last().HomeTeamRuns && currentMatch.GameSituations.Last().InningNumber >= currentMatch.MatchLength))
+            if (!currentMatch.MatchEndingCondition) return;
+
+            using (var form = new MatchEndingForm(currentMatch))
             {
-                using (var form = new MatchEndingForm(currentMatch))
-                {
-                    _matchBl.FinishMatch(currentMatch);
-                    timer1.Dispose();
-                    Visible = false;
-                    form.ShowDialog();
+                _matchBl.FinishMatch(currentMatch);
+                timer1.Dispose();
+                Visible = false;
+                form.ShowDialog();
 
-                    if (form.DialogResult != DialogResult.OK) return;
+                if (form.DialogResult != DialogResult.OK) return;
 
-                    DialogResult = DialogResult.OK;
-                    Hide();
-                }
+                DialogResult = DialogResult.OK;
+                Hide();
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Entities
 {
@@ -22,6 +23,9 @@ namespace Entities
         public bool IsQuickMatch;
         public int MatchLength;
 
+        public bool MatchEndingCondition => (GameSituations.Last().Offense == AwayTeam && GameSituations.Last().Outs == 3 && GameSituations.Last().AwayTeamRuns < GameSituations.Last().HomeTeamRuns && GameSituations.Last().InningNumber == MatchLength) ||
+                                            (GameSituations.Last().Offense == HomeTeam && GameSituations.Last().Outs == 3 && GameSituations.Last().AwayTeamRuns > GameSituations.Last().HomeTeamRuns && GameSituations.Last().InningNumber >= MatchLength) ||
+                                            (GameSituations.Last().Offense == HomeTeam && GameSituations.Last().AwayTeamRuns < GameSituations.Last().HomeTeamRuns && GameSituations.Last().InningNumber >= MatchLength);
         public string MatchStatus
         {
             get
