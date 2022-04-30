@@ -177,10 +177,8 @@ namespace VKR_Test
                         LosingPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[LosingPitcherIndex].FullName} ({awayTeam.PitchersPlayedInMatch[LosingPitcherIndex].PitchingStats.Wins} - {awayTeam.PitchersPlayedInMatch[LosingPitcherIndex].PitchingStats.Losses + 1})";
                         LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
                         for (var i = 0; i < awayTeam.PitchersPlayedInMatch.Count; i++)
-                        {
                             if (i != LosingPitcherIndex)
                                 results[i].MatchResult = PitcherResults.MatchResultForPitcher.NoDecision;
-                        }
                     }
                 }
             }

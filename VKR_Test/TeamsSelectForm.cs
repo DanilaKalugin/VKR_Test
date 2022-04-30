@@ -45,10 +45,8 @@ namespace VKR_Test
                 _awayTeamNumber = 0;
                 _homeTeamNumber = 1;
             }
-            else
-            {
-                FillScheduleForToday();
-            }
+            else FillScheduleForToday();
+
             btnSwap.Visible = match.IsQuickMatch;
             dataGridView1.Visible = !match.IsQuickMatch;
         }
@@ -211,10 +209,7 @@ namespace VKR_Test
             if (!_newMatch.IsQuickMatch) FillScheduleForToday();
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            StartNewMatch();
-        }
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e) => StartNewMatch();
 
         private void FillScheduleForToday()
         {

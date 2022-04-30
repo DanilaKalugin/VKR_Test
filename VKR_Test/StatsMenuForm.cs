@@ -135,10 +135,8 @@ namespace VKR_Test
                         var allPitchers = playersBL.GetPitchersStats("All Players").ToList();
                         currentPlayer = allPitchers.First(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString());
                     }
-                    else
-                    {
-                        currentPlayer = pitchersWithThisValue.First();
-                    }
+                    else currentPlayer = pitchersWithThisValue.First();
+
                     var ManTeam = teams.First(team => team.TeamAbbreviation == currentPlayer.Team);
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = ManTeam.TeamColor[0];
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = ManTeam.TeamColor[0];

@@ -149,9 +149,6 @@ namespace VKR_Test
             GetListOfPeopleWithBirthdayToday();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void btnClose_Click(object sender, EventArgs e) => Close();
     }
 }

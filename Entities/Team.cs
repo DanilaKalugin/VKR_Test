@@ -52,16 +52,7 @@ namespace Entities
         public int RunsAllowed;
         public int RunDifferential => RunsScored - RunsAllowed;
 
-        public double Pct
-        {
-            get
-            {
-                if (Wins + Losses == 0)
-                    return 0;
-
-                return Math.Round(Wins / (double)(Wins + Losses), 3);
-            }
-        }
+        public double Pct => Wins + Losses == 0 ? 0 : Math.Round(Wins / (double)(Wins + Losses), 3);
 
         public int OverallRating => (NormalizedDefensiveRating + NormalizedOffensiveRating) / 2;
 
@@ -92,8 +83,7 @@ namespace Entities
             var baseStealingComponent = (double)(StealingBaseProbability * SuccessfulStealingBaseAttemptProbability) / 8000;
             return Math.Round(singleComponent + doubleComponent + homeRunComponent + tripleComponent + baseStealingComponent, 2);
         }
-
-        //Batting stats
+        
         public BattingStats BattingStats;
         public PitchingStats PitchingStats;
 

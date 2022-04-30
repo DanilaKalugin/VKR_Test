@@ -691,9 +691,7 @@ namespace VKR_Test
                 }
             else
                 using (var form = new ErrorForm())
-                {
                     form.ShowDialog();
-                }
 
             if (_isAutoSimulation) timer1.Start();
         }
@@ -749,9 +747,7 @@ namespace VKR_Test
 
             if (!_newGameSituation.RunnerOnFirst.IsBaseStealingAttempt && !_newGameSituation.RunnerOnSecond.IsBaseStealingAttempt &&
                 (_newGameSituation.RunnerOnFirst.IsBaseNotEmpty || _newGameSituation.RunnerOnSecond.IsBaseNotEmpty || _newGameSituation.RunnerOnThird.IsBaseNotEmpty))
-            {
                 isBunt = BuntAttemptDefinition();
-            }
             else isBunt = false;
 
             if (isBunt) GenerateNewBunt();
