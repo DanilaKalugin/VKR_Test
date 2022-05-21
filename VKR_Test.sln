@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30611.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKR.PL", "VKR_Test\VKR.PL.csproj", "{02DD103D-6AA8-4C32-B181-52D6571C861F}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PL", "PL", "{70F07A8A-AA34-41B4-927C-9AE43DE18135}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{13A342C2-03C0-4721-BAF5-E541E8837A81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKR.Entities.NET5", "VKR.Entities.NET5\VKR.Entities.NET5.csproj", "{C98291DD-94AC-48DF-9D72-86BBBDDCF4C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{13A342C2-03C0-4721-BAF5-E541E8837A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13A342C2-03C0-4721-BAF5-E541E8837A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13A342C2-03C0-4721-BAF5-E541E8837A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C98291DD-94AC-48DF-9D72-86BBBDDCF4C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98291DD-94AC-48DF-9D72-86BBBDDCF4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98291DD-94AC-48DF-9D72-86BBBDDCF4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98291DD-94AC-48DF-9D72-86BBBDDCF4C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{EB513C16-3C1F-49CC-9476-BD1402537DB6} = {A215CDA6-93FD-47F9-A903-E5FF04DB3967}
 		{5E902CFA-16C6-4199-ADEC-246697777987} = {70F07A8A-AA34-41B4-927C-9AE43DE18135}
 		{13A342C2-03C0-4721-BAF5-E541E8837A81} = {70F07A8A-AA34-41B4-927C-9AE43DE18135}
+		{C98291DD-94AC-48DF-9D72-86BBBDDCF4C0} = {F6578B10-3651-4DEE-898D-C3BC432E6608}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A946159-DF14-41CF-8649-72B676AFFD44}
