@@ -34,7 +34,7 @@ namespace VKR_Test
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -45,22 +45,25 @@ namespace VKR_Test
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StandingsForm));
             this.dgvStandings = new System.Windows.Forms.DataGridView();
+            this.cbFilter = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtpStandingsDate = new System.Windows.Forms.DateTimePicker();
+            this.btnChangeDate = new System.Windows.Forms.Button();
             this.TeamColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamWins = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamLosses = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamGB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamPCT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TeamStreak = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbFilter = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dtpStandingsDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStandings)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,19 +100,20 @@ namespace VKR_Test
             this.TeamLosses,
             this.TeamGB,
             this.TeamPCT,
+            this.TeamStreak,
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4,
             this.Column5});
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStandings.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("MicroFLF", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStandings.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvStandings.EnableHeadersVisualStyles = false;
             this.dgvStandings.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.dgvStandings.Location = new System.Drawing.Point(12, 45);
@@ -120,6 +124,67 @@ namespace VKR_Test
             this.dgvStandings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStandings.Size = new System.Drawing.Size(776, 1004);
             this.dgvStandings.TabIndex = 0;
+            // 
+            // cbFilter
+            // 
+            this.cbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilter.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFilter.Items.AddRange(new object[] {
+            "MLB",
+            "League",
+            "Division",
+            "Wild card"});
+            this.cbFilter.Location = new System.Drawing.Point(300, 9);
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(121, 27);
+            this.cbFilter.TabIndex = 1;
+            this.cbFilter.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label2.Location = new System.Drawing.Point(12, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(282, 23);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "CURRENT STANDINGS";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dtpStandingsDate
+            // 
+            this.dtpStandingsDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpStandingsDate.CalendarForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dtpStandingsDate.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dtpStandingsDate.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dtpStandingsDate.CalendarTitleForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dtpStandingsDate.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpStandingsDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStandingsDate.Location = new System.Drawing.Point(427, 9);
+            this.dtpStandingsDate.MaxDate = new System.DateTime(2021, 10, 3, 0, 0, 0, 0);
+            this.dtpStandingsDate.MinDate = new System.DateTime(2021, 4, 1, 0, 0, 0, 0);
+            this.dtpStandingsDate.Name = "dtpStandingsDate";
+            this.dtpStandingsDate.Size = new System.Drawing.Size(208, 27);
+            this.dtpStandingsDate.TabIndex = 5;
+            this.dtpStandingsDate.Value = new System.DateTime(2021, 4, 12, 0, 0, 0, 0);
+            // 
+            // btnChangeDate
+            // 
+            this.btnChangeDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChangeDate.FlatAppearance.BorderSize = 0;
+            this.btnChangeDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangeDate.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeDate.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnChangeDate.Location = new System.Drawing.Point(641, 13);
+            this.btnChangeDate.Name = "btnChangeDate";
+            this.btnChangeDate.Size = new System.Drawing.Size(147, 23);
+            this.btnChangeDate.TabIndex = 6;
+            this.btnChangeDate.Text = "CHANGE";
+            this.btnChangeDate.UseVisualStyleBackColor = true;
+            this.btnChangeDate.Click += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // TeamColor
             // 
@@ -189,14 +254,28 @@ namespace VKR_Test
             this.TeamPCT.HeaderText = "PCT";
             this.TeamPCT.Name = "TeamPCT";
             this.TeamPCT.ReadOnly = true;
+            this.TeamPCT.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.TeamPCT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.TeamPCT.Width = 57;
+            // 
+            // TeamStreak
+            // 
+            this.TeamStreak.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.TeamStreak.DefaultCellStyle = dataGridViewCellStyle8;
+            this.TeamStreak.FillWeight = 30F;
+            this.TeamStreak.HeaderText = "STREAK";
+            this.TeamStreak.Name = "TeamStreak";
+            this.TeamStreak.ReadOnly = true;
+            this.TeamStreak.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TeamStreak.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TeamStreak.Width = 75;
             // 
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle9;
             this.Column1.FillWeight = 30F;
             this.Column1.HeaderText = "RS";
             this.Column1.Name = "Column1";
@@ -207,8 +286,8 @@ namespace VKR_Test
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column2.FillWeight = 30F;
             this.Column2.HeaderText = "RA";
             this.Column2.Name = "Column2";
@@ -219,8 +298,8 @@ namespace VKR_Test
             // Column3
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle11;
             this.Column3.FillWeight = 30F;
             this.Column3.HeaderText = "DIFF";
             this.Column3.Name = "Column3";
@@ -231,8 +310,8 @@ namespace VKR_Test
             // Column4
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle12;
             this.Column4.FillWeight = 65F;
             this.Column4.HeaderText = "HOME";
             this.Column4.Name = "Column4";
@@ -242,60 +321,13 @@ namespace VKR_Test
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle13;
             this.Column5.FillWeight = 65F;
             this.Column5.HeaderText = "AWAY";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.Width = 68;
-            // 
-            // cbFilter
-            // 
-            this.cbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFilter.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFilter.Items.AddRange(new object[] {
-            "MLB",
-            "League",
-            "Division",
-            "Wild card"});
-            this.cbFilter.Location = new System.Drawing.Point(453, 9);
-            this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(121, 27);
-            this.cbFilter.TabIndex = 1;
-            this.cbFilter.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(12, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(435, 23);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "CURRENT STANDINGS";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dtpStandingsDate
-            // 
-            this.dtpStandingsDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpStandingsDate.CalendarForeColor = System.Drawing.Color.WhiteSmoke;
-            this.dtpStandingsDate.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.dtpStandingsDate.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.dtpStandingsDate.CalendarTitleForeColor = System.Drawing.Color.WhiteSmoke;
-            this.dtpStandingsDate.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpStandingsDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStandingsDate.Location = new System.Drawing.Point(580, 9);
-            this.dtpStandingsDate.MaxDate = new System.DateTime(2021, 10, 3, 0, 0, 0, 0);
-            this.dtpStandingsDate.MinDate = new System.DateTime(2021, 4, 1, 0, 0, 0, 0);
-            this.dtpStandingsDate.Name = "dtpStandingsDate";
-            this.dtpStandingsDate.Size = new System.Drawing.Size(208, 27);
-            this.dtpStandingsDate.TabIndex = 5;
-            this.dtpStandingsDate.Value = new System.DateTime(2021, 4, 12, 0, 0, 0, 0);
-            this.dtpStandingsDate.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // StandingsForm
             // 
@@ -303,6 +335,7 @@ namespace VKR_Test
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(800, 1061);
+            this.Controls.Add(this.btnChangeDate);
             this.Controls.Add(this.dtpStandingsDate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbFilter);
@@ -324,12 +357,14 @@ namespace VKR_Test
         private ComboBox cbFilter;
         private Label label2;
         private DateTimePicker dtpStandingsDate;
+        private Button btnChangeDate;
         private DataGridViewTextBoxColumn TeamColor;
         private DataGridViewTextBoxColumn TeamName;
         private DataGridViewTextBoxColumn TeamWins;
         private DataGridViewTextBoxColumn TeamLosses;
         private DataGridViewTextBoxColumn TeamGB;
         private DataGridViewTextBoxColumn TeamPCT;
+        private DataGridViewTextBoxColumn TeamStreak;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;

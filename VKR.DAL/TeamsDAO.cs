@@ -29,7 +29,8 @@ namespace VKR.DAL
                         var HL = (int)reader["HL"];
                         var AW = (int)reader["AW"];
                         var AL = (int)reader["AL"];
-                        yield return new Team(Abbreviation, Name, League, Division, HW, HL, AW, AL);
+                        var streak = (int)reader["Streak"];
+                        yield return new Team(Abbreviation, Name, League, Division, HW, HL, AW, AL, streak);
                     }
             }
         }

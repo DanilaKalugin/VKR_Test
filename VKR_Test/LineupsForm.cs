@@ -193,7 +193,6 @@ namespace VKR_Test
             else
             {
                 var pitcher = _players.GetPitcherByCode(player.Id);
-                pitcher.RemainingStamina = _players.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher);
 
                 label1.Text = pitcher.PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"));
                 label2.Text = pitcher.PitchingStats.Strikeouts.ToString();

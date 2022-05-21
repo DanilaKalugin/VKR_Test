@@ -280,8 +280,8 @@ namespace VKR_Test
             _currentMatch.AwayTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.AwayTeam.TeamAbbreviation, _currentMatch.MatchID);
             _currentMatch.HomeTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.HomeTeam.TeamAbbreviation, _currentMatch.MatchID);
 
-            _playerBl.UpdateStatsForThisPitcher(_currentMatch.AwayTeam.CurrentPitcher);
-            _playerBl.UpdateStatsForThisPitcher(_currentMatch.HomeTeam.CurrentPitcher);
+            _playerBl.UpdateStatsForThisPitcher(_currentMatch.AwayTeam.CurrentPitcher, _currentMatch);
+            _playerBl.UpdateStatsForThisPitcher(_currentMatch.HomeTeam.CurrentPitcher, _currentMatch);
 
             UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayLOB, awayRuns, awayHits, _currentMatch, _currentMatch.AwayTeam);
             UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeLOB, homeRuns, homeHits, _currentMatch, _currentMatch.HomeTeam);
@@ -552,7 +552,7 @@ namespace VKR_Test
             PitcherWalks.Text = defense.CurrentPitcher.PitchingStats.WalksAllowed.ToString();
             PitcherWHIP.Text = defense.CurrentPitcher.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
 
-            defense.CurrentPitcher.RemainingStamina = _playerBl.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(defense.CurrentPitcher);
+            defense.CurrentPitcher.RemainingStamina = _playerBl.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(defense.CurrentPitcher, _currentMatch);
 
             pb_stamina.MainColor = defense.CurrentPitcher.RemainingStamina < 45 - 1E-5 ? Color.Maroon : defense.TeamColorForThisMatch;
 
@@ -686,7 +686,7 @@ namespace VKR_Test
                             Offense.PitchersPlayedInMatch.Add(newPitcher);
                         }
 
-                        _playerBl.UpdateStatsForThisPitcher(Offense.CurrentPitcher);
+                        _playerBl.UpdateStatsForThisPitcher(Offense.CurrentPitcher, _currentMatch);
                         DisplayingCurrentSituation(_newGameSituation);
                     }
                 }
@@ -804,7 +804,7 @@ namespace VKR_Test
                 _playerBl.SubstitutePitcher(_currentMatch, defense, newPitcher);
 
                 defense.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(defense.TeamAbbreviation, _currentMatch.MatchID);
-                _playerBl.UpdateStatsForThisPitcher(defense.CurrentPitcher);
+                _playerBl.UpdateStatsForThisPitcher(defense.CurrentPitcher, _currentMatch);
 
                 defense.PitchersPlayedInMatch.Add(newPitcher);
                 DisplayingCurrentSituation(_newGameSituation);

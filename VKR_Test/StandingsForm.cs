@@ -37,7 +37,7 @@ namespace VKR_Test
             _teams = isWildCard ? _teamsBl.GetWCStandings(group, dtpStandingsDate.Value) : _teamsBl.GetStandings(group, dtpStandingsDate.Value);
 
             var teamsInGroup = _teams.Count;
-            dgvStandings.Rows.Add("", group, "W", "L", "GB", "PCT", "RS", "RA", "DIFF", "HOME", "AWAY");
+            dgvStandings.Rows.Add("", group, "W", "L", "GB", "PCT", "STREAK", "RS", "RA", "DIFF", "HOME", "AWAY");
             dgvStandings.Rows[dgvStandings.Rows.Count - 1].DefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
             dgvStandings.Rows[dgvStandings.Rows.Count - 1].DefaultCellStyle.Font = new Font(dgvStandings.DefaultCellStyle.Font, FontStyle.Bold);
 
@@ -50,7 +50,8 @@ namespace VKR_Test
                 
                 if (_teams[i].GamesBehind < 0) gamesBehind = $"+{gamesBehind}";
 
-                dgvStandings.Rows.Add("", _teams[i].TeamTitle, _teams[i].Wins, _teams[i].Losses, gamesBehind, _teams[i].Pct.ToString("#.000", new CultureInfo("en-US")), _teams[i].RunsScored, _teams[i].RunsAllowed, _teams[i].RunDifferential, _teams[i].HomeBalance, _teams[i].AwayBalance);
+                dgvStandings.Rows.Add("", _teams[i].TeamTitle, _teams[i].Wins, _teams[i].Losses, gamesBehind, _teams[i].Pct.ToString("#.000", new CultureInfo("en-US")),
+                                                _teams[i].StreakString, _teams[i].RunsScored, _teams[i].RunsAllowed, _teams[i].RunDifferential, _teams[i].HomeBalance, _teams[i].AwayBalance);
 
                 if ((_homeTeam != null && _homeTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value) ||
                     (_awayTeam != null && _awayTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value))

@@ -127,12 +127,16 @@ namespace VKR.BLL
 
         public List<Batter> GetCurrentLineupForThisMatch(string Team, int Match) => _playerDAO.GetCurrentLineupForThisMatch(Team, Match).ToList();
 
-        public void UpdateStatsForThisPitcher(Pitcher pitcher) => pitcher.PitchingStats = _playerDAO.GetPitchingStatsByCode(pitcher).FirstOrDefault();
+        public void UpdateStatsForThisPitcher(Pitcher pitcher, Match match)
+        {
+            pitcher.RemainingStamina = _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id, match.MatchID);
+            pitcher.PitchingStats = _playerDAO.GetPitchingStatsByCode(pitcher).FirstOrDefault();
+        }
 
         public Pitcher GetStartingPitcherForThisTeam(Team team, Match match)
         {
             var pitcher = _playerDAO.GetStartingPitcherForThisTeam(team, match).First();
-            pitcher.RemainingStamina = _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id);
+            pitcher.RemainingStamina = _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id, match.MatchID);
             return pitcher;
         }
 
@@ -144,7 +148,7 @@ namespace VKR.BLL
 
         public void SubstituteBatter(Match match, Team team, Batter oldBatter, Batter newBatter) => _teamsDAO.SubstituteBatter(match, team, oldBatter, newBatter);
 
-        public int ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Pitcher pitcher) => _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id);
+        public int ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Pitcher pitcher, Match match) => _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id, match.MatchID);
 
         public Pitcher GetPitcherByCode(int id)
         {
