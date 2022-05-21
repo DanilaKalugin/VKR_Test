@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VKR.DAL.NET5\VKR.DAL.NET5.csproj" />
+    <ProjectReference Include="..\VKR.Entities.NET5\VKR.Entities.NET5.csproj" />
+  </ItemGroup>
+
+</Project>
