@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Entities;
-using VKR.DAL;
+using Entities.NET5;
+using VKR.DAL.NET5;
 
-namespace VKR.BLL
+namespace VKR.BLL.NET5
 {
     public class TeamsBL
     {
-        private readonly TeamsDAO _teamsDAO = new TeamsDAO();
+        private readonly TeamsDAO _teamsDAO = new();
 
         public List<Team> GetAllTeams()
         {
             var teams = _teamsDAO.GetList().ToList();
-            var MaxOffensiveRating = teams.Select(team => team.OffensiveRating()).Max();
-            var MaxDefensiveRating = teams.Select(team => team.DefensiveRating()).Max();
+            var maxOffensiveRating = teams.Select(team => team.OffensiveRating()).Max();
+            var maxDefensiveRating = teams.Select(team => team.DefensiveRating()).Max();
 
             foreach (var team in teams)
             {
-                team.NormalizedOffensiveRating = (int)(team.OffensiveRating() / MaxOffensiveRating * 99);
-                team.NormalizedDefensiveRating = (int)(team.DefensiveRating() / MaxDefensiveRating * 99);
+                team.NormalizedOffensiveRating = (int)(team.OffensiveRating() / maxOffensiveRating * 99);
+                team.NormalizedDefensiveRating = (int)(team.DefensiveRating() / maxDefensiveRating * 99);
             }
 
             return teams;
@@ -38,15 +38,15 @@ namespace VKR.BLL
 
             if (Filter != "MLB")
             {
-                teams = Filter == "NL" || Filter == "AL"
+                teams = Filter is "NL" or "AL"
                     ? teams.Where(team => team.League == Filter).ToList()
                     : teams.Where(team => team.Division == Filter).ToList();
             }
 
-            var LeaderW = teams[0].Wins;
-            var LeaderL = teams[0].Losses;
+            var leaderW = teams[0].Wins;
+            var leaderL = teams[0].Losses;
 
-            foreach (var team in teams) team.GamesBehind = (double)(LeaderW - LeaderL - (team.Wins - team.Losses)) / 2;
+            foreach (var team in teams) team.GamesBehind = (double)(leaderW - leaderL - (team.Wins - team.Losses)) / 2;
             
             teams = teams.OrderBy(team => team.GamesBehind)
                 .ThenByDescending(team => team.Wins)
@@ -64,14 +64,14 @@ namespace VKR.BLL
         public List<Team> GetWCStandings(string Filter, DateTime date)
         {
             var teams = GetStandings(Filter, date).ToList();
-            var WestLeader = teams.First(team => team.Division == $"{Filter} West");
-            var CentralLeader = teams.First(team => team.Division == $"{Filter} Central");
-            var EastLeader = teams.First(team => team.Division == $"{Filter} East");
-            teams = teams.Where(team => team.TeamAbbreviation != WestLeader.TeamAbbreviation && team.TeamAbbreviation != EastLeader.TeamAbbreviation && team.TeamAbbreviation != CentralLeader.TeamAbbreviation).ToList();
-            var LeaderW = teams[1].Wins;
-            var LeaderL = teams[1].Losses;
+            var westLeader = teams.First(team => team.Division == $"{Filter} West");
+            var centralLeader = teams.First(team => team.Division == $"{Filter} Central");
+            var eastLeader = teams.First(team => team.Division == $"{Filter} East");
+            teams = teams.Where(team => team.TeamAbbreviation != westLeader.TeamAbbreviation && team.TeamAbbreviation != eastLeader.TeamAbbreviation && team.TeamAbbreviation != centralLeader.TeamAbbreviation).ToList();
+            var leaderW = teams[1].Wins;
+            var leaderL = teams[1].Losses;
 
-            foreach (var team in teams) team.GamesBehind = (double)(LeaderW - LeaderL - (team.Wins - team.Losses)) / 2;
+            foreach (var team in teams) team.GamesBehind = (double)(leaderW - leaderL - (team.Wins - team.Losses)) / 2;
             
             return teams;
         }

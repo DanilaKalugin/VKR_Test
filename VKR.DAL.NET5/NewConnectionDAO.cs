@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 
-namespace VKR.DAL
+namespace VKR.DAL.NET5
 {
     public class NewConnectionDAO
     {
@@ -54,13 +54,12 @@ namespace VKR.DAL
         private static void DeployScript(string dbConnection)
         {
             var scripts = Directory.GetFiles(@"Scripts\").OrderBy(str => str).ToList();
-            using (var conn = new SqlConnection(dbConnection))
-            {
-                conn.Open();
-                foreach (var script in scripts.Select(File.ReadAllText))
-                    using (var command = new SqlCommand(script, conn)) command.ExecuteNonQuery();
-                conn.Close();
-            }
+            using var conn = new SqlConnection(dbConnection);
+            conn.Open();
+            foreach (var script in scripts.Select(File.ReadAllText))
+                using (var command = new SqlCommand(script, conn))
+                    command.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }

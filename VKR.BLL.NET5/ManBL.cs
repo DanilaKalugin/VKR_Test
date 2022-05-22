@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Entities.NET5;
-using VKR.DAL;
+using VKR.DAL.NET5;
 
-namespace VKR.BLL
+namespace VKR.BLL.NET5
 {
     public class ManBL
     {
-        private readonly ManDAO _manDAO = new ManDAO();
+        private readonly ManDAO _manDAO = new();
 
-        public List<ManInTeam> GetListOfPeopleWithBirthdayToday() =>_manDAO.GetListOfPeopleWithBirthdayToday().ToList();
+        public List<ManInTeam> GetListOfPeopleWithBirthdayToday() => _manDAO.GetListOfPeopleWithBirthdayToday().ToList();
     }
 }

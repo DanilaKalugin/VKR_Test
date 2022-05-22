@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Entities;
-using VKR.DAL;
+using Entities.NET5;
+using VKR.DAL.NET5;
 
-namespace VKR.BLL
+namespace VKR.BLL.NET5
 {
     public class PlayerBL
     {
-        private readonly PlayerDAO _playerDAO = new PlayerDAO();
-        private readonly TeamsDAO _teamsDAO = new TeamsDAO();
+        private readonly PlayerDAO _playerDAO = new();
+        private readonly TeamsDAO _teamsDAO = new();
         private List<Player> _players;
 
         public List<Player> GetBattersStats(string TeamFilter = "MLB", string Qualifying = "Qualified Players", string Positions = "")
@@ -60,24 +60,24 @@ namespace VKR.BLL
 
         private List<string> GetTeamsForFilter(string TeamFilter)
         {
-            var teamsabbreviations = new List<string>();
+            var teamsAbbreviations = new List<string>();
             var teams = _teamsDAO.GetList().ToList();
 
             switch (TeamFilter)
             {
                 case "MLB":
-                    teamsabbreviations.AddRange(teams.Select(team => team.TeamAbbreviation).ToList());
-                    teamsabbreviations.Add("");
+                    teamsAbbreviations.AddRange(teams.Select(team => team.TeamAbbreviation).ToList());
+                    teamsAbbreviations.Add("");
                     break;
                 case "AL":
                 case "NL":
-                    teamsabbreviations.AddRange(teams.Where(team => team.League == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
+                    teamsAbbreviations.AddRange(teams.Where(team => team.League == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
                     break;
                 default:
-                    teamsabbreviations.AddRange(teams.Where(team => team.TeamTitle == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
+                    teamsAbbreviations.AddRange(teams.Where(team => team.TeamTitle == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
                     break;
             }
-            return teamsabbreviations;
+            return teamsAbbreviations;
         }
 
         public List<List<List<PlayerInLineup>>> GetRoster(string rosterType)
@@ -113,7 +113,7 @@ namespace VKR.BLL
 
             var Lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
 
-            var groupedPlayers = new List<List<List<PlayerInLineup>>> { new List<List<PlayerInLineup>>() };
+            var groupedPlayers = new List<List<List<PlayerInLineup>>> { new()};
             
             foreach (var lineupType in Lineups)
                 groupedPlayers[0].Add(ungroupedPlayers.Where(player => player.LineupType == lineupType).OrderBy(player => player.NumberInLineup).ToList());

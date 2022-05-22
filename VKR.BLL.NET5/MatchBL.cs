@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Entities;
-using VKR.DAL;
+using Entities.NET5;
+using VKR.DAL.NET5;
 
-namespace VKR.BLL
+namespace VKR.BLL.NET5
 {
     public class MatchBL
     {
-        private readonly MatchDAO _matchDAO = new MatchDAO();
-        private readonly StadiumsDAO _stadiumsDAO = new StadiumsDAO();
+        private readonly MatchDAO _matchDAO = new();
+        private readonly StadiumsDAO _stadiumsDAO = new();
 
         public void StartNewMatch(Match match)
         {
             _matchDAO.StartNewMatch(match);
             match.GameSituations = new List<GameSituation>
             {
-                new GameSituation(match.AwayTeam)
+                new(match.AwayTeam)
             };
         }
 

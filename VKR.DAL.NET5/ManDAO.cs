@@ -2,31 +2,29 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Entities;
+using Entities.NET5;
 
-namespace VKR.DAL
+namespace VKR.DAL.NET5
 {
     public class ManDAO : DAO
     {
         public IEnumerable<ManInTeam> GetListOfPeopleWithBirthdayToday()
         {
-            using (var command = new SqlCommand("GetListOfPeopleWithBirthdayToday", _connection))
+            using var command = new SqlCommand("GetListOfPeopleWithBirthdayToday", _connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Prepare();
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Prepare();
+                var playerId = (int)reader["PlayerID"];
+                var teamId = (string)reader["TeamID"];
+                var firstName = (string)reader["PlayerFirstName"];
+                var secondName = (string)reader["PlayerSecondName"];
+                var date = (DateTime)reader["PlayerDateOfBirth"];
+                var placeOfBirth = (string)reader["PlaceOfBirth"];
 
-                using (var reader = command.ExecuteReader())
-                    while (reader.Read())
-                    {
-                        var PlayerID = (int)reader["PlayerID"];
-                        var TeamID = (string)reader["TeamID"];
-                        var FirstName = (string)reader["PlayerFirstName"];
-                        var SecondName = (string)reader["PlayerSecondName"];
-                        var date = (DateTime)reader["PlayerDateOfBirth"];
-                        var placeOfBirth = (string)reader["PlaceOfBirth"];
-
-                        yield return new ManInTeam(PlayerID, FirstName, SecondName, TeamID, date, placeOfBirth);
-                    }
+                yield return new ManInTeam(playerId, firstName, secondName, teamId, date, placeOfBirth);
             }
         }
     }

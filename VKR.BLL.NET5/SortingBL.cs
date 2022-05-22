@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace VKR.BLL
+namespace VKR.BLL.NET5
 {
     public class SortingBL
     {
