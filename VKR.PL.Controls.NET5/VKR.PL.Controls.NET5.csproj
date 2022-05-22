@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VKR.Entities.NET5\VKR.Entities.NET5.csproj" />
+    <ProjectReference Include="..\VKR.PL.Utils.NET5\VKR.PL.Utils.NET5.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="BatterInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="PlayerInfoWithPhoto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
