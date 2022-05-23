@@ -50,6 +50,7 @@ namespace Entities
         public double GamesBehind;
         public int RunsScored;
         public int RunsAllowed;
+        public int Streak;
         public int RunDifferential => RunsScored - RunsAllowed;
 
         public double Pct => Wins + Losses == 0 ? 0 : Math.Round(Wins / (double)(Wins + Losses), 3);
@@ -87,6 +88,8 @@ namespace Entities
         public BattingStats BattingStats;
         public PitchingStats PitchingStats;
 
+        public string StreakString => Streak > 0 ? $"Won {Streak}" : $"Lost {Math.Abs(Streak)}";
+
         public Team(string abbreviation, string city, string name, int strikeZoneProbability, int swingSzProbability, int swingNotSzProbability,
                     int hitProbability, int foulProbability, int singleProbability, int doubleProbability, int homeRunProbability,
                     int popoutOnFoulProbability, int flyoutOnHrProbability, int groundoutProbability, int flyoutProbability, int sacFlyProbability,
@@ -123,7 +126,7 @@ namespace Entities
             League = league;
         }
 
-        public Team (string abbreviation, string name, string league, string division, int homeWins, int homeLosses, int awayWins, int awayLosses)
+        public Team (string abbreviation, string name, string league, string division, int homeWins, int homeLosses, int awayWins, int awayLosses, int streak)
         {
             TeamAbbreviation = abbreviation;
             TeamTitle = name;
@@ -133,6 +136,7 @@ namespace Entities
             AwayBalance = $"{awayWins}-{awayLosses}";
             Wins = homeWins + awayWins;
             Losses = homeLosses + awayLosses;
+            Streak = streak;
         }
     }
 }

@@ -1,0 +1,672 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ImagesForBaseSituation\000.png" />
+    <None Remove="ImagesForBaseSituation\003.png" />
+    <None Remove="ImagesForBaseSituation\020.png" />
+    <None Remove="ImagesForBaseSituation\023.png" />
+    <None Remove="ImagesForBaseSituation\100.png" />
+    <None Remove="ImagesForBaseSituation\103.png" />
+    <None Remove="ImagesForBaseSituation\120.png" />
+    <None Remove="ImagesForBaseSituation\123.png" />
+    <None Remove="SmallTeamLogos\ARI.png" />
+    <None Remove="SmallTeamLogos\ATL.png" />
+    <None Remove="SmallTeamLogos\BAL.png" />
+    <None Remove="SmallTeamLogos\BOS.png" />
+    <None Remove="SmallTeamLogos\CHC.png" />
+    <None Remove="SmallTeamLogos\CIN.png" />
+    <None Remove="SmallTeamLogos\CLE.png" />
+    <None Remove="SmallTeamLogos\COL.png" />
+    <None Remove="SmallTeamLogos\CWS.png" />
+    <None Remove="SmallTeamLogos\DET.png" />
+    <None Remove="SmallTeamLogos\HOU.png" />
+    <None Remove="SmallTeamLogos\KC.png" />
+    <None Remove="SmallTeamLogos\LAA.png" />
+    <None Remove="SmallTeamLogos\LAD.png" />
+    <None Remove="SmallTeamLogos\MIA.png" />
+    <None Remove="SmallTeamLogos\MIL.png" />
+    <None Remove="SmallTeamLogos\MIN.png" />
+    <None Remove="SmallTeamLogos\NYM.png" />
+    <None Remove="SmallTeamLogos\NYY.png" />
+    <None Remove="SmallTeamLogos\OAK.png" />
+    <None Remove="SmallTeamLogos\PHI.png" />
+    <None Remove="SmallTeamLogos\PIT.png" />
+    <None Remove="SmallTeamLogos\SD.png" />
+    <None Remove="SmallTeamLogos\SEA.png" />
+    <None Remove="SmallTeamLogos\SF.png" />
+    <None Remove="SmallTeamLogos\STL.png" />
+    <None Remove="SmallTeamLogos\TB.png" />
+    <None Remove="SmallTeamLogos\TEX.png" />
+    <None Remove="SmallTeamLogos\TOR.png" />
+    <None Remove="SmallTeamLogos\WSH.png" />
+    <None Remove="Stadiums\Stadium001.jpg" />
+    <None Remove="Stadiums\Stadium002.jpg" />
+    <None Remove="Stadiums\Stadium003.jpg" />
+    <None Remove="Stadiums\Stadium004.jpg" />
+    <None Remove="Stadiums\Stadium005.jpg" />
+    <None Remove="Stadiums\Stadium006.jpg" />
+    <None Remove="Stadiums\Stadium007.jpg" />
+    <None Remove="Stadiums\Stadium008.jpg" />
+    <None Remove="Stadiums\Stadium009.jpg" />
+    <None Remove="Stadiums\Stadium010.jpg" />
+    <None Remove="Stadiums\Stadium011.jpg" />
+    <None Remove="Stadiums\Stadium012.jpg" />
+    <None Remove="Stadiums\Stadium013.jpg" />
+    <None Remove="Stadiums\Stadium014.jpg" />
+    <None Remove="Stadiums\Stadium015.jpg" />
+    <None Remove="Stadiums\Stadium016.jpg" />
+    <None Remove="Stadiums\Stadium017.jpg" />
+    <None Remove="Stadiums\Stadium018.jpg" />
+    <None Remove="Stadiums\Stadium019.jpg" />
+    <None Remove="Stadiums\Stadium020.jpg" />
+    <None Remove="Stadiums\Stadium021.jpg" />
+    <None Remove="Stadiums\Stadium022.jpg" />
+    <None Remove="Stadiums\Stadium023.jpg" />
+    <None Remove="Stadiums\Stadium024.jpg" />
+    <None Remove="Stadiums\Stadium025.jpg" />
+    <None Remove="Stadiums\Stadium026.jpg" />
+    <None Remove="Stadiums\Stadium027.jpg" />
+    <None Remove="Stadiums\Stadium028.jpg" />
+    <None Remove="Stadiums\Stadium029.jpg" />
+    <None Remove="Stadiums\Stadium030.jpg" />
+    <None Remove="Stadiums\Stadium031.jpg" />
+    <None Remove="Stadiums\Stadium032.jpg" />
+    <None Remove="Stadiums\Stadium033.jpg" />
+    <None Remove="Stadiums\Stadium034.jpg" />
+    <None Remove="Stadiums\Stadium035.jpg" />
+    <None Remove="Stadiums\Stadium037.jpg" />
+    <None Remove="Stadiums\Stadium038.jpg" />
+    <None Remove="Stadiums\Stadium039.jpg" />
+    <None Remove="Stadiums\Stadium040.jpg" />
+    <None Remove="Stadiums\Stadium041.jpg" />
+    <None Remove="Stadiums\Stadium042.jpg" />
+    <None Remove="Stadiums\Stadium043.jpg" />
+    <None Remove="Stadiums\Stadium044.jpg" />
+    <None Remove="Stadiums\Stadium045.jpg" />
+    <None Remove="Stadiums\Stadium046.jpg" />
+    <None Remove="Stadiums\Stadium047.jpg" />
+    <None Remove="Stadiums\Stadium048.jpg" />
+    <None Remove="Stadiums\Stadium049.jpg" />
+    <None Remove="Stadiums\Stadium050.jpg" />
+    <None Remove="Stadiums\Stadium051.jpg" />
+    <None Remove="Stadiums\Stadium052.jpg" />
+    <None Remove="Stadiums\Stadium053.jpg" />
+    <None Remove="Stadiums\Stadium054.jpg" />
+    <None Remove="Stadiums\Stadium055.jpg" />
+    <None Remove="Stadiums\Stadium056.jpg" />
+    <None Remove="Stadiums\Stadium057.jpg" />
+    <None Remove="Stadiums\Stadium058.jpg" />
+    <None Remove="Stadiums\Stadium059.jpg" />
+    <None Remove="Stadiums\Stadium060.jpg" />
+    <None Remove="Stadiums\Stadium061.jpg" />
+    <None Remove="TeamLogoForMenu\ARI.png" />
+    <None Remove="TeamLogoForMenu\ATL.png" />
+    <None Remove="TeamLogoForMenu\BAL.png" />
+    <None Remove="TeamLogoForMenu\BOS.png" />
+    <None Remove="TeamLogoForMenu\CHC.png" />
+    <None Remove="TeamLogoForMenu\CIN.png" />
+    <None Remove="TeamLogoForMenu\CLE.png" />
+    <None Remove="TeamLogoForMenu\COL.png" />
+    <None Remove="TeamLogoForMenu\CWS.png" />
+    <None Remove="TeamLogoForMenu\DET.png" />
+    <None Remove="TeamLogoForMenu\HOU.png" />
+    <None Remove="TeamLogoForMenu\KC.png" />
+    <None Remove="TeamLogoForMenu\LAA.png" />
+    <None Remove="TeamLogoForMenu\LAD.png" />
+    <None Remove="TeamLogoForMenu\MIA.png" />
+    <None Remove="TeamLogoForMenu\MIL.png" />
+    <None Remove="TeamLogoForMenu\MIN.png" />
+    <None Remove="TeamLogoForMenu\NYM.png" />
+    <None Remove="TeamLogoForMenu\NYY.png" />
+    <None Remove="TeamLogoForMenu\OAK.png" />
+    <None Remove="TeamLogoForMenu\PHI.png" />
+    <None Remove="TeamLogoForMenu\PIT.png" />
+    <None Remove="TeamLogoForMenu\SD.png" />
+    <None Remove="TeamLogoForMenu\SEA.png" />
+    <None Remove="TeamLogoForMenu\SF.png" />
+    <None Remove="TeamLogoForMenu\STL.png" />
+    <None Remove="TeamLogoForMenu\TB.png" />
+    <None Remove="TeamLogoForMenu\TEX.png" />
+    <None Remove="TeamLogoForMenu\TOR.png" />
+    <None Remove="TeamLogoForMenu\WSH.png" />
+    <None Remove="TeamLogosForSubstitution\ARI.png" />
+    <None Remove="TeamLogosForSubstitution\ATL.png" />
+    <None Remove="TeamLogosForSubstitution\BAL.png" />
+    <None Remove="TeamLogosForSubstitution\BOS.png" />
+    <None Remove="TeamLogosForSubstitution\CHC.png" />
+    <None Remove="TeamLogosForSubstitution\CIN.png" />
+    <None Remove="TeamLogosForSubstitution\CLE.png" />
+    <None Remove="TeamLogosForSubstitution\COL.png" />
+    <None Remove="TeamLogosForSubstitution\CWS.png" />
+    <None Remove="TeamLogosForSubstitution\DET.png" />
+    <None Remove="TeamLogosForSubstitution\HOU.png" />
+    <None Remove="TeamLogosForSubstitution\KC.png" />
+    <None Remove="TeamLogosForSubstitution\LAA.png" />
+    <None Remove="TeamLogosForSubstitution\LAD.png" />
+    <None Remove="TeamLogosForSubstitution\MIA.png" />
+    <None Remove="TeamLogosForSubstitution\MIL.png" />
+    <None Remove="TeamLogosForSubstitution\MIN.png" />
+    <None Remove="TeamLogosForSubstitution\NYM.png" />
+    <None Remove="TeamLogosForSubstitution\NYY.png" />
+    <None Remove="TeamLogosForSubstitution\OAK.png" />
+    <None Remove="TeamLogosForSubstitution\PHI.png" />
+    <None Remove="TeamLogosForSubstitution\PIT.png" />
+    <None Remove="TeamLogosForSubstitution\SD.png" />
+    <None Remove="TeamLogosForSubstitution\SEA.png" />
+    <None Remove="TeamLogosForSubstitution\SF.png" />
+    <None Remove="TeamLogosForSubstitution\STL.png" />
+    <None Remove="TeamLogosForSubstitution\TB.png" />
+    <None Remove="TeamLogosForSubstitution\TEX.png" />
+    <None Remove="TeamLogosForSubstitution\TOR.png" />
+    <None Remove="TeamLogosForSubstitution\WSH.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ImagesForBaseSituation\000.png" />
+    <Content Include="ImagesForBaseSituation\003.png" />
+    <Content Include="ImagesForBaseSituation\020.png" />
+    <Content Include="ImagesForBaseSituation\023.png" />
+    <Content Include="ImagesForBaseSituation\100.png" />
+    <Content Include="ImagesForBaseSituation\103.png" />
+    <Content Include="ImagesForBaseSituation\120.png" />
+    <Content Include="ImagesForBaseSituation\123.png" />
+    <Content Include="Stadiums\Stadium001.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium002.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium003.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium004.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium005.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium006.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium007.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium008.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium009.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium010.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium011.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium012.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium013.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium014.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium015.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium016.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium017.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium018.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium019.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium020.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium021.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium022.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium023.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium024.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium025.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium026.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium027.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium028.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium029.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium030.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium031.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium032.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium033.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium034.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium035.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium037.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium038.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium039.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium040.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium041.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium042.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium043.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium044.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium045.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium046.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium047.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium048.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium049.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium050.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium051.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium052.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium053.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium054.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium055.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium056.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium057.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium058.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium059.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium060.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stadiums\Stadium061.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\ARI.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\ATL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\BAL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\BOS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\CHC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\CIN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\CLE.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\COL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\CWS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\DET.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\HOU.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\KC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\LAA.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\LAD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\MIA.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\MIL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\MIN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\NYM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\NYY.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\OAK.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\PHI.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\PIT.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\SD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\SEA.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\SF.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\STL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\TB.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\TEX.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\TOR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogoForMenu\WSH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\ARI.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\ATL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\BAL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\BOS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\CHC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\CIN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\CLE.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\COL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\CWS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\DET.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\HOU.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\KC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\LAA.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\LAD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\MIA.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\MIL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\MIN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\NYM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\NYY.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\OAK.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\PHI.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\PIT.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\SD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\SEA.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\SF.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\STL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\TB.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\TEX.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\TOR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TeamLogosForSubstitution\WSH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SmallTeamLogos\ARI.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\ATL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\BAL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\BOS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\CHC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\CIN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\CLE.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\COL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\CWS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\DET.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\HOU.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\KC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\LAA.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\LAD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\MIA.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\MIL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\MIN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\NYM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\NYY.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\OAK.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\PHI.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\PIT.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\SD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\SEA.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\SF.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\STL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\TB.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\TEX.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\TOR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTeamLogos\WSH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VKR.BLL.NET5\VKR.BLL.NET5.csproj" />
+    <ProjectReference Include="..\VKR.Entities.NET5\VKR.Entities.NET5.csproj" />
+    <ProjectReference Include="..\VKR.PL.Controls.NET5\VKR.PL.Controls.NET5.csproj" />
+    <ProjectReference Include="..\VKR.PL.Utils.NET5\VKR.PL.Utils.NET5.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MainMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resource1.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Update="TitleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

@@ -148,7 +148,7 @@ namespace VKR.DAL
                         var HomeTeam = (string)reader["HomeTeam"];
                         var Stadium = (int)reader["Stadium"];
                         var Winner = (string)reader["Winner"];
-                        var Inning = (int)reader["InningNumber"];
+                        var Inning = (int)reader["Inning"];
                         var Date = (DateTime)reader["MatchDate"];
                         yield return new Match(MatchID, AwayTeam, AwayRuns, HomeRuns, HomeTeam, Stadium, Winner, Inning, Date);
                     }

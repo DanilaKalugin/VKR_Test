@@ -332,14 +332,16 @@ namespace VKR.DAL
             }
         }
 
-        public int GetNumberOfOutsPlayedByThisPitcherInLast5Days(int id)
+        public int GetNumberOfOutsPlayedByThisPitcherInLast5Days(int id, int match = 0)
         {
             using (var command = new SqlCommand("GetRemainingStaminaForThisPitcher", _connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@Pitcher", SqlDbType.Int);
+                command.Parameters.Add("Match", SqlDbType.Int);
                 command.Prepare();
                 command.Parameters[0].Value = id;
+                command.Parameters[1].Value = match;
 
                 return (int)command.ExecuteScalar();
             }
