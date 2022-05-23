@@ -180,23 +180,23 @@ namespace VKR.PL.NET5
 
             var batter = _players.GetPlayerByCode(player.Id);
 
-            label4.Text = !player.PlayerPositions.Contains("P") ? "AVG" : "ERA";
-            label5.Text = !player.PlayerPositions.Contains("P") ? "HR" : "SO";
-            label6.Text = !player.PlayerPositions.Contains("P") ? "RBI" : "WHIP";
+            label4.Text = player.PlayerPositions.Contains("P") ? "ERA" : "AVG";
+            label5.Text = player.PlayerPositions.Contains("P") ? "SO" : "HR";
+            label6.Text = player.PlayerPositions.Contains("P") ? "WHIP" : "RBI";
 
             if (player.PlayerPositions.Contains("P"))
-            {
-                label1.Text = batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
-                label2.Text = batter.BattingStats.HomeRuns.ToString();
-                label3.Text = batter.BattingStats.RBI.ToString();
-            }
-            else
             {
                 var pitcher = _players.GetPitcherByCode(player.Id);
 
                 label1.Text = pitcher.PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"));
                 label2.Text = pitcher.PitchingStats.Strikeouts.ToString();
                 label3.Text = pitcher.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
+            }
+            else
+            {
+                label1.Text = batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
+                label2.Text = batter.BattingStats.HomeRuns.ToString();
+                label3.Text = batter.BattingStats.RBI.ToString();
             }
 
             label7.Text = $@"Positions: {string.Join(", ", player.PlayerPositions)}";

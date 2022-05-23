@@ -4,11 +4,11 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
-using Entities;
-using VKR.PL.Utils;
+using Entities.NET5;
+using VKR.PL.Utils.NET5;
 using ProgressBar = ExtendedDotNET.Controls.Progress.ProgressBar;
 
-namespace VKR_Test
+namespace VKR.PL.NET5
 {
     public partial class PitcherSubstitutionForm : Form
     {
@@ -106,12 +106,12 @@ namespace VKR_Test
 
         public void ClickOnTableLayoutPanel(object sender, MouseEventArgs e)
         {
-            var RowNumber = tableLayoutPanel1.GetRow((Control)sender);
+            var rowNumber = tableLayoutPanel1.GetRow((Control)sender);
             for (var i = 1; i < tableLayoutPanel1.RowCount; i++)
             for (var j = 1; j < tableLayoutPanel1.ColumnCount - 1; j++)
             {
-                tableLayoutPanel1.GetControlFromPosition(j, i).BackColor = i == RowNumber && RowNumber <= _pitchers.Count ? _currentTeam.TeamColorForThisMatch : Color.White;
-                tableLayoutPanel1.GetControlFromPosition(j, i).ForeColor = i == RowNumber && RowNumber <= _pitchers.Count ? CorrectForeColorForAllBackColors.GetForeColorForThisSituation(_currentTeam.TeamColorForThisMatch, false) : Color.Black;
+                tableLayoutPanel1.GetControlFromPosition(j, i).BackColor = i == rowNumber && rowNumber <= _pitchers.Count ? _currentTeam.TeamColorForThisMatch : Color.White;
+                tableLayoutPanel1.GetControlFromPosition(j, i).ForeColor = i == rowNumber && rowNumber <= _pitchers.Count ? CorrectForeColorForAllBackColors.GetForeColorForThisSituation(_currentTeam.TeamColorForThisMatch, false) : Color.Black;
             }
         }
     }

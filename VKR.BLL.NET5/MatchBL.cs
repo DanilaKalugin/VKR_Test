@@ -34,7 +34,7 @@ namespace VKR.BLL.NET5
             if (!currentMatch.IsQuickMatch) _matchDAO.AddMatchResultForThisPitcher(pitcherResults);
         }
 
-        public List<Match> GetResultsForallMatches(string team = "")
+        public List<Match> GetResultsForAllMatches(string team = "")
         {
             var matches = _matchDAO.GetResultsForAllMatches().ToList();
             var stadiums = _stadiumsDAO.GetAllStadiums().ToList();
@@ -49,7 +49,7 @@ namespace VKR.BLL.NET5
 
         public DateTime GetMaxDateForAllMatches()
         {
-            var matches = GetResultsForallMatches();
+            var matches = GetResultsForAllMatches();
             return matches.Select(match => match.MatchDate).Max();
         }
 

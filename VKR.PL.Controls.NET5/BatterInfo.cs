@@ -26,8 +26,8 @@ namespace VKR.PL.Controls.NET5
 
         public void SetPlayer(Batter batter)
         {
-            var args = new PlayerChangedEventArgs(playerInfo: batter);
-            BatterChanged?.Invoke(this, args);
+            var args = new PlayerChangedEventArgs(batter);
+            BatterChanged(this, args);
         }
 
         public static void SetMatch(Match match) => _match = match;

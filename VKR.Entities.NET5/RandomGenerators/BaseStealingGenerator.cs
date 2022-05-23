@@ -27,19 +27,15 @@ namespace Entities.NET5
         public Pitch CreateBaseStealing(GameSituation situation, StealingType stealingType)
         {
             var offense = situation.Offense;
-            var runnerPositionInDefense = "";
 
-            switch (stealingType)
+            var runnerPositionInDefense = stealingType switch
             {
-                case StealingType.OnlySecondBase:
-                case StealingType.SecondBaseAfterThird:
-                    runnerPositionInDefense = offense.BattingLineup.First(player => player.Id == situation.RunnerOnFirst.RunnerId).PositionForThisMatch;
-                    break;
-                case StealingType.OnlyThirdBase:
-                case StealingType.ThirdBaseBeforeSecond:
-                    runnerPositionInDefense = offense.BattingLineup.First(player => player.Id == situation.RunnerOnSecond.RunnerId).PositionForThisMatch;
-                    break;
-            }
+                StealingType.OnlySecondBase => offense.BattingLineup.First(player => player.Id == situation.RunnerOnFirst.RunnerId).PositionForThisMatch,
+                StealingType.SecondBaseAfterThird => offense.BattingLineup.First(player => player.Id == situation.RunnerOnFirst.RunnerId).PositionForThisMatch,
+                StealingType.OnlyThirdBase => offense.BattingLineup.First(player => player.Id == situation.RunnerOnSecond.RunnerId).PositionForThisMatch,
+                StealingType.ThirdBaseBeforeSecond => offense.BattingLineup.First(player => player.Id == situation.RunnerOnSecond.RunnerId).PositionForThisMatch,
+                _ => ""
+            };
 
             NewStealingAttemptResult = StealingAttemptResultDefinition(offense.SuccessfulStealingBaseAttemptProbability, runnerPositionInDefense, stealingType);
             _stealingResult = PitchResult_Definition(NewStealingAttemptResult);
@@ -48,19 +44,14 @@ namespace Entities.NET5
 
         private static PitchResult PitchResult_Definition(StealingResult newStealingAttemptResult)
         {
-            switch (newStealingAttemptResult)
+            return newStealingAttemptResult switch
             {
-                case StealingResult.CaughtStealingOnSecond:
-                    return PitchResult.CaughtStealingOnSecond;
-                case StealingResult.CaughtStealingOnThird:
-                    return PitchResult.CaughtStealingOnThird;
-                case StealingResult.SecondBaseStolen:
-                    return PitchResult.SecondBaseStolen;
-                case StealingResult.ThirdBaseStolen:
-                    return PitchResult.ThirdBaseStolen;
-                default:
-                    return PitchResult.Null;
-            }
+                StealingResult.CaughtStealingOnSecond => PitchResult.CaughtStealingOnSecond,
+                StealingResult.CaughtStealingOnThird => PitchResult.CaughtStealingOnThird,
+                StealingResult.SecondBaseStolen => PitchResult.SecondBaseStolen,
+                StealingResult.ThirdBaseStolen => PitchResult.ThirdBaseStolen,
+                _ => PitchResult.Null
+            };
         }
 
         private StealingResult StealingAttemptResultDefinition(int successfulStealingProbability, string runnerPositionInDefense, StealingType stealingType)
@@ -73,33 +64,23 @@ namespace Entities.NET5
                 stealingProbabilityCorrectedByPosition = successfulStealingProbability;
             else
             {
-                if (stealingType == StealingType.SecondBaseAfterThird)
-                    stealingProbabilityCorrectedByPosition = successfulStealingProbability * 2;
-                else
-                    stealingProbabilityCorrectedByPosition = successfulStealingProbability / 2;
+                stealingProbabilityCorrectedByPosition = stealingType == StealingType.SecondBaseAfterThird
+                    ? successfulStealingProbability * 2
+                    : successfulStealingProbability / 2;
             }
 
-            switch (stealingType)
+            return stealingType switch
             {
-                case StealingType.OnlySecondBase when stealingAttemptRandomValue <= stealingProbabilityCorrectedByPosition:
-                    return StealingResult.SecondBaseStolen;
-                case StealingType.OnlySecondBase:
-                    return StealingResult.CaughtStealingOnSecond;
-                case StealingType.OnlyThirdBase when stealingAttemptRandomValue <= stealingProbabilityCorrectedByPosition / 4:
-                    return StealingResult.ThirdBaseStolen;
-                case StealingType.OnlyThirdBase:
-                    return StealingResult.CaughtStealingOnThird;
-                case StealingType.ThirdBaseBeforeSecond when stealingAttemptRandomValue <= stealingProbabilityCorrectedByPosition / 5:
-                    return StealingResult.ThirdBaseStolen;
-                case StealingType.ThirdBaseBeforeSecond:
-                    return StealingResult.CaughtStealingOnThird;
-                case StealingType.SecondBaseAfterThird when stealingAttemptRandomValue <= 100 - stealingProbabilityCorrectedByPosition / 3:
-                    return StealingResult.SecondBaseStolen;
-                case StealingType.SecondBaseAfterThird:
-                    return StealingResult.CaughtStealingOnSecond;
-                default:
-                    return StealingResult.NoResult;
-            }
+                StealingType.OnlySecondBase when stealingAttemptRandomValue <= stealingProbabilityCorrectedByPosition => StealingResult.SecondBaseStolen,
+                StealingType.OnlySecondBase => StealingResult.CaughtStealingOnSecond,
+                StealingType.OnlyThirdBase when stealingAttemptRandomValue <= stealingProbabilityCorrectedByPosition / 4 => StealingResult.ThirdBaseStolen,
+                StealingType.OnlyThirdBase => StealingResult.CaughtStealingOnThird,
+                StealingType.ThirdBaseBeforeSecond when stealingAttemptRandomValue <= stealingProbabilityCorrectedByPosition / 5 => StealingResult.ThirdBaseStolen,
+                StealingType.ThirdBaseBeforeSecond => StealingResult.CaughtStealingOnThird,
+                StealingType.SecondBaseAfterThird when stealingAttemptRandomValue <= 100 - stealingProbabilityCorrectedByPosition / 3 => StealingResult.SecondBaseStolen,
+                StealingType.SecondBaseAfterThird => StealingResult.CaughtStealingOnSecond,
+                _ => StealingResult.NoResult
+            };
         }
 
         public StealingAttempt StealingAttemptDefinition(BaseNumberForStealing baseNumber, GameSituation situation, Team awayTeam)

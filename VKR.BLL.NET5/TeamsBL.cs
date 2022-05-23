@@ -25,7 +25,7 @@ namespace VKR.BLL.NET5
             return teams;
         }
 
-        public List<Team> GetStandings(string Filter, DateTime date)
+        public List<Team> GetStandings(string filter, DateTime date)
         {
             var teams = _teamsDAO.GetStandings(date).ToList();
 
@@ -36,11 +36,11 @@ namespace VKR.BLL.NET5
                 team.RunsAllowed = _teamsDAO.GetRunsAllowedByTeamAfterThisDate(team, date);
             }
 
-            if (Filter != "MLB")
+            if (filter != "MLB")
             {
-                teams = Filter is "NL" or "AL"
-                    ? teams.Where(team => team.League == Filter).ToList()
-                    : teams.Where(team => team.Division == Filter).ToList();
+                teams = filter is "NL" or "AL"
+                    ? teams.Where(team => team.League == filter).ToList()
+                    : teams.Where(team => team.Division == filter).ToList();
             }
 
             var leaderW = teams[0].Wins;
@@ -61,12 +61,12 @@ namespace VKR.BLL.NET5
             return teams;
         }
 
-        public List<Team> GetWCStandings(string Filter, DateTime date)
+        public List<Team> GetWCStandings(string filter, DateTime date)
         {
-            var teams = GetStandings(Filter, date).ToList();
-            var westLeader = teams.First(team => team.Division == $"{Filter} West");
-            var centralLeader = teams.First(team => team.Division == $"{Filter} Central");
-            var eastLeader = teams.First(team => team.Division == $"{Filter} East");
+            var teams = GetStandings(filter, date).ToList();
+            var westLeader = teams.First(team => team.Division == $"{filter} West");
+            var centralLeader = teams.First(team => team.Division == $"{filter} Central");
+            var eastLeader = teams.First(team => team.Division == $"{filter} East");
             teams = teams.Where(team => team.TeamAbbreviation != westLeader.TeamAbbreviation && team.TeamAbbreviation != eastLeader.TeamAbbreviation && team.TeamAbbreviation != centralLeader.TeamAbbreviation).ToList();
             var leaderW = teams[1].Wins;
             var leaderL = teams[1].Losses;

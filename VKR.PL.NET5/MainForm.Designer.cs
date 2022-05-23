@@ -38,6 +38,7 @@ namespace VKR.PL.NET5
             System.Windows.Forms.Panel panel27;
             System.Windows.Forms.Label label24;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.currentBatter = new VKR.PL.Controls.NET5.BatterInfo();
             this.pb_stamina = new ExtendedDotNET.Controls.Progress.ProgressBar();
             this.panelCurrentSituationPitcher = new System.Windows.Forms.Panel();
             this.lbPitcherSecondName = new System.Windows.Forms.Label();
@@ -119,10 +120,16 @@ namespace VKR.PL.NET5
             this.panelScoreBoard = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panelNextAwayBatters = new System.Windows.Forms.Panel();
+            this.awayNextBatter3 = new VKR.PL.Controls.NET5.BatterInfo();
+            this.awayNextBatter2 = new VKR.PL.Controls.NET5.BatterInfo();
+            this.awayNextBatter1 = new VKR.PL.Controls.NET5.BatterInfo();
             this.AwayTeamNextBatters = new System.Windows.Forms.Panel();
             this.away_DueUP = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panelNextHomeBatters = new System.Windows.Forms.Panel();
+            this.homeNextBatter3 = new VKR.PL.Controls.NET5.BatterInfo();
+            this.homeNextBatter2 = new VKR.PL.Controls.NET5.BatterInfo();
+            this.homeNextBatter1 = new VKR.PL.Controls.NET5.BatterInfo();
             this.homeTeamNextBatters = new System.Windows.Forms.Panel();
             this.home_DueUP = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -191,13 +198,6 @@ namespace VKR.PL.NET5
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnAutoMode = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.currentBatter = new BatterInfo();
-            this.awayNextBatter3 = new BatterInfo();
-            this.awayNextBatter2 = new BatterInfo();
-            this.awayNextBatter1 = new BatterInfo();
-            this.homeNextBatter3 = new BatterInfo();
-            this.homeNextBatter2 = new BatterInfo();
-            this.homeNextBatter1 = new BatterInfo();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -231,7 +231,7 @@ namespace VKR.PL.NET5
             // 
             // label36
             // 
-            label36.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label36.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             label36.Location = new System.Drawing.Point(179, 6);
             label36.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -252,6 +252,14 @@ namespace VKR.PL.NET5
             panel27.Name = "panel27";
             panel27.Size = new System.Drawing.Size(250, 66);
             panel27.TabIndex = 47;
+            // 
+            // currentBatter
+            // 
+            this.currentBatter.Location = new System.Drawing.Point(0, 36);
+            this.currentBatter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.currentBatter.Name = "currentBatter";
+            this.currentBatter.Size = new System.Drawing.Size(250, 30);
+            this.currentBatter.TabIndex = 68;
             // 
             // pb_stamina
             // 
@@ -302,7 +310,7 @@ namespace VKR.PL.NET5
             // 
             // lbPitcherSecondName
             // 
-            this.lbPitcherSecondName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPitcherSecondName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbPitcherSecondName.ForeColor = System.Drawing.Color.White;
             this.lbPitcherSecondName.Location = new System.Drawing.Point(28, 5);
             this.lbPitcherSecondName.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -314,7 +322,7 @@ namespace VKR.PL.NET5
             // 
             // lbPitchCountForThisPitcher
             // 
-            this.lbPitchCountForThisPitcher.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPitchCountForThisPitcher.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbPitchCountForThisPitcher.ForeColor = System.Drawing.Color.White;
             this.lbPitchCountForThisPitcher.Location = new System.Drawing.Point(178, 5);
             this.lbPitchCountForThisPitcher.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -327,7 +335,7 @@ namespace VKR.PL.NET5
             // label24
             // 
             label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            label24.Font = new System.Drawing.Font("MicroFLF", 12F);
+            label24.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label24.Location = new System.Drawing.Point(1179, 144);
             label24.Name = "label24";
             label24.Size = new System.Drawing.Size(234, 23);
@@ -340,7 +348,7 @@ namespace VKR.PL.NET5
             this.btnNewPitch.BackColor = System.Drawing.Color.Gainsboro;
             this.btnNewPitch.FlatAppearance.BorderSize = 0;
             this.btnNewPitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewPitch.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewPitch.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnNewPitch.Location = new System.Drawing.Point(82, 10);
             this.btnNewPitch.Name = "btnNewPitch";
             this.btnNewPitch.Size = new System.Drawing.Size(300, 35);
@@ -375,7 +383,7 @@ namespace VKR.PL.NET5
             // HomeTeam_RunsScored
             // 
             this.HomeTeam_RunsScored.Dock = System.Windows.Forms.DockStyle.Right;
-            this.HomeTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
+            this.HomeTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.HomeTeam_RunsScored.ForeColor = System.Drawing.Color.White;
             this.HomeTeam_RunsScored.Location = new System.Drawing.Point(120, 0);
             this.HomeTeam_RunsScored.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -388,7 +396,7 @@ namespace VKR.PL.NET5
             // HomeTeam_Abbreviation
             // 
             this.HomeTeam_Abbreviation.Dock = System.Windows.Forms.DockStyle.Left;
-            this.HomeTeam_Abbreviation.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
+            this.HomeTeam_Abbreviation.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.HomeTeam_Abbreviation.ForeColor = System.Drawing.Color.White;
             this.HomeTeam_Abbreviation.Location = new System.Drawing.Point(0, 0);
             this.HomeTeam_Abbreviation.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -414,7 +422,7 @@ namespace VKR.PL.NET5
             // AwayTeam_RunsScored
             // 
             this.AwayTeam_RunsScored.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AwayTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
+            this.AwayTeam_RunsScored.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AwayTeam_RunsScored.ForeColor = System.Drawing.Color.White;
             this.AwayTeam_RunsScored.Location = new System.Drawing.Point(120, 0);
             this.AwayTeam_RunsScored.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -427,7 +435,7 @@ namespace VKR.PL.NET5
             // AwayTeam_Abbreviation
             // 
             this.AwayTeam_Abbreviation.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AwayTeam_Abbreviation.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
+            this.AwayTeam_Abbreviation.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AwayTeam_Abbreviation.ForeColor = System.Drawing.Color.White;
             this.AwayTeam_Abbreviation.Location = new System.Drawing.Point(0, 0);
             this.AwayTeam_Abbreviation.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -466,7 +474,7 @@ namespace VKR.PL.NET5
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(189, 6);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 5, 10, 5);
@@ -478,7 +486,7 @@ namespace VKR.PL.NET5
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label4.Location = new System.Drawing.Point(105, 6);
             this.label4.Margin = new System.Windows.Forms.Padding(1, 5, 1, 5);
@@ -490,7 +498,7 @@ namespace VKR.PL.NET5
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(83, 6);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -502,7 +510,7 @@ namespace VKR.PL.NET5
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(37, 6);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -514,7 +522,7 @@ namespace VKR.PL.NET5
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label1.Location = new System.Drawing.Point(15, 6);
             this.label1.Margin = new System.Windows.Forms.Padding(15, 5, 1, 5);
@@ -549,7 +557,7 @@ namespace VKR.PL.NET5
             // 
             // label14
             // 
-            this.label14.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label14.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label14.Location = new System.Drawing.Point(543, 67);
             this.label14.Name = "label14";
@@ -560,7 +568,7 @@ namespace VKR.PL.NET5
             // 
             // label15
             // 
-            this.label15.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
+            this.label15.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label15.ForeColor = System.Drawing.Color.White;
             this.label15.Location = new System.Drawing.Point(470, 52);
             this.label15.Name = "label15";
@@ -571,7 +579,7 @@ namespace VKR.PL.NET5
             // 
             // label12
             // 
-            this.label12.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label12.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label12.Location = new System.Drawing.Point(428, 67);
             this.label12.Name = "label12";
@@ -582,7 +590,7 @@ namespace VKR.PL.NET5
             // 
             // label13
             // 
-            this.label13.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
+            this.label13.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label13.ForeColor = System.Drawing.Color.White;
             this.label13.Location = new System.Drawing.Point(374, 52);
             this.label13.Name = "label13";
@@ -593,7 +601,7 @@ namespace VKR.PL.NET5
             // 
             // label16
             // 
-            this.label16.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label16.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label16.Location = new System.Drawing.Point(668, 67);
             this.label16.Name = "label16";
@@ -604,7 +612,7 @@ namespace VKR.PL.NET5
             // 
             // batterOPSValue
             // 
-            this.batterOPSValue.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
+            this.batterOPSValue.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.batterOPSValue.ForeColor = System.Drawing.Color.White;
             this.batterOPSValue.Location = new System.Drawing.Point(575, 52);
             this.batterOPSValue.Name = "batterOPSValue";
@@ -615,7 +623,7 @@ namespace VKR.PL.NET5
             // 
             // label10
             // 
-            this.label10.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label10.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label10.Location = new System.Drawing.Point(326, 67);
             this.label10.Name = "label10";
@@ -626,7 +634,7 @@ namespace VKR.PL.NET5
             // 
             // label11
             // 
-            this.label11.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
+            this.label11.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(253, 52);
             this.label11.Name = "label11";
@@ -637,7 +645,7 @@ namespace VKR.PL.NET5
             // 
             // label8
             // 
-            this.label8.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label8.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label8.Location = new System.Drawing.Point(211, 67);
             this.label8.Name = "label8";
@@ -648,7 +656,7 @@ namespace VKR.PL.NET5
             // 
             // label9
             // 
-            this.label9.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
+            this.label9.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(157, 52);
             this.label9.Name = "label9";
@@ -659,7 +667,7 @@ namespace VKR.PL.NET5
             // 
             // label7
             // 
-            this.label7.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label7.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label7.Location = new System.Drawing.Point(98, 67);
             this.label7.Name = "label7";
@@ -670,7 +678,7 @@ namespace VKR.PL.NET5
             // 
             // label6
             // 
-            this.label6.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold);
+            this.label6.Font = new System.Drawing.Font("MicroFLF", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(5, 52);
             this.label6.Name = "label6";
@@ -696,7 +704,7 @@ namespace VKR.PL.NET5
             this.btnChangeBatter.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnChangeBatter.FlatAppearance.BorderSize = 0;
             this.btnChangeBatter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeBatter.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeBatter.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnChangeBatter.ForeColor = System.Drawing.Color.White;
             this.btnChangeBatter.Location = new System.Drawing.Point(795, 0);
             this.btnChangeBatter.Name = "btnChangeBatter";
@@ -709,7 +717,7 @@ namespace VKR.PL.NET5
             // 
             // lblPlayerName
             // 
-            this.lblPlayerName.Font = new System.Drawing.Font("MicroFLF", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerName.Font = new System.Drawing.Font("MicroFLF", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblPlayerName.ForeColor = System.Drawing.Color.White;
             this.lblPlayerName.Location = new System.Drawing.Point(98, 3);
             this.lblPlayerName.Name = "lblPlayerName";
@@ -732,7 +740,7 @@ namespace VKR.PL.NET5
             // 
             // lblPlayerPosition
             // 
-            this.lblPlayerPosition.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerPosition.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblPlayerPosition.ForeColor = System.Drawing.Color.White;
             this.lblPlayerPosition.Location = new System.Drawing.Point(45, 3);
             this.lblPlayerPosition.Name = "lblPlayerPosition";
@@ -744,7 +752,7 @@ namespace VKR.PL.NET5
             // 
             // lblPlayerNumber
             // 
-            this.lblPlayerNumber.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerNumber.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblPlayerNumber.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblPlayerNumber.Location = new System.Drawing.Point(3, 3);
             this.lblPlayerNumber.Name = "lblPlayerNumber";
@@ -759,7 +767,7 @@ namespace VKR.PL.NET5
             this.lbTodayStats.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTodayStats.BackColor = System.Drawing.Color.Black;
-            this.lbTodayStats.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTodayStats.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
             this.lbTodayStats.Location = new System.Drawing.Point(88, 999);
             this.lbTodayStats.Name = "lbTodayStats";
@@ -792,7 +800,7 @@ namespace VKR.PL.NET5
             this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.BackColor = System.Drawing.Color.Gainsboro;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label18.ForeColor = System.Drawing.Color.White;
             this.label18.Location = new System.Drawing.Point(103, 53);
             this.label18.Margin = new System.Windows.Forms.Padding(6, 5, 0, 1);
@@ -806,7 +814,7 @@ namespace VKR.PL.NET5
             // label19
             // 
             this.label19.BackColor = System.Drawing.Color.Gainsboro;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label19.ForeColor = System.Drawing.Color.White;
             this.label19.Location = new System.Drawing.Point(103, 94);
             this.label19.Margin = new System.Windows.Forms.Padding(6, 1, 6, 5);
@@ -837,7 +845,7 @@ namespace VKR.PL.NET5
             // away2
             // 
             this.away2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away2.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.away2.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away2.ForeColor = System.Drawing.Color.White;
             this.away2.Location = new System.Drawing.Point(390, 53);
             this.away2.Margin = new System.Windows.Forms.Padding(0);
@@ -849,7 +857,7 @@ namespace VKR.PL.NET5
             // away3
             // 
             this.away3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away3.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.away3.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away3.ForeColor = System.Drawing.Color.White;
             this.away3.Location = new System.Drawing.Point(435, 53);
             this.away3.Margin = new System.Windows.Forms.Padding(0);
@@ -861,7 +869,7 @@ namespace VKR.PL.NET5
             // away4
             // 
             this.away4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away4.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.away4.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away4.ForeColor = System.Drawing.Color.White;
             this.away4.Location = new System.Drawing.Point(480, 53);
             this.away4.Margin = new System.Windows.Forms.Padding(0);
@@ -873,7 +881,7 @@ namespace VKR.PL.NET5
             // away5
             // 
             this.away5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away5.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.away5.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away5.ForeColor = System.Drawing.Color.White;
             this.away5.Location = new System.Drawing.Point(525, 53);
             this.away5.Margin = new System.Windows.Forms.Padding(0);
@@ -885,7 +893,7 @@ namespace VKR.PL.NET5
             // away6
             // 
             this.away6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away6.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.away6.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away6.ForeColor = System.Drawing.Color.White;
             this.away6.Location = new System.Drawing.Point(570, 53);
             this.away6.Margin = new System.Windows.Forms.Padding(0);
@@ -897,7 +905,7 @@ namespace VKR.PL.NET5
             // away7
             // 
             this.away7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away7.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.away7.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away7.ForeColor = System.Drawing.Color.White;
             this.away7.Location = new System.Drawing.Point(615, 53);
             this.away7.Margin = new System.Windows.Forms.Padding(0);
@@ -909,7 +917,7 @@ namespace VKR.PL.NET5
             // away8
             // 
             this.away8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away8.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.away8.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away8.ForeColor = System.Drawing.Color.White;
             this.away8.Location = new System.Drawing.Point(660, 53);
             this.away8.Margin = new System.Windows.Forms.Padding(0);
@@ -921,7 +929,7 @@ namespace VKR.PL.NET5
             // away9
             // 
             this.away9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away9.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.away9.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away9.ForeColor = System.Drawing.Color.White;
             this.away9.Location = new System.Drawing.Point(705, 53);
             this.away9.Margin = new System.Windows.Forms.Padding(0);
@@ -933,7 +941,7 @@ namespace VKR.PL.NET5
             // away10
             // 
             this.away10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.away10.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.away10.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away10.ForeColor = System.Drawing.Color.White;
             this.away10.Location = new System.Drawing.Point(750, 53);
             this.away10.Margin = new System.Windows.Forms.Padding(0);
@@ -945,7 +953,7 @@ namespace VKR.PL.NET5
             // home10
             // 
             this.home10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home10.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.home10.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home10.ForeColor = System.Drawing.Color.White;
             this.home10.Location = new System.Drawing.Point(750, 94);
             this.home10.Margin = new System.Windows.Forms.Padding(0);
@@ -957,7 +965,7 @@ namespace VKR.PL.NET5
             // home9
             // 
             this.home9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home9.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.home9.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home9.ForeColor = System.Drawing.Color.White;
             this.home9.Location = new System.Drawing.Point(705, 94);
             this.home9.Margin = new System.Windows.Forms.Padding(0);
@@ -969,7 +977,7 @@ namespace VKR.PL.NET5
             // home8
             // 
             this.home8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home8.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.home8.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home8.ForeColor = System.Drawing.Color.White;
             this.home8.Location = new System.Drawing.Point(660, 94);
             this.home8.Margin = new System.Windows.Forms.Padding(0);
@@ -981,7 +989,7 @@ namespace VKR.PL.NET5
             // home7
             // 
             this.home7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home7.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.home7.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home7.ForeColor = System.Drawing.Color.White;
             this.home7.Location = new System.Drawing.Point(615, 94);
             this.home7.Margin = new System.Windows.Forms.Padding(0);
@@ -993,7 +1001,7 @@ namespace VKR.PL.NET5
             // home6
             // 
             this.home6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home6.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.home6.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home6.ForeColor = System.Drawing.Color.White;
             this.home6.Location = new System.Drawing.Point(570, 94);
             this.home6.Margin = new System.Windows.Forms.Padding(0);
@@ -1005,7 +1013,7 @@ namespace VKR.PL.NET5
             // home5
             // 
             this.home5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home5.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.home5.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home5.ForeColor = System.Drawing.Color.White;
             this.home5.Location = new System.Drawing.Point(525, 94);
             this.home5.Margin = new System.Windows.Forms.Padding(0);
@@ -1017,7 +1025,7 @@ namespace VKR.PL.NET5
             // home4
             // 
             this.home4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home4.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.home4.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home4.ForeColor = System.Drawing.Color.White;
             this.home4.Location = new System.Drawing.Point(480, 94);
             this.home4.Margin = new System.Windows.Forms.Padding(0);
@@ -1029,7 +1037,7 @@ namespace VKR.PL.NET5
             // home3
             // 
             this.home3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home3.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.home3.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home3.ForeColor = System.Drawing.Color.White;
             this.home3.Location = new System.Drawing.Point(435, 94);
             this.home3.Margin = new System.Windows.Forms.Padding(0);
@@ -1041,7 +1049,7 @@ namespace VKR.PL.NET5
             // home2
             // 
             this.home2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.home2.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.home2.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home2.ForeColor = System.Drawing.Color.White;
             this.home2.Location = new System.Drawing.Point(390, 94);
             this.home2.Margin = new System.Windows.Forms.Padding(0);
@@ -1053,7 +1061,7 @@ namespace VKR.PL.NET5
             // awayRuns
             // 
             this.awayRuns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.awayRuns.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.awayRuns.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.awayRuns.ForeColor = System.Drawing.Color.White;
             this.awayRuns.Location = new System.Drawing.Point(797, 53);
             this.awayRuns.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
@@ -1065,7 +1073,7 @@ namespace VKR.PL.NET5
             // homeRuns
             // 
             this.homeRuns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.homeRuns.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.homeRuns.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.homeRuns.ForeColor = System.Drawing.Color.White;
             this.homeRuns.Location = new System.Drawing.Point(797, 94);
             this.homeRuns.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
@@ -1077,7 +1085,7 @@ namespace VKR.PL.NET5
             // awayHits
             // 
             this.awayHits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.awayHits.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.awayHits.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.awayHits.ForeColor = System.Drawing.Color.White;
             this.awayHits.Location = new System.Drawing.Point(842, 53);
             this.awayHits.Margin = new System.Windows.Forms.Padding(0);
@@ -1089,7 +1097,7 @@ namespace VKR.PL.NET5
             // homeHits
             // 
             this.homeHits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.homeHits.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.homeHits.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.homeHits.ForeColor = System.Drawing.Color.White;
             this.homeHits.Location = new System.Drawing.Point(842, 94);
             this.homeHits.Margin = new System.Windows.Forms.Padding(0);
@@ -1101,7 +1109,7 @@ namespace VKR.PL.NET5
             // label20
             // 
             this.label20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label20.ForeColor = System.Drawing.Color.White;
             this.label20.Location = new System.Drawing.Point(842, 9);
             this.label20.Margin = new System.Windows.Forms.Padding(0);
@@ -1114,7 +1122,7 @@ namespace VKR.PL.NET5
             // label21
             // 
             this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label21.ForeColor = System.Drawing.Color.White;
             this.label21.Location = new System.Drawing.Point(797, 9);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
@@ -1127,7 +1135,7 @@ namespace VKR.PL.NET5
             // lb9thInning
             // 
             this.lb9thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb9thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb9thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb9thInning.ForeColor = System.Drawing.Color.White;
             this.lb9thInning.Location = new System.Drawing.Point(750, 9);
             this.lb9thInning.Margin = new System.Windows.Forms.Padding(0);
@@ -1140,7 +1148,7 @@ namespace VKR.PL.NET5
             // lb8thInning
             // 
             this.lb8thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb8thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb8thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb8thInning.ForeColor = System.Drawing.Color.White;
             this.lb8thInning.Location = new System.Drawing.Point(705, 9);
             this.lb8thInning.Margin = new System.Windows.Forms.Padding(0);
@@ -1153,7 +1161,7 @@ namespace VKR.PL.NET5
             // lb7thInning
             // 
             this.lb7thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb7thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb7thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb7thInning.ForeColor = System.Drawing.Color.White;
             this.lb7thInning.Location = new System.Drawing.Point(660, 9);
             this.lb7thInning.Margin = new System.Windows.Forms.Padding(0);
@@ -1166,7 +1174,7 @@ namespace VKR.PL.NET5
             // lb6thInning
             // 
             this.lb6thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb6thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb6thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb6thInning.ForeColor = System.Drawing.Color.White;
             this.lb6thInning.Location = new System.Drawing.Point(615, 9);
             this.lb6thInning.Margin = new System.Windows.Forms.Padding(0);
@@ -1179,7 +1187,7 @@ namespace VKR.PL.NET5
             // lb5thInning
             // 
             this.lb5thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb5thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb5thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb5thInning.ForeColor = System.Drawing.Color.White;
             this.lb5thInning.Location = new System.Drawing.Point(570, 9);
             this.lb5thInning.Margin = new System.Windows.Forms.Padding(0);
@@ -1192,7 +1200,7 @@ namespace VKR.PL.NET5
             // lb4thInning
             // 
             this.lb4thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb4thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb4thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb4thInning.ForeColor = System.Drawing.Color.White;
             this.lb4thInning.Location = new System.Drawing.Point(525, 9);
             this.lb4thInning.Margin = new System.Windows.Forms.Padding(0);
@@ -1205,7 +1213,7 @@ namespace VKR.PL.NET5
             // lb3rdInning
             // 
             this.lb3rdInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb3rdInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb3rdInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb3rdInning.ForeColor = System.Drawing.Color.White;
             this.lb3rdInning.Location = new System.Drawing.Point(480, 9);
             this.lb3rdInning.Margin = new System.Windows.Forms.Padding(0);
@@ -1218,7 +1226,7 @@ namespace VKR.PL.NET5
             // lb2ndInning
             // 
             this.lb2ndInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb2ndInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb2ndInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb2ndInning.ForeColor = System.Drawing.Color.White;
             this.lb2ndInning.Location = new System.Drawing.Point(435, 9);
             this.lb2ndInning.Margin = new System.Windows.Forms.Padding(0);
@@ -1231,7 +1239,7 @@ namespace VKR.PL.NET5
             // lb1stInning
             // 
             this.lb1stInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb1stInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lb1stInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb1stInning.ForeColor = System.Drawing.Color.White;
             this.lb1stInning.Location = new System.Drawing.Point(390, 9);
             this.lb1stInning.Margin = new System.Windows.Forms.Padding(0);
@@ -1317,6 +1325,30 @@ namespace VKR.PL.NET5
             this.panelNextAwayBatters.Size = new System.Drawing.Size(250, 105);
             this.panelNextAwayBatters.TabIndex = 1;
             // 
+            // awayNextBatter3
+            // 
+            this.awayNextBatter3.Location = new System.Drawing.Point(0, 62);
+            this.awayNextBatter3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.awayNextBatter3.Name = "awayNextBatter3";
+            this.awayNextBatter3.Size = new System.Drawing.Size(250, 30);
+            this.awayNextBatter3.TabIndex = 50;
+            // 
+            // awayNextBatter2
+            // 
+            this.awayNextBatter2.Location = new System.Drawing.Point(0, 31);
+            this.awayNextBatter2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.awayNextBatter2.Name = "awayNextBatter2";
+            this.awayNextBatter2.Size = new System.Drawing.Size(250, 30);
+            this.awayNextBatter2.TabIndex = 49;
+            // 
+            // awayNextBatter1
+            // 
+            this.awayNextBatter1.Location = new System.Drawing.Point(0, 0);
+            this.awayNextBatter1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.awayNextBatter1.Name = "awayNextBatter1";
+            this.awayNextBatter1.Size = new System.Drawing.Size(250, 30);
+            this.awayNextBatter1.TabIndex = 48;
+            // 
             // AwayTeamNextBatters
             // 
             this.AwayTeamNextBatters.Controls.Add(this.away_DueUP);
@@ -1329,7 +1361,7 @@ namespace VKR.PL.NET5
             // away_DueUP
             // 
             this.away_DueUP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.away_DueUP.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.away_DueUP.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.away_DueUP.ForeColor = System.Drawing.Color.White;
             this.away_DueUP.Location = new System.Drawing.Point(0, 0);
             this.away_DueUP.Name = "away_DueUP";
@@ -1362,6 +1394,30 @@ namespace VKR.PL.NET5
             this.panelNextHomeBatters.Size = new System.Drawing.Size(250, 105);
             this.panelNextHomeBatters.TabIndex = 2;
             // 
+            // homeNextBatter3
+            // 
+            this.homeNextBatter3.Location = new System.Drawing.Point(0, 62);
+            this.homeNextBatter3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.homeNextBatter3.Name = "homeNextBatter3";
+            this.homeNextBatter3.Size = new System.Drawing.Size(250, 30);
+            this.homeNextBatter3.TabIndex = 51;
+            // 
+            // homeNextBatter2
+            // 
+            this.homeNextBatter2.Location = new System.Drawing.Point(0, 31);
+            this.homeNextBatter2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.homeNextBatter2.Name = "homeNextBatter2";
+            this.homeNextBatter2.Size = new System.Drawing.Size(250, 30);
+            this.homeNextBatter2.TabIndex = 50;
+            // 
+            // homeNextBatter1
+            // 
+            this.homeNextBatter1.Location = new System.Drawing.Point(0, 0);
+            this.homeNextBatter1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.homeNextBatter1.Name = "homeNextBatter1";
+            this.homeNextBatter1.Size = new System.Drawing.Size(250, 30);
+            this.homeNextBatter1.TabIndex = 49;
+            // 
             // homeTeamNextBatters
             // 
             this.homeTeamNextBatters.Controls.Add(this.home_DueUP);
@@ -1374,7 +1430,7 @@ namespace VKR.PL.NET5
             // home_DueUP
             // 
             this.home_DueUP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.home_DueUP.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.home_DueUP.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.home_DueUP.ForeColor = System.Drawing.Color.White;
             this.home_DueUP.Location = new System.Drawing.Point(0, 0);
             this.home_DueUP.Name = "home_DueUP";
@@ -1386,7 +1442,7 @@ namespace VKR.PL.NET5
             // 
             // label23
             // 
-            this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label23.ForeColor = System.Drawing.Color.Gainsboro;
             this.label23.Location = new System.Drawing.Point(305, 98);
             this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -1398,7 +1454,7 @@ namespace VKR.PL.NET5
             // 
             // label22
             // 
-            this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label22.ForeColor = System.Drawing.Color.Gainsboro;
             this.label22.Location = new System.Drawing.Point(305, 57);
             this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -1411,7 +1467,7 @@ namespace VKR.PL.NET5
             // label28
             // 
             this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.label28.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label28.ForeColor = System.Drawing.Color.White;
             this.label28.Location = new System.Drawing.Point(887, 9);
             this.label28.Margin = new System.Windows.Forms.Padding(0);
@@ -1425,7 +1481,7 @@ namespace VKR.PL.NET5
             // awayLOB
             // 
             this.awayLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.awayLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.awayLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.awayLOB.ForeColor = System.Drawing.Color.White;
             this.awayLOB.Location = new System.Drawing.Point(887, 53);
             this.awayLOB.Margin = new System.Windows.Forms.Padding(0);
@@ -1438,7 +1494,7 @@ namespace VKR.PL.NET5
             // homeLOB
             // 
             this.homeLOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.homeLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold);
+            this.homeLOB.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.homeLOB.ForeColor = System.Drawing.Color.White;
             this.homeLOB.Location = new System.Drawing.Point(887, 94);
             this.homeLOB.Margin = new System.Windows.Forms.Padding(0);
@@ -1486,7 +1542,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherGS
             // 
-            this.PitcherGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherGS.ForeColor = System.Drawing.Color.White;
             this.PitcherGS.Location = new System.Drawing.Point(166, 76);
             this.PitcherGS.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1499,7 +1555,7 @@ namespace VKR.PL.NET5
             // labelGS
             // 
             this.labelGS.AutoSize = true;
-            this.labelGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGS.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelGS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.labelGS.Location = new System.Drawing.Point(10, 76);
             this.labelGS.Name = "labelGS";
@@ -1509,7 +1565,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherRecord
             // 
-            this.PitcherRecord.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherRecord.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherRecord.ForeColor = System.Drawing.Color.White;
             this.PitcherRecord.Location = new System.Drawing.Point(166, 91);
             this.PitcherRecord.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1522,7 +1578,7 @@ namespace VKR.PL.NET5
             // labelRecord
             // 
             this.labelRecord.AutoSize = true;
-            this.labelRecord.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRecord.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.labelRecord.Location = new System.Drawing.Point(10, 91);
             this.labelRecord.Name = "labelRecord";
@@ -1532,7 +1588,7 @@ namespace VKR.PL.NET5
             // 
             // label26
             // 
-            this.label26.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label26.Location = new System.Drawing.Point(109, 46);
             this.label26.Name = "label26";
@@ -1543,7 +1599,7 @@ namespace VKR.PL.NET5
             // 
             // label25
             // 
-            this.label25.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label25.Location = new System.Drawing.Point(174, 46);
             this.label25.Name = "label25";
@@ -1554,7 +1610,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherHomeRunsToday
             // 
-            this.PitcherHomeRunsToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherHomeRunsToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherHomeRunsToday.ForeColor = System.Drawing.Color.White;
             this.PitcherHomeRunsToday.Location = new System.Drawing.Point(126, 166);
             this.PitcherHomeRunsToday.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1566,7 +1622,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherStrikeoutsToday
             // 
-            this.PitcherStrikeoutsToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherStrikeoutsToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherStrikeoutsToday.ForeColor = System.Drawing.Color.White;
             this.PitcherStrikeoutsToday.Location = new System.Drawing.Point(126, 151);
             this.PitcherStrikeoutsToday.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1578,7 +1634,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherWalksToday
             // 
-            this.PitcherWalksToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherWalksToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherWalksToday.ForeColor = System.Drawing.Color.White;
             this.PitcherWalksToday.Location = new System.Drawing.Point(126, 136);
             this.PitcherWalksToday.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1590,7 +1646,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherIPToday
             // 
-            this.PitcherIPToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherIPToday.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherIPToday.ForeColor = System.Drawing.Color.White;
             this.PitcherIPToday.Location = new System.Drawing.Point(126, 121);
             this.PitcherIPToday.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1602,7 +1658,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherBAA
             // 
-            this.PitcherBAA.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherBAA.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherBAA.ForeColor = System.Drawing.Color.White;
             this.PitcherBAA.Location = new System.Drawing.Point(166, 196);
             this.PitcherBAA.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1614,7 +1670,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherWHIP
             // 
-            this.PitcherWHIP.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherWHIP.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherWHIP.ForeColor = System.Drawing.Color.White;
             this.PitcherWHIP.Location = new System.Drawing.Point(166, 181);
             this.PitcherWHIP.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1626,7 +1682,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherHomeRuns
             // 
-            this.PitcherHomeRuns.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherHomeRuns.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherHomeRuns.ForeColor = System.Drawing.Color.White;
             this.PitcherHomeRuns.Location = new System.Drawing.Point(166, 166);
             this.PitcherHomeRuns.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1638,7 +1694,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherStrikeouts
             // 
-            this.PitcherStrikeouts.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherStrikeouts.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherStrikeouts.ForeColor = System.Drawing.Color.White;
             this.PitcherStrikeouts.Location = new System.Drawing.Point(166, 151);
             this.PitcherStrikeouts.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1650,7 +1706,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherWalks
             // 
-            this.PitcherWalks.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherWalks.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherWalks.ForeColor = System.Drawing.Color.White;
             this.PitcherWalks.Location = new System.Drawing.Point(166, 136);
             this.PitcherWalks.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1662,7 +1718,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherIP
             // 
-            this.PitcherIP.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherIP.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherIP.ForeColor = System.Drawing.Color.White;
             this.PitcherIP.Location = new System.Drawing.Point(166, 121);
             this.PitcherIP.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1674,7 +1730,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherERA
             // 
-            this.PitcherERA.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherERA.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherERA.ForeColor = System.Drawing.Color.White;
             this.PitcherERA.Location = new System.Drawing.Point(166, 106);
             this.PitcherERA.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1686,7 +1742,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherGames
             // 
-            this.PitcherGames.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherGames.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherGames.ForeColor = System.Drawing.Color.White;
             this.PitcherGames.Location = new System.Drawing.Point(166, 61);
             this.PitcherGames.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
@@ -1699,7 +1755,7 @@ namespace VKR.PL.NET5
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label43.Location = new System.Drawing.Point(10, 196);
             this.label43.Name = "label43";
@@ -1710,7 +1766,7 @@ namespace VKR.PL.NET5
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label42.Location = new System.Drawing.Point(10, 181);
             this.label42.Name = "label42";
@@ -1721,7 +1777,7 @@ namespace VKR.PL.NET5
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label41.Location = new System.Drawing.Point(10, 166);
             this.label41.Name = "label41";
@@ -1732,7 +1788,7 @@ namespace VKR.PL.NET5
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label40.Location = new System.Drawing.Point(10, 151);
             this.label40.Name = "label40";
@@ -1743,7 +1799,7 @@ namespace VKR.PL.NET5
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label39.Location = new System.Drawing.Point(10, 136);
             this.label39.Name = "label39";
@@ -1754,7 +1810,7 @@ namespace VKR.PL.NET5
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label38.Location = new System.Drawing.Point(10, 121);
             this.label38.Name = "label38";
@@ -1765,7 +1821,7 @@ namespace VKR.PL.NET5
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.label35.Location = new System.Drawing.Point(10, 106);
             this.label35.Name = "label35";
@@ -1775,7 +1831,7 @@ namespace VKR.PL.NET5
             // 
             // labelGames
             // 
-            this.labelGames.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGames.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelGames.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.labelGames.Location = new System.Drawing.Point(10, 61);
             this.labelGames.Name = "labelGames";
@@ -1795,7 +1851,7 @@ namespace VKR.PL.NET5
             // 
             // PitcherName
             // 
-            this.PitcherName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PitcherName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PitcherName.ForeColor = System.Drawing.Color.White;
             this.PitcherName.Location = new System.Drawing.Point(46, 3);
             this.PitcherName.Name = "PitcherName";
@@ -1838,7 +1894,7 @@ namespace VKR.PL.NET5
             // 
             this.lb_Runner2_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb_Runner2_Name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Runner2_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Runner2_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb_Runner2_Name.ForeColor = System.Drawing.Color.Gainsboro;
             this.lb_Runner2_Name.Location = new System.Drawing.Point(0, 23);
             this.lb_Runner2_Name.Name = "lb_Runner2_Name";
@@ -1860,7 +1916,7 @@ namespace VKR.PL.NET5
             // lb2ndBase
             // 
             this.lb2ndBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb2ndBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb2ndBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb2ndBase.ForeColor = System.Drawing.Color.White;
             this.lb2ndBase.Location = new System.Drawing.Point(0, 0);
             this.lb2ndBase.Name = "lb2ndBase";
@@ -1893,7 +1949,7 @@ namespace VKR.PL.NET5
             // 
             this.lb_Runner1_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb_Runner1_Name.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lb_Runner1_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Runner1_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb_Runner1_Name.ForeColor = System.Drawing.Color.Gainsboro;
             this.lb_Runner1_Name.Location = new System.Drawing.Point(0, 23);
             this.lb_Runner1_Name.Name = "lb_Runner1_Name";
@@ -1915,7 +1971,7 @@ namespace VKR.PL.NET5
             // lb1stBase
             // 
             this.lb1stBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb1stBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb1stBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb1stBase.ForeColor = System.Drawing.Color.White;
             this.lb1stBase.Location = new System.Drawing.Point(0, 0);
             this.lb1stBase.Name = "lb1stBase";
@@ -1947,7 +2003,7 @@ namespace VKR.PL.NET5
             // 
             this.lb_Runner3_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb_Runner3_Name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Runner3_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Runner3_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb_Runner3_Name.ForeColor = System.Drawing.Color.Gainsboro;
             this.lb_Runner3_Name.Location = new System.Drawing.Point(0, 23);
             this.lb_Runner3_Name.Name = "lb_Runner3_Name";
@@ -1968,7 +2024,7 @@ namespace VKR.PL.NET5
             // lb3rdBase
             // 
             this.lb3rdBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb3rdBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb3rdBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb3rdBase.ForeColor = System.Drawing.Color.White;
             this.lb3rdBase.Location = new System.Drawing.Point(0, 0);
             this.lb3rdBase.Name = "lb3rdBase";
@@ -1989,7 +2045,7 @@ namespace VKR.PL.NET5
             // label32
             // 
             this.label32.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label32.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.label32.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label32.Location = new System.Drawing.Point(0, 0);
             this.label32.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.label32.MaximumSize = new System.Drawing.Size(140, 31);
@@ -2003,7 +2059,7 @@ namespace VKR.PL.NET5
             // label44
             // 
             this.label44.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label44.Font = new System.Drawing.Font("MicroFLF", 14F);
+            this.label44.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label44.ForeColor = System.Drawing.Color.White;
             this.label44.Location = new System.Drawing.Point(520, 0);
             this.label44.MaximumSize = new System.Drawing.Size(400, 31);
@@ -2019,7 +2075,7 @@ namespace VKR.PL.NET5
             this.btnBuntAttempt.BackColor = System.Drawing.Color.Gainsboro;
             this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
             this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuntAttempt.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuntAttempt.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnBuntAttempt.Location = new System.Drawing.Point(388, 10);
             this.btnBuntAttempt.Name = "btnBuntAttempt";
             this.btnBuntAttempt.Size = new System.Drawing.Size(300, 35);
@@ -2034,7 +2090,7 @@ namespace VKR.PL.NET5
             this.btnStandings.BackColor = System.Drawing.Color.Gainsboro;
             this.btnStandings.FlatAppearance.BorderSize = 0;
             this.btnStandings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStandings.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStandings.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnStandings.Location = new System.Drawing.Point(12, 144);
             this.btnStandings.Name = "btnStandings";
             this.btnStandings.Size = new System.Drawing.Size(300, 35);
@@ -2048,7 +2104,7 @@ namespace VKR.PL.NET5
             this.btnShowAvailablePitchers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShowAvailablePitchers.FlatAppearance.BorderSize = 0;
             this.btnShowAvailablePitchers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowAvailablePitchers.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowAvailablePitchers.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnShowAvailablePitchers.ForeColor = System.Drawing.Color.White;
             this.btnShowAvailablePitchers.Location = new System.Drawing.Point(1033, 386);
             this.btnShowAvailablePitchers.Name = "btnShowAvailablePitchers";
@@ -2065,7 +2121,7 @@ namespace VKR.PL.NET5
             this.btnOtherResults.BackColor = System.Drawing.Color.Gainsboro;
             this.btnOtherResults.FlatAppearance.BorderSize = 0;
             this.btnOtherResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOtherResults.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOtherResults.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnOtherResults.Location = new System.Drawing.Point(12, 185);
             this.btnOtherResults.Name = "btnOtherResults";
             this.btnOtherResults.Size = new System.Drawing.Size(300, 35);
@@ -2079,7 +2135,7 @@ namespace VKR.PL.NET5
             this.btnPlayerStats.BackColor = System.Drawing.Color.Gainsboro;
             this.btnPlayerStats.FlatAppearance.BorderSize = 0;
             this.btnPlayerStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlayerStats.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlayerStats.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnPlayerStats.Location = new System.Drawing.Point(12, 226);
             this.btnPlayerStats.Name = "btnPlayerStats";
             this.btnPlayerStats.Size = new System.Drawing.Size(300, 35);
@@ -2102,7 +2158,7 @@ namespace VKR.PL.NET5
             // label27
             // 
             this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label27.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Bold);
+            this.label27.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(155, 0);
             this.label27.Name = "label27";
@@ -2132,7 +2188,7 @@ namespace VKR.PL.NET5
             this.btnTeamStats.BackColor = System.Drawing.Color.Gainsboro;
             this.btnTeamStats.FlatAppearance.BorderSize = 0;
             this.btnTeamStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTeamStats.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeamStats.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTeamStats.Location = new System.Drawing.Point(12, 267);
             this.btnTeamStats.Name = "btnTeamStats";
             this.btnTeamStats.Size = new System.Drawing.Size(300, 35);
@@ -2147,7 +2203,7 @@ namespace VKR.PL.NET5
             this.btnManualMode.BackColor = System.Drawing.Color.Gainsboro;
             this.btnManualMode.FlatAppearance.BorderSize = 0;
             this.btnManualMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnManualMode.Location = new System.Drawing.Point(413, 750);
             this.btnManualMode.Name = "btnManualMode";
             this.btnManualMode.Size = new System.Drawing.Size(300, 35);
@@ -2167,7 +2223,7 @@ namespace VKR.PL.NET5
             this.btnAutoMode.BackColor = System.Drawing.Color.Gainsboro;
             this.btnAutoMode.FlatAppearance.BorderSize = 0;
             this.btnAutoMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAutoMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAutoMode.Location = new System.Drawing.Point(719, 750);
             this.btnAutoMode.Name = "btnAutoMode";
             this.btnAutoMode.Size = new System.Drawing.Size(300, 35);
@@ -2187,55 +2243,6 @@ namespace VKR.PL.NET5
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(770, 55);
             this.panel1.TabIndex = 67;
-            // 
-            // currentBatter
-            // 
-            this.currentBatter.Location = new System.Drawing.Point(0, 36);
-            this.currentBatter.Name = "currentBatter";
-            this.currentBatter.Size = new System.Drawing.Size(250, 30);
-            this.currentBatter.TabIndex = 68;
-            // 
-            // awayNextBatter3
-            // 
-            this.awayNextBatter3.Location = new System.Drawing.Point(0, 62);
-            this.awayNextBatter3.Name = "awayNextBatter3";
-            this.awayNextBatter3.Size = new System.Drawing.Size(250, 30);
-            this.awayNextBatter3.TabIndex = 50;
-            // 
-            // awayNextBatter2
-            // 
-            this.awayNextBatter2.Location = new System.Drawing.Point(0, 31);
-            this.awayNextBatter2.Name = "awayNextBatter2";
-            this.awayNextBatter2.Size = new System.Drawing.Size(250, 30);
-            this.awayNextBatter2.TabIndex = 49;
-            // 
-            // awayNextBatter1
-            // 
-            this.awayNextBatter1.Location = new System.Drawing.Point(0, 0);
-            this.awayNextBatter1.Name = "awayNextBatter1";
-            this.awayNextBatter1.Size = new System.Drawing.Size(250, 30);
-            this.awayNextBatter1.TabIndex = 48;
-            // 
-            // homeNextBatter3
-            // 
-            this.homeNextBatter3.Location = new System.Drawing.Point(0, 62);
-            this.homeNextBatter3.Name = "homeNextBatter3";
-            this.homeNextBatter3.Size = new System.Drawing.Size(250, 30);
-            this.homeNextBatter3.TabIndex = 51;
-            // 
-            // homeNextBatter2
-            // 
-            this.homeNextBatter2.Location = new System.Drawing.Point(0, 31);
-            this.homeNextBatter2.Name = "homeNextBatter2";
-            this.homeNextBatter2.Size = new System.Drawing.Size(250, 30);
-            this.homeNextBatter2.TabIndex = 50;
-            // 
-            // homeNextBatter1
-            // 
-            this.homeNextBatter1.Location = new System.Drawing.Point(0, 0);
-            this.homeNextBatter1.Name = "homeNextBatter1";
-            this.homeNextBatter1.Size = new System.Drawing.Size(250, 30);
-            this.homeNextBatter1.TabIndex = 49;
             // 
             // MainForm
             // 
@@ -2270,6 +2277,7 @@ namespace VKR.PL.NET5
             this.Controls.Add(this.panelCurrentSituation);
             this.Controls.Add(this.panelLastAtBat);
             this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1339, 1000);
             this.Name = "MainForm";

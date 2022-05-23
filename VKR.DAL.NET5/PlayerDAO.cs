@@ -355,8 +355,7 @@ namespace VKR.DAL.NET5
 
                 yield return new Batter(id, firstName, secondName, number, placeOfBirth, dateOfBirth,
                     battingHand, pitchingHand, teamID, inActiveRoster, Position, batter.NumberInBattingLineup,
-                    batting,
-                    pitching);
+                    batting, pitching);
             }
         }
         public BattingStats GetBattingStatsForPlayer(SqlDataReader reader)

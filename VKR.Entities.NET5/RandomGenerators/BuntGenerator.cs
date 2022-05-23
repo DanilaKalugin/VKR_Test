@@ -26,10 +26,7 @@ namespace Entities.NET5
             if (buntRandomValue <= successfulBuntAttemptProbabilty - batterNumberComponent * 15)
                 return BuntResult.SuccessfulBunt;
 
-            if (buntRandomValue <= hitByPitchProbability / 3)
-                return BuntResult.SingleOnBunt;
-
-            return BuntResult.HitByPitch;
+            return buntRandomValue <= hitByPitchProbability / 3 ? BuntResult.SingleOnBunt : BuntResult.HitByPitch;
         }
 
         /// <summary>
@@ -63,21 +60,15 @@ namespace Entities.NET5
         {
             if (otherCondition != OtherCondition.NoOtherCondition) return PitchResult.DoublePlay;
 
-            switch (newBuntResult)
+            return newBuntResult switch
             {
-                case BuntResult.FoulOnBunt:
-                    return PitchResult.Strike;
-                case BuntResult.SuccessfulBunt:
-                    return PitchResult.SacrificeBunt;
-                case BuntResult.SingleOnBunt:
-                    return PitchResult.Single;
-                case BuntResult.HitByPitch:
-                    return PitchResult.HitByPitch;
-                case BuntResult.Ball:
-                    return PitchResult.Ball;
-                default:
-                    return PitchResult.Null;
-            }
+                BuntResult.FoulOnBunt => PitchResult.Strike,
+                BuntResult.SuccessfulBunt => PitchResult.SacrificeBunt,
+                BuntResult.SingleOnBunt => PitchResult.Single,
+                BuntResult.HitByPitch => PitchResult.HitByPitch,
+                BuntResult.Ball => PitchResult.Ball,
+                _ => PitchResult.Null
+            };
         }
 
         static BuntGenerator()

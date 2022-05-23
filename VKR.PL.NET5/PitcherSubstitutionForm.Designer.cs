@@ -1,9 +1,8 @@
-﻿
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
 using ProgressBar = ExtendedDotNET.Controls.Progress.ProgressBar;
 
-namespace VKR_Test
+namespace VKR.PL.NET5
 {
     partial class PitcherSubstitutionForm
     {

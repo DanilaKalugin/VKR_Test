@@ -121,10 +121,10 @@ namespace VKR.DAL.NET5
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                var W = (int)reader["W"];
-                var L = (int)reader["L"];
+                var w = (int)reader["W"];
+                var l = (int)reader["L"];
 
-                yield return ValueTuple.Create(W, L);
+                yield return ValueTuple.Create(w, l);
             }
         }
 
@@ -139,10 +139,10 @@ namespace VKR.DAL.NET5
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                var Red = (int)reader["RedComponent"];
-                var Green = (int)reader["GreenComponent"];
-                var Blue = (int)reader["BlueComponent"];
-                yield return Color.FromArgb(Red, Green, Blue);
+                var red = (int)reader["RedComponent"];
+                var green = (int)reader["GreenComponent"];
+                var blue = (int)reader["BlueComponent"];
+                yield return Color.FromArgb(red, green, blue);
             }
         }
 

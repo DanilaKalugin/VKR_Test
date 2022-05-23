@@ -11,14 +11,14 @@ namespace VKR.BLL.NET5
         private readonly TeamsDAO _teamsDAO = new();
         private List<Player> _players;
 
-        public List<Player> GetBattersStats(string TeamFilter = "MLB", string Qualifying = "Qualified Players", string Positions = "")
+        public List<Player> GetBattersStats(string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
         {
             _players = _playerDAO.GetAllPlayers().ToList();
             var abbreviations = GetTeamsForFilter(TeamFilter);
             var fplayers = _players.Where(player => abbreviations.Contains(player.Team)).ToList();
             
-            if (Positions != "")
-                if (Positions == "OF")
+            if (positions != "")
+                if (positions == "OF")
                 {
                     var lf = fplayers.Where(batter => batter.PlayerPositions.Contains("LF")).ToList();
                     var cf = fplayers.Where(batter => batter.PlayerPositions.Contains("CF")).ToList();
@@ -26,35 +26,31 @@ namespace VKR.BLL.NET5
                     fplayers = lf.Union(cf).Union(rf).Distinct().ToList();
                 }
                 else
-                    fplayers = fplayers.Where(player => player.PlayerPositions.Contains(Positions)).ToList();
+                    fplayers = fplayers.Where(player => player.PlayerPositions.Contains(positions)).ToList();
 
-            switch (Qualifying)
+            fplayers = qualifying switch
             {
-                case "Qualified Players":
-                    fplayers = fplayers.Where(player => (double)player.BattingStats.PA / player.BattingStats.TGP >= 3.1 && player.Team != "").ToList();
-                    break;
-                case "Active Players":
-                    fplayers = fplayers.Where(player => player.InActiveRoster).ToList();
-                    break;
-            }
+                "Qualified Players" => fplayers.Where(player => (double)player.BattingStats.PA / player.BattingStats.TGP >= 3.1 && player.Team != "").ToList(),
+                "Active Players" => fplayers.Where(player => player.InActiveRoster).ToList(),
+                _ => fplayers
+            };
+
             return fplayers;
         }
 
-        public List<Player> GetPitchersStats(string Qualifying = "Qualified Players", string TeamFilter = "MLB")
+        public List<Player> GetPitchersStats(string qualifying = "Qualified Players", string teamFilter = "MLB")
         {
             _players = _playerDAO.GetAllPlayers().ToList();
-            var abbreviations = GetTeamsForFilter(TeamFilter);
+            var abbreviations = GetTeamsForFilter(teamFilter);
             var fplayers = _players.Where(player => abbreviations.Contains(player.Team)).ToList();
-            
-            switch (Qualifying)
+
+            fplayers = qualifying switch
             {
-                case "Qualified Players":
-                    fplayers = fplayers.Where(player => player.PitchingStats.IP / player.PitchingStats.Tgp >= 1.1 && player.Team != "").ToList();
-                    break;
-                case "Active Players":
-                    fplayers = fplayers.Where(player => player.InActiveRoster && player.PlayerPositions.IndexOf("P") != -1).ToList();
-                    break;
-            }
+                "Qualified Players" => fplayers.Where(player => player.PitchingStats.IP / player.PitchingStats.Tgp >= 1.1 && player.Team != "").ToList(),
+                "Active Players" => fplayers.Where(player => player.InActiveRoster && player.PlayerPositions.Contains("P")).ToList(),
+                _ => fplayers
+            };
+
             return fplayers;
         }
 
@@ -82,8 +78,7 @@ namespace VKR.BLL.NET5
 
         public List<List<List<PlayerInLineup>>> GetRoster(string rosterType)
         {
-            List<PlayerInLineup> ungroupedPlayers;
-            ungroupedPlayers = rosterType == "GetStartingLineups" ? _playerDAO.GetStartingLineups().ToList() : _playerDAO.GetRoster(rosterType).ToList();
+            List<PlayerInLineup> ungroupedPlayers = rosterType == "GetStartingLineups" ? _playerDAO.GetStartingLineups().ToList() : _playerDAO.GetRoster(rosterType).ToList();
             
             foreach (var playerInLineup in ungroupedPlayers)
                 playerInLineup.PlayerPositions = _playerDAO.GetPositionsForThisPlayer(playerInLineup.Id).ToList();
@@ -125,7 +120,7 @@ namespace VKR.BLL.NET5
 
         public List<PlayerPosition> GetPlayerPositions() => _playerDAO.GetPlayerPositions().ToList();
 
-        public List<Batter> GetCurrentLineupForThisMatch(string Team, int Match) => _playerDAO.GetCurrentLineupForThisMatch(Team, Match).ToList();
+        public List<Batter> GetCurrentLineupForThisMatch(string team, int match) => _playerDAO.GetCurrentLineupForThisMatch(team, match).ToList();
 
         public void UpdateStatsForThisPitcher(Pitcher pitcher, Match match)
         {

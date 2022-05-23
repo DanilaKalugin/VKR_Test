@@ -107,8 +107,8 @@ namespace VKR.PL.NET5
                 }
                 else
                 {
-                    var currentbatter = batters.First(batter => batter.FullName == dgvBattingLeaders.Rows[i].Cells[2].Value.ToString());
-                    var manTeam = teams.First(team => team.TeamAbbreviation == currentbatter.Team);
+                    var currentBatter = batters.First(batter => batter.FullName == dgvBattingLeaders.Rows[i].Cells[2].Value.ToString());
+                    var manTeam = teams.First(team => team.TeamAbbreviation == currentBatter.Team);
                     dgvBattingLeaders.Rows[i].Cells[1].Style.BackColor = manTeam.TeamColor[0];
                     dgvBattingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = manTeam.TeamColor[0];
                 }
@@ -140,9 +140,9 @@ namespace VKR.PL.NET5
                     }
                     else currentPlayer = pitchersWithThisValue.First();
 
-                    var ManTeam = teams.First(team => team.TeamAbbreviation == currentPlayer.Team);
-                    dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = ManTeam.TeamColor[0];
-                    dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = ManTeam.TeamColor[0];
+                    var manTeam = teams.First(team => team.TeamAbbreviation == currentPlayer.Team);
+                    dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = manTeam.TeamColor[0];
+                    dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = manTeam.TeamColor[0];
                 }
                 else
                 {

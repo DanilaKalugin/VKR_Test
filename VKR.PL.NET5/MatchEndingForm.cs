@@ -105,7 +105,7 @@ namespace VKR.PL.NET5
 
         private void MatchResultForPitcherAnalysis(Match endedMatch, Team awayTeam)
         {
-            var WinningTeam = endedMatch.GameSituations.Last().AwayTeamRuns > endedMatch.GameSituations.Last().HomeTeamRuns ? endedMatch.AwayTeam : endedMatch.HomeTeam;
+            var winningTeam = endedMatch.GameSituations.Last().AwayTeamRuns > endedMatch.GameSituations.Last().HomeTeamRuns ? endedMatch.AwayTeam : endedMatch.HomeTeam;
 
             var results = awayTeam.PitchersPlayedInMatch.Select(pitcher => new PitcherResults(pitcher.Id, awayTeam.TeamAbbreviation, endedMatch.MatchID)).ToList();
 
@@ -119,7 +119,7 @@ namespace VKR.PL.NET5
 
             if (awayTeam.PitchersPlayedInMatch.Count == 1)
             {
-                if (awayTeam.TeamAbbreviation == WinningTeam.TeamAbbreviation)
+                if (awayTeam.TeamAbbreviation == winningTeam.TeamAbbreviation)
                 {
                     results[0].MatchResult = results[0].IsCompleteGame ? PitcherResults.MatchResultForPitcher.Win : PitcherResults.MatchResultForPitcher.NoDecision;
                     WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].PitchingStats.Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].PitchingStats.Losses})";
@@ -136,12 +136,12 @@ namespace VKR.PL.NET5
             }
             else
             {
-                var leadersAfyerEachAtBat = endedMatch.GetMatchLeaderAfterEachPitch();
-                var winningPitchId = Array.FindLastIndex(leadersAfyerEachAtBat.ToArray(), leader => leader != WinningTeam.TeamAbbreviation);
+                var leadersAfterEachAtBat = endedMatch.GetMatchLeaderAfterEachPitch();
+                var winningPitchId = Array.FindLastIndex(leadersAfterEachAtBat.ToArray(), leader => leader != winningTeam.TeamAbbreviation);
                 var winningPitch = endedMatch.GameSituations[winningPitchId + 1];
                 var losingPitcherId = winningPitch.PitcherID;
 
-                if (awayTeam.TeamAbbreviation == WinningTeam.TeamAbbreviation)
+                if (awayTeam.TeamAbbreviation == winningTeam.TeamAbbreviation)
                 {
                     var inningNumber = winningPitch.InningNumber;
                     var winningPitcherId = endedMatch.GameSituations.First(gs => gs.InningNumber == inningNumber && gs.Offense.TeamAbbreviation != awayTeam.TeamAbbreviation && gs.Id > 0).PitcherID;

@@ -9,11 +9,9 @@ namespace VKR.PL.NET5
 
         private void btnDeployingAccepted_Click(object sender, EventArgs e)
         {
-            using (var form = new NewConnectionForm())
-            {
-                Visible = false;
-                form.ShowDialog();
-            }
+            Visible = false;
+            using var form = new NewConnectionForm();
+            form.ShowDialog();
         }
 
         private void btnDeployingDenied_Click(object sender, EventArgs e) => Application.Exit();

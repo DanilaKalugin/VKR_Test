@@ -75,8 +75,8 @@ namespace VKR.PL.NET5
                     _sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] = _sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Ascending && _lastBattingSort == dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3 ? SortMode.Descending : SortMode.Ascending;
                 else
                     _sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] = _sortModes[0][dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3] == SortMode.Descending && _lastBattingSort == dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3 ? SortMode.Ascending : SortMode.Descending;
-
                 _lastBattingSort = dataGridView1.ColumnCount - 3 + e.ColumnIndex - 3;
+
             }
 
             GetSortedListsBySortingCodes(_lastBattingSort, _lastPitchingSort, _objects);
@@ -134,7 +134,7 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.WalksAllowed,
                 pitcher => pitcher.PitchingStats.Strikeouts,
                 pitcher => pitcher.PitchingStats.WHIP,
-                pitcher => pitcher.PitchingStats.Baa,
+                pitcher => pitcher.PitchingStats.BAA,
                 pitcher => pitcher.PitchingStats.TotalBattersFaced,
                 pitcher => pitcher.PitchingStats.QualityStarts,
                 pitcher => pitcher.PitchingStats.Holds,
@@ -197,7 +197,7 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.WalksAllowed,
                 pitcher => pitcher.PitchingStats.Strikeouts,
                 pitcher => pitcher.PitchingStats.WHIP,
-                pitcher => pitcher.PitchingStats.Baa,
+                pitcher => pitcher.PitchingStats.BAA,
                 pitcher => pitcher.PitchingStats.TotalBattersFaced,
                 pitcher => pitcher.PitchingStats.QualityStarts,
                 pitcher => pitcher.PitchingStats.Holds,
@@ -352,7 +352,7 @@ namespace VKR.PL.NET5
                                             pitchers[i].PitchingStats.WalksAllowed,
                                             pitchers[i].PitchingStats.Strikeouts,
                                             pitchers[i].PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US")),
-                                            pitchers[i].PitchingStats.Baa.ToString("#.000", new CultureInfo("en-US")));
+                                            pitchers[i].PitchingStats.BAA.ToString("#.000", new CultureInfo("en-US")));
                     GetCorrectColorForCell(dataGridView3, i, pitchers[i].Team);
 
                     dataGridView4.Rows.Add(i + 1,
@@ -434,7 +434,7 @@ namespace VKR.PL.NET5
                                             teamPitching[i].PitchingStats.WalksAllowed,
                                             teamPitching[i].PitchingStats.Strikeouts,
                                             teamPitching[i].PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US")),
-                                            teamPitching[i].PitchingStats.Baa.ToString("#.000", new CultureInfo("en-US")));
+                                            teamPitching[i].PitchingStats.BAA.ToString("#.000", new CultureInfo("en-US")));
                     GetCorrectColorForCell(dataGridView3, i, teamPitching[i].TeamAbbreviation);
 
                     dataGridView4.Rows.Add(i + 1,

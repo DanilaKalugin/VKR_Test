@@ -36,12 +36,13 @@ namespace Entities.NET5
                                                    OutType outType = OutType.NoResult,
                                                    OtherCondition otherCondition = OtherCondition.NoOtherCondition)
         {
-            if (gettingIntoStrikeZoneResult == GettingIntoStrikeZoneTypeOfResult.HitByPitch)
-                return PitchResult.HitByPitch;
-
-            if (gettingIntoStrikeZoneResult == GettingIntoStrikeZoneTypeOfResult.BallIsOutOfTheStrikeZone &&
-                swingResult == SwingResultType.NoSwing)
-                return PitchResult.Ball;
+            switch (gettingIntoStrikeZoneResult)
+            {
+                case GettingIntoStrikeZoneTypeOfResult.HitByPitch:
+                    return PitchResult.HitByPitch;
+                case GettingIntoStrikeZoneTypeOfResult.BallIsOutOfTheStrikeZone when swingResult == SwingResultType.NoSwing:
+                    return PitchResult.Ball;
+            }
 
             if ((gettingIntoStrikeZoneResult == GettingIntoStrikeZoneTypeOfResult.BallInTheStrikeZone && swingResult == SwingResultType.NoSwing) ||
                 (swingResult == SwingResultType.Swing && hittingResult == HittingResultType.Miss))
@@ -49,51 +50,36 @@ namespace Entities.NET5
 
             if (outType == OutType.NoResult)
             {
-                switch (hitTypeResult)
+                return hitTypeResult switch
                 {
-                    case HitType.Foul:
-                        return PitchResult.Foul;
-                    case HitType.Single:
-                        return PitchResult.Single;
-                    case HitType.Double:
-                        return PitchResult.Double;
-                    case HitType.GroundRuleDouble:
-                        return PitchResult.GroundRuleDouble;
-                    case HitType.Triple:
-                        return PitchResult.Triple;
-                    case HitType.HomeRun:
-                        return PitchResult.HomeRun;
-                    default:
-                        return PitchResult.Null;
-                }
+                    HitType.Foul => PitchResult.Foul,
+                    HitType.Single => PitchResult.Single,
+                    HitType.Double => PitchResult.Double,
+                    HitType.GroundRuleDouble => PitchResult.GroundRuleDouble,
+                    HitType.Triple => PitchResult.Triple,
+                    HitType.HomeRun => PitchResult.HomeRun,
+                    _ => PitchResult.Null
+                };
             }
 
             if (otherCondition == OtherCondition.NoOtherCondition)
             {
-                switch (outType)
+                return outType switch
                 {
-                    case OutType.Flyout:
-                        return PitchResult.Flyout;
-                    case OutType.Groundout:
-                        return PitchResult.Groundout;
-                    case OutType.Popout:
-                        return PitchResult.Popout;
-                    default:
-                        return PitchResult.Null;
-                }
+                    OutType.Flyout => PitchResult.Flyout,
+                    OutType.Groundout => PitchResult.Groundout,
+                    OutType.Popout => PitchResult.Popout,
+                    _ => PitchResult.Null
+                };
             }
 
-            switch (otherCondition)
+            return otherCondition switch
             {
-                case OtherCondition.DoublePlay:
-                    return PitchResult.DoublePlay;
-                case OtherCondition.SacFly:
-                    return PitchResult.SacrificeFly;
-                case OtherCondition.DoublePlayOnFlyout:
-                    return PitchResult.DoublePlayOnFlyout;
-                default:
-                    return PitchResult.Null;
-            }
+                OtherCondition.DoublePlay => PitchResult.DoublePlay,
+                OtherCondition.SacFly => PitchResult.SacrificeFly,
+                OtherCondition.DoublePlayOnFlyout => PitchResult.DoublePlayOnFlyout,
+                _ => PitchResult.Null
+            };
         }
 
         public override Pitch CreatePitch(GameSituation situation, Match match)
@@ -164,15 +150,13 @@ namespace Entities.NET5
         {
             var hittingRandomValue = _hittingRandomGenerator.Next(1, 2000);
 
-            if (swingResult == SwingResultType.Swing)
-            {
-                if (hittingRandomValue > hittingProbability + pitcherCoefficient - batterNumberComponent * 3 - numberOfPitches / 3 - situation.Balls * 25 + situation.Strikes * 20 - handsCoefficient)
-                    return HittingResultType.Hit;
+            if (swingResult != SwingResultType.Swing) return HittingResultType.NoResult;
 
-                return HittingResultType.Miss;
-            }
+            if (hittingRandomValue > hittingProbability + pitcherCoefficient - batterNumberComponent * 3 - numberOfPitches / 3 - situation.Balls * 25 + situation.Strikes * 20 - handsCoefficient)
+                return HittingResultType.Hit;
 
-            return HittingResultType.NoResult;
+            return HittingResultType.Miss;
+
         }
 
         private static HitType HitTypeDefinition(HittingResultType hittingResult, int singleProbability, int doubleProbability, int homeRunProbability, int tripleProbability, int batterNumberComponent, int numberOfPitches, int stadiumCoefficient, int countOfNotEmptyBases, GameSituation situation, Batter currentBatter)
@@ -209,21 +193,19 @@ namespace Entities.NET5
         {
             var outTypeRandomValue = _outTypeRandomGenerator.Next(1, 1000);
 
-            if (typeOfHit == HitType.NoResult) return OutType.NoResult;
-
-            if (typeOfHit == HitType.Foul)
+            switch (typeOfHit)
             {
-                if (outTypeRandomValue < popoutOnFoulProbability - (situation.InningNumber - 1) * 5)
+                case HitType.NoResult:
+                    return OutType.NoResult;
+                case HitType.Foul when outTypeRandomValue < popoutOnFoulProbability - (situation.InningNumber - 1) * 5:
                     return OutType.Popout;
-
-                if (outTypeRandomValue < popoutOnFoulProbability - (situation.InningNumber - 1) * 5 + (flyoutProbability - groundoutProbability) / 6)
+                case HitType.Foul when outTypeRandomValue < popoutOnFoulProbability - (situation.InningNumber - 1) * 5 + (flyoutProbability - groundoutProbability) / 6:
                     return OutType.Flyout;
-
-                return OutType.NoResult;
+                case HitType.Foul:
+                    return OutType.NoResult;
+                case HitType.HomeRun:
+                    return outTypeRandomValue > flyoutOnHomeRunProbability ? OutType.Flyout : OutType.NoResult;
             }
-
-            if (typeOfHit == HitType.HomeRun)
-                return outTypeRandomValue > flyoutOnHomeRunProbability ? OutType.Flyout : OutType.NoResult;
 
             if (outTypeRandomValue <= groundoutProbability && typeOfHit != HitType.GroundRuleDouble)
                 return OutType.Groundout;

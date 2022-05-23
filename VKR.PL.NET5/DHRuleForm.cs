@@ -39,7 +39,7 @@ namespace VKR.PL.NET5
             NewMatch.HomeTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.HomeTeam.TeamAbbreviation, matchId);
             NewMatch.HomeTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch));
 
-            /*using var newMatchForm = new MainForm(NewMatch);
+            using var newMatchForm = new MainForm(NewMatch);
             Visible = false;
             newMatchForm.ShowDialog();
 
@@ -54,7 +54,7 @@ namespace VKR.PL.NET5
                 MatchNumber = NewMatch.MatchID;
                 Hide();
                 DialogResult = DialogResult.Yes;
-            }*/
+            }
         }
 
         private void numMatchLength_ValueChanged(object sender, EventArgs e) => labelMatchLength.Text = numMatchLength.Value % 10 == 1 && numMatchLength.Value % 100 != 11 ? $"{numMatchLength.Value} INNING" : $"{numMatchLength.Value} INNINGS";

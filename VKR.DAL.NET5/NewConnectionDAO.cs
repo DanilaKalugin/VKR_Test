@@ -56,9 +56,11 @@ namespace VKR.DAL.NET5
             var scripts = Directory.GetFiles(@"Scripts\").OrderBy(str => str).ToList();
             using var conn = new SqlConnection(dbConnection);
             conn.Open();
+
             foreach (var script in scripts.Select(File.ReadAllText))
                 using (var command = new SqlCommand(script, conn))
                     command.ExecuteNonQuery();
+
             conn.Close();
         }
     }

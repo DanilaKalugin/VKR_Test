@@ -14,7 +14,7 @@ namespace Entities.NET5
         public int Runs;
         public int Groundouts;
         public int Flyouts;
-        public int Poputs;
+        public int Popouts;
         public int Strikeouts;
         public int Walks;
         public int Singles;
@@ -27,7 +27,7 @@ namespace Entities.NET5
 
         public int Hits => Singles + Doubles + Triples + HomeRuns;
 
-        public int AtBats => Singles + Doubles + Triples + HomeRuns + Groundouts + Flyouts + Poputs + Strikeouts;
+        public int AtBats => Singles + Doubles + Triples + HomeRuns + Groundouts + Flyouts + Popouts + Strikeouts;
 
         public double AVG => AtBats == 0 ? 0 : Math.Round((double)Hits / AtBats, 3);
 
@@ -81,7 +81,7 @@ namespace Entities.NET5
             Strikeouts = k;
             Groundouts = go;
             Flyouts = ao;
-            Poputs = po;
+            Popouts = po;
             PA = pa;
             DoublePlay = gidp;
             TGP = tgp;

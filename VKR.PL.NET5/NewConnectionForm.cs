@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
+using VKR.PL.DBHelper;
 
 namespace VKR.PL.NET5
 {
@@ -48,16 +49,9 @@ namespace VKR.PL.NET5
             if (!cb_IntegratedSecurity.Checked) txt_Validating(txtPassword, e, ServerPasswordErrorText, "Password");
         }
 
-        private void cb_Servers_TextChanged(object sender, EventArgs e) => lbConnectionStringTitle.Text = cb_Servers.Text.Replace("\u005c", "_").ToLower() + "ConnectionString";
+        private void cb_Servers_TextChanged(object sender, EventArgs e) => lbConnectionStringTitle.Text = $"{cb_Servers.Text.Replace("\u005c", "_").ToLower()}ConnectionString";
 
-        private void NewConnectionForm_Load(object sender, EventArgs e)
-        {
-            /*var table = SqlDataSourceEnumerator.Instance.GetDataSources();
-            var servers = new List<string>();
-            foreach (DataRow row in table.Rows) 
-                servers.Add(row[table.Columns[0]] + @"\" + row[table.Columns[1]]);
-            cb_Servers.DataSource = servers;*/
-        }
+        private void NewConnectionForm_Load(object sender, EventArgs e) => cb_Servers.DataSource = ServersHelper.GetAvailableServers();
 
         private void btnDeployBaseOnNewServer_Click(object sender, EventArgs e)
         {
@@ -68,9 +62,9 @@ namespace VKR.PL.NET5
             if (!cb_IntegratedSecurity.Checked) 
                 _newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message);
             else _newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message, txtLogin.Text, txtPassword.Text);
-            var DeploymentResult = result == 0;
+            var deploymentResult = result == 0;
 
-            using var form = new DBDeploymentResultForm(DeploymentResult, message);
+            using var form = new DBDeploymentResultForm(deploymentResult, message);
             Visible = false;
             form.ShowDialog();
         }

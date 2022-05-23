@@ -30,20 +30,20 @@ namespace VKR.PL.Utils.NET5
         public static string GetHitsForAtBats(Batter batter, Match match)
         {
             var atBatsCount = match.AtBats.Count(atBat => atBat.Batter == batter.Id &&
-                                                          (atBat.AtBatResult == AtBat.AtBatType.Double ||
-                                                           atBat.AtBatResult == AtBat.AtBatType.Triple ||
-                                                           atBat.AtBatResult == AtBat.AtBatType.HomeRun ||
-                                                           atBat.AtBatResult == AtBat.AtBatType.Single ||
-                                                           atBat.AtBatResult == AtBat.AtBatType.Popout ||
-                                                           atBat.AtBatResult == AtBat.AtBatType.Strikeout ||
-                                                           atBat.AtBatResult == AtBat.AtBatType.Flyout ||
-                                                           atBat.AtBatResult == AtBat.AtBatType.Groundout));
+                                                          atBat.AtBatResult is AtBat.AtBatType.Double or 
+                                                                               AtBat.AtBatType.Triple or 
+                                                                               AtBat.AtBatType.HomeRun or 
+                                                                               AtBat.AtBatType.Single or 
+                                                                               AtBat.AtBatType.Popout or 
+                                                                               AtBat.AtBatType.Strikeout or 
+                                                                               AtBat.AtBatType.Flyout or 
+                                                                               AtBat.AtBatType.Groundout);
 
             var hitsCount = match.AtBats.Count(atBat => atBat.Batter == batter.Id &&
-                                                        (atBat.AtBatResult == AtBat.AtBatType.Double ||
-                                                         atBat.AtBatResult == AtBat.AtBatType.Triple ||
-                                                         atBat.AtBatResult == AtBat.AtBatType.HomeRun ||
-                                                         atBat.AtBatResult == AtBat.AtBatType.Single));
+                                                        atBat.AtBatResult is AtBat.AtBatType.Double or 
+                                                                             AtBat.AtBatType.Triple or 
+                                                                             AtBat.AtBatType.HomeRun or 
+                                                                             AtBat.AtBatType.Single);
             
             return atBatsCount > 0 ? $"{hitsCount} FOR {atBatsCount}" : "";
         }

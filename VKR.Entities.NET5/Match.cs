@@ -31,14 +31,10 @@ namespace Entities.NET5
             get
             {
                 if (MatchWinner == "")
-                {
                     return $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(InningNumber)} inning";
-                }
 
                 if (InningNumber != 9)
-                {
                     return InningNumber == 0 ? "" : $"Final/{InningNumber}";
-                }
 
                 return "Final";
             }

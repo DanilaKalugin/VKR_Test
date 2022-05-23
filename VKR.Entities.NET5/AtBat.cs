@@ -19,46 +19,30 @@ namespace Entities.NET5
 
         public AtBatType TypeDefinitionForLastAtBat(GameSituation situation)
         {
-            switch (situation.Result)
+            return situation.Result switch
             {
-                case PitchResult.Single:
-                    return AtBatType.Single;
-                case PitchResult.Double:
-                case PitchResult.GroundRuleDouble:
-                    return AtBatType.Double;
-                case PitchResult.Triple:
-                    return AtBatType.Triple;
-                case PitchResult.HomeRun:
-                    return AtBatType.HomeRun;
-                case PitchResult.Groundout:
-                case PitchResult.DoublePlay:
-                    return AtBatType.Groundout;
-                case PitchResult.Flyout:
-                case PitchResult.DoublePlayOnFlyout:
-                    return AtBatType.Flyout;
-                case PitchResult.HitByPitch:
-                    return AtBatType.HitByPitch;
-                case PitchResult.Popout:
-                    return AtBatType.Popout;
-                case PitchResult.SacrificeFly:
-                    return AtBatType.SacrificeFly;
-                case PitchResult.Ball:
-                    return situation.Balls == 0 ? AtBatType.Walk : AtBatType.NoResult;
-                case PitchResult.Strike when situation.Strikes == 0:
-                    return AtBatType.Strikeout;
-                case PitchResult.Strike:
-                    return AtBatType.NoResult;
-                case PitchResult.SacrificeBunt:
-                    return AtBatType.SacrificeBunt;
-                case PitchResult.SecondBaseStolen:
-                case PitchResult.ThirdBaseStolen:
-                    return AtBatType.StolenBase;
-                case PitchResult.CaughtStealingOnSecond:
-                case PitchResult.CaughtStealingOnThird:
-                    return AtBatType.CaughtStealing;
-                default:
-                    return AtBatType.NoResult;
-            }
+                PitchResult.Single => AtBatType.Single,
+                PitchResult.Double => AtBatType.Double,
+                PitchResult.GroundRuleDouble => AtBatType.Double,
+                PitchResult.Triple => AtBatType.Triple,
+                PitchResult.HomeRun => AtBatType.HomeRun,
+                PitchResult.Groundout => AtBatType.Groundout,
+                PitchResult.DoublePlay => AtBatType.Groundout,
+                PitchResult.Flyout => AtBatType.Flyout,
+                PitchResult.DoublePlayOnFlyout => AtBatType.Flyout,
+                PitchResult.HitByPitch => AtBatType.HitByPitch,
+                PitchResult.Popout => AtBatType.Popout,
+                PitchResult.SacrificeFly => AtBatType.SacrificeFly,
+                PitchResult.Ball => situation.Balls == 0 ? AtBatType.Walk : AtBatType.NoResult,
+                PitchResult.Strike when situation.Strikes == 0 => AtBatType.Strikeout,
+                PitchResult.Strike => AtBatType.NoResult,
+                PitchResult.SacrificeBunt => AtBatType.SacrificeBunt,
+                PitchResult.SecondBaseStolen => AtBatType.StolenBase,
+                PitchResult.ThirdBaseStolen => AtBatType.StolenBase,
+                PitchResult.CaughtStealingOnSecond => AtBatType.CaughtStealing,
+                PitchResult.CaughtStealingOnThird => AtBatType.CaughtStealing,
+                _ => AtBatType.NoResult
+            };
         }
 
         public override string ToString()

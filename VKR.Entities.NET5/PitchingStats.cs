@@ -47,7 +47,7 @@ namespace Entities.NET5
             }
         }
 
-        public double Baa
+        public double BAA
         {
             get
             {

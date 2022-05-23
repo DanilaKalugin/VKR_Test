@@ -17,12 +17,8 @@ namespace VKR.PL.NET5
 
         private void OpenLineupsForm(LineupsForm.RosterType rosterType)
         {
-            using (var form = new LineupsForm(rosterType))
-            {
-                Visible = false;
-                form.ShowDialog();
-            }
-
+            Visible = false;
+            using (var form = new LineupsForm(rosterType)) form.ShowDialog();
             Visible = true;
         }
     }

@@ -41,7 +41,7 @@ namespace VKR.PL.NET5
         {
             _tableType = tableType;
             if (_tableType == TableType.Results)
-                _matches = _matchBL.GetResultsForallMatches().Where(match =>
+                _matches = _matchBL.GetResultsForAllMatches().Where(match =>
                         (match.AwayTeamAbbreviation == AwayTeam.TeamAbbreviation || match.HomeTeamAbbreviation == AwayTeam.TeamAbbreviation) &&
                         (match.AwayTeamAbbreviation == homeTeam.TeamAbbreviation || match.HomeTeamAbbreviation == homeTeam.TeamAbbreviation)).OrderBy(match => match.MatchDate).ToList();
             else
@@ -58,7 +58,7 @@ namespace VKR.PL.NET5
         {
             _tableType = tableType;
             if (_tableType == TableType.Results)
-                _matches = _matchBL.GetResultsForallMatches()
+                _matches = _matchBL.GetResultsForAllMatches()
                                    .Where(match => match.AwayTeamAbbreviation == team1.TeamAbbreviation || match.HomeTeamAbbreviation == team1.TeamAbbreviation)
                                    .OrderByDescending(match => match.MatchDate).Take(10).ToList();
             else
@@ -77,7 +77,7 @@ namespace VKR.PL.NET5
         {
             if (_tableType == TableType.Results)
             {
-                _matches = _matchBL.GetResultsForallMatches(_teams[cbTeam.SelectedIndex].TeamAbbreviation);
+                _matches = _matchBL.GetResultsForAllMatches(_teams[cbTeam.SelectedIndex].TeamAbbreviation);
                 _matches = _matches.OrderByDescending(match => match.MatchDate).ToList();
             }
             else
@@ -115,7 +115,7 @@ namespace VKR.PL.NET5
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            _matches = _tableType == TableType.Results ? _matchBL.GetResultsForallMatches().Where(match => match.MatchDate == dtpMatchDate.Value).ToList() 
+            _matches = _tableType == TableType.Results ? _matchBL.GetResultsForAllMatches().Where(match => match.MatchDate == dtpMatchDate.Value).ToList() 
                                                        : _matchBL.GetSchedule().Where(match => match.MatchDate == dtpMatchDate.Value).ToList();
             FillResultsTable(dgvMatches, _matches);
         }
