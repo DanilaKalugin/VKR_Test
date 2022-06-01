@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Entities.NET5;
 using VKR.DAL.NET5;
+using VKR.Entities.NET5;
 
 namespace VKR.BLL.NET5
 {

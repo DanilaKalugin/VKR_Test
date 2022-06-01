@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Linq;
-using Entities.NET5;
+using VKR.Entities.NET5;
 
 namespace VKR.PL.Utils.NET5
 {

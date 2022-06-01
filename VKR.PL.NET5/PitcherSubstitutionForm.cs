@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
-using Entities.NET5;
+using VKR.Entities.NET5;
 using VKR.PL.Utils.NET5;
 using ProgressBar = ExtendedDotNET.Controls.Progress.ProgressBar;
 

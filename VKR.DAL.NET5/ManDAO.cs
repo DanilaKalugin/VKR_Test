@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Entities.NET5;
+using VKR.Entities.NET5;
 
 namespace VKR.DAL.NET5
 {

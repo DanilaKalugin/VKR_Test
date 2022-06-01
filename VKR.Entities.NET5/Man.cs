@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entities.NET5
+namespace VKR.Entities.NET5
 {
     public abstract class Man
     {

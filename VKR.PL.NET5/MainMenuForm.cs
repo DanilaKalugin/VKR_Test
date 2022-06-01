@@ -3,8 +3,8 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Entities.NET5;
 using VKR.BLL.NET5;
+using VKR.Entities.NET5;
 
 namespace VKR.PL.NET5
 {

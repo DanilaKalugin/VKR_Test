@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Entities.NET5;
 using VKR.DAL.NET5;
+using VKR.Entities.NET5;
 
 namespace VKR.BLL.NET5
 {
     public class PlayerBL
     {
-        private readonly PlayerDAO _playerDAO = new();
-        private readonly TeamsDAO _teamsDAO = new();
+        private readonly PlayerDao _playerDAO = new();
+        private readonly TeamsDao _teamsDAO = new();
         private List<Player> _players;
 
         public List<Player> GetBattersStats(string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")

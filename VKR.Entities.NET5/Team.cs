@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace Entities.NET5
+namespace VKR.Entities.NET5
 {
     public class Team
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Entities.NET5
+namespace VKR.Entities.NET5
 {
     public class GameSituation
     {

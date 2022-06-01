@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Entities.NET5;
+using VKR.Entities.NET5;
 using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5

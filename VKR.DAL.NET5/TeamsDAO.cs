@@ -4,11 +4,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using Entities.NET5;
+using VKR.Entities.NET5;
 
 namespace VKR.DAL.NET5
 {
-    public class TeamsDAO : DAO
+    public class TeamsDao : DAO
     {
         public IEnumerable<Team> GetStandings(DateTime date)
         {
@@ -20,16 +20,16 @@ namespace VKR.DAL.NET5
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                var Abbreviation = (string)reader["TeamAbbreviation"];
-                var Name = (string)reader["TeamName"];
-                var League = (string)reader["LeagueID"];
-                var Division = (string)reader["DivisionTitle"];
-                var HW = (int)reader["HW"];
-                var HL = (int)reader["HL"];
-                var AW = (int)reader["AW"];
-                var AL = (int)reader["AL"];
+                var abbreviation = (string)reader["TeamAbbreviation"];
+                var name = (string)reader["TeamName"];
+                var league = (string)reader["LeagueID"];
+                var division = (string)reader["DivisionTitle"];
+                var hw = (int)reader["HW"];
+                var hl = (int)reader["HL"];
+                var aw = (int)reader["AW"];
+                var al = (int)reader["AL"];
                 var streak = (int)reader["Streak"];
-                yield return new Team(Abbreviation, Name, League, Division, HW, HL, AW, AL, streak);
+                yield return new Team(abbreviation, name, league, division, hw, hl, aw, al, streak);
             }
         }
 
@@ -67,37 +67,37 @@ namespace VKR.DAL.NET5
                 using var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var Abbreviation = (string)reader["TeamAbbreviation"];
-                    var City = (string)reader["TeamCity"];
-                    var Name = (string)reader["TeamName"];
+                    var abbreviation = (string)reader["TeamAbbreviation"];
+                    var city = (string)reader["TeamCity"];
+                    var name = (string)reader["TeamName"];
                     var stadium = (int)reader["TeamStadium"];
-                    var SZ = (int)reader["StrikeZoneProbability"];
-                    var Swing_SZ = (int)reader["SwingInStrikeZoneProbability"];
-                    var Swing_NotSZ = (int)reader["SwingOutsideStrikeZoneProbability"];
-                    var Hitting = (int)reader["HittingProbability"];
-                    var Foul = (int)reader["FoulProbability"];
-                    var Single = (int)reader["SingleProbability"];
-                    var Double = (int)reader["DoubleProbability"];
-                    var HomeRun = (int)reader["HomeRunProbability"];
-                    var Triple = (int)reader["TripleProbability"];
-                    var PopoutOnFoul = (int)reader["PopoutOnFoulProbability"];
-                    var FlyoutOnHR = (int)reader["FlyoutOnHomerunProbability"];
-                    var Groundout = (int)reader["GroundoutProbability"];
-                    var Flyout = (int)reader["FlyoutProbability"];
-                    var SF = (int)reader["SacrificeFlyProbability"];
-                    var DoublePlay = (int)reader["DoublePlayProbability"];
-                    var SuccesfullSB = (int)reader["StealingBaseSuccessfulAttemptProbability"];
-                    var Bunt = (int)reader["SuccessfulBuntAttemptProbability"];
-                    var DHRule = (bool)reader["LeagueDHRule"];
-                    var W = (int)reader["W"];
-                    var L = (int)reader["L"];
-                    var HBP = (int)reader["HitByPitchProbability"];
-                    var SB = (int)reader["StealingBaseProbability"];
-                    var League = (string)reader["League"];
-                    teams.Add(new Team(Abbreviation, City, Name, SZ, Swing_SZ, Swing_NotSZ,
-                        Hitting, Foul, Single, Double, HomeRun, PopoutOnFoul,
-                        FlyoutOnHR, Groundout, Flyout, SF, DoublePlay, SuccesfullSB,
-                        Bunt, stadium, DHRule, W, L, HBP, SB, Triple, League));
+                    var sz = (int)reader["StrikeZoneProbability"];
+                    var swingSz = (int)reader["SwingInStrikeZoneProbability"];
+                    var swingNotSz = (int)reader["SwingOutsideStrikeZoneProbability"];
+                    var hitting = (int)reader["HittingProbability"];
+                    var foul = (int)reader["FoulProbability"];
+                    var single = (int)reader["SingleProbability"];
+                    var @double = (int)reader["DoubleProbability"];
+                    var homeRun = (int)reader["HomeRunProbability"];
+                    var triple = (int)reader["TripleProbability"];
+                    var popoutOnFoul = (int)reader["PopoutOnFoulProbability"];
+                    var flyoutOnHr = (int)reader["FlyoutOnHomerunProbability"];
+                    var groundout = (int)reader["GroundoutProbability"];
+                    var flyout = (int)reader["FlyoutProbability"];
+                    var sf = (int)reader["SacrificeFlyProbability"];
+                    var doublePlay = (int)reader["DoublePlayProbability"];
+                    var succesfullSb = (int)reader["StealingBaseSuccessfulAttemptProbability"];
+                    var bunt = (int)reader["SuccessfulBuntAttemptProbability"];
+                    var dhRule = (bool)reader["LeagueDHRule"];
+                    var w = (int)reader["W"];
+                    var l = (int)reader["L"];
+                    var hbp = (int)reader["HitByPitchProbability"];
+                    var sb = (int)reader["StealingBaseProbability"];
+                    var league = (string)reader["League"];
+                    teams.Add(new Team(abbreviation, city, name, sz, swingSz, swingNotSz,
+                        hitting, foul, single, @double, homeRun, popoutOnFoul,
+                        flyoutOnHr, groundout, flyout, sf, doublePlay, succesfullSb,
+                        bunt, stadium, dhRule, w, l, hbp, sb, triple, league));
                 }
             }
             foreach (var team in teams)
@@ -158,11 +158,11 @@ namespace VKR.DAL.NET5
             while (reader.Read())
             {
                 var id = (int)reader["ManagerID"];
-                var FirstName = (string)reader["ManagerFirstName"];
-                var SecondName = (string)reader["ManagerSecondName"];
-                var PlaceOfBirth = (string)reader["PlaceOfBirth"];
+                var firstName = (string)reader["ManagerFirstName"];
+                var secondName = (string)reader["ManagerSecondName"];
+                var placeOfBirth = (string)reader["PlaceOfBirth"];
                 var dob = (DateTime)reader["ManagerDateOfBirth"];
-                yield return new Manager(id, FirstName, SecondName, PlaceOfBirth, dob);
+                yield return new Manager(id, firstName, secondName, placeOfBirth, dob);
             }
         }
 
@@ -217,29 +217,29 @@ namespace VKR.DAL.NET5
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                var TGP = (int)reader["TGP"];
-                var Strikeouts = (int)reader["K"];
-                var Walks = (int)reader["BB"];
-                var HitByPitch = (int)reader["HBP"];
-                var Flyout = (int)reader["AO"];
-                var Groundout = (int)reader["GO"];
-                var Popout = (int)reader["PO"];
-                var Single = (int)reader["1B"];
-                var Double = (int)reader["2B"];
-                var Triple = (int)reader["3B"];
-                var HomeRun = (int)reader["HR"];
-                var StolenBase = (int)reader["SB"];
-                var CaughtStealing = (int)reader["CS"];
-                var Runs = (int)reader["R"];
-                var SacFlies = (int)reader["SF"];
-                var Bunts = (int)reader["SAC"];
-                var RBI = (int)reader["RBI"];
-                var PA = (int)reader["PA"];
-                var GIDP = (int)reader["GIDP"];
-                yield return new BattingStats(TGP, Single, Double, Triple, HomeRun,
-                    SacFlies, Bunts, RBI, HitByPitch, StolenBase,
-                    CaughtStealing, Runs, Walks, Strikeouts, Groundout,
-                    Flyout, Popout, PA, GIDP, TGP);
+                var tgp = (int)reader["TGP"];
+                var strikeouts = (int)reader["K"];
+                var walks = (int)reader["BB"];
+                var hitByPitch = (int)reader["HBP"];
+                var flyout = (int)reader["AO"];
+                var groundout = (int)reader["GO"];
+                var popout = (int)reader["PO"];
+                var single = (int)reader["1B"];
+                var @double = (int)reader["2B"];
+                var triple = (int)reader["3B"];
+                var homeRun = (int)reader["HR"];
+                var stolenBase = (int)reader["SB"];
+                var caughtStealing = (int)reader["CS"];
+                var runs = (int)reader["R"];
+                var sacFlies = (int)reader["SF"];
+                var bunts = (int)reader["SAC"];
+                var rbi = (int)reader["RBI"];
+                var pa = (int)reader["PA"];
+                var gidp = (int)reader["GIDP"];
+                yield return new BattingStats(tgp, single, @double, triple, homeRun,
+                    sacFlies, bunts, rbi, hitByPitch, stolenBase,
+                    caughtStealing, runs, walks, strikeouts, groundout,
+                    flyout, popout, pa, gidp, tgp);
             }
         }
 
@@ -254,36 +254,36 @@ namespace VKR.DAL.NET5
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                var TGP = (int)reader["TGP"];
-                var Strikeouts = (int)reader["K"];
-                var Outs = (int)reader["Outs"];
-                var Runs = (int)reader["R"];
-                var Walks = (int)reader["BB"];
-                var Single = (int)reader["1B"];
-                var Double = (int)reader["2B"];
-                var Triple = (int)reader["3B"];
-                var HomeRun = (int)reader["HR"];
-                var BattersFaced = (int)reader["TBF"];
-                var HitByPitch = (int)reader["HBP"];
-                var SacFlies = (int)reader["SF"];
-                var Bunts = (int)reader["SAC"];
-                var StolenBase = (int)reader["SB"];
-                var CaughtStealing = (int)reader["CS"];
-                var DoublePlay = (int)reader["GIDP"];
-                var QualityStarts = (int)reader["QS"];
-                var CompleteGames = (int)reader["CG"];
-                var Shutouts = (int)reader["SHO"];
-                var Flyout = (int)reader["AO"];
-                var Groundout = (int)reader["GO"];
-                var Wins = (int)reader["W"];
-                var Losses = (int)reader["L"];
-                var Saves = (int)reader["SV"];
-                var Holds = (int)reader["HLD"];
-                yield return new PitchingStats(TGP, TGP, Strikeouts, Outs, Walks, Bunts, SacFlies,
-                    StolenBase, CaughtStealing, BattersFaced, QualityStarts,
-                    Shutouts, CompleteGames, Wins, Losses, Saves, Holds,
-                    HitByPitch, Single, Double, Triple, HomeRun, Runs,
-                    DoublePlay, Groundout, Flyout, TGP);
+                var tgp = (int)reader["TGP"];
+                var strikeouts = (int)reader["K"];
+                var outs = (int)reader["Outs"];
+                var runs = (int)reader["R"];
+                var walks = (int)reader["BB"];
+                var single = (int)reader["1B"];
+                var @double = (int)reader["2B"];
+                var triple = (int)reader["3B"];
+                var homeRun = (int)reader["HR"];
+                var battersFaced = (int)reader["TBF"];
+                var hitByPitch = (int)reader["HBP"];
+                var sacFlies = (int)reader["SF"];
+                var bunts = (int)reader["SAC"];
+                var stolenBase = (int)reader["SB"];
+                var caughtStealing = (int)reader["CS"];
+                var doublePlay = (int)reader["GIDP"];
+                var qualityStarts = (int)reader["QS"];
+                var completeGames = (int)reader["CG"];
+                var shutouts = (int)reader["SHO"];
+                var flyout = (int)reader["AO"];
+                var groundout = (int)reader["GO"];
+                var wins = (int)reader["W"];
+                var losses = (int)reader["L"];
+                var saves = (int)reader["SV"];
+                var holds = (int)reader["HLD"];
+                yield return new PitchingStats(tgp, tgp, strikeouts, outs, walks, bunts, sacFlies,
+                    stolenBase, caughtStealing, battersFaced, qualityStarts,
+                    shutouts, completeGames, wins, losses, saves, holds,
+                    hitByPitch, single, @double, triple, homeRun, runs,
+                    doublePlay, groundout, flyout, tgp);
             }
         }
     }

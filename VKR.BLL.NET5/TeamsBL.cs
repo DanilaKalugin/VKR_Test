@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Entities.NET5;
 using VKR.DAL.NET5;
+using VKR.Entities.NET5;
 
 namespace VKR.BLL.NET5
 {
     public class TeamsBL
     {
-        private readonly TeamsDAO _teamsDAO = new();
+        private readonly TeamsDao _teamsDAO = new();
 
         public List<Team> GetAllTeams()
         {
