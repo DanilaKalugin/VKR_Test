@@ -28,5 +28,7 @@ namespace VKR.EF.Entities
         public ushort StealingBaseProbability { get; set; }
         public byte SuccessfulStealingBaseAttemptProbability { get; set; }
         public ushort SuccessfulBuntAttemptProbability { get; set; }
+        public Stadium Stadium { get; set; }
+        public ushort TeamStadium { get; set; }
     }
 }

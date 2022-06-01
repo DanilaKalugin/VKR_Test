@@ -60,7 +60,15 @@ namespace VKR.EF.Entities.Mappers
             builder.HasOne(t => t.Division)
                 .WithMany(d => d.Teams)
                 .HasForeignKey(t => t.DivisionId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Cascade).IsRequired();
+
+            builder.HasOne(t => t.Stadium)
+                .WithMany(s => s.Teams)
+                .HasForeignKey(t => t.TeamStadium)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            builder.Property(t => t.TeamStadium).HasColumnType("smallint");
         }
     }
 }
