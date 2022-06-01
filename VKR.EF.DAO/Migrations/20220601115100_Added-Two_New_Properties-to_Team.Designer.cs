@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220601115100_Added-Two_New_Properties-to_Team")]
+    partial class AddedTwo_New_Propertiesto_Team
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,59 +81,10 @@ namespace VKR.EF.DAO.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TeamDivision");
 
-                    b.Property<byte>("DoublePlayProbability")
-                        .HasColumnType("tinyint");
-
-                    b.Property<short>("DoubleProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("FlyoutOnHomeRunProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("FlyoutProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("FoulProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("GroundoutProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("HitByPitchProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("HittingProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("HomeRunProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("PopoutOnFoulProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<byte>("SacrificeFlyProbability")
-                        .HasColumnType("tinyint");
-
-                    b.Property<short>("SingleProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("StealingBaseProbability")
-                        .HasColumnType("smallint");
-
                     b.Property<short>("StrikeZoneProbability")
                         .HasColumnType("smallint");
 
-                    b.Property<short>("SuccessfulBuntAttemptProbability")
-                        .HasColumnType("smallint");
-
-                    b.Property<byte>("SuccessfulStealingBaseAttemptProbability")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("StealingBaseSuccessfulAttemptProbability");
-
                     b.Property<byte>("SwingInStrikeZoneProbability")
-                        .HasColumnType("tinyint");
-
-                    b.Property<byte>("SwingOutsideStrikeZoneProbability")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("TeamCity")
@@ -144,54 +97,15 @@ namespace VKR.EF.DAO.Migrations
                         .HasMaxLength(35)
                         .HasColumnType("nvarchar(35)");
 
-                    b.Property<short>("TripleProbability")
-                        .HasColumnType("smallint");
-
                     b.HasKey("TeamAbbreviation");
-
-                    b.HasAlternateKey("TeamCity", "TeamName");
 
                     b.HasIndex("DivisionId");
 
                     b.ToTable("Teams");
 
-                    b.HasCheckConstraint("StrikeZoneProbability", "StrikeZoneProbability BETWEEN 1 AND 3000");
-
-                    b.HasCheckConstraint("HitByPitchProbability", "HitByPitchProbability BETWEEN 1 AND 3000");
+                    b.HasCheckConstraint("StrikeZoneProbability", "StrikeZoneProbability BETWEEN 1 AND 2000");
 
                     b.HasCheckConstraint("SwingInStrikeZoneProbability", "SwingInStrikeZoneProbability BETWEEN 1 AND 100");
-
-                    b.HasCheckConstraint("SwingOutsideStrikeZoneProbability", "SwingOutsideStrikeZoneProbability BETWEEN 1 AND 100");
-
-                    b.HasCheckConstraint("HittingProbability", "HittingProbability BETWEEN 1 AND 2000");
-
-                    b.HasCheckConstraint("FoulProbability", "FoulProbability BETWEEN 1 AND 2000");
-
-                    b.HasCheckConstraint("SingleProbability", "SingleProbability BETWEEN 1 AND 2000");
-
-                    b.HasCheckConstraint("DoubleProbability", "DoubleProbability BETWEEN 1 AND 2000");
-
-                    b.HasCheckConstraint("HomeRunProbability", "HomeRunProbability BETWEEN 1 AND 2000");
-
-                    b.HasCheckConstraint("TripleProbability", "TripleProbability BETWEEN 1 AND 2000");
-
-                    b.HasCheckConstraint("PopoutOnFoulProbability", "PopoutOnFoulProbability BETWEEN 1 AND 1000");
-
-                    b.HasCheckConstraint("FlyoutOnHomeRunProbability", "FlyoutOnHomeRunProbability BETWEEN 1 AND 1000");
-
-                    b.HasCheckConstraint("GroundoutProbability", "GroundoutProbability BETWEEN 1 AND 1000");
-
-                    b.HasCheckConstraint("FlyoutProbability", "FlyoutProbability BETWEEN 1 AND 1000");
-
-                    b.HasCheckConstraint("DoublePlayProbability", "DoublePlayProbability BETWEEN 1 AND 100");
-
-                    b.HasCheckConstraint("SacrificeFlyProbability", "SacrificeFlyProbability BETWEEN 1 AND 100");
-
-                    b.HasCheckConstraint("StealingBaseProbability", "StealingBaseProbability BETWEEN 1 AND 1000");
-
-                    b.HasCheckConstraint("StealingBaseSuccessfulAttemptProbability", "StealingBaseSuccessfulAttemptProbability BETWEEN 1 AND 100");
-
-                    b.HasCheckConstraint("SuccessfulBuntAttemptProbability", "SuccessfulBuntAttemptProbability BETWEEN 1 AND 100");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.Division", b =>
