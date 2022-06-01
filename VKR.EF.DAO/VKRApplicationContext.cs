@@ -9,6 +9,7 @@ namespace VKR.EF.DAO
         public DbSet<League> Leagues { get; set; }
         public DbSet<Division> Divisions { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,6 +21,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.LeagueEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.DivisionEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.CountryEntityMap());
         }
 
         public VKRApplicationContext()
