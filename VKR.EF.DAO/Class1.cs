@@ -7,6 +7,7 @@ namespace VKR.EF.DAO
     public sealed class VKRApplicationContext : DbContext
     {
         public DbSet<League> Leagues { get; set; }
+        public DbSet<Division> Divisions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -16,6 +17,7 @@ namespace VKR.EF.DAO
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new Entities.Mappers.LeagueEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.DivisionEntityMap());
         }
 
         public VKRApplicationContext()

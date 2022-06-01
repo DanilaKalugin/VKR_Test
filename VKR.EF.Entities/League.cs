@@ -9,6 +9,6 @@ namespace VKR.EF.Entities
         public string LeagueTitle { get; set; }
         public bool DHRule { get; set; }
         public ushort YearOfFoundation { get; set; }
-
+        public virtual List<Division> Divisions { get; set; } = new();
     }
 }
