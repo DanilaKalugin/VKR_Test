@@ -26,6 +26,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.CountryEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.CityEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StadiumEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.ManagerEntityMap());
         }
 
         public VKRApplicationContext()

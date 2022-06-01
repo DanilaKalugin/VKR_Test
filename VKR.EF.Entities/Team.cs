@@ -30,5 +30,7 @@ namespace VKR.EF.Entities
         public ushort SuccessfulBuntAttemptProbability { get; set; }
         public Stadium Stadium { get; set; }
         public ushort TeamStadium { get; set; }
+        public Manager Manager { get; set; }
+        public uint TeamManager { get; set; }
     }
 }
