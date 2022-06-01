@@ -14,7 +14,7 @@ namespace VKR.EF.Entities.Mappers
             builder.Property(d => d.DivisionTitle).HasMaxLength(10).IsRequired();
 
             builder.Property(l => l.LeagueId).HasMaxLength(2)
-                .HasColumnName("League");
+                .HasColumnName("League").IsRequired();
 
             builder.HasOne(d => d.League)
                 .WithMany(l => l.Divisions)

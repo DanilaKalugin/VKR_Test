@@ -13,6 +13,6 @@ namespace VKR.EF.Entities
         public string DivisionTitle { get; set; }
         public League League { get; set; }
         public string LeagueId { get; set; }
-        
+        public virtual List<Team> Teams { get; set; } = new ();
     }
 }
