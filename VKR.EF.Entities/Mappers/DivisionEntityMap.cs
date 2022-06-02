@@ -7,6 +7,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<Division> builder)
         {
+            builder.ToTable("Divisions");
+
             builder.HasKey(d => d.Id);
                 
             builder.Property(d => d.Id).HasColumnName("DivisionNumber");

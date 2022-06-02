@@ -7,6 +7,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<PlayerPosition> builder)
         {
+            builder.ToTable("PlayerPositions");
+
             builder.HasKey(pp => pp.ShortTitle);
 
             builder.HasAlternateKey(pp => pp.Number);

@@ -7,6 +7,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<Manager> builder)
         {
+            builder.ToTable("Managers");
+
             builder.HasKey(m => m.Id);
 
             builder.Property(m => m.Id)

@@ -7,6 +7,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<League> builder)
         {
+            builder.ToTable("Leagues");
+
             builder.HasKey(l => l.LeagueId);
 
             builder.Property(l => l.LeagueId).HasMaxLength(2)

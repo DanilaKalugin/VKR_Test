@@ -12,6 +12,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<Country> builder)
         {
+            builder.ToTable("Countries");
+
             builder.HasKey(c => c.CountryCode);
 
             builder.Property(c => c.CountryCode).HasMaxLength(3);

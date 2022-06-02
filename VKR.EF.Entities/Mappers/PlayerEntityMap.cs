@@ -12,6 +12,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<Player> builder)
         {
+            builder.ToTable("Players");
+
             builder.HasKey(p => p.Id);
 
             builder.Property(p => p.Id).HasColumnName("PlayerID");

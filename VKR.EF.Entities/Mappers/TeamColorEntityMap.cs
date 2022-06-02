@@ -13,6 +13,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<TeamColor> builder)
         {
+            builder.ToTable("TeamColors");
+
             builder.HasKey(tc => new{tc.TeamName, tc.ColorNumber});
 
             builder.Property(tc => tc.BlueComponent).IsRequired();

@@ -12,6 +12,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<Stadium> builder)
         {
+            builder.ToTable("Stadiums");
+
             builder.HasKey(s => s.StadiumId);
 
             builder.HasAlternateKey(s => s.StadiumTitle);

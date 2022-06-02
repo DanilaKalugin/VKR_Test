@@ -7,6 +7,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<Team> builder)
         {
+            builder.ToTable("Teams");
+
             builder.HasKey(t => t.TeamAbbreviation);
 
             builder.Property(t => t.TeamAbbreviation).HasMaxLength(3);
