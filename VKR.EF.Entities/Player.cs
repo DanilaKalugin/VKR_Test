@@ -11,5 +11,7 @@ namespace VKR.EF.Entities
         public PitchingHand PitchingHand { get; set; }
         public PitchingHandEnum PlayerPitchingHand { get; set; }
         public virtual List<PlayerPosition> Positions { get; set; }
+        public PlayerStatus PlayerStatus { get; set; }
+        public PlayerStatusEnum CurrentPlayerStatus { get; set; }
     }
 }

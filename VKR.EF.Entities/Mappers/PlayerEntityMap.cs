@@ -50,6 +50,12 @@ namespace VKR.EF.Entities.Mappers
                 .HasForeignKey(p => p.PlayerPitchingHand)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .IsRequired();
+            
+            builder.HasOne(p => p.PlayerStatus)
+                .WithMany(ps => ps.Players)
+                .HasForeignKey(p => p.CurrentPlayerStatus)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .IsRequired();
         }
     }
 }
