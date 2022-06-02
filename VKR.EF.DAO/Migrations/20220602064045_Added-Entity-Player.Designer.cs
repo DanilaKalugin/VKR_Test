@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220602064045_Added-Entity-Player")]
+    partial class AddedEntityPlayer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,7 +148,7 @@ namespace VKR.EF.DAO.Migrations
 
                     b.HasIndex("PlaceOfBirth");
 
-                    b.ToTable("Managers");
+                    b.ToTable("Manager");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.Player", b =>
@@ -183,7 +185,7 @@ namespace VKR.EF.DAO.Migrations
 
                     b.HasIndex("PlaceOfBirth");
 
-                    b.ToTable("Players");
+                    b.ToTable("Player");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.Stadium", b =>
@@ -371,7 +373,7 @@ namespace VKR.EF.DAO.Migrations
 
                     b.HasKey("TeamName", "ColorNumber");
 
-                    b.ToTable("TeamColors");
+                    b.ToTable("TeamColor");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.City", b =>

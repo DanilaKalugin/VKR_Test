@@ -12,6 +12,9 @@ namespace VKR.EF.DAO
         public DbSet<Country> Countries { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<TeamColor> TeamColors { get; set; }
+        public DbSet<Player> Players { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,11 +31,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StadiumEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManagerEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamColorEntityMap());
-        }
-
-        public VKRApplicationContext()
-        {
-            Database.EnsureDeleted();
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerEntityMap());
         }
     }
 }

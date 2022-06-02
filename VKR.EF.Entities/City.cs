@@ -14,5 +14,6 @@ namespace VKR.EF.Entities
         public string CountryCode { get; set; }
         public virtual List<Stadium> Stadiums { get; set; } = new();
         public virtual List<Manager> Managers { get; set; } = new();
+        public virtual List<Player> Players { get; set; } = new();
     }
 }

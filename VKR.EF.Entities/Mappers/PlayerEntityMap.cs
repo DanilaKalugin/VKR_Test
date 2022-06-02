@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace VKR.EF.Entities.Mappers
+{
+    public class PlayerEntityMap : IEntityTypeConfiguration<Player>
+    {
+        public void Configure(EntityTypeBuilder<Player> builder)
+        {
+            builder.HasKey(p => p.Id);
+
+            builder.Property(p => p.Id).HasColumnName("PlayerID");
+            builder.Property(p => p.FirstName)
+                .HasColumnName("PlayerFirstName")
+                .HasMaxLength(35)
+                .IsRequired();
+
+            builder.Property(p => p.SecondName)
+                            .HasColumnName("PlayerSecondName")
+                            .HasMaxLength(35)
+                            .IsRequired();
+
+            builder.Property(p => p.PlayerNumber).IsRequired();
+            builder.Property(p => p.DateOfBirth)
+                .HasColumnType("date")
+                .HasColumnName("PlayerDateOfBirth");
+
+            builder.HasOne(p => p.City)
+                .WithMany(c => c.Players)
+                .HasForeignKey(p => p.PlaceOfBirth)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .IsRequired();
+        }
+    }
+}
