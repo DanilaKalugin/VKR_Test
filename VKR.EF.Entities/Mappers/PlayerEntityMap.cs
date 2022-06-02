@@ -26,6 +26,7 @@ namespace VKR.EF.Entities.Mappers
                             .IsRequired();
 
             builder.Property(p => p.PlayerNumber).IsRequired();
+
             builder.Property(p => p.DateOfBirth)
                 .HasColumnType("date")
                 .HasColumnName("PlayerDateOfBirth");
@@ -33,6 +34,12 @@ namespace VKR.EF.Entities.Mappers
             builder.HasOne(p => p.City)
                 .WithMany(c => c.Players)
                 .HasForeignKey(p => p.PlaceOfBirth)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .IsRequired();
+
+            builder.HasOne(p => p.BattingHand)
+                .WithMany(bh => bh.Players)
+                .HasForeignKey(p => p.PlayerBattingHand)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .IsRequired();
         }

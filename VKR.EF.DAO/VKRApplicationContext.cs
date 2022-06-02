@@ -32,6 +32,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManagerEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamColorEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.BattingHandEntityMap());
         }
     }
 }
