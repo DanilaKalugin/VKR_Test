@@ -15,6 +15,7 @@ namespace VKR.EF.DAO
         public DbSet<Manager> Managers { get; set; }
         public DbSet<TeamColor> TeamColors { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<PlayerPosition> PlayerPositions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -34,6 +35,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.BattingHandEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitchingHandEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerPositionEntityMap());
         }
     }
 }
