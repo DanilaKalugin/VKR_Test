@@ -10,5 +10,6 @@ namespace VKR.EF.Entities
     {
         public InTeamStatusEnum InTeamStatusId { get; set; }
         public string InTeamStatusTitle { get; set; }
+        public virtual List<PlayerInTeam> PlayerInTeams { get; set; } = new();
     }
 }

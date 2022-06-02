@@ -25,6 +25,8 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitchingHandEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerPositionEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.InTeamStatusEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerStatusEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerInTeamEntityMap());
         }
     }
 }

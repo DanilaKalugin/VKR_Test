@@ -34,5 +34,6 @@ namespace VKR.EF.Entities
         public Manager Manager { get; set; }
         public uint TeamManager { get; set; }
         public List<TeamColor> TeamColors { get; set; } = new();
+        public List<PlayerInTeam> PlayersInTeam { get; set; } = new();
     }
 }
