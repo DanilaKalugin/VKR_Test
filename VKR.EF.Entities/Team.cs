@@ -33,7 +33,9 @@ namespace VKR.EF.Entities
         public ushort TeamStadium { get; set; }
         public Manager Manager { get; set; }
         public uint TeamManager { get; set; }
-        public List<TeamColor> TeamColors { get; set; } = new();
-        public List<PlayerInTeam> PlayersInTeam { get; set; } = new();
+        public virtual List<TeamColor> TeamColors { get; set; } = new();
+        public virtual List<PlayerInTeam> PlayersInTeam { get; set; } = new();
+        public virtual List<Match> AwayMatches { get; set; } = new();
+        public virtual List<Match> HomeMatches { get; set; } = new();
     }
 }

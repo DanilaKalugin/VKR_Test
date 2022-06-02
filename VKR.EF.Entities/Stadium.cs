@@ -10,6 +10,7 @@ namespace VKR.EF.Entities
         public ushort StadiumDistanceToCenterfield { get; set; }
         public City StadiumCity { get; set; }
         public ushort StadiumLocation { get; set; }
-        public virtual List<Team> Teams { get; set; }
+        public virtual List<Team> Teams { get; set; } = new();
+        public virtual List<Match> MatchesPlayedInThisStadium { get; set; } = new();
     }
 }
