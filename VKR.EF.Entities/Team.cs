@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VKR.EF.Entities
 {
@@ -32,5 +33,6 @@ namespace VKR.EF.Entities
         public ushort TeamStadium { get; set; }
         public Manager Manager { get; set; }
         public uint TeamManager { get; set; }
+        public List<TeamColor> TeamColors { get; set; } = new();
     }
 }
