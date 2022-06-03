@@ -35,6 +35,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StartingLineupEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.LineupForMatchEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.AtBatResultEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.AtBatEntityMap());
         }
     }
 }
