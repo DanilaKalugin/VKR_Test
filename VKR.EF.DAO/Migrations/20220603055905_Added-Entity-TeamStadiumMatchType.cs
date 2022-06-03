@@ -34,12 +34,12 @@ namespace VKR.EF.DAO.Migrations
                 columns: table => new
                 {
                     TeamAbbreviation = table.Column<string>(type: "nvarchar(3)", nullable: false),
-                    TyprOfMatchId = table.Column<byte>(type: "tinyint", nullable: false),
+                    TypeOfMatchId = table.Column<byte>(type: "tinyint", nullable: false),
                     StadiumId = table.Column<short>(type: "smallint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TeamStadiumForTypeOfMatch", x => new { x.TeamAbbreviation, x.TyprOfMatchId, x.StadiumId });
+                    table.PrimaryKey("PK_TeamStadiumForTypeOfMatch", x => new { x.TeamAbbreviation, x.TypeOfMatchId, x.StadiumId });
                     table.ForeignKey(
                         name: "FK_TeamStadiumForTypeOfMatch_Stadiums_StadiumId",
                         column: x => x.StadiumId,
@@ -54,7 +54,7 @@ namespace VKR.EF.DAO.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TeamStadiumForTypeOfMatch_TypesOfMatches_TyprOfMatchId",
-                        column: x => x.TyprOfMatchId,
+                        column: x => x.TypeOfMatchId,
                         principalTable: "TypesOfMatches",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -71,7 +71,7 @@ namespace VKR.EF.DAO.Migrations
                 column: "StadiumId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TeamStadiumForTypeOfMatch_TyprOfMatchId",
+                name: "IX_TeamStadiumForTypeOfMatch_TypeOfMatchId",
                 table: "TeamStadiumForTypeOfMatch",
                 column: "TypeOfMatchId");
 

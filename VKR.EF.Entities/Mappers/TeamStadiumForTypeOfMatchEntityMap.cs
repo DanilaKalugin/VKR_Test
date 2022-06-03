@@ -10,7 +10,7 @@ namespace VKR.EF.Entities.Mappers
             builder.HasKey(tsmt => new
             {
                 tsmt.TeamAbbreviation,
-                TyprOfMatchId = tsmt.TypeOfMatchId,
+                tsmt.TypeOfMatchId,
                 tsmt.StadiumId
             });
 
