@@ -13,5 +13,6 @@ namespace VKR.EF.Entities
         public ushort StadiumId { get; set; }
         public virtual List<LineupForMatch> LineupsForMatches { get; set; } = new();
         public virtual List<AtBat> AtBats { get; set; } = new();
+        public virtual List<PitcherResults> PitcherResults { get; set; } = new();
     }
 }

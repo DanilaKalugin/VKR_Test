@@ -19,5 +19,6 @@ namespace VKR.EF.Entities
         public virtual List<LineupForMatch> PlayersPlayedInMatch { get; set; } = new();
         public virtual List<AtBat> BattingAtBats { get; set; } = new();
         public virtual List<AtBat> PitchingAtBats { get; set; } = new();
+        public virtual List<PitcherResults> PitcherResults { get; set; } = new();
     }
 }
