@@ -6,5 +6,7 @@ namespace VKR.EF.Entities
     {
         public TypeOfMatchEnum Id { get; set; }
         public string Description { get; set; }
+        public virtual List<TeamStadiumForTypeOfMatch> TeamStadiumsForMatchTypes { get; set; } = new();
+        public virtual List<Match> MatchesOfThisType { get; set; } = new();
     }
 }

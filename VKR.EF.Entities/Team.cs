@@ -29,13 +29,12 @@ namespace VKR.EF.Entities
         public ushort StealingBaseProbability { get; set; }
         public byte SuccessfulStealingBaseAttemptProbability { get; set; }
         public ushort SuccessfulBuntAttemptProbability { get; set; }
-        public Stadium Stadium { get; set; }
-        public ushort TeamStadium { get; set; }
         public Manager Manager { get; set; }
         public uint TeamManager { get; set; }
         public virtual List<TeamColor> TeamColors { get; set; } = new();
         public virtual List<PlayerInTeam> PlayersInTeam { get; set; } = new();
         public virtual List<Match> AwayMatches { get; set; } = new();
         public virtual List<Match> HomeMatches { get; set; } = new();
+        public virtual List<TeamStadiumForTypeOfMatch> StadiumsForMatchTypes { get; set; } = new();
     }
 }

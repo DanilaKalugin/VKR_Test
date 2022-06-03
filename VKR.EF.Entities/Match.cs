@@ -17,6 +17,7 @@ namespace VKR.EF.Entities
         public DateTime MatchDate { get; set; }
         public byte MatchLength { get; set; }
         public bool MatchEnded { get; set; }
-        public bool IsQuickMatch { get; set; }
+        public TypeOfMatch MatchType { get; set; }
+        public TypeOfMatchEnum MatchTypeId { get; set; }
     }
 }

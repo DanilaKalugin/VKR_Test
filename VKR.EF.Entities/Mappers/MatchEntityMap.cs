@@ -24,8 +24,7 @@ namespace VKR.EF.Entities.Mappers
                 .HasDefaultValue(false)
                 .IsRequired();
 
-            builder.Property(m => m.IsQuickMatch)
-                .HasDefaultValue(false)
+            builder.Property(m => m.MatchLength)
                 .IsRequired();
 
             builder.Property(m => m.MatchDate)
@@ -50,6 +49,12 @@ namespace VKR.EF.Entities.Mappers
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
+            builder.HasOne(m => m.MatchType)
+                .WithMany(mt => mt.MatchesOfThisType)
+                .HasForeignKey(m => m.MatchTypeId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
             builder.Property(m => m.AwayTeamAbbreviation)
                 .HasColumnName("AwayTeam");
 
@@ -58,6 +63,9 @@ namespace VKR.EF.Entities.Mappers
 
             builder.Property(m => m.StadiumId)
                 .HasColumnName("Stadium");
+
+            builder.Property(m => m.MatchTypeId)
+                .HasColumnName("MatchType");
         }
     }
 }
