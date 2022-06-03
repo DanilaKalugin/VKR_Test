@@ -11,5 +11,6 @@ namespace VKR.EF.Entities
         public bool MatchEnded { get; set; }
         public Stadium Stadium { get; set; }
         public ushort StadiumId { get; set; }
+        public virtual List<LineupForMatch> LineupsForMatches { get; set; } = new();
     }
 }
