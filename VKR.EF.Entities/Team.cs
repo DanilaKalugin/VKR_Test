@@ -36,5 +36,7 @@ namespace VKR.EF.Entities
         public virtual List<Match> AwayMatches { get; set; } = new();
         public virtual List<Match> HomeMatches { get; set; } = new();
         public virtual List<TeamStadiumForTypeOfMatch> StadiumsForMatchTypes { get; set; } = new();
+        public virtual List<MatchFromSchedule> NextAwayMatches { get; set; } = new();
+        public virtual List<MatchFromSchedule> NextHomeMatches { get; set; } = new();
     }
 }

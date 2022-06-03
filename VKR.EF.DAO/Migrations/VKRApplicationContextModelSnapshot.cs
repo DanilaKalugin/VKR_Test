@@ -234,9 +234,10 @@ namespace VKR.EF.DAO.Migrations
 
             modelBuilder.Entity("VKR.EF.Entities.Match", b =>
                 {
-                    b.Property<int>("MatchID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasColumnName("MatchID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AwayTeamAbbreviation")
@@ -273,7 +274,7 @@ namespace VKR.EF.DAO.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("Stadium");
 
-                    b.HasKey("MatchID");
+                    b.HasKey("Id");
 
                     b.HasIndex("AwayTeamAbbreviation");
 
@@ -284,6 +285,45 @@ namespace VKR.EF.DAO.Migrations
                     b.HasIndex("StadiumId");
 
                     b.ToTable("Matches");
+                });
+
+            modelBuilder.Entity("VKR.EF.Entities.MatchFromSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("MatchID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AwayTeamAbbreviation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(3)")
+                        .HasColumnName("AwayTeam");
+
+                    b.Property<string>("HomeTeamAbbreviation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(3)")
+                        .HasColumnName("HomeTeam");
+
+                    b.Property<bool>("IsPlayed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("MatchDate")
+                        .HasColumnType("date");
+
+                    b.Property<byte>("MatchTypeId")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("MatchType");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AwayTeamAbbreviation");
+
+                    b.HasIndex("HomeTeamAbbreviation");
+
+                    b.HasIndex("MatchTypeId");
+
+                    b.ToTable("NextMatches");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.PitchingHand", b =>
@@ -644,17 +684,17 @@ namespace VKR.EF.DAO.Migrations
                     b.Property<string>("TeamAbbreviation")
                         .HasColumnType("nvarchar(3)");
 
-                    b.Property<byte>("TyprOfMatchId")
+                    b.Property<byte>("TypeOfMatchId")
                         .HasColumnType("tinyint");
 
                     b.Property<short>("StadiumId")
                         .HasColumnType("smallint");
 
-                    b.HasKey("TeamAbbreviation", "TyprOfMatchId", "StadiumId");
+                    b.HasKey("TeamAbbreviation", "TypeOfMatchId", "StadiumId");
 
                     b.HasIndex("StadiumId");
 
-                    b.HasIndex("TyprOfMatchId");
+                    b.HasIndex("TypeOfMatchId");
 
                     b.ToTable("TeamStadiumForTypeOfMatch");
                 });
@@ -780,6 +820,33 @@ namespace VKR.EF.DAO.Migrations
                     b.Navigation("Stadium");
                 });
 
+            modelBuilder.Entity("VKR.EF.Entities.MatchFromSchedule", b =>
+                {
+                    b.HasOne("VKR.EF.Entities.Team", "AwayTeam")
+                        .WithMany("NextAwayMatches")
+                        .HasForeignKey("AwayTeamAbbreviation")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VKR.EF.Entities.Team", "HomeTeam")
+                        .WithMany("NextHomeMatches")
+                        .HasForeignKey("HomeTeamAbbreviation")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VKR.EF.Entities.TypeOfMatch", "MatchType")
+                        .WithMany("NextMatchesOfThisType")
+                        .HasForeignKey("MatchTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AwayTeam");
+
+                    b.Navigation("HomeTeam");
+
+                    b.Navigation("MatchType");
+                });
+
             modelBuilder.Entity("VKR.EF.Entities.Player", b =>
                 {
                     b.HasOne("VKR.EF.Entities.PlayerStatus", "PlayerStatus")
@@ -893,7 +960,7 @@ namespace VKR.EF.DAO.Migrations
 
                     b.HasOne("VKR.EF.Entities.TypeOfMatch", "TypeOfMatch")
                         .WithMany("TeamStadiumsForMatchTypes")
-                        .HasForeignKey("TyprOfMatchId")
+                        .HasForeignKey("TypeOfMatchId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
@@ -971,6 +1038,10 @@ namespace VKR.EF.DAO.Migrations
 
                     b.Navigation("HomeMatches");
 
+                    b.Navigation("NextAwayMatches");
+
+                    b.Navigation("NextHomeMatches");
+
                     b.Navigation("PlayersInTeam");
 
                     b.Navigation("StadiumsForMatchTypes");
@@ -981,6 +1052,8 @@ namespace VKR.EF.DAO.Migrations
             modelBuilder.Entity("VKR.EF.Entities.TypeOfMatch", b =>
                 {
                     b.Navigation("MatchesOfThisType");
+
+                    b.Navigation("NextMatchesOfThisType");
 
                     b.Navigation("TeamStadiumsForMatchTypes");
                 });

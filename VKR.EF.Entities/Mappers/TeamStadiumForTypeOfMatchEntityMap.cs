@@ -10,7 +10,7 @@ namespace VKR.EF.Entities.Mappers
             builder.HasKey(tsmt => new
             {
                 tsmt.TeamAbbreviation,
-                tsmt.TyprOfMatchId,
+                TyprOfMatchId = tsmt.TypeOfMatchId,
                 tsmt.StadiumId
             });
 
@@ -26,7 +26,7 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasOne(tsmt => tsmt.TypeOfMatch)
                 .WithMany(mt => mt.TeamStadiumsForMatchTypes)
-                .HasForeignKey(tsmt => tsmt.TyprOfMatchId)
+                .HasForeignKey(tsmt => tsmt.TypeOfMatchId)
                 .OnDelete(DeleteBehavior.ClientCascade);
         }
     }

@@ -8,49 +8,32 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace VKR.EF.Entities.Mappers
 {
-    public class MatchEntityMap : IEntityTypeConfiguration<Match>
+    public class MatchFromScheduleEntityMap : IEntityTypeConfiguration<MatchFromSchedule>
     {
-        public void Configure(EntityTypeBuilder<Match> builder)
+        public void Configure(EntityTypeBuilder<MatchFromSchedule> builder)
         {
-            builder.ToTable("Matches");
+            builder.ToTable("NextMatches");
 
             builder.HasKey(m => m.Id);
-
-            builder.Property(m => m.DHRule)
-                .HasDefaultValue(false)
-                .IsRequired();
-
-            builder.Property(m => m.MatchEnded)
-                .HasDefaultValue(false)
-                .IsRequired();
-
-            builder.Property(m => m.MatchLength)
-                .IsRequired();
 
             builder.Property(m => m.MatchDate)
                 .HasColumnType("date")
                 .IsRequired();
 
             builder.HasOne(m => m.AwayTeam)
-                .WithMany(t => t.AwayMatches)
+                .WithMany(t => t.NextAwayMatches)
                 .HasForeignKey(m => m.AwayTeamAbbreviation)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired();
 
             builder.HasOne(m => m.HomeTeam)
-                .WithMany(t => t.HomeMatches)
+                .WithMany(t => t.NextHomeMatches)
                 .HasForeignKey(m => m.HomeTeamAbbreviation)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired();
 
-            builder.HasOne(m => m.Stadium)
-                .WithMany(s => s.MatchesPlayedInThisStadium)
-                .HasForeignKey(m => m.StadiumId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
-
             builder.HasOne(m => m.MatchType)
-                .WithMany(mt => mt.MatchesOfThisType)
+                .WithMany(mt => mt.NextMatchesOfThisType)
                 .HasForeignKey(m => m.MatchTypeId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
@@ -63,11 +46,10 @@ namespace VKR.EF.Entities.Mappers
             builder.Property(m => m.HomeTeamAbbreviation)
                 .HasColumnName("HomeTeam");
 
-            builder.Property(m => m.StadiumId)
-                .HasColumnName("Stadium");
-
             builder.Property(m => m.MatchTypeId)
                 .HasColumnName("MatchType");
+
+            builder.Property(nm => nm.IsPlayed).IsRequired();
         }
     }
 }

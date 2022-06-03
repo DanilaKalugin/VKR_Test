@@ -8,5 +8,6 @@ namespace VKR.EF.Entities
         public string Description { get; set; }
         public virtual List<TeamStadiumForTypeOfMatch> TeamStadiumsForMatchTypes { get; set; } = new();
         public virtual List<Match> MatchesOfThisType { get; set; } = new();
+        public virtual List<MatchFromSchedule> NextMatchesOfThisType { get; set; } = new();
     }
 }

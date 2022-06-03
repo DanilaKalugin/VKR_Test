@@ -30,6 +30,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.MatchEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TypeOfMatchEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStadiumForTypeOfMatchEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.MatchFromScheduleEntityMap());
         }
     }
 }

@@ -73,7 +73,7 @@ namespace VKR.EF.DAO.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_TeamStadiumForTypeOfMatch_TyprOfMatchId",
                 table: "TeamStadiumForTypeOfMatch",
-                column: "TyprOfMatchId");
+                column: "TypeOfMatchId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Matches_TypesOfMatches_MatchType",
