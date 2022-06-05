@@ -38,6 +38,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.AtBatEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitcherResultEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitcherResultsTypeEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.RegionEntityMap());
         }
     }
 }

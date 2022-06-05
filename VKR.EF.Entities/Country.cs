@@ -10,6 +10,6 @@ namespace VKR.EF.Entities
     {
         public string CountryCode { get; set; }
         public string CountryName { get; set; }
-        public virtual List<City> Cities { get; set; } = new();
+        public virtual List<Region> Regions { get; set; } = new();
     }
 }

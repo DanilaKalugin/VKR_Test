@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220605075757_Added-Entity-Region")]
+    partial class AddedEntityRegion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,7 +232,7 @@ namespace VKR.EF.DAO.Migrations
                     b.Property<string>("RegionCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(3)")
-                        .HasColumnName("Region");
+                        .HasColumnName("Country");
 
                     b.HasKey("Id");
 

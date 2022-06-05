@@ -23,12 +23,12 @@ namespace VKR.EF.Entities.Mappers
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.Property(c => c.CountryCode).HasColumnName("Country")
+            builder.Property(c => c.RegionCode).HasColumnName("Region")
                 .IsRequired();
 
-            builder.HasOne(c => c.Country)
-                .WithMany(c => c.Cities)
-                .HasForeignKey(c => c.CountryCode)
+            builder.HasOne(c => c.Region)
+                .WithMany(r => r.Cities)
+                .HasForeignKey(c => c.RegionCode)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
