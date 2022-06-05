@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using VKR.EF.Entities;
 
 namespace VKR.EF.DAO
 {
     public sealed class VKRApplicationContext : DbContext
     {
+        public DbSet<ManInTeam> MenInTeam { get; set; }
+        public DbSet<Team> Team { get; set; }
+        public DbSet<TeamColor> TeamColors { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
@@ -39,6 +47,13 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitcherResultEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitcherResultsTypeEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RegionEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
+        }
+
+        public IEnumerable<ManInTeam> GetListOfPeopleWithBirthDay()
+        {
+            return MenInTeam.ToList();
         }
     }
+    
 }
