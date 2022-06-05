@@ -7,6 +7,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<StartingLineup> builder)
         {
+            builder.ToTable("StartingLineups");
+
             builder.HasKey(sl => new { sl.PlayerInTeamId, sl.LineupTypeId });
 
             builder.Property(sl => sl.PlayerNumberInLineup)

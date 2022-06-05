@@ -7,6 +7,8 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<AtBat> builder)
         {
+            builder.ToTable("AtBats");
+
             builder.HasKey(ab => ab.Id);
 
             builder.Property(ab => ab.Id)
