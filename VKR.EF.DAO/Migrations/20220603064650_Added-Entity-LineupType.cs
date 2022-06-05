@@ -10,7 +10,8 @@ namespace VKR.EF.DAO.Migrations
                 name: "LineupType",
                 columns: table => new
                 {
-                    LineupTypeId = table.Column<byte>(type: "tinyint", nullable: false),
+                    LineupTypeId = table.Column<byte>(type: "tinyint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     PitcherHandId = table.Column<byte>(type: "tinyint", nullable: true),
                     DesignatedHitterRule = table.Column<bool>(type: "bit", nullable: true)

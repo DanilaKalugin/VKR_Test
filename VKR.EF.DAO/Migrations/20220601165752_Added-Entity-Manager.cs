@@ -26,7 +26,8 @@ namespace VKR.EF.DAO.Migrations
                 name: "Manager",
                 columns: table => new
                 {
-                    ManagerID = table.Column<short>(type: "smallint", nullable: false),
+                    ManagerID = table.Column<short>(type: "smallint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ManagerFirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     ManagerSecondName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     ManagerDateOfBirth = table.Column<DateTime>(type: "date", nullable: false),

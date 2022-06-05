@@ -16,7 +16,9 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasKey(p => p.Id);
 
-            builder.Property(p => p.Id).HasColumnName("PlayerID");
+            builder.Property(p => p.Id)
+                .HasColumnName("PlayerID");
+
             builder.Property(p => p.FirstName)
                 .HasColumnName("PlayerFirstName")
                 .HasMaxLength(35)
@@ -27,7 +29,8 @@ namespace VKR.EF.Entities.Mappers
                             .HasMaxLength(35)
                             .IsRequired();
 
-            builder.Property(p => p.PlayerNumber).IsRequired();
+            builder.Property(p => p.PlayerNumber)
+                .IsRequired();
 
             builder.Property(p => p.DateOfBirth)
                 .HasColumnType("date")

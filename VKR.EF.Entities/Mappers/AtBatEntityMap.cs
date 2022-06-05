@@ -9,7 +9,10 @@ namespace VKR.EF.Entities.Mappers
         {
             builder.HasKey(ab => ab.Id);
 
-            builder.Property(ab => ab.Id).HasColumnName("AtBatID");
+            builder.Property(ab => ab.Id)
+                .HasColumnName("AtBatID")
+                .HasColumnType("bigint")
+                .UseIdentityColumn();
 
             builder.Property(ab => ab.Outs)
                 .IsRequired();

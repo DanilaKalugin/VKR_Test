@@ -28,7 +28,9 @@ namespace VKR.EF.Entities.Mappers
                     })
             );
 
-            builder.Property(bh => bh.Description).HasMaxLength(25).IsRequired();
+            builder.Property(bh => bh.Description)
+                .HasMaxLength(25)
+                .IsRequired();
         }
     }
 }

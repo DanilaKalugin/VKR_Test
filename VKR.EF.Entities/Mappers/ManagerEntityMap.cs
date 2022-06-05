@@ -14,12 +14,15 @@ namespace VKR.EF.Entities.Mappers
             builder.Property(m => m.Id)
                 .HasColumnName("ManagerID")
                 .HasColumnType("smallint");
+
             builder.Property(m => m.FirstName)
                 .HasColumnName("ManagerFirstName")
                 .HasMaxLength(30).IsRequired();
+
             builder.Property(m => m.SecondName)
                 .HasColumnName("ManagerSecondName")
                 .HasMaxLength(30).IsRequired();
+
             builder.Property(m => m.DateOfBirth)
                 .HasColumnName("ManagerDateOfBirth")
                 .HasColumnType("date").IsRequired();

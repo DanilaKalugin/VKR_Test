@@ -10,7 +10,8 @@ namespace VKR.EF.DAO.Migrations
                 name: "AtBat",
                 columns: table => new
                 {
-                    AtBatID = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    AtBatID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Match = table.Column<int>(type: "int", nullable: false),
                     Batter = table.Column<long>(type: "bigint", nullable: false),
                     AtBatResult = table.Column<byte>(type: "tinyint", nullable: false),

@@ -55,7 +55,8 @@ namespace VKR.EF.Entities.Mappers
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
-            builder.Property(m => m.Id).HasColumnName("MatchID");
+            builder.Property(m => m.Id)
+                .HasColumnName("MatchID");
 
             builder.Property(m => m.AwayTeamAbbreviation)
                 .HasColumnName("AwayTeam");

@@ -11,7 +11,8 @@ namespace VKR.EF.DAO.Migrations
                 name: "Player",
                 columns: table => new
                 {
-                    PlayerID = table.Column<long>(type: "bigint", nullable: false),
+                    PlayerID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PlayerNumber = table.Column<byte>(type: "tinyint", nullable: false),
                     PlayerFirstName = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
                     PlayerSecondName = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),

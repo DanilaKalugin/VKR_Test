@@ -57,7 +57,7 @@ namespace VKR.EF.Entities.Mappers
             builder.HasCheckConstraint("SacrificeFlyProbability", "SacrificeFlyProbability BETWEEN 1 AND 100");
             builder.HasCheckConstraint("StealingBaseProbability", "StealingBaseProbability BETWEEN 1 AND 1000");
             builder.HasCheckConstraint("StealingBaseSuccessfulAttemptProbability", "StealingBaseSuccessfulAttemptProbability BETWEEN 1 AND 100");
-            builder.HasCheckConstraint("SuccessfulBuntAttemptProbability", "SuccessfulBuntAttemptProbability BETWEEN 1 AND 100");
+            builder.HasCheckConstraint("SuccessfulBuntAttemptProbability", "SuccessfulBuntAttemptProbability BETWEEN 1 AND 1000");
             
             builder.HasOne(t => t.Division)
                 .WithMany(d => d.Teams)

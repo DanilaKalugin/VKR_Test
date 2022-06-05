@@ -10,7 +10,8 @@ namespace VKR.EF.Entities.Mappers
             builder.HasKey(sl => new { sl.PlayerInTeamId, sl.LineupTypeId });
 
             builder.Property(sl => sl.PlayerNumberInLineup)
-                .HasColumnName("PlayerPositionInLineup").IsRequired();
+                .HasColumnName("PlayerPositionInLineup")
+                .IsRequired();
 
             builder.HasOne(sl => sl.PlayerInTeam)
                 .WithMany(pit => pit.PlayersInStartingLineups)
@@ -25,7 +26,8 @@ namespace VKR.EF.Entities.Mappers
             builder.HasOne(sl => sl.PlayerPosition)
                 .WithMany(pp => pp.PlayerPositionsInStartingLineups)
                 .HasForeignKey(sl => sl.PlayerPositionId)
-                .OnDelete(DeleteBehavior.Cascade).IsRequired();
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
 
             builder.Property(sl => sl.PlayerPositionId)
                 .HasColumnName("PlayerPosition");

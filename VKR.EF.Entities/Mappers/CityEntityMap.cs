@@ -16,14 +16,18 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.Id).HasColumnName("CityID")
-                .HasColumnType("smallint");
+            builder.Property(c => c.Id)
+                .HasColumnName("CityID")
+                .HasColumnType("smallint")
+                .UseIdentityColumn();
 
-            builder.Property(c => c.Name).HasColumnName("CityName")
+            builder.Property(c => c.Name)
+                .HasColumnName("CityName")
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.Property(c => c.RegionCode).HasColumnName("Region")
+            builder.Property(c => c.RegionCode)
+                .HasColumnName("Region")
                 .IsRequired();
 
             builder.HasOne(c => c.Region)

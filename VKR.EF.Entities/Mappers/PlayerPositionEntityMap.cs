@@ -18,7 +18,8 @@ namespace VKR.EF.Entities.Mappers
                 .HasMaxLength(2)
                 .HasColumnName("PositionCode");
 
-            builder.Property(pp => pp.Number).IsRequired();
+            builder.Property(pp => pp.Number)
+                .IsRequired();
 
             builder.Property(pp => pp.FullTitle)
                 .HasColumnName("PositionFullTitle")

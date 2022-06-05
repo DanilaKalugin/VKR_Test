@@ -17,9 +17,14 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasKey(tc => new{tc.TeamName, tc.ColorNumber});
 
-            builder.Property(tc => tc.BlueComponent).IsRequired();
-            builder.Property(tc => tc.GreenComponent).IsRequired();
-            builder.Property(tc => tc.RedComponent).IsRequired();
+            builder.Property(tc => tc.BlueComponent)
+                .IsRequired();
+
+            builder.Property(tc => tc.GreenComponent)
+                .IsRequired();
+
+            builder.Property(tc => tc.RedComponent)
+                .IsRequired();
 
             builder.HasOne(tc => tc.Team)
                 .WithMany(t => t.TeamColors)

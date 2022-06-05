@@ -10,7 +10,8 @@ namespace VKR.EF.DAO.Migrations
                 name: "PlayersInTeams",
                 columns: table => new
                 {
-                    PlayerInTeamID = table.Column<long>(type: "bigint", nullable: false),
+                    PlayerInTeamID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PlayerId = table.Column<long>(type: "bigint", nullable: false),
                     TeamId = table.Column<string>(type: "nvarchar(3)", nullable: false),
                     InTeamStatus = table.Column<byte>(type: "tinyint", nullable: false)

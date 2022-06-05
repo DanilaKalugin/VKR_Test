@@ -14,7 +14,9 @@ namespace VKR.EF.Entities.Mappers
         {
             builder.HasKey(ph => ph.PitchingHandId);
 
-            builder.Property(ph => ph.Description).HasMaxLength(5).IsRequired();
+            builder.Property(ph => ph.Description)
+                .HasMaxLength(5)
+                .IsRequired();
 
             builder.HasAlternateKey(ph => ph.Description);
 

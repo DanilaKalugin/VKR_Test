@@ -10,7 +10,8 @@ namespace VKR.EF.DAO.Migrations
                 name: "Cities",
                 columns: table => new
                 {
-                    CityID = table.Column<short>(type: "smallint", nullable: false),
+                    CityID = table.Column<short>(type: "smallint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CityName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Country = table.Column<string>(type: "nvarchar(3)", nullable: false)
                 },

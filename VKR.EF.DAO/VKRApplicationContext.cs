@@ -40,5 +40,10 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitcherResultsTypeEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RegionEntityMap());
         }
+
+        public VKRApplicationContext()
+        {
+            Database.EnsureDeleted();
+        }
     }
 }

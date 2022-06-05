@@ -1,8 +1,10 @@
-﻿namespace VKR.EF.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace VKR.EF.Entities
 {
     public class AtBat
     {
-        public ulong Id { get; set; }
+        public long Id { get; set; }
         public Match Match { get; set; }
         public int MatchId { get; set; }
         public PlayerInTeam Batter { get; set; }

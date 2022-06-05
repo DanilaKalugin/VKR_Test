@@ -24,7 +24,9 @@ namespace VKR.EF.Entities.Mappers
             builder.Property(s => s.StadiumTitle).IsRequired()
                 .HasMaxLength(75);
 
-            builder.Property(s => s.StadiumCapacity).IsRequired();
+            builder.Property(s => s.StadiumCapacity)
+                .IsRequired();
+
             builder.Property(s => s.StadiumDistanceToCenterfield)
                 .HasColumnName("StadiumDistanceToCenterField")
                 .IsRequired();

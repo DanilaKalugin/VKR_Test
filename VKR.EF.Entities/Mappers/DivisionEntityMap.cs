@@ -11,12 +11,17 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasKey(d => d.Id);
                 
-            builder.Property(d => d.Id).HasColumnName("DivisionNumber");
+            builder.Property(d => d.Id)
+                .HasColumnName("DivisionNumber");
 
-            builder.Property(d => d.DivisionTitle).HasMaxLength(10).IsRequired();
+            builder.Property(d => d.DivisionTitle)
+                .HasMaxLength(10)
+                .IsRequired();
 
-            builder.Property(l => l.LeagueId).HasMaxLength(2)
-                .HasColumnName("League").IsRequired();
+            builder.Property(l => l.LeagueId)
+                .HasMaxLength(2)
+                .HasColumnName("League")
+                .IsRequired();
 
             builder.HasOne(d => d.League)
                 .WithMany(l => l.Divisions)

@@ -16,8 +16,12 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasKey(c => c.CountryCode);
 
-            builder.Property(c => c.CountryCode).HasMaxLength(3);
-            builder.Property(c => c.CountryName).HasMaxLength(50).IsRequired();
+            builder.Property(c => c.CountryCode)
+                .HasMaxLength(3);
+
+            builder.Property(c => c.CountryName)
+                .HasMaxLength(50)
+                .IsRequired();
 
             builder.HasAlternateKey(c => c.CountryName);
         }

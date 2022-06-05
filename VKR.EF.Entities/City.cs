@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace VKR.EF.Entities
 {
     public class City
     {
-        public ushort Id { get; set; }
+        public short Id { get; set; }
         public string Name { get; set; }
         public Region Region { get; set; }
         public string RegionCode { get; set; }

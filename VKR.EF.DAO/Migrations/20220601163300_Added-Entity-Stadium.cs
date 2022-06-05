@@ -17,7 +17,8 @@ namespace VKR.EF.DAO.Migrations
                 name: "Stadiums",
                 columns: table => new
                 {
-                    StadiumId = table.Column<short>(type: "smallint", nullable: false),
+                    StadiumId = table.Column<short>(type: "smallint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     StadiumTitle = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: false),
                     StadiumCapacity = table.Column<long>(type: "bigint", nullable: false),
                     StadiumDistanceToCenterField = table.Column<int>(type: "int", nullable: false),

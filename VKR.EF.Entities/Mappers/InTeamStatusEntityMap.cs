@@ -10,9 +10,12 @@ namespace VKR.EF.Entities.Mappers
         public void Configure(EntityTypeBuilder<InTeamStatus> builder)
         {
             builder.ToTable("InTeamStatuses");
+
             builder.HasKey(its => its.InTeamStatusId);
 
-            builder.Property(its => its.InTeamStatusTitle).HasMaxLength(50).IsRequired();
+            builder.Property(its => its.InTeamStatusTitle)
+                .HasMaxLength(50)
+                .IsRequired();
 
             builder.HasAlternateKey(its => its.InTeamStatusTitle);
 

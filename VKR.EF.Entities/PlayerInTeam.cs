@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace VKR.EF.Entities
 {
     public class PlayerInTeam
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public uint Id { get; set; }
         public Player Player { get; set; }
         public uint PlayerId { get; set; }

@@ -49,7 +49,8 @@ namespace VKR.EF.Entities.Mappers
             builder.Property(m => m.MatchTypeId)
                 .HasColumnName("MatchType");
 
-            builder.Property(nm => nm.IsPlayed).IsRequired();
+            builder.Property(nm => nm.IsPlayed)
+                .IsRequired();
         }
     }
 }

@@ -11,8 +11,12 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasKey(x => new {x.PitcherId, x.MatchId});
 
-            builder.Property(pr => pr.MatchId).HasColumnName("Match");
-            builder.Property(pr => pr.PitcherId).HasColumnName("Pitcher");
+            builder.Property(pr => pr.MatchId)
+                .HasColumnName("Match");
+
+            builder.Property(pr => pr.PitcherId)
+                .HasColumnName("Pitcher");
+
             builder.Property(pr => pr.IsQualityStart)
                 .HasColumnName("QualityStart")
                 .IsRequired();

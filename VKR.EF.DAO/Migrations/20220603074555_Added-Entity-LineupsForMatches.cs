@@ -10,7 +10,8 @@ namespace VKR.EF.DAO.Migrations
                 name: "LineupsForMatches",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     MatchId = table.Column<int>(type: "int", nullable: false),
                     PlayerInTeamId = table.Column<long>(type: "bigint", nullable: false),
                     NumberInLineup = table.Column<byte>(type: "tinyint", nullable: false),
