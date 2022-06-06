@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace VKR.EF.Entities
 {
-    public class ManInTeam: Man
+    public class ManInTeam : Man
     {
-        public string? TeamName { get; set; }
+        public string TeamName { get; set; }
     }
 }

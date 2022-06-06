@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220606084301_Add-View-CountOfMatchesPlayedForPitcher")]
+    partial class AddViewCountOfMatchesPlayedForPitcher
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,17 +254,6 @@ namespace VKR.EF.DAO.Migrations
                         .HasColumnType("bigint");
 
                     b.ToView("CountOfMatchesPlayed");
-                });
-
-            modelBuilder.Entity("VKR.EF.Entities.CountOfMatchesPlayedForPitcher", b =>
-                {
-                    b.Property<int?>("GamesPlayed")
-                        .HasColumnType("int");
-
-                    b.Property<long>("PlayerId")
-                        .HasColumnType("bigint");
-
-                    b.ToView("CountOfMatchesPlayedForPitcher");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.Country", b =>

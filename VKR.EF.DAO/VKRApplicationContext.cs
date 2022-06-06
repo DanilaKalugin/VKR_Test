@@ -2,7 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks.Dataflow;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using VKR.EF.DAO.Migrations;
 using VKR.EF.Entities;
 
 namespace VKR.EF.DAO
@@ -12,6 +15,8 @@ namespace VKR.EF.DAO
         public DbSet<ManInTeam> MenInTeam { get; set; }
         public DbSet<Team> Team { get; set; }
         public DbSet<TeamColor> TeamColors { get; set; }
+        public DbSet<CountOfMatchesPlayed> CountOfMatchesPlayedList { get; set; }
+        public DbSet<Player> Players { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -47,13 +52,21 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitcherResultEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitcherResultsTypeEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RegionEntityMap());
+
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.CountOfMatchesPlayedViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.CountOfMatchesPlayedForPitcherViewMap());
         }
 
         public IEnumerable<ManInTeam> GetListOfPeopleWithBirthDay()
         {
             return MenInTeam.ToList();
         }
+
+        public IEnumerable<CountOfMatchesPlayed> GetList(int season, int matchType)
+        {
+            return CountOfMatchesPlayedList.FromSqlRaw(@"SELECT Players.PlayerID, ISNULL(GamesPlayed, 0) AS GamesPlayed
+            FROM Players LEFT JOIN CountOfMatchesPlayed step1 ON step1.PlayerID = Players.PlayerID AND step1.Season = {0} AND MatchType = {1}", season, matchType).ToList();
+        }
     }
-    
 }
