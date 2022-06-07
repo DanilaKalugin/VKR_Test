@@ -15,8 +15,8 @@ namespace VKR.EF.DAO
         public DbSet<ManInTeam> MenInTeam { get; set; }
         public DbSet<Team> Team { get; set; }
         public DbSet<TeamColor> TeamColors { get; set; }
-        public DbSet<CountOfMatchesPlayed> CountOfMatchesPlayedList { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<PlayerBattingStats> Players2 { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -54,22 +54,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RegionEntityMap());
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.CountOfMatchesPlayedViewMap());
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.CountOfMatchesPlayedForPitcherViewMap());
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.CountOfMatchesPlayedByTeamViewMap());
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.ExpandedAtBatViewMap());
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.BattingStatsViewMap());
-        }
-
-        public IEnumerable<ManInTeam> GetListOfPeopleWithBirthDay()
-        {
-            return MenInTeam.ToList();
-        }
-
-        public IEnumerable<CountOfMatchesPlayed> GetList(int season, int matchType)
-        {
-            return CountOfMatchesPlayedList.FromSqlRaw(@"SELECT Players.PlayerID, ISNULL(GamesPlayed, 0) AS GamesPlayed
-            FROM Players LEFT JOIN CountOfMatchesPlayed step1 ON step1.PlayerID = Players.PlayerID AND step1.Season = {0} AND MatchType = {1}", season, matchType).ToList();
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());
         }
     }
 }
