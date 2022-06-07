@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220607073210_Added-View-BattingStats")]
+    partial class AddedViewBattingStats
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -793,8 +795,7 @@ namespace VKR.EF.DAO.Migrations
                         .HasColumnName("CS");
 
                     b.Property<int>("DoublePlay")
-                        .HasColumnType("int")
-                        .HasColumnName("GIDP");
+                        .HasColumnType("int");
 
                     b.Property<int>("Doubles")
                         .HasColumnType("int")
@@ -830,16 +831,13 @@ namespace VKR.EF.DAO.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Runs")
-                        .HasColumnType("int")
-                        .HasColumnName("R");
+                        .HasColumnType("int");
 
                     b.Property<int>("SacrificeBunts")
-                        .HasColumnType("int")
-                        .HasColumnName("SAC");
+                        .HasColumnType("int");
 
                     b.Property<int>("SacrificeFlies")
-                        .HasColumnType("int")
-                        .HasColumnName("SF");
+                        .HasColumnType("int");
 
                     b.Property<int>("Singles")
                         .HasColumnType("int")

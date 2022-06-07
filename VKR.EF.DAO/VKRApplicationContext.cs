@@ -56,6 +56,9 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.CountOfMatchesPlayedViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.CountOfMatchesPlayedForPitcherViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.CountOfMatchesPlayedByTeamViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.ExpandedAtBatViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.BattingStatsViewMap());
         }
 
         public IEnumerable<ManInTeam> GetListOfPeopleWithBirthDay()
