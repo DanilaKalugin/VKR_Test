@@ -14,5 +14,6 @@ namespace VKR.EF.Entities
         public PlayerStatus PlayerStatus { get; set; }
         public PlayerStatusEnum CurrentPlayerStatus { get; set; }
         public virtual List<PlayerInTeam> PlayersInTeam { get; set; }
+        public PlayerBattingStats BattingStats { get; set; }
     }
 }
