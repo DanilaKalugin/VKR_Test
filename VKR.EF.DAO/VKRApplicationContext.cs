@@ -7,20 +7,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using VKR.EF.DAO.Migrations;
 using VKR.EF.Entities;
+using System.Configuration;
 
 namespace VKR.EF.DAO
 {
     public sealed class VKRApplicationContext : DbContext
     {
-        public DbSet<ManInTeam> MenInTeam { get; set; }
-        public DbSet<Team> Team { get; set; }
-        public DbSet<TeamColor> TeamColors { get; set; }
-        public DbSet<Player> Players { get; set; }
-        public DbSet<PlayerBattingStats> Players2 { get; set; }
+        public DbSet<ManInTeam> ManInTeam { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
+            var connectionString = GetConnectionString();
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+
+        public static string GetConnectionString()
+        {
+            var currentConnection = ConfigurationManager.AppSettings["CurrentConnectionString"];
+            var connectionString = ConfigurationManager.ConnectionStrings[currentConnection].ConnectionString;
+            return connectionString;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -55,6 +60,13 @@ namespace VKR.EF.DAO
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());
+            
+        }
+
+        [DbFunction("ReturnStreakForThisTeam", "dbo")]
+        public static int GetStreak(DateTime date, string teamID, int MatchType)
+        {
+            throw new NotImplementedException();
         }
     }
 }
