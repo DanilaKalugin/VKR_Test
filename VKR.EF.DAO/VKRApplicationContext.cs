@@ -14,11 +14,13 @@ namespace VKR.EF.DAO
     public sealed class VKRApplicationContext : DbContext
     {
         public DbSet<ManInTeam> ManInTeam { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<TeamBalance> TeamStandings { get; set; }
+        public DbSet<MatchFromSchedule> NextMatches { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = GetConnectionString();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
         }
 
         public static string GetConnectionString()
@@ -60,7 +62,8 @@ namespace VKR.EF.DAO
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());
-            
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.StandingsViewMap());
+
         }
 
         [DbFunction("ReturnStreakForThisTeam", "dbo")]
