@@ -14,5 +14,17 @@ namespace VKR.EF.Entities
         public virtual List<LineupForMatch> LineupsForMatches { get; set; } = new();
         public virtual List<AtBat> AtBats { get; set; } = new();
         public virtual List<PitcherResults> PitcherResults { get; set; } = new();
+
+        public List<GameSituation> GameSituations = new();
+
+        public Match() { }
+
+        public Match(DateTime matchDate, TypeOfMatchEnum typeOfMatch)
+        {
+            MatchDate = matchDate;
+            MatchTypeId = typeOfMatch;
+        }
+
+        public bool IsQuickMatch => MatchTypeId == TypeOfMatchEnum.QuickMatch;
     }
 }
