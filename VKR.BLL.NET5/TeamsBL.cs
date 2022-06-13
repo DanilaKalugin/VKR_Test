@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using VKR.DAL.NET5;
+using VKR.EF.DAO;
 using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.BLL.NET5
 {
     public class TeamsBL
     {
         private readonly TeamsDao _teamsDAO = new();
+        private readonly TeamsEFDAO _teamsEF = new();
 
-        public List<Team> GetAllTeams()
+        public List<EF.Entities.Team> GetAllTeams()
         {
-            var teams = _teamsDAO.GetList().ToList();
+            return _teamsEF.GetList().OrderBy(t => t.TeamName).ToList();
+        }
+
+        public List<EF.Entities.Team> GetTeamsWithWLBalance(int season, TypeOfMatchEnum matchType)
+        {
+            var teams = _teamsEF.GetTeamsWithWLBalance(season, matchType).OrderBy(t => t.TeamName).ToList();
             var maxOffensiveRating = teams.Select(team => team.OffensiveRating()).Max();
             var maxDefensiveRating = teams.Select(team => team.DefensiveRating()).Max();
 
@@ -22,10 +30,10 @@ namespace VKR.BLL.NET5
                 team.NormalizedDefensiveRating = (int)(team.DefensiveRating() / maxDefensiveRating * 99);
             }
 
-            return teams;
+            return teams.ToList();
         }
 
-        public List<Team> GetStandings(string filter, DateTime date)
+        public List<Entities.NET5.Team> GetStandings(string filter, DateTime date)
         {
             var teams = _teamsDAO.GetStandings(date).ToList();
 
@@ -47,7 +55,7 @@ namespace VKR.BLL.NET5
             var leaderL = teams[0].Losses;
 
             foreach (var team in teams) team.GamesBehind = (double)(leaderW - leaderL - (team.Wins - team.Losses)) / 2;
-            
+
             teams = teams.OrderBy(team => team.GamesBehind)
                 .ThenByDescending(team => team.Wins)
                 .ThenByDescending(team => team.RunDifferential).ThenByDescending(team => team.RunsScored).ToList();
@@ -61,7 +69,7 @@ namespace VKR.BLL.NET5
             return teams;
         }
 
-        public List<Team> GetWCStandings(string filter, DateTime date)
+        public List<Entities.NET5.Team> GetWCStandings(string filter, DateTime date)
         {
             var teams = GetStandings(filter, date).ToList();
             var westLeader = teams.First(team => team.Division == $"{filter} West");
@@ -72,19 +80,19 @@ namespace VKR.BLL.NET5
             var leaderL = teams[1].Losses;
 
             foreach (var team in teams) team.GamesBehind = (double)(leaderW - leaderL - (team.Wins - team.Losses)) / 2;
-            
+
             return teams;
         }
 
-        public void UpdateTeamBalance(Team team)
+        public void UpdateTeamBalance(Entities.NET5.Team team)
         {
             var teamWithNewBalance = _teamsDAO.UpdateBalanceForThisTeam(team).First();
             team.Wins = teamWithNewBalance.Item1;
             team.Losses = teamWithNewBalance.Item2;
         }
 
-        public List<Team> GetTeamBattingStats() => _teamsDAO.GetList().OrderByDescending(team => team.BattingStats.AVG).ToList();
+        public List<Entities.NET5.Team> GetTeamBattingStats() => _teamsDAO.GetList().OrderByDescending(team => team.BattingStats.AVG).ToList();
 
-        public List<Team> GetTeamPitchingStats() => _teamsDAO.GetList().OrderBy(team => team.PitchingStats.ERA).ToList();
+        public List<Entities.NET5.Team> GetTeamPitchingStats() => _teamsDAO.GetList().OrderBy(team => team.PitchingStats.ERA).ToList();
     }
 }

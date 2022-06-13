@@ -4,7 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
+using VKR.EF.Entities;
 using VKR.Entities.NET5;
+using Match = VKR.Entities.NET5.Match;
 
 namespace VKR.PL.NET5
 {
@@ -42,15 +44,15 @@ namespace VKR.PL.NET5
             var teamsList = _teamsBL.GetAllTeams();
             dgvBirthDays.Rows.Clear();
 
-            foreach (var man in men) dgvBirthDays.Rows.Add("", man.Team, man.FullName, man.Age);
+            foreach (var man in men) dgvBirthDays.Rows.Add("", man.TeamName, man.FullName, man.Age);
 
             for (var i = 0; i < men.Count; i++)
             {
-                if (men[i].Team != "")
+                if (men[i].TeamName is not null)
                 {
-                    var manTeam = teamsList.First(team => team.TeamAbbreviation == men[i].Team);
-                    dgvBirthDays.Rows[i].Cells[0].Style.BackColor = manTeam.TeamColor[0];
-                    dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = manTeam.TeamColor[0];
+                    var manTeam = teamsList.First(team => team.TeamAbbreviation == men[i].TeamName);
+                    dgvBirthDays.Rows[i].Cells[0].Style.BackColor = manTeam.TeamColors[0].Color;
+                    dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = manTeam.TeamColors[0].Color;
                 }
                 else
                 {
@@ -67,7 +69,7 @@ namespace VKR.PL.NET5
         private void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
             Program.MatchDate = _matchBL.GetDateForNextMatch();
-            var match = new Match(Program.MatchDate, false);
+            var match = new EF.Entities.Match(Program.MatchDate, TypeOfMatchEnum.RegularSeason);
 
             using (var form = new TeamsSelectForm(match))
             {
@@ -127,7 +129,7 @@ namespace VKR.PL.NET5
 
         private void btnNewMatch_Click(object sender, EventArgs e)
         {
-            var match = new Match(DateTime.Now, true);
+            var match = new EF.Entities.Match(DateTime.Now, TypeOfMatchEnum.QuickMatch);
             Visible = false;
 
             using (var form = new TeamsSelectForm(match))

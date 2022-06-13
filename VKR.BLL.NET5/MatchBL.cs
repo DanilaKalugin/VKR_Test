@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using VKR.DAL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.DAO;
+using VKR.EF.Entities;
+using AtBat = VKR.Entities.NET5.AtBat;
+using GameSituation = VKR.Entities.NET5.GameSituation;
+using Match = VKR.Entities.NET5.Match;
+using PitcherResults = VKR.Entities.NET5.PitcherResults;
 
 namespace VKR.BLL.NET5
 {
@@ -10,6 +15,7 @@ namespace VKR.BLL.NET5
     {
         private readonly MatchDAO _matchDAO = new();
         private readonly StadiumsDAO _stadiumsDAO = new();
+        private readonly MatchEFDAO _matchEfdao = new();
 
         public void StartNewMatch(Match match)
         {
@@ -55,7 +61,7 @@ namespace VKR.BLL.NET5
 
         public DateTime GetDateForNextMatch() => _matchDAO.GetDateForNextMatch();
 
-        public List<Match> GetMatchesForThisDay(DateTime date) => _matchDAO.GetMatchesForThisDay(date).ToList();
+        public List<MatchFromSchedule> GetMatchesForThisDay(DateTime date, TypeOfMatchEnum matchType) => _matchEfdao.GetRemainingScheduleForThisDay(date, matchType).ToList();
 
         public List<Match> GetSchedule(string team = "")
         {
