@@ -11,7 +11,7 @@ namespace VKR.DAL.NET5
 
         public static string GetConnectionString()
         {
-            var currentConnection = ConfigurationManager.AppSettings["CurrentConnectionString"];
+            var currentConnection = ConfigurationManager.AppSettings["CurrentConnectionStringADO"];
             var connectionString = ConfigurationManager.ConnectionStrings[currentConnection].ConnectionString;
             return connectionString;
         }
