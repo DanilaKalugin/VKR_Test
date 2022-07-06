@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace VKR.EF.Entities.Mappers
 {
-    public class LineupTypeMapper : IEntityTypeConfiguration<LineupType>
+    public class LineupTypeEntityMap : IEntityTypeConfiguration<LineupType>
     {
         public void Configure(EntityTypeBuilder<LineupType> builder)
         {

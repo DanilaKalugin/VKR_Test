@@ -54,7 +54,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TypeOfMatchEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStadiumForTypeOfMatchEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.MatchFromScheduleEntityMap());
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.LineupTypeMapper());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.LineupTypeEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StartingLineupEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.LineupForMatchEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.AtBatResultEntityMap());
