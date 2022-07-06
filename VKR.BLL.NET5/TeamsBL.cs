@@ -33,22 +33,22 @@ namespace VKR.BLL.NET5
             return teams.ToList();
         }
 
-        public List<Entities.NET5.Team> GetStandings(string filter, DateTime date)
+        public List<EF.Entities.Team> GetStandings(string filter, DateTime date)
         {
-            var teams = _teamsDAO.GetStandings(date).ToList();
+            var teams = _teamsEF.GetStandings(date, TypeOfMatchEnum.RegularSeason).ToList();
 
             foreach (var team in teams)
             {
-                team.TeamColor = _teamsDAO.GetAllColorsForThisTeam(team.TeamAbbreviation).ToList();
-                team.RunsScored = _teamsDAO.GetRunsScoredByTeamAfterThisDate(team, date);
-                team.RunsAllowed = _teamsDAO.GetRunsAllowedByTeamAfterThisDate(team, date);
+                //team.TeamColor = _teamsDAO.GetAllColorsForThisTeam(team.TeamAbbreviation).ToList();
+                //team.RunsScored = _teamsDAO.GetRunsScoredByTeamAfterThisDate(team, date);
+                //team.RunsAllowed = _teamsDAO.GetRunsAllowedByTeamAfterThisDate(team, date);
             }
 
             if (filter != "MLB")
             {
                 teams = filter is "NL" or "AL"
-                    ? teams.Where(team => team.League == filter).ToList()
-                    : teams.Where(team => team.Division == filter).ToList();
+                    ? teams.Where(team => team.Division.LeagueId == filter).ToList()
+                    : teams.Where(team => team.Division.DivisionTitle == filter).ToList();
             }
 
             var leaderW = teams[0].Wins;
@@ -58,7 +58,7 @@ namespace VKR.BLL.NET5
 
             teams = teams.OrderBy(team => team.GamesBehind)
                 .ThenByDescending(team => team.Wins)
-                .ThenByDescending(team => team.RunDifferential).ThenByDescending(team => team.RunsScored).ToList();
+                /*.ThenByDescending(team => team.RunDifferential).ThenByDescending(team => team.RunsScored)*/.ToList();
 
             var leadGB = teams[0].GamesBehind;
 
@@ -71,6 +71,8 @@ namespace VKR.BLL.NET5
 
         public List<Entities.NET5.Team> GetWCStandings(string filter, DateTime date)
         {
+            throw new NotImplementedException();
+/*
             var teams = GetStandings(filter, date).ToList();
             var westLeader = teams.First(team => team.Division == $"{filter} West");
             var centralLeader = teams.First(team => team.Division == $"{filter} Central");
@@ -81,7 +83,7 @@ namespace VKR.BLL.NET5
 
             foreach (var team in teams) team.GamesBehind = (double)(leaderW - leaderL - (team.Wins - team.Losses)) / 2;
 
-            return teams;
+            return teams;*/
         }
 
         public void UpdateTeamBalance(Entities.NET5.Team team)

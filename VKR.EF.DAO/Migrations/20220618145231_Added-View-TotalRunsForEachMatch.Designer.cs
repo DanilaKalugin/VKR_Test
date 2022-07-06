@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220618145231_Added-View-TotalRunsForEachMatch")]
+    partial class AddedViewTotalRunsForEachMatch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1169,17 +1171,6 @@ namespace VKR.EF.DAO.Migrations
                     b.HasIndex("TypeOfMatchId");
 
                     b.ToTable("TeamStadiumForTypeOfMatch");
-                });
-
-            modelBuilder.Entity("VKR.EF.Entities.TeamStat", b =>
-                {
-                    b.Property<string>("AwayTeam")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Streak")
-                        .HasColumnType("int");
-
-                    b.ToFunction("GetStreakForAllTeams");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.TypeOfMatch", b =>

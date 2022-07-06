@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using VKR.EF.DAO.Migrations;
 using VKR.EF.Entities;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace VKR.EF.DAO
 {
@@ -21,6 +22,8 @@ namespace VKR.EF.DAO
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
+
+            optionsBuilder.LogTo(s => Debug.WriteLine(s), new[] { DbLoggerCategory.Database.Command.Name });
         }
 
         public static string GetConnectionString()
@@ -64,12 +67,27 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StandingsViewMap());
 
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStatViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.RunsScoredByTeamFunctionMap());
+
+            modelBuilder.HasDbFunction(typeof(VKRApplicationContext)
+                    .GetMethod(nameof(ReturnStreakForAllTeams), 
+                        new [] {typeof(DateTime), typeof(byte)}))
+                    .HasName("ReturnStreakForAllTeams");
+
+            modelBuilder.HasDbFunction(typeof(VKRApplicationContext)
+                    .GetMethod(nameof(RunsScoredByTeamBeforeThisDateInMatchType),
+                        new[] { typeof(byte), typeof(DateTime) }))
+                .HasName("RunsScoredByTeamBeforeThisDateInMatchType");
         }
 
-        [DbFunction("ReturnStreakForThisTeam", "dbo")]
-        public static int GetStreak(DateTime date, string teamID, int MatchType)
+        public IQueryable<RunsScoredByTeam> RunsScoredByTeamBeforeThisDateInMatchType(byte MatchType, DateTime date)
         {
-            throw new NotImplementedException();
+            return FromExpression(() => RunsScoredByTeamBeforeThisDateInMatchType(MatchType, date));
+        }
+        public IQueryable<TeamStat> ReturnStreakForAllTeams(DateTime date, byte MatchType)
+        {
+            return FromExpression(() => ReturnStreakForAllTeams(date, MatchType));
         }
     }
 }

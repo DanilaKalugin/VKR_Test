@@ -82,6 +82,19 @@ namespace VKR.EF.Entities
 
         public int Wins => HomeWins + AwayWins;
         public int Losses => HomeLosses + AwayLosses;
+        public double Pct => Wins + Losses == 0 ? 0 : Math.Round(Wins / (double)(Wins + Losses), 3);
+
+        public string HomeBalance => $"{HomeWins}-{HomeLosses}";
+        public string AwayBalance => $"{AwayWins}-{AwayLosses}";
+
+        public double GamesBehind;
+        public int Streak;
+        public string StreakString => Streak > 0 ? $"Won {Streak}" : $"Lost {Math.Abs(Streak)}";
+
+
+        public int RunsScored;
+        public int RunsAllowed;
+        public int RunDifferential => RunsScored - RunsAllowed;
 
         public Team(Team team, TeamBalance balance)
         {
@@ -114,6 +127,12 @@ namespace VKR.EF.Entities
             Manager = team.Manager;
             Division = team.Division;
             TeamColors = team.TeamColors.ToList();
+        }
+
+        public Team(Team team, TeamBalance balance, int streak, int runsScored/*, int runsAllowed*/) : this(team, balance)
+        {
+            Streak = streak;
+            RunsScored = runsScored;
         }
 
         public Team()
