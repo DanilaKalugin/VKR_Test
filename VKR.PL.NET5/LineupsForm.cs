@@ -18,7 +18,7 @@ namespace VKR.PL.NET5
         private readonly TeamsBL _teamsBL = new();
         private readonly List<List<List<PlayerInLineup>>> _teamsLineups;
         private readonly List<List<List<PlayerInLineup>>> _teamsBench;
-        private readonly List<Team> _teams;
+        private readonly List<EF.Entities.Team> _teams;
         private int _teamNumber;
         private int _lineupNumber;
         private readonly string[] _typesOfLineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
@@ -74,26 +74,26 @@ namespace VKR.PL.NET5
         private void TeamChanged(int teamNumber)
         {
             panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{_teams[teamNumber].TeamAbbreviation}.png");
-            lbTeamtitle.Text = _teams[teamNumber].TeamTitle.ToUpper();
-            lbTeamtitle.BackColor = _teams[teamNumber].TeamColor[0];
+            lbTeamtitle.Text = _teams[teamNumber].TeamName.ToUpper();
+            lbTeamtitle.BackColor = _teams[teamNumber].TeamColors[0].Color;
             lbTeamtitle.ForeColor = Color.White;
-            dgvLineup.DefaultCellStyle.SelectionBackColor = _teams[teamNumber].TeamColor[0];
+            dgvLineup.DefaultCellStyle.SelectionBackColor = _teams[teamNumber].TeamColors[0].Color;
             dgvLineup.DefaultCellStyle.SelectionForeColor = Color.White;
 
-            label4.ForeColor = _teams[teamNumber].TeamColor[0];
-            label5.ForeColor = _teams[teamNumber].TeamColor[0];
-            label6.ForeColor = _teams[teamNumber].TeamColor[0];
-            btnIncreaseTeamNumberBy1.ForeColor = _teams[teamNumber].TeamColor[0];
-            btnDecreaseTeamNumberBy1.ForeColor = _teams[teamNumber].TeamColor[0];
-            btnIncLineupTypeNumberBy1.ForeColor = _teams[teamNumber].TeamColor[0];
-            btnDecLineupTypeNumberBy1.ForeColor = _teams[teamNumber].TeamColor[0];
-            lbLineUpType.ForeColor = _teams[teamNumber].TeamColor[0];
-            lbPlayerName.ForeColor = _teams[teamNumber].TeamColor[0];
+            label4.ForeColor = _teams[teamNumber].TeamColors[0].Color;
+            label5.ForeColor = _teams[teamNumber].TeamColors[0].Color;
+            label6.ForeColor = _teams[teamNumber].TeamColors[0].Color;
+            btnIncreaseTeamNumberBy1.ForeColor = _teams[teamNumber].TeamColors[0].Color;
+            btnDecreaseTeamNumberBy1.ForeColor = _teams[teamNumber].TeamColors[0].Color;
+            btnIncLineupTypeNumberBy1.ForeColor = _teams[teamNumber].TeamColors[0].Color;
+            btnDecLineupTypeNumberBy1.ForeColor = _teams[teamNumber].TeamColors[0].Color;
+            lbLineUpType.ForeColor = _teams[teamNumber].TeamColors[0].Color;
+            lbPlayerName.ForeColor = _teams[teamNumber].TeamColors[0].Color;
 
-            lbPlayerNumber.ForeColor = Color.FromArgb((int)(_teams[teamNumber].TeamColor[0].R * 0.7), (int)(_teams[teamNumber].TeamColor[0].G * 0.7), (int)(_teams[teamNumber].TeamColor[0].B * 0.7));
-            dgvBench.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb((int)(_teams[teamNumber].TeamColor[0].R * 0.65), (int)(_teams[teamNumber].TeamColor[0].G * 0.65), (int)(_teams[teamNumber].TeamColor[0].B * 0.65));
+            lbPlayerNumber.ForeColor = Color.FromArgb((int)(_teams[teamNumber].TeamColors[0].Color.R * 0.7), (int)(_teams[teamNumber].TeamColors[0].Color.G * 0.7), (int)(_teams[teamNumber].TeamColors[0].Color.B * 0.7));
+            dgvBench.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb((int)(_teams[teamNumber].TeamColors[0].Color.R * 0.65), (int)(_teams[teamNumber].TeamColors[0].Color.G * 0.65), (int)(_teams[teamNumber].TeamColors[0].Color.B * 0.65));
 
-            lbl_LineupHeader.ForeColor = _teams[teamNumber].TeamColor[0];
+            lbl_LineupHeader.ForeColor = _teams[teamNumber].TeamColors[0].Color;
             DisplayRoster(teamNumber, _lineupNumber);
         }
 
@@ -173,9 +173,9 @@ namespace VKR.PL.NET5
             dgv2.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgv2.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.Black;
 
-            dgv1.DefaultCellStyle.SelectionBackColor = _teams[_teamNumber].TeamColor[0];
+            dgv1.DefaultCellStyle.SelectionBackColor = _teams[_teamNumber].TeamColors[0].Color;
             dgv1.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgv1.AlternatingRowsDefaultCellStyle.SelectionBackColor = _teams[_teamNumber].TeamColor[0];
+            dgv1.AlternatingRowsDefaultCellStyle.SelectionBackColor = _teams[_teamNumber].TeamColors[0].Color;
             dgv1.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
 
             var batter = _players.GetPlayerByCode(player.Id);
