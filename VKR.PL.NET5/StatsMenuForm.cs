@@ -15,7 +15,7 @@ namespace VKR.PL.NET5
         private readonly TeamsBL teamsBL = new();
         private readonly List<Player> batters;
         private readonly List<Player> pitchers;
-        private readonly List<Team> teams;
+        private readonly List<EF.Entities.Team> teams;
 
         public StatsMenuForm()
         {
@@ -109,8 +109,8 @@ namespace VKR.PL.NET5
                 {
                     var currentBatter = batters.First(batter => batter.FullName == dgvBattingLeaders.Rows[i].Cells[2].Value.ToString());
                     var manTeam = teams.First(team => team.TeamAbbreviation == currentBatter.Team);
-                    dgvBattingLeaders.Rows[i].Cells[1].Style.BackColor = manTeam.TeamColor[0];
-                    dgvBattingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = manTeam.TeamColor[0];
+                    dgvBattingLeaders.Rows[i].Cells[1].Style.BackColor = manTeam.TeamColors[0].Color;
+                    dgvBattingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = manTeam.TeamColors[0].Color;
                 }
             }
 
@@ -141,8 +141,8 @@ namespace VKR.PL.NET5
                     else currentPlayer = pitchersWithThisValue.First();
 
                     var manTeam = teams.First(team => team.TeamAbbreviation == currentPlayer.Team);
-                    dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = manTeam.TeamColor[0];
-                    dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = manTeam.TeamColor[0];
+                    dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = manTeam.TeamColors[0].Color;
+                    dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = manTeam.TeamColors[0].Color;
                 }
                 else
                 {
