@@ -26,5 +26,6 @@ namespace VKR.EF.Entities
         }
 
         public bool IsQuickMatch => MatchTypeId == TypeOfMatchEnum.QuickMatch;
+        public MatchResult MatchResult { get; set; }
     }
 }

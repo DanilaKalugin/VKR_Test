@@ -51,21 +51,17 @@ namespace VKR.EF.DAO
             var TypeParam = new SqlParameter("@Type", type);
 
             var teamBalances = db.TeamStandings.FromSqlRaw(
-                @"SELECT dbo.Teams.TeamAbbreviation, {0} As MatchType, Year({1}) As Season,
-						 COUNT(CASE WHEN Winner = Teams.TeamAbbreviation AND HomeTeam = Teams.TeamAbbreviation THEN 1 ELSE NULL END) AS HW, 
-						 COUNT(CASE WHEN Loser = Teams.TeamAbbreviation AND HomeTeam = Teams.TeamAbbreviation THEN 1 ELSE NULL END) AS HL, 
-						 COUNT(CASE WHEN Winner = Teams.TeamAbbreviation AND AwayTeam = Teams.TeamAbbreviation THEN 1 ELSE NULL END) AS AW, 
-						 COUNT(CASE WHEN Loser = Teams.TeamAbbreviation AND AwayTeam = Teams.TeamAbbreviation THEN 1 ELSE NULL END) AS AL
-FROM            dbo.Teams CROSS JOIN
-                         dbo.CombinationsOfYearAndMatchType AS m1 LEFT OUTER JOIN
-                         dbo.MatchResults ON (dbo.Teams.TeamAbbreviation = dbo.MatchResults.AwayTeam OR
-                         dbo.Teams.TeamAbbreviation = dbo.MatchResults.HomeTeam) AND m1.MatchType = dbo.MatchResults.MatchType AND m1.Season = MatchResults.Season
-WHERE m1.Season = Year({1}) AND (m1.MatchType = {0}) AND (matchDate <= {1} OR MatchDate IS NULL)
-GROUP BY dbo.Teams.TeamAbbreviation, m1.MatchType, m1.Season", type,
+                @"SELECT teamAbbreviation, {0} As MatchType, Year({1}) As Season, 
+						 COUNT(CASE WHEN HomeTeam = TeamAbbreviation AND MatchWinnerId = TeamAbbreviation AND MatchDate <= {1} AND Year(MatchDate) = Year({1}) AND MatchType = {0} Then 1 Else NULL END) AS HW,
+						 COUNT(CASE WHEN HomeTeam = TeamAbbreviation AND MatchLoserId = TeamAbbreviation AND MatchDate <= {1} AND Year(MatchDate) = Year({1}) AND MatchType = {0} Then 1 Else NULL END) AS HL, 
+						 COUNT(CASE WHEN AwayTeam = TeamAbbreviation AND MatchWinnerId = TeamAbbreviation AND MatchDate <= {1} AND Year(MatchDate) = Year({1}) AND MatchType = {0} Then 1 Else NULL END) AS AW,
+						 COUNT(CASE WHEN AwayTeam = TeamAbbreviation AND MatchLoserId = TeamAbbreviation AND MatchDate <= {1} AND Year(MatchDate) = Year({1}) AND MatchType = {0} Then 1 Else NULL END) AS AL
+FROM Teams INNER JOIN dbo.Matches ON (dbo.Teams.TeamAbbreviation = dbo.Matches.AwayTeam OR dbo.Teams.TeamAbbreviation = dbo.Matches.HomeTeam)
+		   INNER JOIN ResultsOfMatches ON Matches.MatchID = ResultsOfMatches.MatchId
+GROUP BY dbo.Teams.TeamAbbreviation", type,
                 date).ToList();
 
             var streaks = db.ReturnStreakForAllTeams(date, type).ToList();
-            var rs = db.RunsScoredByTeamBeforeThisDateInMatchType(type, date).ToList();
             
             return teamWithLeagueAndDivision.Join(teamBalances,
                 t => t.TeamAbbreviation, 
@@ -74,11 +70,7 @@ GROUP BY dbo.Teams.TeamAbbreviation, m1.MatchType, m1.Season", type,
                 .Join(streaks, 
                     team => team.team.TeamAbbreviation, 
                     streak => streak.AwayTeam, 
-                    (team, stat) => new { team.team, team.balance, stat})
-                .Join(rs, 
-                    team => team.team.TeamAbbreviation, 
-                    runsScored => runsScored.TeamAbbreviation,
-                    (team, rs) => new Team(team.team, team.balance, team.stat.Streak, rs.RunsScored)).ToList();
+                    (team, stat) => new Team(team.team, team.balance, stat.Streak)).ToList();
         }
         /*
         public int GetStreakForThisTeam(DateTime date, TypeOfMatchEnum type, string teamID)
