@@ -43,11 +43,10 @@ namespace VKR.EF.DAO
             var teamWithLeagueAndDivision = db.Teams.Include(t => t.TeamColors)
                 .Include(t => t.Division)
                 .ThenInclude(d => d.League)
-                .Include(t => t.Manager)
                 .ToList();
 
             var dateParam = new SqlParameter("@Date", date);
-            var TypeParam = new SqlParameter("@Type", type);
+            var typeParam = new SqlParameter("@Type", type);
 
             var teamBalances = db.TeamStandings.FromSqlRaw(
                 @"SELECT teamAbbreviation, {0} As MatchType, Year({1}) As Season, 
@@ -57,8 +56,7 @@ namespace VKR.EF.DAO
 						 COUNT(CASE WHEN AwayTeam = TeamAbbreviation AND MatchLoserId = TeamAbbreviation AND MatchDate <= {1} AND Year(MatchDate) = Year({1}) AND MatchType = {0} Then 1 Else NULL END) AS AL
 FROM Teams INNER JOIN dbo.Matches ON (dbo.Teams.TeamAbbreviation = dbo.Matches.AwayTeam OR dbo.Teams.TeamAbbreviation = dbo.Matches.HomeTeam)
 		   INNER JOIN ResultsOfMatches ON Matches.MatchID = ResultsOfMatches.MatchId
-GROUP BY dbo.Teams.TeamAbbreviation", type,
-                date).ToList();
+GROUP BY dbo.Teams.TeamAbbreviation", typeParam, dateParam).ToList();
 
             var streaks = db.ReturnStreakForAllTeams(date, type).ToList();
             
@@ -71,13 +69,5 @@ GROUP BY dbo.Teams.TeamAbbreviation", type,
                     streak => streak.AwayTeam, 
                     (team, stat) => new Team(team.team, team.balance, stat.Streak)).ToList();
         }
-        /*
-        public int GetStreakForThisTeam(DateTime date, TypeOfMatchEnum type, string teamID)
-        {
-            using var db = new VKRApplicationContext();
-            /*return db.Teams.Where(team => team.TeamAbbreviation == teamID)
-                .Select(t => VKRApplicationContext.ReturnStreakForAllTeams(date, teamID, type)).First();
-        
-        }*/
     }
 }

@@ -40,9 +40,11 @@ namespace VKR.BLL.NET5
 
             if (filter != "MLB")
             {
-                teams = filter is "NL" or "AL"
-                    ? teams.Where(team => team.Division.LeagueId == filter).ToList()
-                    : teams.Where(team => team.Division.DivisionTitle == filter).ToList();
+                Func<Team, bool> teamFilter = filter is "NL" or "AL"
+                    ? team => team.Division.LeagueId == filter
+                    : team => team.Division.DivisionTitle == filter;
+
+                teams = teams.Where(teamFilter).ToList();
             }
 
             foreach (var team in teams)
@@ -60,18 +62,17 @@ namespace VKR.BLL.NET5
 
             teams = teams.OrderBy(team => team.GamesBehind)
                 .ThenByDescending(team => team.Wins)
-                /*.ThenByDescending(team => team.RunDifferential).ThenByDescending(team => team.RunsScored)*/.ToList();
+                /*.ThenByDescending(team => team.RunDifferential)
+                 .ThenByDescending(team => team.RunsScored)*/.ToList();
 
-            var leadGB = teams[0].GamesBehind;
+            var minimumGamesBehind = teams.Select(team => team.GamesBehind).Min();
 
-            if (leadGB >= 0) return teams;
-
-            foreach (var team in teams) team.GamesBehind -= leadGB;
+            foreach (var team in teams) team.GamesBehind -= minimumGamesBehind;
 
             return teams;
         }
 
-        public List<Team> GetWCStandings(string filter, DateTime date)
+        public List<Team> GetWildCardStandings(string filter, DateTime date)
         {
             var teams = GetStandings(filter, date);
 

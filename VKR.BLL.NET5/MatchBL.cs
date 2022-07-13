@@ -53,11 +53,7 @@ namespace VKR.BLL.NET5
 
         public void DeleteThisMatch(int matchNumberForDelete) => _matchDAO.DeleteThisMatch(matchNumberForDelete);
 
-        public DateTime GetMaxDateForAllMatches()
-        {
-            var matches = GetResultsForAllMatches();
-            return matches.Select(match => match.MatchDate).Max();
-        }
+        public DateTime GetMaxDateForAllMatches() => _matchEfdao.GetMaxDateForAllMatches();
 
         public DateTime GetDateForNextMatch() => _matchDAO.GetDateForNextMatch();
 

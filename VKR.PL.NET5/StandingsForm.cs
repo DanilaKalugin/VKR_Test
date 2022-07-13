@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.NET5
 {
@@ -14,8 +14,8 @@ namespace VKR.PL.NET5
     {
         private readonly TeamsBL _teamsBl = new();
         private readonly MatchBL _matchBL = new();
-        private readonly EF.Entities.Team? _homeTeam;
-        private readonly EF.Entities.Team? _awayTeam;
+        private readonly Team? _homeTeam;
+        private readonly Team? _awayTeam;
 
         public StandingsForm(Team home, Team away) : this()
         {
@@ -26,14 +26,14 @@ namespace VKR.PL.NET5
         public StandingsForm()
         {
             InitializeComponent();
-            //Program.MatchDate = _matchBL.GetMaxDateForAllMatches();
-            dtpStandingsDate.Value = new DateTime(2021, 10, 1);
+            Program.MatchDate = _matchBL.GetMaxDateForAllMatches();
+            dtpStandingsDate.Value = Program.MatchDate;
             cbFilter.Text = "MLB";
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter.SelectedIndex);
 
-        private void GetStandingsForThisGroup(IList<EF.Entities.Team> teams, string group)
+        private void GetStandingsForThisGroup(IList<Team> teams, string group)
         {
             var teamsInGroup = teams.Count;
             dgvStandings.Rows.Add("", group, "W", "L", "GB", "PCT", "STREAK", "RS", "RA", "DIFF", "HOME", "AWAY");
@@ -64,7 +64,6 @@ namespace VKR.PL.NET5
                 //row.Cells[9].Value = teams[i].RunDifferential;
                 row.Cells[10].Value = teams[i].HomeBalance;
                 row.Cells[11].Value = teams[i].AwayBalance;
-
 
                 dgvStandings.Rows.Add(row);
 
@@ -110,8 +109,8 @@ namespace VKR.PL.NET5
 
             var groups = DefineGroupsForTable(groupingTypeNumber);
 
-            Func<string, DateTime, List<EF.Entities.Team>> teamFunc =
-                groupingTypeNumber == 3 ? _teamsBl.GetWCStandings : _teamsBl.GetStandings;
+            Func<string, DateTime, List<Team>> teamFunc =
+                groupingTypeNumber == 3 ? _teamsBl.GetWildCardStandings : _teamsBl.GetStandings;
 
             var teamsGroups = GetStandingsForEachGroup(groups, teamFunc);
 
@@ -119,15 +118,13 @@ namespace VKR.PL.NET5
                 GetStandingsForThisGroup(teamsGroups[index], groups[index]);
         }
 
-        private List<List<EF.Entities.Team>> GetStandingsForEachGroup(IReadOnlyList<string> groups, Func<string, DateTime, List<EF.Entities.Team>> teamFunc)
+        private List<List<Team>> GetStandingsForEachGroup(IReadOnlyList<string> groups, Func<string, DateTime, List<Team>> teamFunc)
         {
-            var teamsGroups = new List<List<EF.Entities.Team>>(groups.Count);
-            teamsGroups.AddRange(Enumerable.Repeat(new List<EF.Entities.Team>(), groups.Count));
+            var teamsGroups = new List<List<Team>>(groups.Count);
 
-            Parallel.For(0, groups.Count, index =>
-            {
-                teamsGroups[index] = teamFunc(groups[index], dtpStandingsDate.Value);
-            });
+            teamsGroups.AddRange(Enumerable.Repeat(new List<Team>(), groups.Count));
+
+            Parallel.For(0, groups.Count, index => teamsGroups[index] = teamFunc(groups[index], dtpStandingsDate.Value));
             return teamsGroups;
         }
     }

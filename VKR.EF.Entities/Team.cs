@@ -92,7 +92,6 @@ namespace VKR.EF.Entities
         public int Streak;
         public string StreakString => Streak > 0 ? $"Won {Streak}" : $"Lost {Math.Abs(Streak)}";
 
-
         public int RunsScored;
         public int RunsAllowed;
         public int RunDifferential => RunsScored - RunsAllowed;
@@ -130,10 +129,9 @@ namespace VKR.EF.Entities
             TeamColors = team.TeamColors.ToList();
         }
 
-        public Team(Team team, TeamBalance balance, int streak, int runsScored/*, int runsAllowed*/) : this(team, balance)
+        public Team(Team team, TeamBalance balance, int streak) : this(team, balance)
         {
             Streak = streak;
-            RunsScored = runsScored;
         }
 
         public Team()
