@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
-using VKR.Entities.NET5;
-using Match = VKR.Entities.NET5.Match;
 
 namespace VKR.PL.NET5
 {
@@ -15,7 +16,6 @@ namespace VKR.PL.NET5
         private readonly ManBL _manBL = new();
         private readonly TeamsBL _teamsBL = new();
         private readonly MatchBL _matchBL = new();
-        private int _matchNumberForDelete;
 
         public MainMenuForm()
         {
@@ -35,67 +35,73 @@ namespace VKR.PL.NET5
             }
         }
 
-        private void MainMenuForm_Load(object sender, EventArgs e) => GetListOfPeopleWithBirthdayToday();
-
-        private void GetListOfPeopleWithBirthdayToday()
+        private async void MainMenuForm_Load(object sender, EventArgs e)
         {
-            Visible = true;
-            var men = _manBL.GetListOfPeopleWithBirthdayToday();
-            var teamsList = _teamsBL.GetAllTeams();
-            dgvBirthDays.Rows.Clear();
+            await UpdateBirthDayTable();
+        }
 
-            foreach (var man in men) dgvBirthDays.Rows.Add("", man.TeamName, man.FullName, man.Age);
+        private async Task UpdateBirthDayTable()
+        {
+            var man = await _manBL.GetListOfPeopleWithBirthdayToday();
+            var teams = await _teamsBL.GetAllTeams();
+            dgvBirthDays.Invoke((Action<List<ManInTeam>>)FillBirthDayTable, man);
+            dgvBirthDays.Invoke((Action<List<Team>, List<ManInTeam>>)FillColors, teams, man);
+        }
+
+        private void FillColors(List<Team> teams, List<ManInTeam> men)
+        {
+            if (men.Count == 0) return;
 
             for (var i = 0; i < men.Count; i++)
             {
-                if (men[i].TeamName is not null)
-                {
-                    var manTeam = teamsList.First(team => team.TeamAbbreviation == men[i].TeamName);
-                    dgvBirthDays.Rows[i].Cells[0].Style.BackColor = manTeam.TeamColors[0].Color;
-                    dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = manTeam.TeamColors[0].Color;
-                }
-                else
-                {
-                    dgvBirthDays.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(220, 220, 220);
-                    dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = Color.FromArgb(220, 220, 220);
-                }
-            }
-            panel1.Visible = dgvBirthDays.Rows.Count > 0;
+                var rowColor = men[i].TeamName != "" 
+                    ? teams.First(team => team.TeamAbbreviation == men[i].TeamName).TeamColors[0].Color 
+                    : Color.FromArgb(220, 220, 220);
 
-            if (dgvBirthDays.Rows.Count != 0) return;
+                dgvBirthDays.Rows[i].Cells[0].Style.BackColor = rowColor;
+                dgvBirthDays.Rows[i].Cells[0].Style.SelectionBackColor = rowColor;
+            }
+        }
+
+        private void FillBirthDayTable(IList<ManInTeam> men)
+        {
+            dgvBirthDays.Rows.Clear();
+            foreach (var man in men) dgvBirthDays.Rows.Add("", man.TeamName, man.FullName, man.Age);
+
+            if (men.Count != 0) return;
             Width -= panel1.Width;
         }
 
-        private void btn_StartNewMatch_Click(object sender, EventArgs e)
+        private async void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
             Program.MatchDate = _matchBL.GetDateForNextMatch();
-            var match = new EF.Entities.Match(Program.MatchDate, TypeOfMatchEnum.RegularSeason);
+            var match = new Match(Program.MatchDate, TypeOfMatchEnum.RegularSeason);
 
             using (var form = new TeamsSelectForm(match))
             {
                 form.ShowDialog();
-                if (form.DialogResult == DialogResult.Yes)
-                {
-                    _matchNumberForDelete = form.MatchNumberForDelete;
-                    _matchBL.DeleteThisMatch(_matchNumberForDelete);
-                }
+                if (form.DialogResult != DialogResult.Yes) return;
+
+                var matchNumberForDelete = form.MatchNumberForDelete;
+                _matchBL.DeleteThisMatch(matchNumberForDelete);
             }
 
-            GetListOfPeopleWithBirthdayToday();
+            await UpdateBirthDayTable();
         }
 
-        private void btnStandings_Click(object sender, EventArgs e)
+        private async void btnStandings_Click(object sender, EventArgs e)
         {
             using (var form = new StandingsForm())
             {
                 Visible = false;
                 form.ShowDialog();
             }
+            Visible = true;
 
-            GetListOfPeopleWithBirthdayToday();
+            await UpdateBirthDayTable();
         }
 
-        private void btnPlayerStats_Click(object sender, EventArgs e)
+        private async void btnPlayerStats_Click(object sender, EventArgs e)
         {
             using (var form = new StatsMenuForm())
             {
@@ -103,10 +109,10 @@ namespace VKR.PL.NET5
                 form.ShowDialog();
             }
 
-            GetListOfPeopleWithBirthdayToday();
+            await UpdateBirthDayTable();
         }
 
-        private void btnLineups_Click(object sender, EventArgs e)
+        private async void btnLineups_Click(object sender, EventArgs e)
         {
             using (var form = new RostersMenuForm())
             {
@@ -114,37 +120,36 @@ namespace VKR.PL.NET5
                 form.ShowDialog();
             }
 
-            GetListOfPeopleWithBirthdayToday();
+            await UpdateBirthDayTable();
         }
 
-        private void btnResults_Click(object sender, EventArgs e)
+        private async void btnResults_Click(object sender, EventArgs e)
         {
             using (var form = new MatchResultsMenuForm())
             {
                 Visible = false;
                 form.ShowDialog();
             }
-            GetListOfPeopleWithBirthdayToday();
+            await UpdateBirthDayTable();
         }
 
-        private void btnNewMatch_Click(object sender, EventArgs e)
+        private async void btnNewMatch_Click(object sender, EventArgs e)
         {
-            var match = new EF.Entities.Match(DateTime.Now, TypeOfMatchEnum.QuickMatch);
+            var match = new Match(DateTime.Now, TypeOfMatchEnum.QuickMatch);
             Visible = false;
 
             using (var form = new TeamsSelectForm(match))
             {
                 form.ShowDialog();
 
-                if (form.DialogResult == DialogResult.Yes)
-                {
-                    _matchNumberForDelete = form.MatchNumberForDelete;
-                    form.Dispose();
-                    _matchBL.DeleteThisMatch(_matchNumberForDelete);
-                }
+                if (form.DialogResult != DialogResult.Yes) return;
+
+                var matchNumberForDelete = form.MatchNumberForDelete;
+                form.Dispose();
+                _matchBL.DeleteThisMatch(matchNumberForDelete);
             }
 
-            GetListOfPeopleWithBirthdayToday();
+            await UpdateBirthDayTable();
         }
 
         private void btnClose_Click(object sender, EventArgs e) => Close();

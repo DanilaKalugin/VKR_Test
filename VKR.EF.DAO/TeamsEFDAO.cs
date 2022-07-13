@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using VKR.EF.DAO.Migrations;
 using VKR.EF.Entities;
 
 namespace VKR.EF.DAO
 {
     public class TeamsEFDAO
     {
-        public IEnumerable<Team> GetList()
+        public async Task<IEnumerable<Team>> GetList()
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            return db.Teams.Include(t => t.TeamColors)
-                .ToList();
+            return await db.Teams.Include(t => t.TeamColors)
+                .OrderBy(t => t.TeamName)
+                .ToListAsync();
         }
 
         public IEnumerable<Team> GetTeamsWithWLBalance(int season, TypeOfMatchEnum type)

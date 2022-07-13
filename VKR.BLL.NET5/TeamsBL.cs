@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VKR.DAL.NET5;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
@@ -12,7 +13,11 @@ namespace VKR.BLL.NET5
         private readonly TeamsDao _teamsDAO = new();
         private readonly TeamsEFDAO _teamsEF = new();
 
-        public List<Team> GetAllTeams() => _teamsEF.GetList().OrderBy(t => t.TeamName).ToList();
+        public async Task<List<Team>> GetAllTeams()
+        {
+            var allTeams = await _teamsEF.GetList();
+            return allTeams.ToList();
+        }
 
         public List<Team> GetTeamsWithWLBalance(int season, TypeOfMatchEnum matchType)
         {
