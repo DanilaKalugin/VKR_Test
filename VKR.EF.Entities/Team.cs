@@ -40,7 +40,8 @@ namespace VKR.EF.Entities
         public virtual List<TeamStadiumForTypeOfMatch> StadiumsForMatchTypes { get; set; } = new();
         public virtual List<MatchFromSchedule> NextAwayMatches { get; set; } = new();
         public virtual List<MatchFromSchedule> NextHomeMatches { get; set; } = new();
-
+        public virtual List<MatchResult> MatchWinners { get; set; } = new();
+        public virtual List<MatchResult> MatchLosers { get; set; } = new();
         
         public int NormalizedOffensiveRating;
         public int NormalizedDefensiveRating;
