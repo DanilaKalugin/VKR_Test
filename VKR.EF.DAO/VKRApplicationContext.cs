@@ -19,6 +19,7 @@ namespace VKR.EF.DAO
         public DbSet<TeamBalance> TeamStandings { get; set; }
         public DbSet<MatchFromSchedule> NextMatches { get; set; }
         public DbSet<Match> Matches { get; set; }
+        public DbSet<RunsByTeam> Runs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -73,20 +74,10 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RunsScoredByTeamFunctionMap());
 
             modelBuilder.HasDbFunction(typeof(VKRApplicationContext)
-                    .GetMethod(nameof(ReturnStreakForAllTeams), 
-                        new [] {typeof(DateTime), typeof(byte)}))
-                    .HasName("ReturnStreakForAllTeams");
-
-            modelBuilder.HasDbFunction(typeof(VKRApplicationContext)
-                    .GetMethod(nameof(RunsScoredByTeamBeforeThisDateInMatchType),
-                        new[] { typeof(byte), typeof(DateTime) }))
-                .HasName("RunsScoredByTeamBeforeThisDateInMatchType");
+                        .GetMethod(nameof(ReturnStreakForAllTeams), new [] {typeof(DateTime), typeof(byte)}))
+                        .HasName("ReturnStreakForAllTeams");
         }
 
-        public IQueryable<RunsScoredByTeam> RunsScoredByTeamBeforeThisDateInMatchType(byte MatchType, DateTime date)
-        {
-            return FromExpression(() => RunsScoredByTeamBeforeThisDateInMatchType(MatchType, date));
-        }
         public IQueryable<TeamStat> ReturnStreakForAllTeams(DateTime date, byte MatchType)
         {
             return FromExpression(() => ReturnStreakForAllTeams(date, MatchType));

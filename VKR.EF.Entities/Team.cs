@@ -138,5 +138,11 @@ namespace VKR.EF.Entities
         {
             
         }
+
+        public Team(Team team, TeamBalance balance, int streak, RunsByTeam run) : this(team, balance, streak)
+        {
+            RunsScored = run.RunsScored;
+            RunsAllowed = run.RunsAllowed;
+        }
     }
 }

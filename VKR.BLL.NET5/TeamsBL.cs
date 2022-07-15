@@ -13,11 +13,13 @@ namespace VKR.BLL.NET5
         private readonly TeamsDao _teamsDAO = new();
         private readonly TeamsEFDAO _teamsEF = new();
 
-        public async Task<List<Team>> GetAllTeams()
+        public async Task<List<Team>> GetListAsync()
         {
-            var allTeams = await _teamsEF.GetList();
+            var allTeams = await _teamsEF.GetListAsync();
             return allTeams.ToList();
         }
+
+        public List<Team> GetAllTeams() => _teamsEF.GetList().ToList();
 
         public List<Team> GetTeamsWithWLBalance(int season, TypeOfMatchEnum matchType)
         {
@@ -47,14 +49,6 @@ namespace VKR.BLL.NET5
                 teams = teams.Where(teamFilter).ToList();
             }
 
-            foreach (var team in teams)
-            {
-                //team.Streak = _teamsEF.GetStreakForThisTeam(date, TypeOfMatchEnum.RegularSeason, team.TeamAbbreviation);
-                //team.TeamColor = _teamsDAO.GetAllColorsForThisTeam(team.TeamAbbreviation).ToList();
-                //team.RunsScored = _teamsDAO.GetRunsScoredByTeamAfterThisDate(team, date);
-                //team.RunsAllowed = _teamsDAO.GetRunsAllowedByTeamAfterThisDate(team, date);
-            }
-
             var leaderW = teams[0].Wins;
             var leaderL = teams[0].Losses;
 
@@ -62,8 +56,8 @@ namespace VKR.BLL.NET5
 
             teams = teams.OrderBy(team => team.GamesBehind)
                 .ThenByDescending(team => team.Wins)
-                /*.ThenByDescending(team => team.RunDifferential)
-                 .ThenByDescending(team => team.RunsScored)*/.ToList();
+                .ThenByDescending(team => team.RunDifferential)
+                .ThenByDescending(team => team.RunsScored).ToList();
 
             var minimumGamesBehind = teams.Select(team => team.GamesBehind).Min();
 

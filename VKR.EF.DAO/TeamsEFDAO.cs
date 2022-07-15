@@ -59,15 +59,25 @@ FROM Teams INNER JOIN dbo.Matches ON (dbo.Teams.TeamAbbreviation = dbo.Matches.A
 GROUP BY dbo.Teams.TeamAbbreviation", typeParam, dateParam).ToList();
 
             var streaks = db.ReturnStreakForAllTeams(date, type).ToList();
-            
+
+            var runs = db.Runs.FromSqlRaw(
+                @"SELECT team As TeamAbbreviation, ISNULL(SUM(CASE WHEN MatchDate <= {0} AND MatchType = {1} AND Year(MatchDate) = Year({0}) THEN RunsScored ELSE NULL END), 0) AS RunsScored, 
+                               ISNULL(SUM(CASE WHEN MatchDate <= {0} AND MatchType = {1} AND Year(MatchDate) = Year({0}) THEN RunsAllowed ELSE NULL END), 0) AS RunsAllowed
+                   FROM RunsScoredAndAllowedForEveryMatch
+                   GROUP BY team", dateParam, typeParam).ToList();
+
             return teamWithLeagueAndDivision.Join(teamBalances,
-                t => t.TeamAbbreviation, 
+                t => t.TeamAbbreviation,
                 tb => tb.TeamAbbreviation,
-                (team, balance) => new {team, balance })
-                .Join(streaks, 
-                    team => team.team.TeamAbbreviation, 
-                    streak => streak.AwayTeam, 
-                    (team, stat) => new Team(team.team, team.balance, stat.Streak)).ToList();
+                (team, balance) => new { team, balance })
+                .Join(streaks,
+                    team => team.team.TeamAbbreviation,
+                    streak => streak.AwayTeam,
+                    (team, stat) => new {  team.team, team.balance, stat.Streak})
+                .Join(runs,
+                    team => team.team.TeamAbbreviation,
+                    run => run.TeamAbbreviation,
+                    (team, run) => new Team(team.team, team.balance, team.Streak, run)).ToList();
         }
     }
 }
