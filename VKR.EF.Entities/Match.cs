@@ -27,5 +27,19 @@ namespace VKR.EF.Entities
 
         public bool IsQuickMatch => MatchTypeId == TypeOfMatchEnum.QuickMatch;
         public MatchResult MatchResult { get; set; }
+
+        public string MatchStatus
+        {
+            get
+            {
+                if (!MatchEnded)
+                    return "Not finished";/*$"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(InningNumber)} inning";*/
+
+                if (MatchResult.Length != 9)
+                    return MatchResult.Length == 0 ? "" : $"Final/{MatchResult.Length}";
+
+                return "Final";
+            }
+        }
     }
 }
