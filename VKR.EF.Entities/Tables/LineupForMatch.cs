@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace VKR.EF.Entities
+﻿namespace VKR.EF.Entities
 {
     public class LineupForMatch
     {
