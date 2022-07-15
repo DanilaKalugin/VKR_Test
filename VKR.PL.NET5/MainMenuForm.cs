@@ -35,15 +35,12 @@ namespace VKR.PL.NET5
             }
         }
 
-        private async void MainMenuForm_Load(object sender, EventArgs e)
-        {
-            await UpdateBirthDayTable();
-        }
+        private async void MainMenuForm_Load(object sender, EventArgs e) => await UpdateBirthDayTable();
 
         private async Task UpdateBirthDayTable()
         {
-            var man = await _manBL.GetListOfPeopleWithBirthdayToday();
-            var teams = await _teamsBL.GetAllTeams();
+            var man = await _manBL.GetListOfPeopleWithBirthdayTodayAsync();
+            var teams = await _teamsBL.GetListAsync();
             dgvBirthDays.Invoke((Action<List<ManInTeam>>)FillBirthDayTable, man);
             dgvBirthDays.Invoke((Action<List<Team>, List<ManInTeam>>)FillColors, teams, man);
         }
@@ -54,8 +51,8 @@ namespace VKR.PL.NET5
 
             for (var i = 0; i < men.Count; i++)
             {
-                var rowColor = men[i].TeamName != "" 
-                    ? teams.First(team => team.TeamAbbreviation == men[i].TeamName).TeamColors[0].Color 
+                var rowColor = men[i].TeamName != ""
+                    ? teams.First(team => team.TeamAbbreviation == men[i].TeamName).TeamColors[0].Color
                     : Color.FromArgb(220, 220, 220);
 
                 dgvBirthDays.Rows[i].Cells[0].Style.BackColor = rowColor;
@@ -75,27 +72,15 @@ namespace VKR.PL.NET5
         private async void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
             Program.MatchDate = _matchBL.GetDateForNextMatch();
-            var match = new Match(Program.MatchDate, TypeOfMatchEnum.RegularSeason);
-
-            using (var form = new TeamsSelectForm(match))
-            {
-                form.ShowDialog();
-                if (form.DialogResult != DialogResult.Yes) return;
-
-                var matchNumberForDelete = form.MatchNumberForDelete;
-                _matchBL.DeleteThisMatch(matchNumberForDelete);
-            }
-
+            StartNewMatch(Program.MatchDate, TypeOfMatchEnum.RegularSeason);
             await UpdateBirthDayTable();
         }
 
         private async void btnStandings_Click(object sender, EventArgs e)
         {
+            Visible = false;
             using (var form = new StandingsForm())
-            {
-                Visible = false;
                 form.ShowDialog();
-            }
             Visible = true;
 
             await UpdateBirthDayTable();
@@ -103,53 +88,50 @@ namespace VKR.PL.NET5
 
         private async void btnPlayerStats_Click(object sender, EventArgs e)
         {
+            Visible = false;
             using (var form = new StatsMenuForm())
-            {
-                Visible = false;
                 form.ShowDialog();
-            }
+            Visible = true;
 
             await UpdateBirthDayTable();
         }
 
         private async void btnLineups_Click(object sender, EventArgs e)
         {
+            Visible = false;
             using (var form = new RostersMenuForm())
-            {
-                Visible = false;
                 form.ShowDialog();
-            }
-
+            Visible = true;
             await UpdateBirthDayTable();
         }
 
         private async void btnResults_Click(object sender, EventArgs e)
         {
+            Visible = false;
             using (var form = new MatchResultsMenuForm())
-            {
-                Visible = false;
                 form.ShowDialog();
-            }
+            Visible = true;
             await UpdateBirthDayTable();
         }
 
         private async void btnNewMatch_Click(object sender, EventArgs e)
         {
-            var match = new Match(DateTime.Now, TypeOfMatchEnum.QuickMatch);
-            Visible = false;
+            StartNewMatch(DateTime.Now, TypeOfMatchEnum.QuickMatch);
+            await UpdateBirthDayTable();
+        }
 
+        private void StartNewMatch(DateTime matchDate, TypeOfMatchEnum matchType)
+        {
+            var match = new Match(matchDate, matchType);
+
+            Visible = false;
             using (var form = new TeamsSelectForm(match))
             {
                 form.ShowDialog();
-
-                if (form.DialogResult != DialogResult.Yes) return;
-
-                var matchNumberForDelete = form.MatchNumberForDelete;
-                form.Dispose();
-                _matchBL.DeleteThisMatch(matchNumberForDelete);
+                if (form.DialogResult == DialogResult.Yes) 
+                    _matchBL.DeleteThisMatch(form.MatchNumberForDelete);
             }
-
-            await UpdateBirthDayTable();
+            Visible = true;
         }
 
         private void btnClose_Click(object sender, EventArgs e) => Close();
