@@ -11,10 +11,10 @@ namespace VKR.EF.DAO
 {
     public class ManEFDAO
     {
-        public async Task<List<ManInTeam>> GetListOfPeopleWithBirthdayToday()
+        public async Task<List<ManInTeam>> GetListOfPeopleWithBirthdayTodayAsync()
         {
             await using var db = new VKRApplicationContext();
-            return await db.ManInTeam.AsNoTracking().ToListAsync();
+            return await db.ManInTeam.ToListAsync().ConfigureAwait(false);
         }
     }
 }

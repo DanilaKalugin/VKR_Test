@@ -78,7 +78,7 @@ namespace VKR.BLL.NET5
 
         public List<List<List<PlayerInLineup>>> GetRoster(string rosterType)
         {
-            List<PlayerInLineup> ungroupedPlayers = rosterType == "GetStartingLineups" ? _playerDAO.GetStartingLineups().ToList() : _playerDAO.GetRoster(rosterType).ToList();
+            var ungroupedPlayers = rosterType == "GetStartingLineups" ? _playerDAO.GetStartingLineups().ToList() : _playerDAO.GetRoster(rosterType).ToList();
             
             foreach (var playerInLineup in ungroupedPlayers)
                 playerInLineup.PlayerPositions = _playerDAO.GetPositionsForThisPlayer(playerInLineup.Id).ToList();

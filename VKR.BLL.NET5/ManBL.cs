@@ -11,9 +11,9 @@ namespace VKR.BLL.NET5
     {
         private readonly ManEFDAO _manDAO = new();
 
-        public async Task<List<ManInTeam>> GetListOfPeopleWithBirthdayToday()
+        public async Task<List<ManInTeam>> GetListOfPeopleWithBirthdayTodayAsync()
         {
-            var men = await _manDAO.GetListOfPeopleWithBirthdayToday();
+            var men = await _manDAO.GetListOfPeopleWithBirthdayTodayAsync().ConfigureAwait(false);
             return men.ToList();
         }
     }

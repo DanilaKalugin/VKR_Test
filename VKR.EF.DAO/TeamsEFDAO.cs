@@ -10,13 +10,22 @@ namespace VKR.EF.DAO
 {
     public class TeamsEFDAO
     {
-        public async Task<IEnumerable<Team>> GetList()
+        public async Task<IEnumerable<Team>> GetListAsync()
         {
             await using var db = new VKRApplicationContext();
 
             return await db.Teams.Include(t => t.TeamColors)
                 .OrderBy(t => t.TeamName)
                 .ToListAsync();
+        }
+
+        public IEnumerable<Team> GetList()
+        {
+            using var db = new VKRApplicationContext();
+
+            return db.Teams.Include(t => t.TeamColors)
+                .OrderBy(t => t.TeamName)
+                .ToList();
         }
 
         public IEnumerable<Team> GetTeamsWithWLBalance(int season, TypeOfMatchEnum type)
