@@ -35,8 +35,7 @@ namespace VKR.EF.DAO
             var f = db.Teams.Include(t => t.TeamColors)
                 .Include(t => t.Manager)
                 .Include(t => t.Division)
-                .ThenInclude(d => d.League)
-                .Include(t => t.StadiumsForMatchTypes).ToList();
+                .ThenInclude(d => d.League).ToList();
 
             var f1 = db.TeamStandings.Where(ts => ts.MatchType == type && ts.Season == season).ToList();
 
