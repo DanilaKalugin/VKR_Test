@@ -24,7 +24,7 @@ namespace VKR.PL.NET5
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
 
-        public TeamsSelectForm(EF.Entities.Match match)
+        public TeamsSelectForm(Match match)
         {
             InitializeComponent();
             _newMatch = match;
@@ -148,12 +148,12 @@ namespace VKR.PL.NET5
         {
             var homeTeam = _teams[_homeTeamNumber];
             var awayTeam = _teams[_awayTeamNumber];
-            //homeTeam.TeamColorForThisMatch = homeTeam.TeamColor[_currentHomeColor];
-            //awayTeam.TeamColorForThisMatch = awayTeam.TeamColor[_currentAwayColor];
-            //_newMatch.HomeTeam = homeTeam;
-            //_newMatch.AwayTeam = awayTeam;
+            homeTeam.TeamColorForThisMatch = homeTeam.TeamColors[_currentHomeColor].Color;
+            awayTeam.TeamColorForThisMatch = awayTeam.TeamColors[_currentAwayColor].Color;
+            _newMatch.HomeTeam = homeTeam;
+            _newMatch.AwayTeam = awayTeam;
 
-            /*using var stadiumSelection = new StadiumSelectionForm(_newMatch);
+            using var stadiumSelection = new StadiumSelectionForm(_newMatch);
             Visible = false;
             stadiumSelection.ShowDialog();
 
@@ -172,7 +172,7 @@ namespace VKR.PL.NET5
                 default:
                     Visible = true;
                     break;
-            }*/
+            }
         }
 
         private void btnSwap_Click(object sender, EventArgs e)

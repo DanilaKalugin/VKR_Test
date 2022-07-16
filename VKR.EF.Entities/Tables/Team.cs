@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace VKR.EF.Entities
@@ -94,6 +95,8 @@ namespace VKR.EF.Entities
         public int RunsScored;
         public int RunsAllowed;
         public int RunDifferential => RunsScored - RunsAllowed;
+
+        public Color TeamColorForThisMatch;
 
         public Team(Team team, TeamBalance balance)
         {
