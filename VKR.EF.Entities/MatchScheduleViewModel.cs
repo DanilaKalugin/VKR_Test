@@ -24,7 +24,7 @@ namespace VKR.EF.Entities
             AwayTeamAbbreviation = awayTeamAbbreviation;
             HomeTeamAbbreviation = homeTeamAbbreviation;
             StadiumName = stadium.StadiumTitle;
-            StadiumLocation = $"{stadium.StadiumCity.Name}, {stadium.StadiumCity.RegionCode}";
+            StadiumLocation = stadium.StadiumCity.CityLocation;
             MatchDate = matchDate;
         }
 
