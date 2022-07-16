@@ -20,6 +20,8 @@ namespace VKR.EF.DAO
         public DbSet<MatchFromSchedule> NextMatches { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<RunsByTeam> Runs { get; set; }
+        public DbSet<Stadium> Stadiums { get; set; }
+        public DbSet<TeamStadiumForTypeOfMatch> TeamStadiumForTypeOfMatch { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
