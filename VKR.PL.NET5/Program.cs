@@ -5,8 +5,6 @@ namespace VKR.PL.NET5
 {
     internal static class Program
     {
-        public static DateTime MatchDate;
-
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

@@ -51,7 +51,7 @@ namespace VKR.PL.NET5
 
             for (var i = 0; i < men.Count; i++)
             {
-                var rowColor = men[i].TeamName != ""
+                var rowColor = men[i].TeamName != null
                     ? teams.First(team => team.TeamAbbreviation == men[i].TeamName).TeamColors[0].Color
                     : Color.FromArgb(220, 220, 220);
 
@@ -66,13 +66,14 @@ namespace VKR.PL.NET5
             foreach (var man in men) dgvBirthDays.Rows.Add("", man.TeamName, man.FullName, man.Age);
 
             if (men.Count != 0) return;
-            Width -= panel1.Width;
+            panel1.Visible = false;
+            Width = 1554 - panel1.Width;
         }
 
         private async void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
-            Program.MatchDate = _matchBL.GetDateForNextMatch();
-            StartNewMatch(Program.MatchDate, TypeOfMatchEnum.RegularSeason);
+            var matchDate = _matchBL.GetDateForNextMatch();
+            StartNewMatch(matchDate, TypeOfMatchEnum.RegularSeason);
             await UpdateBirthDayTable();
         }
 

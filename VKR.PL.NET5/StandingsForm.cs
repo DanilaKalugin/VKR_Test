@@ -26,8 +26,7 @@ namespace VKR.PL.NET5
         public StandingsForm()
         {
             InitializeComponent();
-            Program.MatchDate = _matchBL.GetMaxDateForAllMatches();
-            dtpStandingsDate.Value = Program.MatchDate;
+            dtpStandingsDate.Value = _matchBL.GetMaxDateForAllMatches();
             cbFilter.Text = "MLB";
         }
 
