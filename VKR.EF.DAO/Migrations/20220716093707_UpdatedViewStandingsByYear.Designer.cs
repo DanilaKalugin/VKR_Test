@@ -1218,7 +1218,7 @@ namespace VKR.EF.DAO.Migrations
                     b.ToTable("TeamStadiumForTypeOfMatch");
                 });
 
-            modelBuilder.Entity("VKR.EF.Entities.TeamStat", b =>
+            modelBuilder.Entity("VKR.EF.Entities.TeamStreak", b =>
                 {
                     b.Property<string>("AwayTeam")
                         .HasColumnType("nvarchar(max)");

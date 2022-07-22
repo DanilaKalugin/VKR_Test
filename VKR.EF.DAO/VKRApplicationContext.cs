@@ -80,7 +80,7 @@ namespace VKR.EF.DAO
                         .HasName("ReturnStreakForAllTeams");
         }
 
-        public IQueryable<TeamStat> ReturnStreakForAllTeams(DateTime date, byte MatchType)
+        public IQueryable<TeamStreak> ReturnStreakForAllTeams(DateTime date, byte MatchType)
         {
             return FromExpression(() => ReturnStreakForAllTeams(date, MatchType));
         }
