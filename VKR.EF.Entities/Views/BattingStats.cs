@@ -4,6 +4,8 @@ namespace VKR.EF.Entities
 {
     public class BattingStats
     {
+        public int Season { get; set; }
+        public TypeOfMatchEnum MatchType { get; set; }
         public int Games { get; set; }
         public int SacrificeFlies { get; set; }
         public int SacrificeBunts { get; set; }

@@ -1,14 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VKR.DAL.NET5;
+using VKR.EF.DAO;
+using VKR.EF.Entities;
 using VKR.Entities.NET5;
+using Match = VKR.Entities.NET5.Match;
+using Player = VKR.Entities.NET5.Player;
+using PlayerPosition = VKR.Entities.NET5.PlayerPosition;
+using Team = VKR.Entities.NET5.Team;
 
 namespace VKR.BLL.NET5
 {
     public class PlayerBL
     {
+        public enum TypeOfRoster {Starters, Bench, ActivePlayers, Reserve, ActiveAndReserve}
+
         private readonly PlayerDao _playerDAO = new();
         private readonly TeamsDao _teamsDAO = new();
+        private readonly PlayerEFDAO _playerEFDAO = new();
+        private readonly TeamsEFDAO _teamsEFDAO = new();
         private List<Player> _players;
 
         public List<Player> GetBattersStats(string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
@@ -16,7 +27,7 @@ namespace VKR.BLL.NET5
             _players = _playerDAO.GetAllPlayers().ToList();
             var abbreviations = GetTeamsForFilter(TeamFilter);
             var fplayers = _players.Where(player => abbreviations.Contains(player.Team)).ToList();
-            
+
             if (positions != "")
                 if (positions == "OF")
                 {
@@ -79,7 +90,7 @@ namespace VKR.BLL.NET5
         public List<List<List<PlayerInLineup>>> GetRoster(string rosterType)
         {
             var ungroupedPlayers = rosterType == "GetStartingLineups" ? _playerDAO.GetStartingLineups().ToList() : _playerDAO.GetRoster(rosterType).ToList();
-            
+
             foreach (var playerInLineup in ungroupedPlayers)
                 playerInLineup.PlayerPositions = _playerDAO.GetPositionsForThisPlayer(playerInLineup.Id).ToList();
 
@@ -99,21 +110,44 @@ namespace VKR.BLL.NET5
             return groupedPlayers;
         }
 
-        public List<List<List<PlayerInLineup>>> GetFreeAgents()
+        public List<List<List<PlayerInLineupViewModel>>> GetFreeAgents()
         {
-            var ungroupedPlayers = _playerDAO.GetRoster("GetFreeAgents").ToList();
-            
-            foreach (var playerInLineup in ungroupedPlayers)
-                playerInLineup.PlayerPositions = _playerDAO.GetPositionsForThisPlayer(playerInLineup.Id).ToList();
+            var allFreeAgents = _playerEFDAO.GetFreeAgents().ToList();
+            var players = new List<List<List<PlayerInLineupViewModel>>> { new() };
+            players[0].Add(allFreeAgents.OrderBy(player => player.SecondName).ThenBy(player => player.FirstName).ToList());
+            return players;
+        }
 
-            var Lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
+        public List<List<List<PlayerInLineupViewModel>>> GetRoster(TypeOfRoster typeOfRoster)
+        {
+            var rosterFuncs = new Dictionary<TypeOfRoster, Func<List<PlayerInLineupViewModel>>>
+            {
+                { TypeOfRoster.Starters, _playerEFDAO.GetStartingLineups },
+                { TypeOfRoster.Bench , _playerEFDAO.GetBench},
+                { TypeOfRoster.ActivePlayers, _playerEFDAO.GetActivePlayers },
+                { TypeOfRoster.Reserve, _playerEFDAO.GetReserves },
+                { TypeOfRoster.ActiveAndReserve, _playerEFDAO.GetActiveAndReservePlayers }
+            };
 
-            var groupedPlayers = new List<List<List<PlayerInLineup>>> { new()};
-            
-            foreach (var lineupType in Lineups)
-                groupedPlayers[0].Add(ungroupedPlayers.Where(player => player.LineupType == lineupType).OrderBy(player => player.NumberInLineup).ToList());
+            var allPlayers = new List<PlayerInLineupViewModel>();
 
-            return groupedPlayers;
+            if(rosterFuncs.TryGetValue(typeOfRoster, out var playersFunc)) allPlayers = playersFunc();
+            var teams = _teamsEFDAO.GetList().ToList();
+
+            var lineups = allPlayers.Select(player => player.LineupNumber).OrderBy(number => number).Distinct().ToList();
+            var players = new List<List<List<PlayerInLineupViewModel>>>();
+            for (var i = 0; i < teams.Count; i++)
+            {
+                players.Add(new List<List<PlayerInLineupViewModel>>());
+                foreach (var lineupType in lineups)
+                    players[i].Add(allPlayers
+                        .Where(player => player.TeamAbbreviation == teams[i].TeamAbbreviation && player.LineupNumber == lineupType)
+                        .OrderBy(player => player.NumberInLineup)
+                        .ThenBy(player => player.SecondName)
+                        .ThenBy(player => player.FirstName).ToList());
+            }
+
+            return players;
         }
 
         public Player GetPlayerByCode(int code) => _playerDAO.GetPlayerByCode(code).First();
@@ -151,5 +185,10 @@ namespace VKR.BLL.NET5
             pitcher.RemainingStamina = _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id);
             return pitcher;
         }
+
+        public PlayerBattingStats GetBattingStatsByCode(uint id, int year) => _playerEFDAO.GetBattingStatsByCode(id, year);
+
+        public PlayerPitchingStats GetPitchingStatsByCode(uint id, int year) =>
+            _playerEFDAO.GetPitchingStatsByCode(id, year);
     }
 }

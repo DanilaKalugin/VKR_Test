@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks.Dataflow;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using VKR.EF.DAO.Migrations;
 using VKR.EF.Entities;
 using System.Configuration;
 using System.Diagnostics;
@@ -22,10 +17,13 @@ namespace VKR.EF.DAO
         public DbSet<RunsByTeam> Runs { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
         public DbSet<TeamStadiumForTypeOfMatch> TeamStadiumForTypeOfMatch { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<PlayerBattingStats> PlayersBattingStats { get; set; }
+        public DbSet<PlayerPitchingStats> PlayersPitchingStats { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
+            optionsBuilder.UseSqlServer(GetConnectionString());
 
             optionsBuilder.LogTo(s => Debug.WriteLine(s), new[] { DbLoggerCategory.Database.Command.Name });
         }
@@ -70,6 +68,7 @@ namespace VKR.EF.DAO
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerPitchingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StandingsViewMap());
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStatViewMap());

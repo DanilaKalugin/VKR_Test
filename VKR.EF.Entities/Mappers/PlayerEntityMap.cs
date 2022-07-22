@@ -54,8 +54,6 @@ namespace VKR.EF.Entities.Mappers
                 .HasForeignKey(p => p.CurrentPlayerStatus)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .IsRequired();
-
-            builder.Ignore(p => p.BattingStats);
         }
     }
 }
