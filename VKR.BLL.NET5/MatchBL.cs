@@ -21,10 +21,7 @@ namespace VKR.BLL.NET5
         public void StartNewMatch(Match match)
         {
             _matchDAO.StartNewMatch(match);
-            match.GameSituations = new List<GameSituation>
-            {
-                new(match.AwayTeam)
-            };
+            match.GameSituations = new List<GameSituation> { new(match.AwayTeam) };
         }
 
         public int GetNumberOfMatchesPlayed(Match newMatch) => _matchDAO.GetNumberOfMatchesPlayed(newMatch);
@@ -41,26 +38,13 @@ namespace VKR.BLL.NET5
             if (!currentMatch.IsQuickMatch) _matchDAO.AddMatchResultForThisPitcher(pitcherResults);
         }
 
-        public List<MatchScheduleViewModel> GetResultsForAllMatches()
-        {/*
-            var matches = _matchDAO.GetResultsForAllMatches().ToList();
-            var stadiums = _stadiumsDAO.GetAllStadiums().ToList();
-            
-            foreach (var match in matches)
-                match.Stadium = stadiums.FirstOrDefault(stadium => stadium.StadiumId == match.StadiumNumber);
-            
-            return matches;*/
-
-            return _matchEfdao.GetResultsForAllMatches().ToList();
-        }
+        public List<MatchScheduleViewModel> GetResultsForAllMatches() => _matchEfdao.GetResultsForAllMatches().ToList();
 
         public List<MatchScheduleViewModel> GetMatchesForSelectedTeam(TableType tableType, string team)
         {
-            List<MatchScheduleViewModel> matches;
-            if (tableType == TableType.Results)
-                matches = GetResultsForAllMatches().OrderByDescending(match => match.MatchDate).ToList();
-            else
-                matches = GetSchedule().OrderBy(match => match.MatchDate).ToList();
+            var matches = tableType == TableType.Results 
+                                                            ? GetResultsForAllMatches().OrderByDescending(match => match.MatchDate).ToList() 
+                                                            : GetSchedule().OrderBy(match => match.MatchDate).ToList();
 
             return matches.Where(match => match.AwayTeamAbbreviation == team ||
                                           match.HomeTeamAbbreviation == team).ToList();
@@ -82,25 +66,6 @@ namespace VKR.BLL.NET5
 
         public List<MatchFromSchedule> GetMatchesForThisDay(DateTime date, TypeOfMatchEnum matchType) => _matchEfdao.GetRemainingScheduleForThisDay(date, matchType).ToList();
 
-        public List<MatchScheduleViewModel> GetSchedule()
-        {
-            /*
-            var matches = _matchDAO.GetSchedule().ToList();
-            var stadiums = _stadiumsDAO.GetAllStadiums().ToList();
-
-            foreach (var match in matches)
-                match.Stadium = stadiums.First(stadium => stadium.StadiumId == match.StadiumNumber);
-
-            return matches;*/
-            return _matchEfdao.GetScheduleForAllMatches().ToList();
-        }
-
-        public List<MatchScheduleViewModel> GetScheduleForSelectedTeams(params string[] teams)
-        {
-            var matches = GetSchedule();
-
-            return matches.Where(match => teams.Contains(match.AwayTeamAbbreviation) ||
-                                          teams.Contains(match.HomeTeamAbbreviation)).ToList();
-        }
+        public List<MatchScheduleViewModel> GetSchedule() => _matchEfdao.GetScheduleForAllMatches().ToList();
     }
 }

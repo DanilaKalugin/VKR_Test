@@ -18,5 +18,17 @@ namespace VKR.EF.Entities
         public PlayerBattingStats BattingStats;
         public PlayerPitchingStats PitchingStats;
         public bool CanPlayAsPitcher => Positions.Any(pp => pp.ShortTitle == "P");
+
+        public Player SetBattingStats(PlayerBattingStats battingStats)
+        {
+            BattingStats = battingStats;
+            return this;
+        }
+
+        public Player SetPitchingStats(PlayerPitchingStats stats)
+        {
+            PitchingStats = stats;
+            return this;
+        }
     }
 }

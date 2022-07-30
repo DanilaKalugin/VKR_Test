@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.NET5
 {
@@ -121,7 +121,8 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.Wins,
                 pitcher => pitcher.PitchingStats.Losses,
                 pitcher => pitcher.PitchingStats.ERA,
-                pitcher => pitcher.PitchingStats.GamesPlayed,
+                pitcher => pitcher.PitchingStats.GamesPlayed, 
+                pitcher => pitcher.PitchingStats.GamesPlayed, 
                 pitcher => pitcher.PitchingStats.GamesStarted,
                 pitcher => pitcher.PitchingStats.CompleteGames,
                 pitcher => pitcher.PitchingStats.Shutouts,
@@ -282,7 +283,7 @@ namespace VKR.PL.NET5
             ShowNewStats(_playerType, _statsType);
         }
 
-        private void FillBattersAndPitchersTable(List<Player> batters, List<Player> pitchers, List<Team> teamBatting, List<Team> teamPitching)
+        private void FillBattersAndPitchersTable(IReadOnlyList<Player> batters, IReadOnlyList<Player> pitchers, List<Team> teamBatting, List<Team> teamPitching)
         {
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
@@ -311,7 +312,7 @@ namespace VKR.PL.NET5
                                             batters[i].BattingStats.OBP.ToString("#.000", new CultureInfo("en-US")),
                                             batters[i].BattingStats.SLG.ToString("#.000", new CultureInfo("en-US")),
                                             batters[i].BattingStats.OPS.ToString("#.000", new CultureInfo("en-US")));
-                    GetCorrectColorForCell(dataGridView1, i, batters[i].Team);
+                    GetCorrectColorForCell(dataGridView1, i, batters[i].PlayersInTeam.First().TeamId);
 
                     dataGridView2.Rows.Add(i + 1,
                                             "",
@@ -329,7 +330,7 @@ namespace VKR.PL.NET5
                                             batters[i].BattingStats.WalkToStrikeout.ToString("#.000", new CultureInfo("en-US")),
                                             batters[i].BattingStats.WalkPercentage.ToString("#.000", new CultureInfo("en-US")),
                                             batters[i].BattingStats.StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")));
-                    GetCorrectColorForCell(dataGridView2, i, batters[i].Team);
+                    GetCorrectColorForCell(dataGridView2, i, batters[i].PlayersInTeam.First().TeamId);
                 }
                 for (var i = 0; i < pitchers.Count; i++)
                 {
@@ -353,7 +354,7 @@ namespace VKR.PL.NET5
                                             pitchers[i].PitchingStats.Strikeouts,
                                             pitchers[i].PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US")),
                                             pitchers[i].PitchingStats.BAA.ToString("#.000", new CultureInfo("en-US")));
-                    GetCorrectColorForCell(dataGridView3, i, pitchers[i].Team);
+                    GetCorrectColorForCell(dataGridView3, i, pitchers[i].PlayersInTeam.First().TeamId);
 
                     dataGridView4.Rows.Add(i + 1,
                                             "",
@@ -368,11 +369,11 @@ namespace VKR.PL.NET5
                                             pitchers[i].PitchingStats.KperBb.ToString("0.00", new CultureInfo("en-US")),
                                             pitchers[i].PitchingStats.StolenBasesAllowed,
                                             pitchers[i].PitchingStats.CaughtStealing);
-                    GetCorrectColorForCell(dataGridView4, i, pitchers[i].Team);
+                    GetCorrectColorForCell(dataGridView4, i, pitchers[i].PlayersInTeam.First().TeamId);
                 }
             }
             else
-            {
+            {/*
                 for (var i = 0; i < teamBatting.Count; i++)
                 {
                     dataGridView1.Rows.Add(i + 1,
@@ -451,7 +452,7 @@ namespace VKR.PL.NET5
                                             teamPitching[i].PitchingStats.StolenBasesAllowed,
                                             teamPitching[i].PitchingStats.CaughtStealing);
                     GetCorrectColorForCell(dataGridView4, i, teamPitching[i].TeamAbbreviation);
-                }
+                }*/
             }
         }
 
@@ -459,23 +460,18 @@ namespace VKR.PL.NET5
         {
             if (teamForThisPlayer == "") return;
 
-            dgv.Rows[rowNumber].Cells[1].Style.BackColor = _teams.First(team => team.TeamAbbreviation == teamForThisPlayer).TeamColor[0];
-            dgv.Rows[rowNumber].Cells[1].Style.SelectionBackColor = _teams.First(team => team.TeamAbbreviation == teamForThisPlayer).TeamColor[0];
+            dgv.Rows[rowNumber].Cells[1].Style.BackColor = _teams.First(team => team.TeamAbbreviation == teamForThisPlayer).TeamColors[0].Color;
+            dgv.Rows[rowNumber].Cells[1].Style.SelectionBackColor = _teams.First(team => team.TeamAbbreviation == teamForThisPlayer).TeamColors[0].Color;
         }
 
         private void dataGridView4_CellStyleChanged(object sender, DataGridViewCellEventArgs e) => dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.SelectionBackColor = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor;
 
         private void PlayerStatsForm_Load(object sender, EventArgs e)
         {
-            if (_objects == SortingObjects.Players)
+            if (_objects == SortingObjects.Teams)
             {
-                _batters = _playersBL.GetBattersStats();
-                _pitchers = _playersBL.GetPitchersStats();
-            }
-            else
-            {
-                _teamBattingStats = _teamsBL.GetTeamBattingStats();
-                _teamPitchingStats = _teamsBL.GetTeamPitchingStats();
+                //_teamBattingStats = _teamsBL.GetTeamBattingStats();
+                //_teamPitchingStats = _teamsBL.GetTeamPitchingStats();
             }
 
             _playerType = PlayerType.Batters;
@@ -484,12 +480,11 @@ namespace VKR.PL.NET5
             ShowNewStats(_playerType, _statsType);
             
             var teamsInComboBox = new List<string> { "MLB", "AL", "NL" };
-            teamsInComboBox.AddRange(_teams.Select(team => team.TeamTitle).ToList());
+            teamsInComboBox.AddRange(_teams.Select(team => team.TeamName).ToList());
             cbTeams.DataSource = teamsInComboBox;
 
             cbPositions.DataSource = _playersBL.GetPlayerPositions();
             cbPositions.DisplayMember = "FullTitle";
-            cbPositions.ValueMember = "ShortTitle";
 
             cbPlayers.Visible = _objects == SortingObjects.Players;
             cbTeams.Visible = _objects == SortingObjects.Players;
@@ -507,7 +502,7 @@ namespace VKR.PL.NET5
             if (_objects == SortingObjects.Players)
             {
                 _pitchers = _playersBL.GetPitchersStats(cbPlayers.Text, cbTeams.SelectedValue.ToString());
-                var positionTitle = cbPositions.SelectedValue is PlayerPosition position ? position.ShortTitle : cbPositions.SelectedValue.ToString();
+                var positionTitle = cbPositions.SelectedValue is Entities.NET5.PlayerPosition position ? position.ShortTitle : "";
                 _batters = _playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
             }
 

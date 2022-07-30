@@ -81,6 +81,9 @@ namespace VKR.EF.Entities.Mappers
 
             builder.Property(vw => vw.Holds)
                 .HasColumnName("HLD");
+
+            builder.Property(vw => vw.GamesStarted)
+                .HasColumnName("GS");
         }
     }
 }

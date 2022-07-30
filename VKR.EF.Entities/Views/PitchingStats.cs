@@ -26,7 +26,7 @@ namespace VKR.EF.Entities.Views
         public int HitByPitch { get; set; }
         public int Groundouts { get; set; }
         public int Flyouts { get; set; }
-        //public int GamesStarted { get; set; }
+        public int GamesStarted { get; set; }
         public int SinglesAllowed { get; set; }
         public int DoublesAllowed { get; set; }
         public int TriplesAllowed { get; set; }

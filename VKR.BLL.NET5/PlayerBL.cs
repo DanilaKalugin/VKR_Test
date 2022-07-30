@@ -22,43 +22,43 @@ namespace VKR.BLL.NET5
         private readonly TeamsEFDAO _teamsEFDAO = new();
         private List<Player> _players;
 
-        public List<Player> GetBattersStats(string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
+        public List<EF.Entities.Player> GetBattersStats(string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
         {
-            _players = _playerDAO.GetAllPlayers().ToList();
+            var players = _playerEFDAO.GetPlayerBattingStats(2021).ToList();
             var abbreviations = GetTeamsForFilter(TeamFilter);
-            var fplayers = _players.Where(player => abbreviations.Contains(player.Team)).ToList();
+            players = players.Where(player => player.PlayersInTeam.Count > 0 && abbreviations.Contains(player.PlayersInTeam.First().TeamId)).ToList();
 
             if (positions != "")
                 if (positions == "OF")
                 {
-                    var lf = fplayers.Where(batter => batter.PlayerPositions.Contains("LF")).ToList();
-                    var cf = fplayers.Where(batter => batter.PlayerPositions.Contains("CF")).ToList();
-                    var rf = fplayers.Where(batter => batter.PlayerPositions.Contains("RF")).ToList();
-                    fplayers = lf.Union(cf).Union(rf).Distinct().ToList();
+                    var lf = players.Where(batter => batter.Positions.Any(pp => pp.ShortTitle == "LF")).ToList();
+                    var cf = players.Where(batter => batter.Positions.Any(pp => pp.ShortTitle == "CF")).ToList();
+                    var rf = players.Where(batter => batter.Positions.Any(pp => pp.ShortTitle == "RF")).ToList();
+                    players = lf.Union(cf).Union(rf).Distinct().ToList();
                 }
                 else
-                    fplayers = fplayers.Where(player => player.PlayerPositions.Contains(positions)).ToList();
+                    players = players.Where(player => player.Positions.Any(pp => pp.ShortTitle == positions)).ToList();
 
-            fplayers = qualifying switch
+            players = qualifying switch
             {
-                "Qualified Players" => fplayers.Where(player => (double)player.BattingStats.PA / player.BattingStats.TGP >= 3.1 && player.Team != "").ToList(),
-                "Active Players" => fplayers.Where(player => player.InActiveRoster).ToList(),
-                _ => fplayers
+                "Qualified Players" => players.Where(player => (double)player.BattingStats.PA / player.BattingStats.TGP >= 3.1 && player.PlayersInTeam is not null).ToList(),
+                "Active Players" => players.Where(player => player.PlayersInTeam.First().CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster).ToList(),
+                _ => players
             };
 
-            return fplayers;
+            return players;
         }
 
-        public List<Player> GetPitchersStats(string qualifying = "Qualified Players", string teamFilter = "MLB")
+        public List<EF.Entities.Player> GetPitchersStats(string qualifying = "Qualified Players", string teamFilter = "MLB")
         {
-            _players = _playerDAO.GetAllPlayers().ToList();
+            var players = _playerEFDAO.GetPlayerPitchingStats(2021).ToList();
             var abbreviations = GetTeamsForFilter(teamFilter);
-            var fplayers = _players.Where(player => abbreviations.Contains(player.Team)).ToList();
+            var fplayers = players.Where(player => player.PlayersInTeam.Count > 0 && abbreviations.Contains(player.PlayersInTeam.First().TeamId)).ToList();
 
             fplayers = qualifying switch
             {
-                "Qualified Players" => fplayers.Where(player => player.PitchingStats.IP / player.PitchingStats.Tgp >= 1.1 && player.Team != "").ToList(),
-                "Active Players" => fplayers.Where(player => player.InActiveRoster && player.PlayerPositions.Contains("P")).ToList(),
+                "Qualified Players" => fplayers.Where(player => player.PitchingStats.IP / player.PitchingStats.TGP >= 1.1 && player.PlayersInTeam is not null).ToList(),
+                "Active Players" => fplayers.Where(player => player.PlayersInTeam.First().CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster && player.CanPlayAsPitcher).ToList(),
                 _ => fplayers
             };
 
@@ -67,47 +67,16 @@ namespace VKR.BLL.NET5
 
         private List<string> GetTeamsForFilter(string TeamFilter)
         {
-            var teamsAbbreviations = new List<string>();
-            var teams = _teamsDAO.GetList().ToList();
+            var teams = _teamsEFDAO.GetList().ToList();
 
-            switch (TeamFilter)
+            return TeamFilter switch
             {
-                case "MLB":
-                    teamsAbbreviations.AddRange(teams.Select(team => team.TeamAbbreviation).ToList());
-                    teamsAbbreviations.Add("");
-                    break;
-                case "AL":
-                case "NL":
-                    teamsAbbreviations.AddRange(teams.Where(team => team.League == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
-                    break;
-                default:
-                    teamsAbbreviations.AddRange(teams.Where(team => team.TeamTitle == TeamFilter).Select(team => team.TeamAbbreviation).ToList());
-                    break;
-            }
-            return teamsAbbreviations;
-        }
-
-        public List<List<List<PlayerInLineup>>> GetRoster(string rosterType)
-        {
-            var ungroupedPlayers = rosterType == "GetStartingLineups" ? _playerDAO.GetStartingLineups().ToList() : _playerDAO.GetRoster(rosterType).ToList();
-
-            foreach (var playerInLineup in ungroupedPlayers)
-                playerInLineup.PlayerPositions = _playerDAO.GetPositionsForThisPlayer(playerInLineup.Id).ToList();
-
-            var teams = _teamsDAO.GetList().ToList();
-            var lineups = ungroupedPlayers.Select(player => player.LineupType).OrderBy(number => number).Distinct().ToList();
-
-            var groupedPlayers = new List<List<List<PlayerInLineup>>>();
-
-            for (var i = 0; i < teams.Count; i++)
-            {
-                groupedPlayers.Add(new List<List<PlayerInLineup>>());
-                foreach (var lineupType in lineups)
-                    groupedPlayers[i].Add(ungroupedPlayers.Where(player => player.Team == teams[i].TeamAbbreviation && player.LineupType == lineupType)
-                                                              .OrderBy(player => player.NumberInLineup).ToList());
-            }
-
-            return groupedPlayers;
+                "MLB" => teams.Select(team => team.TeamAbbreviation).ToList(),
+                "AL" or "NL" => teams.Where(team => team.Division.LeagueId == TeamFilter)
+                    .Select(team => team.TeamAbbreviation).ToList(),
+                _ => teams.Where(team => team.TeamName == TeamFilter)
+                    .Select(team => team.TeamAbbreviation).ToList()
+            };
         }
 
         public List<List<List<PlayerInLineupViewModel>>> GetFreeAgents()

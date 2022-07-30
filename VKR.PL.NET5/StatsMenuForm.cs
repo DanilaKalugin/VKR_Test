@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.NET5
 {
@@ -13,27 +13,24 @@ namespace VKR.PL.NET5
     {
         private readonly PlayerBL playersBL = new();
         private readonly TeamsBL teamsBL = new();
-        private readonly List<Player> batters;
-        private readonly List<Player> pitchers;
-        private readonly List<EF.Entities.Team> teams;
+        private readonly List<Player> _batters;
+        private readonly List<Player> _pitchers;
+        private readonly List<Team> _teams;
 
         public StatsMenuForm()
         {
             InitializeComponent();
 
-            batters = playersBL.GetBattersStats();
-            pitchers = playersBL.GetPitchersStats();
-            teams = teamsBL.GetAllTeams();
+            _batters = playersBL.GetBattersStats();
+            _pitchers = playersBL.GetPitchersStats();
+            _teams = teamsBL.GetAllTeams();
         }
 
-        private void btnPlayersStats_Click(object sender, EventArgs e)
-        {
-            OpenStats(PlayerStatsForm.SortingObjects.Players);
-        }
+        private void btnPlayersStats_Click(object sender, EventArgs e) => OpenStats(PlayerStatsForm.SortingObjects.Players);
 
         private void btnTeamsStats_Click(object sender, EventArgs e)
         {
-            OpenStats(PlayerStatsForm.SortingObjects.Teams);
+            //OpenStats(PlayerStatsForm.SortingObjects.Teams);
         }
 
         private void OpenStats(PlayerStatsForm.SortingObjects objects)
@@ -44,11 +41,11 @@ namespace VKR.PL.NET5
             Visible = true;
         }
 
-        private TKey? ReturnMaxStatsValueForBatter<TKey>(Func<Player, TKey> key) => batters.Select(key).Max();
+        private TKey? ReturnMaxStatsValueForBatter<TKey>(Func<Player, TKey> key) => _batters.Select(key).Max();
+        
+        private TKey? ReturnMaxStatsValueForPitcher<TKey>(Func<Player, TKey> key) => _pitchers.Select(key).Max();
 
-        private TKey? ReturnMaxStatsValueForPitcher<TKey>(Func<Player, TKey> key) => pitchers.Select(key).Max();
-
-        private TKey? ReturnMinStatsValueForPitcher<TKey>(Func<Player, TKey> key) => pitchers.Select(key).Min();
+        private TKey? ReturnMinStatsValueForPitcher<TKey>(Func<Player, TKey> key) => _pitchers.Select(key).Min();
 
         private TKey? ReturnMaxStatsValueForPitcher<TKey>(Func<Player, TKey> key, string qualyfing)
         {
@@ -58,26 +55,26 @@ namespace VKR.PL.NET5
 
         private string GetFullNameOfLeaderForThisBattingParameter(Func<Player, bool> key)
         {
-            var countOfBattersWithThisAVG = batters.Where(key).Count();
+            var countOfBattersWithThisAVG = _batters.Where(key).Count();
 
-            return countOfBattersWithThisAVG == 1 ? batters.Where(key).Select(batter => batter.FullName).First() : "Tied";
+            return countOfBattersWithThisAVG == 1 ? _batters.Where(key).Select(batter => batter.FullName).First() : "Tied";
         }
-
+        
         private string GetFullNameOfLeaderForThisPitchingParameter(Func<Player, bool> key)
         {
-            var countOfBattersWithThisAVG = pitchers.Where(key).Count();
+            var countOfBattersWithThisAVG = _pitchers.Where(key).Count();
 
             switch (countOfBattersWithThisAVG)
             {
                 case 0:
                 {
-                    var pitchers = playersBL.GetPitchersStats("All Players");
-                    countOfBattersWithThisAVG = pitchers.Where(key).Count();
+                    var _pitchers = playersBL.GetPitchersStats("All Players");
+                    countOfBattersWithThisAVG = _pitchers.Where(key).Count();
 
-                    return countOfBattersWithThisAVG == 1 ? pitchers.Where(key).Select(pitcher => pitcher.FullName).First() : "Tied";
+                    return countOfBattersWithThisAVG == 1 ? _pitchers.Where(key).Select(pitcher => pitcher.FullName).First() : "Tied";
                 }
                 case 1:
-                    return pitchers.Where(key).Select(pitcher => pitcher.FullName).First();
+                    return _pitchers.Where(key).Select(pitcher => pitcher.FullName).First();
                 default:
                     return "Tied";
             }
@@ -107,13 +104,13 @@ namespace VKR.PL.NET5
                 }
                 else
                 {
-                    var currentBatter = batters.First(batter => batter.FullName == dgvBattingLeaders.Rows[i].Cells[2].Value.ToString());
-                    var manTeam = teams.First(team => team.TeamAbbreviation == currentBatter.Team);
+                    var currentBatter = _batters.First(batter => batter.FullName == dgvBattingLeaders.Rows[i].Cells[2].Value.ToString());
+                    var manTeam = _teams.First(team => team.TeamAbbreviation == currentBatter.PlayersInTeam.First().TeamId);
                     dgvBattingLeaders.Rows[i].Cells[1].Style.BackColor = manTeam.TeamColors[0].Color;
                     dgvBattingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = manTeam.TeamColors[0].Color;
                 }
             }
-
+            
             dgvPitchingLeaders.Rows.Clear();
 
             var maxSaves = ReturnMaxStatsValueForPitcher(batter1 => batter1.PitchingStats.Saves, "All Players");
@@ -131,7 +128,7 @@ namespace VKR.PL.NET5
             {
                 if (dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString() != "Tied")
                 {
-                    var pitchersWithThisValue = pitchers.Where(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString()).ToList();
+                    var pitchersWithThisValue = _pitchers.Where(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString()).ToList();
                     Player currentPlayer;
                     if (pitchersWithThisValue.Count == 0)
                     {
@@ -140,7 +137,7 @@ namespace VKR.PL.NET5
                     }
                     else currentPlayer = pitchersWithThisValue.First();
 
-                    var manTeam = teams.First(team => team.TeamAbbreviation == currentPlayer.Team);
+                    var manTeam = _teams.First(team => team.TeamAbbreviation == currentPlayer.PlayersInTeam.First().TeamId);
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = manTeam.TeamColors[0].Color;
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = manTeam.TeamColors[0].Color;
                 }

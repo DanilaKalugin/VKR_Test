@@ -10,7 +10,8 @@ namespace VKR.EF.DAO
         public List<PlayerInLineupViewModel> GetFreeAgents()
         {
             using var db = new VKRApplicationContext();
-            var allPlayers = db.Players.Where(player => player.CurrentPlayerStatus == PlayerStatusEnum.FreeAgent)
+            var allPlayers = db.Players
+                .Where(player => player.CurrentPlayerStatus == PlayerStatusEnum.FreeAgent)
                 .Include(player => player.BattingHand)
                 .Include(player => player.PitchingHand)
                 .Include(player => player.City)
@@ -80,15 +81,9 @@ namespace VKR.EF.DAO
 
             var list = new List<PlayerInLineupViewModel>();
             foreach (var player in allPlayers)
-                for (var index = 0; index < player.PlayersInTeam.First().PlayersInStartingLineups.Count; index++)
-                {
-                    var playerInTeam = player.PlayersInTeam.First();
-                    var appearanceAsStarter = playerInTeam.PlayersInStartingLineups[index];
-                    var playerPosition = appearanceAsStarter.LineupTypeId == 5 ? "P" : player.Positions[0].ShortTitle;
-                    list.Add(new PlayerInLineupViewModel(player, appearanceAsStarter.LineupTypeId,
-                        appearanceAsStarter.PlayerNumberInLineup, player.PlayersInTeam.First().TeamId,
-                        playerPosition));
-                }
+                list.AddRange(from appearanceAsStarter in player.PlayersInTeam.First().PlayersInStartingLineups.Select(t => player.PlayersInTeam.First()).Select((playerInTeam, index) => playerInTeam.PlayersInStartingLineups[index])
+                              let playerPosition = appearanceAsStarter.LineupTypeId == 5 ? "P" : player.Positions[0].ShortTitle
+                              select new PlayerInLineupViewModel(player, appearanceAsStarter.LineupTypeId, appearanceAsStarter.PlayerNumberInLineup, player.PlayersInTeam.First().TeamId, playerPosition));
 
             return list;
         }
@@ -152,5 +147,34 @@ namespace VKR.EF.DAO
             return db.PlayersPitchingStats.First(player => player.PlayerID == playerCode && player.Season == year && player.MatchType == TypeOfMatchEnum.RegularSeason);
         }
 
+        public List<Player> GetPlayerBattingStats(int year)
+        {
+            using var db = new VKRApplicationContext();
+
+            var players = db.Players.Include(player => player.Positions)
+                .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam))
+                .AsNoTracking()
+                .ToList();
+
+            var battingStats = db.PlayersBattingStats.AsNoTracking().Where(battingStats => battingStats.Season == year && battingStats.MatchType == TypeOfMatchEnum.RegularSeason).ToList();
+
+            return players.Join(battingStats, player => player.Id, stats => stats.PlayerID,
+                (player, stats) => player.SetBattingStats(stats)).ToList();
+        }
+
+        public List<Player> GetPlayerPitchingStats(int year)
+        {
+            using var db = new VKRApplicationContext();
+
+            var players = db.Players.Include(player => player.Positions)
+                .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam))
+                .AsNoTracking()
+                .ToList();
+
+            var pitchingStats = db.PlayersPitchingStats.Where(battingStats => battingStats.Season == year && battingStats.MatchType == TypeOfMatchEnum.RegularSeason).AsNoTracking().ToList();
+
+            return players.Join(pitchingStats, player => player.Id, stats => stats.PlayerID,
+                (player, stats) => player.SetPitchingStats(stats)).ToList();
+        }
     }
 }
