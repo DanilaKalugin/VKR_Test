@@ -20,7 +20,6 @@ namespace VKR.BLL.NET5
         private readonly TeamsDao _teamsDAO = new();
         private readonly PlayerEFDAO _playerEFDAO = new();
         private readonly TeamsEFDAO _teamsEFDAO = new();
-        private List<Player> _players;
 
         public List<EF.Entities.Player> GetBattersStats(string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
         {

@@ -122,7 +122,6 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.Losses,
                 pitcher => pitcher.PitchingStats.ERA,
                 pitcher => pitcher.PitchingStats.GamesPlayed, 
-                pitcher => pitcher.PitchingStats.GamesPlayed, 
                 pitcher => pitcher.PitchingStats.GamesStarted,
                 pitcher => pitcher.PitchingStats.CompleteGames,
                 pitcher => pitcher.PitchingStats.Shutouts,
@@ -147,7 +146,7 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.StolenBasesAllowed,
                 pitcher => pitcher.PitchingStats.CaughtStealing
             };
-
+            
             var teamBattingActions = new List<Func<Team, double>>
             {
                 teamBatting => teamBatting.BattingStats.TGP,
@@ -182,11 +181,11 @@ namespace VKR.PL.NET5
 
             var teamPitchingActions = new List<Func<Team, double>>
             {
-                pitcher => pitcher.Wins,
-                pitcher => pitcher.Losses,
+                pitcher => pitcher.PitchingStats.Wins,
+                pitcher => pitcher.PitchingStats.Losses,
                 pitcher => pitcher.PitchingStats.ERA,
-                pitcher => pitcher.PitchingStats.Tgp,
-                pitcher => pitcher.PitchingStats.Tgp,
+                pitcher => pitcher.PitchingStats.GamesPlayed,
+                pitcher => pitcher.PitchingStats.GamesStarted,
                 pitcher => pitcher.PitchingStats.CompleteGames,
                 pitcher => pitcher.PitchingStats.Shutouts,
                 pitcher => pitcher.PitchingStats.Saves,
@@ -223,7 +222,7 @@ namespace VKR.PL.NET5
             {
                 _teamBattingStats = _sortModes[0][batting] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamBattingStats, teamBattingActions[batting]) 
                                                                                   : _sortingBL.GetSortedStats(_teamBattingStats, teamBattingActions[batting]);
-
+                
                 _teamPitchingStats = _sortModes[1][pitching] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamPitchingStats, teamPitchingActions[pitching]) 
                                                                                     : _sortingBL.GetSortedStats(_teamPitchingStats, teamPitchingActions[pitching]);
             }
@@ -373,12 +372,12 @@ namespace VKR.PL.NET5
                 }
             }
             else
-            {/*
+            {
                 for (var i = 0; i < teamBatting.Count; i++)
                 {
                     dataGridView1.Rows.Add(i + 1,
                                             "",
-                                            teamBatting[i].TeamTitle,
+                                            teamBatting[i].TeamName,
                                             teamBatting[i].BattingStats.TGP,
                                             teamBatting[i].BattingStats.AtBats,
                                             teamBatting[i].BattingStats.Runs,
@@ -398,7 +397,7 @@ namespace VKR.PL.NET5
 
                     dataGridView2.Rows.Add(i + 1,
                                             "",
-                                            teamBatting[i].TeamTitle,
+                                            teamBatting[i].TeamName,
                                             teamBatting[i].BattingStats.PA,
                                             teamBatting[i].BattingStats.HitByPitch,
                                             teamBatting[i].BattingStats.SacrificeBunts,
@@ -418,12 +417,12 @@ namespace VKR.PL.NET5
                 {
                     dataGridView3.Rows.Add(i + 1,
                                             "",
-                                            teamPitching[i].TeamTitle,
-                                            teamPitching[i].Wins,
-                                            teamPitching[i].Losses,
+                                            teamPitching[i].TeamName,
+                                            teamPitching[i].PitchingStats.Wins,
+                                            teamPitching[i].PitchingStats.Losses,
                                             teamPitching[i].PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US")),
-                                            teamPitching[i].PitchingStats.Tgp,
-                                            teamPitching[i].PitchingStats.Tgp,
+                                            teamPitching[i].PitchingStats.GamesPlayed,
+                                            teamPitching[i].PitchingStats.GamesStarted,
                                             teamPitching[i].PitchingStats.CompleteGames,
                                             teamPitching[i].PitchingStats.Shutouts,
                                             teamPitching[i].PitchingStats.Saves,
@@ -440,7 +439,7 @@ namespace VKR.PL.NET5
 
                     dataGridView4.Rows.Add(i + 1,
                                             "",
-                                            teamPitching[i].TeamTitle,
+                                            teamPitching[i].TeamName,
                                             teamPitching[i].PitchingStats.TotalBattersFaced,
                                             teamPitching[i].PitchingStats.QualityStarts,
                                             teamPitching[i].PitchingStats.Holds,
@@ -452,7 +451,7 @@ namespace VKR.PL.NET5
                                             teamPitching[i].PitchingStats.StolenBasesAllowed,
                                             teamPitching[i].PitchingStats.CaughtStealing);
                     GetCorrectColorForCell(dataGridView4, i, teamPitching[i].TeamAbbreviation);
-                }*/
+                }
             }
         }
 
@@ -470,8 +469,8 @@ namespace VKR.PL.NET5
         {
             if (_objects == SortingObjects.Teams)
             {
-                //_teamBattingStats = _teamsBL.GetTeamBattingStats();
-                //_teamPitchingStats = _teamsBL.GetTeamPitchingStats();
+                _teamBattingStats = _teamsBL.GetTeamBattingStats();
+                _teamPitchingStats = _teamsBL.GetTeamPitchingStats();
             }
 
             _playerType = PlayerType.Batters;

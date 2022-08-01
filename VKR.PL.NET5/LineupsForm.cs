@@ -26,7 +26,7 @@ namespace VKR.PL.NET5
         private int _lineupNumber;
         private readonly string[] _typesOfLineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
         private bool _lineupChanged;
-        private DateTime _matchDate;
+        private readonly DateTime _matchDate;
 
         public LineupsForm(RosterType rosterType)
         {

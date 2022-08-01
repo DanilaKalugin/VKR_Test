@@ -42,7 +42,7 @@ namespace VKR.EF.Entities
         public virtual List<MatchFromSchedule> NextHomeMatches { get; set; } = new();
         public virtual List<MatchResult> MatchWinners { get; set; } = new();
         public virtual List<MatchResult> MatchLosers { get; set; } = new();
-        
+
         public int NormalizedOffensiveRating;
         public int NormalizedDefensiveRating;
 
@@ -98,53 +98,41 @@ namespace VKR.EF.Entities
 
         public Color TeamColorForThisMatch;
 
-        public Team(Team team, TeamBalance balance)
+        public TeamBattingStats BattingStats;
+        public TeamPitchingStats PitchingStats;
+
+        public Team SetTeamBalance(TeamBalance balance)
         {
-            TeamAbbreviation = team.TeamAbbreviation;
-            TeamCity = team.TeamCity;
-            TeamName = team.TeamName;
-            StrikeZoneProbability = team.StrikeZoneProbability;
-            SwingInStrikeZoneProbability = team.SwingInStrikeZoneProbability;
-            SwingOutsideStrikeZoneProbability = team.SwingOutsideStrikeZoneProbability;
-            HittingProbability = team.HittingProbability;
-            FoulProbability = team.FoulProbability;
-            SingleProbability = team.SingleProbability;
-            DoubleProbability = team.DoubleProbability;
-            HomeRunProbability = team.HomeRunProbability;
-            PopoutOnFoulProbability = team.PopoutOnFoulProbability;
-            FlyoutOnHomeRunProbability = team.FlyoutOnHomeRunProbability;
-            GroundoutProbability = team.GroundoutProbability;
-            FlyoutProbability = team.FlyoutProbability;
-            DoublePlayProbability = team.DoublePlayProbability;
-            SacrificeFlyProbability = team.SacrificeFlyProbability;
-            SuccessfulStealingBaseAttemptProbability = team.SuccessfulStealingBaseAttemptProbability;
-            SuccessfulBuntAttemptProbability = team.SuccessfulBuntAttemptProbability;
-            HitByPitchProbability = team.HitByPitchProbability;
-            StealingBaseProbability = team.StealingBaseProbability;
-            TripleProbability = team.TripleProbability;
             HomeWins = balance.HomeWins;
             HomeLosses = balance.HomeLosses;
             AwayWins = balance.AwayWins;
             AwayLosses = balance.AwayLosses;
-            Manager = team.Manager;
-            Division = team.Division;
-            TeamColors = team.TeamColors.ToList();
+            return this;
         }
 
-        public Team(Team team, TeamBalance balance, int streak) : this(team, balance)
+        public Team SetTeamStreak(int streak)
         {
             Streak = streak;
+            return this;
         }
 
-        public Team()
-        {
-            
-        }
-
-        public Team(Team team, TeamBalance balance, int streak, RunsByTeam run) : this(team, balance, streak)
+        public Team SetRunsByTeam (RunsByTeam run)
         {
             RunsScored = run.RunsScored;
             RunsAllowed = run.RunsAllowed;
+            return this;
+        }
+
+        public Team SetBattingStats(TeamBattingStats stats)
+        {
+            BattingStats = stats;
+            return this;
+        }
+
+        public Team SetPitchingStats(TeamPitchingStats stats)
+        {
+            PitchingStats = stats;
+            return this;
         }
     }
 }

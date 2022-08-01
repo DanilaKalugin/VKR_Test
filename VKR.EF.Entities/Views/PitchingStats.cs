@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VKR.EF.Entities.Views
+namespace VKR.EF.Entities
 {
     public class PitchingStats
     {

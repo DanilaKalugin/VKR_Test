@@ -3,9 +3,5 @@
     public class PlayerBattingStats: BattingStats
     {
         public uint PlayerID { get;set;}
-        public PlayerBattingStats()
-        {
-                
-        }
     }
 }

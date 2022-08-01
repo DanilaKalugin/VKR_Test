@@ -19,8 +19,8 @@ namespace VKR.PL.NET5
 
         public StandingsForm(Team home, Team away) : this()
         {
-            //_homeTeam = home;
-            //_awayTeam = away;
+            _homeTeam = home;
+            _awayTeam = away;
         }
 
         public StandingsForm()
@@ -50,8 +50,7 @@ namespace VKR.PL.NET5
 
                 var row = new DataGridViewRow();
                 row.CreateCells(dgvStandings);
-                row.Cells[0].Style.BackColor = teams[i].TeamColors[0].Color;
-                row.Cells[0].Style.SelectionBackColor = teams[i].TeamColors[0].Color;
+
                 row.Cells[1].Value = teams[i].TeamName;
                 row.Cells[2].Value = teams[i].Wins;
                 row.Cells[3].Value = teams[i].Losses;
@@ -64,18 +63,18 @@ namespace VKR.PL.NET5
                 row.Cells[10].Value = teams[i].HomeBalance;
                 row.Cells[11].Value = teams[i].AwayBalance;
 
-                dgvStandings.Rows.Add(row);
+                if ((_homeTeam != null && _homeTeam.TeamName == teams[i].TeamName) ||
+                    (_awayTeam != null && _awayTeam.TeamName == teams[i].TeamName))
+                {
+                    row.DefaultCellStyle.BackColor = Color.WhiteSmoke;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
+                    row.DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
+                    row.DefaultCellStyle.SelectionForeColor = Color.Black;
+                }
 
-                //if ((_homeTeam != null && _homeTeam.TeamName == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value) ||
-                //    (_awayTeam != null && _awayTeam.TeamName == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value))
-                //{
-                //    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.BackColor = Color.WhiteSmoke;
-                //    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.ForeColor = Color.Black;
-                //    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
-                //    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.SelectionForeColor = Color.Black;
-                //}
-                //dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[0].Style.BackColor = _teams[i].TeamColors[0].Color;
-                //dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[0].Style.SelectionBackColor = _teams[i].TeamColors[0].Color;
+                row.Cells[0].Style.BackColor = teams[i].TeamColors[0].Color;
+                row.Cells[0].Style.SelectionBackColor = teams[i].TeamColors[0].Color;
+                dgvStandings.Rows.Add(row);
             }
 
             Height = Math.Min(97 + dgvStandings.RowTemplate.Height * (teamsInGroup + 1), Screen.PrimaryScreen.Bounds.Height);

@@ -43,7 +43,7 @@ namespace VKR.EF.DAO
 
             return f.Join(f1,
                     t => t.TeamAbbreviation, tb => tb.TeamAbbreviation,
-                    (team, balance) => new Team(team, balance)).ToList();
+                    (team, balance) => team.SetTeamBalance(balance)).ToList();
         }
 
         public List<Team> GetStandings(DateTime date, byte type)
@@ -79,15 +79,41 @@ GROUP BY dbo.Teams.TeamAbbreviation", typeParam, dateParam).ToList();
             return teamWithLeagueAndDivision.Join(teamBalances,
                 t => t.TeamAbbreviation,
                 tb => tb.TeamAbbreviation,
-                (team, balance) => new { team, balance })
+                (team, balance) => team.SetTeamBalance(balance))
                 .Join(streaks,
-                    team => team.team.TeamAbbreviation,
+                    team => team.TeamAbbreviation,
                     streak => streak.AwayTeam,
-                    (team, stat) => new {  team.team, team.balance, stat.Streak})
+                    (team, stat) => team.SetTeamStreak(stat.Streak))
                 .Join(runs,
-                    team => team.team.TeamAbbreviation,
+                    team => team.TeamAbbreviation,
                     run => run.TeamAbbreviation,
-                    (team, run) => new Team(team.team, team.balance, team.Streak, run)).ToList();
+                    (team, run) => team.SetRunsByTeam(run)).ToList();
+        }
+
+        public List<Team> GetBattingStatsByYearAndMatchType(int year, TypeOfMatchEnum type)
+        {
+            using var db = new VKRApplicationContext();
+
+            var teams = db.Teams.Include(team => team.TeamColors).ToList();
+
+            var battingStats = db.TeamsBattingStats
+                .Where(batting => batting.Season == year && batting.MatchType == type).ToList();
+
+            return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
+                (team, stats) => team.SetBattingStats(stats)).ToList();
+        }
+
+        public List<Team> GetPitchingStatsByYearAndMatchType(int year, TypeOfMatchEnum type)
+        {
+            using var db = new VKRApplicationContext();
+
+            var teams = db.Teams.Include(team => team.TeamColors).ToList();
+
+            var battingStats = db.TeamsPitchingStats
+                .Where(batting => batting.Season == year && batting.MatchType == type).ToList();
+
+            return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
+                (team, stats) => team.SetPitchingStats(stats)).ToList();
         }
     }
 }

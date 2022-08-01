@@ -28,10 +28,7 @@ namespace VKR.PL.NET5
 
         private void btnPlayersStats_Click(object sender, EventArgs e) => OpenStats(PlayerStatsForm.SortingObjects.Players);
 
-        private void btnTeamsStats_Click(object sender, EventArgs e)
-        {
-            //OpenStats(PlayerStatsForm.SortingObjects.Teams);
-        }
+        private void btnTeamsStats_Click(object sender, EventArgs e) => OpenStats(PlayerStatsForm.SortingObjects.Teams);
 
         private void OpenStats(PlayerStatsForm.SortingObjects objects)
         {

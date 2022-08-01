@@ -20,10 +20,12 @@ namespace VKR.EF.DAO
         public DbSet<Player> Players { get; set; }
         public DbSet<PlayerBattingStats> PlayersBattingStats { get; set; }
         public DbSet<PlayerPitchingStats> PlayersPitchingStats { get; set; }
+        public DbSet<TeamBattingStats> TeamsBattingStats { get; set; }
+        public DbSet<TeamPitchingStats> TeamsPitchingStats { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(GetConnectionString());
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
 
             optionsBuilder.LogTo(s => Debug.WriteLine(s), new[] { DbLoggerCategory.Database.Command.Name });
         }
@@ -70,8 +72,10 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerPitchingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StandingsViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamBattingStatsViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamPitchingStatsViewMap());
 
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStatViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStreakViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RunsScoredByTeamFunctionMap());
 
             modelBuilder.HasDbFunction(typeof(VKRApplicationContext)

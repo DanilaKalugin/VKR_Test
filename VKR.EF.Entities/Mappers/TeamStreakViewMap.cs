@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace VKR.EF.Entities.Mappers
 {
-    public class TeamStatViewMap: IEntityTypeConfiguration<TeamStreak>
+    public class TeamStreakViewMap: IEntityTypeConfiguration<TeamStreak>
     {
         public void Configure(EntityTypeBuilder<TeamStreak> builder)
         {

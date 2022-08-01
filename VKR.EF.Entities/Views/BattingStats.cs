@@ -64,34 +64,5 @@ namespace VKR.EF.Entities
         public double StrikeoutPercentage => (double)Strikeouts / PA;
 
         public double ExpectedHomeRuns => TGP > 0 ? HomeRuns / TGP * 162 : 0;
-
-        public BattingStats(int g, int singles, int doubles, int triples, int hr, int sf, int sac, int rbi, int hbp, int sb, int cs, int runs, int bb, int k, int go, int ao, int po, int pa, int gidp, int tgp)
-        {
-            Games = g;
-            Singles = singles;
-            Doubles = doubles;
-            Triples = triples;
-            HomeRuns = hr;
-            SacrificeFlies = sf;
-            SacrificeBunts = sac;
-            RBI = rbi;
-            HitByPitch = hbp;
-            StolenBases = sb;
-            CaughtStealing = cs;
-            Runs = runs;
-            Walks = bb;
-            Strikeouts = k;
-            Groundouts = go;
-            Flyouts = ao;
-            Popouts = po;
-            PA = pa;
-            DoublePlay = gidp;
-            TGP = tgp;
-        }
-
-        public BattingStats()
-        {
-            
-        }
     }
 }

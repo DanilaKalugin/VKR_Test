@@ -92,8 +92,16 @@ namespace VKR.BLL.NET5
             team.Losses = teamWithNewBalance.Item2;
         }
 
-        public List<Entities.NET5.Team> GetTeamBattingStats() => _teamsDAO.GetList().OrderByDescending(team => team.BattingStats.AVG).ToList();
+        public List<Team> GetTeamBattingStats()
+        {
+            return _teamsEF.GetBattingStatsByYearAndMatchType(2021, TypeOfMatchEnum.RegularSeason)
+                           .OrderByDescending(team => team.BattingStats.AVG).ToList();
+        }
 
-        public List<Entities.NET5.Team> GetTeamPitchingStats() => _teamsDAO.GetList().OrderBy(team => team.PitchingStats.ERA).ToList();
+        public List<Team> GetTeamPitchingStats()
+        {
+            return _teamsEF.GetPitchingStatsByYearAndMatchType(2021, TypeOfMatchEnum.RegularSeason)
+                .OrderBy(team => team.PitchingStats.ERA).ToList();
+        }
     }
 }
