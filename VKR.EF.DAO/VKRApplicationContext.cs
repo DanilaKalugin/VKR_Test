@@ -22,6 +22,10 @@ namespace VKR.EF.DAO
         public DbSet<PlayerPitchingStats> PlayersPitchingStats { get; set; }
         public DbSet<TeamBattingStats> TeamsBattingStats { get; set; }
         public DbSet<TeamPitchingStats> TeamsPitchingStats { get; set; }
+        public DbSet<StartingLineup> StartingLineups { get; set; }
+        public DbSet<LineupType> LineupTypes { get; set; }
+        public DbSet<LineupForMatch> LineupsForMatches { get; set; }
+        public DbSet<PlayerPosition> PlayersPositions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

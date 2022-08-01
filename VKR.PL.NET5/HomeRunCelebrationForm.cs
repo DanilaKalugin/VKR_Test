@@ -30,8 +30,8 @@ namespace VKR.PL.NET5
 
             lbBatterHRNumber.Visible = !isQuickMatch;
 
-            lbBatterHRNumber.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.BattingStats.HomeRuns + 1)} HR in career";
-            lbBatterHRNumberInThisMatch.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(hrTodayForThisBatter + 1)} HR in this match";
+            lbBatterHRNumber.Text = $@"{EF.Entities.OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.BattingStats.HomeRuns + 1)} HR in career";
+            lbBatterHRNumberInThisMatch.Text = $@"{EF.Entities.OrdinalNumerals.GetOrdinalNumeralFromQuantitive(hrTodayForThisBatter + 1)} HR in this match";
             lbBatterHRNumberInThisMatch.Visible = hrTodayForThisBatter > 0;
         }
 

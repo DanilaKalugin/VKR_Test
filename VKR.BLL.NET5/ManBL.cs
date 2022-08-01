@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
 
-
 namespace VKR.BLL.NET5
 {
     public class ManBL

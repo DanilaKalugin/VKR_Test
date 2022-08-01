@@ -29,14 +29,12 @@ namespace VKR.EF.Entities.Mappers
             builder.HasOne(m => m.AwayTeam)
                 .WithMany(t => t.AwayMatches)
                 .HasForeignKey(m => m.AwayTeamAbbreviation)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(m => m.HomeTeam)
                 .WithMany(t => t.HomeMatches)
                 .HasForeignKey(m => m.HomeTeamAbbreviation)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(m => m.Stadium)
                 .WithMany(s => s.MatchesPlayedInThisStadium)

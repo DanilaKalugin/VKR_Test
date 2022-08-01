@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.NET5
 {
@@ -16,12 +16,11 @@ namespace VKR.PL.NET5
         public DHRuleForm(Match match)
         {
             InitializeComponent();
-            Program.MatchDate = _matchBL.GetMaxDateForAllMatches();
             NewMatch = match;
             numMatchLength.Value = 9;
             dtpMatchDate.Value = match.MatchDate;
-            rbPlayWithDH.Checked = NewMatch.HomeTeam.DhRule;
-            rbPlayWithoutDH.Checked = !NewMatch.HomeTeam.DhRule;
+            rbPlayWithDH.Checked = NewMatch.HomeTeam.Division.League.DHRule;
+            rbPlayWithoutDH.Checked = !NewMatch.HomeTeam.Division.League.DHRule;
         }
 
         private void btnAcceptDHRule_Click(object sender, EventArgs e)
@@ -29,17 +28,17 @@ namespace VKR.PL.NET5
             var matchId = _matchBL.GetNumberOfMatchesPlayed(NewMatch);
             NewMatch.MatchDate = dtpMatchDate.Value;
             NewMatch.DHRule = rbPlayWithDH.Checked;
-            NewMatch.MatchID = matchId;
-            NewMatch.MatchLength = (int)numMatchLength.Value;
+            NewMatch.Id = matchId;
+            NewMatch.MatchLength = (byte)numMatchLength.Value;
 
             _matchBL.StartNewMatch(NewMatch);
-            NewMatch.AwayTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.AwayTeam.TeamAbbreviation, matchId);
+            /*NewMatch.AwayTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.AwayTeam.TeamAbbreviation, matchId);
             NewMatch.AwayTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.AwayTeam, NewMatch));
 
             NewMatch.HomeTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.HomeTeam.TeamAbbreviation, matchId);
-            NewMatch.HomeTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch));
+            NewMatch.HomeTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch));*/
 
-            using var newMatchForm = new MainForm(NewMatch);
+            /*using var newMatchForm = new MainForm(NewMatch);
             Visible = false;
             newMatchForm.ShowDialog();
 
@@ -51,10 +50,10 @@ namespace VKR.PL.NET5
             else if (newMatchForm.DeleteThisMatch)
             {
                 ExitFromCurrentMatch = newMatchForm.DeleteThisMatch;
-                MatchNumber = NewMatch.MatchID;
+                MatchNumber = NewMatch.Id;
                 Hide();
                 DialogResult = DialogResult.Yes;
-            }
+            }*/
         }
 
         private void numMatchLength_ValueChanged(object sender, EventArgs e) => labelMatchLength.Text = numMatchLength.Value % 10 == 1 && numMatchLength.Value % 100 != 11 ? $"{numMatchLength.Value} INNING" : $"{numMatchLength.Value} INNINGS";

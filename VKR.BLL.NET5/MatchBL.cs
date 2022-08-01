@@ -5,7 +5,6 @@ using VKR.DAL.NET5;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
 using AtBat = VKR.Entities.NET5.AtBat;
-using GameSituation = VKR.Entities.NET5.GameSituation;
 using Match = VKR.Entities.NET5.Match;
 using PitcherResults = VKR.Entities.NET5.PitcherResults;
 
@@ -18,13 +17,13 @@ namespace VKR.BLL.NET5
 
         public enum TableType { Results, Schedule }
 
-        public void StartNewMatch(Match match)
+        public void StartNewMatch(EF.Entities.Match match)
         {
-            _matchDAO.StartNewMatch(match);
-            match.GameSituations = new List<GameSituation> { new(match.AwayTeam) };
+            _matchEfdao.StartNewMatch(match);
+            match.GameSituations = new List<EF.Entities.GameSituation> { new(match.AwayTeam) };
         }
 
-        public int GetNumberOfMatchesPlayed(Match newMatch) => _matchDAO.GetNumberOfMatchesPlayed(newMatch);
+        public int GetNumberOfMatchesPlayed(EF.Entities.Match newMatch) => _matchEfdao.GetNextMatchId(newMatch.MatchTypeId);
 
         public void AddNewAtBat(AtBat atBat, Match currentMatch)
         {
@@ -38,9 +37,9 @@ namespace VKR.BLL.NET5
             if (!currentMatch.IsQuickMatch) _matchDAO.AddMatchResultForThisPitcher(pitcherResults);
         }
 
-        public List<MatchScheduleViewModel> GetResultsForAllMatches() => _matchEfdao.GetResultsForAllMatches().ToList();
+        public List<EF.Entities.MatchScheduleViewModel> GetResultsForAllMatches() => _matchEfdao.GetResultsForAllMatches().ToList();
 
-        public List<MatchScheduleViewModel> GetMatchesForSelectedTeam(TableType tableType, string team)
+        public List<EF.Entities.MatchScheduleViewModel> GetMatchesForSelectedTeam(TableType tableType, string team)
         {
             var matches = tableType == TableType.Results 
                                                             ? GetResultsForAllMatches().OrderByDescending(match => match.MatchDate).ToList() 
@@ -50,7 +49,7 @@ namespace VKR.BLL.NET5
                                           match.HomeTeamAbbreviation == team).ToList();
         }
 
-        public List<MatchScheduleViewModel> GetMatchesFromThisSeries(TableType tableType, string firstTeamID, string secondTeamID)
+        public List<EF.Entities.MatchScheduleViewModel> GetMatchesFromThisSeries(TableType tableType, string firstTeamID, string secondTeamID)
         {
             var teams = new List<string> { firstTeamID, secondTeamID }; 
             var matches = tableType == TableType.Results ? GetResultsForAllMatches() : GetSchedule();
@@ -62,10 +61,10 @@ namespace VKR.BLL.NET5
 
         public DateTime GetMaxDateForAllMatches() => _matchEfdao.GetMaxDateForAllMatches();
 
-        public DateTime GetDateForNextMatch() => _matchDAO.GetDateForNextMatch();
+        public DateTime GetDateForNextMatch(TypeOfMatchEnum matchType) => _matchEfdao.GetDateForNextMatch(matchType);
 
-        public List<MatchFromSchedule> GetMatchesForThisDay(DateTime date, TypeOfMatchEnum matchType) => _matchEfdao.GetRemainingScheduleForThisDay(date, matchType).ToList();
+        public List<EF.Entities.MatchFromSchedule> GetMatchesForThisDay(DateTime date, EF.Entities.TypeOfMatchEnum matchType) => _matchEfdao.GetRemainingScheduleForThisDay(date, matchType).ToList();
 
-        public List<MatchScheduleViewModel> GetSchedule() => _matchEfdao.GetScheduleForAllMatches().ToList();
+        public List<EF.Entities.MatchScheduleViewModel> GetSchedule() => _matchEfdao.GetScheduleForAllMatches().ToList();
     }
 }

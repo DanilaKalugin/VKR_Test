@@ -2,7 +2,7 @@
 {
     public class LineupForMatch
     {
-        public uint Id { get; set; }
+        public long Id { get; set; }
         public Match Match { get; set; }
         public int MatchId { get; set; }
         public PlayerInTeam PlayerInTeam { get; set; }

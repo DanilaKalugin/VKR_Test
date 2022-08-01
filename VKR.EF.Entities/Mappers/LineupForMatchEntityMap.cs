@@ -35,6 +35,8 @@ namespace VKR.EF.Entities.Mappers
 
             builder.Property(sl => sl.PlayerPositionId)
                 .HasColumnName("PlayerPosition");
+
+            builder.Property(sl => sl.Id).ValueGeneratedOnAdd();
         }
     }
 }

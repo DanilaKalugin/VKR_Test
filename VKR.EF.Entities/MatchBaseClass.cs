@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VKR.EF.Entities
 {
     public class MatchBaseClass
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public Team HomeTeam { get; set; }
         public string HomeTeamAbbreviation { get; set; }

@@ -61,7 +61,7 @@ namespace VKR.PL.NET5
             var stadiumForThisMatch = _stadiums[_stadiumNumber];
             NewMatch.Stadium = stadiumForThisMatch;
 
-            /*using var designatedHitterForm = new DHRuleForm(NewMatch);
+            using var designatedHitterForm = new DHRuleForm(NewMatch);
             Visible = false;
             designatedHitterForm.ShowDialog();
 
@@ -82,7 +82,7 @@ namespace VKR.PL.NET5
                 default:
                     Visible = true;
                     break;
-            }*/
+            }
         }
     }
 }

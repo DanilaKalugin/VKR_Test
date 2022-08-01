@@ -501,7 +501,7 @@ namespace VKR.PL.NET5
             if (_objects == SortingObjects.Players)
             {
                 _pitchers = _playersBL.GetPitchersStats(cbPlayers.Text, cbTeams.SelectedValue.ToString());
-                var positionTitle = cbPositions.SelectedValue is Entities.NET5.PlayerPosition position ? position.ShortTitle : "";
+                var positionTitle = cbPositions.SelectedValue is PlayerPosition position ? position.ShortTitle : "";
                 _batters = _playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
             }
 

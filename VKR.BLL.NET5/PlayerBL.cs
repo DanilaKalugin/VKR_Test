@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VKR.DAL.NET5;
 using VKR.EF.DAO;
-using VKR.EF.Entities;
 using VKR.Entities.NET5;
-using Match = VKR.Entities.NET5.Match;
-using Player = VKR.Entities.NET5.Player;
-using PlayerPosition = VKR.Entities.NET5.PlayerPosition;
-using Team = VKR.Entities.NET5.Team;
 
 namespace VKR.BLL.NET5
 {
@@ -41,7 +36,7 @@ namespace VKR.BLL.NET5
             players = qualifying switch
             {
                 "Qualified Players" => players.Where(player => (double)player.BattingStats.PA / player.BattingStats.TGP >= 3.1 && player.PlayersInTeam is not null).ToList(),
-                "Active Players" => players.Where(player => player.PlayersInTeam.First().CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster).ToList(),
+                "Active Players" => players.Where(player => player.PlayersInTeam.First().CurrentPlayerInTeamStatus == EF.Entities.InTeamStatusEnum.ActiveRoster).ToList(),
                 _ => players
             };
 
@@ -57,7 +52,7 @@ namespace VKR.BLL.NET5
             fplayers = qualifying switch
             {
                 "Qualified Players" => fplayers.Where(player => player.PitchingStats.IP / player.PitchingStats.TGP >= 1.1 && player.PlayersInTeam is not null).ToList(),
-                "Active Players" => fplayers.Where(player => player.PlayersInTeam.First().CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster && player.CanPlayAsPitcher).ToList(),
+                "Active Players" => fplayers.Where(player => player.PlayersInTeam.First().CurrentPlayerInTeamStatus == EF.Entities.InTeamStatusEnum.ActiveRoster && player.CanPlayAsPitcher).ToList(),
                 _ => fplayers
             };
 
@@ -78,17 +73,17 @@ namespace VKR.BLL.NET5
             };
         }
 
-        public List<List<List<PlayerInLineupViewModel>>> GetFreeAgents()
+        public List<List<List<EF.Entities.PlayerInLineupViewModel>>> GetFreeAgents()
         {
             var allFreeAgents = _playerEFDAO.GetFreeAgents().ToList();
-            var players = new List<List<List<PlayerInLineupViewModel>>> { new() };
+            var players = new List<List<List<EF.Entities.PlayerInLineupViewModel>>> { new() };
             players[0].Add(allFreeAgents.OrderBy(player => player.SecondName).ThenBy(player => player.FirstName).ToList());
             return players;
         }
 
-        public List<List<List<PlayerInLineupViewModel>>> GetRoster(TypeOfRoster typeOfRoster)
+        public List<List<List<EF.Entities.PlayerInLineupViewModel>>> GetRoster(TypeOfRoster typeOfRoster)
         {
-            var rosterFuncs = new Dictionary<TypeOfRoster, Func<List<PlayerInLineupViewModel>>>
+            var rosterFuncs = new Dictionary<TypeOfRoster, Func<List<EF.Entities.PlayerInLineupViewModel>>>
             {
                 { TypeOfRoster.Starters, _playerEFDAO.GetStartingLineups },
                 { TypeOfRoster.Bench , _playerEFDAO.GetBench},
@@ -97,16 +92,16 @@ namespace VKR.BLL.NET5
                 { TypeOfRoster.ActiveAndReserve, _playerEFDAO.GetActiveAndReservePlayers }
             };
 
-            var allPlayers = new List<PlayerInLineupViewModel>();
+            var allPlayers = new List<EF.Entities.PlayerInLineupViewModel>();
 
             if(rosterFuncs.TryGetValue(typeOfRoster, out var playersFunc)) allPlayers = playersFunc();
             var teams = _teamsEFDAO.GetList().ToList();
 
             var lineups = allPlayers.Select(player => player.LineupNumber).OrderBy(number => number).Distinct().ToList();
-            var players = new List<List<List<PlayerInLineupViewModel>>>();
+            var players = new List<List<List<EF.Entities.PlayerInLineupViewModel>>>();
             for (var i = 0; i < teams.Count; i++)
             {
-                players.Add(new List<List<PlayerInLineupViewModel>>());
+                players.Add(new List<List<EF.Entities.PlayerInLineupViewModel>>());
                 foreach (var lineupType in lineups)
                     players[i].Add(allPlayers
                         .Where(player => player.TeamAbbreviation == teams[i].TeamAbbreviation && player.LineupNumber == lineupType)
@@ -120,7 +115,7 @@ namespace VKR.BLL.NET5
 
         public Player GetPlayerByCode(int code) => _playerDAO.GetPlayerByCode(code).First();
 
-        public List<PlayerPosition> GetPlayerPositions() => _playerDAO.GetPlayerPositions().ToList();
+        public List<EF.Entities.PlayerPosition> GetPlayerPositions() => _playerEFDAO.GetPlayerPositions().ToList();
 
         public List<Batter> GetCurrentLineupForThisMatch(string team, int match) => _playerDAO.GetCurrentLineupForThisMatch(team, match).ToList();
 
@@ -154,9 +149,9 @@ namespace VKR.BLL.NET5
             return pitcher;
         }
 
-        public PlayerBattingStats GetBattingStatsByCode(uint id, int year) => _playerEFDAO.GetBattingStatsByCode(id, year);
+        public EF.Entities.PlayerBattingStats GetBattingStatsByCode(uint id, int year) => _playerEFDAO.GetBattingStatsByCode(id, year);
 
-        public PlayerPitchingStats GetPitchingStatsByCode(uint id, int year) =>
+        public EF.Entities.PlayerPitchingStats GetPitchingStatsByCode(uint id, int year) =>
             _playerEFDAO.GetPitchingStatsByCode(id, year);
     }
 }

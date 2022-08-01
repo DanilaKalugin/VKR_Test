@@ -72,7 +72,7 @@ namespace VKR.PL.NET5
 
         private async void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
-            var matchDate = _matchBL.GetDateForNextMatch();
+            var matchDate = _matchBL.GetDateForNextMatch(TypeOfMatchEnum.RegularSeason);
             StartNewMatch(matchDate, TypeOfMatchEnum.RegularSeason);
             await UpdateBirthDayTable();
         }

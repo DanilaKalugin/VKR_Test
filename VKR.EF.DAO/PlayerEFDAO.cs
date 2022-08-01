@@ -176,5 +176,11 @@ namespace VKR.EF.DAO
             return players.Join(pitchingStats, player => player.Id, stats => stats.PlayerID,
                 (player, stats) => player.SetPitchingStats(stats)).ToList();
         }
+
+        public List<PlayerPosition> GetPlayerPositions()
+        {
+            using var db = new VKRApplicationContext();
+            return db.PlayersPositions.ToList();
+        }
     }
 }

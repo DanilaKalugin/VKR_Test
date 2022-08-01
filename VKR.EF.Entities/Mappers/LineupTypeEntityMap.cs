@@ -7,6 +7,7 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<LineupType> builder)
         {
+            builder.ToTable("LineupType");
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)

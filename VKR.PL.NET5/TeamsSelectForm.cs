@@ -211,7 +211,7 @@ namespace VKR.PL.NET5
 
         private void FillScheduleForToday()
         {
-            var matchDate = _matchBL.GetDateForNextMatch();
+            var matchDate = _matchBL.GetDateForNextMatch(_newMatch.MatchTypeId);
             _matches = _matchBL.GetMatchesForThisDay(matchDate, _newMatch.MatchTypeId);
             _matchNumber = 0;
             _awayTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].AwayTeamAbbreviation);
