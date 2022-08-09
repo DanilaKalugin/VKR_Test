@@ -24,46 +24,47 @@ namespace VKR.EF.DAO
         public List<PlayerInLineupViewModel> GetActiveAndReservePlayers()
         {
             using var db = new VKRApplicationContext();
-            var allPlayers = db.Players.Where(player => player.CurrentPlayerStatus != PlayerStatusEnum.FreeAgent)
-                .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam))
-                .Where(player => player.PlayersInTeam.Any(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam))
-                .Include(player => player.BattingHand)
-                .Include(player => player.PitchingHand)
-                .Include(player => player.City)
-                .Include(player => player.Positions)
+
+            var allPlayers = db.PlayersInTeams
+                .Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam)
+                .Include(pit => pit.Player)
+                .ThenInclude(p => p.City)
+                .Include(p => p.Player.Positions)
+                .Include(pit => pit.Player.BattingHand)
+                .Include(pit => pit.Player.PitchingHand)
                 .ToList();
 
-            return allPlayers.Select(player => new PlayerInLineupViewModel(player, 0, 0, player.PlayersInTeam.First().TeamId, player.Positions[0].ShortTitle)).ToList();
+            return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
         }
 
         public List<PlayerInLineupViewModel> GetReserves()
         {
             using var db = new VKRApplicationContext();
-            var allPlayers = db.Players
-                .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.Reserve))
-                .Where(player => player.PlayersInTeam.Any(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.Reserve))
-                .Include(player => player.BattingHand)
-                .Include(player => player.PitchingHand)
-                .Include(player => player.City)
-                .Include(player => player.Positions)
+            var allPlayers = db.PlayersInTeams
+                .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.Reserve)
+                .Include(pit => pit.Player)
+                .ThenInclude(p => p.City)
+                .Include(p => p.Player.Positions)
+                .Include(pit => pit.Player.BattingHand)
+                .Include(pit => pit.Player.PitchingHand)
                 .ToList();
 
-            return allPlayers.Select(player => new PlayerInLineupViewModel(player, 0, 0, player.PlayersInTeam.First().TeamId, player.Positions[0].ShortTitle)).ToList();
+            return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
         }
 
         public List<PlayerInLineupViewModel> GetActivePlayers()
         {
             using var db = new VKRApplicationContext();
-            var allPlayers = db.Players
-                .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster))
-                .Where(player => player.PlayersInTeam.Any(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster))
-                .Include(player => player.BattingHand)
-                .Include(player => player.PitchingHand)
-                .Include(player => player.City)
-                .Include(player => player.Positions)
+            var allPlayers = db.PlayersInTeams
+                .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster)
+                .Include(pit => pit.Player)
+                .ThenInclude(p => p.City)
+                .Include(p => p.Player.Positions)
+                .Include(pit => pit.Player.BattingHand)
+                .Include(pit => pit.Player.PitchingHand)
                 .ToList();
 
-            return allPlayers.Select(player => new PlayerInLineupViewModel(player, 0, 0, player.PlayersInTeam.First().TeamId, player.Positions[0].ShortTitle)).ToList();
+            return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
         }
 
         public List<PlayerInLineupViewModel> GetStartingLineups()
