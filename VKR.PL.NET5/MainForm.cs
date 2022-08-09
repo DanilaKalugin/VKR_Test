@@ -221,10 +221,7 @@ namespace VKR.PL.NET5
 
             var hitsForAtBats = HitsForAtBatsHelper.GetHitsForAtBats(batter, _currentMatch);
 
-            if (!string.IsNullOrEmpty(hitsForAtBats))
-            {
-                lbTodayStats.Text += hitsForAtBats;
-            }
+            if (!string.IsNullOrEmpty(hitsForAtBats)) lbTodayStats.Text += hitsForAtBats;
 
             AddNewStatsForTodayStatsLabel(HRs, "HR", lbTodayStats);
             AddNewStatsForTodayStatsLabel(RBIs, "RBI", lbTodayStats);
@@ -343,6 +340,7 @@ namespace VKR.PL.NET5
             BaseStealingGenerator.StealingAttempt secondBaseStealingAttempt;
             if (_newGameSituation.RunnerOnSecond.IsBaseNotEmpty && !_newGameSituation.RunnerOnThird.IsBaseNotEmpty)
             {
+                
                 var thirdBaseStealingAttempt = _baseStealingGenerator.StealingAttemptDefinition(BaseStealingGenerator.BaseNumberForStealing.Third, _newGameSituation, _currentMatch.AwayTeam);
                 if (thirdBaseStealingAttempt == BaseStealingGenerator.StealingAttempt.Attempt)
                 {
@@ -354,6 +352,7 @@ namespace VKR.PL.NET5
                             _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt = true;
                     }
                 }
+                
             }
 
             if (!_newGameSituation.RunnerOnFirst.IsBaseNotEmpty ||

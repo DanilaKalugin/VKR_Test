@@ -89,10 +89,10 @@ namespace VKR.PL.NET5
             MatchResultForPitcherAnalysis(_endedMatch, _endedMatch.HomeTeam);
         }
 
-        private void GetInformationAboutTeam(Team team, Label Abbreviation, Panel panelSmallLogo, Label Balance, Panel panelBorder, Panel BigLogo)
+        private void GetInformationAboutTeam(Team team, Label abbreviation, Panel panelSmallLogo, Label Balance, Panel panelBorder, Panel BigLogo)
         {
-            Abbreviation.BackColor = team.TeamColorForThisMatch;
-            Abbreviation.Text = team.TeamAbbreviation.ToUpper();
+            abbreviation.BackColor = team.TeamColorForThisMatch;
+            abbreviation.Text = team.TeamAbbreviation.ToUpper();
             panelSmallLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{team.TeamAbbreviation}.png");
             Balance.Visible = !_endedMatch.IsQuickMatch;
             Balance.Text = $"{team.Wins}-{team.Losses}";
