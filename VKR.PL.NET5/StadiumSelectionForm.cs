@@ -25,7 +25,7 @@ namespace VKR.PL.NET5
             NewMatch = match;
             _stadiums = _stadiumsBL.GetAllStadiums();
             var homeTeamStadium = _stadiumsBL.GetHomeStadiumForThisTeamAndTypeOfMatch(match.HomeTeam, match.MatchTypeId);
-            _stadiumNumber = _stadiums.IndexOf(_stadiums.FirstOrDefault(stadium => stadium.StadiumId == homeTeamStadium.StadiumId));
+            _stadiumNumber = _stadiums.IndexOf(_stadiums.FirstOrDefault(stadium => stadium?.StadiumId == homeTeamStadium.StadiumId));
             pbAwayTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{NewMatch.AwayTeam.TeamAbbreviation}.png");
             pbHomeTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{NewMatch.HomeTeam.TeamAbbreviation}.png");
         }
