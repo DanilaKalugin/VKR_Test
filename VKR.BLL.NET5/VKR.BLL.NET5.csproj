@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFrameworkExtras.EFCore" Version="5.0.7" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\VKR.DAL.NET5\VKR.DAL.NET5.csproj" />
     <ProjectReference Include="..\VKR.EF.DAO\VKR.EF.DAO.csproj" />
     <ProjectReference Include="..\VKR.EF.Entities\VKR.EF.Entities.csproj" />

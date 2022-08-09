@@ -38,7 +38,6 @@ namespace VKR.PL.NET5
             HomeTeamBalance.Visible = match.MatchTypeId != TypeOfMatchEnum.QuickMatch;
             _teams = _teamsBL.GetTeamsWithWLBalance(match.MatchDate.Year, match.MatchTypeId).ToList();
 
-
             if (match.MatchTypeId == TypeOfMatchEnum.QuickMatch)
             {
                 _awayTeamNumber = 0;
