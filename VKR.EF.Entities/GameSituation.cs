@@ -6,21 +6,21 @@ namespace VKR.EF.Entities
     public class GameSituation
     {
         public int Id;
-        public int InningNumber;
+        public byte InningNumber;
         public Team Offense;
         public PitchResult Result;
         public int Balls;
         public int Strikes;
-        public int Outs;
-        //public Runner RunnerOnFirst;
-        //public Runner RunnerOnSecond;
-        //public Runner RunnerOnThird;
+        public byte Outs;
+        public Runner RunnerOnFirst;
+        public Runner RunnerOnSecond;
+        public Runner RunnerOnThird;
         public int AwayTeamRuns;
         public int HomeTeamRuns;
         public int NumberOfBatterFromHomeTeam;
         public int NumberOfBatterFromAwayTeam;
-        //public List<Runner> RunsByThisPitch;
-        public int PitcherID;
+        public List<Runner> RunsByThisPitch;
+        public uint PitcherID;
 
         public static List<PitchResult> AtBatEndingConditions = new()
         {
@@ -56,17 +56,17 @@ namespace VKR.EF.Entities
             Balls = 0;
             Strikes = 0;
             Outs = 0;
-            //RunnerOnFirst = new Runner();
-            //RunnerOnSecond = new Runner();
-            //RunnerOnThird = new Runner();
+            RunnerOnFirst = new Runner();
+            RunnerOnSecond = new Runner();
+            RunnerOnThird = new Runner();
             AwayTeamRuns = 0;
             HomeTeamRuns = 0;
             NumberOfBatterFromHomeTeam = 1;
             NumberOfBatterFromAwayTeam = 1;
-            PitcherID = -1;
+            PitcherID = 0;
         }
 
-        public GameSituation(int id, int inning, Team offense, PitchResult result, int balls, int strikes, int outs, /*Runner runnerOn1, Runner runnerOn2, Runner runnerOn3, */int awayRuns, int homeRuns, int batterAway, int batterHome, int pitcherId)
+        public GameSituation(int id, byte inning, Team offense, PitchResult result, int balls, int strikes, byte outs, Runner runnerOn1, Runner runnerOn2, Runner runnerOn3, int awayRuns, int homeRuns, int batterAway, int batterHome, uint pitcherId)
         {
             Id = id;
             InningNumber = inning;
@@ -75,9 +75,9 @@ namespace VKR.EF.Entities
             Balls = balls;
             Strikes = strikes;
             Outs = outs;
-            //RunnerOnFirst = runnerOn1;
-            //RunnerOnSecond = runnerOn2;
-            //RunnerOnThird = runnerOn3;
+            RunnerOnFirst = runnerOn1;
+            RunnerOnSecond = runnerOn2;
+            RunnerOnThird = runnerOn3;
             AwayTeamRuns = awayRuns;
             HomeTeamRuns = homeRuns;
             NumberOfBatterFromAwayTeam = batterAway;
@@ -117,7 +117,7 @@ namespace VKR.EF.Entities
                 PitchResult.DoublePlayOnFlyout => situation.Outs + 2,
                 _ => situation.Outs
             };
-        /*
+        
         private Runner ReturnNewRunner(Match match)
         {
             if (Offense == match.AwayTeam)
@@ -254,7 +254,7 @@ namespace VKR.EF.Entities
 
             return runners;
         }
-        */
+        
         public void PrepareForNextPitch(GameSituation gameSituation, Team awayTeam, Team homeTeam, int matchLength)
         {
             if ((gameSituation.Result == PitchResult.Ball && gameSituation.Balls == 0) ||
@@ -291,20 +291,20 @@ namespace VKR.EF.Entities
                 if (gameSituation.Offense == homeTeam)
                 {
                     Offense = awayTeam;
-                    InningNumber = gameSituation.InningNumber + 1;
-                    //RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromAwayTeam == 1 ? 9 : gameSituation.NumberOfBatterFromAwayTeam - 1) - 1], homeTeam.CurrentPitcher) : new Runner();
+                    InningNumber = (byte)(gameSituation.InningNumber + 1);
+                    RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromAwayTeam == 1 ? 9 : gameSituation.NumberOfBatterFromAwayTeam - 1) - 1], homeTeam.CurrentPitcher) : new Runner();
                 }
                 else
                 {
                     Offense = homeTeam;
                     InningNumber = gameSituation.InningNumber;
-                    //RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromHomeTeam == 1 ? 9 : gameSituation.NumberOfBatterFromHomeTeam - 1) - 1], awayTeam.CurrentPitcher) : new Runner();
+                    RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromHomeTeam == 1 ? 9 : gameSituation.NumberOfBatterFromHomeTeam - 1) - 1], awayTeam.CurrentPitcher) : new Runner();
                 }
                 Balls = 0;
                 Strikes = 0;
                 Outs = 0;
-                //RunnerOnFirst = new Runner();
-                //RunnerOnThird = new Runner();
+                RunnerOnFirst = new Runner();
+                RunnerOnThird = new Runner();
             }
             else
             {
@@ -313,7 +313,7 @@ namespace VKR.EF.Entities
             }
         }
 
-        public GameSituation Clone() => new(Id, InningNumber, Offense, Result, Balls, Strikes, Outs, /*RunnerOnFirst, RunnerOnSecond, RunnerOnThird, */AwayTeamRuns, HomeTeamRuns, NumberOfBatterFromAwayTeam, NumberOfBatterFromHomeTeam, PitcherID);
+        public GameSituation Clone() => new(Id, InningNumber, Offense, Result, Balls, Strikes, Outs, RunnerOnFirst, RunnerOnSecond, RunnerOnThird, AwayTeamRuns, HomeTeamRuns, NumberOfBatterFromAwayTeam, NumberOfBatterFromHomeTeam, PitcherID);
 
         public GameSituation(Pitch pitch, GameSituation previousSituation, Match currentMatch)
         {
@@ -325,21 +325,21 @@ namespace VKR.EF.Entities
             NumberOfBatterFromHomeTeam = previousSituation.NumberOfBatterFromHomeTeam;
             Balls = NumberOfBallsDetermining(Result, previousSituation);
             Strikes = NumberOfStrikesDetermining(Result, previousSituation);
-            Outs = NumberOfOutsDetermining(Result, previousSituation, Strikes);
-            //RunnerOnFirst = HavingARunnerOnFirstBase(Result, previousSituation, currentMatch, Balls);
-            //RunnerOnSecond = HavingARunnerOnSecondBase(Result, previousSituation, currentMatch, Balls);
-            //RunnerOnThird = HavingARunnerOnThirdBase(Result, previousSituation, currentMatch, Balls);
-            //RunsByThisPitch = GetListOfRunnersInHomeByThisPitch(Result, previousSituation, Balls, currentMatch);
-            //PitcherID = Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.CurrentPitcher.Id : currentMatch.AwayTeam.CurrentPitcher.Id;
+            Outs = (byte)NumberOfOutsDetermining(Result, previousSituation, Strikes);
+            RunnerOnFirst = HavingARunnerOnFirstBase(Result, previousSituation, currentMatch, Balls);
+            RunnerOnSecond = HavingARunnerOnSecondBase(Result, previousSituation, currentMatch, Balls);
+            RunnerOnThird = HavingARunnerOnThirdBase(Result, previousSituation, currentMatch, Balls);
+            RunsByThisPitch = GetListOfRunnersInHomeByThisPitch(Result, previousSituation, Balls, currentMatch);
+            PitcherID = Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.CurrentPitcher.Id : currentMatch.AwayTeam.CurrentPitcher.Id;
 
             if (Offense == currentMatch.AwayTeam)
             {
-                //AwayTeamRuns = previousSituation.AwayTeamRuns + RunsByThisPitch.Count;
+                AwayTeamRuns = previousSituation.AwayTeamRuns + RunsByThisPitch.Count;
                 HomeTeamRuns = previousSituation.HomeTeamRuns;
             }
             else
             {
-                //HomeTeamRuns = previousSituation.HomeTeamRuns + RunsByThisPitch.Count;
+                HomeTeamRuns = previousSituation.HomeTeamRuns + RunsByThisPitch.Count;
                 AwayTeamRuns = previousSituation.AwayTeamRuns;
             }
         }
