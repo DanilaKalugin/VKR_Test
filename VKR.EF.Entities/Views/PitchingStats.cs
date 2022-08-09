@@ -69,50 +69,12 @@ namespace VKR.EF.Entities
             }
         }
 
-        public double KperNineInnings => Strikeouts / ((double)Outs / 3) * 9;
+        public double KperNineInnings => Outs == 0 ? 0 : Strikeouts / ((double)Outs / 3) * 9;
 
-        public double BBperNineInnings => WalksAllowed / ((double)Outs / 3) * 9;
+        public double BBperNineInnings => Outs == 0 ? 0 : WalksAllowed / ((double)Outs / 3) * 9;
 
-        public double KperBb => (double)Strikeouts / WalksAllowed;
+        public double KperBb => WalksAllowed == 0 ? 0 : (double)Strikeouts / WalksAllowed;
 
-        public double GOtoAo => (double)Groundouts / Flyouts;
-
-        public PitchingStats(int g, int gs, int k, int outs, int bb, int sac, int sf, int sb, int cs, int tbf,
-                       int qs, int sho, int cg, int w, int l, int sv, int hld, int hbp,
-                       int singles, int doubles, int triples, int hr, int runs, int doublePlay, int groundout, int flyout, int tgp)
-        {
-            GamesPlayed = g;
-            //GamesStarted = gs;
-            Strikeouts = k;
-            Outs = outs;
-            WalksAllowed = bb;
-            SacrificeBunts = sac;
-            SacrificeFlies = sf;
-            StolenBasesAllowed = sb;
-            CaughtStealing = cs;
-            TotalBattersFaced = tbf;
-            QualityStarts = qs;
-            Shutouts = sho;
-            CompleteGames = cg;
-            Wins = w;
-            Losses = l;
-            Saves = sv;
-            Holds = hld;
-            HitByPitch = hbp;
-            SinglesAllowed = singles;
-            DoublesAllowed = doubles;
-            TriplesAllowed = triples;
-            HomeRunsAllowed = hr;
-            RunsAllowed = runs;
-            DoublePlays = doublePlay;
-            Groundouts = groundout;
-            Flyouts = flyout;
-            TGP = tgp;
-        }
-
-        public PitchingStats()
-        {
-
-        }
+        public double GOtoAo => Flyouts == 0 ? 0 : (double)Groundouts / Flyouts;
     }
 }
