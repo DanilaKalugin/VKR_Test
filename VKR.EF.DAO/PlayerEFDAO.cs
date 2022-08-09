@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
@@ -7,6 +8,12 @@ namespace VKR.EF.DAO
 {
     public class PlayerEFDAO
     {
+        public Player GetPlayerByCode(uint code)
+        {
+            using var db = new VKRApplicationContext();
+            return db.PlayersInTeams.Include(pit => pit.Player).First(player => player.Id == code).Player;
+        }
+
         public List<PlayerInLineupViewModel> GetFreeAgents()
         {
             using var db = new VKRApplicationContext();

@@ -321,13 +321,16 @@ namespace VKR.PL.NET5
 
             if (_currentMatch.AtBats.Count > 0)
             {
-                var lastAtBatOffense = _currentMatch.AtBats.Last(atBat => atBat.AtBatResult != AtBat.AtBatType.Run).Offense;
+                var lastAtBat = _currentMatch.AtBats.Last(atBat => atBat.AtBatType != EF.Entities.AtBatType.Run);
+
+
+                var lastAtBatOffense = lastAtBat.Offense;
                 label27.BackColor = lastAtBatOffense == _currentMatch.AwayTeam.TeamAbbreviation ? _currentMatch.AwayTeam.TeamColorForThisMatch : _currentMatch.HomeTeam.TeamColorForThisMatch;
                 panel15.BackgroundImage = Image.FromFile($"SmallTeamLogos/{lastAtBatOffense}.png");
-
-                var lastBatter = _playerBl.GetPlayerByCode(_currentMatch.AtBats.Last(atBat => atBat.AtBatResult != AtBat.AtBatType.Run).Batter);
+                
+                var lastBatter = _playerBl.GetPlayerByCode(lastAtBat.BatterId);
                 label27.Text = Width >= 960 ? lastBatter.FullName : $"{lastBatter.FirstName[0]}. {lastBatter.SecondName}";
-                label44.Text = _currentMatch.AtBats.Last(atBat => atBat.AtBatResult != AtBat.AtBatType.Run).ToString();
+                label44.Text = lastAtBat.ToString();
             }
 
             _previousSituation = _newGameSituation.Clone();
