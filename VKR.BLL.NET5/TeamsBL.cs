@@ -10,7 +10,6 @@ namespace VKR.BLL.NET5
 {
     public class TeamsBL
     {
-        private readonly TeamsDao _teamsDAO = new();
         private readonly TeamsEFDAO _teamsEF = new();
 
         public async Task<List<Team>> GetListAsync()
@@ -85,11 +84,11 @@ namespace VKR.BLL.NET5
             return teams;
         }
 
-        public void UpdateTeamBalance(Entities.NET5.Team team)
+        public void UpdateTeamBalance(Team team, Match match)
         {
-            var teamWithNewBalance = _teamsDAO.UpdateBalanceForThisTeam(team).First();
-            team.Wins = teamWithNewBalance.Item1;
-            team.Losses = teamWithNewBalance.Item2;
+            var newBalanceForThisTeam =
+                _teamsEF.GetNewTeamBalanceForThisTeam(team, match.MatchTypeId, match.MatchDate.Year);
+            team.SetTeamBalance(newBalanceForThisTeam);
         }
 
         public List<Team> GetTeamBattingStats()

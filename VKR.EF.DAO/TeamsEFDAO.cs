@@ -115,5 +115,14 @@ GROUP BY dbo.Teams.TeamAbbreviation", typeParam, dateParam).ToList();
             return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
                 (team, stats) => team.SetPitchingStats(stats)).ToList();
         }
+
+        public TeamBalance GetNewTeamBalanceForThisTeam(Team team, TypeOfMatchEnum matchType, int year)
+        {
+            using var db = new VKRApplicationContext();
+
+            return db.TeamStandings.First(teamStandings => teamStandings.TeamAbbreviation == team.TeamAbbreviation &&
+                                                           teamStandings.Season == year &&
+                                                           teamStandings.MatchType == matchType);
+        }
     }
 }

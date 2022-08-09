@@ -73,8 +73,8 @@ namespace VKR.PL.NET5
         {
             NumberOfLastInningDefinition(_endedMatch);
 
-            _teamsBL.UpdateTeamBalance(_endedMatch.AwayTeam);
-            _teamsBL.UpdateTeamBalance(_endedMatch.HomeTeam);
+            _teamsBL.UpdateTeamBalance(_endedMatch.HomeTeam, _endedMatch);
+            _teamsBL.UpdateTeamBalance(_endedMatch.HomeTeam, _endedMatch);
 
             GetInformationAboutTeam(_endedMatch.AwayTeam, lbAwayTeamAbbreviation, AwayTeamSmallLogo, lbAwayBalance, pbAwayLogo_border, pbAwayLogo);
             GetInformationAboutTeam(_endedMatch.HomeTeam, lbHomeTeamAbbreviation, HomeTeamSmallLogo, lbHomeBalance, pbHomeLogo_border, pbHomeLogo);
