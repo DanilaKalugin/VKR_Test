@@ -97,6 +97,9 @@ namespace VKR.EF.Entities
         public int RunDifferential => RunsScored - RunsAllowed;
 
         public Color TeamColorForThisMatch;
+        public List<Pitcher> PitchersPlayedInMatch = new();
+        public Pitcher CurrentPitcher => PitchersPlayedInMatch.Last();
+        public List<Batter> BattingLineup = new();
 
         public TeamBattingStats BattingStats;
         public TeamPitchingStats PitchingStats;

@@ -269,8 +269,8 @@ namespace VKR.PL.NET5
 
         private void GetCurrentStatsForThisMatch()
         {
-            _currentMatch.AwayTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.AwayTeam.TeamAbbreviation, _currentMatch.MatchID);
-            _currentMatch.HomeTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.HomeTeam.TeamAbbreviation, _currentMatch.MatchID);
+            _currentMatch.AwayTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.AwayTeam, _currentMatch);
+            _currentMatch.HomeTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.HomeTeam, _currentMatch);
 
             _playerBl.UpdateStatsForThisPitcher(_currentMatch.AwayTeam.CurrentPitcher, _currentMatch);
             _playerBl.UpdateStatsForThisPitcher(_currentMatch.HomeTeam.CurrentPitcher, _currentMatch);

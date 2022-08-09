@@ -32,13 +32,13 @@ namespace VKR.PL.NET5
             NewMatch.MatchLength = (byte)numMatchLength.Value;
 
             _matchBL.StartNewMatch(NewMatch);
-            /*NewMatch.AwayTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.AwayTeam.TeamAbbreviation, matchId);
+            NewMatch.AwayTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.AwayTeam, NewMatch);
             NewMatch.AwayTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.AwayTeam, NewMatch));
 
-            NewMatch.HomeTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.HomeTeam.TeamAbbreviation, matchId);
-            NewMatch.HomeTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch));*/
-
-            /*using var newMatchForm = new MainForm(NewMatch);
+            NewMatch.HomeTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.HomeTeam, NewMatch);
+            NewMatch.HomeTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch));
+            
+            using var newMatchForm = new MainForm(NewMatch);
             Visible = false;
             newMatchForm.ShowDialog();
 
@@ -53,7 +53,7 @@ namespace VKR.PL.NET5
                 MatchNumber = NewMatch.Id;
                 Hide();
                 DialogResult = DialogResult.Yes;
-            }*/
+            }
         }
 
         private void numMatchLength_ValueChanged(object sender, EventArgs e) => labelMatchLength.Text = numMatchLength.Value % 10 == 1 && numMatchLength.Value % 100 != 11 ? $"{numMatchLength.Value} INNING" : $"{numMatchLength.Value} INNINGS";

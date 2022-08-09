@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using VKR.DAL.NET5;
 using VKR.EF.DAO;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
+using Batter = VKR.Entities.NET5.Batter;
+using Match = VKR.Entities.NET5.Match;
+using Pitcher = VKR.Entities.NET5.Pitcher;
+using Team = VKR.Entities.NET5.Team;
 
 namespace VKR.BLL.NET5
 {
@@ -113,22 +117,23 @@ namespace VKR.BLL.NET5
             return players;
         }
 
-        public Player GetPlayerByCode(int code) => _playerDAO.GetPlayerByCode(code).First();
+        public EF.Entities.Player GetPlayerByCode(uint code) => _playerEFDAO.GetPlayerByCode(code);
 
         public List<EF.Entities.PlayerPosition> GetPlayerPositions() => _playerEFDAO.GetPlayerPositions().ToList();
 
-        public List<Batter> GetCurrentLineupForThisMatch(string team, int match) => _playerDAO.GetCurrentLineupForThisMatch(team, match).ToList();
+        public List<EF.Entities.Batter> GetCurrentLineupForThisMatch(EF.Entities.Team team, EF.Entities.Match match) => _playerEFDAO.GetCurrentBattingLineup(team, match).ToList();
 
-        public void UpdateStatsForThisPitcher(Pitcher pitcher, Match match)
+        public void UpdateStatsForThisPitcher(EF.Entities.Pitcher pitcher, EF.Entities.Match match)
         {
-            pitcher.RemainingStamina = _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id, match.MatchID);
-            pitcher.PitchingStats = _playerDAO.GetPitchingStatsByCode(pitcher).FirstOrDefault();
+            pitcher.PitchingStats = GetPitchingStatsByCode(pitcher.Id, match.MatchDate.Year, match.MatchTypeId);
+            pitcher.RemainingStamina = _playerEFDAO.GetPitcherStamina(pitcher.Id, match.MatchDate);
         }
 
-        public Pitcher GetStartingPitcherForThisTeam(Team team, Match match)
+        public EF.Entities.Pitcher GetStartingPitcherForThisTeam(EF.Entities.Team team, EF.Entities.Match match)
         {
-            var pitcher = _playerDAO.GetStartingPitcherForThisTeam(team, match).First();
-            pitcher.RemainingStamina = _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id, match.MatchID);
+            var pitcher = _playerEFDAO.GetStartingPitcherForThisTeam(match, team);
+            pitcher.PitchingStats = GetPitchingStatsByCode(pitcher.Id, match.MatchDate.Year, match.MatchTypeId);
+            pitcher.RemainingStamina = _playerEFDAO.GetPitcherStamina(pitcher.Id, match.MatchDate);
             return pitcher;
         }
 
@@ -140,18 +145,11 @@ namespace VKR.BLL.NET5
 
         public void SubstituteBatter(Match match, Team team, Batter oldBatter, Batter newBatter) => _teamsDAO.SubstituteBatter(match, team, oldBatter, newBatter);
 
-        public int ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(Pitcher pitcher, Match match) => _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id, match.MatchID);
-
-        public Pitcher GetPitcherByCode(int id)
-        {
-            var pitcher = new Pitcher(_playerDAO.GetPlayerByCode(id).First());
-            pitcher.RemainingStamina = _playerDAO.GetNumberOfOutsPlayedByThisPitcherInLast5Days(pitcher.Id);
-            return pitcher;
-        }
+        public int ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(EF.Entities.Pitcher pitcher, EF.Entities.Match match) => _playerEFDAO.GetPitcherStamina(pitcher.Id, match.MatchDate);
 
         public EF.Entities.PlayerBattingStats GetBattingStatsByCode(uint id, int year) => _playerEFDAO.GetBattingStatsByCode(id, year);
 
-        public EF.Entities.PlayerPitchingStats GetPitchingStatsByCode(uint id, int year) =>
-            _playerEFDAO.GetPitchingStatsByCode(id, year);
+        public EF.Entities.PlayerPitchingStats GetPitchingStatsByCode(uint id, int year, TypeOfMatchEnum matchType = TypeOfMatchEnum.RegularSeason) =>
+            _playerEFDAO.GetPitchingStatsByCode(id, year, matchType);
     }
 }
