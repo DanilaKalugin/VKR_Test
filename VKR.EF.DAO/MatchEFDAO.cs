@@ -163,5 +163,46 @@ namespace VKR.EF.DAO
                              sl.PlayerInTeam.TeamId == team.TeamAbbreviation)
                 .Select(sl => sl.PlayerInTeam.Player).First();
         }
+
+        public void DeleteMatch(int matchId)
+        {
+            using var db = new VKRApplicationContext();
+
+            var deletingMatch = db.Matches.FirstOrDefault(m => m.Id == matchId);
+
+            if (deletingMatch == null) return;
+
+            var matchForDelete = db.NextMatches.FirstOrDefault(nm =>
+                nm.AwayTeamAbbreviation == deletingMatch.AwayTeamAbbreviation &&
+                nm.HomeTeamAbbreviation == deletingMatch.HomeTeamAbbreviation &&
+                nm.MatchDate == deletingMatch.MatchDate &&
+                nm.MatchTypeId == deletingMatch.MatchTypeId);
+
+            if (matchForDelete != null) matchForDelete.IsPlayed = false;
+            db.Matches.Remove(deletingMatch);
+            db.SaveChanges();
+        }
+
+        public void FinishMatch(int matchId)
+        {
+            using var db = new VKRApplicationContext();
+
+            var match = db.Matches.FirstOrDefault(m => m.Id == matchId);
+
+            if (match != null) match.MatchEnded = true;
+            db.Matches.Update(match);
+
+            // ResultsOfMatches
+
+            db.SaveChanges();
+        }
+
+        public void AddNewAtBat(AtBat atBat)
+        {
+            using var db = new VKRApplicationContext();
+
+            db.AtBats.Add(atBat);
+            db.SaveChanges();
+        }
     }
 }

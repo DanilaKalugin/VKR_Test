@@ -24,9 +24,9 @@ namespace VKR.BLL.NET5
 
         public int GetNumberOfMatchesPlayed(EF.Entities.Match newMatch) => _matchEfdao.GetNextMatchId(newMatch.MatchTypeId);
 
-        public void AddNewAtBat(AtBat atBat, Match currentMatch)
+        public void AddNewAtBat(EF.Entities.AtBat atBat)
         {
-            if (!currentMatch.IsQuickMatch) _matchDAO.AddNewAtBat(atBat);
+            _matchEfdao.AddNewAtBat(atBat);
         }
 
         public void FinishMatch(Match match) => _matchDAO.FinishMatch(match);
@@ -56,7 +56,7 @@ namespace VKR.BLL.NET5
                                           teams.Contains(match.HomeTeamAbbreviation)).ToList();
         }
 
-        public void DeleteThisMatch(int matchNumberForDelete) => _matchDAO.DeleteThisMatch(matchNumberForDelete);
+        public void DeleteThisMatch(int matchID) => _matchEfdao.DeleteMatch(matchID);
 
         public DateTime GetMaxDateForAllMatches() => _matchEfdao.GetMaxDateForAllMatches();
 

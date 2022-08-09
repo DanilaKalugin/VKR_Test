@@ -290,10 +290,10 @@ namespace VKR.PL.NET5
 
             if (_newGameSituation.RunsByThisPitch.Count != 0)
             {
-                foreach (var runForDB in _newGameSituation.RunsByThisPitch.Select(runner => new AtBat(runner, _currentMatch)))
+                foreach (var runForDB in _newGameSituation.RunsByThisPitch.Select(runner => new EF.Entities.AtBat(runner, _currentMatch)))
                 {
                     _currentMatch.AtBats.Add(runForDB);
-                    _matchBl.AddNewAtBat(runForDB, _currentMatch);
+                    _matchBl.AddNewAtBat(runForDB);
                 }
 
                 GetCurrentStatsForThisMatch();

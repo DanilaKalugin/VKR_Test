@@ -1,4 +1,7 @@
-﻿namespace VKR.EF.Entities
+﻿using System.Linq;
+using VKR.EF.Entities.Enums;
+
+namespace VKR.EF.Entities
 {
     public class AtBat
     {
@@ -14,5 +17,117 @@
         public byte Outs { get; set; }
         public byte RBI { get; set; }
         public byte Inning { get; set; }
+
+        public string Offense;
+        public string Defense;
+
+        public AtBat()
+        {
+            
+        }
+
+        public AtBatType TypeDefinitionForLastAtBat(GameSituation situation)
+        {
+            return situation.Result switch
+            {
+                PitchResult.Single => AtBatType.Single,
+                PitchResult.Double => AtBatType.Double,
+                PitchResult.GroundRuleDouble => AtBatType.Double,
+                PitchResult.Triple => AtBatType.Triple,
+                PitchResult.HomeRun => AtBatType.HomeRun,
+                PitchResult.Groundout => AtBatType.Groundout,
+                PitchResult.DoublePlay => AtBatType.Groundout,
+                PitchResult.Flyout => AtBatType.Flyout,
+                PitchResult.DoublePlayOnFlyout => AtBatType.Flyout,
+                PitchResult.HitByPitch => AtBatType.HitByPitch,
+                PitchResult.Popout => AtBatType.Popout,
+                PitchResult.SacrificeFly => AtBatType.SacrificeFly,
+                PitchResult.Ball => situation.Balls == 0 ? AtBatType.Walk : AtBatType.NoResult,
+                PitchResult.Strike when situation.Strikes == 0 => AtBatType.Strikeout,
+                PitchResult.Strike => AtBatType.NoResult,
+                PitchResult.SacrificeBunt => AtBatType.SacrificeBunt,
+                PitchResult.SecondBaseStolen => AtBatType.StolenBase,
+                PitchResult.ThirdBaseStolen => AtBatType.StolenBase,
+                PitchResult.CaughtStealingOnSecond => AtBatType.CaughtStealing,
+                PitchResult.CaughtStealingOnThird => AtBatType.CaughtStealing,
+                _ => AtBatType.NoResult
+            };
+        }
+
+        public int OutsForThisAtBat(GameSituation lastSituation, GameSituation previousSituation)
+        {
+            if (lastSituation.Offense.TeamAbbreviation == previousSituation.Offense.TeamAbbreviation)
+                return lastSituation.Outs - previousSituation.Outs;
+            return lastSituation.Outs;
+        }
+
+        /// <summary>
+        /// Normal At-Bat without runs
+        /// </summary>
+        public AtBat(Match currentMatch, byte runs)
+        {
+            AtBatType = TypeDefinitionForLastAtBat(currentMatch.GameSituations.Last());
+            MatchId = currentMatch.Id;
+            Offense = currentMatch.GameSituations.Last().Offense.TeamAbbreviation;
+            Defense = currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
+
+            if (currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam)
+            {
+                BatterId = currentMatch.AwayTeam.BattingLineup[currentMatch.GameSituations.Last().NumberOfBatterFromAwayTeam - 1].BatterId;
+                PitcherId = currentMatch.HomeTeam.CurrentPitcher.PitcherId;
+            }
+            else
+            {
+                BatterId = currentMatch.HomeTeam.BattingLineup[currentMatch.GameSituations.Last().NumberOfBatterFromHomeTeam - 1].BatterId;
+                PitcherId = currentMatch.AwayTeam.CurrentPitcher.Id;
+            }
+
+            Outs = (byte)OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
+            RBI = runs;
+            Inning = currentMatch.GameSituations.Last().InningNumber;
+        }
+
+        /// <summary>
+        /// New run
+        /// </summary>
+        public AtBat(Runner runner, Match currentMatch)
+        {
+            AtBatType = AtBatType.Run;
+            MatchId = currentMatch.Id;
+            Offense = currentMatch.GameSituations.Last().Offense.TeamAbbreviation;
+            Defense = currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
+            BatterId = runner.RunnerId;
+            PitcherId = runner.PitcherId;
+
+            Outs = 0;
+            RBI = 0;
+            Inning = currentMatch.GameSituations.Last().InningNumber;
+        }
+
+        /// <summary>
+        /// Base stealing result
+        /// </summary>
+        public AtBat(Match currentMatch, uint runnerId, bool isBaseStealingAttempt)
+        {
+            AtBatType = TypeDefinitionForLastAtBat(currentMatch.GameSituations.Last());
+            MatchId = currentMatch.Id;
+            Offense = currentMatch.GameSituations.Last().Offense.TeamAbbreviation;
+            Defense = currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
+
+            if (currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam)
+            {
+                BatterId = runnerId;
+                PitcherId = currentMatch.HomeTeam.CurrentPitcher.Id;
+            }
+            else
+            {
+                BatterId = runnerId;
+                PitcherId = currentMatch.AwayTeam.CurrentPitcher.Id;
+            }
+
+            Outs = (byte)OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
+            RBI = 0;
+            Inning = currentMatch.GameSituations.Last().InningNumber;
+        }
     }
 }
