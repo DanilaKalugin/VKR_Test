@@ -27,7 +27,6 @@ namespace VKR.PL.NET5
         {
             InitializeComponent();
             dtpStandingsDate.Value = _matchBL.GetMaxDateForAllMatches();
-            cbFilter.Text = "MLB";
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter.SelectedIndex);
@@ -86,13 +85,11 @@ namespace VKR.PL.NET5
         {
             dgvStandings.Rows.Clear();
 
-            List<string> DefineGroupsForTable(int groupingType)
+            var groups = groupingTypeNumber switch
             {
-                return groupingType switch
-                {
-                    0 => new List<string> { "MLB" },
-                    1 or 3 => new List<string> { "AL", "NL" },
-                    2 => new List<string>
+                0 => new List<string> { "MLB" },
+                1 or 3 => new List<string> { "AL", "NL" },
+                2 => new List<string>
                 {
                     "AL East",
                     "AL Central",
@@ -101,11 +98,8 @@ namespace VKR.PL.NET5
                     "NL Central",
                     "NL West"
                 },
-                    _ => new List<string>()
-                };
-            }
-
-            var groups = DefineGroupsForTable(groupingTypeNumber);
+                _ => new List<string>()
+            };
 
             Func<string, DateTime, List<Team>> teamFunc =
                 groupingTypeNumber == 3 ? _teamsBl.GetWildCardStandings : _teamsBl.GetStandings;
@@ -125,5 +119,7 @@ namespace VKR.PL.NET5
             Parallel.For(0, groups.Count, index => teamsGroups[index] = teamFunc(groups[index], dtpStandingsDate.Value));
             return teamsGroups;
         }
+
+        private void StandingsForm_Load(object sender, EventArgs e) => cbFilter.Text = "MLB";
     }
 }

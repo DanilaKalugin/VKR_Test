@@ -347,6 +347,7 @@ namespace VKR.PL.NET5
             this.Name = "StandingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Standings";
+            this.Load += new System.EventHandler(this.StandingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStandings)).EndInit();
             this.ResumeLayout(false);
 
