@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.Controls.NET5
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.Utils.NET5
 {
@@ -21,7 +21,7 @@ namespace VKR.PL.Utils.NET5
             var offense = situation.Offense;
             var batterNumberComponent = offense == awayTeam ? situation.NumberOfBatterFromHomeTeam : situation.NumberOfBatterFromAwayTeam;
             var batterID = situation.Offense.BattingLineup[batterNumberComponent - 1].Id;
-            var buntsCount = atBats.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.SacrificeBunt && atBat.Batter == batterID);
+            var buntsCount = atBats.Count(atBat => atBat.AtBatType == AtBatType.SacrificeBunt && atBat.BatterId == batterID);
             
             return stealingAttemptRandomValue <= batterNumberComponent * (18 - batterNumberComponent - buntsCount) * 5 ? BuntAttempt.Attempt : BuntAttempt.NoAttempt;
         }
@@ -29,7 +29,7 @@ namespace VKR.PL.Utils.NET5
         public static PitcherSubstitution PitcherSubstitution_Definition(Pitcher pitcher, List<AtBat> atBats)
         {
             var pitchingSubstitutionRandomValue = _pitcherSubstitutionRandomGenerator.Next(1, 1250);
-            var runsByThisPitcher = atBats.Count(atBat => atBat.Pitcher == pitcher.Id && atBat.AtBatResult == AtBat.AtBatType.Run);
+            var runsByThisPitcher = atBats.Count(atBat => atBat.PitcherId == pitcher.Id && atBat.AtBatType == AtBatType.Run);
 
             return pitchingSubstitutionRandomValue <= Math.Pow(pitcher.RemainingStamina / 10 - 25, 2) + Math.Pow(runsByThisPitcher + 1, 2) ? PitcherSubstitution.Substitution : PitcherSubstitution.NoSubstitution;
         }

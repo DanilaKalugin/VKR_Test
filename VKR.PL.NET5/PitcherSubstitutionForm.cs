@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
 using ProgressBar = ExtendedDotNET.Controls.Progress.ProgressBar;
 
@@ -33,9 +33,9 @@ namespace VKR.PL.NET5
             _pitchers = pitchers;
 
             vScrollBar1.Maximum = pitchers.Count > 5 ? pitchers.Count - 5 : 0;
-            lbTeamTitle.Text = defense.TeamTitle.ToUpper();
+            lbTeamTitle.Text = defense.TeamName.ToUpper();
             lbTeamTitle.ForeColor = defense.TeamColorForThisMatch;
-            Text = $"New pitcher for {defense.TeamTitle}";
+            Text = $"New pitcher for {defense.TeamName}";
             lbHeader.Text = "BULLPEN";
 
             foreach (Control c in tableLayoutPanel1.Controls)

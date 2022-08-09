@@ -4,7 +4,6 @@ using System.Linq;
 using VKR.DAL.NET5;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
-using AtBat = VKR.Entities.NET5.AtBat;
 using Match = VKR.Entities.NET5.Match;
 using PitcherResults = VKR.Entities.NET5.PitcherResults;
 
@@ -20,7 +19,7 @@ namespace VKR.BLL.NET5
         public void StartNewMatch(EF.Entities.Match match)
         {
             _matchEfdao.StartNewMatch(match);
-            match.GameSituations = new List<EF.Entities.GameSituation> { new(match.AwayTeam) };
+            match.GameSituations = new List<GameSituation> { new(match.AwayTeam) };
         }
 
         public int GetNumberOfMatchesPlayed(EF.Entities.Match newMatch) => _matchEfdao.GetNextMatchId(newMatch.MatchTypeId);

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
-using Team = VKR.Entities.NET5.Team;
 
 namespace VKR.PL.NET5
 {
@@ -13,7 +12,7 @@ namespace VKR.PL.NET5
     {
         private readonly MatchBL _matchBL = new();
         private readonly TeamsBL _teamsBL = new();
-        private readonly List<EF.Entities.Team> _teams;
+        private readonly List<Team> _teams;
         private List<MatchScheduleViewModel> _matches;
         private readonly MatchBL.TableType _tableType;
 

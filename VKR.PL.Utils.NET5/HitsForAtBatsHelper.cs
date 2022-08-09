@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Linq;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.Utils.NET5
 {
@@ -12,16 +12,16 @@ namespace VKR.PL.Utils.NET5
 
             if (!string.IsNullOrWhiteSpace(hitsForAtBats)) return hitsForAtBats; 
 
-            if (match.AtBats.Any(atBat => atBat.Batter == batter.Id && atBat.AtBatResult == AtBat.AtBatType.HitByPitch)) return "HBP";
+            if (match.AtBats.Any(atBat => atBat.BatterId == batter.Id && atBat.AtBatType == AtBatType.HitByPitch)) return "HBP";
 
-            if (match.AtBats.Any(atBat => atBat.Batter == batter.Id && atBat.AtBatResult == AtBat.AtBatType.Walk))
+            if (match.AtBats.Any(atBat => atBat.BatterId == batter.Id && atBat.AtBatType == AtBatType.Walk))
             {
                 var numberOfWalks = match.AtBats.Count(atBat =>
-                    atBat.Batter == batter.Id && atBat.AtBatResult == AtBat.AtBatType.Walk);
+                    atBat.BatterId == batter.Id && atBat.AtBatType == AtBatType.Walk);
                 return numberOfWalks == 1 ? "WALK" : $"{numberOfWalks} WALKS";
             }
 
-            if (match.AtBats.Any(atBat => atBat.Batter == batter.Id && atBat.AtBatResult == AtBat.AtBatType.SacrificeFly)) 
+            if (match.AtBats.Any(atBat => atBat.BatterId == batter.Id && atBat.AtBatType == AtBatType.SacrificeFly)) 
                 return "SAC FLY";
 
             return batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
@@ -29,21 +29,21 @@ namespace VKR.PL.Utils.NET5
 
         public static string GetHitsForAtBats(Batter batter, Match match)
         {
-            var atBatsCount = match.AtBats.Count(atBat => atBat.Batter == batter.Id &&
-                                                          atBat.AtBatResult is AtBat.AtBatType.Double or 
-                                                                               AtBat.AtBatType.Triple or 
-                                                                               AtBat.AtBatType.HomeRun or 
-                                                                               AtBat.AtBatType.Single or 
-                                                                               AtBat.AtBatType.Popout or 
-                                                                               AtBat.AtBatType.Strikeout or 
-                                                                               AtBat.AtBatType.Flyout or 
-                                                                               AtBat.AtBatType.Groundout);
+            var atBatsCount = match.AtBats.Count(atBat => atBat.BatterId == batter.Id &&
+                                                          atBat.AtBatType is AtBatType.Double or 
+                                                                               AtBatType.Triple or 
+                                                                               AtBatType.HomeRun or 
+                                                                               AtBatType.Single or 
+                                                                               AtBatType.Popout or 
+                                                                               AtBatType.Strikeout or 
+                                                                               AtBatType.Flyout or 
+                                                                               AtBatType.Groundout);
 
-            var hitsCount = match.AtBats.Count(atBat => atBat.Batter == batter.Id &&
-                                                        atBat.AtBatResult is AtBat.AtBatType.Double or 
-                                                                             AtBat.AtBatType.Triple or 
-                                                                             AtBat.AtBatType.HomeRun or 
-                                                                             AtBat.AtBatType.Single);
+            var hitsCount = match.AtBats.Count(atBat => atBat.BatterId == batter.Id &&
+                                                        atBat.AtBatType is AtBatType.Double or 
+                                                                             AtBatType.Triple or 
+                                                                             AtBatType.HomeRun or 
+                                                                             AtBatType.Single);
             
             return atBatsCount > 0 ? $"{hitsCount} FOR {atBatsCount}" : "";
         }

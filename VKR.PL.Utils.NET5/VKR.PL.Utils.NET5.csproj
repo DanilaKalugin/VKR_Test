@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VKR.Entities.NET5\VKR.Entities.NET5.csproj" />
+    <ProjectReference Include="..\VKR.EF.Entities\VKR.EF.Entities.csproj" />
   </ItemGroup>
 
 </Project>

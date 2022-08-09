@@ -4,8 +4,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using VKR.Entities.NET5;
 using VKR.PL.Utils.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.NET5
 {
@@ -26,12 +26,12 @@ namespace VKR.PL.NET5
             pbPatterPhoto.BackgroundImage = image;
             
             lbBatterName.Text = batter.FullName.ToUpper();
-            var hrTodayForThisBatter = allAtBats.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun && atBat.Batter == batter.Id);
+            var hrTodayForThisBatter = allAtBats.Count(atBat => atBat.AtBatType == AtBatType.HomeRun && atBat.BatterId == batter.Id);
 
             lbBatterHRNumber.Visible = !isQuickMatch;
 
-            lbBatterHRNumber.Text = $@"{EF.Entities.OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.BattingStats.HomeRuns + 1)} HR in career";
-            lbBatterHRNumberInThisMatch.Text = $@"{EF.Entities.OrdinalNumerals.GetOrdinalNumeralFromQuantitive(hrTodayForThisBatter + 1)} HR in this match";
+            lbBatterHRNumber.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.BattingStats.HomeRuns + 1)} HR in career";
+            lbBatterHRNumberInThisMatch.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(hrTodayForThisBatter + 1)} HR in this match";
             lbBatterHRNumberInThisMatch.Visible = hrTodayForThisBatter > 0;
         }
 

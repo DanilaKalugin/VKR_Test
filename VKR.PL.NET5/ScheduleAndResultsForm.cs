@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.NET5
 {
@@ -15,8 +15,8 @@ namespace VKR.PL.NET5
             InitializeComponent();
             _currentMatch = match;
             seriesHeader.Text = $"{_currentMatch.AwayTeam.TeamAbbreviation} - {_currentMatch.HomeTeam.TeamAbbreviation} series";
-            team1Header.Text = _currentMatch.AwayTeam.TeamTitle;
-            team2Header.Text = _currentMatch.HomeTeam.TeamTitle;
+            team1Header.Text = _currentMatch.AwayTeam.TeamName;
+            team2Header.Text = _currentMatch.HomeTeam.TeamName;
         }
 
         private void btnSeriesHistory_Click(object sender, EventArgs e)

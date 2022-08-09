@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
@@ -22,16 +22,15 @@ namespace VKR.PL.NET5
 
         private void UpdateScoreboard(Label firstInning, Label secondInning, Label thirdInning, Label fourthInning, Label fifthInning, Label sixthInning, Label seventhInning, Label eigthInning, Label ninthInning, Label extraInnings, Label Runs, Label Hits, Label LeftOnBase, Match match, Team team)
         {
-            firstInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb1stInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            secondInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb2ndInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            thirdInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb3rdInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            fourthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb4thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            fifthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb5thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            sixthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb6thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            seventhInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb7thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            eigthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb8thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            ninthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb9thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            extraInnings.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb10thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
+            firstInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb1stInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            secondInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb2ndInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            thirdInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb3rdInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            fourthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb4thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            fifthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb5thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            sixthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb6thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            seventhInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb7thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            eigthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb8thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            ninthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb9thInning.Text)).Sum(atBat => atBat.RBI).ToString();
 
             var LeftOnFirstBase = match.GameSituations.Count(gs => gs.Outs == 3 && gs.Offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnFirst.IsBaseNotEmpty);
             var LeftOnSecondBase = match.GameSituations.Count(gs => gs.Outs == 3 && gs.Offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnSecond.IsBaseNotEmpty);
@@ -52,8 +51,8 @@ namespace VKR.PL.NET5
             ninthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb9thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb9thInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
             extraInnings.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb10thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb10thInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
 
-            Runs.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation).Select(atBat => atBat.RBI).Sum().ToString();
-            Hits.Text = match.AtBats.Count(atBat => atBat.Offense == team.TeamAbbreviation && (atBat.AtBatResult == AtBat.AtBatType.Single || atBat.AtBatResult == AtBat.AtBatType.Double || atBat.AtBatResult == AtBat.AtBatType.Triple || atBat.AtBatResult == AtBat.AtBatType.HomeRun)).ToString();
+            Runs.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation).Sum(atBat => atBat.RBI).ToString();
+            Hits.Text = match.AtBats.Count(atBat => atBat.Offense == team.TeamAbbreviation && atBat.AtBatType is AtBatType.Single or AtBatType.Double or AtBatType.Triple or AtBatType.HomeRun).ToString();
         }
 
         private void NumberOfLastInningDefinition(Match match)
@@ -107,11 +106,15 @@ namespace VKR.PL.NET5
         {
             var winningTeam = endedMatch.GameSituations.Last().AwayTeamRuns > endedMatch.GameSituations.Last().HomeTeamRuns ? endedMatch.AwayTeam : endedMatch.HomeTeam;
 
-            var results = awayTeam.PitchersPlayedInMatch.Select(pitcher => new PitcherResults(pitcher.Id, awayTeam.TeamAbbreviation, endedMatch.MatchID)).ToList();
+            var results = awayTeam.PitchersPlayedInMatch.Select(pitcher => new PitcherResults
+            {
+                PitcherId = pitcher.Id,
+                MatchId = endedMatch.Id
+            }).ToList();
 
-            var runsForThisPitcher = endedMatch.AtBats.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.Run && atBat.Pitcher == awayTeam.PitchersPlayedInMatch[0].Id);
-            var outsPlayedForThisTeam = endedMatch.AtBats.Where(atBat => atBat.Defense == awayTeam.TeamAbbreviation).Select(atBat => atBat.Outs).Sum();
-            var outsPlayedForThisPitcher = endedMatch.AtBats.Where(atBat => atBat.Pitcher == awayTeam.PitchersPlayedInMatch[0].Id).Select(atBat => atBat.Outs).Sum();
+            var runsForThisPitcher = endedMatch.AtBats.Count(atBat => atBat.AtBatType == AtBatType.Run && atBat.PitcherId == awayTeam.PitchersPlayedInMatch[0].Id);
+            var outsPlayedForThisTeam = endedMatch.AtBats.Where(atBat => atBat.Defense == awayTeam.TeamAbbreviation).Sum(atBat => atBat.Outs);
+            var outsPlayedForThisPitcher = endedMatch.AtBats.Where(atBat => atBat.PitcherId == awayTeam.PitchersPlayedInMatch[0].Id).Sum(atBat => atBat.Outs);
 
             results[0].IsQualityStart = runsForThisPitcher <= 3 && outsPlayedForThisPitcher / 3 >= 6;
             results[0].IsCompleteGame = outsPlayedForThisPitcher == outsPlayedForThisTeam;
@@ -121,7 +124,7 @@ namespace VKR.PL.NET5
             {
                 if (awayTeam.TeamAbbreviation == winningTeam.TeamAbbreviation)
                 {
-                    results[0].MatchResult = results[0].IsCompleteGame ? PitcherResults.MatchResultForPitcher.Win : PitcherResults.MatchResultForPitcher.NoDecision;
+                    results[0].MatchResultId = results[0].IsCompleteGame ? PitcherResultEnum.Win : PitcherResultEnum.NoDecision;
                     WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].PitchingStats.Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].PitchingStats.Losses})";
                     WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
                     PitcherWithSave.Text = "-";
@@ -129,7 +132,7 @@ namespace VKR.PL.NET5
                 }
                 else
                 {
-                    results[0].MatchResult = results[0].IsCompleteGame ? PitcherResults.MatchResultForPitcher.Loss : PitcherResults.MatchResultForPitcher.NoDecision;
+                    results[0].MatchResultId = results[0].IsCompleteGame ? PitcherResultEnum.Loss : PitcherResultEnum.NoDecision;
                     LosingPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].PitchingStats.Wins} - {awayTeam.PitchersPlayedInMatch[0].PitchingStats.Losses + 1})";
                     LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
                 }
@@ -149,15 +152,15 @@ namespace VKR.PL.NET5
                     if (winningPitcherIndex != -1)
                     {
                         for (var i = 0; i < winningPitcherIndex; i++)
-                            results[i].MatchResult = PitcherResults.MatchResultForPitcher.NoDecision;
+                            results[i].MatchResultId = PitcherResultEnum.NoDecision;
 
-                        results[winningPitcherIndex].MatchResult = PitcherResults.MatchResultForPitcher.Win;
+                        results[winningPitcherIndex].MatchResultId = PitcherResultEnum.Win;
                         WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[winningPitcherIndex].FullName} ({awayTeam.PitchersPlayedInMatch[winningPitcherIndex].PitchingStats.Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].PitchingStats.Losses})";
                         WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
 
                         if (winningPitcherIndex < awayTeam.PitchersPlayedInMatch.Count - 1)
                         {
-                            results[awayTeam.PitchersPlayedInMatch.Count - 1].MatchResult = PitcherResults.MatchResultForPitcher.Save;
+                            results[awayTeam.PitchersPlayedInMatch.Count - 1].MatchResultId = PitcherResultEnum.Save;
                             PitcherWithSave.Text = $"{awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].FullName} ({awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].PitchingStats.Saves + 1})";
                         }
                         else PitcherWithSave.Text = "-";
@@ -165,7 +168,7 @@ namespace VKR.PL.NET5
                         PitcherWithSave.BackColor = awayTeam.TeamColorForThisMatch;
 
                         for (var i = winningPitcherIndex + 1; i < awayTeam.PitchersPlayedInMatch.Count - 1; i++)
-                            results[i].MatchResult = PitcherResults.MatchResultForPitcher.Hold;
+                            results[i].MatchResultId = PitcherResultEnum.Hold;
                     }
                 }
                 else
