@@ -1,6 +1,7 @@
 ﻿using System;
+using VKR.EF.Entities.Enums;
 
-namespace VKR.Entities.NET5.RandomGenerators
+namespace VKR.EF.Entities.RandomGenerators
 {
     public abstract class PitchGenerator
     {

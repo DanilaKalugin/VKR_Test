@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace VKR.Entities.NET5.RandomGenerators
+namespace VKR.EF.Entities.RandomGenerators
 {
     public class PitchBeforeBaseStealingGenerator : NormalPitchGenerator
     {

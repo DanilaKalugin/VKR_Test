@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.Entities.NET5;
-using VKR.Entities.NET5.RandomGenerators;
+using VKR.EF.Entities.RandomGenerators;
 using VKR.PL.Controls.NET5;
 using VKR.PL.Utils.NET5;
 

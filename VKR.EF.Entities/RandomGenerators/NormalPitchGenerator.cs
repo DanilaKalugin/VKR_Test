@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using VKR.EF.Entities.Enums;
 
-namespace VKR.Entities.NET5.RandomGenerators
+namespace VKR.EF.Entities.RandomGenerators
 {
     public class NormalPitchGenerator : PitchGenerator
     {
@@ -94,7 +95,7 @@ namespace VKR.Entities.NET5.RandomGenerators
             var stadiumCoefficient = match.Stadium.StadiumDistanceToCenterfield - 400;
             var countOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty) * 2 + Convert.ToInt32(situation.RunnerOnThird.IsBaseNotEmpty) * 3;
             var pitcherCoefficient = GetPitcherCoefficientForThisPitcher(defense);
-            var handsCoefficient = currentBatter.BattingHand == defense.CurrentPitcher.PitchingHand || currentBatter.BattingHand == "Switch" ? 0 : 20;
+            var handsCoefficient = (byte)currentBatter.PlayerBattingHand == (byte)defense.CurrentPitcher.PlayerPitchingHand || currentBatter.PlayerBattingHand == BattingHandEnum.Switch ? 0 : 20;
 
             if (defense.CurrentPitcher.RemainingStamina < 25)
                 numberOfPitches = (int)(numberOfPitches * (1 + Math.Abs(defense.CurrentPitcher.RemainingStamina - 25) / 5 * 0.2));
