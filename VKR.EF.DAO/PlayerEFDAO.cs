@@ -145,14 +145,22 @@ namespace VKR.EF.DAO
         {
             using var db = new VKRApplicationContext();
 
-            return db.PlayersBattingStats.First(player => player.PlayerID == playerCode && player.Season == year && player.MatchType == TypeOfMatchEnum.RegularSeason);
+            return db.PlayersBattingStats
+                .AsNoTracking()
+                .First(player => player.PlayerID == playerCode && 
+                                 player.Season == year && 
+                                 player.MatchType == TypeOfMatchEnum.RegularSeason);
         }
 
-        public PlayerPitchingStats GetPitchingStatsByCode(uint playerCode, int year)
+        public PlayerPitchingStats GetPitchingStatsByCode(uint playerCode, int year, TypeOfMatchEnum typeOfMatch = TypeOfMatchEnum.RegularSeason)
         {
             using var db = new VKRApplicationContext();
 
-            return db.PlayersPitchingStats.First(player => player.PlayerID == playerCode && player.Season == year && player.MatchType == TypeOfMatchEnum.RegularSeason);
+            return db.PlayersPitchingStats
+                .AsNoTracking()
+                .First(player => player.PlayerID == playerCode && 
+                                 player.Season == year && 
+                                 player.MatchType == typeOfMatch);
         }
 
         public List<Player> GetPlayerBattingStats(int year)
@@ -164,7 +172,11 @@ namespace VKR.EF.DAO
                 .AsNoTracking()
                 .ToList();
 
-            var battingStats = db.PlayersBattingStats.AsNoTracking().Where(battingStats => battingStats.Season == year && battingStats.MatchType == TypeOfMatchEnum.RegularSeason).ToList();
+            var battingStats = db.PlayersBattingStats.AsNoTracking()
+                .Where(battingStats => battingStats.Season == year && 
+                                       battingStats.MatchType == TypeOfMatchEnum.RegularSeason &&
+                                       battingStats.Games > 0)
+                .ToList();
 
             return players.Join(battingStats, player => player.Id, stats => stats.PlayerID,
                 (player, stats) => player.SetBattingStats(stats)).ToList();
@@ -179,7 +191,11 @@ namespace VKR.EF.DAO
                 .AsNoTracking()
                 .ToList();
 
-            var pitchingStats = db.PlayersPitchingStats.Where(battingStats => battingStats.Season == year && battingStats.MatchType == TypeOfMatchEnum.RegularSeason).AsNoTracking().ToList();
+            var pitchingStats = db.PlayersPitchingStats.AsNoTracking()
+                .Where(battingStats => battingStats.Season == year && 
+                                       battingStats.MatchType == TypeOfMatchEnum.RegularSeason && 
+                                       battingStats.GamesPlayed > 0)
+                .ToList();
 
             return players.Join(pitchingStats, player => player.Id, stats => stats.PlayerID,
                 (player, stats) => player.SetPitchingStats(stats)).ToList();
