@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace VKR.EF.Entities.Mappers
 {
-    public class RunsScoredByTeamFunctionMap: IEntityTypeConfiguration<RunsByTeam>
+    public class RunsScoredByTeamViewMap: IEntityTypeConfiguration<RunsByTeam>
     {
         public void Configure(EntityTypeBuilder<RunsByTeam> builder)
         {

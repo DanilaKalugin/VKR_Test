@@ -26,10 +26,13 @@ namespace VKR.EF.DAO
         public DbSet<LineupType> LineupTypes { get; set; }
         public DbSet<LineupForMatch> LineupsForMatches { get; set; }
         public DbSet<PlayerPosition> PlayersPositions { get; set; }
+        public DbSet<PlayerInTeam> PlayersInTeams { get; set; }
+        public DbSet<AtBat> AtBats { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
+            var connectionString = GetConnectionString();
+            optionsBuilder.UseSqlServer(connectionString);
 
             optionsBuilder.LogTo(s => Debug.WriteLine(s), new[] { DbLoggerCategory.Database.Command.Name });
         }
@@ -78,18 +81,32 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StandingsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamBattingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamPitchingStatsViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.RunsScoredByTeamViewMap());
 
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStreakViewMap());
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.RunsScoredByTeamFunctionMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStreakFunctionMap());
 
             modelBuilder.HasDbFunction(typeof(VKRApplicationContext)
-                        .GetMethod(nameof(ReturnStreakForAllTeams), new [] {typeof(DateTime), typeof(byte)}))
+                        .GetMethod(nameof(ReturnStreakForAllTeams), new[] { typeof(DateTime), typeof(byte) }))
                         .HasName("ReturnStreakForAllTeams");
+
+            modelBuilder.HasDbFunction(typeof(VKRApplicationContext)
+                    .GetMethod(nameof(GetStaminaForThisPitcher), new[] { typeof(uint), typeof(DateTime) }))
+                .HasName("GetStaminaForThisPitcher");
+
+            modelBuilder.Ignore<Batter>();
+            modelBuilder.Ignore<Pitcher>();
         }
 
         public IQueryable<TeamStreak> ReturnStreakForAllTeams(DateTime date, byte MatchType)
         {
             return FromExpression(() => ReturnStreakForAllTeams(date, MatchType));
         }
+
+        [DbFunction("GetStaminaForThisPitcher", "DBO")]
+        public int GetStaminaForThisPitcher(uint pitcherId, DateTime matchDate)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
