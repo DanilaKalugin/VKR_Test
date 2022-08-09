@@ -13,7 +13,7 @@ namespace VKR.EF.DAO
         public DateTime GetDateForNextMatch(TypeOfMatchEnum matchType)
         {
             using var db = new VKRApplicationContext();
-            return db.NextMatches.Where(match => match.MatchTypeId == matchType).Min(match => match.MatchDate);
+            return db.NextMatches.Where(match => match.MatchTypeId == matchType && !match.IsPlayed).Min(match => match.MatchDate);
         }
         public IEnumerable<MatchFromSchedule> GetRemainingScheduleForThisDay(DateTime date, TypeOfMatchEnum matchType)
         {
@@ -32,11 +32,12 @@ namespace VKR.EF.DAO
         public List<MatchScheduleViewModel> GetResultsForAllMatches()
         {
             using var db = new VKRApplicationContext();
+
             return db.Matches.Include(m => m.MatchResult)
                 .Include(match => match.Stadium)
                 .ThenInclude(stadium => stadium.StadiumCity)
                 .Where(m => m.MatchResult != null)
-                .Select(m => new MatchScheduleViewModel(true, m.MatchEnded, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, m.MatchLength, m.MatchResult.AwayTeamRuns, m.MatchResult.HomeTeamRuns, m.Stadium, m.MatchDate)).ToList();
+                .Select(m => new MatchScheduleViewModel(true, m.MatchEnded, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, m.MatchResult.Length, m.MatchResult.AwayTeamRuns, m.MatchResult.HomeTeamRuns, m.Stadium, m.MatchDate)).ToList();
         }
 
         public List<MatchScheduleViewModel> GetScheduleForAllMatches()
