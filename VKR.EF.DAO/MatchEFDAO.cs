@@ -31,11 +31,25 @@ namespace VKR.EF.DAO
         {
             using var db = new VKRApplicationContext();
 
-            return db.Matches.Include(m => m.MatchResult)
+            var matches = db.Matches.Include(m => m.MatchResult)
                 .Include(match => match.Stadium)
-                .ThenInclude(stadium => stadium.StadiumCity)
+                .ThenInclude(stadium => stadium.StadiumCity);
+
+            var results = matches
                 .Where(m => m.MatchResult != null)
                 .Select(m => new MatchScheduleViewModel(true, m.MatchEnded, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, m.MatchResult.Length, m.MatchResult.AwayTeamRuns, m.MatchResult.HomeTeamRuns, m.Stadium, m.MatchDate)).ToList();
+
+            var activeMatches = db.ActiveMatchResults.ToList();
+
+            var activeMatchResults = matches.ToList()
+                .Join(activeMatches,
+                    match => match.Id,
+                    activeMatch => activeMatch.MatchId,
+                    (match, res) => new MatchScheduleViewModel(true, match.MatchEnded, match.AwayTeamAbbreviation,
+                        match.HomeTeamAbbreviation, res.Inning, res.AwayTeamRuns, res.HomeTeamRuns, match.Stadium,
+                        match.MatchDate)).ToList();
+
+            return results.Union(activeMatchResults).ToList();
         }
 
         public List<MatchScheduleViewModel> GetScheduleForAllMatches()
