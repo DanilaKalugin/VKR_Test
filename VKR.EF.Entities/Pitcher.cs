@@ -7,6 +7,12 @@
         public uint PitcherId;
         public bool IsPinchHitter => !CanPlayAsPitcher;
 
+        public new Pitcher SetPitchingStats(PlayerPitchingStats pitchingStats)
+        {
+            PitchingStats = pitchingStats;
+            return this;
+        }
+
         public Pitcher(Player player, int numberInRotation, uint pitcherId)
         {
             NumberInRotation = numberInRotation;

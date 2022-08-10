@@ -88,7 +88,7 @@ namespace VKR.PL.NET5
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.Controls.Add(this.pb_stamina1, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.pb_stamina2, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.pb_stamina3, 4, 3);
@@ -151,9 +151,9 @@ namespace VKR.PL.NET5
             this.pb_stamina1.FloodPercentage = 0F;
             this.pb_stamina1.FloodStyle = ExtendedDotNET.Controls.Progress.ProgressFloodStyle.Standard;
             this.pb_stamina1.Invert = false;
-            this.pb_stamina1.Location = new System.Drawing.Point(497, 27);
+            this.pb_stamina1.Location = new System.Drawing.Point(494, 27);
             this.pb_stamina1.MainColor = System.Drawing.Color.Gainsboro;
-            this.pb_stamina1.Margin = new System.Windows.Forms.Padding(5);
+            this.pb_stamina1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pb_stamina1.Maximum = 200;
             this.pb_stamina1.Minimum = 0;
             this.pb_stamina1.Name = "pb_stamina1";
@@ -163,7 +163,7 @@ namespace VKR.PL.NET5
             this.pb_stamina1.SecondColor = System.Drawing.Color.White;
             this.pb_stamina1.Shadow = true;
             this.pb_stamina1.ShadowOffset = 0;
-            this.pb_stamina1.Size = new System.Drawing.Size(261, 109);
+            this.pb_stamina1.Size = new System.Drawing.Size(257, 109);
             this.pb_stamina1.Step = 0;
             this.pb_stamina1.TabIndex = 66;
             this.pb_stamina1.TabStop = false;
@@ -189,9 +189,9 @@ namespace VKR.PL.NET5
             this.pb_stamina2.FloodPercentage = 0F;
             this.pb_stamina2.FloodStyle = ExtendedDotNET.Controls.Progress.ProgressFloodStyle.Standard;
             this.pb_stamina2.Invert = false;
-            this.pb_stamina2.Location = new System.Drawing.Point(497, 147);
+            this.pb_stamina2.Location = new System.Drawing.Point(494, 147);
             this.pb_stamina2.MainColor = System.Drawing.Color.Gainsboro;
-            this.pb_stamina2.Margin = new System.Windows.Forms.Padding(5);
+            this.pb_stamina2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pb_stamina2.Maximum = 200;
             this.pb_stamina2.Minimum = 0;
             this.pb_stamina2.Name = "pb_stamina2";
@@ -201,7 +201,7 @@ namespace VKR.PL.NET5
             this.pb_stamina2.SecondColor = System.Drawing.Color.White;
             this.pb_stamina2.Shadow = true;
             this.pb_stamina2.ShadowOffset = 0;
-            this.pb_stamina2.Size = new System.Drawing.Size(261, 109);
+            this.pb_stamina2.Size = new System.Drawing.Size(257, 109);
             this.pb_stamina2.Step = 0;
             this.pb_stamina2.TabIndex = 67;
             this.pb_stamina2.TabStop = false;
@@ -227,9 +227,9 @@ namespace VKR.PL.NET5
             this.pb_stamina3.FloodPercentage = 0F;
             this.pb_stamina3.FloodStyle = ExtendedDotNET.Controls.Progress.ProgressFloodStyle.Standard;
             this.pb_stamina3.Invert = false;
-            this.pb_stamina3.Location = new System.Drawing.Point(497, 267);
+            this.pb_stamina3.Location = new System.Drawing.Point(494, 267);
             this.pb_stamina3.MainColor = System.Drawing.Color.Gainsboro;
-            this.pb_stamina3.Margin = new System.Windows.Forms.Padding(5);
+            this.pb_stamina3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pb_stamina3.Maximum = 200;
             this.pb_stamina3.Minimum = 0;
             this.pb_stamina3.Name = "pb_stamina3";
@@ -239,7 +239,7 @@ namespace VKR.PL.NET5
             this.pb_stamina3.SecondColor = System.Drawing.Color.White;
             this.pb_stamina3.Shadow = true;
             this.pb_stamina3.ShadowOffset = 0;
-            this.pb_stamina3.Size = new System.Drawing.Size(261, 109);
+            this.pb_stamina3.Size = new System.Drawing.Size(257, 109);
             this.pb_stamina3.Step = 0;
             this.pb_stamina3.TabIndex = 68;
             this.pb_stamina3.TabStop = false;
@@ -265,9 +265,9 @@ namespace VKR.PL.NET5
             this.pb_stamina4.FloodPercentage = 0F;
             this.pb_stamina4.FloodStyle = ExtendedDotNET.Controls.Progress.ProgressFloodStyle.Standard;
             this.pb_stamina4.Invert = false;
-            this.pb_stamina4.Location = new System.Drawing.Point(497, 387);
+            this.pb_stamina4.Location = new System.Drawing.Point(494, 387);
             this.pb_stamina4.MainColor = System.Drawing.Color.Gainsboro;
-            this.pb_stamina4.Margin = new System.Windows.Forms.Padding(5);
+            this.pb_stamina4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pb_stamina4.Maximum = 200;
             this.pb_stamina4.Minimum = 0;
             this.pb_stamina4.Name = "pb_stamina4";
@@ -277,7 +277,7 @@ namespace VKR.PL.NET5
             this.pb_stamina4.SecondColor = System.Drawing.Color.White;
             this.pb_stamina4.Shadow = true;
             this.pb_stamina4.ShadowOffset = 0;
-            this.pb_stamina4.Size = new System.Drawing.Size(261, 109);
+            this.pb_stamina4.Size = new System.Drawing.Size(257, 109);
             this.pb_stamina4.Step = 0;
             this.pb_stamina4.TabIndex = 69;
             this.pb_stamina4.TabStop = false;
@@ -303,9 +303,9 @@ namespace VKR.PL.NET5
             this.pb_stamina5.FloodPercentage = 0F;
             this.pb_stamina5.FloodStyle = ExtendedDotNET.Controls.Progress.ProgressFloodStyle.Standard;
             this.pb_stamina5.Invert = false;
-            this.pb_stamina5.Location = new System.Drawing.Point(497, 507);
+            this.pb_stamina5.Location = new System.Drawing.Point(494, 507);
             this.pb_stamina5.MainColor = System.Drawing.Color.Gainsboro;
-            this.pb_stamina5.Margin = new System.Windows.Forms.Padding(5);
+            this.pb_stamina5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pb_stamina5.Maximum = 200;
             this.pb_stamina5.Minimum = 0;
             this.pb_stamina5.Name = "pb_stamina5";
@@ -315,7 +315,7 @@ namespace VKR.PL.NET5
             this.pb_stamina5.SecondColor = System.Drawing.Color.White;
             this.pb_stamina5.Shadow = true;
             this.pb_stamina5.ShadowOffset = 0;
-            this.pb_stamina5.Size = new System.Drawing.Size(261, 112);
+            this.pb_stamina5.Size = new System.Drawing.Size(257, 112);
             this.pb_stamina5.Step = 0;
             this.pb_stamina5.TabIndex = 70;
             this.pb_stamina5.TabStop = false;
@@ -386,11 +386,11 @@ namespace VKR.PL.NET5
             // 
             this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.vScrollBar1.LargeChange = 1;
-            this.vScrollBar1.Location = new System.Drawing.Point(764, 22);
+            this.vScrollBar1.Location = new System.Drawing.Point(757, 22);
             this.vScrollBar1.Maximum = 10;
             this.vScrollBar1.Name = "vScrollBar1";
             this.tableLayoutPanel1.SetRowSpan(this.vScrollBar1, 5);
-            this.vScrollBar1.Size = new System.Drawing.Size(30, 602);
+            this.vScrollBar1.Size = new System.Drawing.Size(37, 602);
             this.vScrollBar1.TabIndex = 76;
             this.vScrollBar1.ValueChanged += new System.EventHandler(this.vScrollBar1_ValueChanged);
             // 
@@ -398,11 +398,11 @@ namespace VKR.PL.NET5
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 18F);
+            this.label1.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(88, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(221, 119);
+            this.label1.Size = new System.Drawing.Size(218, 119);
             this.label1.TabIndex = 77;
             this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -411,11 +411,11 @@ namespace VKR.PL.NET5
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 18F);
+            this.label2.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(88, 142);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(221, 119);
+            this.label2.Size = new System.Drawing.Size(218, 119);
             this.label2.TabIndex = 78;
             this.label2.Text = "label2";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -424,11 +424,11 @@ namespace VKR.PL.NET5
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("MicroFLF", 18F);
+            this.label3.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(88, 262);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(221, 119);
+            this.label3.Size = new System.Drawing.Size(218, 119);
             this.label3.TabIndex = 79;
             this.label3.Text = "label3";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -437,11 +437,11 @@ namespace VKR.PL.NET5
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("MicroFLF", 18F);
+            this.label4.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.Location = new System.Drawing.Point(88, 382);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(221, 119);
+            this.label4.Size = new System.Drawing.Size(218, 119);
             this.label4.TabIndex = 80;
             this.label4.Text = "label4";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -450,11 +450,11 @@ namespace VKR.PL.NET5
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("MicroFLF", 18F);
+            this.label5.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.Location = new System.Drawing.Point(88, 502);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(221, 122);
+            this.label5.Size = new System.Drawing.Size(218, 122);
             this.label5.TabIndex = 81;
             this.label5.Text = "label5";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -463,8 +463,8 @@ namespace VKR.PL.NET5
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label6.Location = new System.Drawing.Point(310, 22);
+            this.label6.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(307, 22);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(110, 119);
@@ -476,8 +476,8 @@ namespace VKR.PL.NET5
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label7.Location = new System.Drawing.Point(310, 142);
+            this.label7.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(307, 142);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(110, 119);
@@ -489,8 +489,8 @@ namespace VKR.PL.NET5
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label8.Location = new System.Drawing.Point(310, 262);
+            this.label8.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(307, 262);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(110, 119);
@@ -502,8 +502,8 @@ namespace VKR.PL.NET5
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label9.Location = new System.Drawing.Point(310, 382);
+            this.label9.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(307, 382);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(110, 119);
@@ -515,8 +515,8 @@ namespace VKR.PL.NET5
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label10.Location = new System.Drawing.Point(310, 502);
+            this.label10.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(307, 502);
             this.label10.Margin = new System.Windows.Forms.Padding(0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(110, 122);
@@ -528,8 +528,8 @@ namespace VKR.PL.NET5
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label11.Location = new System.Drawing.Point(421, 22);
+            this.label11.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(418, 22);
             this.label11.Margin = new System.Windows.Forms.Padding(0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 119);
@@ -541,8 +541,8 @@ namespace VKR.PL.NET5
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label12.Location = new System.Drawing.Point(421, 142);
+            this.label12.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label12.Location = new System.Drawing.Point(418, 142);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(70, 119);
@@ -554,8 +554,8 @@ namespace VKR.PL.NET5
             // 
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label13.Location = new System.Drawing.Point(421, 262);
+            this.label13.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label13.Location = new System.Drawing.Point(418, 262);
             this.label13.Margin = new System.Windows.Forms.Padding(0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(70, 119);
@@ -567,8 +567,8 @@ namespace VKR.PL.NET5
             // 
             this.label14.AutoSize = true;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label14.Location = new System.Drawing.Point(421, 382);
+            this.label14.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label14.Location = new System.Drawing.Point(418, 382);
             this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(70, 119);
@@ -580,8 +580,8 @@ namespace VKR.PL.NET5
             // 
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Font = new System.Drawing.Font("MicroFLF", 18F);
-            this.label15.Location = new System.Drawing.Point(421, 502);
+            this.label15.Font = new System.Drawing.Font("MicroFLF", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(418, 502);
             this.label15.Margin = new System.Windows.Forms.Padding(0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(70, 122);
@@ -593,10 +593,10 @@ namespace VKR.PL.NET5
             // 
             this.label16.AutoSize = true;
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.Font = new System.Drawing.Font("MicroFLF", 12F);
+            this.label16.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label16.Location = new System.Drawing.Point(91, 1);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(215, 20);
+            this.label16.Size = new System.Drawing.Size(212, 20);
             this.label16.TabIndex = 92;
             this.label16.Text = "Name";
             // 
@@ -604,8 +604,8 @@ namespace VKR.PL.NET5
             // 
             this.label17.AutoSize = true;
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.label17.Location = new System.Drawing.Point(313, 1);
+            this.label17.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.Location = new System.Drawing.Point(310, 1);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(104, 20);
             this.label17.TabIndex = 93;
@@ -615,8 +615,8 @@ namespace VKR.PL.NET5
             // 
             this.label18.AutoSize = true;
             this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label18.Font = new System.Drawing.Font("MicroFLF", 12F);
-            this.label18.Location = new System.Drawing.Point(424, 1);
+            this.label18.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label18.Location = new System.Drawing.Point(421, 1);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(64, 20);
             this.label18.TabIndex = 94;
@@ -645,7 +645,7 @@ namespace VKR.PL.NET5
             // lbHeader
             // 
             this.lbHeader.AutoSize = true;
-            this.lbHeader.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHeader.Font = new System.Drawing.Font("MicroFLF", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbHeader.ForeColor = System.Drawing.Color.DimGray;
             this.lbHeader.Location = new System.Drawing.Point(12, 70);
             this.lbHeader.Name = "lbHeader";
@@ -656,7 +656,7 @@ namespace VKR.PL.NET5
             // lbTeamTitle
             // 
             this.lbTeamTitle.AutoSize = true;
-            this.lbTeamTitle.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTeamTitle.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbTeamTitle.Location = new System.Drawing.Point(12, 18);
             this.lbTeamTitle.Name = "lbTeamTitle";
             this.lbTeamTitle.Size = new System.Drawing.Size(70, 21);
@@ -679,6 +679,7 @@ namespace VKR.PL.NET5
             this.ClientSize = new System.Drawing.Size(795, 725);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

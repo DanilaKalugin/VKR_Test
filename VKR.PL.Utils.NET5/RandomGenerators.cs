@@ -29,7 +29,7 @@ namespace VKR.PL.Utils.NET5
         public static PitcherSubstitution PitcherSubstitution_Definition(Pitcher pitcher, List<AtBat> atBats)
         {
             var pitchingSubstitutionRandomValue = _pitcherSubstitutionRandomGenerator.Next(1, 1250);
-            var runsByThisPitcher = atBats.Count(atBat => atBat.PitcherId == pitcher.Id && atBat.AtBatType == AtBatType.Run);
+            var runsByThisPitcher = atBats.Count(atBat => atBat.PitcherId == pitcher.PitcherId && atBat.AtBatType == AtBatType.Run);
 
             return pitchingSubstitutionRandomValue <= Math.Pow(pitcher.RemainingStamina / 10 - 25, 2) + Math.Pow(runsByThisPitcher + 1, 2) ? PitcherSubstitution.Substitution : PitcherSubstitution.NoSubstitution;
         }

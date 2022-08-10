@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
 using System.Configuration;
-using System.Diagnostics;
 
 namespace VKR.EF.DAO
 {
@@ -28,13 +27,14 @@ namespace VKR.EF.DAO
         public DbSet<PlayerPosition> PlayersPositions { get; set; }
         public DbSet<PlayerInTeam> PlayersInTeams { get; set; }
         public DbSet<AtBat> AtBats { get; set; }
+        public DbSet<MatchResult> MatchResults { get; set; }
+        public DbSet<PitcherResults> PitcherResults { get; set; }
+        public DbSet<ActiveMatchResult> ActiveMatchResults { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = GetConnectionString();
             optionsBuilder.UseSqlServer(connectionString);
-
-            optionsBuilder.LogTo(s => Debug.WriteLine(s), new[] { DbLoggerCategory.Database.Command.Name });
         }
 
         public static string GetConnectionString()
@@ -82,6 +82,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamBattingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamPitchingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RunsScoredByTeamViewMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.ActiveMatchResultsViewMap());
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStreakFunctionMap());
 

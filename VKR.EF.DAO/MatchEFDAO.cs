@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
@@ -184,17 +182,31 @@ namespace VKR.EF.DAO
             db.SaveChanges();
         }
 
-        public void FinishMatch(int matchId)
+        public void FinishMatch(Match match)
         {
             using var db = new VKRApplicationContext();
 
-            var match = db.Matches.FirstOrDefault(m => m.Id == matchId);
+            var matchDb = db.Matches.FirstOrDefault(m => m.Id == match.Id);
 
-            if (match != null) match.MatchEnded = true;
-            db.Matches.Update(match);
+            if (matchDb != null) matchDb.MatchEnded = true;
+            db.Matches.Update(matchDb);
+            db.SaveChanges();
 
-            // ResultsOfMatches
+            var MatchRes = new MatchResult
+            {
+                MatchId = match.Id,
+                MatchWinnerId = match.GameSituations.Last().AwayTeamRuns > match.GameSituations.Last().HomeTeamRuns
+                    ? match.AwayTeam.TeamAbbreviation
+                    : match.HomeTeam.TeamAbbreviation,
+                MatchLoserId = match.GameSituations.Last().AwayTeamRuns < match.GameSituations.Last().HomeTeamRuns
+                    ? match.AwayTeam.TeamAbbreviation
+                    : match.HomeTeam.TeamAbbreviation,
+                Length = match.GameSituations.Last().InningNumber,
+                AwayTeamRuns = match.GameSituations.Last().AwayTeamRuns,
+                HomeTeamRuns = match.GameSituations.Last().HomeTeamRuns
+            };
 
+            db.MatchResults.Add(MatchRes);
             db.SaveChanges();
         }
 
@@ -203,6 +215,70 @@ namespace VKR.EF.DAO
             using var db = new VKRApplicationContext();
 
             db.AtBats.Add(atBat);
+            db.SaveChanges();
+        }
+
+        public void AddMatchResultForThisPitcher(PitcherResults pitcherResults)
+        {
+            using var db = new VKRApplicationContext();
+
+            db.PitcherResults.Add(pitcherResults);
+            db.SaveChanges();
+        }
+
+        public void SubstitutePitcher(Match match, Pitcher pitcher)
+        {
+            using var db = new VKRApplicationContext();
+
+            var pitcherDb = new LineupForMatch
+            {
+                MatchId = match.Id,
+                PlayerInTeamId = pitcher.PitcherId,
+                PlayerPositionId = "P",
+                PlayerNumberInLineup = 10
+            };
+
+            db.LineupsForMatches.Add(pitcherDb);
+
+            if (!match.DHRule)
+            {
+                var pitcherInBattingLineup = new LineupForMatch
+                {
+                    MatchId = match.Id,
+                    PlayerInTeamId = pitcher.PitcherId,
+                    PlayerPositionId = "P",
+                    PlayerNumberInLineup = 9
+                };
+                db.LineupsForMatches.Add(pitcherInBattingLineup);
+            }
+            db.SaveChanges();
+        }
+
+        public void SubstituteBatter(Match match, Batter batter)
+        {
+            using var db = new VKRApplicationContext();
+
+            var pitcherDb = new LineupForMatch
+            {
+                MatchId = match.Id,
+                PlayerInTeamId = batter.BatterId,
+                PlayerPositionId = batter.PositionForThisMatch,
+                PlayerNumberInLineup = batter.NumberInLineup
+            };
+
+            db.LineupsForMatches.Add(pitcherDb);
+
+            if (!match.DHRule && batter.NumberInLineup == 9 && batter.PositionForThisMatch == "P")
+            {
+                var pitcherInBattingLineup = new LineupForMatch
+                {
+                    MatchId = match.Id,
+                    PlayerInTeamId = batter.BatterId,
+                    PlayerPositionId = "P",
+                    PlayerNumberInLineup = 10
+                };
+                db.LineupsForMatches.Add(pitcherInBattingLineup);
+            }
             db.SaveChanges();
         }
     }

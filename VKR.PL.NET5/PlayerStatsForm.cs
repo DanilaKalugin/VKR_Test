@@ -496,7 +496,7 @@ namespace VKR.PL.NET5
         {
             cbTeams.Visible = cbPlayers.Text != "Free Agents";
 
-            if (cbPositions.DataSource == null) return;
+            if (cbPositions.DataSource == null || cbTeams.DataSource == null) return;
 
             if (_objects == SortingObjects.Players)
             {

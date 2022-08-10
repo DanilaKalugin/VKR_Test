@@ -12,12 +12,12 @@ namespace VKR.PL.Utils.NET5
 
             if (!string.IsNullOrWhiteSpace(hitsForAtBats)) return hitsForAtBats; 
 
-            if (match.AtBats.Any(atBat => atBat.BatterId == batter.Id && atBat.AtBatType == AtBatType.HitByPitch)) return "HBP";
+            if (match.AtBats.Any(atBat => atBat.BatterId == batter.BatterId && atBat.AtBatType == AtBatType.HitByPitch)) return "HBP";
 
-            if (match.AtBats.Any(atBat => atBat.BatterId == batter.Id && atBat.AtBatType == AtBatType.Walk))
+            if (match.AtBats.Any(atBat => atBat.BatterId == batter.BatterId && atBat.AtBatType == AtBatType.Walk))
             {
                 var numberOfWalks = match.AtBats.Count(atBat =>
-                    atBat.BatterId == batter.Id && atBat.AtBatType == AtBatType.Walk);
+                    atBat.BatterId == batter.BatterId && atBat.AtBatType == AtBatType.Walk);
                 return numberOfWalks == 1 ? "WALK" : $"{numberOfWalks} WALKS";
             }
 
@@ -29,7 +29,7 @@ namespace VKR.PL.Utils.NET5
 
         public static string GetHitsForAtBats(Batter batter, Match match)
         {
-            var atBatsCount = match.AtBats.Count(atBat => atBat.BatterId == batter.Id &&
+            var atBatsCount = match.AtBats.Count(atBat => atBat.BatterId == batter.BatterId &&
                                                           atBat.AtBatType is AtBatType.Double or 
                                                                                AtBatType.Triple or 
                                                                                AtBatType.HomeRun or 
@@ -39,13 +39,13 @@ namespace VKR.PL.Utils.NET5
                                                                                AtBatType.Flyout or 
                                                                                AtBatType.Groundout);
 
-            var hitsCount = match.AtBats.Count(atBat => atBat.BatterId == batter.Id &&
+            var hitsCount = match.AtBats.Count(atBat => atBat.BatterId == batter.BatterId &&
                                                         atBat.AtBatType is AtBatType.Double or 
                                                                              AtBatType.Triple or 
                                                                              AtBatType.HomeRun or 
                                                                              AtBatType.Single);
             
-            return atBatsCount > 0 ? $"{hitsCount} FOR {atBatsCount}" : "";
+            return atBatsCount > 0 ? $"{hitsCount} FOR {atBatsCount}" : string.Empty;
         }
     }
 }

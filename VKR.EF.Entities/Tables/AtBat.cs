@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using VKR.EF.Entities.Enums;
 
 namespace VKR.EF.Entities
@@ -128,6 +129,29 @@ namespace VKR.EF.Entities
             Outs = (byte)OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
             RBI = 0;
             Inning = currentMatch.GameSituations.Last().InningNumber;
+        }
+
+        public override string ToString()
+        {
+            var atBatResultsDictionary = new Dictionary<AtBatType, string>
+            {
+                {AtBatType.HitByPitch, "Hit-by-Pitch" },
+                {AtBatType.HomeRun, "Home Run" },
+                {AtBatType.StolenBase, "Stolen Base" },
+                {AtBatType.CaughtStealing, "Caught Stealing" },
+                {AtBatType.SacrificeBunt, "Sacrifice Bunt" },
+                {AtBatType.SacrificeFly, "Sacrifice Fly"},
+                {AtBatType.Strikeout, "Strikeout" },
+                {AtBatType.Walk, "Walk"},
+                {AtBatType.Single, "Single" },
+                {AtBatType.Double, "Double" },
+                {AtBatType.Triple, "Triple" },
+                {AtBatType.Flyout, "Flyout" },
+                {AtBatType.Popout, "Popout" },
+                {AtBatType.Groundout, "Groundout" },
+            };
+
+            return atBatResultsDictionary.TryGetValue(AtBatType, out var value) ? value : string.Empty;
         }
     }
 }
