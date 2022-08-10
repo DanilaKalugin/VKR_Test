@@ -1,26 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VKR.DAL.NET5;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
-using Batter = VKR.Entities.NET5.Batter;
-using Match = VKR.Entities.NET5.Match;
-using Pitcher = VKR.Entities.NET5.Pitcher;
-using Team = VKR.Entities.NET5.Team;
 
 namespace VKR.BLL.NET5
 {
     public class PlayerBL
     {
         public enum TypeOfRoster {Starters, Bench, ActivePlayers, Reserve, ActiveAndReserve}
-
-        private readonly PlayerDao _playerDAO = new();
-        private readonly TeamsDao _teamsDAO = new();
+        
         private readonly PlayerEFDAO _playerEFDAO = new();
         private readonly TeamsEFDAO _teamsEFDAO = new();
 
-        public List<EF.Entities.Player> GetBattersStats(string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
+        public List<Player> GetBattersStats(string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
         {
             var players = _playerEFDAO.GetPlayerBattingStats(2021).ToList();
             var abbreviations = GetTeamsForFilter(TeamFilter);

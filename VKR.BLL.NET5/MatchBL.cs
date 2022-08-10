@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VKR.DAL.NET5;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
-using Match = VKR.Entities.NET5.Match;
-using PitcherResults = VKR.Entities.NET5.PitcherResults;
 
 namespace VKR.BLL.NET5
 {
