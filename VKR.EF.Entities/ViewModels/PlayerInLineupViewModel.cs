@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-
-namespace VKR.EF.Entities
+﻿namespace VKR.EF.Entities
 {
     public class PlayerInLineupViewModel : Player
     {

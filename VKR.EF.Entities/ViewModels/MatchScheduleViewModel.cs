@@ -33,7 +33,7 @@ namespace VKR.EF.Entities
             get
             {
                 if (!IsEnded)
-                    return "Not finished";/*$"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(InningNumber)} inning";*/
+                    return $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(CurrentInning)} inning";
 
                 if (CurrentInning != 9)
                     return CurrentInning == 0 ? "" : $"Final/{CurrentInning}";
