@@ -8,7 +8,6 @@
     <ProjectReference Include="..\VKR.DAL.NET5\VKR.DAL.NET5.csproj" />
     <ProjectReference Include="..\VKR.EF.DAO\VKR.EF.DAO.csproj" />
     <ProjectReference Include="..\VKR.EF.Entities\VKR.EF.Entities.csproj" />
-    <ProjectReference Include="..\VKR.Entities.NET5\VKR.Entities.NET5.csproj" />
   </ItemGroup>
 
 </Project>
