@@ -9,6 +9,7 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<BattingHand> builder)
         {
+            builder.ToTable("BattingHand");
             builder.HasKey(bh => bh.BattingHandId);
 
             builder.HasAlternateKey(bh => bh.Description);

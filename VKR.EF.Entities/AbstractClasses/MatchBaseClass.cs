@@ -2,7 +2,7 @@
 
 namespace VKR.EF.Entities
 {
-    public class MatchBaseClass
+    public abstract class MatchBaseClass
     {
         public int Id { get; set; }
         public Team HomeTeam { get; set; }

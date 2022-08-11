@@ -1,6 +1,6 @@
 ﻿namespace VKR.EF.Entities
 {
-    public class Batter: Player
+    public class Batter : Player
     {
         public string PositionForThisMatch;
         public byte NumberInLineup;

@@ -26,6 +26,7 @@ namespace VKR.EF.Entities
         }
 
         public bool IsQuickMatch => MatchTypeId == TypeOfMatchEnum.QuickMatch;
+
         public MatchResult MatchResult { get; set; }
 
         public bool MatchEndingCondition => (GameSituations.Last().Offense == AwayTeam && GameSituations.Last().Outs == 3 && GameSituations.Last().AwayTeamRuns < GameSituations.Last().HomeTeamRuns && GameSituations.Last().InningNumber == MatchLength) ||
@@ -36,17 +37,11 @@ namespace VKR.EF.Entities
         {
             var leaderAfterEachAtBat = new List<string>();
             foreach (var gameSituation in GameSituations)
-            {
                 if (gameSituation.AwayTeamRuns > gameSituation.HomeTeamRuns)
-                {
                     leaderAfterEachAtBat.Add(AwayTeam.TeamAbbreviation);
-                }
                 else if (gameSituation.AwayTeamRuns < gameSituation.HomeTeamRuns)
-                {
                     leaderAfterEachAtBat.Add(HomeTeam.TeamAbbreviation);
-                }
                 else leaderAfterEachAtBat.Add("");
-            }
             return leaderAfterEachAtBat;
         }
     }

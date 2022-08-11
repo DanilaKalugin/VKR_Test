@@ -11,31 +11,92 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasKey(t => t.TeamAbbreviation);
 
-            builder.Property(t => t.TeamAbbreviation).HasMaxLength(3);
-            builder.Property(t => t.TeamCity).HasMaxLength(50).IsRequired();
-            builder.Property(t => t.TeamName).HasMaxLength(35).IsRequired();
-            builder.Property(t => t.DivisionId).HasColumnName("TeamDivision").IsRequired();
-            builder.Property(t => t.StrikeZoneProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.HitByPitchProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.SwingInStrikeZoneProbability).IsRequired();
-            builder.Property(t => t.SwingOutsideStrikeZoneProbability).IsRequired();
-            builder.Property(t => t.HittingProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.FoulProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.SingleProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.DoubleProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.HomeRunProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.TripleProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.PopoutOnFoulProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.FlyoutOnHomeRunProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.GroundoutProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.FlyoutProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.DoublePlayProbability).IsRequired();
-            builder.Property(t => t.SacrificeFlyProbability).IsRequired();
-            builder.Property(t => t.StealingBaseProbability).HasColumnType("smallint").IsRequired();
-            builder.Property(t => t.SuccessfulStealingBaseAttemptProbability).IsRequired()
+            builder.Property(t => t.TeamAbbreviation)
+                .HasMaxLength(3);
+
+            builder.Property(t => t.TeamCity)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(t => t.TeamName)
+                .HasMaxLength(35)
+                .IsRequired();
+
+            builder.Property(t => t.DivisionId)
+                .HasColumnName("TeamDivision")
+                .IsRequired();
+
+            builder.Property(t => t.StrikeZoneProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.HitByPitchProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.SwingInStrikeZoneProbability)
+                .IsRequired();
+
+            builder.Property(t => t.SwingOutsideStrikeZoneProbability)
+                .IsRequired();
+
+            builder.Property(t => t.HittingProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.FoulProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.SingleProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.DoubleProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.HomeRunProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.TripleProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.PopoutOnFoulProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.FlyoutOnHomeRunProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.GroundoutProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.FlyoutProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.DoublePlayProbability)
+                .IsRequired();
+
+            builder.Property(t => t.SacrificeFlyProbability)
+                .IsRequired();
+
+            builder.Property(t => t.StealingBaseProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
+
+            builder.Property(t => t.SuccessfulStealingBaseAttemptProbability)
+                .IsRequired()
                 .HasColumnName("StealingBaseSuccessfulAttemptProbability");
 
-            builder.Property(t => t.SuccessfulBuntAttemptProbability).HasColumnType("smallint").IsRequired();
+            builder.Property(t => t.SuccessfulBuntAttemptProbability)
+                .HasColumnType("smallint")
+                .IsRequired();
 
             builder.HasAlternateKey(t => new { t.TeamCity, t.TeamName });
 
@@ -62,7 +123,8 @@ namespace VKR.EF.Entities.Mappers
             builder.HasOne(t => t.Division)
                 .WithMany(d => d.Teams)
                 .HasForeignKey(t => t.DivisionId)
-                .OnDelete(DeleteBehavior.ClientSetNull).IsRequired();
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .IsRequired();
 
             builder.HasOne(t => t.Manager)
                 .WithMany(m => m.Teams)
@@ -70,7 +132,8 @@ namespace VKR.EF.Entities.Mappers
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .IsRequired();
 
-            builder.Property(t => t.TeamManager).HasColumnType("smallint");
+            builder.Property(t => t.TeamManager)
+                .HasColumnType("smallint");
         }
     }
 }
