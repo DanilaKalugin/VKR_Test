@@ -13,7 +13,7 @@ namespace VKR.PL.NET5
         private void btnResultsByDate_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new MatchResultsForm(_matchBL.GetMaxDateForAllMatches(), false, MatchBL.TableType.Results))
+            using (var form = new MatchResultsForm(_matchBL.GetMaxDateForAllMatches(), false, MatchScheduleBL.TableType.Results))
                 form.ShowDialog();
             Visible = true;
         }
@@ -21,7 +21,7 @@ namespace VKR.PL.NET5
         private void btnResults_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new MatchResultsForm(MatchBL.TableType.Results)) 
+            using (var form = new MatchResultsForm(MatchScheduleBL.TableType.Results)) 
                 form.ShowDialog();
             Visible = true;
         }
@@ -31,7 +31,7 @@ namespace VKR.PL.NET5
         private void btnScheduleByTeam_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new MatchResultsForm(MatchBL.TableType.Schedule)) 
+            using (var form = new MatchResultsForm(MatchScheduleBL.TableType.Schedule)) 
                 form.ShowDialog();
             Visible = true;
         }
@@ -39,7 +39,7 @@ namespace VKR.PL.NET5
         private void btnScheduleByDate_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new MatchResultsForm(_matchBL.GetMaxDateForAllMatches(), false, MatchBL.TableType.Schedule))
+            using (var form = new MatchResultsForm(_matchBL.GetMaxDateForAllMatches(), false, MatchScheduleBL.TableType.Schedule))
                 form.ShowDialog();
             Visible = true;
         }

@@ -21,7 +21,7 @@ namespace VKR.PL.NET5
 
         private void btnSeriesHistory_Click(object sender, EventArgs e)
         {
-            _form = new MatchResultsForm(_currentMatch.AwayTeam, _currentMatch.HomeTeam, MatchBL.TableType.Results);
+            _form = new MatchResultsForm(_currentMatch.AwayTeam, _currentMatch.HomeTeam, MatchScheduleBL.TableType.Results);
             Visible = false;
             _form.ShowDialog();
             Visible = true;
@@ -29,7 +29,7 @@ namespace VKR.PL.NET5
 
         private void btnSeriesNextMatches_Click(object sender, EventArgs e)
         {
-            _form = new MatchResultsForm(_currentMatch.AwayTeam, _currentMatch.HomeTeam, MatchBL.TableType.Schedule);
+            _form = new MatchResultsForm(_currentMatch.AwayTeam, _currentMatch.HomeTeam, MatchScheduleBL.TableType.Schedule);
             Visible = false;
             _form.ShowDialog();
             Visible = true;
@@ -37,7 +37,7 @@ namespace VKR.PL.NET5
 
         private void btnMatchDayResults_Click(object sender, EventArgs e)
         {
-            _form = new MatchResultsForm(_currentMatch.MatchDate, true, MatchBL.TableType.Results);
+            _form = new MatchResultsForm(_currentMatch.MatchDate, true, MatchScheduleBL.TableType.Results);
             Visible = false;
             _form.ShowDialog();
             Visible = true;
@@ -45,7 +45,7 @@ namespace VKR.PL.NET5
 
         private void btnMatchDayUpcomingMatches_Click(object sender, EventArgs e)
         {
-            _form = new MatchResultsForm(_currentMatch.MatchDate, true, MatchBL.TableType.Schedule);
+            _form = new MatchResultsForm(_currentMatch.MatchDate, true, MatchScheduleBL.TableType.Schedule);
             Visible = false;
             _form.ShowDialog();
             Visible = true;
@@ -53,7 +53,7 @@ namespace VKR.PL.NET5
 
         private void btnTeam1Last10Matches_Click(object sender, EventArgs e)
         {
-            _form = new MatchResultsForm(_currentMatch.AwayTeam, MatchBL.TableType.Results);
+            _form = new MatchResultsForm(_currentMatch.AwayTeam, MatchScheduleBL.TableType.Results);
             Visible = false;
             _form.ShowDialog();
             Visible = true;
@@ -61,7 +61,7 @@ namespace VKR.PL.NET5
 
         private void btnTeam1Next10Matches_Click(object sender, EventArgs e)
         {
-            _form = new MatchResultsForm(_currentMatch.AwayTeam, MatchBL.TableType.Schedule);
+            _form = new MatchResultsForm(_currentMatch.AwayTeam, MatchScheduleBL.TableType.Schedule);
             Visible = false;
             _form.ShowDialog();
             Visible = true;
@@ -69,7 +69,7 @@ namespace VKR.PL.NET5
 
         private void btnTeam2Last10Matches_Click(object sender, EventArgs e)
         {
-            _form = new MatchResultsForm(_currentMatch.HomeTeam, MatchBL.TableType.Results);
+            _form = new MatchResultsForm(_currentMatch.HomeTeam, MatchScheduleBL.TableType.Results);
             Visible = false;
             _form.ShowDialog();
             Visible = true;
@@ -77,7 +77,7 @@ namespace VKR.PL.NET5
 
         private void btnTeam2Next10Matches_Click(object sender, EventArgs e)
         {
-            _form = new MatchResultsForm(_currentMatch.HomeTeam, MatchBL.TableType.Schedule);
+            _form = new MatchResultsForm(_currentMatch.HomeTeam, MatchScheduleBL.TableType.Schedule);
             Visible = false;
             _form.ShowDialog();
             Visible = true;

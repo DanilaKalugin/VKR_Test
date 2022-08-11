@@ -13,6 +13,7 @@ namespace VKR.EF.DAO
             using var db = new VKRApplicationContext();
             return db.NextMatches.Where(match => match.MatchTypeId == matchType && !match.IsPlayed).Min(match => match.MatchDate);
         }
+
         public IEnumerable<MatchFromSchedule> GetRemainingScheduleForThisDay(DateTime date, TypeOfMatchEnum matchType)
         {
             using var db = new VKRApplicationContext();
@@ -25,42 +26,6 @@ namespace VKR.EF.DAO
             return db.Matches.Include(m => m.MatchResult)
                 .Where(m => m.MatchResult != null)
                 .Select(m => m.MatchDate).Max();
-        }
-
-        public List<MatchScheduleViewModel> GetResultsForAllMatches()
-        {
-            using var db = new VKRApplicationContext();
-
-            var matches = db.Matches.Include(m => m.MatchResult)
-                .Include(match => match.Stadium)
-                .ThenInclude(stadium => stadium.StadiumCity);
-
-            var results = matches
-                .Where(m => m.MatchResult != null)
-                .Select(m => new MatchScheduleViewModel(true, m.MatchEnded, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, m.MatchResult.Length, m.MatchResult.AwayTeamRuns, m.MatchResult.HomeTeamRuns, m.Stadium, m.MatchDate)).ToList();
-
-            var activeMatches = db.ActiveMatchResults.ToList();
-
-            var activeMatchResults = matches.ToList()
-                .Join(activeMatches,
-                    match => match.Id,
-                    activeMatch => activeMatch.MatchId,
-                    (match, res) => new MatchScheduleViewModel(true, match.MatchEnded, match.AwayTeamAbbreviation,
-                        match.HomeTeamAbbreviation, res.Inning, res.AwayTeamRuns, res.HomeTeamRuns, match.Stadium,
-                        match.MatchDate)).ToList();
-
-            return results.Union(activeMatchResults).ToList();
-        }
-
-        public List<MatchScheduleViewModel> GetScheduleForAllMatches()
-        {
-            using var db = new VKRApplicationContext();
-            return db.NextMatches.Include(m => m.HomeTeam)
-                .ThenInclude(team => team.StadiumsForMatchTypes)
-                .ThenInclude(tmts => tmts.Stadium)
-                .ThenInclude(stadium => stadium.StadiumCity)
-                .Where(m => !m.IsPlayed)
-                .Select(m => new MatchScheduleViewModel(m.IsPlayed, false, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, 1, 0, 0, m.HomeTeam.StadiumsForMatchTypes.First().Stadium, m.MatchDate)).ToList();
         }
 
         public int GetNextMatchId(TypeOfMatchEnum matchType)
@@ -237,62 +202,6 @@ namespace VKR.EF.DAO
             using var db = new VKRApplicationContext();
 
             db.PitcherResults.Add(pitcherResults);
-            db.SaveChanges();
-        }
-
-        public void SubstitutePitcher(Match match, Pitcher pitcher)
-        {
-            using var db = new VKRApplicationContext();
-
-            var pitcherDb = new LineupForMatch
-            {
-                MatchId = match.Id,
-                PlayerInTeamId = pitcher.PitcherId,
-                PlayerPositionId = "P",
-                PlayerNumberInLineup = 10
-            };
-
-            db.LineupsForMatches.Add(pitcherDb);
-
-            if (!match.DHRule)
-            {
-                var pitcherInBattingLineup = new LineupForMatch
-                {
-                    MatchId = match.Id,
-                    PlayerInTeamId = pitcher.PitcherId,
-                    PlayerPositionId = "P",
-                    PlayerNumberInLineup = 9
-                };
-                db.LineupsForMatches.Add(pitcherInBattingLineup);
-            }
-            db.SaveChanges();
-        }
-
-        public void SubstituteBatter(Match match, Batter batter)
-        {
-            using var db = new VKRApplicationContext();
-
-            var pitcherDb = new LineupForMatch
-            {
-                MatchId = match.Id,
-                PlayerInTeamId = batter.BatterId,
-                PlayerPositionId = batter.PositionForThisMatch,
-                PlayerNumberInLineup = batter.NumberInLineup
-            };
-
-            db.LineupsForMatches.Add(pitcherDb);
-
-            if (!match.DHRule && batter.NumberInLineup == 9 && batter.PositionForThisMatch == "P")
-            {
-                var pitcherInBattingLineup = new LineupForMatch
-                {
-                    MatchId = match.Id,
-                    PlayerInTeamId = batter.BatterId,
-                    PlayerPositionId = "P",
-                    PlayerNumberInLineup = 10
-                };
-                db.LineupsForMatches.Add(pitcherInBattingLineup);
-            }
             db.SaveChanges();
         }
     }

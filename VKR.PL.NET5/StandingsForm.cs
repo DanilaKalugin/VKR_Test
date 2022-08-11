@@ -12,10 +12,12 @@ namespace VKR.PL.NET5
 {
     public partial class StandingsForm : Form
     {
-        private readonly TeamsBL _teamsBl = new();
         private readonly MatchBL _matchBL = new();
+        private readonly StandingsBL _standingsBl = new();
+        private readonly PrimaryTeamColorBL _primaryColorBl = new();
         private readonly Team? _homeTeam;
         private readonly Team? _awayTeam;
+        private readonly List<TeamColor> _teamsColors;
 
         public StandingsForm(Team home, Team away) : this()
         {
@@ -26,6 +28,7 @@ namespace VKR.PL.NET5
         public StandingsForm()
         {
             InitializeComponent();
+            _teamsColors = _primaryColorBl.GetPrimaryTeamColors();
             dtpStandingsDate.Value = _matchBL.GetMaxDateForAllMatches();
         }
 
@@ -71,8 +74,9 @@ namespace VKR.PL.NET5
                     row.DefaultCellStyle.SelectionForeColor = Color.Black;
                 }
 
-                row.Cells[0].Style.BackColor = teams[i].TeamColors[0].Color;
-                row.Cells[0].Style.SelectionBackColor = teams[i].TeamColors[0].Color;
+                var teamColor = _teamsColors.First(tc => tc.TeamName == teams[i].TeamAbbreviation).Color;
+                row.Cells[0].Style.BackColor = teamColor;
+                row.Cells[0].Style.SelectionBackColor = teamColor;
                 dgvStandings.Rows.Add(row);
             }
 
@@ -102,7 +106,7 @@ namespace VKR.PL.NET5
             };
 
             Func<string, DateTime, List<Team>> teamFunc =
-                groupingTypeNumber == 3 ? _teamsBl.GetWildCardStandings : _teamsBl.GetStandings;
+                groupingTypeNumber == 3 ? _standingsBl.GetWildCardStandings : _standingsBl.GetStandings;
 
             var teamsGroups = GetStandingsForEachGroup(groups, teamFunc);
 

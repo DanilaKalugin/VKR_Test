@@ -30,6 +30,7 @@ namespace VKR.EF.DAO
         public DbSet<MatchResult> MatchResults { get; set; }
         public DbSet<PitcherResults> PitcherResults { get; set; }
         public DbSet<ActiveMatchResult> ActiveMatchResults { get; set; }
+        public DbSet<TeamColor> TeamColors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -98,16 +99,9 @@ namespace VKR.EF.DAO
             modelBuilder.Ignore<Pitcher>();
         }
 
-        public IQueryable<TeamStreak> ReturnStreakForAllTeams(DateTime date, byte MatchType)
-        {
-            return FromExpression(() => ReturnStreakForAllTeams(date, MatchType));
-        }
+        public IQueryable<TeamStreak> ReturnStreakForAllTeams(DateTime date, byte MatchType) => FromExpression(() => ReturnStreakForAllTeams(date, MatchType));
 
         [DbFunction("GetStaminaForThisPitcher", "DBO")]
-        public int GetStaminaForThisPitcher(uint pitcherId, DateTime matchDate)
-        {
-            throw new NotImplementedException();
-        }
-
+        public int GetStaminaForThisPitcher(uint pitcherId, DateTime matchDate) => throw new NotImplementedException();
     }
 }

@@ -20,6 +20,7 @@ namespace VKR.PL.NET5
         private GameSituation _previousSituation;
         private readonly MatchBL _matchBl = new();
         private readonly PlayerBL _playerBl = new();
+        private readonly SubstitutionBL _substitutionBl = new();
         public bool DeleteThisMatch;
         private bool _isAutoSimulation;
         private readonly BuntGenerator _buntGenerator = new();
@@ -641,7 +642,7 @@ namespace VKR.PL.NET5
             timer1.Stop();
             var Offense = _newGameSituation.Offense;
             
-            var batters = _playerBl.GetAvailableBatters(_currentMatch, Offense, GetBatterByGameSituation(_newGameSituation));
+            var batters = _substitutionBl.GetAvailableBatters(_currentMatch, Offense, GetBatterByGameSituation(_newGameSituation));
             
             if (batters.Count > 0)
             {
@@ -652,7 +653,7 @@ namespace VKR.PL.NET5
                 {
                     var oldBatter = GetBatterByGameSituation(_newGameSituation);
 
-                    _matchBl.SubstituteBatter(_currentMatch, form.NewBatterForThisTeam);
+                    _substitutionBl.SubstituteBatter(_currentMatch, form.NewBatterForThisTeam);
                     Offense.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(Offense, _currentMatch);
 
                     if (!_currentMatch.DHRule && oldBatter.NumberInLineup == 9)
@@ -772,7 +773,7 @@ namespace VKR.PL.NET5
         private void ChangePitcher(bool isAutoSimulation)
         {
             var defense = _newGameSituation.Offense == _currentMatch.AwayTeam ? _currentMatch.HomeTeam : _currentMatch.AwayTeam;
-            var pitchers = _playerBl.GetAvailablePitchers(_currentMatch, defense);
+            var pitchers = _substitutionBl.GetAvailablePitchers(_currentMatch, defense);
             if (pitchers.Count > 0)
             {
                 Func<Team, List<Pitcher>, Pitcher?> newPitcherFunc =
@@ -782,7 +783,7 @@ namespace VKR.PL.NET5
 
                 if (newPitcher is null) return;
 
-                _matchBl.SubstitutePitcher(_currentMatch, newPitcher);
+                _substitutionBl.SubstitutePitcher(_currentMatch, newPitcher);
 
                 defense.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(defense, _currentMatch);
                 _playerBl.UpdateStatsForThisPitcher(defense.CurrentPitcher, _currentMatch);

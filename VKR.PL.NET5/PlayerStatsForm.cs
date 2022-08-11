@@ -15,11 +15,15 @@ namespace VKR.PL.NET5
         private enum PlayerType { Pitchers, Batters }
         private enum StatsType { Standard, Expanded }
         public enum SortingObjects { Players, Teams }
-
-        private readonly PlayerBL _playersBL = new();
+        
         private readonly TeamsBL _teamsBL = new();
         private readonly SortingBL _sortingBL = new();
+        private readonly StatsBL _statsBL = new();
+        private readonly PrimaryTeamColorBL _teamColorBl = new();
+
         private readonly List<Team> _teams;
+        private readonly List<TeamColor> _primaryColors;
+
         private List<Player> _batters;
         private List<Player> _pitchers;
         private List<Team> _teamBattingStats;
@@ -36,6 +40,7 @@ namespace VKR.PL.NET5
             InitializeComponent();
 
             _teams = _teamsBL.GetAllTeams().ToList();
+            _primaryColors = _teamColorBl.GetPrimaryTeamColors();
             _objects = sortingObject;
             _sortModes[0] = new SortMode[dataGridView1.ColumnCount - 3 + dataGridView2.ColumnCount - 3];
             _sortModes[1] = new SortMode[dataGridView3.ColumnCount - 3 + dataGridView4.ColumnCount - 3];
@@ -459,8 +464,8 @@ namespace VKR.PL.NET5
         {
             if (teamForThisPlayer == "") return;
 
-            dgv.Rows[rowNumber].Cells[1].Style.BackColor = _teams.First(team => team.TeamAbbreviation == teamForThisPlayer).TeamColors[0].Color;
-            dgv.Rows[rowNumber].Cells[1].Style.SelectionBackColor = _teams.First(team => team.TeamAbbreviation == teamForThisPlayer).TeamColors[0].Color;
+            dgv.Rows[rowNumber].Cells[1].Style.BackColor = _primaryColors.First(tc => tc.TeamName == teamForThisPlayer).Color;
+            dgv.Rows[rowNumber].Cells[1].Style.SelectionBackColor = _primaryColors.First(tc => tc.TeamName == teamForThisPlayer).Color;
         }
 
         private void dataGridView4_CellStyleChanged(object sender, DataGridViewCellEventArgs e) => dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.SelectionBackColor = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor;
@@ -469,8 +474,8 @@ namespace VKR.PL.NET5
         {
             if (_objects == SortingObjects.Teams)
             {
-                _teamBattingStats = _teamsBL.GetTeamBattingStats();
-                _teamPitchingStats = _teamsBL.GetTeamPitchingStats();
+                _teamBattingStats = _statsBL.GetTeamBattingStats();
+                _teamPitchingStats = _statsBL.GetTeamPitchingStats();
             }
 
             _playerType = PlayerType.Batters;
@@ -482,7 +487,7 @@ namespace VKR.PL.NET5
             teamsInComboBox.AddRange(_teams.Select(team => team.TeamName).ToList());
             cbTeams.DataSource = teamsInComboBox;
 
-            cbPositions.DataSource = _playersBL.GetPlayerPositions();
+            cbPositions.DataSource = _statsBL.GetPlayerPositions();
             cbPositions.DisplayMember = "FullTitle";
 
             cbPlayers.Visible = _objects == SortingObjects.Players;
@@ -500,9 +505,9 @@ namespace VKR.PL.NET5
 
             if (_objects == SortingObjects.Players)
             {
-                _pitchers = _playersBL.GetPitchersStats(cbPlayers.Text, cbTeams.SelectedValue.ToString());
+                _pitchers = _statsBL.GetPitchersStats(cbPlayers.Text, cbTeams.SelectedValue.ToString());
                 var positionTitle = cbPositions.SelectedValue is PlayerPosition position ? position.ShortTitle : "";
-                _batters = _playersBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
+                _batters = _statsBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
             }
 
             GetSortedListsBySortingCodes(_lastBattingSort, _lastPitchingSort, _objects);

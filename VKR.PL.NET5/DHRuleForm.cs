@@ -25,7 +25,7 @@ namespace VKR.PL.NET5
 
         private void btnAcceptDHRule_Click(object sender, EventArgs e)
         {
-            var matchId = _matchBL.GetNumberOfMatchesPlayed(NewMatch);
+            var matchId = _matchBL.GetNextMatchId(NewMatch);
             NewMatch.MatchDate = dtpMatchDate.Value;
             NewMatch.DHRule = rbPlayWithDH.Checked;
             NewMatch.Id = matchId;

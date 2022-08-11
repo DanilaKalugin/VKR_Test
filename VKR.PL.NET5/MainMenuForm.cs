@@ -13,8 +13,8 @@ namespace VKR.PL.NET5
     public partial class MainMenuForm : Form
     {
         private readonly ManBL _manBL = new();
-        private readonly TeamsBL _teamsBL = new();
         private readonly MatchBL _matchBL = new();
+        private readonly PrimaryTeamColorBL _teamColorBl = new();
 
         public MainMenuForm()
         {
@@ -39,19 +39,19 @@ namespace VKR.PL.NET5
         private async Task UpdateBirthDayTable()
         {
             var man = await _manBL.GetListOfPeopleWithBirthdayTodayAsync();
-            var teams = await _teamsBL.GetListAsync();
+            var primaryTeamColors = _teamColorBl.GetPrimaryTeamColors();
             dgvBirthDays.Invoke((Action<List<ManInTeam>>)FillBirthDayTable, man);
-            dgvBirthDays.Invoke((Action<List<Team>, List<ManInTeam>>)FillColors, teams, man);
+            dgvBirthDays.Invoke((Action<List<TeamColor>, List<ManInTeam>>)FillColors, primaryTeamColors, man);
         }
 
-        private void FillColors(List<Team> teams, List<ManInTeam> men)
+        private void FillColors(List<TeamColor> teams, List<ManInTeam> men)
         {
             if (men.Count == 0) return;
 
             for (var i = 0; i < men.Count; i++)
             {
                 var rowColor = men[i].TeamName != null
-                    ? teams.First(team => team.TeamAbbreviation == men[i].TeamName).TeamColors[0].Color
+                    ? teams.First(team => team.TeamName == men[i].TeamName).Color
                     : Color.FromArgb(220, 220, 220);
 
                 dgvBirthDays.Rows[i].Cells[0].Style.BackColor = rowColor;

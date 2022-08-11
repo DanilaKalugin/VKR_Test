@@ -18,6 +18,7 @@ namespace VKR.PL.NET5
         private readonly PlayerBL _players = new();
         private readonly TeamsBL _teamsBL = new();
         private readonly MatchBL _matchBL = new();
+        private readonly RostersBL _rostersBl = new();
 
         private readonly List<List<List<PlayerInLineupViewModel>>> _teamsLineups;
         private readonly List<List<List<PlayerInLineupViewModel>>> _teamsBench;
@@ -39,18 +40,18 @@ namespace VKR.PL.NET5
             switch (_rosterType)
             {
                 case RosterType.StartingLineups:
-                    _teamsLineups = _players.GetRoster(PlayerBL.TypeOfRoster.Starters);
-                    _teamsBench = _players.GetRoster(PlayerBL.TypeOfRoster.Bench);
+                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Starters);
+                    _teamsBench = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Bench);
                     base.Text = "Starting lineups";
                     break;
                 case RosterType.Reserves:
-                    _teamsLineups = _players.GetRoster(PlayerBL.TypeOfRoster.ActivePlayers);
-                    _teamsBench = _players.GetRoster(PlayerBL.TypeOfRoster.Reserve);
+                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActivePlayers);
+                    _teamsBench = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Reserve);
                     base.Text = "Reserves";
                     break;
                 case RosterType.FreeAgents:
-                    _teamsLineups = _players.GetRoster(PlayerBL.TypeOfRoster.ActiveAndReserve);
-                    _teamsBench = _players.GetFreeAgents();
+                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActiveAndReserve);
+                    _teamsBench = _rostersBl.GetFreeAgents();
                     Text = "Free Agents";
                     break;
             }
