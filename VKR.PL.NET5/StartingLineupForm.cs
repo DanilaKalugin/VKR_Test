@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using VKR.EF.Entities;
 using VKR.PL.Controls.NET5;
+using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
 {
@@ -33,7 +34,7 @@ namespace VKR.PL.NET5
 
             Text = $"{_team.TeamCity} {_team.TeamName}";
             lbTeamTitle.Text = $"{_team.TeamName.ToUpper()} Batting Order".ToUpper();
-            teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{_team.TeamAbbreviation}.png");
+            teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{_team.TeamAbbreviation}.png");
             teamManager.Text = $"► Team Manager: {team.Manager.FullName}".ToUpper();
             BackColor = _team.TeamColorForThisMatch;
 

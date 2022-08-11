@@ -93,11 +93,11 @@ namespace VKR.PL.NET5
         {
             abbreviation.BackColor = team.TeamColorForThisMatch;
             abbreviation.Text = team.TeamAbbreviation.ToUpper();
-            panelSmallLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{team.TeamAbbreviation}.png");
+            panelSmallLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{team.TeamAbbreviation}.png");
             Balance.Visible = !_endedMatch.IsQuickMatch;
             Balance.Text = $"{team.Wins}-{team.Losses}";
             Balance.ForeColor = team.TeamColorForThisMatch;
-            BigLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            BigLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             BigLogo.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.85), (int)(team.TeamColorForThisMatch.G * 0.85), (int)(team.TeamColorForThisMatch.B * 0.85));
             panelBorder.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.85), (int)(team.TeamColorForThisMatch.G * 0.85), (int)(team.TeamColorForThisMatch.B * 0.85));
         }

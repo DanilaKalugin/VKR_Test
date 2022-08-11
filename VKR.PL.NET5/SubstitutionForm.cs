@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Windows.Forms;
 using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
@@ -35,8 +34,7 @@ namespace VKR.PL.NET5
             dgvAvailablePlayers.Columns[3].HeaderText = "HR";
             foreach (var batter in _batters)
             {
-                var imagePath = $"PlayerPhotosForSubstitution/Player{batter.Id:0000}.jpg";
-                var image = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
+                var image = ImageHelper.ShowImageIfExists($"PlayerPhotosForSubstitution/Player{batter.Id:0000}.jpg");
                 dgvAvailablePlayers.Rows.Add(image, batter.FullName,
                         $"{batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"))}",
                         $"{batter.BattingStats.HomeRuns}");

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
+using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
 {
@@ -73,7 +74,7 @@ namespace VKR.PL.NET5
 
         private void TeamChanged(int teamNumber)
         {
-            panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{_teams[teamNumber].TeamAbbreviation}.png");
+            panelTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{_teams[teamNumber].TeamAbbreviation}.png");
             lbTeamtitle.Text = _teams[teamNumber].TeamName.ToUpper();
             lbTeamtitle.BackColor = _teams[teamNumber].TeamColors[0].Color;
             lbTeamtitle.ForeColor = Color.White;
@@ -201,9 +202,7 @@ namespace VKR.PL.NET5
 
             if (dgv1.SelectedRows.Count <= 0) return;
 
-            var imagePath = $"PlayerPhotos/Player{player.Id:0000}.png";
-            var image = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
-            pbPlayerPhoto.BackgroundImage = image;
+            pbPlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{player.Id:0000}.png");
 
             lbPlayerNumber.Text = $@"#{player.PlayerNumber}";
             lbPlayerName.Text = player.FullName.ToUpper();

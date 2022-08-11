@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
+using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.Controls.NET5
 {
     public partial class BatterInfo : UserControl
     {
-        private static EF.Entities.Match _match;
+        private static Match _match;
         
         internal event EventHandler<PlayerChangedEventArgs> BatterChanged;
         
@@ -23,7 +24,7 @@ namespace VKR.PL.Controls.NET5
             BatterStats.Text = HitsForAtBatsHelper.GetDailyStats(e.PlayerInfo, _match);
         }
 
-        public void SetPlayer(EF.Entities.Batter batter)
+        public void SetPlayer(Batter batter)
         {
             var args = new PlayerChangedEventArgs(batter);
             BatterChanged(this, args);

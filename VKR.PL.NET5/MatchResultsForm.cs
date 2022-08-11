@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
+using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
 {
@@ -78,12 +79,12 @@ namespace VKR.PL.NET5
             foreach (var match in matches)
             {
                 dgv.Rows.Add(match.MatchDate.ToString("dd-MM"),
-                    Image.FromFile($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
+                    ImageHelper.ShowImageIfExists($"SmallTeamLogos/{match.AwayTeamAbbreviation}.png"),
                                        match.AwayTeamAbbreviation,
                                        match.AwayTeamRuns,
                                        match.HomeTeamRuns,
                                        match.HomeTeamAbbreviation,
-                                       Image.FromFile($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
+                    ImageHelper.ShowImageIfExists($"SmallTeamLogos/{match.HomeTeamAbbreviation}.png"),
                                        match.MatchStatus,
                                        $"{match.StadiumName} - {match.StadiumLocation}");
             }

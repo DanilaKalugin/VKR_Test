@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using VKR.PL.Utils.NET5;
@@ -18,12 +16,10 @@ namespace VKR.PL.NET5
             lbHomeRunType.Text = hrType;
             Text = hrType;
             timer2.Start();
-            panel1.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            panel2.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
 
-            var imagePath = $"PlayerPhotos/Player{batter.Id:0000}.png";
-            var image = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
-            pbPatterPhoto.BackgroundImage = image;
+            panel1.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            panel2.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            pbPatterPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{batter.Id:0000}.png");
             
             lbBatterName.Text = batter.FullName.ToUpper();
             var hrTodayForThisBatter = allAtBats.Count(atBat => atBat.AtBatType == AtBatType.HomeRun && atBat.BatterId == batter.Id);
