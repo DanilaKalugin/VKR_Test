@@ -11,7 +11,6 @@ namespace VKR.BLL.NET5
         public enum TypeOfRoster { Starters, Bench, ActivePlayers, Reserve, ActiveAndReserve }
 
         private readonly RostersEFDAO _rostersDao = new();
-        private readonly TeamsEFDAO _teamsDao = new();
         public List<List<List<PlayerInLineupViewModel>>> GetFreeAgents()
         {
             var allFreeAgents = _rostersDao.GetFreeAgents().ToList();
@@ -34,16 +33,17 @@ namespace VKR.BLL.NET5
             var allPlayers = new List<PlayerInLineupViewModel>();
 
             if (rosterFuncs.TryGetValue(typeOfRoster, out var playersFunc)) allPlayers = playersFunc();
-            var teams = _teamsDao.GetList().ToList();
+            var teams = allPlayers.Select(player => player.TeamAbbreviation).Distinct().ToList();
 
             var lineups = allPlayers.Select(player => player.LineupNumber).OrderBy(number => number).Distinct().ToList();
+
             var players = new List<List<List<PlayerInLineupViewModel>>>();
             for (var i = 0; i < teams.Count; i++)
             {
                 players.Add(new List<List<PlayerInLineupViewModel>>());
                 foreach (var lineupType in lineups)
                     players[i].Add(allPlayers
-                        .Where(player => player.TeamAbbreviation == teams[i].TeamAbbreviation && player.LineupNumber == lineupType)
+                        .Where(player => player.TeamAbbreviation == teams[i] && player.LineupNumber == lineupType)
                         .OrderBy(player => player.NumberInLineup)
                         .ThenBy(player => player.SecondName)
                         .ThenBy(player => player.FirstName).ToList());
