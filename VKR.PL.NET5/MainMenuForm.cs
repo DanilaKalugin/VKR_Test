@@ -69,40 +69,34 @@ namespace VKR.PL.NET5
             Width = 1554 - panel1.Width;
         }
 
-        private async void btn_StartNewMatch_Click(object sender, EventArgs e)
+        private void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
             var matchDate = _matchBL.GetDateForNextMatch(TypeOfMatchEnum.RegularSeason);
             StartNewMatch(matchDate, TypeOfMatchEnum.RegularSeason);
-            await UpdateBirthDayTable();
         }
 
-        private async void btnStandings_Click(object sender, EventArgs e)
+        private void btnStandings_Click(object sender, EventArgs e)
         {
             Visible = false;
             using (var form = new StandingsForm())
                 form.ShowDialog();
             Visible = true;
-
-            await UpdateBirthDayTable();
         }
 
-        private async void btnPlayerStats_Click(object sender, EventArgs e)
+        private void btnPlayerStats_Click(object sender, EventArgs e)
         {
             Visible = false;
             using (var form = new StatsMenuForm())
                 form.ShowDialog();
             Visible = true;
-
-            await UpdateBirthDayTable();
         }
 
-        private async void btnLineups_Click(object sender, EventArgs e)
+        private void btnLineups_Click(object sender, EventArgs e)
         {
             Visible = false;
             using (var form = new RostersMenuForm())
                 form.ShowDialog();
             Visible = true;
-            await UpdateBirthDayTable();
         }
 
         private async void btnResults_Click(object sender, EventArgs e)
@@ -114,11 +108,7 @@ namespace VKR.PL.NET5
             await UpdateBirthDayTable();
         }
 
-        private async void btnNewMatch_Click(object sender, EventArgs e)
-        {
-            StartNewMatch(DateTime.Now, TypeOfMatchEnum.QuickMatch);
-            await UpdateBirthDayTable();
-        }
+        private void btnNewMatch_Click(object sender, EventArgs e) => StartNewMatch(DateTime.Now, TypeOfMatchEnum.QuickMatch);
 
         private void StartNewMatch(DateTime matchDate, TypeOfMatchEnum matchType)
         {
@@ -135,5 +125,10 @@ namespace VKR.PL.NET5
         }
 
         private void btnClose_Click(object sender, EventArgs e) => Close();
+
+        private async void MainMenuForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Visible) await UpdateBirthDayTable();
+        }
     }
 }

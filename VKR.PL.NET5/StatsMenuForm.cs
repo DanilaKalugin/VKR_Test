@@ -138,8 +138,8 @@ namespace VKR.PL.NET5
                     else currentPlayer = pitchersWithThisValue.First();
 
                     var color = _teamsColors.First(team => team.TeamName == currentPlayer.PlayersInTeam.First().TeamId).Color;
-                    dgvBattingLeaders.Rows[i].Cells[1].Style.BackColor = color;
-                    dgvBattingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = color;
+                    dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = color;
+                    dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = color;
                 }
                 else
                 {

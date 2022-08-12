@@ -156,10 +156,10 @@ namespace VKR.PL.NET5
             panelHeader.BackColor = situation.Offense.TeamColorForThisMatch;
             if (runner.IsBaseNotEmpty)
             {
-                var runneron3rd = offense.BattingLineup.First(batter => batter.Id == runner.RunnerId);
+                var runneron3rd = offense.BattingLineup.First(batter => batter.BatterId == runner.RunnerId);
                 RunnerName.Text = runneron3rd.FullName.ToUpper();
 
-                RunnerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{runner.RunnerId:0000}.png");
+                RunnerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{runneron3rd.Id:0000}.png");
                 RunnerName.ForeColor = runner.IsBaseStealingAttempt ? Color.Goldenrod : Color.Gainsboro;
             }
             else RunnerPhoto.BackgroundImage = null;
@@ -536,7 +536,7 @@ namespace VKR.PL.NET5
             PitcherWalksToday.Text = walksToday.ToString();
             PitcherHomeRunsToday.Text = HRToday.ToString();
 
-            var TBFinThisMatch = _currentMatch.AtBats.Count(atBat => atBat.AtBatType != AtBatType.CaughtStealing && atBat.AtBatType != AtBatType.StolenBase && atBat.AtBatType != AtBatType.CaughtStealing && atBat.PitcherId == defense.CurrentPitcher.Id);
+            var TBFinThisMatch = _currentMatch.AtBats.Count(atBat => atBat.AtBatType != AtBatType.CaughtStealing && atBat.AtBatType != AtBatType.StolenBase && atBat.AtBatType != AtBatType.CaughtStealing && atBat.PitcherId == defense.CurrentPitcher.PitcherId);
             btnShowAvailablePitchers.Visible = !_isAutoSimulation && TBFinThisMatch >= 3 && _newGameSituation.Balls == 0 && _newGameSituation.Strikes == 0;
 
             if (!defense.CurrentPitcher.IsPinchHitter || _newGameSituation.Outs != 0 || _newGameSituation.Balls != 0 ||
@@ -706,7 +706,7 @@ namespace VKR.PL.NET5
 
             if (!_isAutoSimulation) return;
 
-            var TBFinThisMatch = _currentMatch.AtBats.Count(atBat => atBat.AtBatType != AtBatType.CaughtStealing && atBat.AtBatType != AtBatType.StolenBase && atBat.PitcherId == defense.CurrentPitcher.Id);
+            var TBFinThisMatch = _currentMatch.AtBats.Count(atBat => atBat.AtBatType != AtBatType.CaughtStealing && atBat.AtBatType != AtBatType.StolenBase && atBat.PitcherId == defense.CurrentPitcher.PitcherId);
             
             if (TBFinThisMatch >= 3 && _newGameSituation.Balls == 0 && _newGameSituation.Strikes == 0) 
                 PitcherSubstion_Definition(defense.CurrentPitcher);

@@ -38,18 +38,18 @@ namespace VKR.PL.NET5
 
             LeftOnBase.Text = (LeftOnFirstBase + LeftOnSecondBase + LeftOnThirdBase).ToString();
 
-            var DisplayingCriterion = team == match.AwayTeam ? match.GameSituations.Last().Offense == match.AwayTeam || match.GameSituations.Last().Offense == match.HomeTeam : match.GameSituations.Last().Offense == match.HomeTeam;
+            var displayingCriterion = team == match.AwayTeam ? match.GameSituations.Last().Offense == match.AwayTeam || match.GameSituations.Last().Offense == match.HomeTeam : match.GameSituations.Last().Offense == match.HomeTeam;
 
-            firstInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb1stInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb1stInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            secondInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb2ndInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb2ndInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            thirdInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb3rdInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb3rdInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            fourthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb4thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb4thInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            fifthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb5thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb5thInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            sixthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb6thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb6thInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            seventhInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb7thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb7thInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            eigthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb8thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb8thInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            ninthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb9thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb9thInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            extraInnings.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb10thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb10thInning.Text) && DisplayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            firstInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb1stInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb1stInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            secondInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb2ndInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb2ndInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            thirdInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb3rdInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb3rdInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            fourthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb4thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb4thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            fifthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb5thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb5thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            sixthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb6thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb6thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            seventhInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb7thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb7thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            eigthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb8thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb8thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            ninthInning.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb9thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb9thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            extraInnings.ForeColor = match.GameSituations.Last().InningNumber > int.Parse(lb10thInning.Text) || match.GameSituations.Last().InningNumber == int.Parse(lb10thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
 
             Runs.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation).Sum(atBat => atBat.RBI).ToString();
             Hits.Text = match.AtBats.Count(atBat => atBat.Offense == team.TeamAbbreviation && atBat.AtBatType is AtBatType.Single or AtBatType.Double or AtBatType.Triple or AtBatType.HomeRun).ToString();
@@ -122,9 +122,10 @@ namespace VKR.PL.NET5
 
             if (awayTeam.PitchersPlayedInMatch.Count == 1)
             {
+                results[0].MatchResultId = awayTeam.TeamAbbreviation == winningTeam.TeamAbbreviation ? PitcherResultEnum.Win : PitcherResultEnum.Loss;
+
                 if (awayTeam.TeamAbbreviation == winningTeam.TeamAbbreviation)
                 {
-                    results[0].MatchResultId = results[0].IsCompleteGame ? PitcherResultEnum.Win : PitcherResultEnum.NoDecision;
                     WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].PitchingStats.Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].PitchingStats.Losses})";
                     WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
                     PitcherWithSave.Text = "-";
@@ -132,7 +133,6 @@ namespace VKR.PL.NET5
                 }
                 else
                 {
-                    results[0].MatchResultId = results[0].IsCompleteGame ? PitcherResultEnum.Loss : PitcherResultEnum.NoDecision;
                     LosingPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].PitchingStats.Wins} - {awayTeam.PitchersPlayedInMatch[0].PitchingStats.Losses + 1})";
                     LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
                 }
@@ -180,7 +180,8 @@ namespace VKR.PL.NET5
                     LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
 
                     for (var i = 0; i < awayTeam.PitchersPlayedInMatch.Count; i++)
-                        if (i != losingPitcherIndex) results[i].MatchResultId = PitcherResultEnum.NoDecision;
+                        if (i != losingPitcherIndex) 
+                            results[i].MatchResultId = PitcherResultEnum.NoDecision;
                 }
             }
             

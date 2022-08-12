@@ -37,9 +37,9 @@
 
         public Runner(Batter batter, Pitcher pitcher)
         {
-            RunnerId = batter.Id;
+            RunnerId = batter.BatterId;
             RunnerPosition = batter.PositionForThisMatch;
-            PitcherId = pitcher.Id;
+            PitcherId = pitcher.PitcherId;
             IsBaseNotEmpty = true;
         }
     }
