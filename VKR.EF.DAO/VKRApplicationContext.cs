@@ -75,6 +75,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PitcherResultsTypeEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RegionEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.MatchResultEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamRatingEntityMap());
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());

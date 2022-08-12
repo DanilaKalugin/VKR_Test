@@ -10,8 +10,8 @@ using VKR.EF.DAO;
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    [Migration("20220810075459_UpdatedViewTotalRunsForEachMatch")]
-    partial class FixedViewTotalRunsForEachMatch
+    [Migration("20220811101439_Added-Entity-TeamRating")]
+    partial class AddedEntityTeamRating
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1091,6 +1091,20 @@ namespace VKR.EF.DAO.Migrations
                     b.ToTable("Regions");
                 });
 
+            modelBuilder.Entity("VKR.EF.Entities.RunsByTeam", b =>
+                {
+                    b.Property<int>("RunsAllowed")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RunsScored")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamAbbreviation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToView("RunsScoredAndAllowedForEveryMatch");
+                });
+
             modelBuilder.Entity("VKR.EF.Entities.Stadium", b =>
                 {
                     b.Property<short>("StadiumId")
@@ -1543,6 +1557,113 @@ namespace VKR.EF.DAO.Migrations
                     b.ToView("TeamPitchingStatsByYearAndMatchType");
                 });
 
+            modelBuilder.Entity("VKR.EF.Entities.TeamRating", b =>
+                {
+                    b.Property<string>("TeamAbbreviation")
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<byte>("DoublePlayProbability")
+                        .HasColumnType("tinyint");
+
+                    b.Property<short>("DoubleProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("FlyoutOnHomeRunProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("FlyoutProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("FoulProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("GroundoutProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<int>("HitByPitchProbability")
+                        .HasColumnType("int");
+
+                    b.Property<short>("HittingProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("HomeRunProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("PopoutOnFoulProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<byte>("SacrificeFlyProbability")
+                        .HasColumnType("tinyint");
+
+                    b.Property<short>("SingleProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("StealingBaseProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<int>("StrikeZoneProbability")
+                        .HasColumnType("int");
+
+                    b.Property<short>("SuccessfulBuntAttemptProbability")
+                        .HasColumnType("smallint");
+
+                    b.Property<byte>("SuccessfulStealingBaseAttemptProbability")
+                        .HasColumnType("tinyint")
+                        .HasColumnName("StealingBaseSuccessfulAttemptProbability");
+
+                    b.Property<byte>("SwingInStrikeZoneProbability")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("SwingOutsideStrikeZoneProbability")
+                        .HasColumnType("tinyint");
+
+                    b.Property<short>("TripleProbability")
+                        .HasColumnType("smallint");
+
+                    b.HasKey("TeamAbbreviation");
+
+                    b.ToTable("TeamRating");
+
+                    b.HasCheckConstraint("StrikeZoneProbability1", "StrikeZoneProbability BETWEEN 1 AND 3000");
+
+                    b.HasCheckConstraint("HitByPitchProbability1", "HitByPitchProbability BETWEEN 1 AND 3000");
+
+                    b.HasCheckConstraint("SwingInStrikeZoneProbability1", "SwingInStrikeZoneProbability BETWEEN 1 AND 100");
+
+                    b.HasCheckConstraint("SwingOutsideStrikeZoneProbability1", "SwingOutsideStrikeZoneProbability BETWEEN 1 AND 100");
+
+                    b.HasCheckConstraint("HittingProbability1", "HittingProbability BETWEEN 1 AND 2000");
+
+                    b.HasCheckConstraint("FoulProbability1", "FoulProbability BETWEEN 1 AND 2000");
+
+                    b.HasCheckConstraint("SingleProbability1", "SingleProbability BETWEEN 1 AND 2000");
+
+                    b.HasCheckConstraint("DoubleProbability1", "DoubleProbability BETWEEN 1 AND 2000");
+
+                    b.HasCheckConstraint("HomeRunProbability1", "HomeRunProbability BETWEEN 1 AND 2000");
+
+                    b.HasCheckConstraint("TripleProbability1", "TripleProbability BETWEEN 1 AND 2000");
+
+                    b.HasCheckConstraint("PopoutOnFoulProbability1", "PopoutOnFoulProbability BETWEEN 1 AND 1000");
+
+                    b.HasCheckConstraint("FlyoutOnHomeRunProbability1", "FlyoutOnHomeRunProbability BETWEEN 1 AND 1000");
+
+                    b.HasCheckConstraint("GroundoutProbability1", "GroundoutProbability BETWEEN 1 AND 1000");
+
+                    b.HasCheckConstraint("FlyoutProbability1", "FlyoutProbability BETWEEN 1 AND 1000");
+
+                    b.HasCheckConstraint("DoublePlayProbability1", "DoublePlayProbability BETWEEN 1 AND 100");
+
+                    b.HasCheckConstraint("SacrificeFlyProbability1", "SacrificeFlyProbability BETWEEN 1 AND 100");
+
+                    b.HasCheckConstraint("StealingBaseProbability1", "StealingBaseProbability BETWEEN 1 AND 1000");
+
+                    b.HasCheckConstraint("StealingBaseSuccessfulAttemptProbability1", "StealingBaseSuccessfulAttemptProbability BETWEEN 1 AND 100");
+
+                    b.HasCheckConstraint("SuccessfulBuntAttemptProbability1", "SuccessfulBuntAttemptProbability BETWEEN 1 AND 1000");
+                });
+
             modelBuilder.Entity("VKR.EF.Entities.TeamStadiumForTypeOfMatch", b =>
                 {
                     b.Property<string>("TeamAbbreviation")
@@ -1611,20 +1732,6 @@ namespace VKR.EF.DAO.Migrations
                             Id = (byte)3,
                             Description = "SpringTraining"
                         });
-                });
-
-            modelBuilder.Entity("VKR.EF.Entities.Views.RunsByTeam", b =>
-                {
-                    b.Property<int>("RunsAllowed")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RunsScored")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TeamAbbreviation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToView("RunsScoredAndAllowedForEveryMatch");
                 });
 
             modelBuilder.Entity("PlayerPlayerPosition", b =>
@@ -1995,6 +2102,17 @@ namespace VKR.EF.DAO.Migrations
                     b.Navigation("Team");
                 });
 
+            modelBuilder.Entity("VKR.EF.Entities.TeamRating", b =>
+                {
+                    b.HasOne("VKR.EF.Entities.Team", "Team")
+                        .WithOne("TeamRating")
+                        .HasForeignKey("VKR.EF.Entities.TeamRating", "TeamAbbreviation")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
+                });
+
             modelBuilder.Entity("VKR.EF.Entities.TeamStadiumForTypeOfMatch", b =>
                 {
                     b.HasOne("VKR.EF.Entities.Stadium", "Stadium")
@@ -2150,6 +2268,8 @@ namespace VKR.EF.DAO.Migrations
                     b.Navigation("StadiumsForMatchTypes");
 
                     b.Navigation("TeamColors");
+
+                    b.Navigation("TeamRating");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.TypeOfMatch", b =>

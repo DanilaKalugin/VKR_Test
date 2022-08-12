@@ -21,13 +21,13 @@ namespace VKR.BLL.NET5
         public List<Team> GetTeamsWithWLBalance(int season, TypeOfMatchEnum matchType)
         {
             var teams = _teamsEF.GetTeamsWithWLBalance(season, matchType).OrderBy(t => t.TeamName).ToList();
-            var maxOffensiveRating = teams.Select(team => team.OffensiveRating()).Max();
-            var maxDefensiveRating = teams.Select(team => team.DefensiveRating()).Max();
+            var maxOffensiveRating = teams.Select(team => team.TeamRating.OffensiveRating).Max();
+            var maxDefensiveRating = teams.Select(team => team.TeamRating.DefensiveRating).Max();
 
             foreach (var team in teams)
             {
-                team.NormalizedOffensiveRating = (int)(team.OffensiveRating() / maxOffensiveRating * 99);
-                team.NormalizedDefensiveRating = (int)(team.DefensiveRating() / maxDefensiveRating * 99);
+                team.TeamRating.NormalizedOffensiveRating = (int)(team.TeamRating.OffensiveRating / maxOffensiveRating * 99);
+                team.TeamRating.NormalizedDefensiveRating = (int)(team.TeamRating.DefensiveRating / maxDefensiveRating * 99);
             }
 
             return teams.ToList();

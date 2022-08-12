@@ -107,12 +107,12 @@ namespace VKR.EF.Entities.RandomGenerators
                 else numberOfPitches += numberOfPitches - pitcherCoefficient;
             }
 
-            _newPitchGettingIntoStrikeZoneResult = GettingIntoStrikeZoneDefinition(defense.StrikeZoneProbability, defense.HitByPitchProbability, numberOfPitches, pitcherCoefficient, situation);
-            _newPitchSwingResult = SwingDefinition(_newPitchGettingIntoStrikeZoneResult, offense.SwingInStrikeZoneProbability, offense.SwingOutsideStrikeZoneProbability, situation);
-            _newPitchHitting = HittingDefinition(_newPitchSwingResult, offense.HittingProbability, batterNumberComponent, pitcherCoefficient, numberOfPitches, situation, handsCoefficient);
-            _newPitchHitType = HitTypeDefinition(_newPitchHitting, offense.SingleProbability, offense.DoubleProbability, offense.HomeRunProbability, offense.TripleProbability, batterNumberComponent, numberOfPitches, stadiumCoefficient, countOfNotEmptyBases, situation, currentBatter);
-            _newPitchOutType = OutTypeDefinition(_newPitchHitType, situation, defense.PopoutOnFoulProbability, defense.FlyoutOnHomeRunProbability, defense.GroundoutProbability, defense.FlyoutProbability);
-            _newPitchOtherCondition = OtherConditionDefinition(_newPitchOutType, situation, defense.SacrificeFlyProbability, defense.DoublePlayProbability, countOfNotEmptyBases);
+            _newPitchGettingIntoStrikeZoneResult = GettingIntoStrikeZoneDefinition(defense.TeamRating.StrikeZoneProbability, defense.TeamRating.HitByPitchProbability, numberOfPitches, pitcherCoefficient, situation);
+            _newPitchSwingResult = SwingDefinition(_newPitchGettingIntoStrikeZoneResult, offense.TeamRating.SwingInStrikeZoneProbability, offense.TeamRating.SwingOutsideStrikeZoneProbability, situation);
+            _newPitchHitting = HittingDefinition(_newPitchSwingResult, offense.TeamRating.HittingProbability, batterNumberComponent, pitcherCoefficient, numberOfPitches, situation, handsCoefficient);
+            _newPitchHitType = HitTypeDefinition(_newPitchHitting, offense.TeamRating.SingleProbability, offense.TeamRating.DoubleProbability, offense.TeamRating.HomeRunProbability, offense.TeamRating.TripleProbability, batterNumberComponent, numberOfPitches, stadiumCoefficient, countOfNotEmptyBases, situation, currentBatter);
+            _newPitchOutType = OutTypeDefinition(_newPitchHitType, situation, defense.TeamRating.PopoutOnFoulProbability, defense.TeamRating.FlyoutOnHomeRunProbability, defense.TeamRating.GroundoutProbability, defense.TeamRating.FlyoutProbability);
+            _newPitchOtherCondition = OtherConditionDefinition(_newPitchOutType, situation, defense.TeamRating.SacrificeFlyProbability, defense.TeamRating.DoublePlayProbability, countOfNotEmptyBases);
             NewPitchResult = PitchResultDefinition(_newPitchGettingIntoStrikeZoneResult, _newPitchSwingResult, _newPitchHitting, _newPitchHitType, _newPitchOutType, _newPitchOtherCondition);
             return new Pitch(NewPitchResult);
         }

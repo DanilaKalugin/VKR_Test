@@ -68,9 +68,9 @@ namespace VKR.PL.NET5
             teamColorNumber = 0;
             teamColorsForMatch.Value = 0;
 
-            RatingChanged(overall, _teams[teamNumber].OverallRating, _teams[teamNumber].TeamColors[teamColorNumber].Color);
-            RatingChanged(defense, _teams[teamNumber].NormalizedDefensiveRating, _teams[teamNumber].TeamColors[teamColorNumber].Color);
-            RatingChanged(offense, _teams[teamNumber].NormalizedOffensiveRating, _teams[teamNumber].TeamColors[teamColorNumber].Color);
+            RatingChanged(overall, _teams[teamNumber].TeamRating.OverallRating, _teams[teamNumber].TeamColors[0].Color);
+            RatingChanged(defense, _teams[teamNumber].TeamRating.NormalizedDefensiveRating, _teams[teamNumber].TeamColors[0].Color);
+            RatingChanged(offense, _teams[teamNumber].TeamRating.NormalizedOffensiveRating, _teams[teamNumber].TeamColors[0].Color);
             CurrentTeamColorChanged(teamNumber, teamColorNumber, teamCity, teamTitle, teamColorHeader, increaseNumber, decreaseNumber);
         }
 

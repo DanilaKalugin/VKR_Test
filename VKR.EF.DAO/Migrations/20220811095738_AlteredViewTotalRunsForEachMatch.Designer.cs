@@ -10,8 +10,8 @@ using VKR.EF.DAO;
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    [Migration("20220810075459_UpdatedViewTotalRunsForEachMatch")]
-    partial class FixedViewTotalRunsForEachMatch
+    [Migration("20220811095738_AlteredViewTotalRunsForEachMatch")]
+    partial class AlteredViewTotalRunsForEachMatch
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1091,6 +1091,20 @@ namespace VKR.EF.DAO.Migrations
                     b.ToTable("Regions");
                 });
 
+            modelBuilder.Entity("VKR.EF.Entities.RunsByTeam", b =>
+                {
+                    b.Property<int>("RunsAllowed")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RunsScored")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamAbbreviation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToView("RunsScoredAndAllowedForEveryMatch");
+                });
+
             modelBuilder.Entity("VKR.EF.Entities.Stadium", b =>
                 {
                     b.Property<short>("StadiumId")
@@ -1611,20 +1625,6 @@ namespace VKR.EF.DAO.Migrations
                             Id = (byte)3,
                             Description = "SpringTraining"
                         });
-                });
-
-            modelBuilder.Entity("VKR.EF.Entities.Views.RunsByTeam", b =>
-                {
-                    b.Property<int>("RunsAllowed")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RunsScored")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TeamAbbreviation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToView("RunsScoredAndAllowedForEveryMatch");
                 });
 
             modelBuilder.Entity("PlayerPlayerPosition", b =>

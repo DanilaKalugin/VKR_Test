@@ -41,8 +41,8 @@ namespace VKR.EF.Entities.RandomGenerators
             var batterNumberComponent = 5 - Math.Abs(offense == match.AwayTeam ? situation.NumberOfBatterFromAwayTeam - 3 : situation.NumberOfBatterFromHomeTeam - 3);
             var countOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty) * 2 + Convert.ToInt32(situation.RunnerOnThird.IsBaseNotEmpty) * 3;
 
-            _newBuntResult = BuntResultDefinition(situation, offense.SuccessfulBuntAttemptProbability, defense.StrikeZoneProbability, defense.HitByPitchProbability, batterNumberComponent);
-            _newBuntOtherConditions = OtherCondition_Definition(_newBuntResult, situation, defense.DoublePlayProbability, countOfNotEmptyBases);
+            _newBuntResult = BuntResultDefinition(situation, offense.TeamRating.SuccessfulBuntAttemptProbability, defense.TeamRating.StrikeZoneProbability, defense.TeamRating.HitByPitchProbability, batterNumberComponent);
+            _newBuntOtherConditions = OtherCondition_Definition(_newBuntResult, situation, defense.TeamRating.DoublePlayProbability, countOfNotEmptyBases);
             NewPitchResult = PitchResultDefinition(_newBuntResult, _newBuntOtherConditions);
             return new Pitch(NewPitchResult);
         }

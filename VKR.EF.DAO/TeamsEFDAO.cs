@@ -32,7 +32,8 @@ namespace VKR.EF.DAO
         {
             using var db = new VKRApplicationContext();
 
-            var f = db.Teams.Include(t => t.TeamColors)
+            var f = db.Teams.Include(t => t.TeamRating)
+                .Include(t => t.TeamColors)
                 .Include(t => t.Manager)
                 .Include(t => t.Division)
                 .ThenInclude(d => d.League).ToList();

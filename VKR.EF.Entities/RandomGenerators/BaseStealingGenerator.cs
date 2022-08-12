@@ -31,14 +31,14 @@ namespace VKR.EF.Entities.RandomGenerators
 
             var runnerPositionInDefense = stealingType switch
             {
-                StealingType.OnlySecondBase => offense.BattingLineup.First(player => player.Id == situation.RunnerOnFirst.RunnerId).PositionForThisMatch,
-                StealingType.SecondBaseAfterThird => offense.BattingLineup.First(player => player.Id == situation.RunnerOnFirst.RunnerId).PositionForThisMatch,
-                StealingType.OnlyThirdBase => offense.BattingLineup.First(player => player.Id == situation.RunnerOnSecond.RunnerId).PositionForThisMatch,
-                StealingType.ThirdBaseBeforeSecond => offense.BattingLineup.First(player => player.Id == situation.RunnerOnSecond.RunnerId).PositionForThisMatch,
+                StealingType.OnlySecondBase => offense.BattingLineup.First(player => player.BatterId == situation.RunnerOnFirst.RunnerId).PositionForThisMatch,
+                StealingType.SecondBaseAfterThird => offense.BattingLineup.First(player => player.BatterId == situation.RunnerOnFirst.RunnerId).PositionForThisMatch,
+                StealingType.OnlyThirdBase => offense.BattingLineup.First(player => player.BatterId == situation.RunnerOnSecond.RunnerId).PositionForThisMatch,
+                StealingType.ThirdBaseBeforeSecond => offense.BattingLineup.First(player => player.BatterId == situation.RunnerOnSecond.RunnerId).PositionForThisMatch,
                 _ => ""
             };
 
-            NewStealingAttemptResult = StealingAttemptResultDefinition(offense.SuccessfulStealingBaseAttemptProbability, runnerPositionInDefense, stealingType);
+            NewStealingAttemptResult = StealingAttemptResultDefinition(offense.TeamRating.SuccessfulStealingBaseAttemptProbability, runnerPositionInDefense, stealingType);
             _stealingResult = PitchResult_Definition(NewStealingAttemptResult);
             return new Pitch(_stealingResult);
         }
@@ -89,7 +89,7 @@ namespace VKR.EF.Entities.RandomGenerators
             var stealingAttemptRandomValue = _stealingAttemptRandomGenerator.Next(1, 1000);
             var offense = situation.Offense;
             var batterNumberComponent = 5 - Math.Abs(offense == awayTeam ? situation.NumberOfBatterFromAwayTeam - 3 : situation.NumberOfBatterFromHomeTeam - 3);
-            var correctedStealingBaseProbability = offense.StealingBaseProbability + batterNumberComponent * 2 + situation.Balls * 10 - situation.Strikes * 15 - situation.Strikes * 5;
+            var correctedStealingBaseProbability = offense.TeamRating.StealingBaseProbability + batterNumberComponent * 2 + situation.Balls * 10 - situation.Strikes * 15 - situation.Strikes * 5;
 
             if (baseNumber == BaseNumberForStealing.Third) correctedStealingBaseProbability /= 2;
 
