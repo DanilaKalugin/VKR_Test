@@ -9,7 +9,7 @@ namespace VKR.BLL.NET5
     {
         public enum TableType { Results, Schedule }
 
-        private readonly MatchScheduleEFDAO _scheduleDao;
+        private readonly MatchScheduleEFDAO _scheduleDao = new();
 
         public List<MatchScheduleViewModel> GetSchedule() => _scheduleDao.GetScheduleForAllMatches().ToList();
 
