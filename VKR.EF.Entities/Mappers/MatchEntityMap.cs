@@ -48,6 +48,12 @@ namespace VKR.EF.Entities.Mappers
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
+            builder.HasOne(m => m.Season)
+                .WithMany(s => s.Matches)
+                .HasForeignKey(m => m.SeasonId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
             builder.Property(m => m.Id)
                 .HasColumnName("MatchID");
 
@@ -62,6 +68,9 @@ namespace VKR.EF.Entities.Mappers
 
             builder.Property(m => m.MatchTypeId)
                 .HasColumnName("MatchType");
+
+            builder.Property(m => m.SeasonId)
+                .HasColumnName("Season");
         }
     }
 }

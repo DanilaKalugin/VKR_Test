@@ -31,11 +31,13 @@ namespace VKR.EF.DAO
         public DbSet<PitcherResults> PitcherResults { get; set; }
         public DbSet<ActiveMatchResult> ActiveMatchResults { get; set; }
         public DbSet<TeamColor> TeamColors { get; set; }
+        public DbSet<Season> Seasons { get; set; }
+        public DbSet<LeagueSeason> LeagueSeasons { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = GetConnectionString();
-            optionsBuilder.UseSqlServer(connectionString);
+            //var connectionString = GetConnectionString();
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
         }
 
         public static string GetConnectionString()
@@ -76,6 +78,8 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RegionEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.MatchResultEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamRatingEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.SeasonEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.LeagueSeasonEntityMap());
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());

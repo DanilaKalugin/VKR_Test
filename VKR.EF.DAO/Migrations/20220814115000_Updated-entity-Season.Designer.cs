@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220814115000_Updated-entity-Season")]
+    partial class UpdatedentitySeason
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -363,33 +365,6 @@ namespace VKR.EF.DAO.Migrations
                     b.HasKey("LeagueId");
 
                     b.ToTable("Leagues");
-                });
-
-            modelBuilder.Entity("VKR.EF.Entities.LeagueSeason", b =>
-                {
-                    b.Property<int>("SeasonId")
-                        .HasColumnType("int")
-                        .HasColumnName("Season");
-
-                    b.Property<byte>("MatchTypeId")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("MatchType");
-
-                    b.Property<DateTime>("SeasonEnd")
-                        .HasColumnType("date");
-
-                    b.Property<DateTime>("SeasonStart")
-                        .HasColumnType("date");
-
-                    b.HasKey("SeasonId", "MatchTypeId");
-
-                    b.HasIndex("MatchTypeId");
-
-                    b.ToTable("LeagueSeasons");
-
-                    b.HasCheckConstraint("SeasonStart", "YEAR(SeasonStart) = Season");
-
-                    b.HasCheckConstraint("SeasonEnd", "YEAR(SeasonEnd) = Season");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.LineupForMatch", b =>
@@ -1759,25 +1734,6 @@ namespace VKR.EF.DAO.Migrations
                     b.Navigation("League");
                 });
 
-            modelBuilder.Entity("VKR.EF.Entities.LeagueSeason", b =>
-                {
-                    b.HasOne("VKR.EF.Entities.TypeOfMatch", "MatchType")
-                        .WithMany("LeagueSeasons")
-                        .HasForeignKey("MatchTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VKR.EF.Entities.Season", "Season")
-                        .WithMany("LeagueSeasons")
-                        .HasForeignKey("SeasonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MatchType");
-
-                    b.Navigation("Season");
-                });
-
             modelBuilder.Entity("VKR.EF.Entities.LineupForMatch", b =>
                 {
                     b.HasOne("VKR.EF.Entities.Match", "Match")
@@ -2232,8 +2188,6 @@ namespace VKR.EF.DAO.Migrations
 
             modelBuilder.Entity("VKR.EF.Entities.Season", b =>
                 {
-                    b.Navigation("LeagueSeasons");
-
                     b.Navigation("Matches");
 
                     b.Navigation("NextMatches");
@@ -2271,8 +2225,6 @@ namespace VKR.EF.DAO.Migrations
 
             modelBuilder.Entity("VKR.EF.Entities.TypeOfMatch", b =>
                 {
-                    b.Navigation("LeagueSeasons");
-
                     b.Navigation("MatchesOfThisType");
 
                     b.Navigation("NextMatchesOfThisType");

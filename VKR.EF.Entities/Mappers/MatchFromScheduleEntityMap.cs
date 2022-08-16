@@ -46,6 +46,15 @@ namespace VKR.EF.Entities.Mappers
 
             builder.Property(nm => nm.IsPlayed)
                 .IsRequired();
+
+            builder.HasOne(m => m.Season)
+                .WithMany(s => s.NextMatches)
+                .HasForeignKey(m => m.SeasonId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            builder.Property(m => m.SeasonId)
+                .HasColumnName("Season");
         }
     }
 }

@@ -12,5 +12,7 @@ namespace VKR.EF.Entities
         public DateTime MatchDate { get; set; }
         public TypeOfMatch MatchType { get; set; }
         public TypeOfMatchEnum MatchTypeId { get; set; }
+        public Season Season { get; set; }
+        public int SeasonId { get; set; }
     }
 }

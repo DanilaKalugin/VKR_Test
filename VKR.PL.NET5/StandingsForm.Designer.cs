@@ -63,7 +63,7 @@ namespace VKR.PL.NET5
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpStandingsDate = new System.Windows.Forms.DateTimePicker();
-            this.btnChangeDate = new System.Windows.Forms.Button();
+            this.cbSeasons = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStandings)).BeginInit();
             this.SuspendLayout();
             // 
@@ -313,21 +313,23 @@ namespace VKR.PL.NET5
             this.dtpStandingsDate.Size = new System.Drawing.Size(208, 27);
             this.dtpStandingsDate.TabIndex = 5;
             this.dtpStandingsDate.Value = new System.DateTime(2021, 4, 12, 0, 0, 0, 0);
+            this.dtpStandingsDate.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // btnChangeDate
+            // cbSeasons
             // 
-            this.btnChangeDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChangeDate.FlatAppearance.BorderSize = 0;
-            this.btnChangeDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeDate.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnChangeDate.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnChangeDate.Location = new System.Drawing.Point(641, 12);
-            this.btnChangeDate.Name = "btnChangeDate";
-            this.btnChangeDate.Size = new System.Drawing.Size(147, 23);
-            this.btnChangeDate.TabIndex = 6;
-            this.btnChangeDate.Text = "CHANGE";
-            this.btnChangeDate.UseVisualStyleBackColor = true;
-            this.btnChangeDate.Click += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.cbSeasons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSeasons.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSeasons.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cbSeasons.Items.AddRange(new object[] {
+            "MLB",
+            "League",
+            "Division",
+            "Wild card"});
+            this.cbSeasons.Location = new System.Drawing.Point(667, 9);
+            this.cbSeasons.Name = "cbSeasons";
+            this.cbSeasons.Size = new System.Drawing.Size(121, 27);
+            this.cbSeasons.TabIndex = 6;
+            this.cbSeasons.SelectedIndexChanged += new System.EventHandler(this.cbSeasons_SelectedIndexChanged);
             // 
             // StandingsForm
             // 
@@ -335,7 +337,7 @@ namespace VKR.PL.NET5
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(800, 1061);
-            this.Controls.Add(this.btnChangeDate);
+            this.Controls.Add(this.cbSeasons);
             this.Controls.Add(this.dtpStandingsDate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbFilter);
@@ -359,7 +361,6 @@ namespace VKR.PL.NET5
         private ComboBox cbFilter;
         private Label label2;
         private DateTimePicker dtpStandingsDate;
-        private Button btnChangeDate;
         private DataGridViewTextBoxColumn TeamColor;
         private DataGridViewTextBoxColumn TeamName;
         private DataGridViewTextBoxColumn TeamWins;
@@ -372,5 +373,6 @@ namespace VKR.PL.NET5
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
+        private ComboBox cbSeasons;
     }
 }

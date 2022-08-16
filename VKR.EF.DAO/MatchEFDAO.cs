@@ -11,7 +11,8 @@ namespace VKR.EF.DAO
         public DateTime GetDateForNextMatch(TypeOfMatchEnum matchType)
         {
             using var db = new VKRApplicationContext();
-            return db.NextMatches.Where(match => match.MatchTypeId == matchType && !match.IsPlayed).Min(match => match.MatchDate);
+            return db.NextMatches.Where(match => match.MatchTypeId == matchType && !match.IsPlayed)
+                .Min(match => match.MatchDate);
         }
 
         public IEnumerable<MatchFromSchedule> GetRemainingScheduleForThisDay(DateTime date, TypeOfMatchEnum matchType)
@@ -53,7 +54,8 @@ namespace VKR.EF.DAO
                 MatchLength = match.MatchLength,
                 MatchTypeId = match.MatchTypeId,
                 MatchDate = match.MatchDate,
-                StadiumId = match.Stadium.StadiumId
+                StadiumId = match.Stadium.StadiumId,
+                SeasonId = match.MatchDate.Year
             };
             db.Matches.Add(newMatch);
             db.SaveChanges();
@@ -69,7 +71,7 @@ namespace VKR.EF.DAO
             var thisMatch = db.NextMatches.FirstOrDefault(_match =>
                 _match.HomeTeamAbbreviation == newMatch.HomeTeamAbbreviation &&
                 _match.AwayTeamAbbreviation == newMatch.AwayTeamAbbreviation &&
-                _match.MatchDate == match.MatchDate);
+                _match.MatchDate == match.MatchDate && !_match.IsPlayed);
 
             if (thisMatch != null) thisMatch.IsPlayed = true;
             db.NextMatches.Update(thisMatch);
@@ -171,7 +173,7 @@ namespace VKR.EF.DAO
             db.Matches.Update(matchDb);
             db.SaveChanges();
 
-            var MatchRes = new MatchResult
+            var matchRes = new MatchResult
             {
                 MatchId = match.Id,
                 MatchWinnerId = match.GameSituations.Last().AwayTeamRuns > match.GameSituations.Last().HomeTeamRuns
@@ -185,7 +187,7 @@ namespace VKR.EF.DAO
                 HomeTeamRuns = match.GameSituations.Last().HomeTeamRuns
             };
 
-            db.MatchResults.Add(MatchRes);
+            db.MatchResults.Add(matchRes);
             db.SaveChanges();
         }
 

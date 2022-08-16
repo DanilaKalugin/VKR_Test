@@ -15,6 +15,8 @@ namespace VKR.PL.NET5
         private readonly MatchBL _matchBL = new();
         private readonly StandingsBL _standingsBl = new();
         private readonly PrimaryTeamColorBL _primaryColorBl = new();
+        private readonly SeasonBL _seasonBL = new();
+
         private readonly Team? _homeTeam;
         private readonly Team? _awayTeam;
         private readonly List<TeamColor> _teamsColors;
@@ -29,7 +31,8 @@ namespace VKR.PL.NET5
         {
             InitializeComponent();
             _teamsColors = _primaryColorBl.GetPrimaryTeamColors();
-            dtpStandingsDate.Value = _matchBL.GetMaxDateForAllMatches();
+            cbSeasons.DataSource = _seasonBL.GetAllSeasons();
+            cbSeasons.DisplayMember = "Year";
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter.SelectedIndex);
@@ -125,5 +128,23 @@ namespace VKR.PL.NET5
         }
 
         private void StandingsForm_Load(object sender, EventArgs e) => cbFilter.Text = "MLB";
+
+        private void cbSeasons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbSeasons.Items.Count == 0) return; 
+
+            var year = cbSeasons.SelectedItem is Season season ? season.Year : 0;
+
+            var seasonInfo = _seasonBL.GetLeagueSeasonInfo(year);
+
+            if (seasonInfo.SeasonEnd < dtpStandingsDate.MinDate)
+            {
+                dtpStandingsDate.MinDate = seasonInfo.SeasonStart;
+                dtpStandingsDate.MaxDate = seasonInfo.SeasonEnd;
+            }
+
+            dtpStandingsDate.MaxDate = seasonInfo.SeasonEnd;
+            dtpStandingsDate.MinDate = seasonInfo.SeasonStart;
+        }
     }
 }
