@@ -80,7 +80,7 @@ namespace VKR.EF.Entities
             else
             {
                 BatterId = currentMatch.HomeTeam.BattingLineup[currentMatch.GameSituations.Last().NumberOfBatterFromHomeTeam - 1].BatterId;
-                PitcherId = currentMatch.AwayTeam.CurrentPitcher.Id;
+                PitcherId = currentMatch.AwayTeam.CurrentPitcher.PitcherId;
             }
 
             Outs = (byte)OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
@@ -118,12 +118,12 @@ namespace VKR.EF.Entities
             if (currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam)
             {
                 BatterId = runnerId;
-                PitcherId = currentMatch.HomeTeam.CurrentPitcher.Id;
+                PitcherId = currentMatch.HomeTeam.CurrentPitcher.PitcherId;
             }
             else
             {
                 BatterId = runnerId;
-                PitcherId = currentMatch.AwayTeam.CurrentPitcher.Id;
+                PitcherId = currentMatch.AwayTeam.CurrentPitcher.PitcherId;
             }
 
             Outs = (byte)OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
