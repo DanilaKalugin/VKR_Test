@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Windows.Forms;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
 using ProgressBar = ExtendedDotNET.Controls.Progress.ProgressBar;
 
@@ -33,9 +32,9 @@ namespace VKR.PL.NET5
             _pitchers = pitchers;
 
             vScrollBar1.Maximum = pitchers.Count > 5 ? pitchers.Count - 5 : 0;
-            lbTeamTitle.Text = defense.TeamTitle.ToUpper();
+            lbTeamTitle.Text = defense.TeamName.ToUpper();
             lbTeamTitle.ForeColor = defense.TeamColorForThisMatch;
-            Text = $"New pitcher for {defense.TeamTitle}";
+            Text = $"New pitcher for {defense.TeamName}";
             lbHeader.Text = "BULLPEN";
 
             foreach (Control c in tableLayoutPanel1.Controls)
@@ -60,7 +59,7 @@ namespace VKR.PL.NET5
             foreach (var pb in _progressBars) 
                 pb.MainColor = _currentTeam.TeamColorForThisMatch;
 
-            panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{_currentTeam.TeamAbbreviation}.png");
+            panelTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogosForSubstitution/{_currentTeam.TeamAbbreviation}.png");
             PlayersChanging();
         }
 
@@ -69,9 +68,7 @@ namespace VKR.PL.NET5
         {
             if (_playerIndex + step < _pitchers.Count)
             {
-                if (File.Exists($"PlayerPhotos/Player{_pitchers[_playerIndex + step].Id:0000}.png"))
-                    pb.Image = Image.FromFile($"PlayerPhotos/Player{_pitchers[_playerIndex + step].Id:0000}.png");
-                else pb.Image = null;
+                pb.Image = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{_pitchers[_playerIndex + step].Id:0000}.png");
                 PlayerName.Text = _pitchers[_playerIndex + step].FullName;
                 playerERA.Text = $"{_pitchers[_playerIndex + step].PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"))}";
                 playerSO.Text = _pitchers[_playerIndex + step].PitchingStats.Strikeouts.ToString();

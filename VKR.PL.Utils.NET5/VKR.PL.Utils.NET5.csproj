@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VKR.Entities.NET5\VKR.Entities.NET5.csproj" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VKR.EF.Entities\VKR.EF.Entities.csproj" />
   </ItemGroup>
 
 </Project>

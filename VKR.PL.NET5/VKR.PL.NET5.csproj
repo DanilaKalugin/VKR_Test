@@ -5996,7 +5996,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VKR.BLL.NET5\VKR.BLL.NET5.csproj" />
-    <ProjectReference Include="..\VKR.Entities.NET5\VKR.Entities.NET5.csproj" />
     <ProjectReference Include="..\VKR.PL.Controls.NET5\VKR.PL.Controls.NET5.csproj" />
     <ProjectReference Include="..\VKR.PL.DBHelper\VKR.PL.DBHelper.csproj" />
     <ProjectReference Include="..\VKR.PL.Utils.NET5\VKR.PL.Utils.NET5.csproj" />

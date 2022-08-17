@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Windows.Forms;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
@@ -27,16 +26,15 @@ namespace VKR.PL.NET5
             InitializeComponent();
             _currentTeam = offense;
             _batters = batters;
-            lbTeamTitle.Text = offense.TeamTitle.ToUpper();
+            lbTeamTitle.Text = offense.TeamName.ToUpper();
             lbTeamTitle.ForeColor = offense.TeamColorForThisMatch;
-            Text = $"New batter for {offense.TeamTitle}";
+            Text = $"New batter for {offense.TeamName}";
             lbHeader.Text = "PINCH HITTER";
             dgvAvailablePlayers.Columns[2].HeaderText = "AVG";
             dgvAvailablePlayers.Columns[3].HeaderText = "HR";
             foreach (var batter in _batters)
             {
-                var imagePath = $"PlayerPhotosForSubstitution/Player{batter.Id:0000}.jpg";
-                var image = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
+                var image = ImageHelper.ShowImageIfExists($"PlayerPhotosForSubstitution/Player{batter.Id:0000}.jpg");
                 dgvAvailablePlayers.Rows.Add(image, batter.FullName,
                         $"{batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"))}",
                         $"{batter.BattingStats.HomeRuns}");

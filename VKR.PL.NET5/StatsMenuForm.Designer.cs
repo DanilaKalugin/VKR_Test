@@ -70,7 +70,7 @@ namespace VKR.PL.NET5
             this.btnCloseResultsMenu.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCloseResultsMenu.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnCloseResultsMenu.Location = new System.Drawing.Point(906, 286);
-            this.btnCloseResultsMenu.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnCloseResultsMenu.Margin = new System.Windows.Forms.Padding(6);
             this.btnCloseResultsMenu.Name = "btnCloseResultsMenu";
             this.btnCloseResultsMenu.Size = new System.Drawing.Size(132, 49);
             this.btnCloseResultsMenu.TabIndex = 16;
@@ -85,7 +85,7 @@ namespace VKR.PL.NET5
             this.btnTeamsStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeamsStats.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTeamsStats.Location = new System.Drawing.Point(502, 102);
-            this.btnTeamsStats.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnTeamsStats.Margin = new System.Windows.Forms.Padding(6);
             this.btnTeamsStats.Name = "btnTeamsStats";
             this.btnTeamsStats.Size = new System.Drawing.Size(250, 75);
             this.btnTeamsStats.TabIndex = 15;
@@ -101,7 +101,7 @@ namespace VKR.PL.NET5
             this.btnPlayersStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlayersStats.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnPlayersStats.Location = new System.Drawing.Point(502, 15);
-            this.btnPlayersStats.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnPlayersStats.Margin = new System.Windows.Forms.Padding(6);
             this.btnPlayersStats.Name = "btnPlayersStats";
             this.btnPlayersStats.Size = new System.Drawing.Size(250, 75);
             this.btnPlayersStats.TabIndex = 14;
@@ -115,7 +115,7 @@ namespace VKR.PL.NET5
             this.panel2.BackgroundImage = global::VKR.PL.NET5.Properties.Resources.Stats;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel2.Margin = new System.Windows.Forms.Padding(6);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(490, 350);
             this.panel2.TabIndex = 11;
@@ -126,9 +126,9 @@ namespace VKR.PL.NET5
             this.panel1.Controls.Add(this.dgvBattingLeaders);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1050, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(350, 139);
+            this.panel1.Size = new System.Drawing.Size(350, 150);
             this.panel1.TabIndex = 17;
             // 
             // dgvBattingLeaders
@@ -162,12 +162,12 @@ namespace VKR.PL.NET5
             this.dgvBattingLeaders.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvBattingLeaders.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvBattingLeaders.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvBattingLeaders.Location = new System.Drawing.Point(0, 26);
+            this.dgvBattingLeaders.Location = new System.Drawing.Point(0, 24);
             this.dgvBattingLeaders.Name = "dgvBattingLeaders";
             this.dgvBattingLeaders.ReadOnly = true;
             this.dgvBattingLeaders.RowHeadersVisible = false;
             this.dgvBattingLeaders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBattingLeaders.Size = new System.Drawing.Size(350, 113);
+            this.dgvBattingLeaders.Size = new System.Drawing.Size(350, 126);
             this.dgvBattingLeaders.TabIndex = 1;
             // 
             // Parameter
@@ -221,10 +221,10 @@ namespace VKR.PL.NET5
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.panel3.Controls.Add(this.dgvPitchingLeaders);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(1050, 211);
-            this.panel3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel3.Location = new System.Drawing.Point(1050, 195);
+            this.panel3.Margin = new System.Windows.Forms.Padding(6);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(350, 139);
+            this.panel3.Size = new System.Drawing.Size(350, 150);
             this.panel3.TabIndex = 18;
             // 
             // dgvPitchingLeaders
@@ -258,12 +258,12 @@ namespace VKR.PL.NET5
             this.dgvPitchingLeaders.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvPitchingLeaders.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvPitchingLeaders.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvPitchingLeaders.Location = new System.Drawing.Point(0, 26);
+            this.dgvPitchingLeaders.Location = new System.Drawing.Point(0, 24);
             this.dgvPitchingLeaders.Name = "dgvPitchingLeaders";
             this.dgvPitchingLeaders.ReadOnly = true;
             this.dgvPitchingLeaders.RowHeadersVisible = false;
             this.dgvPitchingLeaders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPitchingLeaders.Size = new System.Drawing.Size(350, 113);
+            this.dgvPitchingLeaders.Size = new System.Drawing.Size(350, 126);
             this.dgvPitchingLeaders.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1

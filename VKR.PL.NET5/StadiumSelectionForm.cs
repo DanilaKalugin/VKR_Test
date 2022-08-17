@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
+using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
 {
     public partial class StadiumSelectionForm : Form
     {
         private readonly StadiumsBL _stadiumsBL = new();
-        private readonly List<Stadium> _stadiums;
+        private readonly List<Stadium?> _stadiums;
         private int _stadiumNumber;
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
@@ -24,22 +23,20 @@ namespace VKR.PL.NET5
             InitializeComponent();
             NewMatch = match;
             _stadiums = _stadiumsBL.GetAllStadiums();
-            var homeTeamStadium = _stadiums.First(stadium => stadium.StadiumId == NewMatch.HomeTeam.Stadium);
-            _stadiumNumber = _stadiums.IndexOf(homeTeamStadium);
-            pbAwayTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{NewMatch.AwayTeam.TeamAbbreviation}.png");
-            pbHomeTeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{NewMatch.HomeTeam.TeamAbbreviation}.png");
+            var homeTeamStadium = _stadiumsBL.GetHomeStadiumForThisTeamAndTypeOfMatch(match.HomeTeam, match.MatchTypeId);
+            _stadiumNumber = _stadiums.IndexOf(_stadiums.FirstOrDefault(stadium => stadium?.StadiumId == homeTeamStadium.StadiumId));
+            pbAwayTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{NewMatch.AwayTeam.TeamAbbreviation}.png");
+            pbHomeTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{NewMatch.HomeTeam.TeamAbbreviation}.png");
         }
 
         public void DisplayCurrentStadium(int number)
         {
-            lbStadiumLocation.Text = _stadiums[number].StadiumLocation;
-            lbStadiumName.Text = _stadiums[number].StadiumTitle;
-            lbStadiumCapacity.Text = _stadiums[number].StadiumCapacity.ToString("N0", CultureInfo.InvariantCulture);
-            lbDistanceToCenterField.Text = _stadiums[number].StadiumDistanceToCenterfield + " ft";
+            lbStadiumLocation.Text = _stadiums[number]?.StadiumCity.CityLocation;
+            lbStadiumName.Text = _stadiums[number]?.StadiumTitle;
+            lbStadiumCapacity.Text = _stadiums[number]?.StadiumCapacity.ToString("N0", CultureInfo.InvariantCulture);
+            lbDistanceToCenterField.Text = _stadiums[number]?.StadiumDistanceToCenterfield + " ft";
 
-            var imagePath = $"Stadiums/Stadium{_stadiums[number].StadiumId:000}.jpg";
-            var image = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
-            pbStadiumPhoto.BackgroundImage = image;
+            pbStadiumPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Stadiums/Stadium{_stadiums[number]?.StadiumId:000}.jpg");
         }
 
         private void StadiumSelectionForm_Load(object sender, EventArgs e) => DisplayCurrentStadium(_stadiumNumber);

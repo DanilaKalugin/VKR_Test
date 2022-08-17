@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using VKR.Entities.NET5;
 using VKR.PL.Utils.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.NET5
 {
@@ -14,9 +13,9 @@ namespace VKR.PL.NET5
         public DefenseForm(Team team)
         {
             InitializeComponent();
-            Text = $@"{team.TeamCity} {team.TeamTitle}";
-            lbTeamTitle.Text = $@"{team.TeamTitle.ToUpper()} Defense".ToUpper();
-            teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            Text = $@"{team.TeamCity} {team.TeamName}";
+            lbTeamTitle.Text = $@"{team.TeamName.ToUpper()} Defense".ToUpper();
+            teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
             _defense = team;
         }
 

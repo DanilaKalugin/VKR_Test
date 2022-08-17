@@ -298,6 +298,7 @@ namespace VKR.PL.NET5
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main menu";
             this.Load += new System.EventHandler(this.MainMenuForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.MainMenuForm_VisibleChanged);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBirthDays)).EndInit();
             this.ResumeLayout(false);

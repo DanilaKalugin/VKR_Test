@@ -159,7 +159,6 @@ namespace VKR.PL.NET5
             this.lbHomeTitle.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
             this.lbHomeTitle.Size = new System.Drawing.Size(300, 22);
             this.lbHomeTitle.TabIndex = 10;
-            this.lbHomeTitle.Text = "label7";
             this.lbHomeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbHomeTitle.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
@@ -174,7 +173,6 @@ namespace VKR.PL.NET5
             this.lbHomeCity.Padding = new System.Windows.Forms.Padding(17, 0, 17, 0);
             this.lbHomeCity.Size = new System.Drawing.Size(300, 23);
             this.lbHomeCity.TabIndex = 9;
-            this.lbHomeCity.Text = "label8";
             this.lbHomeCity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbHomeCity.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
@@ -618,7 +616,7 @@ namespace VKR.PL.NET5
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
             this.dataGridView1.Location = new System.Drawing.Point(417, 33);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(6);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;

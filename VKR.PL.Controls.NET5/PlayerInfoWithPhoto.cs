@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
+using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.Controls.NET5
 {
@@ -18,10 +18,7 @@ namespace VKR.PL.Controls.NET5
 
         private void OnPlayerChanging(object? sender, PlayerChangedEventArgs e)
         {
-            var imagePath = $"PlayerPhotos/Player{e.PlayerInfo.Id:0000}.png";
-            var playerPhoto = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
-            
-            PlayerPhoto.BackgroundImage = playerPhoto;
+            PlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{e.PlayerInfo.Id:0000}.png");
 
             PlayerFirstName.Text = e.PlayerInfo.FirstName.ToUpper();
             PlayerSecondName.Text = e.PlayerInfo.SecondName.ToUpper();

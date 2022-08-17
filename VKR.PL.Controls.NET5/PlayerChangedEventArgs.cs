@@ -1,5 +1,5 @@
 ﻿using System;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.Controls.NET5
 {

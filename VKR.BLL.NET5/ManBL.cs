@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using VKR.DAL.NET5;
-using VKR.Entities.NET5;
+using System.Threading.Tasks;
+using VKR.EF.DAO;
+using VKR.EF.Entities;
 
 namespace VKR.BLL.NET5
 {
     public class ManBL
     {
-        private readonly ManDAO _manDAO = new();
+        private readonly ManEFDAO _manDAO = new();
 
-        public List<ManInTeam> GetListOfPeopleWithBirthdayToday() => _manDAO.GetListOfPeopleWithBirthdayToday().ToList();
+        public async Task<List<ManInTeam>> GetListOfPeopleWithBirthdayTodayAsync()
+        {
+            var men = await _manDAO.GetListOfPeopleWithBirthdayTodayAsync().ConfigureAwait(false);
+            return men.ToList();
+        }
     }
 }

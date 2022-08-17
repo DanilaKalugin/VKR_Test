@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
@@ -14,7 +14,7 @@ namespace VKR.PL.NET5
         private readonly TeamsBL _teamsBL = new();
         private readonly MatchBL _matchBL = new();
         private readonly List<Team> _teams;
-        private List<Match> _matches;
+        private List<MatchFromSchedule> _matches;
         private int _currentHomeColor;
         private int _currentAwayColor;
         private int _awayTeamNumber;
@@ -29,26 +29,24 @@ namespace VKR.PL.NET5
             InitializeComponent();
             _newMatch = match;
 
-            btnDecreaseAwayTeamNumberBy1.Visible = match.IsQuickMatch;
-            btnIncreaseAwayTeamNumberBy1.Visible = match.IsQuickMatch;
-            btnDecreaseHomeTeamNumberBy1.Visible = match.IsQuickMatch;
-            btnIncreaseHomeTeamNumberBy1.Visible = match.IsQuickMatch;
+            btnDecreaseAwayTeamNumberBy1.Visible = match.MatchTypeId == TypeOfMatchEnum.QuickMatch;
+            btnIncreaseAwayTeamNumberBy1.Visible = match.MatchTypeId == TypeOfMatchEnum.QuickMatch;
+            btnDecreaseHomeTeamNumberBy1.Visible = match.MatchTypeId == TypeOfMatchEnum.QuickMatch;
+            btnIncreaseHomeTeamNumberBy1.Visible = match.MatchTypeId == TypeOfMatchEnum.QuickMatch;
 
-            AwayTeamBalance.Visible = !match.IsQuickMatch;
-            HomeTeamBalance.Visible = !match.IsQuickMatch;
+            AwayTeamBalance.Visible = match.MatchTypeId != TypeOfMatchEnum.QuickMatch;
+            HomeTeamBalance.Visible = match.MatchTypeId != TypeOfMatchEnum.QuickMatch;
+            _teams = _teamsBL.GetTeamsWithWLBalance(match.MatchDate.Year, match.MatchTypeId).ToList();
 
-            _matches = _matchBL.GetMatchesForThisDay(Program.MatchDate);
-            _teams = _teamsBL.GetAllTeams().ToList();
-
-            if (match.IsQuickMatch)
+            if (match.MatchTypeId == TypeOfMatchEnum.QuickMatch)
             {
                 _awayTeamNumber = 0;
                 _homeTeamNumber = 1;
             }
             else FillScheduleForToday();
 
-            btnSwap.Visible = match.IsQuickMatch;
-            dataGridView1.Visible = !match.IsQuickMatch;
+            btnSwap.Visible = match.MatchTypeId == TypeOfMatchEnum.QuickMatch;
+            dataGridView1.Visible = match.MatchTypeId != TypeOfMatchEnum.QuickMatch;
         }
 
         private void TeamsSelectForm_Load(object sender, EventArgs e)
@@ -61,18 +59,18 @@ namespace VKR.PL.NET5
                                  CircularProgressBar.CircularProgressBar overall, CircularProgressBar.CircularProgressBar defense, CircularProgressBar.CircularProgressBar offense,
                                  Button increaseNumber, Button decreaseNumber, Label balance)
         {
-            teamColorsForMatch.Maximum = _teams[teamNumber].TeamColor.Count - 1;
+            teamColorsForMatch.Maximum = _teams[teamNumber].TeamColors.Count - 1;
             teamCity.Text = _teams[teamNumber].TeamCity.ToUpper();
-            teamTitle.Text = _teams[teamNumber].TeamTitle.ToUpper();
-            teamLogo.BackgroundImage = Image.FromFile($"TeamLogoForMenu/{_teams[teamNumber].TeamAbbreviation}.png");
+            teamTitle.Text = _teams[teamNumber].TeamName.ToUpper();
+            teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{_teams[teamNumber].TeamAbbreviation}.png");
             balance.Text = $"{_teams[teamNumber].Wins}-{_teams[teamNumber].Losses}";
 
             teamColorNumber = 0;
             teamColorsForMatch.Value = 0;
 
-            RatingChanged(overall, _teams[teamNumber].OverallRating, _teams[teamNumber].TeamColor[0]);
-            RatingChanged(defense, _teams[teamNumber].NormalizedDefensiveRating, _teams[teamNumber].TeamColor[0]);
-            RatingChanged(offense, _teams[teamNumber].NormalizedOffensiveRating, _teams[teamNumber].TeamColor[0]);
+            RatingChanged(overall, _teams[teamNumber].TeamRating.OverallRating, _teams[teamNumber].TeamColors[0].Color);
+            RatingChanged(defense, _teams[teamNumber].TeamRating.NormalizedDefensiveRating, _teams[teamNumber].TeamColors[0].Color);
+            RatingChanged(offense, _teams[teamNumber].TeamRating.NormalizedOffensiveRating, _teams[teamNumber].TeamColors[0].Color);
             CurrentTeamColorChanged(teamNumber, teamColorNumber, teamCity, teamTitle, teamColorHeader, increaseNumber, decreaseNumber);
         }
 
@@ -86,10 +84,10 @@ namespace VKR.PL.NET5
         private void CurrentTeamColorChanged(int teamNumber, int teamColorNumber, Control teamCity, Control teamTitle, Control teamColorHeader, Control increaseBtn, Control decreaseBtn)
         {
             teamColorHeader.Text = $"Color #{teamColorNumber + 1}";
-            teamCity.BackColor = _teams[teamNumber].TeamColor[teamColorNumber];
-            teamTitle.BackColor = _teams[teamNumber].TeamColor[teamColorNumber];
-            increaseBtn.BackColor = _teams[teamNumber].TeamColor[teamColorNumber];
-            decreaseBtn.BackColor = _teams[teamNumber].TeamColor[teamColorNumber];
+            teamCity.BackColor = _teams[teamNumber].TeamColors[teamColorNumber].Color;
+            teamTitle.BackColor = _teams[teamNumber].TeamColors[teamColorNumber].Color;
+            increaseBtn.BackColor = _teams[teamNumber].TeamColors[teamColorNumber].Color;
+            decreaseBtn.BackColor = _teams[teamNumber].TeamColors[teamColorNumber].Color;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -140,20 +138,17 @@ namespace VKR.PL.NET5
             CurrentTeamColorChanged(_homeTeamNumber, _currentHomeColor, lbHomeCity, lbHomeTitle, label5, btnIncreaseHomeTeamNumberBy1, btnDecreaseHomeTeamNumberBy1);
         }
 
-        private void btnAcceptTeamsSelection_Click(object sender, EventArgs e)
-        {
-            StartNewMatch();
-        }
+        private void btnAcceptTeamsSelection_Click(object sender, EventArgs e) => StartNewMatch();
 
         private void StartNewMatch()
         {
             var homeTeam = _teams[_homeTeamNumber];
             var awayTeam = _teams[_awayTeamNumber];
-            homeTeam.TeamColorForThisMatch = homeTeam.TeamColor[_currentHomeColor];
-            awayTeam.TeamColorForThisMatch = awayTeam.TeamColor[_currentAwayColor];
+            homeTeam.TeamColorForThisMatch = homeTeam.TeamColors[_currentHomeColor].Color;
+            awayTeam.TeamColorForThisMatch = awayTeam.TeamColors[_currentAwayColor].Color;
             _newMatch.HomeTeam = homeTeam;
             _newMatch.AwayTeam = awayTeam;
-            
+
             using var stadiumSelection = new StadiumSelectionForm(_newMatch);
             Visible = false;
             stadiumSelection.ShowDialog();
@@ -212,14 +207,14 @@ namespace VKR.PL.NET5
 
         private void FillScheduleForToday()
         {
-            Program.MatchDate = _matchBL.GetDateForNextMatch();
-            _matches = _matchBL.GetMatchesForThisDay(Program.MatchDate);
+            var matchDate = _matchBL.GetDateForNextMatch(_newMatch.MatchTypeId);
+            _matches = _matchBL.GetMatchesForThisDay(matchDate, _newMatch.MatchTypeId);
             _matchNumber = 0;
             _awayTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].AwayTeamAbbreviation);
             _homeTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].HomeTeamAbbreviation);
             dataGridView1.Rows.Clear();
-            foreach (var match in _matches) 
-                dataGridView1.Rows.Add(Image.FromFile($"TeamLogosForSubstitution/{match.AwayTeamAbbreviation}.png"), Image.FromFile($"TeamLogosForSubstitution/{match.HomeTeamAbbreviation}.png"));
+            foreach (var match in _matches)
+                dataGridView1.Rows.Add(ImageHelper.ShowImageIfExists($"TeamLogosForSubstitution/{match.AwayTeamAbbreviation}.png"), ImageHelper.ShowImageIfExists($"TeamLogosForSubstitution/{match.HomeTeamAbbreviation}.png"));
         }
     }
 }

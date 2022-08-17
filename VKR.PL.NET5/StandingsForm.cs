@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
+using VKR.EF.Entities;
 
 namespace VKR.PL.NET5
 {
     public partial class StandingsForm : Form
     {
-        private readonly TeamsBL _teamsBl = new();
         private readonly MatchBL _matchBL = new();
-        private List<Team> _teams;
+        private readonly StandingsBL _standingsBl = new();
+        private readonly PrimaryTeamColorBL _primaryColorBl = new();
+        private readonly SeasonBL _seasonBL = new();
+
         private readonly Team? _homeTeam;
         private readonly Team? _awayTeam;
+        private readonly List<TeamColor> _teamsColors;
 
         public StandingsForm(Team home, Team away) : this()
         {
@@ -25,18 +30,16 @@ namespace VKR.PL.NET5
         public StandingsForm()
         {
             InitializeComponent();
-            Program.MatchDate = _matchBL.GetMaxDateForAllMatches();
-            dtpStandingsDate.Value = Program.MatchDate;
-            cbFilter.Text = "League";
+            _teamsColors = _primaryColorBl.GetPrimaryTeamColors();
+            cbSeasons.DataSource = _seasonBL.GetAllSeasons();
+            cbSeasons.DisplayMember = "Year";
         }
 
-        private void comboBox1_SelectedValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter);
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter.SelectedIndex);
 
-        private void GetStandingsForThisGroup(string group, int groupNumber, bool isWildCard = false)
+        private void GetStandingsForThisGroup(IList<Team> teams, string group)
         {
-            _teams = isWildCard ? _teamsBl.GetWCStandings(group, dtpStandingsDate.Value) : _teamsBl.GetStandings(group, dtpStandingsDate.Value);
-
-            var teamsInGroup = _teams.Count;
+            var teamsInGroup = teams.Count;
             dgvStandings.Rows.Add("", group, "W", "L", "GB", "PCT", "STREAK", "RS", "RA", "DIFF", "HOME", "AWAY");
             dgvStandings.Rows[^1].DefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
             dgvStandings.Rows[^1].DefaultCellStyle.Font = new Font(dgvStandings.DefaultCellStyle.Font, FontStyle.Bold);
@@ -46,55 +49,102 @@ namespace VKR.PL.NET5
 
             for (var i = 0; i < teamsInGroup; i++)
             {
-                var gamesBehind = Math.Abs(_teams[i].GamesBehind).ToString("0.0", new CultureInfo("en-US"));
-                
-                if (_teams[i].GamesBehind < 0) gamesBehind = $"+{gamesBehind}";
+                var gamesBehind = Math.Abs(teams[i].GamesBehind).ToString("0.0", new CultureInfo("en-US"));
 
-                dgvStandings.Rows.Add("", _teams[i].TeamTitle, _teams[i].Wins, _teams[i].Losses, gamesBehind, _teams[i].Pct.ToString("#.000", new CultureInfo("en-US")),
-                                                _teams[i].StreakString, _teams[i].RunsScored, _teams[i].RunsAllowed, _teams[i].RunDifferential, _teams[i].HomeBalance, _teams[i].AwayBalance);
+                if (teams[i].GamesBehind < 0) gamesBehind = $"+{gamesBehind}";
 
-                if ((_homeTeam != null && _homeTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value) ||
-                    (_awayTeam != null && _awayTeam.TeamTitle == (string)dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[1].Value))
+                var row = new DataGridViewRow();
+                row.CreateCells(dgvStandings);
+
+                row.Cells[1].Value = teams[i].TeamName;
+                row.Cells[2].Value = teams[i].Wins;
+                row.Cells[3].Value = teams[i].Losses;
+                row.Cells[4].Value = gamesBehind;
+                row.Cells[5].Value = teams[i].Pct.ToString("#.000", new CultureInfo("en-US"));
+                row.Cells[6].Value = teams[i].StreakString;
+                row.Cells[7].Value = teams[i].RunsScored;
+                row.Cells[8].Value = teams[i].RunsAllowed;
+                row.Cells[9].Value = teams[i].RunDifferential;
+                row.Cells[10].Value = teams[i].HomeBalance;
+                row.Cells[11].Value = teams[i].AwayBalance;
+
+                if ((_homeTeam != null && _homeTeam.TeamName == teams[i].TeamName) ||
+                    (_awayTeam != null && _awayTeam.TeamName == teams[i].TeamName))
                 {
-                    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.BackColor = Color.WhiteSmoke;
-                    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.ForeColor = Color.Black;
-                    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
-                    dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].DefaultCellStyle.SelectionForeColor = Color.Black;
+                    row.DefaultCellStyle.BackColor = Color.WhiteSmoke;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
+                    row.DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
+                    row.DefaultCellStyle.SelectionForeColor = Color.Black;
                 }
-                dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[0].Style.BackColor = _teams[i].TeamColor[0];
-                dgvStandings.Rows[i + 1 + (teamsInGroup + 1) * groupNumber].Cells[0].Style.SelectionBackColor = _teams[i].TeamColor[0];
+
+                var teamColor = _teamsColors.First(tc => tc.TeamName == teams[i].TeamAbbreviation).Color;
+                row.Cells[0].Style.BackColor = teamColor;
+                row.Cells[0].Style.SelectionBackColor = teamColor;
+                dgvStandings.Rows.Add(row);
             }
-            
+
             Height = Math.Min(97 + dgvStandings.RowTemplate.Height * (teamsInGroup + 1), Screen.PrimaryScreen.Bounds.Height);
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter);
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter.SelectedIndex);
 
-        private void GetNewTable(ListControl comboBox)
+        private void GetNewTable(int groupingTypeNumber)
         {
             dgvStandings.Rows.Clear();
-            switch (comboBox.SelectedIndex)
+
+            var groups = groupingTypeNumber switch
             {
-                case 0:
-                    GetStandingsForThisGroup("MLB", 0);
-                    break;
-                case 1:
-                    GetStandingsForThisGroup("AL", 0);
-                    GetStandingsForThisGroup("NL", 1);
-                    break;
-                case 2:
-                    GetStandingsForThisGroup("AL East", 0);
-                    GetStandingsForThisGroup("AL Central", 1);
-                    GetStandingsForThisGroup("AL West", 2);
-                    GetStandingsForThisGroup("NL East", 3);
-                    GetStandingsForThisGroup("NL Central", 4);
-                    GetStandingsForThisGroup("NL West", 5);
-                    break;
-                case 3:
-                    GetStandingsForThisGroup("AL", 0, true);
-                    GetStandingsForThisGroup("NL", 1, true);
-                    break;
+                0 => new List<string> { "MLB" },
+                1 or 3 => new List<string> { "AL", "NL" },
+                2 => new List<string>
+                {
+                    "AL East",
+                    "AL Central",
+                    "AL West",
+                    "NL East",
+                    "NL Central",
+                    "NL West"
+                },
+                _ => new List<string>()
+            };
+
+            Func<string, DateTime, List<Team>> teamFunc =
+                groupingTypeNumber == 3 ? _standingsBl.GetWildCardStandings : _standingsBl.GetStandings;
+
+            var teamsGroups = GetStandingsForEachGroup(groups, teamFunc);
+
+            for (var index = 0; index < teamsGroups.Count; index++)
+                GetStandingsForThisGroup(teamsGroups[index], groups[index]);
+        }
+
+        private List<List<Team>> GetStandingsForEachGroup(IReadOnlyList<string> groups, Func<string, DateTime, List<Team>> teamFunc)
+        {
+            var teamsGroups = new List<List<Team>>(groups.Count);
+
+            teamsGroups.AddRange(Enumerable.Repeat(new List<Team>(), groups.Count));
+
+            Parallel.For(0, groups.Count, index => teamsGroups[index] = teamFunc(groups[index], dtpStandingsDate.Value));
+            return teamsGroups;
+        }
+
+        private void StandingsForm_Load(object sender, EventArgs e) => cbFilter.Text = "MLB";
+
+        private void cbSeasons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbSeasons.Items.Count == 0) return; 
+
+            var year = cbSeasons.SelectedItem is Season season ? season.Year : 0;
+
+            var seasonInfo = _seasonBL.GetLeagueSeasonInfo(year);
+
+            if (seasonInfo.SeasonEnd < dtpStandingsDate.MinDate)
+            {
+                dtpStandingsDate.MinDate = seasonInfo.SeasonStart;
+                dtpStandingsDate.MaxDate = seasonInfo.SeasonEnd;
             }
+
+            dtpStandingsDate.MaxDate = seasonInfo.SeasonEnd;
+            dtpStandingsDate.MinDate = seasonInfo.SeasonStart;
         }
     }
 }

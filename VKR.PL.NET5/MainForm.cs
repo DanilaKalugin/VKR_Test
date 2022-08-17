@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
-using VKR.Entities.NET5;
-using VKR.Entities.NET5.RandomGenerators;
+using VKR.EF.Entities;
+using VKR.EF.Entities.RandomGenerators;
 using VKR.PL.Controls.NET5;
-using VKR.PL.Utils;
 using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
@@ -21,6 +19,7 @@ namespace VKR.PL.NET5
         private GameSituation _previousSituation;
         private readonly MatchBL _matchBl = new();
         private readonly PlayerBL _playerBl = new();
+        private readonly SubstitutionBL _substitutionBl = new();
         public bool DeleteThisMatch;
         private bool _isAutoSimulation;
         private readonly BuntGenerator _buntGenerator = new();
@@ -33,16 +32,17 @@ namespace VKR.PL.NET5
             InitializeComponent();
 
             _currentMatch = match;
-            BatterInfo.SetMatch(_currentMatch);
-            using (var lineup = new StartingLineupForm(_currentMatch.AwayTeam)) lineup.ShowDialog();
 
+            BatterInfo.SetMatch(_currentMatch);
+
+            using (var lineup = new StartingLineupForm(_currentMatch.AwayTeam)) lineup.ShowDialog();
             using (var defense = new DefenseForm(_currentMatch.HomeTeam)) defense.ShowDialog();
 
             _previousSituation = _currentMatch.GameSituations.Last();
             _newGameSituation = new GameSituation(match.AwayTeam);
 
-            PrepareForThisTeam(match.AwayTeam, AwayTeam_Abbreviation, AwayTeam_RunsScored, label18, panel11, label22, _currentMatch, AwayTeamNextBatters, away_DueUP);
-            PrepareForThisTeam(match.HomeTeam, HomeTeam_Abbreviation, HomeTeam_RunsScored, label19, panel12, label23, _currentMatch, homeTeamNextBatters, home_DueUP);
+            PrepareForThisTeam(_currentMatch.AwayTeam, AwayTeam_Abbreviation, AwayTeam_RunsScored, label18, panel11, label22, _currentMatch, AwayTeamNextBatters, away_DueUP);
+            PrepareForThisTeam(_currentMatch.HomeTeam, HomeTeam_Abbreviation, HomeTeam_RunsScored, label19, panel12, label23, _currentMatch, homeTeamNextBatters, home_DueUP);
             DisplayingCurrentSituation(match.GameSituations.Last());
 
             DisplayNextBatters(_currentMatch, _currentMatch.AwayTeam, _currentMatch.GameSituations.Last(), awayNextBatter1, awayNextBatter2, awayNextBatter3);
@@ -56,14 +56,14 @@ namespace VKR.PL.NET5
             teamAbbreviation.Text = team.TeamAbbreviation;
             teamAbbreviation.BackColor = team.TeamColorForThisMatch;
             runsScored.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.9), (int)(team.TeamColorForThisMatch.G * 0.9), (int)(team.TeamColorForThisMatch.B * 0.9));
-            teamTitle.Text = team.TeamTitle.ToUpper();
+            teamTitle.Text = team.TeamName.ToUpper();
             teamTitle.BackColor = team.TeamColorForThisMatch;
-            TeamLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{team.TeamAbbreviation}.png");
+            TeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{team.TeamAbbreviation}.png");
             teamBalance.Text = $@"{team.Wins}-{team.Losses}";
             teamBalance.BackColor = team.TeamColorForThisMatch;
             teamBalance.Visible = !match.IsQuickMatch;
             NextBatters.BackColor = team.TeamColorForThisMatch;
-            NextBattersHeader.Text = $"{team.TeamTitle.ToUpper()} - DUE UP";
+            NextBattersHeader.Text = $"{team.TeamName.ToUpper()} - DUE UP";
         }
 
         private void DisplayNextBatters(Match currentMatch, Team team, GameSituation situation, params BatterInfo[] batters)
@@ -119,7 +119,7 @@ namespace VKR.PL.NET5
             panel8.BackColor = gameSituation.Offense.TeamColorForThisMatch;
             btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.Offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.B * 0.9));
 
-            pbCurrentOffenseLogo.BackgroundImage = Image.FromFile($"SmallTeamLogos/{_newGameSituation.Offense.TeamAbbreviation}.png");
+            pbCurrentOffenseLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{_newGameSituation.Offense.TeamAbbreviation}.png");
             var nextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(nextBatter);
 
@@ -156,13 +156,10 @@ namespace VKR.PL.NET5
             panelHeader.BackColor = situation.Offense.TeamColorForThisMatch;
             if (runner.IsBaseNotEmpty)
             {
-                var runneron3rd = offense.BattingLineup.First(batter => batter.Id == runner.RunnerId);
+                var runneron3rd = offense.BattingLineup.First(batter => batter.BatterId == runner.RunnerId);
                 RunnerName.Text = runneron3rd.FullName.ToUpper();
 
-                if (File.Exists($"PlayerPhotos/Player{runner.RunnerId:0000}.png"))
-                    RunnerPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{runner.RunnerId:0000}.png");
-                else RunnerPhoto.BackgroundImage = null;
-
+                RunnerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{runneron3rd.Id:0000}.png");
                 RunnerName.ForeColor = runner.IsBaseStealingAttempt ? Color.Goldenrod : Color.Gainsboro;
             }
             else RunnerPhoto.BackgroundImage = null;
@@ -170,10 +167,9 @@ namespace VKR.PL.NET5
 
         private Batter GetBatterByGameSituation(GameSituation gameSituation)
         {
-            if (gameSituation.Offense == _currentMatch.AwayTeam)
-                return _currentMatch.AwayTeam.BattingLineup[gameSituation.NumberOfBatterFromAwayTeam - 1];
-
-            return _currentMatch.HomeTeam.BattingLineup[gameSituation.NumberOfBatterFromHomeTeam - 1];
+            return gameSituation.Offense == _currentMatch.AwayTeam
+                ? _currentMatch.AwayTeam.BattingLineup[gameSituation.NumberOfBatterFromAwayTeam - 1]
+                : _currentMatch.HomeTeam.BattingLineup[gameSituation.NumberOfBatterFromHomeTeam - 1];
         }
 
         private void NewBatterDisplaying(Batter batter)
@@ -181,10 +177,7 @@ namespace VKR.PL.NET5
             currentBatter.SetPlayer(batter);
 
             ShowStatsForThisMatch(batter, lbTodayStats);
-
-            if (File.Exists($"PlayerPhotos/Player{batter.Id:0000}.png"))
-                pbCurrentBatterPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{batter.Id:0000}.png");
-            else pbCurrentBatterPhoto.BackgroundImage = null;
+            pbCurrentBatterPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{batter.Id:0000}.png");
 
             lblPlayerPosition.Text = batter.PositionForThisMatch;
             lblPlayerNumber.Text = batter.PlayerNumber.ToString();
@@ -208,25 +201,22 @@ namespace VKR.PL.NET5
                 lb.Text += lb.Text == "►TODAY: " ? $"{valueWithText}" : $", {valueWithText}";
             }
 
-            var atBatsForThisBatter = _currentMatch.AtBats.Where(atBat => atBat.Batter == batter.Id).ToList();
+            var atBatsForThisBatter = _currentMatch.AtBats.Where(atBat => atBat.BatterId == batter.Id).ToList();
 
-            var HBPs = atBatsForThisBatter.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.HitByPitch);
-            var BBs = atBatsForThisBatter.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.Walk);
-            var SFs = atBatsForThisBatter.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.SacrificeFly);
-            var SACs = atBatsForThisBatter.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.SacrificeBunt);
-            var Rs = atBatsForThisBatter.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.Run);
-            var HRs = atBatsForThisBatter.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.HomeRun);
-            var Ks = atBatsForThisBatter.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.Strikeout);
+            var HBPs = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.HitByPitch);
+            var BBs = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.Walk);
+            var SFs = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.SacrificeFly);
+            var SACs = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.SacrificeBunt);
+            var Rs = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.Run);
+            var HRs = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.HomeRun);
+            var Ks = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.Strikeout);
             var RBIs = atBatsForThisBatter.Sum(atBat => atBat.RBI);
-            var SBs = atBatsForThisBatter.Count(atBat => atBat.AtBatResult == AtBat.AtBatType.StolenBase);
+            var SBs = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.StolenBase);
             lbTodayStats.Text = "►TODAY: ";
 
             var hitsForAtBats = HitsForAtBatsHelper.GetHitsForAtBats(batter, _currentMatch);
 
-            if (!string.IsNullOrEmpty(hitsForAtBats))
-            {
-                lbTodayStats.Text += hitsForAtBats;
-            }
+            if (!string.IsNullOrEmpty(hitsForAtBats)) lbTodayStats.Text += hitsForAtBats;
 
             AddNewStatsForTodayStatsLabel(HRs, "HR", lbTodayStats);
             AddNewStatsForTodayStatsLabel(RBIs, "RBI", lbTodayStats);
@@ -258,9 +248,7 @@ namespace VKR.PL.NET5
             };
 
             if (_newGameSituation.InningNumber >= 9 && _newGameSituation.Offense == _currentMatch.HomeTeam && _newGameSituation.AwayTeamRuns < _newGameSituation.HomeTeamRuns)
-            {
                 title = "Walk-off " + title.ToLower();
-            }
 
             using (var hr = new HomeRunCelebrationForm(_newGameSituation.Offense, title, GetBatterByGameSituation(_newGameSituation), _currentMatch.AtBats, _currentMatch.IsQuickMatch))
                 hr.ShowDialog();
@@ -270,8 +258,8 @@ namespace VKR.PL.NET5
 
         private void GetCurrentStatsForThisMatch()
         {
-            _currentMatch.AwayTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.AwayTeam.TeamAbbreviation, _currentMatch.MatchID);
-            _currentMatch.HomeTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.HomeTeam.TeamAbbreviation, _currentMatch.MatchID);
+            _currentMatch.AwayTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.AwayTeam, _currentMatch);
+            _currentMatch.HomeTeam.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(_currentMatch.HomeTeam, _currentMatch);
 
             _playerBl.UpdateStatsForThisPitcher(_currentMatch.AwayTeam.CurrentPitcher, _currentMatch);
             _playerBl.UpdateStatsForThisPitcher(_currentMatch.HomeTeam.CurrentPitcher, _currentMatch);
@@ -286,7 +274,7 @@ namespace VKR.PL.NET5
 
             _currentMatch.GameSituations.Add(_newGameSituation.Clone());
 
-            if (pitch.NewPitchResult == PitchResult.HomeRun) IsHomeRun(_newGameSituation.RunsByThisPitch.Count);
+            if (pitch.NewPitchResult == EF.Entities.Enums.PitchResult.HomeRun) IsHomeRun(_newGameSituation.RunsByThisPitch.Count);
 
             IsAtBatFinished(_currentMatch.GameSituations.Last());
 
@@ -295,7 +283,7 @@ namespace VKR.PL.NET5
                 foreach (var runForDB in _newGameSituation.RunsByThisPitch.Select(runner => new AtBat(runner, _currentMatch)))
                 {
                     _currentMatch.AtBats.Add(runForDB);
-                    _matchBl.AddNewAtBat(runForDB, _currentMatch);
+                    _matchBl.AddNewAtBat(runForDB);
                 }
 
                 GetCurrentStatsForThisMatch();
@@ -326,13 +314,15 @@ namespace VKR.PL.NET5
 
             if (_currentMatch.AtBats.Count > 0)
             {
-                var lastAtBatOffense = _currentMatch.AtBats.Last(atBat => atBat.AtBatResult != AtBat.AtBatType.Run).Offense;
-                label27.BackColor = lastAtBatOffense == _currentMatch.AwayTeam.TeamAbbreviation ? _currentMatch.AwayTeam.TeamColorForThisMatch : _currentMatch.HomeTeam.TeamColorForThisMatch;
-                panel15.BackgroundImage = Image.FromFile($"SmallTeamLogos/{lastAtBatOffense}.png");
+                var lastAtBat = _currentMatch.AtBats.Last(atBat => atBat.AtBatType != AtBatType.Run);
 
-                var lastBatter = _playerBl.GetPlayerByCode(_currentMatch.AtBats.Last(atBat => atBat.AtBatResult != AtBat.AtBatType.Run).Batter);
+                var lastAtBatOffense = lastAtBat.Offense;
+                label27.BackColor = lastAtBatOffense == _currentMatch.AwayTeam.TeamAbbreviation ? _currentMatch.AwayTeam.TeamColorForThisMatch : _currentMatch.HomeTeam.TeamColorForThisMatch;
+                panel15.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{lastAtBatOffense}.png");
+                
+                var lastBatter = _playerBl.GetPlayerByCode(lastAtBat.BatterId);
                 label27.Text = Width >= 960 ? lastBatter.FullName : $"{lastBatter.FirstName[0]}. {lastBatter.SecondName}";
-                label44.Text = _currentMatch.AtBats.Last(atBat => atBat.AtBatResult != AtBat.AtBatType.Run).ToString();
+                label44.Text = lastAtBat.ToString();
             }
 
             _previousSituation = _newGameSituation.Clone();
@@ -376,6 +366,7 @@ namespace VKR.PL.NET5
         private void GenerateNewPitch()
         {
             Pitch pitch;
+            
             var stealingAttempt = _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt || _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
             var countOfAtBats = _currentMatch.AtBats.Count;
             var typeOfStealing = 0;
@@ -436,58 +427,58 @@ namespace VKR.PL.NET5
             Hide();
         }
 
-        private void UpdateScoreboard(Label FirstInning, Label SecondInning, Label ThirdInning, Label FourthInning, Label FifthInning, Label SixthInning, Label SeventhInning, Label EigthInning, Label NinthInning, Label LeftOnBase, Label Runs, Label Hits, Match match, Team team)
+        private void UpdateScoreboard(Label firstInning, Label secondInning, Label thirdInning, Label fourthInning, Label fifthInning, Label sixthInning, Label seventhInning, Label eigthInning, Label ninthInning, Label leftOnBase, Label runs, Label hits, Match match, Team team)
         {
-            FirstInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb1stInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            SecondInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb2ndInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            ThirdInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb3rdInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            FourthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb4thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            FifthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb5thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            SixthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb6thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            SeventhInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb7thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            EigthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb8thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
-            NinthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb9thInning.Text)).Select(atBat => atBat.RBI).Sum().ToString();
+            firstInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb1stInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            secondInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb2ndInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            thirdInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb3rdInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            fourthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb4thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            fifthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb5thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            sixthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb6thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            seventhInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb7thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            eigthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb8thInning.Text)).Sum(atBat => atBat.RBI).ToString();
+            ninthInning.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation && atBat.Inning == int.Parse(lb9thInning.Text)).Sum(atBat => atBat.RBI).ToString();
 
             var leftOnFirstBase = match.GameSituations.Count(gs => gs.Outs == 3 && gs.Offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnFirst.IsBaseNotEmpty);
             var leftOnSecondBase = match.GameSituations.Count(gs => gs.Outs == 3 && gs.Offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnSecond.IsBaseNotEmpty);
             var leftOnThirdBase = match.GameSituations.Count(gs => gs.Outs == 3 && gs.Offense.TeamAbbreviation == team.TeamAbbreviation && gs.RunnerOnThird.IsBaseNotEmpty);
 
-            LeftOnBase.Text = (leftOnFirstBase + leftOnSecondBase + leftOnThirdBase).ToString();
+            leftOnBase.Text = (leftOnFirstBase + leftOnSecondBase + leftOnThirdBase).ToString();
 
             var displayingCriterion = team == _currentMatch.AwayTeam ? _newGameSituation.Offense == _currentMatch.AwayTeam || _newGameSituation.Offense == _currentMatch.HomeTeam : _newGameSituation.Offense == _currentMatch.HomeTeam;
 
-            FirstInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb1stInning.Text) || _newGameSituation.InningNumber == int.Parse(lb1stInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            SecondInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb2ndInning.Text) || _newGameSituation.InningNumber == int.Parse(lb2ndInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            ThirdInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb3rdInning.Text) || _newGameSituation.InningNumber == int.Parse(lb3rdInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            FourthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb4thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb4thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            FifthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb5thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb5thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            SixthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb6thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb6thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            SeventhInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb7thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb7thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            EigthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb8thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb8thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
-            NinthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb9thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb9thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            firstInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb1stInning.Text) || _newGameSituation.InningNumber == int.Parse(lb1stInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            secondInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb2ndInning.Text) || _newGameSituation.InningNumber == int.Parse(lb2ndInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            thirdInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb3rdInning.Text) || _newGameSituation.InningNumber == int.Parse(lb3rdInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            fourthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb4thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb4thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            fifthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb5thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb5thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            sixthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb6thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb6thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            seventhInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb7thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb7thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            eigthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb8thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb8thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
+            ninthInning.ForeColor = _newGameSituation.InningNumber > int.Parse(lb9thInning.Text) || _newGameSituation.InningNumber == int.Parse(lb9thInning.Text) && displayingCriterion ? Color.White : Color.FromArgb(48, 48, 48);
 
-            Runs.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation).Select(atBat => atBat.RBI).Sum().ToString();
-            Hits.Text = match.AtBats.Count(atBat => atBat.Offense == team.TeamAbbreviation && (atBat.AtBatResult == AtBat.AtBatType.Single || atBat.AtBatResult == AtBat.AtBatType.Double || atBat.AtBatResult == AtBat.AtBatType.Triple || atBat.AtBatResult == AtBat.AtBatType.HomeRun)).ToString();
+            runs.Text = match.AtBats.Where(atBat => atBat.Offense == team.TeamAbbreviation).Sum(atBat => atBat.RBI).ToString();
+            hits.Text = match.AtBats.Count(atBat => atBat.Offense == team.TeamAbbreviation && atBat.AtBatType is AtBatType.Single or AtBatType.Double or AtBatType.Triple or AtBatType.HomeRun).ToString();
         }
 
         private void IsAtBatFinished(GameSituation situation)
         {
             if (!GameSituation.AtBatEndingConditions.Contains(situation.Result) &&
                 !GameSituation.BaseStealingResults.Contains(situation.Result) &&
-                (situation.Result != PitchResult.Ball || situation.Balls != 0) &&
-                (situation.Result != PitchResult.Strike || situation.Strikes != 0)) return;
-
+                (situation.Result != EF.Entities.Enums.PitchResult.Ball || situation.Balls != 0) &&
+                (situation.Result != EF.Entities.Enums.PitchResult.Strike || situation.Strikes != 0)) return;
+            
             var newAtBat = situation.Result switch
             {
-                PitchResult.SecondBaseStolen => new AtBat(_currentMatch, situation.RunnerOnSecond.RunnerId, true),
-                PitchResult.ThirdBaseStolen => new AtBat(_currentMatch, situation.RunnerOnThird.RunnerId, true),
-                PitchResult.CaughtStealingOnSecond => new AtBat(_currentMatch, _currentMatch.GameSituations[^2].RunnerOnFirst.RunnerId, true),
-                PitchResult.CaughtStealingOnThird => new AtBat(_currentMatch, _currentMatch.GameSituations[^2].RunnerOnSecond.RunnerId, true),
-                _ => new AtBat(_currentMatch, _newGameSituation.RunsByThisPitch.Count)
+                EF.Entities.Enums.PitchResult.SecondBaseStolen => new AtBat(_currentMatch, situation.RunnerOnSecond.RunnerId, true),
+                EF.Entities.Enums.PitchResult.ThirdBaseStolen => new AtBat(_currentMatch, situation.RunnerOnThird.RunnerId, true),
+                EF.Entities.Enums.PitchResult.CaughtStealingOnSecond => new AtBat(_currentMatch, _currentMatch.GameSituations[^2].RunnerOnFirst.RunnerId, true),
+                EF.Entities.Enums.PitchResult.CaughtStealingOnThird => new AtBat(_currentMatch, _currentMatch.GameSituations[^2].RunnerOnSecond.RunnerId, true),
+                _ => new AtBat(_currentMatch, (byte)_newGameSituation.RunsByThisPitch.Count)
             };
 
             _currentMatch.AtBats.Add(newAtBat);
-            _matchBl.AddNewAtBat(newAtBat, _currentMatch);
+            _matchBl.AddNewAtBat(newAtBat);
             GetCurrentStatsForThisMatch();
         }
 
@@ -496,11 +487,9 @@ namespace VKR.PL.NET5
             var defense = _newGameSituation.Offense == _currentMatch.AwayTeam ? _currentMatch.HomeTeam : _currentMatch.AwayTeam;
             PitchingTeamColor.BackColor = defense.TeamColorForThisMatch;
             btnShowAvailablePitchers.BackColor = defense.TeamColorForThisMatch;
-            PitchingTeam.BackgroundImage = Image.FromFile($"SmallTeamLogos/{defense.TeamAbbreviation}.png");
 
-            if (File.Exists($"PlayerPhotos/Player{defense.CurrentPitcher.Id:0000}.png"))
-                PitcherPhoto.BackgroundImage = Image.FromFile($"PlayerPhotos/Player{defense.CurrentPitcher.Id:0000}.png");
-            else PitcherPhoto.BackgroundImage = null;
+            PitchingTeam.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{defense.TeamAbbreviation}.png");
+            PitcherPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{defense.CurrentPitcher.Id:0000}.png");
 
             PitcherName.Text = defense.CurrentPitcher.FullName.ToUpper();
 
@@ -531,23 +520,23 @@ namespace VKR.PL.NET5
             PitcherWalks.Text = defense.CurrentPitcher.PitchingStats.WalksAllowed.ToString();
             PitcherWHIP.Text = defense.CurrentPitcher.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
 
-            defense.CurrentPitcher.RemainingStamina = _playerBl.ReturnNumberOfOutsPlayedByThisPitcherInLast5Days(defense.CurrentPitcher, _currentMatch);
+            defense.CurrentPitcher.RemainingStamina = _playerBl.GetPitcherStamina(defense.CurrentPitcher, _currentMatch);
 
             pb_stamina.MainColor = defense.CurrentPitcher.RemainingStamina < 45 - 1E-5 ? Color.Maroon : defense.TeamColorForThisMatch;
 
             pb_stamina.Value = defense.CurrentPitcher.RemainingStamina < 5 - 1E-5 ? 5 : (int)defense.CurrentPitcher.RemainingStamina;
 
-            var OutsToday = _currentMatch.AtBats.Where(atBat => atBat.Pitcher == defense.CurrentPitcher.Id).Select(atBat => atBat.Outs).Sum();
-            var StrikeoutsToday = _currentMatch.AtBats.Count(atBat => atBat.Pitcher == defense.CurrentPitcher.Id && atBat.AtBatResult == AtBat.AtBatType.Strikeout);
-            var walksToday = _currentMatch.AtBats.Count(atBat => atBat.Pitcher == defense.CurrentPitcher.Id && atBat.AtBatResult == AtBat.AtBatType.Walk);
-            var HRToday = _currentMatch.AtBats.Count(atBat => atBat.Pitcher == defense.CurrentPitcher.Id && atBat.AtBatResult == AtBat.AtBatType.HomeRun);
+            var OutsToday = _currentMatch.AtBats.Where(atBat => atBat.PitcherId == defense.CurrentPitcher.Id).Sum(atBat => atBat.Outs);
+            var StrikeoutsToday = _currentMatch.AtBats.Count(atBat => atBat.PitcherId == defense.CurrentPitcher.Id && atBat.AtBatType == AtBatType.Strikeout);
+            var walksToday = _currentMatch.AtBats.Count(atBat => atBat.PitcherId == defense.CurrentPitcher.Id && atBat.AtBatType == AtBatType.Walk);
+            var HRToday = _currentMatch.AtBats.Count(atBat => atBat.PitcherId == defense.CurrentPitcher.Id && atBat.AtBatType == AtBatType.HomeRun);
 
             PitcherIPToday.Text = Math.Round(OutsToday / 3 + (double)(OutsToday % 3) / 10, 1).ToString("0.0", new CultureInfo("en-US"));
             PitcherStrikeoutsToday.Text = StrikeoutsToday.ToString();
             PitcherWalksToday.Text = walksToday.ToString();
             PitcherHomeRunsToday.Text = HRToday.ToString();
 
-            var TBFinThisMatch = _currentMatch.AtBats.Count(atBat => atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.AtBatResult != AtBat.AtBatType.StolenBase && atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.Pitcher == defense.CurrentPitcher.Id);
+            var TBFinThisMatch = _currentMatch.AtBats.Count(atBat => atBat.AtBatType != AtBatType.CaughtStealing && atBat.AtBatType != AtBatType.StolenBase && atBat.AtBatType != AtBatType.CaughtStealing && atBat.PitcherId == defense.CurrentPitcher.PitcherId);
             btnShowAvailablePitchers.Visible = !_isAutoSimulation && TBFinThisMatch >= 3 && _newGameSituation.Balls == 0 && _newGameSituation.Strikes == 0;
 
             if (!defense.CurrentPitcher.IsPinchHitter || _newGameSituation.Outs != 0 || _newGameSituation.Balls != 0 ||
@@ -641,8 +630,9 @@ namespace VKR.PL.NET5
         {
             timer1.Stop();
             var Offense = _newGameSituation.Offense;
-            var batters = _playerBl.GetAvailableBatters(_currentMatch, Offense, GetBatterByGameSituation(_newGameSituation));
-
+            
+            var batters = _substitutionBl.GetAvailableBatters(_currentMatch, Offense, GetBatterByGameSituation(_newGameSituation));
+            
             if (batters.Count > 0)
             {
                 using var form = new SubstitutionForm(Offense, batters);
@@ -652,10 +642,10 @@ namespace VKR.PL.NET5
                 {
                     var oldBatter = GetBatterByGameSituation(_newGameSituation);
 
-                    _playerBl.SubstituteBatter(_currentMatch, Offense, oldBatter, form.NewBatterForThisTeam);
-                    Offense.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(Offense.TeamAbbreviation, _currentMatch.MatchID);
+                    _substitutionBl.SubstituteBatter(_currentMatch, form.NewBatterForThisTeam);
+                    Offense.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(Offense, _currentMatch);
 
-                    if (!_currentMatch.DHRule && oldBatter.NumberInBattingLineup == 9)
+                    if (!_currentMatch.DHRule && oldBatter.NumberInLineup == 9)
                     {
                         var newPitcher = (Pitcher)_playerBl.GetPlayerByCode(form.NewBatterForThisTeam.Id);
                         Offense.PitchersPlayedInMatch.Add(newPitcher);
@@ -670,7 +660,7 @@ namespace VKR.PL.NET5
                 using var form = new ErrorForm();
                 form.ShowDialog();
             }
-
+            
             if (_isAutoSimulation) timer1.Start();
         }
 
@@ -716,10 +706,11 @@ namespace VKR.PL.NET5
 
             if (!_isAutoSimulation) return;
 
-            var TBFinThisMatch = _currentMatch.AtBats.Count(atBat => atBat.AtBatResult != AtBat.AtBatType.CaughtStealing && atBat.AtBatResult != AtBat.AtBatType.StolenBase && atBat.Pitcher == defense.CurrentPitcher.Id);
-
-            if (TBFinThisMatch >= 3 && _newGameSituation.Balls == 0 && _newGameSituation.Strikes == 0) PitcherSubstion_Definition(defense.CurrentPitcher);
-
+            var TBFinThisMatch = _currentMatch.AtBats.Count(atBat => atBat.AtBatType != AtBatType.CaughtStealing && atBat.AtBatType != AtBatType.StolenBase && atBat.PitcherId == defense.CurrentPitcher.PitcherId);
+            
+            if (TBFinThisMatch >= 3 && _newGameSituation.Balls == 0 && _newGameSituation.Strikes == 0) 
+                PitcherSubstion_Definition(defense.CurrentPitcher);
+            
             BasesStealingAttempt_Definition();
             bool isBunt;
 
@@ -737,7 +728,7 @@ namespace VKR.PL.NET5
             var pitcherSubstitution = RandomGenerators.PitcherSubstitution_Definition(pitcher, _currentMatch.AtBats);
 
             if (pitcherSubstitution != RandomGenerators.PitcherSubstitution.Substitution) return;
-
+            
             ChangePitcher(_isAutoSimulation);
         }
 
@@ -771,16 +762,19 @@ namespace VKR.PL.NET5
         private void ChangePitcher(bool isAutoSimulation)
         {
             var defense = _newGameSituation.Offense == _currentMatch.AwayTeam ? _currentMatch.HomeTeam : _currentMatch.AwayTeam;
-            var pitchers = _playerBl.GetAvailablePitchers(_currentMatch, defense);
+            var pitchers = _substitutionBl.GetAvailablePitchers(_currentMatch, defense);
             if (pitchers.Count > 0)
             {
-                var newPitcher = !isAutoSimulation ? GetNewPitcherManual(defense, pitchers) : GetNewPitcherAutomatic(defense, pitchers);
+                Func<Team, List<Pitcher>, Pitcher?> newPitcherFunc =
+                    !isAutoSimulation ? GetNewPitcherManual : GetNewPitcherAutomatic;
+
+                var newPitcher = newPitcherFunc(defense, pitchers);
 
                 if (newPitcher is null) return;
 
-                _playerBl.SubstitutePitcher(_currentMatch, defense, newPitcher);
+                _substitutionBl.SubstitutePitcher(_currentMatch, newPitcher);
 
-                defense.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(defense.TeamAbbreviation, _currentMatch.MatchID);
+                defense.BattingLineup = _playerBl.GetCurrentLineupForThisMatch(defense, _currentMatch);
                 _playerBl.UpdateStatsForThisPitcher(defense.CurrentPitcher, _currentMatch);
 
                 defense.PitchersPlayedInMatch.Add(newPitcher);
@@ -797,7 +791,7 @@ namespace VKR.PL.NET5
             }
         }
 
-        private Pitcher? GetNewPitcherAutomatic(Team defense, List<Pitcher?> pitchers)
+        private Pitcher? GetNewPitcherAutomatic(Team defense, IReadOnlyCollection<Pitcher?> pitchers)
         {
             var closer = pitchers.FirstOrDefault(pitcher => pitcher?.PitchingStats.Saves == pitchers.Max(pitcher1 => pitcher1?.PitchingStats.Saves));
 
