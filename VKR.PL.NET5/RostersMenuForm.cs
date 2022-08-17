@@ -21,5 +21,12 @@ namespace VKR.PL.NET5
             using (var form = new LineupsForm(rosterType)) form.ShowDialog();
             Visible = true;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+            using (var form = new ChangePlayerTeamForm()) form.ShowDialog();
+            Visible = true;
+        }
     }
 }

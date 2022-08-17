@@ -37,7 +37,6 @@ namespace VKR.PL.NET5
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LineupsForm));
             this.dgvLineup = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +64,8 @@ namespace VKR.PL.NET5
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.playerHands = new System.Windows.Forms.Label();
+            this.btnAssignTo = new System.Windows.Forms.Button();
+            this.MoveToActiveRoster = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLineup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBench)).BeginInit();
             this.SuspendLayout();
@@ -81,28 +82,20 @@ namespace VKR.PL.NET5
             this.dgvLineup.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvLineup.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvLineup.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLineup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvLineup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLineup.ColumnHeadersVisible = false;
             this.dgvLineup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLineup.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLineup.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvLineup.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvLineup.Location = new System.Drawing.Point(13, 179);
             this.dgvLineup.MultiSelect = false;
@@ -188,7 +181,7 @@ namespace VKR.PL.NET5
             this.btnDecLineupTypeNumberBy1.TabIndex = 22;
             this.btnDecLineupTypeNumberBy1.Text = "<";
             this.btnDecLineupTypeNumberBy1.UseVisualStyleBackColor = true;
-            this.btnDecLineupTypeNumberBy1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDecLineupTypeNumberBy1.Click += new System.EventHandler(this.btnDecLineupTypeNumberBy1_Click);
             // 
             // btnIncLineupTypeNumberBy1
             // 
@@ -270,35 +263,36 @@ namespace VKR.PL.NET5
             this.dgvBench.AllowUserToDeleteRows = false;
             this.dgvBench.AllowUserToResizeColumns = false;
             this.dgvBench.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dgvBench.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dgvBench.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvBench.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvBench.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBench.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvBench.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBench.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBench.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBench.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBench.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBench.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBench.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBench.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvBench.EnableHeadersVisualStyles = false;
             this.dgvBench.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvBench.Location = new System.Drawing.Point(624, 181);
+            this.dgvBench.Location = new System.Drawing.Point(724, 181);
             this.dgvBench.MultiSelect = false;
             this.dgvBench.Name = "dgvBench";
             this.dgvBench.ReadOnly = true;
@@ -327,17 +321,19 @@ namespace VKR.PL.NET5
             // 
             // panelTeamLogo
             // 
+            this.panelTeamLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTeamLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelTeamLogo.Location = new System.Drawing.Point(1044, 12);
+            this.panelTeamLogo.Location = new System.Drawing.Point(1144, 12);
             this.panelTeamLogo.Name = "panelTeamLogo";
             this.panelTeamLogo.Size = new System.Drawing.Size(160, 160);
             this.panelTeamLogo.TabIndex = 31;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("MicroFLF", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.DimGray;
-            this.label1.Location = new System.Drawing.Point(616, 124);
+            this.label1.Location = new System.Drawing.Point(716, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 43);
             this.label1.TabIndex = 33;
@@ -346,9 +342,10 @@ namespace VKR.PL.NET5
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("MicroFLF", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(747, 124);
+            this.label2.Location = new System.Drawing.Point(847, 124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 43);
             this.label2.TabIndex = 34;
@@ -357,9 +354,10 @@ namespace VKR.PL.NET5
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("MicroFLF", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(878, 124);
+            this.label3.Location = new System.Drawing.Point(978, 124);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(125, 43);
             this.label3.TabIndex = 35;
@@ -368,10 +366,11 @@ namespace VKR.PL.NET5
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(620, 103);
+            this.label4.Location = new System.Drawing.Point(720, 103);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 21);
@@ -381,10 +380,11 @@ namespace VKR.PL.NET5
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(751, 100);
+            this.label5.Location = new System.Drawing.Point(851, 100);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 21);
@@ -394,10 +394,11 @@ namespace VKR.PL.NET5
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(882, 100);
+            this.label6.Location = new System.Drawing.Point(982, 100);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 21);
@@ -430,11 +431,39 @@ namespace VKR.PL.NET5
             this.playerHands.Text = "#99";
             this.playerHands.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnAssignTo
+            // 
+            this.btnAssignTo.FlatAppearance.BorderSize = 0;
+            this.btnAssignTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAssignTo.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAssignTo.Location = new System.Drawing.Point(599, 181);
+            this.btnAssignTo.Name = "btnAssignTo";
+            this.btnAssignTo.Size = new System.Drawing.Size(119, 82);
+            this.btnAssignTo.TabIndex = 64;
+            this.btnAssignTo.Text = ">>";
+            this.btnAssignTo.UseVisualStyleBackColor = true;
+            this.btnAssignTo.Click += new System.EventHandler(this.btnAssignTo_Click);
+            // 
+            // MoveToActiveRoster
+            // 
+            this.MoveToActiveRoster.FlatAppearance.BorderSize = 0;
+            this.MoveToActiveRoster.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MoveToActiveRoster.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MoveToActiveRoster.Location = new System.Drawing.Point(599, 298);
+            this.MoveToActiveRoster.Name = "MoveToActiveRoster";
+            this.MoveToActiveRoster.Size = new System.Drawing.Size(119, 82);
+            this.MoveToActiveRoster.TabIndex = 65;
+            this.MoveToActiveRoster.Text = "<<";
+            this.MoveToActiveRoster.UseVisualStyleBackColor = true;
+            this.MoveToActiveRoster.Click += new System.EventHandler(this.MoveToActiveRoster_Click);
+            // 
             // LineupsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 414);
+            this.ClientSize = new System.Drawing.Size(1316, 414);
+            this.Controls.Add(this.MoveToActiveRoster);
+            this.Controls.Add(this.btnAssignTo);
             this.Controls.Add(this.playerHands);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -501,5 +530,7 @@ namespace VKR.PL.NET5
         private Label label6;
         private Label label7;
         private Label playerHands;
+        private Button btnAssignTo;
+        private Button MoveToActiveRoster;
     }
 }

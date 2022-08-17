@@ -129,5 +129,16 @@ namespace VKR.EF.DAO
                 }
             return list;
         }
+
+        public void ChangePlayerInTeamStatus(Player player, Team team, InTeamStatusEnum inTeamStatus)
+        {
+            using var db = new VKRApplicationContext();
+            var pit = db.PlayersInTeams.FirstOrDefault(pit => pit.TeamId == team.TeamAbbreviation && pit.PlayerId == player.Id);
+
+            if (pit == null) return;
+            pit.CurrentPlayerInTeamStatus = inTeamStatus;
+            db.PlayersInTeams.Update(pit);
+            db.SaveChanges();
+        }
     }
 }

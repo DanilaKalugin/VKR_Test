@@ -43,10 +43,10 @@ GROUP BY dbo.Teams.TeamAbbreviation", typeParam, dateParam).ToList();
                 t => t.TeamAbbreviation,
                 tb => tb.TeamAbbreviation,
                 (team, balance) => team.SetTeamBalance(balance))
-                .Join(streaks,
+                /*.Join(streaks,
                     team => team.TeamAbbreviation,
                     streak => streak.AwayTeam,
-                    (team, stat) => team.SetTeamStreak(stat.Streak))
+                    (team, stat) => team.SetTeamStreak(stat.Streak))*/
                 .Join(runs,
                     team => team.TeamAbbreviation,
                     run => run.TeamAbbreviation,

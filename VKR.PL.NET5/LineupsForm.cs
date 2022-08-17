@@ -21,8 +21,8 @@ namespace VKR.PL.NET5
         private readonly MatchBL _matchBL = new();
         private readonly RostersBL _rostersBl = new();
 
-        private readonly List<List<List<PlayerInLineupViewModel>>> _teamsLineups;
-        private readonly List<List<List<PlayerInLineupViewModel>>> _teamsBench;
+        private List<List<List<PlayerInLineupViewModel>>> _teamsLineups;
+        private List<List<List<PlayerInLineupViewModel>>> _teamsBench;
         private readonly List<Team> _teams;
         private int _teamNumber;
         private int _lineupNumber;
@@ -38,26 +38,7 @@ namespace VKR.PL.NET5
             _teams = _teamsBL.GetAllTeams();
             _matchDate = _matchBL.GetMaxDateForAllMatches();
 
-            switch (_rosterType)
-            {
-                case RosterType.StartingLineups:
-                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Starters);
-                    _teamsBench = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Bench);
-                    base.Text = "Starting lineups";
-                    break;
-                case RosterType.Reserves:
-                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActivePlayers);
-                    _teamsBench = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Reserve);
-                    base.Text = "Reserves";
-                    break;
-                case RosterType.FreeAgents:
-                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActiveAndReserve);
-                    _teamsBench = _rostersBl.GetFreeAgents();
-                    Text = "Free Agents";
-                    break;
-            }
-
-            TeamChanged(_teamNumber);
+            FillTables();
         }
 
         private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
@@ -182,7 +163,7 @@ namespace VKR.PL.NET5
             label4.Text = player.CanPlayAsPitcher ? "ERA" : "AVG";
             label5.Text = player.CanPlayAsPitcher ? "SO" : "HR";
             label6.Text = player.CanPlayAsPitcher ? "WHIP" : "RBI";
-
+            /*
             if (!player.CanPlayAsPitcher)
             {
                 player.BattingStats = _players.GetBattingStatsByCode(player.Id, _matchDate.Year);
@@ -196,7 +177,7 @@ namespace VKR.PL.NET5
                 label1.Text = player.PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"));
                 label2.Text = player.PitchingStats.Strikeouts.ToString();
                 label3.Text = player.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
-            }
+            }*/
 
             label7.Text = $@"Positions: {string.Join(", ", player.Positions.Select(position => position.ShortTitle))}";
 
@@ -226,6 +207,55 @@ namespace VKR.PL.NET5
             btnDecLineupTypeNumberBy1.Visible = _rosterType == RosterType.StartingLineups;
             btnIncLineupTypeNumberBy1.Visible = _rosterType == RosterType.StartingLineups;
             lbLineUpType.Visible = _rosterType == RosterType.StartingLineups;
+        }
+
+        private void btnAssignTo_Click(object sender, EventArgs e)
+        {
+            if (_rosterType != RosterType.Reserves) return;
+
+            var player = _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index];
+            var team = _teams[_teamNumber];
+
+            _rostersBl.ChangePlayerInTeamStatus(player, team, InTeamStatusEnum.Reserve);
+            FillTables();
+        }
+
+        private void FillTables()
+        {
+            switch (_rosterType)
+            {
+                case RosterType.StartingLineups:
+                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Starters);
+                    _teamsBench = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Bench);
+                    break;
+                case RosterType.Reserves:
+                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActivePlayers);
+                    _teamsBench = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Reserve);
+                    break;
+                case RosterType.FreeAgents:
+                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActiveAndReserve);
+                    _teamsBench = _rostersBl.GetFreeAgents();
+                    break;
+            }
+
+            TeamChanged(_teamNumber);
+        }
+
+        private void btnDecLineupTypeNumberBy1_Click(object sender, EventArgs e)
+        {
+            _lineupNumber = _lineupNumber > 0 ? _lineupNumber - 1 : _teamsLineups[_teamNumber].Count - 1;
+            DisplayRoster(_teamNumber, _lineupNumber);
+        }
+
+        private void MoveToActiveRoster_Click(object sender, EventArgs e)
+        {
+            if (_rosterType != RosterType.Reserves) return;
+
+            var player = _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index];
+            var team = _teams[_teamNumber];
+
+            _rostersBl.ChangePlayerInTeamStatus(player, team, InTeamStatusEnum.ActiveRoster);
+            FillTables();
         }
     }
 }
