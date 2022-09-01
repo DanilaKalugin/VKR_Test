@@ -68,10 +68,5 @@ namespace VKR.EF.DAO
             return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
                 (team, stats) => team.SetPitchingStats(stats)).ToList();
         }
-        public List<PlayerPosition> GetPlayerPositions()
-        {
-            using var db = new VKRApplicationContext();
-            return db.PlayersPositions.OrderBy(pp => pp.Number).ToList();
-        }
     }
 }

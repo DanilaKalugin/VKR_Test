@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
 
@@ -10,6 +11,7 @@ namespace VKR.EF.DAO
         public void MovePlayerToNewTeam(Player player, Team team)
         {
             using var db = new VKRApplicationContext();
+
             var pit = db.PlayersInTeams.FirstOrDefault(pit => pit.PlayerId == player.Id &&
                                                               pit.TeamId == team.TeamAbbreviation);
 
@@ -21,12 +23,11 @@ namespace VKR.EF.DAO
                 db.PlayersInTeams.Update(playerInTeam);
             }
 
-
             if (pit == null)
             {
                 var maxId = db.PlayersInTeams.Max(pit => pit.Id);
 
-                var newPiTrecord = new PlayerInTeam()
+                var newPiTrecord = new PlayerInTeam
                 {
                     CurrentPlayerInTeamStatus = InTeamStatusEnum.Reserve,
                     PlayerId = player.Id,
@@ -40,34 +41,86 @@ namespace VKR.EF.DAO
                 pit.CurrentPlayerInTeamStatus = InTeamStatusEnum.Reserve;
                 db.PlayersInTeams.Update(pit);
             }
+
+            var playerDB = db.Players.FirstOrDefault(p => p.Id == player.Id);
+            if (playerDB is { CurrentPlayerStatus: PlayerStatusEnum.FreeAgent })
+            {
+                playerDB.CurrentPlayerStatus = PlayerStatusEnum.Active;
+                db.Players.Update(playerDB);
+            }
+
             db.SaveChanges();
         }
 
-        public List<PlayerInLineupViewModel> GetAllPlayers()
+        public void ChangePlayerInTeamStatus(Player player, Team team, InTeamStatusEnum inTeamStatus)
         {
             using var db = new VKRApplicationContext();
-            var allPlayers = db.PlayersInTeams
-                .Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam)
-                .Include(pit => pit.Player)
-                .ThenInclude(p => p.City)
-                .Include(p => p.Player.Positions)
-                .Include(pit => pit.Player.BattingHand)
-                .Include(pit => pit.Player.PitchingHand)
-                .ToList();
+            var pit = db.PlayersInTeams.FirstOrDefault(pit => pit.TeamId == team.TeamAbbreviation && pit.PlayerId == player.Id);
 
-            var allPlayersVM = allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
+            if (pit == null) return;
+            pit.CurrentPlayerInTeamStatus = inTeamStatus;
+            db.PlayersInTeams.Update(pit);
+            db.SaveChanges();
+        }
 
-            var freeAgents = db.Players
-                .Where(player => player.CurrentPlayerStatus == PlayerStatusEnum.FreeAgent)
-                .Include(player => player.BattingHand)
-                .Include(player => player.PitchingHand)
-                .Include(player => player.City)
-                .Include(player => player.Positions)
-                .ToList();
+        public void ReleasePlayer(Player player)
+        {
+            using var db = new VKRApplicationContext();
+            var playerDB = db.Players.FirstOrDefault(p => p.Id == player.Id);
+            if (playerDB == null) return;
 
-            var freeAgentsVM = freeAgents.Select(player => new PlayerInLineupViewModel(player, 0, 0, string.Empty, player.Positions[0].ShortTitle)).ToList();
+            playerDB.CurrentPlayerStatus = PlayerStatusEnum.FreeAgent;
+            db.Players.Update(playerDB);
 
-            return allPlayersVM.Union(freeAgentsVM).ToList();
+            var pitRecords = db.PlayersInTeams.Where(pit => pit.PlayerId == player.Id).ToList();
+            foreach (var playerInTeam in pitRecords)
+            {
+                playerInTeam.CurrentPlayerInTeamStatus = InTeamStatusEnum.NotInThisTeam;
+                db.PlayersInTeams.Update(playerInTeam);
+            }
+
+            db.SaveChanges();
+        }
+
+        public void RemovePlayerFromStartingLineup(Player player, Team team, byte lineupNumber)
+        {
+            using var db = new VKRApplicationContext();
+            var playerInTeam = db.PlayersInTeams.FirstOrDefault(pit => pit.PlayerId == player.Id &&
+                                                                       pit.TeamId == team.TeamAbbreviation);
+
+            if (playerInTeam == null) return;
+
+            var slEntry = db.StartingLineups.FirstOrDefault(sl =>
+                sl.LineupTypeId == lineupNumber && sl.PlayerInTeamId == playerInTeam.Id);
+
+            if (slEntry == null) return;
+
+            db.StartingLineups.Remove(slEntry);
+            db.SaveChanges();
+        }
+
+        public void AssignPlayerToStartingLineup(Player player, Team team, byte lineupNumber, PlayerPosition position, byte numberInLineup)
+        {
+            using var db = new VKRApplicationContext();
+            var playerInTeam = db.PlayersInTeams.FirstOrDefault(pit => pit.PlayerId == player.Id &&
+                                                                       pit.TeamId == team.TeamAbbreviation);
+
+            if (playerInTeam == null) return;
+
+            var playerPosition = db.PlayersPositions.FirstOrDefault(pp => pp.Number == position.Number);
+
+            if (playerPosition == null) return;
+
+            var newEntryInStartingLineup = new StartingLineup
+            {
+                PlayerInTeamId = playerInTeam.Id,
+                LineupTypeId = lineupNumber,
+                PlayerPositionId = playerPosition.ShortTitle,
+                PlayerNumberInLineup = numberInLineup
+            };
+
+            db.StartingLineups.Add(newEntryInStartingLineup);
+            db.SaveChanges();
         }
     }
 }

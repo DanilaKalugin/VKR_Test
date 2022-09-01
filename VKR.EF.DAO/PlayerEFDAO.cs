@@ -34,6 +34,54 @@ namespace VKR.EF.DAO
                                  player.MatchType == typeOfMatch);
         }
 
+        public void UpdatePlayer(Player player)
+        {
+            using var db = new VKRApplicationContext();
+
+            var playerDB = db.Players.FirstOrDefault(p => p.Id == player.Id);
+            if (playerDB == null) return;
+
+            playerDB.PlayerBattingHand = player.PlayerBattingHand;
+            playerDB.PlayerPitchingHand = player.PlayerPitchingHand;
+            playerDB.FirstName = player.FirstName;
+            playerDB.SecondName = player.SecondName;
+            playerDB.PlayerNumber = player.PlayerNumber;
+            playerDB.DateOfBirth = player.DateOfBirth;
+            playerDB.PlaceOfBirth = player.City.Id;
+
+            db.Players.Update(playerDB);
+            db.SaveChanges();
+        }
+
+        public void AddPlayer(Player player)
+        {
+            using var db = new VKRApplicationContext();
+
+            var playerDb = new Player
+            {
+                Id = player.Id,
+                PlayerBattingHand = player.PlayerBattingHand,
+                PlayerPitchingHand = player.PlayerPitchingHand,
+                FirstName = player.FirstName,
+                SecondName = player.SecondName,
+                PlayerNumber = player.PlayerNumber,
+                DateOfBirth = player.DateOfBirth,
+                PlaceOfBirth = player.City.Id,
+                CurrentPlayerStatus = PlayerStatusEnum.FreeAgent,
+
+            };
+
+            db.Players.Add(playerDb);
+            db.SaveChanges();
+        }
+
+        public uint GetIdForNewPlayer()
+        {
+            using var db = new VKRApplicationContext();
+
+            return db.Players.Max(p => p.Id) + 1;
+        }
+
         public Pitcher GetStartingPitcherForThisTeam(Match match, Team team)
         {
             using var db = new VKRApplicationContext();

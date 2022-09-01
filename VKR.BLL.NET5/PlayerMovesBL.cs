@@ -7,14 +7,19 @@ namespace VKR.BLL.NET5
 {
     public class PlayerMovesBL
     {
-        private readonly PlayerMovesDAO playerMovesDAO = new();
+        private readonly PlayerMovesDAO _playerMovesDao = new();
 
-        public void MovePlayerToNewTeam(Player player, Team team) => playerMovesDAO.MovePlayerToNewTeam(player, team);
+        public void MovePlayerToNewTeam(Player player, Team team) => _playerMovesDao.MovePlayerToNewTeam(player, team);
+        
+        public void ChangePlayerInTeamStatus(Player player, Team team, InTeamStatusEnum inTeamStatus) =>
+            _playerMovesDao.ChangePlayerInTeamStatus(player, team, inTeamStatus);
 
-        public List<PlayerInLineupViewModel> GetAllPlayers()
-        {
-            var players = playerMovesDAO.GetAllPlayers();
-            return players.OrderBy(pit => pit.SecondName).ThenBy(pit => pit.FirstName).ToList();
-        }
+        public void ReleasePlayer(PlayerInLineupViewModel player) => _playerMovesDao.ReleasePlayer(player);
+
+        public void RemoveFromStartingLineup(Player player, Team team, byte lineupNumber) =>
+            _playerMovesDao.RemovePlayerFromStartingLineup(player, team, lineupNumber);
+
+        public void AssignPlayerToStartingLineup(Player player, Team team, byte lineupNumber, PlayerPosition position, byte numberInLineup) =>
+            _playerMovesDao.AssignPlayerToStartingLineup(player, team, lineupNumber, position, numberInLineup);
     }
 }

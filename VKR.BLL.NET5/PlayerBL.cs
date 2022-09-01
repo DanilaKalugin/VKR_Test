@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
@@ -8,6 +9,7 @@ namespace VKR.BLL.NET5
     public class PlayerBL
     {
         private readonly PlayerEFDAO _playerEFDAO = new();
+        private readonly PlayerPositionsEFDAO _positionsDao = new();
 
         public Player GetPlayerByCode(uint code) => _playerEFDAO.GetPlayerByCode(code);
 
@@ -33,5 +35,20 @@ namespace VKR.BLL.NET5
 
         public PlayerPitchingStats GetPitchingStatsByCode(uint id, int year, TypeOfMatchEnum matchType = TypeOfMatchEnum.RegularSeason) =>
             _playerEFDAO.GetPitchingStatsByCode(id, year, matchType);
+
+        public void UpdatePlayer(Player player)
+        {
+            _playerEFDAO.UpdatePlayer(player);
+            _positionsDao.DeleteAllPositionsForPlayer(player);
+            _positionsDao.FillPlayerPositionsForPlayer(player);
+        }
+
+        public void AddPlayer(Player player)
+        {
+            _playerEFDAO.AddPlayer(player);
+            _positionsDao.FillPlayerPositionsForPlayer(player);
+        }
+
+        public uint GetIdForNewPlayer() => _playerEFDAO.GetIdForNewPlayer();
     }
 }
