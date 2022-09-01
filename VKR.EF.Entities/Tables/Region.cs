@@ -10,5 +10,7 @@ namespace VKR.EF.Entities
         public string CountryCode { get; set; }
         public virtual List<City> Cities { get; set; } = new();
 
+        public override string ToString() => $"{RegionName}, {CountryCode}";
+        public string RegionLocation => ToString();
     }
 }
