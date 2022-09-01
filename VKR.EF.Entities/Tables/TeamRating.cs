@@ -8,8 +8,8 @@ namespace VKR.EF.Entities
         public string TeamAbbreviation { get; set; }
         public ushort StrikeZoneProbability { get; set; }
         public ushort HitByPitchProbability { get; set; }
-        public byte SwingInStrikeZoneProbability { get; set; }
-        public byte SwingOutsideStrikeZoneProbability { get; set; }
+        public short SwingInStrikeZoneProbability { get; set; }
+        public short SwingOutsideStrikeZoneProbability { get; set; }
         public ushort HittingProbability { get; set; }
         public ushort FoulProbability { get; set; }
         public ushort SingleProbability { get; set; }
@@ -35,7 +35,7 @@ namespace VKR.EF.Entities
         {
             get
             {
-                var pitchingComponent = (double)(1600 - StrikeZoneProbability - (3000 - HitByPitchProbability)) / 36;
+                var pitchingComponent = (double)(1600 - StrikeZoneProbability - HitByPitchProbability) / 36;
                 var groundoutComponent = GroundoutProbability * 1.1 / 20;
                 var outfieldComponent = (double)(FlyoutProbability - GroundoutProbability) / 20;
                 var doublePlayComponent = (double)DoublePlayProbability / 3;
