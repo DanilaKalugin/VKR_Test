@@ -13,7 +13,9 @@ namespace VKR.PL.NET5
     {
         private readonly StatsBL _statsBl = new();
         private readonly PrimaryTeamColorBL _primaryColorBl = new();
+        private readonly SeasonBL _seasonBl = new();
 
+        private Season _season;
         private readonly List<Player> _batters;
         private readonly List<Player> _pitchers;
         private readonly List<TeamColor> _teamsColors;
@@ -21,9 +23,9 @@ namespace VKR.PL.NET5
         public StatsMenuForm()
         {
             InitializeComponent();
-
-            _batters = _statsBl.GetBattersStats();
-            _pitchers = _statsBl.GetPitchersStats();
+            _season = _seasonBl.GetCurrentSeason();
+            _batters = _statsBl.GetBattersStats(_season);
+            _pitchers = _statsBl.GetPitchersStats(_season);
             _teamsColors = _primaryColorBl.GetPrimaryTeamColors();
         }
 
@@ -45,9 +47,9 @@ namespace VKR.PL.NET5
 
         private TKey? ReturnMinStatsValueForPitcher<TKey>(Func<Player, TKey> key) => _pitchers.Select(key).Min();
 
-        private TKey? ReturnMaxStatsValueForPitcher<TKey>(Func<Player, TKey> key, string qualyfing)
+        private TKey? ReturnMaxStatsValueForPitcher<TKey>(Func<Player, TKey> key, string qualifying)
         {
-            var pitchers = _statsBl.GetPitchersStats(qualyfing);
+            var pitchers = _statsBl.GetPitchersStats(_season, qualifying);
             return pitchers.Select(key).Max();
         }
 
@@ -66,7 +68,7 @@ namespace VKR.PL.NET5
             {
                 case 0:
                     {
-                        var _pitchers = _statsBl.GetPitchersStats("All Players");
+                        var _pitchers = _statsBl.GetPitchersStats(_season, "All Players");
                         countOfBattersWithThisAVG = _pitchers.Where(key).Count();
                         return countOfBattersWithThisAVG == 1 ? _pitchers.Where(key).Select(pitcher => pitcher.FullName).First() : "Tied";
                     }
@@ -132,7 +134,7 @@ namespace VKR.PL.NET5
                     Player currentPlayer;
                     if (pitchersWithThisValue.Count == 0)
                     {
-                        var allPitchers = _statsBl.GetPitchersStats("All Players").ToList();
+                        var allPitchers = _statsBl.GetPitchersStats(_season, "All Players").ToList();
                         currentPlayer = allPitchers.First(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString());
                     }
                     else currentPlayer = pitchersWithThisValue.First();

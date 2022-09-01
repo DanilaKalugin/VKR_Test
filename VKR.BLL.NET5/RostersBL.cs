@@ -53,7 +53,17 @@ namespace VKR.BLL.NET5
             return players;
         }
 
-        public void ChangePlayerInTeamStatus(Player player, Team team, InTeamStatusEnum inTeamStatus) =>
-            _rostersDao.ChangePlayerInTeamStatus(player, team, inTeamStatus);
+        public List<PlayerInLineupViewModel> GetAllPlayers()
+        {
+            var active = _rostersDao.GetActiveAndReservePlayers();
+            var freeAgents = _rostersDao.GetFreeAgents();
+
+            var allPlayers = active.Union(freeAgents);
+
+            return allPlayers
+                .OrderBy(vm => vm.SecondName)
+                .ThenBy(vw => vw.FirstName)
+                .ToList();
+        }
     }
 }

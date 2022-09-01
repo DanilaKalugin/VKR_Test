@@ -12,5 +12,7 @@ namespace VKR.BLL.NET5
 
         public LeagueSeason GetLeagueSeasonInfo(int year, TypeOfMatchEnum matchType = TypeOfMatchEnum.RegularSeason) =>
             _seasonDao.GetSeasonInfo(year, matchType);
+
+        public Season GetCurrentSeason() => _seasonDao.GetCurrentSeason();
     }
 }

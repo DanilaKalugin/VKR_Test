@@ -7,11 +7,12 @@ namespace VKR.EF.DAO
 {
     public class MatchScheduleEFDAO
     {
-        public List<MatchScheduleViewModel> GetResultsForAllMatches()
+        public List<MatchScheduleViewModel> GetResultsForAllMatches(Season season, TypeOfMatchEnum typeOfMatch)
         {
             using var db = new VKRApplicationContext();
 
-            var matches = db.Matches.Include(m => m.MatchResult)
+            var matches = db.Matches.Where(match => match.SeasonId == season.Year && match.MatchTypeId == typeOfMatch)
+                .Include(m => m.MatchResult)
                 .Include(match => match.Stadium)
                 .ThenInclude(stadium => stadium.StadiumCity);
 
@@ -32,10 +33,11 @@ namespace VKR.EF.DAO
             return results.Union(activeMatchResults).ToList();
         }
 
-        public List<MatchScheduleViewModel> GetScheduleForAllMatches()
+        public List<MatchScheduleViewModel> GetScheduleForAllMatches(Season season, TypeOfMatchEnum typeOfMatch)
         {
             using var db = new VKRApplicationContext();
-            return db.NextMatches.Include(m => m.HomeTeam)
+            return db.NextMatches.Where(match => match.SeasonId == season.Year && match.MatchTypeId == typeOfMatch)
+                .Include(m => m.HomeTeam)
                 .ThenInclude(team => team.StadiumsForMatchTypes)
                 .ThenInclude(tmts => tmts.Stadium)
                 .ThenInclude(stadium => stadium.StadiumCity)

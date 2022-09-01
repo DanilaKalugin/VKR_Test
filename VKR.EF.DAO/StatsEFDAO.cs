@@ -25,7 +25,7 @@ namespace VKR.EF.DAO
                 (player, stats) => player.SetBattingStats(stats)).ToList();
         }
 
-        public List<Player> GetPlayerPitchingStats(int year)
+        public List<Player> GetPlayerPitchingStats(int year, TypeOfMatchEnum matchType = TypeOfMatchEnum.RegularSeason)
         {
             using var db = new VKRApplicationContext();
 
@@ -35,7 +35,7 @@ namespace VKR.EF.DAO
 
             var pitchingStats = db.PlayersPitchingStats
                 .Where(battingStats => battingStats.Season == year &&
-                                       battingStats.MatchType == TypeOfMatchEnum.RegularSeason &&
+                                       battingStats.MatchType == matchType &&
                                        battingStats.GamesPlayed > 0)
                 .ToList();
 
@@ -56,7 +56,7 @@ namespace VKR.EF.DAO
                 (team, stats) => team.SetBattingStats(stats)).ToList();
         }
 
-        public List<Team> GetPitchingStatsByYearAndMatchType(int year, TypeOfMatchEnum type)
+        public List<Team> GetPitchingStatsByYearAndMatchType(int year = 2021, TypeOfMatchEnum type = TypeOfMatchEnum.RegularSeason)
         {
             using var db = new VKRApplicationContext();
 

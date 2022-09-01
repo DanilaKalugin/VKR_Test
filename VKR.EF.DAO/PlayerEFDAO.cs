@@ -14,14 +14,14 @@ namespace VKR.EF.DAO
             return db.PlayersInTeams.Include(pit => pit.Player).First(player => player.Id == code).Player;
         }
 
-        public PlayerBattingStats GetBattingStatsByCode(uint playerCode, int year)
+        public PlayerBattingStats GetBattingStatsByCode(uint playerCode, int year, TypeOfMatchEnum typeOfMatch = TypeOfMatchEnum.RegularSeason)
         {
             using var db = new VKRApplicationContext();
 
             return db.PlayersBattingStats
                 .First(player => player.PlayerID == playerCode &&
                                  player.Season == year &&
-                                 player.MatchType == TypeOfMatchEnum.RegularSeason);
+                                 player.MatchType == typeOfMatch);
         }
 
         public PlayerPitchingStats GetPitchingStatsByCode(uint playerCode, int year, TypeOfMatchEnum typeOfMatch = TypeOfMatchEnum.RegularSeason)
