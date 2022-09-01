@@ -1,10 +1,8 @@
 ﻿namespace VKR.EF.Entities
 {
-    public class TeamBalance
+    public class TeamBalance :StatGroupedBySeasonAndMatchType
     {
         public string TeamAbbreviation { get; set; }
-        public int Season { get; set; }
-        public TypeOfMatchEnum MatchType { get; set; }
         public int HomeWins { get; set; }
         public int HomeLosses { get; set; }
         public int AwayWins { get; set; }

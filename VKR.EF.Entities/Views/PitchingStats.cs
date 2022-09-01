@@ -2,10 +2,8 @@
 
 namespace VKR.EF.Entities
 {
-    public class PitchingStats
+    public class PitchingStats :StatGroupedBySeasonAndMatchType
     {
-        public int Season { get; set; }
-        public TypeOfMatchEnum MatchType { get; set; }
         public int GamesPlayed { get; set; }
         public int Strikeouts { get; set; }
         public int RunsAllowed { get; set; }
