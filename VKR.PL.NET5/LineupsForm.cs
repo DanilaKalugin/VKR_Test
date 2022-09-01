@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
@@ -16,10 +17,11 @@ namespace VKR.PL.NET5
         public enum RosterType { StartingLineups, Reserves, FreeAgents }
         private readonly RosterType _rosterType;
 
-        private readonly PlayerBL _players = new();
-        private readonly TeamsBL _teamsBL = new();
-        private readonly MatchBL _matchBL = new();
+        private readonly PlayerBL _playersBl = new();
+        private readonly TeamsBL _teamsBl = new();
+        private readonly MatchBL _matchBl = new();
         private readonly RostersBL _rostersBl = new();
+        private readonly PlayerMovesBL _playerMovesBl = new();
 
         private List<List<List<PlayerInLineupViewModel>>> _teamsLineups;
         private List<List<List<PlayerInLineupViewModel>>> _teamsBench;
@@ -29,16 +31,23 @@ namespace VKR.PL.NET5
         private readonly string[] _typesOfLineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
         private bool _lineupChanged;
         private readonly DateTime _matchDate;
+        private bool _isAdmin;
+        private PlayerInLineupViewModel _player;
 
-        public LineupsForm(RosterType rosterType)
+        public LineupsForm(RosterType rosterType, bool isAdmin)
         {
             InitializeComponent();
 
             _rosterType = rosterType;
-            _teams = _teamsBL.GetAllTeams();
-            _matchDate = _matchBL.GetMaxDateForAllMatches();
+            _teams = _teamsBl.GetAllTeams();
+            _matchDate = _matchBl.GetMaxDateForAllMatches();
 
             FillTables();
+
+            _isAdmin = isAdmin;
+            btnMoveToLowerRoster.Visible = _isAdmin;
+            btnMoveToUpperRoster.Visible = _isAdmin;
+            btnUpdatePlayer.Visible = _isAdmin;
         }
 
         private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
@@ -116,6 +125,9 @@ namespace VKR.PL.NET5
             foreach (var player in bench)
                 dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
 
+            btnMoveToLowerRoster.Enabled = _teamsLineups[teamNumber][lineupNumber].Count > 0;
+            btnMoveToUpperRoster.Enabled = bench.Count > 0;
+
             _lineupChanged = true;
         }
 
@@ -125,16 +137,12 @@ namespace VKR.PL.NET5
             DisplayRoster(_teamNumber, _lineupNumber);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _lineupNumber = _lineupNumber > 0 ? _lineupNumber - 1 : _teamsLineups[_teamNumber].Count - 1;
-            DisplayRoster(_teamNumber, _lineupNumber);
-        }
-
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvLineup.SelectedRows.Count > 0)
-                ShowNewPlayer(dgvLineup, dgvBench, _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index]);
+            if (dgvLineup.SelectedRows.Count == 0) return;
+
+            _player = _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index];
+            ShowNewPlayer(dgvLineup, dgvBench, _player);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e) => ShowNewPlayer(dgvLineup, dgvBench, _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index]);
@@ -142,10 +150,10 @@ namespace VKR.PL.NET5
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             _lineupChanged = false;
-            var player = _rosterType == RosterType.FreeAgents
+            _player = _rosterType == RosterType.FreeAgents
                 ? _teamsBench[0][0][dgvBench.SelectedRows[0].Index]
                 : _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index];
-            ShowNewPlayer(dgvBench, dgvLineup, player);
+            ShowNewPlayer(dgvBench, dgvLineup, _player);
         }
 
         private void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, Player player)
@@ -163,21 +171,21 @@ namespace VKR.PL.NET5
             label4.Text = player.CanPlayAsPitcher ? "ERA" : "AVG";
             label5.Text = player.CanPlayAsPitcher ? "SO" : "HR";
             label6.Text = player.CanPlayAsPitcher ? "WHIP" : "RBI";
-            /*
+            
             if (!player.CanPlayAsPitcher)
             {
-                player.BattingStats = _players.GetBattingStatsByCode(player.Id, _matchDate.Year);
+                player.BattingStats = _playersBl.GetBattingStatsByCode(player.Id, _matchDate.Year);
                 label1.Text = player.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
                 label2.Text = player.BattingStats.HomeRuns.ToString();
                 label3.Text = player.BattingStats.RBI.ToString();
             }
             else
             {
-                player.PitchingStats = _players.GetPitchingStatsByCode(player.Id, _matchDate.Year);
+                player.PitchingStats = _playersBl.GetPitchingStatsByCode(player.Id, _matchDate.Year);
                 label1.Text = player.PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"));
                 label2.Text = player.PitchingStats.Strikeouts.ToString();
                 label3.Text = player.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
-            }*/
+            }
 
             label7.Text = $@"Positions: {string.Join(", ", player.Positions.Select(position => position.ShortTitle))}";
 
@@ -211,12 +219,22 @@ namespace VKR.PL.NET5
 
         private void btnAssignTo_Click(object sender, EventArgs e)
         {
-            if (_rosterType != RosterType.Reserves) return;
-
-            var player = _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index];
+            _player = _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index];
             var team = _teams[_teamNumber];
 
-            _rostersBl.ChangePlayerInTeamStatus(player, team, InTeamStatusEnum.Reserve);
+            switch (_rosterType)
+            {
+                case RosterType.StartingLineups:
+                    _playerMovesBl.RemoveFromStartingLineup(_player, team, (byte)(_lineupNumber + 1));
+                    break;
+                case RosterType.Reserves:
+                    _playerMovesBl.ChangePlayerInTeamStatus(_player, team, InTeamStatusEnum.Reserve);
+                    break;
+                case RosterType.FreeAgents:
+                    _playerMovesBl.ReleasePlayer(_player);
+                    break;
+            }
+
             FillTables();
         }
 
@@ -249,13 +267,68 @@ namespace VKR.PL.NET5
 
         private void MoveToActiveRoster_Click(object sender, EventArgs e)
         {
-            if (_rosterType != RosterType.Reserves) return;
+            _player = _rosterType == RosterType.FreeAgents
+                ? _teamsBench[0][0][dgvBench.SelectedRows[0].Index]
+                : _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index];
 
-            var player = _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index];
             var team = _teams[_teamNumber];
 
-            _rostersBl.ChangePlayerInTeamStatus(player, team, InTeamStatusEnum.ActiveRoster);
+            switch (_rosterType)
+            {
+                case RosterType.StartingLineups:
+                    {
+                        var position = GetPlayerPositionForPlayer(_player);
+                        if (position is not null)
+                            _playerMovesBl.AssignPlayerToStartingLineup(_player, team, (byte)(_lineupNumber + 1), position, (byte)(_teamsLineups[_teamNumber][_lineupNumber].Count + 1));
+                        break;
+                    }
+                case RosterType.Reserves:
+                    _playerMovesBl.ChangePlayerInTeamStatus(_player, team, InTeamStatusEnum.ActiveRoster);
+                    break;
+                case RosterType.FreeAgents:
+                    _playerMovesBl.MovePlayerToNewTeam(_player, team);
+                    break;
+            }
+
             FillTables();
+        }
+
+        private PlayerPosition? GetPlayerPositionForPlayer(Player player)
+        {
+            var filledPositionsInLineup = _teamsLineups[_teamNumber][_lineupNumber].Select(p => p.PositionInLineup).ToList();
+            var positions = player.Positions.ToList();
+
+            if (_lineupNumber % 2 == 0)
+                positions.Add(new PlayerPosition
+                {
+                    Number = 10,
+                    ShortTitle = "DH",
+                    FullTitle = "Designated Hitter"
+                });
+
+            var availablePositions = positions.Where(pp => !filledPositionsInLineup.Contains(pp.ShortTitle)).ToList();
+
+
+            if (availablePositions.Count <= 1) return availablePositions.First();
+
+            var form = new SelectPlayerPositionForm(player, availablePositions, _typesOfLineups[_lineupNumber]);
+            form.ShowDialog();
+            return form.DialogResult == DialogResult.OK ? form.Position : null;
+        }
+
+        private void btnUpdatePlayer_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+
+
+            using (var form = new AddPlayerForm(_player))
+            {
+                form.ShowDialog();
+                if (form.DialogResult == DialogResult.OK)
+                    FillTables();
+            }
+
+            Visible = true;
         }
     }
 }

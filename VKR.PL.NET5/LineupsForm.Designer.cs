@@ -64,8 +64,9 @@ namespace VKR.PL.NET5
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.playerHands = new System.Windows.Forms.Label();
-            this.btnAssignTo = new System.Windows.Forms.Button();
-            this.MoveToActiveRoster = new System.Windows.Forms.Button();
+            this.btnMoveToLowerRoster = new System.Windows.Forms.Button();
+            this.btnMoveToUpperRoster = new System.Windows.Forms.Button();
+            this.btnUpdatePlayer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLineup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBench)).BeginInit();
             this.SuspendLayout();
@@ -431,39 +432,53 @@ namespace VKR.PL.NET5
             this.playerHands.Text = "#99";
             this.playerHands.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnAssignTo
+            // btnMoveToLowerRoster
             // 
-            this.btnAssignTo.FlatAppearance.BorderSize = 0;
-            this.btnAssignTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAssignTo.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAssignTo.Location = new System.Drawing.Point(599, 181);
-            this.btnAssignTo.Name = "btnAssignTo";
-            this.btnAssignTo.Size = new System.Drawing.Size(119, 82);
-            this.btnAssignTo.TabIndex = 64;
-            this.btnAssignTo.Text = ">>";
-            this.btnAssignTo.UseVisualStyleBackColor = true;
-            this.btnAssignTo.Click += new System.EventHandler(this.btnAssignTo_Click);
+            this.btnMoveToLowerRoster.FlatAppearance.BorderSize = 0;
+            this.btnMoveToLowerRoster.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoveToLowerRoster.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnMoveToLowerRoster.Location = new System.Drawing.Point(599, 181);
+            this.btnMoveToLowerRoster.Name = "btnMoveToLowerRoster";
+            this.btnMoveToLowerRoster.Size = new System.Drawing.Size(119, 82);
+            this.btnMoveToLowerRoster.TabIndex = 64;
+            this.btnMoveToLowerRoster.Text = ">>";
+            this.btnMoveToLowerRoster.UseVisualStyleBackColor = true;
+            this.btnMoveToLowerRoster.Click += new System.EventHandler(this.btnAssignTo_Click);
             // 
-            // MoveToActiveRoster
+            // btnMoveToUpperRoster
             // 
-            this.MoveToActiveRoster.FlatAppearance.BorderSize = 0;
-            this.MoveToActiveRoster.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MoveToActiveRoster.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MoveToActiveRoster.Location = new System.Drawing.Point(599, 298);
-            this.MoveToActiveRoster.Name = "MoveToActiveRoster";
-            this.MoveToActiveRoster.Size = new System.Drawing.Size(119, 82);
-            this.MoveToActiveRoster.TabIndex = 65;
-            this.MoveToActiveRoster.Text = "<<";
-            this.MoveToActiveRoster.UseVisualStyleBackColor = true;
-            this.MoveToActiveRoster.Click += new System.EventHandler(this.MoveToActiveRoster_Click);
+            this.btnMoveToUpperRoster.FlatAppearance.BorderSize = 0;
+            this.btnMoveToUpperRoster.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoveToUpperRoster.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnMoveToUpperRoster.Location = new System.Drawing.Point(599, 298);
+            this.btnMoveToUpperRoster.Name = "btnMoveToUpperRoster";
+            this.btnMoveToUpperRoster.Size = new System.Drawing.Size(119, 82);
+            this.btnMoveToUpperRoster.TabIndex = 65;
+            this.btnMoveToUpperRoster.Text = "<<";
+            this.btnMoveToUpperRoster.UseVisualStyleBackColor = true;
+            this.btnMoveToUpperRoster.Click += new System.EventHandler(this.MoveToActiveRoster_Click);
+            // 
+            // btnUpdatePlayer
+            // 
+            this.btnUpdatePlayer.FlatAppearance.BorderSize = 0;
+            this.btnUpdatePlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdatePlayer.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnUpdatePlayer.Location = new System.Drawing.Point(404, 139);
+            this.btnUpdatePlayer.Name = "btnUpdatePlayer";
+            this.btnUpdatePlayer.Size = new System.Drawing.Size(189, 33);
+            this.btnUpdatePlayer.TabIndex = 67;
+            this.btnUpdatePlayer.Text = "Edit";
+            this.btnUpdatePlayer.UseVisualStyleBackColor = true;
+            this.btnUpdatePlayer.Click += new System.EventHandler(this.btnUpdatePlayer_Click);
             // 
             // LineupsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1316, 414);
-            this.Controls.Add(this.MoveToActiveRoster);
-            this.Controls.Add(this.btnAssignTo);
+            this.Controls.Add(this.btnUpdatePlayer);
+            this.Controls.Add(this.btnMoveToUpperRoster);
+            this.Controls.Add(this.btnMoveToLowerRoster);
             this.Controls.Add(this.playerHands);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -530,7 +545,8 @@ namespace VKR.PL.NET5
         private Label label6;
         private Label label7;
         private Label playerHands;
-        private Button btnAssignTo;
-        private Button MoveToActiveRoster;
+        private Button btnMoveToLowerRoster;
+        private Button btnMoveToUpperRoster;
+        private Button btnUpdatePlayer;
     }
 }
