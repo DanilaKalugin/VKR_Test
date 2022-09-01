@@ -15,13 +15,14 @@ namespace VKR.PL.NET5
         private readonly RostersBL _rostersBl = new();
         private readonly PlayerMovesBL _playerMoves = new();
 
-        private List<List<List<PlayerInLineupViewModel>>> _teamsLineups;
         private List<PlayerInLineupViewModel> _allPlayers;
         private List<PlayerInLineupViewModel> _players = new();
         private readonly List<Team> _teams;
+        private PlayerInLineupViewModel _currentPlayer;
 
         private int _teamNumber;
-
+        private string _firstName = string.Empty;
+        private string _lastName = string.Empty;
 
         public ChangePlayerTeamForm()
         {
@@ -44,26 +45,13 @@ namespace VKR.PL.NET5
             lbTeamtitle.Text = _teams[teamNumber].TeamName.ToUpper();
             lbTeamtitle.BackColor = _teams[teamNumber].TeamColors[0].Color;
             lbTeamtitle.ForeColor = Color.White;
-            dgvLineup.DefaultCellStyle.SelectionBackColor = _teams[teamNumber].TeamColors[0].Color;
-            dgvLineup.DefaultCellStyle.SelectionForeColor = Color.White;
 
             btnIncreaseTeamNumberBy1.ForeColor = _teams[teamNumber].TeamColors[0].Color;
             btnDecreaseTeamNumberBy1.ForeColor = _teams[teamNumber].TeamColors[0].Color;
-            btnAssignTo.Text = $"Assign to {_teams[teamNumber].TeamName}";
-            DisplayRoster(teamNumber, dgvLineup);
-        }
 
-        private void DisplayRoster(int teamNumber, DataGridView dgv)
-        {
-            dgvLineup.DefaultCellStyle.SelectionBackColor = _teams[teamNumber].TeamColors[0].Color;
-            dgvLineup.DefaultCellStyle.SelectionForeColor = Color.White;
             dataGridView1.DefaultCellStyle.SelectionBackColor = _teams[teamNumber].TeamColors[0].Color;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
 
-            dgvLineup.Rows.Clear();
-            foreach (var player in _teamsLineups[teamNumber][0])
-                dgvLineup.Rows.Add("", player.PositionInLineup, $"{player.FirstName[0]}. {player.SecondName}");
-            dgvLineup.Columns[0].Visible = false;
+            btnAssignTo.Text = $"Assign to {_teams[teamNumber].TeamName}";
         }
 
         private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
@@ -72,14 +60,7 @@ namespace VKR.PL.NET5
             TeamChanged(_teamNumber);
         }
 
-        private void dgvLineup_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvLineup.SelectedRows.Count <= 0) return;
-            var player = _teamsLineups[_teamNumber][0][dgvLineup.SelectedRows[0].Index];
-            ShowNewPlayer(player);
-        }
-
-        private void ShowNewPlayer(Player player)
+        private void ShowNewPlayer(PlayerInLineupViewModel player)
         {
             label7.Text = $@"Positions: {string.Join(", ", player.Positions.Select(position => position.ShortTitle))}";
 
@@ -89,30 +70,35 @@ namespace VKR.PL.NET5
             lbPlayerName.Text = player.FullName.ToUpper();
             lbPlayerPlace_and_DateOfBirth.Text = $@"{player.City.CityLocation.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";
             playerHands.Text = $@"B/T: {player.BattingHand.Description[0]}/{player.PitchingHand.Description[0]}".ToUpper();
+
+            btnAssignTo.Enabled = player.TeamAbbreviation != _teams[_teamNumber].TeamAbbreviation;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count <= 0 || _players.Count == 0) return;
+            if (dataGridView1.SelectedRows.Count <= 0) return;
 
-            var player = _players[dataGridView1.SelectedRows[0].Index];
-            ShowNewPlayer(player);
+            _currentPlayer = _players[dataGridView1.SelectedRows[0].Index];
+
+            ShowNewPlayer(_currentPlayer);
         }
 
         private void btnAssignTo_Click(object sender, EventArgs e)
         {
-            var player = _players[dataGridView1.SelectedRows[0].Index];
             var team = _teams[_teamNumber];
 
-            _playerMoves.MovePlayerToNewTeam(player, team);
-
+            _playerMoves.MovePlayerToNewTeam(_currentPlayer, team);
             FillTables();
         }
 
         private void FillTables()
         {
-            _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActiveAndReserve);
-            _allPlayers = _playerMoves.GetAllPlayers();
+            _allPlayers = _rostersBl.GetAllPlayers();
+            _players = _allPlayers.ToList();
+
+            txtLastName.Clear();
+            txtFirstName.Clear();
+
             TeamChanged(_teamNumber);
             FillSecondTable(_allPlayers);
         }
@@ -127,8 +113,59 @@ namespace VKR.PL.NET5
 
         private void txtLastName_TextChanged(object sender, EventArgs e)
         {
-            var input = txtLastName.Text.Trim();
-            _players = _allPlayers.Where(player => player.SecondName.Contains(input)).ToList();
+            _lastName = txtLastName.Text.Trim();
+
+            _players = GetFilteredPlayers(_firstName, _lastName);
+            btnAddPlayer.Visible = _players.Count == 0;
+            btnAssignTo.Enabled = _players.Count > 0;
+            FillSecondTable(_players);
+        }
+
+        private void btnUpdatePlayer_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+            using (var form = new AddPlayerForm(_currentPlayer))
+            {
+                form.ShowDialog();
+                if (form.DialogResult == DialogResult.OK)
+                    FillTables();
+            }
+            Visible = true;
+        }
+
+        private void btnAddPlayer_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+            using (var form = new AddPlayerForm(true))
+            {
+                form.ShowDialog();
+                if (form.DialogResult == DialogResult.OK)
+                    FillTables();
+            }
+            Visible = true;
+        }
+
+        private List<PlayerInLineupViewModel> GetFilteredPlayers(string firstName = "", string lastName = "")
+        {
+            var players = _allPlayers.ToList();
+
+            if (firstName != string.Empty)
+                players = players.Where(player => player.FirstName.StartsWith(firstName)).ToList();
+
+            if (lastName != string.Empty)
+                players = players.Where(player => player.SecondName.StartsWith(lastName)).ToList();
+
+            return players;
+        }
+
+
+        private void txtFirstName_TextChanged(object sender, EventArgs e)
+        {
+            _firstName = txtFirstName.Text.Trim();
+
+            _players = GetFilteredPlayers(_firstName, _lastName);
+            btnAddPlayer.Visible = _players.Count == 0;
+            btnAssignTo.Enabled = _players.Count > 0;
             FillSecondTable(_players);
         }
     }

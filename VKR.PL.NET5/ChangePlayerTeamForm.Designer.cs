@@ -30,8 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangePlayerTeamForm));
             this.playerHands = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -42,20 +40,19 @@
             this.btnDecreaseTeamNumberBy1 = new System.Windows.Forms.Button();
             this.btnIncreaseTeamNumberBy1 = new System.Windows.Forms.Button();
             this.lbTeamtitle = new System.Windows.Forms.Label();
-            this.dgvLineup = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAssignTo = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLineup)).BeginInit();
+            this.btnUpdatePlayer = new System.Windows.Forms.Button();
+            this.btnAddPlayer = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +60,7 @@
             // 
             this.playerHands.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.playerHands.ForeColor = System.Drawing.Color.Black;
-            this.playerHands.Location = new System.Drawing.Point(279, 132);
+            this.playerHands.Location = new System.Drawing.Point(279, 121);
             this.playerHands.Margin = new System.Windows.Forms.Padding(0);
             this.playerHands.Name = "playerHands";
             this.playerHands.Size = new System.Drawing.Size(125, 21);
@@ -76,7 +73,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(279, 111);
+            this.label7.Location = new System.Drawing.Point(279, 100);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 21);
@@ -87,7 +84,7 @@
             // pbPlayerPhoto
             // 
             this.pbPlayerPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbPlayerPhoto.Location = new System.Drawing.Point(170, 23);
+            this.pbPlayerPhoto.Location = new System.Drawing.Point(170, 12);
             this.pbPlayerPhoto.Name = "pbPlayerPhoto";
             this.pbPlayerPhoto.Size = new System.Drawing.Size(106, 160);
             this.pbPlayerPhoto.TabIndex = 45;
@@ -97,7 +94,7 @@
             this.lbPlayerPlace_and_DateOfBirth.AutoSize = true;
             this.lbPlayerPlace_and_DateOfBirth.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbPlayerPlace_and_DateOfBirth.ForeColor = System.Drawing.Color.Black;
-            this.lbPlayerPlace_and_DateOfBirth.Location = new System.Drawing.Point(279, 90);
+            this.lbPlayerPlace_and_DateOfBirth.Location = new System.Drawing.Point(279, 79);
             this.lbPlayerPlace_and_DateOfBirth.Margin = new System.Windows.Forms.Padding(0);
             this.lbPlayerPlace_and_DateOfBirth.Name = "lbPlayerPlace_and_DateOfBirth";
             this.lbPlayerPlace_and_DateOfBirth.Size = new System.Drawing.Size(61, 21);
@@ -109,7 +106,7 @@
             // 
             this.lbPlayerName.Font = new System.Drawing.Font("MicroFLF", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbPlayerName.ForeColor = System.Drawing.Color.Black;
-            this.lbPlayerName.Location = new System.Drawing.Point(276, 48);
+            this.lbPlayerName.Location = new System.Drawing.Point(276, 37);
             this.lbPlayerName.Margin = new System.Windows.Forms.Padding(0);
             this.lbPlayerName.Name = "lbPlayerName";
             this.lbPlayerName.Size = new System.Drawing.Size(515, 42);
@@ -121,7 +118,7 @@
             // 
             this.lbPlayerNumber.Font = new System.Drawing.Font("MicroFLF", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbPlayerNumber.ForeColor = System.Drawing.Color.DimGray;
-            this.lbPlayerNumber.Location = new System.Drawing.Point(9, 109);
+            this.lbPlayerNumber.Location = new System.Drawing.Point(9, 98);
             this.lbPlayerNumber.Name = "lbPlayerNumber";
             this.lbPlayerNumber.Size = new System.Drawing.Size(155, 74);
             this.lbPlayerNumber.TabIndex = 46;
@@ -130,10 +127,11 @@
             // 
             // btnDecreaseTeamNumberBy1
             // 
+            this.btnDecreaseTeamNumberBy1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDecreaseTeamNumberBy1.FlatAppearance.BorderSize = 0;
             this.btnDecreaseTeamNumberBy1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecreaseTeamNumberBy1.ForeColor = System.Drawing.Color.Black;
-            this.btnDecreaseTeamNumberBy1.Location = new System.Drawing.Point(15, 215);
+            this.btnDecreaseTeamNumberBy1.Location = new System.Drawing.Point(524, 181);
             this.btnDecreaseTeamNumberBy1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.btnDecreaseTeamNumberBy1.Name = "btnDecreaseTeamNumberBy1";
             this.btnDecreaseTeamNumberBy1.Size = new System.Drawing.Size(17, 22);
@@ -144,10 +142,11 @@
             // 
             // btnIncreaseTeamNumberBy1
             // 
+            this.btnIncreaseTeamNumberBy1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIncreaseTeamNumberBy1.FlatAppearance.BorderSize = 0;
             this.btnIncreaseTeamNumberBy1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIncreaseTeamNumberBy1.ForeColor = System.Drawing.Color.Black;
-            this.btnIncreaseTeamNumberBy1.Location = new System.Drawing.Point(579, 217);
+            this.btnIncreaseTeamNumberBy1.Location = new System.Drawing.Point(780, 181);
             this.btnIncreaseTeamNumberBy1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.btnIncreaseTeamNumberBy1.Name = "btnIncreaseTeamNumberBy1";
             this.btnIncreaseTeamNumberBy1.Size = new System.Drawing.Size(17, 22);
@@ -158,73 +157,16 @@
             // 
             // lbTeamtitle
             // 
+            this.lbTeamtitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTeamtitle.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbTeamtitle.ForeColor = System.Drawing.Color.Black;
-            this.lbTeamtitle.Location = new System.Drawing.Point(32, 215);
+            this.lbTeamtitle.Location = new System.Drawing.Point(541, 181);
             this.lbTeamtitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbTeamtitle.Name = "lbTeamtitle";
-            this.lbTeamtitle.Size = new System.Drawing.Size(547, 22);
+            this.lbTeamtitle.Size = new System.Drawing.Size(239, 22);
             this.lbTeamtitle.TabIndex = 42;
             this.lbTeamtitle.Text = "label7";
             this.lbTeamtitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dgvLineup
-            // 
-            this.dgvLineup.AllowUserToAddRows = false;
-            this.dgvLineup.AllowUserToDeleteRows = false;
-            this.dgvLineup.AllowUserToResizeColumns = false;
-            this.dgvLineup.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            this.dgvLineup.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvLineup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvLineup.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.dgvLineup.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvLineup.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvLineup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLineup.ColumnHeadersVisible = false;
-            this.dgvLineup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLineup.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvLineup.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvLineup.Location = new System.Drawing.Point(16, 240);
-            this.dgvLineup.MultiSelect = false;
-            this.dgvLineup.Name = "dgvLineup";
-            this.dgvLineup.ReadOnly = true;
-            this.dgvLineup.RowHeadersVisible = false;
-            this.dgvLineup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLineup.Size = new System.Drawing.Size(580, 201);
-            this.dgvLineup.TabIndex = 41;
-            this.dgvLineup.SelectionChanged += new System.EventHandler(this.dgvLineup_SelectionChanged);
-            // 
-            // Column1
-            // 
-            this.Column1.FillWeight = 6F;
-            this.Column1.HeaderText = "Number";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.FillWeight = 6F;
-            this.Column2.HeaderText = "Position";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.FillWeight = 88F;
-            this.Column3.HeaderText = "Name";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
             // 
             // dataGridView1
             // 
@@ -232,8 +174,10 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -245,22 +189,22 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.Column4});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.Location = new System.Drawing.Point(624, 141);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 314);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(580, 311);
+            this.dataGridView1.Size = new System.Drawing.Size(781, 374);
             this.dataGridView1.TabIndex = 59;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -294,34 +238,25 @@
             // 
             // btnAssignTo
             // 
+            this.btnAssignTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAssignTo.FlatAppearance.BorderSize = 0;
             this.btnAssignTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAssignTo.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAssignTo.Location = new System.Drawing.Point(624, 12);
+            this.btnAssignTo.Location = new System.Drawing.Point(16, 275);
             this.btnAssignTo.Name = "btnAssignTo";
-            this.btnAssignTo.Size = new System.Drawing.Size(580, 33);
+            this.btnAssignTo.Size = new System.Drawing.Size(781, 33);
             this.btnAssignTo.TabIndex = 63;
             this.btnAssignTo.Text = "Assign to";
             this.btnAssignTo.UseVisualStyleBackColor = true;
             this.btnAssignTo.Click += new System.EventHandler(this.btnAssignTo_Click);
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(624, 116);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(580, 22);
-            this.label1.TabIndex = 60;
-            this.label1.Text = "All players";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(850, 54);
+            this.label2.Location = new System.Drawing.Point(424, 246);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 17);
             this.label2.TabIndex = 64;
@@ -329,23 +264,94 @@
             // 
             // txtLastName
             // 
+            this.txtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLastName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLastName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtLastName.Location = new System.Drawing.Point(950, 51);
+            this.txtLastName.Location = new System.Drawing.Point(524, 243);
             this.txtLastName.MaxLength = 35;
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(254, 26);
+            this.txtLastName.Size = new System.Drawing.Size(273, 26);
             this.txtLastName.TabIndex = 65;
             this.txtLastName.TextChanged += new System.EventHandler(this.txtLastName_TextChanged);
+            // 
+            // btnUpdatePlayer
+            // 
+            this.btnUpdatePlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdatePlayer.FlatAppearance.BorderSize = 0;
+            this.btnUpdatePlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdatePlayer.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnUpdatePlayer.Location = new System.Drawing.Point(608, 141);
+            this.btnUpdatePlayer.Name = "btnUpdatePlayer";
+            this.btnUpdatePlayer.Size = new System.Drawing.Size(189, 33);
+            this.btnUpdatePlayer.TabIndex = 66;
+            this.btnUpdatePlayer.Text = "Edit";
+            this.btnUpdatePlayer.UseVisualStyleBackColor = true;
+            this.btnUpdatePlayer.Click += new System.EventHandler(this.btnUpdatePlayer_Click);
+            // 
+            // btnAddPlayer
+            // 
+            this.btnAddPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddPlayer.FlatAppearance.BorderSize = 0;
+            this.btnAddPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPlayer.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddPlayer.Location = new System.Drawing.Point(16, 275);
+            this.btnAddPlayer.Name = "btnAddPlayer";
+            this.btnAddPlayer.Size = new System.Drawing.Size(781, 33);
+            this.btnAddPlayer.TabIndex = 67;
+            this.btnAddPlayer.Text = "Add new player";
+            this.btnAddPlayer.UseVisualStyleBackColor = true;
+            this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(463, 185);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 17);
+            this.label3.TabIndex = 68;
+            this.label3.Text = "TEAM:";
+            // 
+            // txtFirstName
+            // 
+            this.txtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFirstName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtFirstName.Location = new System.Drawing.Point(524, 211);
+            this.txtFirstName.MaxLength = 35;
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(273, 26);
+            this.txtFirstName.TabIndex = 70;
+            this.txtFirstName.TextChanged += new System.EventHandler(this.txtFirstName_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(421, 213);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 17);
+            this.label1.TabIndex = 69;
+            this.label1.Text = "First name:";
             // 
             // ChangePlayerTeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 464);
+            this.ClientSize = new System.Drawing.Size(809, 700);
+            this.Controls.Add(this.txtFirstName);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnAddPlayer);
+            this.Controls.Add(this.btnUpdatePlayer);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAssignTo);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.playerHands);
             this.Controls.Add(this.label7);
@@ -356,7 +362,6 @@
             this.Controls.Add(this.btnDecreaseTeamNumberBy1);
             this.Controls.Add(this.btnIncreaseTeamNumberBy1);
             this.Controls.Add(this.lbTeamtitle);
-            this.Controls.Add(this.dgvLineup);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -364,7 +369,6 @@
             this.Name = "ChangePlayerTeamForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChangePlayerTeamForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLineup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -382,18 +386,18 @@
         private System.Windows.Forms.Button btnDecreaseTeamNumberBy1;
         private System.Windows.Forms.Button btnIncreaseTeamNumberBy1;
         private System.Windows.Forms.Label lbTeamtitle;
-        private System.Windows.Forms.DataGridView dgvLineup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnAssignTo;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.Button btnUpdatePlayer;
+        private System.Windows.Forms.Button btnAddPlayer;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.Label label1;
     }
 }
