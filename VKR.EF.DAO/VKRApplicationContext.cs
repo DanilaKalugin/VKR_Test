@@ -13,7 +13,7 @@ namespace VKR.EF.DAO
         public DbSet<TeamBalance> TeamStandings { get; set; }
         public DbSet<MatchFromSchedule> NextMatches { get; set; }
         public DbSet<Match> Matches { get; set; }
-        public DbSet<RunsByTeam> Runs { get; set; }
+        public DbSet<RunsByTeam> RunsByTeams { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
         public DbSet<TeamStadiumForTypeOfMatch> TeamStadiumForTypeOfMatch { get; set; }
         public DbSet<Player> Players { get; set; }
@@ -35,11 +35,12 @@ namespace VKR.EF.DAO
         public DbSet<LeagueSeason> LeagueSeasons { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Region> Regions { get; set; }
+        public DbSet<Run> Runs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //var connectionString = GetConnectionString();
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
+            var connectionString = GetConnectionString();
+            optionsBuilder.UseSqlServer(connectionString);
         }
 
         public static string GetConnectionString()
@@ -82,6 +83,8 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamRatingEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.SeasonEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.LeagueSeasonEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.RunEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.StadiumFactorEntityMap());
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());
