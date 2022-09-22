@@ -8,8 +8,8 @@ namespace VKR.EF.Entities
         public string TeamAbbreviation { get; set; }
         public ushort StrikeZoneProbability { get; set; }
         public ushort HitByPitchProbability { get; set; }
-        public byte SwingInStrikeZoneProbability { get; set; }
-        public byte SwingOutsideStrikeZoneProbability { get; set; }
+        public short SwingInStrikeZoneProbability { get; set; }
+        public short SwingOutsideStrikeZoneProbability { get; set; }
         public ushort HittingProbability { get; set; }
         public ushort FoulProbability { get; set; }
         public ushort SingleProbability { get; set; }

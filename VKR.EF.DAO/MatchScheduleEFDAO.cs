@@ -12,7 +12,8 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            var matches = db.Matches.Include(m => m.MatchResult)
+            var matches = db.Matches.Where(match => match.SeasonId == season.Year && match.MatchTypeId == typeOfMatch)
+                .Include(m => m.MatchResult)
                 .Include(match => match.Stadium)
                 .ThenInclude(stadium => stadium.StadiumCity);
 

@@ -36,7 +36,7 @@ namespace VKR.EF.DAO
 
             var pitchingStats = db.PlayersPitchingStats
                 .Where(battingStats => battingStats.Season == year &&
-                                       battingStats.MatchType == TypeOfMatchEnum.RegularSeason &&
+                                       battingStats.MatchType == matchType &&
                                        battingStats.GamesPlayed > 0)
                 .ToList();
 
@@ -75,11 +75,6 @@ namespace VKR.EF.DAO
 
             return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
                 (team, stats) => team.SetPitchingStats(stats)).ToList();
-        }
-        public List<PlayerPosition> GetPlayerPositions()
-        {
-            using var db = new VKRApplicationContext();
-            return db.PlayersPositions.OrderBy(pp => pp.Number).ToList();
         }
     }
 }

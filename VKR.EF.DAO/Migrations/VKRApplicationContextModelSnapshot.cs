@@ -1565,11 +1565,11 @@ namespace VKR.EF.DAO.Migrations
                         .HasColumnType("tinyint")
                         .HasColumnName("StealingBaseSuccessfulAttemptProbability");
 
-                    b.Property<byte>("SwingInStrikeZoneProbability")
-                        .HasColumnType("tinyint");
+                    b.Property<short>("SwingInStrikeZoneProbability")
+                        .HasColumnType("smallint");
 
-                    b.Property<byte>("SwingOutsideStrikeZoneProbability")
-                        .HasColumnType("tinyint");
+                    b.Property<short>("SwingOutsideStrikeZoneProbability")
+                        .HasColumnType("smallint");
 
                     b.Property<short>("TripleProbability")
                         .HasColumnType("smallint");
@@ -1582,9 +1582,9 @@ namespace VKR.EF.DAO.Migrations
 
                     b.HasCheckConstraint("HitByPitchProbability1", "HitByPitchProbability BETWEEN 1 AND 3000");
 
-                    b.HasCheckConstraint("SwingInStrikeZoneProbability1", "SwingInStrikeZoneProbability BETWEEN 1 AND 100");
+                    b.HasCheckConstraint("SwingInStrikeZoneProbability1", "SwingInStrikeZoneProbability BETWEEN 1 AND 1000");
 
-                    b.HasCheckConstraint("SwingOutsideStrikeZoneProbability1", "SwingOutsideStrikeZoneProbability BETWEEN 1 AND 100");
+                    b.HasCheckConstraint("SwingOutsideStrikeZoneProbability1", "SwingOutsideStrikeZoneProbability BETWEEN 1 AND 1000");
 
                     b.HasCheckConstraint("HittingProbability1", "HittingProbability BETWEEN 1 AND 2000");
 

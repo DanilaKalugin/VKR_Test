@@ -54,9 +54,13 @@ namespace VKR.PL.NET5
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtpMatchDate = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.cbSeasons = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatches)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvMatches
@@ -90,7 +94,7 @@ namespace VKR.PL.NET5
             this.dgvMatches.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvMatches.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvMatches.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.dgvMatches.Location = new System.Drawing.Point(0, 97);
+            this.dgvMatches.Location = new System.Drawing.Point(0, 118);
             this.dgvMatches.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMatches.Name = "dgvMatches";
             this.dgvMatches.ReadOnly = true;
@@ -191,7 +195,7 @@ namespace VKR.PL.NET5
             this.lbHeader.Location = new System.Drawing.Point(0, 0);
             this.lbHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbHeader.Name = "lbHeader";
-            this.lbHeader.Size = new System.Drawing.Size(674, 97);
+            this.lbHeader.Size = new System.Drawing.Size(674, 118);
             this.lbHeader.TabIndex = 1;
             this.lbHeader.Text = "PREVIOUS MATCH RESULTS";
             this.lbHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -214,11 +218,11 @@ namespace VKR.PL.NET5
             this.cbTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbTeam.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cbTeam.FormattingEnabled = true;
-            this.cbTeam.Location = new System.Drawing.Point(78, 0);
+            this.cbTeam.Location = new System.Drawing.Point(91, 0);
             this.cbTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbTeam.MaxDropDownItems = 5;
             this.cbTeam.Name = "cbTeam";
-            this.cbTeam.Size = new System.Drawing.Size(242, 29);
+            this.cbTeam.Size = new System.Drawing.Size(229, 29);
             this.cbTeam.TabIndex = 1;
             this.cbTeam.SelectedValueChanged += new System.EventHandler(this.cbTeam_SelectedValueChanged);
             // 
@@ -254,12 +258,12 @@ namespace VKR.PL.NET5
             this.dtpMatchDate.Dock = System.Windows.Forms.DockStyle.Right;
             this.dtpMatchDate.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.dtpMatchDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpMatchDate.Location = new System.Drawing.Point(78, 0);
+            this.dtpMatchDate.Location = new System.Drawing.Point(91, 0);
             this.dtpMatchDate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dtpMatchDate.MaxDate = new System.DateTime(2031, 1, 5, 0, 0, 0, 0);
             this.dtpMatchDate.MinDate = new System.DateTime(2018, 12, 31, 0, 0, 0, 0);
             this.dtpMatchDate.Name = "dtpMatchDate";
-            this.dtpMatchDate.Size = new System.Drawing.Size(242, 27);
+            this.dtpMatchDate.Size = new System.Drawing.Size(229, 27);
             this.dtpMatchDate.TabIndex = 5;
             this.dtpMatchDate.Value = new System.DateTime(2021, 4, 12, 0, 0, 0, 0);
             this.dtpMatchDate.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
@@ -276,13 +280,52 @@ namespace VKR.PL.NET5
             this.label3.Text = "Date:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.cbSeasons);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(674, 72);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(320, 36);
+            this.panel3.TabIndex = 4;
+            // 
+            // cbSeasons
+            // 
+            this.cbSeasons.Dock = System.Windows.Forms.DockStyle.Right;
+            this.cbSeasons.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSeasons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbSeasons.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cbSeasons.FormattingEnabled = true;
+            this.cbSeasons.Location = new System.Drawing.Point(91, 0);
+            this.cbSeasons.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbSeasons.MaxDropDownItems = 5;
+            this.cbSeasons.Name = "cbSeasons";
+            this.cbSeasons.Size = new System.Drawing.Size(229, 29);
+            this.cbSeasons.TabIndex = 1;
+            this.cbSeasons.SelectedIndexChanged += new System.EventHandler(this.cbSeasons_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 33);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Season:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // MatchResultsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(994, 600);
+            this.ClientSize = new System.Drawing.Size(994, 621);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbHeader);
@@ -298,6 +341,7 @@ namespace VKR.PL.NET5
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatches)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -321,5 +365,8 @@ namespace VKR.PL.NET5
         private DataGridViewImageColumn Column9;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column7;
+        private Panel panel3;
+        private ComboBox cbSeasons;
+        private Label label1;
     }
 }

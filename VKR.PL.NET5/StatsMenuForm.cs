@@ -15,6 +15,7 @@ namespace VKR.PL.NET5
     {
         private readonly StatsBL _statsBl = new();
         private readonly PrimaryTeamColorBL _primaryColorBl = new();
+        private readonly SeasonBL _seasonBl = new();
 
         private Season _season;
         private List<Player> _batters;

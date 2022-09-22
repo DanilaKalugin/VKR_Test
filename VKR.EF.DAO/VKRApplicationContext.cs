@@ -33,6 +33,8 @@ namespace VKR.EF.DAO
         public DbSet<TeamColor> TeamColors { get; set; }
         public DbSet<Season> Seasons { get; set; }
         public DbSet<LeagueSeason> LeagueSeasons { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Region> Regions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

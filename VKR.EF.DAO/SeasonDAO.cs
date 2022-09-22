@@ -33,5 +33,13 @@ namespace VKR.EF.DAO
             return await db.Seasons.ToListAsync()
                 .ConfigureAwait(false);
         }
+
+        public Season GetCurrentSeason()
+        {
+            using var db = new VKRApplicationContext();
+            var seasonYear = db.Matches.Max(match => match.SeasonId);
+
+            return db.Seasons.FirstOrDefault(season => season.Year == seasonYear);
+        }
     }
 }

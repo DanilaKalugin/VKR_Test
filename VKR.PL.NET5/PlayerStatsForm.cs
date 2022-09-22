@@ -16,11 +16,13 @@ namespace VKR.PL.NET5
         private enum PlayerType { Pitchers, Batters }
         private enum StatsType { Standard, Expanded }
         public enum SortingObjects { Players, Teams }
-        
+
         private readonly TeamsBL _teamsBL = new();
         private readonly SortingBL _sortingBL = new();
         private readonly StatsBL _statsBL = new();
         private readonly PrimaryTeamColorBL _teamColorBl = new();
+        private readonly PlayerPositionsBL _playerPositionsBl = new();
+        private readonly SeasonBL _seasonBl = new();
 
         private List<Team> _teams;
         private List<TeamColor> _primaryColors;
@@ -118,7 +120,8 @@ namespace VKR.PL.NET5
                 batter => batter.BattingStats.ABperHR,
                 batter => batter.BattingStats.WalkToStrikeout,
                 batter => batter.BattingStats.WalkPercentage,
-                batter => batter.BattingStats.StrikeoutPercentage
+                batter => batter.BattingStats.StrikeoutPercentage,
+                batter => batter.BattingStats.ExpectedHomeRuns
             };
 
             var playerPitchingActions = new List<Func<Player, double>>
@@ -126,7 +129,7 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.Wins,
                 pitcher => pitcher.PitchingStats.Losses,
                 pitcher => pitcher.PitchingStats.ERA,
-                pitcher => pitcher.PitchingStats.GamesPlayed, 
+                pitcher => pitcher.PitchingStats.GamesPlayed,
                 pitcher => pitcher.PitchingStats.GamesStarted,
                 pitcher => pitcher.PitchingStats.CompleteGames,
                 pitcher => pitcher.PitchingStats.Shutouts,
@@ -152,7 +155,7 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.StolenBasesAllowed,
                 pitcher => pitcher.PitchingStats.CaughtStealing
             };
-            
+
             var teamBattingActions = new List<Func<Team, double>>
             {
                 teamBatting => teamBatting.BattingStats.TGP,
@@ -182,7 +185,8 @@ namespace VKR.PL.NET5
                 teamBatting => teamBatting.BattingStats.ABperHR,
                 teamBatting => teamBatting.BattingStats.WalkToStrikeout,
                 teamBatting => teamBatting.BattingStats.WalkPercentage,
-                teamBatting => teamBatting.BattingStats.StrikeoutPercentage
+                teamBatting => teamBatting.BattingStats.StrikeoutPercentage,
+                teamBatting => teamBatting.BattingStats.ExpectedHomeRuns
             };
 
             var teamPitchingActions = new List<Func<Team, double>>
@@ -219,18 +223,18 @@ namespace VKR.PL.NET5
 
             if (obj == SortingObjects.Players)
             {
-                _batters = _sortModes[0][batting] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_batters, playerBattingActions[batting]) 
+                _batters = _sortModes[0][batting] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_batters, playerBattingActions[batting])
                                                                          : _sortingBL.GetSortedStats(_batters, playerBattingActions[batting]);
 
-                _pitchers = _sortModes[1][pitching] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_pitchers, playerPitchingActions[pitching]) 
+                _pitchers = _sortModes[1][pitching] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_pitchers, playerPitchingActions[pitching])
                                                                            : _sortingBL.GetSortedStats(_pitchers, playerPitchingActions[pitching]);
             }
             else
             {
-                _teamBattingStats = _sortModes[0][batting] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamBattingStats, teamBattingActions[batting]) 
+                _teamBattingStats = _sortModes[0][batting] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamBattingStats, teamBattingActions[batting])
                                                                                   : _sortingBL.GetSortedStats(_teamBattingStats, teamBattingActions[batting]);
-                
-                _teamPitchingStats = _sortModes[1][pitching] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamPitchingStats, teamPitchingActions[pitching]) 
+
+                _teamPitchingStats = _sortModes[1][pitching] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamPitchingStats, teamPitchingActions[pitching])
                                                                                     : _sortingBL.GetSortedStats(_teamPitchingStats, teamPitchingActions[pitching]);
             }
 
@@ -336,7 +340,8 @@ namespace VKR.PL.NET5
                                             batters[i].BattingStats.ABperHR.ToString("0.00", new CultureInfo("en-US")),
                                             batters[i].BattingStats.WalkToStrikeout.ToString("#.000", new CultureInfo("en-US")),
                                             batters[i].BattingStats.WalkPercentage.ToString("#.000", new CultureInfo("en-US")),
-                                            batters[i].BattingStats.StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")));
+                                            batters[i].BattingStats.StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")),
+                                            batters[i].BattingStats.ExpectedHomeRuns.ToString("0.00", new CultureInfo("en-US")));
                     GetCorrectColorForCell(dataGridView2, i, batters[i].PlayersInTeam.First().TeamId);
                 }
                 for (var i = 0; i < pitchers.Count; i++)
@@ -419,7 +424,8 @@ namespace VKR.PL.NET5
                                             teamBatting[i].BattingStats.ABperHR.ToString("0.00", new CultureInfo("en-US")),
                                             teamBatting[i].BattingStats.WalkToStrikeout.ToString("#.000", new CultureInfo("en-US")),
                                             teamBatting[i].BattingStats.WalkPercentage.ToString("#.000", new CultureInfo("en-US")),
-                                            teamBatting[i].BattingStats.StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")));
+                                            teamBatting[i].BattingStats.StrikeoutPercentage.ToString("#.000", new CultureInfo("en-US")),
+                                            teamBatting[i].BattingStats.ExpectedHomeRuns.ToString("0.00", new CultureInfo("en-US")));
                     GetCorrectColorForCell(dataGridView2, i, teamBatting[i].TeamAbbreviation);
                 }
                 for (var i = 0; i < teamPitching.Count; i++)
@@ -498,7 +504,7 @@ namespace VKR.PL.NET5
             _statsType = StatsType.Standard;
             cbPlayers.DataSource = cbPlayers.Items;
             ShowNewStats(_playerType, _statsType);
-            
+
             var teamsInComboBox = new List<string> { "MLB", "AL", "NL" };
             teamsInComboBox.AddRange(_teams.Select(team => team.TeamName).ToList());
             cbTeams.DataSource = teamsInComboBox;
@@ -515,7 +521,9 @@ namespace VKR.PL.NET5
 
         private async void SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbTeams.Visible = cbPlayers.Text != "Free Agents";
+            cbTeams.Visible = cbPlayers.Text != "Free Agents" && _objects == SortingObjects.Players;
+
+            if (cbPositions.DataSource == null || cbTeams.DataSource == null || cbSeasons.DataSource == null) return;
 
             var f = new LoadingForm();
             try

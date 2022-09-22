@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VKR.EF.DAO;
@@ -9,6 +10,7 @@ namespace VKR.BLL.NET5
     public class PlayerBL
     {
         private readonly PlayerEFDAO _playerEFDAO = new();
+        private readonly PlayerPositionsEFDAO _positionsDao = new();
 
         public async Task<Player> GetPlayerByCode(uint code) => await _playerEFDAO.GetPlayerByCode(code)
             .ConfigureAwait(false);

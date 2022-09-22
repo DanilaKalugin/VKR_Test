@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
@@ -16,10 +17,11 @@ namespace VKR.PL.NET5
         public enum RosterType { StartingLineups, Reserves, FreeAgents }
         private readonly RosterType _rosterType;
 
-        private readonly PlayerBL _players = new();
-        private readonly TeamsBL _teamsBL = new();
-        private readonly MatchBL _matchBL = new();
+        private readonly PlayerBL _playersBl = new();
+        private readonly TeamsBL _teamsBl = new();
+        private readonly MatchBL _matchBl = new();
         private readonly RostersBL _rostersBl = new();
+        private readonly PlayerMovesBL _playerMovesBl = new();
 
         private List<List<List<PlayerInLineupViewModel>>> _teamsLineups;
         private List<List<List<PlayerInLineupViewModel>>> _teamsBench;
@@ -32,7 +34,7 @@ namespace VKR.PL.NET5
         private bool _isAdmin;
         private PlayerInLineupViewModel _player;
 
-        public LineupsForm(RosterType rosterType)
+        public LineupsForm(RosterType rosterType, bool isAdmin)
         {
             InitializeComponent();
 
@@ -120,6 +122,9 @@ namespace VKR.PL.NET5
             foreach (var player in bench)
                 dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
 
+            btnMoveToLowerRoster.Enabled = _teamsLineups[teamNumber][lineupNumber].Count > 0;
+            btnMoveToUpperRoster.Enabled = bench.Count > 0;
+
             _lineupChanged = true;
         }
 
@@ -129,16 +134,12 @@ namespace VKR.PL.NET5
             DisplayRoster(_teamNumber, _lineupNumber);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _lineupNumber = _lineupNumber > 0 ? _lineupNumber - 1 : _teamsLineups[_teamNumber].Count - 1;
-            DisplayRoster(_teamNumber, _lineupNumber);
-        }
-
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvLineup.SelectedRows.Count > 0)
-                ShowNewPlayer(dgvLineup, dgvBench, _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index]);
+            if (dgvLineup.SelectedRows.Count == 0) return;
+
+            _player = _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index];
+            ShowNewPlayer(dgvLineup, dgvBench, _player);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e) => ShowNewPlayer(dgvLineup, dgvBench, _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index]);
@@ -146,10 +147,10 @@ namespace VKR.PL.NET5
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             _lineupChanged = false;
-            var player = _rosterType == RosterType.FreeAgents
+            _player = _rosterType == RosterType.FreeAgents
                 ? _teamsBench[0][0][dgvBench.SelectedRows[0].Index]
                 : _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index];
-            ShowNewPlayer(dgvBench, dgvLineup, player);
+            ShowNewPlayer(dgvBench, dgvLineup, _player);
         }
 
         private async void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, Player player)

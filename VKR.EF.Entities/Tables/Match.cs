@@ -14,9 +14,9 @@ namespace VKR.EF.Entities
         public virtual List<LineupForMatch> LineupsForMatches { get; set; } = new();
         public virtual List<AtBat> AtBats { get; set; } = new();
         public virtual List<PitcherResults> PitcherResults { get; set; } = new();
+        public virtual List<Run> Runs { get; set; } = new();
 
         public List<GameSituation> GameSituations = new();
-
         public Match() { }
 
         public Match(DateTime matchDate, TypeOfMatchEnum typeOfMatch)
@@ -29,9 +29,17 @@ namespace VKR.EF.Entities
 
         public MatchResult MatchResult { get; set; }
 
-        public bool MatchEndingCondition => (GameSituations.Last().Offense == AwayTeam && GameSituations.Last().Outs == 3 && GameSituations.Last().AwayTeamRuns < GameSituations.Last().HomeTeamRuns && GameSituations.Last().InningNumber == MatchLength) ||
-                                            (GameSituations.Last().Offense == HomeTeam && GameSituations.Last().Outs == 3 && GameSituations.Last().AwayTeamRuns > GameSituations.Last().HomeTeamRuns && GameSituations.Last().InningNumber >= MatchLength) ||
-                                            (GameSituations.Last().Offense == HomeTeam && GameSituations.Last().AwayTeamRuns < GameSituations.Last().HomeTeamRuns && GameSituations.Last().InningNumber >= MatchLength);
+        public bool MatchEndingCondition
+        {
+            get
+            {
+                var lastGs = GameSituations.Last();
+                return (lastGs.Offense == AwayTeam && lastGs.Outs == 3 && lastGs.AwayTeamRuns < lastGs.HomeTeamRuns && lastGs.InningNumber == MatchLength) ||
+                       (lastGs.Offense == HomeTeam && lastGs.Outs == 3 && lastGs.AwayTeamRuns > lastGs.HomeTeamRuns && lastGs.InningNumber >= MatchLength) ||
+                       (lastGs.Offense == HomeTeam && lastGs.AwayTeamRuns < lastGs.HomeTeamRuns && lastGs.InningNumber >= MatchLength);
+            }
+        }
+
 
         public List<string> GetMatchLeaderAfterEachPitch()
         {

@@ -2,10 +2,8 @@
 
 namespace VKR.EF.Entities
 {
-    public class BattingStats
+    public class BattingStats : StatGroupedBySeasonAndMatchType
     {
-        public int Season { get; set; }
-        public TypeOfMatchEnum MatchType { get; set; }
         public int Games { get; set; }
         public int SacrificeFlies { get; set; }
         public int SacrificeBunts { get; set; }
@@ -63,6 +61,6 @@ namespace VKR.EF.Entities
 
         public double StrikeoutPercentage => PA == 0 ? 0 : (double)Strikeouts / PA;
 
-        public double ExpectedHomeRuns => TGP > 0 ? HomeRuns / TGP * 162 : 0;
+        public double ExpectedHomeRuns => TGP > 0 ? (double)HomeRuns / TGP * 162 : 0;
     }
 }

@@ -24,7 +24,7 @@ namespace VKR.EF.Entities
 
         public AtBat()
         {
-            
+
         }
 
         public AtBatType TypeDefinitionForLastAtBat(GameSituation situation)
@@ -43,7 +43,8 @@ namespace VKR.EF.Entities
                 PitchResult.HitByPitch => AtBatType.HitByPitch,
                 PitchResult.Popout => AtBatType.Popout,
                 PitchResult.SacrificeFly => AtBatType.SacrificeFly,
-                PitchResult.Ball => situation.Balls == 0 ? AtBatType.Walk : AtBatType.NoResult,
+                PitchResult.Ball when situation.Balls == 0 => AtBatType.Walk,
+                PitchResult.Ball => AtBatType.NoResult,
                 PitchResult.Strike when situation.Strikes == 0 => AtBatType.Strikeout,
                 PitchResult.Strike => AtBatType.NoResult,
                 PitchResult.SacrificeBunt => AtBatType.SacrificeBunt,
@@ -85,23 +86,6 @@ namespace VKR.EF.Entities
 
             Outs = (byte)OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
             RBI = runs;
-            Inning = currentMatch.GameSituations.Last().InningNumber;
-        }
-
-        /// <summary>
-        /// New run
-        /// </summary>
-        public AtBat(Runner runner, Match currentMatch)
-        {
-            AtBatType = AtBatType.Run;
-            MatchId = currentMatch.Id;
-            Offense = currentMatch.GameSituations.Last().Offense.TeamAbbreviation;
-            Defense = currentMatch.GameSituations.Last().Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.TeamAbbreviation : currentMatch.AwayTeam.TeamAbbreviation;
-            BatterId = runner.RunnerId;
-            PitcherId = runner.PitcherId;
-
-            Outs = 0;
-            RBI = 0;
             Inning = currentMatch.GameSituations.Last().InningNumber;
         }
 

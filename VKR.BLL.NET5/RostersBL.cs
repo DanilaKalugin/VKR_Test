@@ -47,7 +47,7 @@ namespace VKR.BLL.NET5
                 players.Add(new List<List<PlayerInLineupViewModel>>());
                 foreach (var lineupType in lineups)
                     players[i].Add(allPlayers
-                        .Where(player => player.TeamAbbreviation == teams[i] && player.LineupNumber == lineupType)
+                        .Where(player => player.TeamAbbreviation == teams[i].TeamAbbreviation && player.LineupNumber == lineupType)
                         .OrderBy(player => player.NumberInLineup)
                         .ThenBy(player => player.SecondName)
                         .ThenBy(player => player.FirstName).ToList());

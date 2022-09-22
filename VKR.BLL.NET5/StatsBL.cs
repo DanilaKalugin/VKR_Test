@@ -72,16 +72,14 @@ namespace VKR.BLL.NET5
         {
             var teams = await _teamsDao.GetListAsync().ConfigureAwait(false);
 
-            return TeamFilter switch
+            return teamFilter switch
             {
                 "MLB" => teams.Select(team => team.TeamAbbreviation).ToList(),
-                "AL" or "NL" => teams.Where(team => team.Division.LeagueId == TeamFilter)
+                "AL" or "NL" => teams.Where(team => team.Division.LeagueId == teamFilter)
                     .Select(team => team.TeamAbbreviation).ToList(),
-                _ => teams.Where(team => team.TeamName == TeamFilter)
+                _ => teams.Where(team => team.TeamName == teamFilter)
                     .Select(team => team.TeamAbbreviation).ToList()
             };
         }
-
-        public List<PlayerPosition> GetPlayerPositions() => _statsDao.GetPlayerPositions().ToList();
     }
 }

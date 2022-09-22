@@ -20,7 +20,7 @@ namespace VKR.EF.DAO
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            return allPlayers.Select(player => new PlayerInLineupViewModel(player, 0, 0, string.Empty, player.Positions[0].ShortTitle)).ToList();
+            return allPlayers.Select(player => new PlayerInLineupViewModel(player, player.Positions[0].ShortTitle)).ToList();
         }
 
         public async Task<List<PlayerInLineupViewModel>> GetActiveAndReservePlayers()
@@ -36,7 +36,7 @@ namespace VKR.EF.DAO
                 .Include(pit => pit.Player.PitchingHand)
                 .ToListAsync();
 
-            return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
+            return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, pit.Player.Positions[0].ShortTitle, pit.TeamId)).ToList();
         }
 
         public async Task<List<PlayerInLineupViewModel>> GetReserves()
@@ -51,7 +51,7 @@ namespace VKR.EF.DAO
                 .Include(pit => pit.Player.PitchingHand)
                 .ToListAsync();
 
-            return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
+            return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, pit.Player.Positions[0].ShortTitle, pit.TeamId)).ToList();
         }
 
         public async Task<List<PlayerInLineupViewModel>> GetActivePlayers()
@@ -66,7 +66,7 @@ namespace VKR.EF.DAO
                 .Include(pit => pit.Player.PitchingHand)
                 .ToListAsync();
 
-            return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
+            return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, pit.Player.Positions[0].ShortTitle, pit.TeamId)).ToList();
         }
 
         public async Task<List<PlayerInLineupViewModel>> GetStartingLineups()
@@ -85,7 +85,7 @@ namespace VKR.EF.DAO
             var list = new List<PlayerInLineupViewModel>();
             foreach (var pit in allPlayers)
                 list.AddRange(from appearanceAsStarter in pit.PlayersInStartingLineups
-                              let playerPosition = appearanceAsStarter.LineupTypeId == 5 ? "P" : pit.Player.Positions[0].ShortTitle
+                              let playerPosition = appearanceAsStarter.LineupTypeId == 5 ? "P" : appearanceAsStarter.PlayerPositionId
                               select new PlayerInLineupViewModel(pit.Player, appearanceAsStarter.LineupTypeId, appearanceAsStarter.PlayerNumberInLineup, pit.TeamId, playerPosition));
 
             return list;
@@ -121,14 +121,15 @@ namespace VKR.EF.DAO
                             list.Add(new PlayerInLineupViewModel(player, i, 0, playerInTeam.TeamId, playerPosition));
                             break;
                         default:
-                            {
-                                if (player.CanPlayAsPitcher)
-                                    list.Add(new PlayerInLineupViewModel(player, i, 0, playerInTeam.TeamId,
-                                        playerPosition));
-                                break;
-                            }
+                        {
+                            if (player.CanPlayAsPitcher)
+                                list.Add(new PlayerInLineupViewModel(player, i, 0, playerInTeam.TeamId,
+                                    playerPosition));
+                            break;
+                        }
                     }
                 }
+
             return list;
         }
     }
