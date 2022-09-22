@@ -124,13 +124,13 @@ namespace VKR.EF.Entities
             {
                 var batter = match.AwayTeam.BattingLineup[NumberOfBatterFromAwayTeam - 1];
                 var pitcher = match.HomeTeam.CurrentPitcher;
-                return new Runner(batter, pitcher);
+                return new Runner(batter, pitcher, true);
             }
             else
             {
                 var batter = match.HomeTeam.BattingLineup[NumberOfBatterFromHomeTeam - 1];
                 var pitcher = match.AwayTeam.CurrentPitcher;
-                return new Runner(batter, pitcher);
+                return new Runner(batter, pitcher, true);
             }
         }
 
@@ -153,10 +153,9 @@ namespace VKR.EF.Entities
 
         public Runner HavingARunnerOnSecondBase(PitchResult result, GameSituation situation, Match match, int balls)
         {
-            if ((((result == PitchResult.Ball && balls == 0) ||
-                  result == PitchResult.HitByPitch) && situation.RunnerOnFirst.IsBaseNotEmpty) ||
+            if ((result == PitchResult.Ball && balls == 0 || result == PitchResult.HitByPitch) && situation.RunnerOnFirst.IsBaseNotEmpty ||
                 result == PitchResult.Single ||
-                (result == PitchResult.SacrificeBunt && Outs < 3 && !situation.RunnerOnSecond.IsBaseNotEmpty) ||
+                result == PitchResult.SacrificeBunt && Outs < 3 && !situation.RunnerOnSecond.IsBaseNotEmpty ||
                 result == PitchResult.SecondBaseStolen)
             {
                 return new Runner(situation.RunnerOnFirst);
@@ -182,11 +181,11 @@ namespace VKR.EF.Entities
             if (result == PitchResult.Triple)
                 return ReturnNewRunner(match);
 
-            if ((((result == PitchResult.Ball && balls == 0) || result == PitchResult.HitByPitch) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty) ||
+            if ((result == PitchResult.Ball && balls == 0 || result == PitchResult.HitByPitch) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty ||
                 result == PitchResult.Single ||
-                (result == PitchResult.SacrificeFly && !situation.RunnerOnThird.IsBaseNotEmpty) ||
+                result == PitchResult.SacrificeFly && !situation.RunnerOnThird.IsBaseNotEmpty ||
                 result == PitchResult.Popout ||
-                (result is PitchResult.Groundout or PitchResult.DoublePlay or PitchResult.SacrificeBunt && Outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty) ||
+                result is PitchResult.Groundout or PitchResult.DoublePlay or PitchResult.SacrificeBunt && Outs < 3 && !situation.RunnerOnThird.IsBaseNotEmpty ||
                 result == PitchResult.ThirdBaseStolen)
             {
                 return new Runner(situation.RunnerOnSecond);
@@ -211,12 +210,12 @@ namespace VKR.EF.Entities
         {
             var runners = new List<Runner>();
             if (result == PitchResult.Single ||
-               (result == PitchResult.SacrificeFly && Outs < 3) ||
-               ((result == PitchResult.HitByPitch || (result == PitchResult.Ball && balls == 0)) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty && situation.RunnerOnThird.IsBaseNotEmpty) ||
-               (result == PitchResult.Groundout && Outs < 3) ||
-               (result == PitchResult.DoublePlay && Outs < 3) ||
-               (result == PitchResult.Popout && Outs < 3) ||
-               (result == PitchResult.SacrificeBunt && Outs < 3))
+               result == PitchResult.SacrificeFly && Outs < 3 ||
+               (result == PitchResult.HitByPitch || result == PitchResult.Ball && balls == 0) && situation.RunnerOnFirst.IsBaseNotEmpty && situation.RunnerOnSecond.IsBaseNotEmpty && situation.RunnerOnThird.IsBaseNotEmpty ||
+               result == PitchResult.Groundout && Outs < 3 ||
+               result == PitchResult.DoublePlay && Outs < 3 ||
+               result == PitchResult.Popout && Outs < 3 ||
+               result == PitchResult.SacrificeBunt && Outs < 3)
             {
                 if (situation.RunnerOnThird.IsBaseNotEmpty) runners.Add(situation.RunnerOnThird);
             }
@@ -224,32 +223,34 @@ namespace VKR.EF.Entities
             switch (result)
             {
                 case PitchResult.Double or PitchResult.GroundRuleDouble:
-                {
-                    if (situation.RunnerOnThird.IsBaseNotEmpty) runners.Add(situation.RunnerOnThird);
+                    if (situation.RunnerOnThird.IsBaseNotEmpty) 
+                        runners.Add(situation.RunnerOnThird);
 
-                    if (situation.RunnerOnSecond.IsBaseNotEmpty) runners.Add(situation.RunnerOnSecond);
+                    if (situation.RunnerOnSecond.IsBaseNotEmpty) 
+                        runners.Add(situation.RunnerOnSecond);
                     break;
-                }
                 case PitchResult.Triple:
-                {
-                    if (situation.RunnerOnThird.IsBaseNotEmpty) runners.Add(situation.RunnerOnThird);
+                    if (situation.RunnerOnThird.IsBaseNotEmpty)
+                        runners.Add(situation.RunnerOnThird);
 
-                    if (situation.RunnerOnSecond.IsBaseNotEmpty) runners.Add(situation.RunnerOnSecond);
+                    if (situation.RunnerOnSecond.IsBaseNotEmpty)
+                        runners.Add(situation.RunnerOnSecond);
 
-                    if (situation.RunnerOnFirst.IsBaseNotEmpty) runners.Add(situation.RunnerOnFirst);
+                    if (situation.RunnerOnFirst.IsBaseNotEmpty)
+                        runners.Add(situation.RunnerOnFirst);
                     break;
-                }
                 case PitchResult.HomeRun:
-                {
-                    if (situation.RunnerOnThird.IsBaseNotEmpty) runners.Add(situation.RunnerOnThird);
+                    if (situation.RunnerOnThird.IsBaseNotEmpty) 
+                        runners.Add(situation.RunnerOnThird);
 
-                    if (situation.RunnerOnSecond.IsBaseNotEmpty) runners.Add(situation.RunnerOnSecond);
+                    if (situation.RunnerOnSecond.IsBaseNotEmpty) 
+                        runners.Add(situation.RunnerOnSecond);
 
-                    if (situation.RunnerOnFirst.IsBaseNotEmpty) runners.Add(situation.RunnerOnFirst);
+                    if (situation.RunnerOnFirst.IsBaseNotEmpty) 
+                        runners.Add(situation.RunnerOnFirst);
 
                     runners.Add(ReturnNewRunner(match));
                     break;
-                }
             }
 
             return runners;
@@ -257,8 +258,8 @@ namespace VKR.EF.Entities
         
         public void PrepareForNextPitch(GameSituation gameSituation, Team awayTeam, Team homeTeam, int matchLength)
         {
-            if ((gameSituation.Result == PitchResult.Ball && gameSituation.Balls == 0) ||
-                (gameSituation.Result == PitchResult.Strike && gameSituation.Strikes == 0) ||
+            if (gameSituation.Result == PitchResult.Ball && gameSituation.Balls == 0 ||
+                gameSituation.Result == PitchResult.Strike && gameSituation.Strikes == 0 ||
                 AtBatEndingConditions.Contains(gameSituation.Result))
             {
                 if (gameSituation.Offense == awayTeam)
@@ -292,13 +293,13 @@ namespace VKR.EF.Entities
                 {
                     Offense = awayTeam;
                     InningNumber = (byte)(gameSituation.InningNumber + 1);
-                    RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromAwayTeam == 1 ? 9 : gameSituation.NumberOfBatterFromAwayTeam - 1) - 1], homeTeam.CurrentPitcher) : new Runner();
+                    RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromAwayTeam == 1 ? 9 : gameSituation.NumberOfBatterFromAwayTeam - 1) - 1], homeTeam.CurrentPitcher, false) : new Runner();
                 }
                 else
                 {
                     Offense = homeTeam;
                     InningNumber = gameSituation.InningNumber;
-                    RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromHomeTeam == 1 ? 9 : gameSituation.NumberOfBatterFromHomeTeam - 1) - 1], awayTeam.CurrentPitcher) : new Runner();
+                    RunnerOnSecond = InningNumber > matchLength ? new Runner(Offense.BattingLineup[(gameSituation.NumberOfBatterFromHomeTeam == 1 ? 9 : gameSituation.NumberOfBatterFromHomeTeam - 1) - 1], awayTeam.CurrentPitcher, false) : new Runner();
                 }
                 Balls = 0;
                 Strikes = 0;
@@ -330,7 +331,7 @@ namespace VKR.EF.Entities
             RunnerOnSecond = HavingARunnerOnSecondBase(Result, previousSituation, currentMatch, Balls);
             RunnerOnThird = HavingARunnerOnThirdBase(Result, previousSituation, currentMatch, Balls);
             RunsByThisPitch = GetListOfRunnersInHomeByThisPitch(Result, previousSituation, Balls, currentMatch);
-            PitcherID = Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.CurrentPitcher.Id : currentMatch.AwayTeam.CurrentPitcher.Id;
+            PitcherID = Offense == currentMatch.AwayTeam ? currentMatch.HomeTeam.CurrentPitcher.PitcherId : currentMatch.AwayTeam.CurrentPitcher.PitcherId;
 
             if (Offense == currentMatch.AwayTeam)
             {
