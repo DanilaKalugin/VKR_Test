@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
 
@@ -7,20 +8,26 @@ namespace VKR.EF.DAO
 {
     public class StadiumsEFDAO
     {
-        public IEnumerable<Stadium> GetAllStadiums()
+        public async Task<List<Stadium>> GetAllStadiumsAsync()
         {
-            using var db = new VKRApplicationContext();
-            return db.Stadiums.Include(stadium => stadium.StadiumCity).ToList();
+            await using var db = new VKRApplicationContext();
+            return await db.Stadiums
+                .Include(stadium => stadium.StadiumCity)
+                .Include(s => s.StadiumFactor)
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
 
-        public Stadium GetHomeStadiumForThisTeamAndTypeOfMatch(string teamAbbreviation, TypeOfMatchEnum typeOfMatch)
+        public async Task<Stadium> GetHomeStadiumForThisTeamAndTypeOfMatchAsync(string teamAbbreviation, TypeOfMatchEnum typeOfMatch)
         {
-            using var db = new VKRApplicationContext();
-            return db.TeamStadiumForTypeOfMatch
+            await using var db = new VKRApplicationContext();
+            return await db.TeamStadiumForTypeOfMatch
                 .Where(tsmt => tsmt.TeamAbbreviation == teamAbbreviation && tsmt.TypeOfMatchId == typeOfMatch)
                 .Include(tsmt => tsmt.Stadium)
-                .ThenInclude(stadium => stadium.StadiumCity)
-                .Select(tsmt => tsmt.Stadium).FirstOrDefault();
+                .ThenInclude(stadium => stadium.StadiumFactor)
+                .Include(tsmt => tsmt.Stadium.StadiumCity)
+                .Select(tsmt => tsmt.Stadium)
+                .FirstOrDefaultAsync();
         }
     }
 }

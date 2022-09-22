@@ -19,7 +19,10 @@ namespace VKR.PL.NET5
 
         private readonly Team? _homeTeam;
         private readonly Team? _awayTeam;
-        private readonly List<TeamColor> _teamsColors;
+        private List<TeamColor> _teamsColors;
+        private List<Season> _seasons;
+        private Season _season;
+        private LeagueSeason _leagueSeason;
 
         public StandingsForm(Team home, Team away) : this()
         {
@@ -30,9 +33,6 @@ namespace VKR.PL.NET5
         public StandingsForm()
         {
             InitializeComponent();
-            _teamsColors = _primaryColorBl.GetPrimaryTeamColors();
-            cbSeasons.DataSource = _seasonBL.GetAllSeasons();
-            cbSeasons.DisplayMember = "Year";
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter.SelectedIndex);
@@ -109,7 +109,9 @@ namespace VKR.PL.NET5
             };
 
             Func<string, DateTime, List<Team>> teamFunc =
-                groupingTypeNumber == 3 ? _standingsBl.GetWildCardStandings : _standingsBl.GetStandings;
+                groupingTypeNumber == 3 
+                    ? _standingsBl.GetWildCardStandings 
+                    : _standingsBl.GetStandings;
 
             var teamsGroups = GetStandingsForEachGroup(groups, teamFunc);
 
@@ -127,24 +129,42 @@ namespace VKR.PL.NET5
             return teamsGroups;
         }
 
-        private void StandingsForm_Load(object sender, EventArgs e) => cbFilter.Text = "MLB";
-
-        private void cbSeasons_SelectedIndexChanged(object sender, EventArgs e)
+        private async void StandingsForm_Load(object sender, EventArgs e)
         {
-            if (cbSeasons.Items.Count == 0) return; 
+            _seasons = await _seasonBL.GetAllSeasonsAsync();
+            cbSeasons.DataSource = _seasons;
+            cbSeasons.DisplayMember = "Year";
 
-            var year = cbSeasons.SelectedItem is Season season ? season.Year : 0;
+            _season = await _seasonBL.GetCurrentSeason();
+            _leagueSeason = await _seasonBL.GetLeagueSeasonInfo(_season.Year);
+            ChangeMaxAndMinDateForThisSeason(_leagueSeason);
 
-            var seasonInfo = _seasonBL.GetLeagueSeasonInfo(year);
+            var matchDate = await _matchBL.GetMaxDateForAllMatchesAsync();
+            cbSeasons.SelectedItem = _seasons.FirstOrDefault(year => year.Year == matchDate.Year);
 
-            if (seasonInfo.SeasonEnd < dtpStandingsDate.MinDate)
+            dtpStandingsDate.Value = matchDate;
+            _teamsColors = await _primaryColorBl.GetPrimaryTeamColorsAsync();
+            cbFilter.Text = "MLB";
+        }
+
+        private async void cbSeasons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var season = cbSeasons.SelectedValue as Season;
+            var leagueSeason = await _seasonBL.GetLeagueSeasonInfo(season.Year);
+
+            ChangeMaxAndMinDateForThisSeason(leagueSeason);
+        }
+
+        private void ChangeMaxAndMinDateForThisSeason(LeagueSeason season)
+        {
+            if (season.SeasonEnd < dtpStandingsDate.MinDate)
             {
-                dtpStandingsDate.MinDate = seasonInfo.SeasonStart;
-                dtpStandingsDate.MaxDate = seasonInfo.SeasonEnd;
+                dtpStandingsDate.MinDate = season.SeasonStart;
+                dtpStandingsDate.MaxDate = season.SeasonEnd;
             }
 
-            dtpStandingsDate.MaxDate = seasonInfo.SeasonEnd;
-            dtpStandingsDate.MinDate = seasonInfo.SeasonStart;
+            dtpStandingsDate.MaxDate = season.SeasonEnd;
+            dtpStandingsDate.MinDate = season.SeasonStart;
         }
     }
 }

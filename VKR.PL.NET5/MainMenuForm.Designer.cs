@@ -190,7 +190,7 @@ namespace VKR.PL.NET5
             this.btnPlayerStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlayerStats.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnPlayerStats.Location = new System.Drawing.Point(942, 14);
-            this.btnPlayerStats.Margin = new System.Windows.Forms.Padding(6, 6, 6, 3);
+            this.btnPlayerStats.Margin = new System.Windows.Forms.Padding(6);
             this.btnPlayerStats.Name = "btnPlayerStats";
             this.btnPlayerStats.Size = new System.Drawing.Size(250, 158);
             this.btnPlayerStats.TabIndex = 3;
@@ -297,7 +297,6 @@ namespace VKR.PL.NET5
             this.Name = "MainMenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main menu";
-            this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.VisibleChanged += new System.EventHandler(this.MainMenuForm_VisibleChanged);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBirthDays)).EndInit();

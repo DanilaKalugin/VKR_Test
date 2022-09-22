@@ -8,7 +8,7 @@ namespace VKR.EF.DAO
 {
     public class TeamsEFDAO
     {
-        public async Task<IEnumerable<Team>> GetListAsync()
+        public async Task<List<Team>> GetListAsync()
         {
             await using var db = new VKRApplicationContext();
 
@@ -17,41 +17,36 @@ namespace VKR.EF.DAO
                 .ToListAsync();
         }
 
-        public IEnumerable<Team> GetList()
+        public async Task<IEnumerable<Team>> GetTeamsWithWLBalanceAsync(int season, TypeOfMatchEnum type)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            return db.Teams.Include(t => t.TeamColors)
-                .Include(t => t.Division)
-                .ThenInclude(d => d.League)
-                .OrderBy(t => t.TeamName)
-                .ToList();
-        }
-
-        public IEnumerable<Team> GetTeamsWithWLBalance(int season, TypeOfMatchEnum type)
-        {
-            using var db = new VKRApplicationContext();
-
-            var f = db.Teams.Include(t => t.TeamRating)
+            var f = await db.Teams.Include(t => t.TeamRating)
                 .Include(t => t.TeamColors)
                 .Include(t => t.Manager)
                 .Include(t => t.Division)
-                .ThenInclude(d => d.League).ToList();
+                .ThenInclude(d => d.League)
+                .ToListAsync()
+                .ConfigureAwait(false);
 
-            var f1 = db.TeamStandings.Where(ts => ts.MatchType == type && ts.Season == season).ToList();
+            var f1 = await db.TeamStandings
+                .Where(ts => ts.MatchType == type && ts.Season == season)
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return f.Join(f1,
                     t => t.TeamAbbreviation, tb => tb.TeamAbbreviation,
                     (team, balance) => team.SetTeamBalance(balance)).ToList();
         }
 
-        public TeamBalance GetNewTeamBalanceForThisTeam(Team team, TypeOfMatchEnum matchType, int year)
+        public async Task<TeamBalance> GetNewTeamBalanceForThisTeam(Team team, TypeOfMatchEnum matchType, int year)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            return db.TeamStandings.First(teamStandings => teamStandings.TeamAbbreviation == team.TeamAbbreviation &&
+            return await db.TeamStandings.FirstOrDefaultAsync(teamStandings => teamStandings.TeamAbbreviation == team.TeamAbbreviation &&
                                                            teamStandings.Season == year &&
-                                                           teamStandings.MatchType == matchType);
+                                                           teamStandings.MatchType == matchType)
+                .ConfigureAwait(false);
         }
     }
 }

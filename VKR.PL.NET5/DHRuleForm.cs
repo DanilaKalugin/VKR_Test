@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
@@ -23,20 +24,27 @@ namespace VKR.PL.NET5
             rbPlayWithoutDH.Checked = !NewMatch.HomeTeam.Division.League.DHRule;
         }
 
-        private void btnAcceptDHRule_Click(object sender, EventArgs e)
+        private async void btnAcceptDHRule_Click(object sender, EventArgs e)
         {
-            var matchId = _matchBL.GetNextMatchId(NewMatch);
+            var matchId = await _matchBL.GetNextMatchId(NewMatch);
             NewMatch.MatchDate = dtpMatchDate.Value;
             NewMatch.DHRule = rbPlayWithDH.Checked;
             NewMatch.Id = matchId;
             NewMatch.MatchLength = (byte)numMatchLength.Value;
 
-            _matchBL.StartNewMatch(NewMatch);
-            NewMatch.AwayTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.AwayTeam, NewMatch);
-            NewMatch.AwayTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.AwayTeam, NewMatch));
+            await _matchBL.StartNewMatch(NewMatch);
 
-            NewMatch.HomeTeam.BattingLineup = _playerBL.GetCurrentLineupForThisMatch(NewMatch.HomeTeam, NewMatch);
-            NewMatch.HomeTeam.PitchersPlayedInMatch.Add(_playerBL.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch));
+            var awayTeamTask = _playerBL.GetCurrentLineupForThisMatch(NewMatch.AwayTeam, NewMatch);
+            var homeTeamTask = _playerBL.GetCurrentLineupForThisMatch(NewMatch.HomeTeam, NewMatch);
+
+            await Task.WhenAll(awayTeamTask, homeTeamTask);
+            (NewMatch.AwayTeam.BattingLineup, NewMatch.HomeTeam.BattingLineup) = (awayTeamTask.Result, homeTeamTask.Result);
+
+            var awayPitcher = await _playerBL.GetStartingPitcherForThisTeam(NewMatch.AwayTeam, NewMatch);
+            var homePitcher = await _playerBL.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch);
+
+            NewMatch.AwayTeam.PitchersPlayedInMatch.Add(awayPitcher);
+            NewMatch.HomeTeam.PitchersPlayedInMatch.Add(homePitcher);
             
             using var newMatchForm = new MainForm(NewMatch);
             Visible = false;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
 
@@ -7,70 +8,71 @@ namespace VKR.EF.DAO
 {
     public class RostersEFDAO
     {
-        public List<PlayerInLineupViewModel> GetFreeAgents()
+        public async Task<List<PlayerInLineupViewModel>> GetFreeAgents()
         {
-            using var db = new VKRApplicationContext();
-            var allPlayers = db.Players
+            await using var db = new VKRApplicationContext();
+            var allPlayers = await db.Players
                 .Where(player => player.CurrentPlayerStatus == PlayerStatusEnum.FreeAgent)
                 .Include(player => player.BattingHand)
                 .Include(player => player.PitchingHand)
                 .Include(player => player.City)
                 .Include(player => player.Positions)
-                .ToList();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return allPlayers.Select(player => new PlayerInLineupViewModel(player, 0, 0, string.Empty, player.Positions[0].ShortTitle)).ToList();
         }
 
-        public List<PlayerInLineupViewModel> GetActiveAndReservePlayers()
+        public async Task<List<PlayerInLineupViewModel>> GetActiveAndReservePlayers()
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var allPlayers = db.PlayersInTeams
+            var allPlayers = await db.PlayersInTeams
                 .Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam)
                 .Include(pit => pit.Player)
                 .ThenInclude(p => p.City)
                 .Include(p => p.Player.Positions)
                 .Include(pit => pit.Player.BattingHand)
                 .Include(pit => pit.Player.PitchingHand)
-                .ToList();
+                .ToListAsync();
 
             return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
         }
 
-        public List<PlayerInLineupViewModel> GetReserves()
+        public async Task<List<PlayerInLineupViewModel>> GetReserves()
         {
-            using var db = new VKRApplicationContext();
-            var allPlayers = db.PlayersInTeams
+            await using var db = new VKRApplicationContext();
+            var allPlayers = await db.PlayersInTeams
                 .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.Reserve)
                 .Include(pit => pit.Player)
                 .ThenInclude(p => p.City)
                 .Include(p => p.Player.Positions)
                 .Include(pit => pit.Player.BattingHand)
                 .Include(pit => pit.Player.PitchingHand)
-                .ToList();
+                .ToListAsync();
 
             return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
         }
 
-        public List<PlayerInLineupViewModel> GetActivePlayers()
+        public async Task<List<PlayerInLineupViewModel>> GetActivePlayers()
         {
-            using var db = new VKRApplicationContext();
-            var allPlayers = db.PlayersInTeams
+            await using var db = new VKRApplicationContext();
+            var allPlayers = await db.PlayersInTeams
                 .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster)
                 .Include(pit => pit.Player)
                 .ThenInclude(p => p.City)
                 .Include(p => p.Player.Positions)
                 .Include(pit => pit.Player.BattingHand)
                 .Include(pit => pit.Player.PitchingHand)
-                .ToList();
+                .ToListAsync();
 
             return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, 0, 0, pit.TeamId, pit.Player.Positions[0].ShortTitle)).ToList();
         }
 
-        public List<PlayerInLineupViewModel> GetStartingLineups()
+        public async Task<List<PlayerInLineupViewModel>> GetStartingLineups()
         {
-            using var db = new VKRApplicationContext();
-            var allPlayers = db.PlayersInTeams
+            await using var db = new VKRApplicationContext();
+            var allPlayers = await db.PlayersInTeams
                 .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster)
                 .Include(pit => pit.Player)
                 .ThenInclude(p => p.City)
@@ -78,7 +80,7 @@ namespace VKR.EF.DAO
                 .Include(p => p.Player.Positions)
                 .Include(pit => pit.Player.BattingHand)
                 .Include(pit => pit.Player.PitchingHand)
-                .ToList();
+                .ToListAsync();
 
             var list = new List<PlayerInLineupViewModel>();
             foreach (var pit in allPlayers)
@@ -89,11 +91,11 @@ namespace VKR.EF.DAO
             return list;
         }
 
-        public List<PlayerInLineupViewModel> GetBench()
+        public async Task<List<PlayerInLineupViewModel>> GetBench()
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var f = db.Players
+            var f = await db.Players
                 .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster))
                 .ThenInclude(pit => pit.PlayersInStartingLineups)
                 .Include(player => player.Positions)
@@ -101,7 +103,7 @@ namespace VKR.EF.DAO
                 .Include(player => player.BattingHand)
                 .Include(player => player.PitchingHand)
                 .Include(player => player.City)
-                .ToList();
+                .ToListAsync();
 
             var list = new List<PlayerInLineupViewModel>();
             foreach (var player in f)

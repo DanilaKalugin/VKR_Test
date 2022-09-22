@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
@@ -21,8 +22,8 @@ namespace VKR.PL.NET5
         private readonly StatsBL _statsBL = new();
         private readonly PrimaryTeamColorBL _teamColorBl = new();
 
-        private readonly List<Team> _teams;
-        private readonly List<TeamColor> _primaryColors;
+        private List<Team> _teams;
+        private List<TeamColor> _primaryColors;
 
         private List<Player> _batters;
         private List<Player> _pitchers;
@@ -39,12 +40,11 @@ namespace VKR.PL.NET5
         {
             InitializeComponent();
 
-            _teams = _teamsBL.GetAllTeams().ToList();
-            _primaryColors = _teamColorBl.GetPrimaryTeamColors();
             _objects = sortingObject;
             _sortModes[0] = new SortMode[dataGridView1.ColumnCount - 3 + dataGridView2.ColumnCount - 3];
             _sortModes[1] = new SortMode[dataGridView3.ColumnCount - 3 + dataGridView4.ColumnCount - 3];
             _sortModes[0][11] = SortMode.Descending;
+            Opacity = 0;
         }
 
         private void ShowNewStats(PlayerType playerType, StatsType statsType)
@@ -134,6 +134,7 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.IP,
                 pitcher => pitcher.PitchingStats.HitsAllowed,
                 pitcher => pitcher.PitchingStats.RunsAllowed,
+                pitcher => pitcher.PitchingStats.EarnedRuns,
                 pitcher => pitcher.PitchingStats.HomeRunsAllowed,
                 pitcher => pitcher.PitchingStats.HitByPitch,
                 pitcher => pitcher.PitchingStats.WalksAllowed,
@@ -197,6 +198,7 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.IP,
                 pitcher => pitcher.PitchingStats.HitsAllowed,
                 pitcher => pitcher.PitchingStats.RunsAllowed,
+                pitcher => pitcher.PitchingStats.EarnedRuns,
                 pitcher => pitcher.PitchingStats.HomeRunsAllowed,
                 pitcher => pitcher.PitchingStats.HitByPitch,
                 pitcher => pitcher.PitchingStats.WalksAllowed,
@@ -249,7 +251,8 @@ namespace VKR.PL.NET5
         {
             if (e.ColumnIndex > 2)
             {
-                if (e.ColumnIndex == 5) _sortModes[1][e.ColumnIndex - 3] = _sortModes[1][e.ColumnIndex - 3] == SortMode.Ascending && _lastPitchingSort == e.ColumnIndex - 3
+                if (e.ColumnIndex == 5)
+                    _sortModes[1][e.ColumnIndex - 3] = _sortModes[1][e.ColumnIndex - 3] == SortMode.Ascending && _lastPitchingSort == e.ColumnIndex - 3
                             ? SortMode.Descending
                             : SortMode.Ascending;
                 else
@@ -352,6 +355,7 @@ namespace VKR.PL.NET5
                                             pitchers[i].PitchingStats.IP.ToString("0.0", new CultureInfo("en-US")),
                                             pitchers[i].PitchingStats.HitsAllowed,
                                             pitchers[i].PitchingStats.RunsAllowed,
+                                            pitchers[i].PitchingStats.EarnedRuns,
                                             pitchers[i].PitchingStats.HomeRunsAllowed,
                                             pitchers[i].PitchingStats.HitByPitch,
                                             pitchers[i].PitchingStats.WalksAllowed,
@@ -434,6 +438,7 @@ namespace VKR.PL.NET5
                                             teamPitching[i].PitchingStats.IP.ToString("0.0", new CultureInfo("en-US")),
                                             teamPitching[i].PitchingStats.HitsAllowed,
                                             teamPitching[i].PitchingStats.RunsAllowed,
+                                            teamPitching[i].PitchingStats.EarnedRuns,
                                             teamPitching[i].PitchingStats.HomeRunsAllowed,
                                             teamPitching[i].PitchingStats.HitByPitch,
                                             teamPitching[i].PitchingStats.WalksAllowed,
@@ -470,12 +475,23 @@ namespace VKR.PL.NET5
 
         private void dataGridView4_CellStyleChanged(object sender, DataGridViewCellEventArgs e) => dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.SelectionBackColor = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor;
 
-        private void PlayerStatsForm_Load(object sender, EventArgs e)
+        private async void PlayerStatsForm_Load(object sender, EventArgs e)
         {
+            cbSeasons.DataSource = await _seasonBl.GetAllSeasonsAsync();
+            cbSeasons.DisplayMember = "Year";
+
+            _teams = await _teamsBL.GetListAsync();
+            _primaryColors = await _teamColorBl.GetPrimaryTeamColorsAsync();
+
+            var season = await _seasonBl.GetCurrentSeason();
+
             if (_objects == SortingObjects.Teams)
             {
-                _teamBattingStats = _statsBL.GetTeamBattingStats();
-                _teamPitchingStats = _statsBL.GetTeamPitchingStats();
+                using var teamBattingTask = _statsBL.GetTeamBattingStats(season);
+                using var teamPitchingTask = _statsBL.GetTeamPitchingStats(season);
+
+                await Task.WhenAll(teamBattingTask, teamPitchingTask);
+                (_teamBattingStats, _teamPitchingStats) = (teamBattingTask.Result, teamPitchingTask.Result);
             }
 
             _playerType = PlayerType.Batters;
@@ -487,7 +503,7 @@ namespace VKR.PL.NET5
             teamsInComboBox.AddRange(_teams.Select(team => team.TeamName).ToList());
             cbTeams.DataSource = teamsInComboBox;
 
-            cbPositions.DataSource = _statsBL.GetPlayerPositions();
+            cbPositions.DataSource = await _playerPositionsBl.GetAllPlayerPositions();
             cbPositions.DisplayMember = "FullTitle";
 
             cbPlayers.Visible = _objects == SortingObjects.Players;
@@ -497,19 +513,44 @@ namespace VKR.PL.NET5
             Text = _objects == SortingObjects.Players ? "Player statistics" : "Team statistics";
         }
 
-        private void SelectedIndexChanged(object sender, EventArgs e)
+        private async void SelectedIndexChanged(object sender, EventArgs e)
         {
             cbTeams.Visible = cbPlayers.Text != "Free Agents";
 
-            if (cbPositions.DataSource == null || cbTeams.DataSource == null) return;
-
-            if (_objects == SortingObjects.Players)
+            var f = new LoadingForm();
+            try
             {
-                _pitchers = _statsBL.GetPitchersStats(cbPlayers.Text, cbTeams.SelectedValue.ToString());
-                var positionTitle = cbPositions.SelectedValue is PlayerPosition position ? position.ShortTitle : "";
-                _batters = _statsBL.GetBattersStats(cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
-            }
+                f.Show();
+                f.TopMost = true;
 
+                if (_objects == SortingObjects.Players)
+                {
+                    if (cbSeasons.SelectedValue is Season season)
+                    {
+                        var positionTitle = cbPositions.SelectedValue is PlayerPosition position ? position.ShortTitle : "";
+
+                        using var pitchersTask = _statsBL.GetPitchersStats(season, cbPlayers.Text, cbTeams.SelectedValue.ToString());
+                        using var battersTask = _statsBL.GetBattersStats(season, cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
+                        await Task.WhenAll(pitchersTask, battersTask);
+                        (_pitchers, _batters) = (pitchersTask.Result, battersTask.Result);
+                    }
+                }
+                else
+                {
+                    if (cbSeasons.SelectedValue is Season season)
+                    {
+                        using var teamBattingTask = _statsBL.GetTeamBattingStats(season);
+                        using var teamPitchingTask = _statsBL.GetTeamPitchingStats(season);
+                        await Task.WhenAll(teamBattingTask, teamPitchingTask);
+                        (_teamBattingStats, _teamPitchingStats) = (teamBattingTask.Result, teamPitchingTask.Result);
+                    }
+                }
+            }
+            finally
+            {
+                f.Dispose();
+                Opacity = 1;
+            }
             GetSortedListsBySortingCodes(_lastBattingSort, _lastPitchingSort, _objects);
         }
     }

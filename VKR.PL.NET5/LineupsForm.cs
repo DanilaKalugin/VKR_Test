@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
@@ -21,43 +21,28 @@ namespace VKR.PL.NET5
         private readonly MatchBL _matchBL = new();
         private readonly RostersBL _rostersBl = new();
 
-        private readonly List<List<List<PlayerInLineupViewModel>>> _teamsLineups;
-        private readonly List<List<List<PlayerInLineupViewModel>>> _teamsBench;
-        private readonly List<Team> _teams;
+        private List<List<List<PlayerInLineupViewModel>>> _teamsLineups;
+        private List<List<List<PlayerInLineupViewModel>>> _teamsBench;
+        private List<Team> _teams;
         private int _teamNumber;
         private int _lineupNumber;
         private readonly string[] _typesOfLineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
         private bool _lineupChanged;
-        private readonly DateTime _matchDate;
+        private DateTime _matchDate;
+        private bool _isAdmin;
+        private PlayerInLineupViewModel _player;
 
         public LineupsForm(RosterType rosterType)
         {
             InitializeComponent();
 
             _rosterType = rosterType;
-            _teams = _teamsBL.GetAllTeams();
-            _matchDate = _matchBL.GetMaxDateForAllMatches();
+            _isAdmin = isAdmin;
 
-            switch (_rosterType)
-            {
-                case RosterType.StartingLineups:
-                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Starters);
-                    _teamsBench = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Bench);
-                    base.Text = "Starting lineups";
-                    break;
-                case RosterType.Reserves:
-                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActivePlayers);
-                    _teamsBench = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Reserve);
-                    base.Text = "Reserves";
-                    break;
-                case RosterType.FreeAgents:
-                    _teamsLineups = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActiveAndReserve);
-                    _teamsBench = _rostersBl.GetFreeAgents();
-                    Text = "Free Agents";
-                    break;
-            }
-
-            TeamChanged(_teamNumber);
+            btnMoveToLowerRoster.Visible = _isAdmin;
+            btnMoveToUpperRoster.Visible = _isAdmin;
+            btnUpdatePlayer.Visible = _isAdmin;
+            Opacity = 0;
         }
 
         private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
@@ -167,7 +152,7 @@ namespace VKR.PL.NET5
             ShowNewPlayer(dgvBench, dgvLineup, player);
         }
 
-        private void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, Player player)
+        private async void ShowNewPlayer(DataGridView dgv1, DataGridView dgv2, Player player)
         {
             dgv2.DefaultCellStyle.SelectionBackColor = Color.Gainsboro;
             dgv2.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.LightGray;
@@ -182,17 +167,16 @@ namespace VKR.PL.NET5
             label4.Text = player.CanPlayAsPitcher ? "ERA" : "AVG";
             label5.Text = player.CanPlayAsPitcher ? "SO" : "HR";
             label6.Text = player.CanPlayAsPitcher ? "WHIP" : "RBI";
-
             if (!player.CanPlayAsPitcher)
             {
-                player.BattingStats = _players.GetBattingStatsByCode(player.Id, _matchDate.Year);
+                player.BattingStats = await _playersBl.GetBattingStatsByCode(player.Id, _matchDate.Year);
                 label1.Text = player.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
                 label2.Text = player.BattingStats.HomeRuns.ToString();
                 label3.Text = player.BattingStats.RBI.ToString();
             }
             else
             {
-                player.PitchingStats = _players.GetPitchingStatsByCode(player.Id, _matchDate.Year);
+                player.PitchingStats = await _playersBl.GetPitchingStatsByCode(player.Id, _matchDate.Year);
                 label1.Text = player.PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"));
                 label2.Text = player.PitchingStats.Strikeouts.ToString();
                 label3.Text = player.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
@@ -220,12 +204,147 @@ namespace VKR.PL.NET5
             ShowNewPlayer(dgvBench, dgvLineup, player);
         }
 
-        private void LineupsForm_Load(object sender, EventArgs e)
+        private async void LineupsForm_Load(object sender, EventArgs e)
         {
+            var teamsTask = _teamsBl.GetListAsync();
+            var matchDateTask = _matchBl.GetMaxDateForAllMatchesAsync();
+
+            await Task.WhenAll(teamsTask, matchDateTask);
+
+            (_teams, _matchDate) = (teamsTask.Result, matchDateTask.Result);
+            await FillTables();
+
             lbl_LineupHeader.Visible = _rosterType == RosterType.StartingLineups;
             btnDecLineupTypeNumberBy1.Visible = _rosterType == RosterType.StartingLineups;
             btnIncLineupTypeNumberBy1.Visible = _rosterType == RosterType.StartingLineups;
             lbLineUpType.Visible = _rosterType == RosterType.StartingLineups;
+        }
+
+        private async void btnAssignTo_Click(object sender, EventArgs e)
+        {
+            _player = _teamsLineups[_teamNumber][_lineupNumber][dgvLineup.SelectedRows[0].Index];
+            var team = _teams[_teamNumber];
+
+            switch (_rosterType)
+            {
+                case RosterType.StartingLineups:
+                    await _playerMovesBl.RemoveFromStartingLineup(_player, team, (byte)(_lineupNumber + 1));
+                    break;
+                case RosterType.Reserves:
+                    await _playerMovesBl.ChangePlayerInTeamStatus(_player, team, InTeamStatusEnum.Reserve);
+                    break;
+                case RosterType.FreeAgents:
+                    await _playerMovesBl.ReleasePlayer(_player);
+                    break;
+            }
+
+            await FillTables();
+        }
+
+        private async Task FillTables()
+        {
+            var f = new LoadingForm();
+            f.TopMost = true;
+            f.Show();
+            
+
+            switch (_rosterType)
+            {
+                case RosterType.StartingLineups:
+                    var lineupsTask = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Starters);
+                    var benchTask = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Bench);
+                    await Task.WhenAll(lineupsTask, benchTask);
+                    (_teamsLineups, _teamsBench) = (lineupsTask.Result, benchTask.Result);
+                    break;
+                case RosterType.Reserves:
+                    var activePlayersTask = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActivePlayers);
+                    var reservePlayersTask = _rostersBl.GetRoster(RostersBL.TypeOfRoster.Reserve);
+                    await Task.WhenAll(activePlayersTask, reservePlayersTask);
+                    (_teamsLineups, _teamsBench) = (activePlayersTask.Result, reservePlayersTask.Result);
+                    break;
+                case RosterType.FreeAgents:
+                    var allPlayersTask = _rostersBl.GetRoster(RostersBL.TypeOfRoster.ActiveAndReserve);
+                    var freeAgentsTask = _rostersBl.GetFreeAgents();
+                    await Task.WhenAll(allPlayersTask, freeAgentsTask);
+                    (_teamsLineups, _teamsBench) = (allPlayersTask.Result, freeAgentsTask.Result);
+                    break;
+            }
+            TeamChanged(_teamNumber);
+            Opacity = 1;
+            f.Dispose();
+        }
+
+        private void btnDecLineupTypeNumberBy1_Click(object sender, EventArgs e)
+        {
+            _lineupNumber = _lineupNumber > 0 ? _lineupNumber - 1 : _teamsLineups[_teamNumber].Count - 1;
+            DisplayRoster(_teamNumber, _lineupNumber);
+        }
+
+        private async void MoveToActiveRoster_Click(object sender, EventArgs e)
+        {
+            _player = _rosterType == RosterType.FreeAgents
+                ? _teamsBench[0][0][dgvBench.SelectedRows[0].Index]
+                : _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index];
+
+            var team = _teams[_teamNumber];
+
+            switch (_rosterType)
+            {
+                case RosterType.StartingLineups:
+                    {
+                        var position = GetPlayerPositionForPlayer(_player);
+                        if (position is not null)
+                            await _playerMovesBl.AssignPlayerToStartingLineup(_player, team, (byte)(_lineupNumber + 1), position, (byte)(_teamsLineups[_teamNumber][_lineupNumber].Count + 1));
+                        break;
+                    }
+                case RosterType.Reserves:
+                    await _playerMovesBl.ChangePlayerInTeamStatus(_player, team, InTeamStatusEnum.ActiveRoster);
+                    break;
+                case RosterType.FreeAgents:
+                    await _playerMovesBl.MovePlayerToNewTeam(_player, team);
+                    break;
+            }
+
+            await FillTables();
+        }
+
+        private PlayerPosition? GetPlayerPositionForPlayer(Player player)
+        {
+            var filledPositionsInLineup = _teamsLineups[_teamNumber][_lineupNumber].Select(p => p.PositionInLineup).ToList();
+            var positions = player.Positions.ToList();
+
+            if (_lineupNumber % 2 == 0)
+                positions.Add(new PlayerPosition
+                {
+                    Number = 10,
+                    ShortTitle = "DH",
+                    FullTitle = "Designated Hitter"
+                });
+
+            var availablePositions = positions.Where(pp => !filledPositionsInLineup.Contains(pp.ShortTitle)).ToList();
+
+
+            if (availablePositions.Count <= 1) 
+                return availablePositions.First();
+
+            var form = new SelectPlayerPositionForm(player, availablePositions, _typesOfLineups[_lineupNumber]);
+            form.ShowDialog();
+            return form.DialogResult == DialogResult.OK ? form.Position : null;
+        }
+
+        private async void btnUpdatePlayer_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+
+
+            using (var form = new AddPlayerForm(_player))
+            {
+                form.ShowDialog();
+                if (form.DialogResult == DialogResult.OK)
+                    await FillTables();
+            }
+
+            Visible = true;
         }
     }
 }

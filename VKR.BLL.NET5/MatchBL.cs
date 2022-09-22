@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
 
@@ -10,26 +11,32 @@ namespace VKR.BLL.NET5
     {
         private readonly MatchEFDAO _matchEfdao = new();
 
-        public void StartNewMatch(Match match)
+        public async Task StartNewMatch(Match match)
         {
-            _matchEfdao.StartNewMatch(match);
+            await _matchEfdao.StartNewMatch(match);
             match.GameSituations = new List<GameSituation> { new(match.AwayTeam) };
         }
 
-        public int GetNextMatchId(Match newMatch) => _matchEfdao.GetNextMatchId(newMatch.MatchTypeId);
+        public async Task<int> GetNextMatchId(Match newMatch) => await _matchEfdao.GetNextMatchId(newMatch.MatchTypeId).ConfigureAwait(false);
 
-        public void AddNewAtBat(AtBat atBat) => _matchEfdao.AddNewAtBat(atBat);
+        public async Task AddNewAtBat(AtBat atBat) => await _matchEfdao.AddNewAtBat(atBat);
 
-        public void FinishMatch(Match match) => _matchEfdao.FinishMatch(match);
+        public async Task AddNewRun(Run run) => await _matchEfdao.AddNewRun(run);
 
-        public void AddMatchResultForThisPitcher(PitcherResults pitcherResults) => _matchEfdao.AddMatchResultForThisPitcher(pitcherResults);
+        public async Task FinishMatch(Match match) => await _matchEfdao.FinishMatch(match).ConfigureAwait(false);
 
-        public void DeleteThisMatch(int matchID) => _matchEfdao.DeleteMatch(matchID);
+        public async Task AddMatchResultForThisPitcher(PitcherResults pitcherResults) => await _matchEfdao.AddMatchResultForThisPitcher(pitcherResults).ConfigureAwait(false);
 
-        public DateTime GetMaxDateForAllMatches() => _matchEfdao.GetMaxDateForAllMatches();
+        public async Task DeleteThisMatch(int matchID) => await _matchEfdao.DeleteMatch(matchID).ConfigureAwait(false);
 
-        public DateTime GetDateForNextMatch(TypeOfMatchEnum matchType) => _matchEfdao.GetDateForNextMatch(matchType);
+        public async Task<DateTime> GetMaxDateForAllMatchesAsync() => await _matchEfdao.GetMaxDateForAllMatchesAsync().ConfigureAwait(false);
 
-        public List<MatchFromSchedule> GetMatchesForThisDay(DateTime date, TypeOfMatchEnum matchType) => _matchEfdao.GetRemainingScheduleForThisDay(date, matchType).ToList();
+        public async Task<DateTime> GetDateForNextMatchAsync(TypeOfMatchEnum matchType) => await _matchEfdao.GetDateForNextMatchAsync(matchType).ConfigureAwait(false);
+
+        public async Task<List<MatchFromSchedule>> GetMatchesForThisDayAsync(DateTime date, TypeOfMatchEnum matchType)
+        {
+            var matches = await _matchEfdao.GetRemainingScheduleForThisDayAsync(date, matchType).ConfigureAwait(false);
+            return matches.ToList();
+        }
     }
 }

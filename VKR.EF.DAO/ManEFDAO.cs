@@ -10,7 +10,8 @@ namespace VKR.EF.DAO
         public async Task<List<ManInTeam>> GetListOfPeopleWithBirthdayTodayAsync()
         {
             await using var db = new VKRApplicationContext();
-            return await db.ManInTeam.ToListAsync().ConfigureAwait(false);
+            return await db.ManInTeam.ToListAsync()
+                .ConfigureAwait(false);
         }
     }
 }

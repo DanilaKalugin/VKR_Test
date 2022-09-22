@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
 
@@ -7,13 +8,13 @@ namespace VKR.EF.DAO
 {
     public class StatsEFDAO
     {
-        public List<Player> GetPlayerBattingStats(int year)
+        public async Task<List<Player>> GetPlayerBattingStatsAsync(int year)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var players = db.Players.Include(player => player.Positions)
+            var players = await db.Players.Include(player => player.Positions)
                 .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam))
-                .ToList();
+                .ToListAsync();
 
             var battingStats = db.PlayersBattingStats
                 .Where(battingStats => battingStats.Season == year &&
@@ -25,13 +26,13 @@ namespace VKR.EF.DAO
                 (player, stats) => player.SetBattingStats(stats)).ToList();
         }
 
-        public List<Player> GetPlayerPitchingStats(int year)
+        public async Task<List<Player>> GetPlayerPitchingStatsAsync(int year, TypeOfMatchEnum matchType = TypeOfMatchEnum.RegularSeason)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var players = db.Players.Include(player => player.Positions)
+            var players = await db.Players.Include(player => player.Positions)
                 .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam))
-                .ToList();
+                .ToListAsync();
 
             var pitchingStats = db.PlayersPitchingStats
                 .Where(battingStats => battingStats.Season == year &&
@@ -43,27 +44,34 @@ namespace VKR.EF.DAO
                 (player, stats) => player.SetPitchingStats(stats)).ToList();
         }
 
-        public List<Team> GetBattingStatsByYearAndMatchType(int year, TypeOfMatchEnum type)
+        public async Task<List<Team>> GetBattingStatsByYearAndMatchType(int year, TypeOfMatchEnum type)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var teams = db.Teams.Include(team => team.TeamColors).ToList();
+            var teams = await db.Teams.ToListAsync()
+                .ConfigureAwait(false);
 
-            var battingStats = db.TeamsBattingStats
-                .Where(batting => batting.Season == year && batting.MatchType == type).ToList();
+            var battingStats = await db.TeamsBattingStats
+                .Where(batting => batting.Season == year && 
+                                  batting.MatchType == type)
+                .ToListAsync();
 
             return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
                 (team, stats) => team.SetBattingStats(stats)).ToList();
         }
 
-        public List<Team> GetPitchingStatsByYearAndMatchType(int year, TypeOfMatchEnum type)
+        public async Task<List<Team>> GetPitchingStatsByYearAndMatchTypeAsync(int year = 2021, TypeOfMatchEnum type = TypeOfMatchEnum.RegularSeason)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var teams = db.Teams.Include(team => team.TeamColors).ToList();
+            var teams = await db.Teams.Include(team => team.TeamColors)
+                .ToListAsync()
+                .ConfigureAwait(false);
 
-            var battingStats = db.TeamsPitchingStats
-                .Where(batting => batting.Season == year && batting.MatchType == type).ToList();
+            var battingStats = await db.TeamsPitchingStats
+                .Where(batting => batting.Season == year && batting.MatchType == type)
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
                 (team, stats) => team.SetPitchingStats(stats)).ToList();

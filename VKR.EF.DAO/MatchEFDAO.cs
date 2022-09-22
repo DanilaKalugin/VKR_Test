@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
 
@@ -8,43 +9,44 @@ namespace VKR.EF.DAO
 {
     public class MatchEFDAO
     {
-        public DateTime GetDateForNextMatch(TypeOfMatchEnum matchType)
+        public async ValueTask<DateTime> GetDateForNextMatchAsync(TypeOfMatchEnum matchType)
         {
-            using var db = new VKRApplicationContext();
-            return db.NextMatches.Where(match => match.MatchTypeId == matchType && !match.IsPlayed)
-                .Min(match => match.MatchDate);
+            await using var db = new VKRApplicationContext();
+            return await db.NextMatches
+                .Where(match => match.MatchTypeId == matchType && !match.IsPlayed)
+                .MinAsync(match => match.MatchDate)
+                .ConfigureAwait(false);
         }
 
-        public IEnumerable<MatchFromSchedule> GetRemainingScheduleForThisDay(DateTime date, TypeOfMatchEnum matchType)
+        public async Task<IEnumerable<MatchFromSchedule>> GetRemainingScheduleForThisDayAsync(DateTime date, TypeOfMatchEnum matchType)
         {
-            using var db = new VKRApplicationContext();
-            return db.NextMatches.Where(nm => !nm.IsPlayed && nm.MatchTypeId == matchType && nm.MatchDate == date).ToList();
+            await using var db = new VKRApplicationContext();
+            return await db.NextMatches
+                .Where(nm => !nm.IsPlayed && nm.MatchTypeId == matchType && nm.MatchDate == date)
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
 
-        public DateTime GetMaxDateForAllMatches()
+        public async ValueTask<DateTime> GetMaxDateForAllMatchesAsync()
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
             return db.Matches.Include(m => m.MatchResult)
                 .Where(m => m.MatchResult != null)
                 .Select(m => m.MatchDate).Max();
         }
 
-        public int GetNextMatchId(TypeOfMatchEnum matchType)
+        public async ValueTask<int> GetNextMatchId(TypeOfMatchEnum matchType)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var maxId = matchType == TypeOfMatchEnum.QuickMatch
-                ? db.Matches.Where(match => match.MatchTypeId == TypeOfMatchEnum.QuickMatch)
-                    .Max(match => match.Id)
-                : db.Matches.Where(match => match.MatchTypeId != TypeOfMatchEnum.QuickMatch)
-                    .Max(match => match.Id);
+            var maxId = await db.Matches.MaxAsync(match => match.Id);
 
             return maxId + 1;
         }
 
-        public void StartNewMatch(Match match)
+        public async Task StartNewMatch(Match match)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
             var newMatch = new Match
             {
@@ -58,34 +60,39 @@ namespace VKR.EF.DAO
                 SeasonId = match.MatchDate.Year
             };
             db.Matches.Add(newMatch);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
-            AddPlayersToTheMatch(match, match.AwayTeam);
-            AddPlayersToTheMatch(match, match.HomeTeam);
+            await AddPlayersToTheMatchAsync(match, match.AwayTeam).ConfigureAwait(false);
+            await AddPlayersToTheMatchAsync(match, match.HomeTeam).ConfigureAwait(false);
 
             newMatch.AwayTeamAbbreviation = match.AwayTeam.TeamAbbreviation;
             newMatch.HomeTeamAbbreviation = match.HomeTeam.TeamAbbreviation;
 
             if (match.MatchTypeId == TypeOfMatchEnum.QuickMatch) return;
 
-            var thisMatch = db.NextMatches.FirstOrDefault(_match =>
+            var thisMatch = await db.NextMatches.FirstOrDefaultAsync(_match =>
                 _match.HomeTeamAbbreviation == newMatch.HomeTeamAbbreviation &&
                 _match.AwayTeamAbbreviation == newMatch.AwayTeamAbbreviation &&
-                _match.MatchDate == match.MatchDate && !_match.IsPlayed);
+                _match.MatchDate == match.MatchDate && !_match.IsPlayed)
+                .ConfigureAwait(false);
 
-            if (thisMatch != null) thisMatch.IsPlayed = true;
+            if (thisMatch != null)
+                thisMatch.IsPlayed = true;
+
             db.NextMatches.Update(thisMatch);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
-        private void AddPlayersToTheMatch(Match match, Team team)
+        private async Task AddPlayersToTheMatchAsync(Match match, Team team)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var startingPitcher = FindStartingPitcherForThisTeam(team);
-            var lineupType = db.LineupTypes.First(lt => lt.PitcherHandId == startingPitcher.PlayerPitchingHand && lt.DesignatedHitterRule == match.DHRule);
+            var startingPitcher = await FindStartingPitcherForThisTeamAsync(team);
+            var lineupType = await db.LineupTypes
+                .FirstAsync(lt => lt.PitcherHandId == startingPitcher.PlayerPitchingHand && lt.DesignatedHitterRule == match.DHRule)
+                .ConfigureAwait(false);
 
-            var startingLineup = db.StartingLineups.Include(sl => sl.PlayerInTeam)
+            var startingLineup = await db.StartingLineups.Include(sl => sl.PlayerInTeam)
                 .Where(sl => sl.LineupTypeId == lineupType.Id && sl.PlayerInTeam.TeamId == team.TeamAbbreviation)
                 .Select(sl => new LineupForMatch
                 {
@@ -93,9 +100,10 @@ namespace VKR.EF.DAO
                     PlayerInTeamId = sl.PlayerInTeamId,
                     PlayerPositionId = sl.PlayerPositionId,
                     PlayerNumberInLineup = sl.PlayerNumberInLineup
-                }).ToList();
+                }).ToListAsync()
+                .ConfigureAwait(false);
 
-            var pitcher = db.StartingLineups.Include(sl => sl.PlayerInTeam)
+            var pitcher = await db.StartingLineups.Include(sl => sl.PlayerInTeam)
                 .ThenInclude(pit => pit.Player)
                 .Where(sl =>
                     sl.LineupTypeId == 5 &&
@@ -107,9 +115,10 @@ namespace VKR.EF.DAO
                     PlayerInTeamId = sl.PlayerInTeamId,
                     PlayerPositionId = "P",
                     PlayerNumberInLineup = 10
-                }).ToList();
+                }).ToListAsync()
+                .ConfigureAwait(false);
 
-            var pitcherDH = db.StartingLineups.Include(sl => sl.PlayerInTeam)
+            var pitcherDH = await db.StartingLineups.Include(sl => sl.PlayerInTeam)
                 .Where(sl => lineupType.Id % 2 == 0 &&
                     sl.PlayerInTeam.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam && sl.PlayerInTeam.TeamId == team.TeamAbbreviation && sl.PlayerInTeam.PlayerId == startingPitcher.Id)
                 .Select(sl => new LineupForMatch
@@ -118,60 +127,68 @@ namespace VKR.EF.DAO
                     PlayerInTeamId = sl.PlayerInTeamId,
                     PlayerPositionId = "P",
                     PlayerNumberInLineup = 9
-                }).ToList();
+                }).ToListAsync()
+                .ConfigureAwait(false);
 
-            db.LineupsForMatches.AddRange(startingLineup);
-            if (!match.DHRule) db.LineupsForMatches.AddRange(pitcherDH);
+            await db.LineupsForMatches.AddRangeAsync(startingLineup);
+
+            if (!match.DHRule) 
+                await db.LineupsForMatches.AddRangeAsync(pitcherDH);
+
             db.LineupsForMatches.AddRange(pitcher);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
-        private Player FindStartingPitcherForThisTeam(Team team)
+        private async Task<Player> FindStartingPitcherForThisTeamAsync(Team team)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var pitchersInRotation = db.StartingLineups.Include(sl => sl.PlayerInTeam)
-                .Count(sl => sl.LineupTypeId == 5 && sl.PlayerInTeam.TeamId == team.TeamAbbreviation);
+            var pitchersInRotation = await db.StartingLineups.Include(sl => sl.PlayerInTeam)
+                .CountAsync(sl => sl.LineupTypeId == 5 && sl.PlayerInTeam.TeamId == team.TeamAbbreviation)
+                .ConfigureAwait(false);
 
             var nextPitcherInLineup = (team.Wins + team.Losses + 1) % pitchersInRotation;
             var nextPitcherInLineupNumber = nextPitcherInLineup == 0 ? pitchersInRotation : nextPitcherInLineup;
 
-            return db.StartingLineups.Include(sl => sl.PlayerInTeam)
+            return await db.StartingLineups.Include(sl => sl.PlayerInTeam)
                 .ThenInclude(pit => pit.Player)
                 .Where(sl => sl.LineupTypeId == 5 &&
                              sl.PlayerNumberInLineup == nextPitcherInLineupNumber &&
                              sl.PlayerInTeam.TeamId == team.TeamAbbreviation)
-                .Select(sl => sl.PlayerInTeam.Player).First();
+                .Select(sl => sl.PlayerInTeam.Player).FirstAsync()
+                .ConfigureAwait(false);
         }
 
-        public void DeleteMatch(int matchId)
+        public async Task DeleteMatch(int matchId)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var deletingMatch = db.Matches.FirstOrDefault(m => m.Id == matchId);
+            var deletingMatch = await db.Matches.FirstOrDefaultAsync(m => m.Id == matchId)
+                .ConfigureAwait(false);
 
             if (deletingMatch == null) return;
 
-            var matchForDelete = db.NextMatches.FirstOrDefault(nm =>
+            var matchForDelete = await db.NextMatches.FirstOrDefaultAsync(nm =>
                 nm.AwayTeamAbbreviation == deletingMatch.AwayTeamAbbreviation &&
                 nm.HomeTeamAbbreviation == deletingMatch.HomeTeamAbbreviation &&
                 nm.MatchDate == deletingMatch.MatchDate &&
-                nm.MatchTypeId == deletingMatch.MatchTypeId);
+                nm.MatchTypeId == deletingMatch.MatchTypeId)
+                .ConfigureAwait(false);
 
             if (matchForDelete != null) matchForDelete.IsPlayed = false;
             db.Matches.Remove(deletingMatch);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
-        public void FinishMatch(Match match)
+        public async Task FinishMatch(Match match)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            var matchDb = db.Matches.FirstOrDefault(m => m.Id == match.Id);
+            var matchDb = await db.Matches.FirstOrDefaultAsync(m => m.Id == match.Id);
 
             if (matchDb != null) matchDb.MatchEnded = true;
             db.Matches.Update(matchDb);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             var matchRes = new MatchResult
             {
@@ -187,24 +204,31 @@ namespace VKR.EF.DAO
                 HomeTeamRuns = match.GameSituations.Last().HomeTeamRuns
             };
 
-            db.MatchResults.Add(matchRes);
-            db.SaveChanges();
+            await db.MatchResults.AddAsync(matchRes);
+            await db.SaveChangesAsync();
         }
 
-        public void AddNewAtBat(AtBat atBat)
+        public async Task AddNewAtBat(AtBat atBat)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
-            db.AtBats.Add(atBat);
-            db.SaveChanges();
+            await db.AtBats.AddAsync(atBat);
+            await db.SaveChangesAsync();
         }
 
-        public void AddMatchResultForThisPitcher(PitcherResults pitcherResults)
+        public async Task AddNewRun(Run run)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
+            await db.Runs.AddAsync(run);
+            await db.SaveChangesAsync();
+        }
 
-            db.PitcherResults.Add(pitcherResults);
-            db.SaveChanges();
+        public async Task AddMatchResultForThisPitcher(PitcherResults pitcherResults)
+        {
+            await using var db = new VKRApplicationContext();
+
+            await db.PitcherResults.AddAsync(pitcherResults);
+            await db.SaveChangesAsync();
         }
     }
 }

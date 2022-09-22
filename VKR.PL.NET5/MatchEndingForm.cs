@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
@@ -69,12 +70,12 @@ namespace VKR.PL.NET5
             lb1stInning.Text = (int.Parse(lb2ndInning.Text) - 1).ToString();
         }
 
-        private void MatchEndingForm_Load(object sender, EventArgs e)
+        private async void MatchEndingForm_Load(object sender, EventArgs e)
         {
             NumberOfLastInningDefinition(_endedMatch);
 
-            _teamsBL.UpdateTeamBalance(_endedMatch.AwayTeam, _endedMatch);
-            _teamsBL.UpdateTeamBalance(_endedMatch.HomeTeam, _endedMatch);
+            await _teamsBL.UpdateTeamBalance(_endedMatch.AwayTeam, _endedMatch);
+            await _teamsBL.UpdateTeamBalance(_endedMatch.HomeTeam, _endedMatch);
 
             GetInformationAboutTeam(_endedMatch.AwayTeam, lbAwayTeamAbbreviation, AwayTeamSmallLogo, lbAwayBalance, pbAwayLogo_border, pbAwayLogo);
             GetInformationAboutTeam(_endedMatch.HomeTeam, lbHomeTeamAbbreviation, HomeTeamSmallLogo, lbHomeBalance, pbHomeLogo_border, pbHomeLogo);
@@ -85,8 +86,8 @@ namespace VKR.PL.NET5
             UpdateScoreboard(away1, away2, away3, away4, away5, away6, away7, away8, away9, away10, awayRuns, awayHits, awayLOB, _endedMatch, _endedMatch.AwayTeam);
             UpdateScoreboard(home1, home2, home3, home4, home5, home6, home7, home8, home9, home10, homeRuns, homeHits, homeLOB, _endedMatch, _endedMatch.HomeTeam);
 
-            MatchResultForPitcherAnalysis(_endedMatch, _endedMatch.AwayTeam);
-            MatchResultForPitcherAnalysis(_endedMatch, _endedMatch.HomeTeam);
+            await MatchResultForPitcherAnalysis(_endedMatch, _endedMatch.AwayTeam);
+            await MatchResultForPitcherAnalysis(_endedMatch, _endedMatch.HomeTeam);
         }
 
         private void GetInformationAboutTeam(Team team, Label abbreviation, Panel panelSmallLogo, Label Balance, Panel panelBorder, Panel BigLogo)
@@ -102,39 +103,39 @@ namespace VKR.PL.NET5
             panelBorder.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.85), (int)(team.TeamColorForThisMatch.G * 0.85), (int)(team.TeamColorForThisMatch.B * 0.85));
         }
 
-        private void MatchResultForPitcherAnalysis(Match endedMatch, Team awayTeam)
+        private async Task MatchResultForPitcherAnalysis(Match endedMatch, Team team)
         {
             var winningTeam = endedMatch.GameSituations.Last().AwayTeamRuns > endedMatch.GameSituations.Last().HomeTeamRuns ? endedMatch.AwayTeam : endedMatch.HomeTeam;
 
-            var results = awayTeam.PitchersPlayedInMatch.Select(pitcher => new PitcherResults
+            var results = team.PitchersPlayedInMatch.Select(pitcher => new PitcherResults
             {
-                PitcherId = pitcher.Id,
+                PitcherId = pitcher.PitcherId,
                 MatchId = endedMatch.Id
             }).ToList();
 
-            var runsForThisPitcher = endedMatch.AtBats.Count(atBat => atBat.AtBatType == AtBatType.Run && atBat.PitcherId == awayTeam.PitchersPlayedInMatch[0].Id);
-            var outsPlayedForThisTeam = endedMatch.AtBats.Where(atBat => atBat.Defense == awayTeam.TeamAbbreviation).Sum(atBat => atBat.Outs);
-            var outsPlayedForThisPitcher = endedMatch.AtBats.Where(atBat => atBat.PitcherId == awayTeam.PitchersPlayedInMatch[0].Id).Sum(atBat => atBat.Outs);
+            var runsForThisPitcher = endedMatch.AtBats.Count(atBat => atBat.AtBatType == AtBatType.Run && atBat.PitcherId == team.PitchersPlayedInMatch[0].PitcherId);
+            var outsPlayedForThisTeam = endedMatch.AtBats.Where(atBat => atBat.Defense == team.TeamAbbreviation).Sum(atBat => atBat.Outs);
+            var outsPlayedForThisPitcher = endedMatch.AtBats.Where(atBat => atBat.PitcherId == team.PitchersPlayedInMatch[0].PitcherId).Sum(atBat => atBat.Outs);
 
             results[0].IsQualityStart = runsForThisPitcher <= 3 && outsPlayedForThisPitcher / 3 >= 6;
             results[0].IsCompleteGame = outsPlayedForThisPitcher == outsPlayedForThisTeam;
             results[0].IsShutout = results[0].IsCompleteGame && runsForThisPitcher == 0;
 
-            if (awayTeam.PitchersPlayedInMatch.Count == 1)
+            if (team.PitchersPlayedInMatch.Count == 1)
             {
-                results[0].MatchResultId = awayTeam.TeamAbbreviation == winningTeam.TeamAbbreviation ? PitcherResultEnum.Win : PitcherResultEnum.Loss;
+                results[0].MatchResultId = team.TeamAbbreviation == winningTeam.TeamAbbreviation ? PitcherResultEnum.Win : PitcherResultEnum.Loss;
 
-                if (awayTeam.TeamAbbreviation == winningTeam.TeamAbbreviation)
+                if (team.TeamAbbreviation == winningTeam.TeamAbbreviation)
                 {
-                    WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].PitchingStats.Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].PitchingStats.Losses})";
-                    WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
+                    WinningPitcher.Text = $"{team.PitchersPlayedInMatch[0].FullName} ({team.PitchersPlayedInMatch[0].PitchingStats.Wins + 1} - {team.PitchersPlayedInMatch[0].PitchingStats.Losses})";
+                    WinningPitcher.BackColor = team.TeamColorForThisMatch;
                     PitcherWithSave.Text = "-";
-                    PitcherWithSave.BackColor = awayTeam.TeamColorForThisMatch;
+                    PitcherWithSave.BackColor = team.TeamColorForThisMatch;
                 }
                 else
                 {
-                    LosingPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[0].FullName} ({awayTeam.PitchersPlayedInMatch[0].PitchingStats.Wins} - {awayTeam.PitchersPlayedInMatch[0].PitchingStats.Losses + 1})";
-                    LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
+                    LosingPitcher.Text = $"{team.PitchersPlayedInMatch[0].FullName} ({team.PitchersPlayedInMatch[0].PitchingStats.Wins} - {team.PitchersPlayedInMatch[0].PitchingStats.Losses + 1})";
+                    LosingPitcher.BackColor = team.TeamColorForThisMatch;
                 }
             }
             else
@@ -144,11 +145,11 @@ namespace VKR.PL.NET5
                 var winningPitch = endedMatch.GameSituations[winningPitchId + 1];
                 var losingPitcherId = winningPitch.PitcherID;
 
-                if (awayTeam.TeamAbbreviation == winningTeam.TeamAbbreviation)
+                if (team.TeamAbbreviation == winningTeam.TeamAbbreviation)
                 {
                     var inningNumber = winningPitch.InningNumber;
-                    var winningPitcherId = endedMatch.GameSituations.First(gs => gs.InningNumber == inningNumber && gs.Offense.TeamAbbreviation != awayTeam.TeamAbbreviation && gs.Id > 0).PitcherID;
-                    var winningPitcherIndex = awayTeam.PitchersPlayedInMatch.IndexOf(awayTeam.PitchersPlayedInMatch.First(pitcher => pitcher.Id == winningPitcherId));
+                    var winningPitcherId = endedMatch.GameSituations.First(gs => gs.InningNumber == inningNumber && gs.Offense.TeamAbbreviation != team.TeamAbbreviation && gs.Id > 0).PitcherID;
+                    var winningPitcherIndex = team.PitchersPlayedInMatch.IndexOf(team.PitchersPlayedInMatch.First(pitcher => pitcher.PitcherId == winningPitcherId));
 
                     if (winningPitcherIndex != -1)
                     {
@@ -156,37 +157,37 @@ namespace VKR.PL.NET5
                             results[i].MatchResultId = PitcherResultEnum.NoDecision;
 
                         results[winningPitcherIndex].MatchResultId = PitcherResultEnum.Win;
-                        WinningPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[winningPitcherIndex].FullName} ({awayTeam.PitchersPlayedInMatch[winningPitcherIndex].PitchingStats.Wins + 1} - {awayTeam.PitchersPlayedInMatch[0].PitchingStats.Losses})";
-                        WinningPitcher.BackColor = awayTeam.TeamColorForThisMatch;
+                        WinningPitcher.Text = $"{team.PitchersPlayedInMatch[winningPitcherIndex].FullName} ({team.PitchersPlayedInMatch[winningPitcherIndex].PitchingStats.Wins + 1} - {team.PitchersPlayedInMatch[0].PitchingStats.Losses})";
+                        WinningPitcher.BackColor = team.TeamColorForThisMatch;
 
-                        if (winningPitcherIndex < awayTeam.PitchersPlayedInMatch.Count - 1)
+                        if (winningPitcherIndex < team.PitchersPlayedInMatch.Count - 1)
                         {
-                            results[awayTeam.PitchersPlayedInMatch.Count - 1].MatchResultId = PitcherResultEnum.Save;
-                            PitcherWithSave.Text = $"{awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].FullName} ({awayTeam.PitchersPlayedInMatch[awayTeam.PitchersPlayedInMatch.Count - 1].PitchingStats.Saves + 1})";
+                            results[team.PitchersPlayedInMatch.Count - 1].MatchResultId = PitcherResultEnum.Save;
+                            PitcherWithSave.Text = $"{team.PitchersPlayedInMatch[team.PitchersPlayedInMatch.Count - 1].FullName} ({team.PitchersPlayedInMatch[team.PitchersPlayedInMatch.Count - 1].PitchingStats.Saves + 1})";
                         }
                         else PitcherWithSave.Text = "-";
 
-                        PitcherWithSave.BackColor = awayTeam.TeamColorForThisMatch;
+                        PitcherWithSave.BackColor = team.TeamColorForThisMatch;
 
-                        for (var i = winningPitcherIndex + 1; i < awayTeam.PitchersPlayedInMatch.Count - 1; i++)
+                        for (var i = winningPitcherIndex + 1; i < team.PitchersPlayedInMatch.Count - 1; i++)
                             results[i].MatchResultId = PitcherResultEnum.Hold;
                     }
                 }
-                else if (awayTeam.PitchersPlayedInMatch.Contains(awayTeam.PitchersPlayedInMatch.First(pitcher => pitcher.Id == losingPitcherId)))
+                else if (team.PitchersPlayedInMatch.Contains(team.PitchersPlayedInMatch.First(pitcher => pitcher.PitcherId == losingPitcherId)))
                 {
-                    var losingPitcherIndex = awayTeam.PitchersPlayedInMatch.IndexOf(awayTeam.PitchersPlayedInMatch.First(pitcher => pitcher.Id == losingPitcherId));
+                    var losingPitcherIndex = team.PitchersPlayedInMatch.IndexOf(team.PitchersPlayedInMatch.First(pitcher => pitcher.PitcherId == losingPitcherId));
                     results[losingPitcherIndex].MatchResultId = PitcherResultEnum.Loss;
-                    LosingPitcher.Text = $"{awayTeam.PitchersPlayedInMatch[losingPitcherIndex].FullName} ({awayTeam.PitchersPlayedInMatch[losingPitcherIndex].PitchingStats.Wins} - {awayTeam.PitchersPlayedInMatch[losingPitcherIndex].PitchingStats.Losses + 1})";
-                    LosingPitcher.BackColor = awayTeam.TeamColorForThisMatch;
+                    LosingPitcher.Text = $"{team.PitchersPlayedInMatch[losingPitcherIndex].FullName} ({team.PitchersPlayedInMatch[losingPitcherIndex].PitchingStats.Wins} - {team.PitchersPlayedInMatch[losingPitcherIndex].PitchingStats.Losses + 1})";
+                    LosingPitcher.BackColor = team.TeamColorForThisMatch;
 
-                    for (var i = 0; i < awayTeam.PitchersPlayedInMatch.Count; i++)
+                    for (var i = 0; i < team.PitchersPlayedInMatch.Count; i++)
                         if (i != losingPitcherIndex) 
                             results[i].MatchResultId = PitcherResultEnum.NoDecision;
                 }
             }
             
-            for (var j = 0; j < awayTeam.PitchersPlayedInMatch.Count; j++)
-                _matchBL.AddMatchResultForThisPitcher(results[j]);
+            for (var j = 0; j < team.PitchersPlayedInMatch.Count; j++)
+                await _matchBL.AddMatchResultForThisPitcher(results[j]);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

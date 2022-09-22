@@ -256,8 +256,8 @@ namespace VKR.PL.NET5
             this.dtpMatchDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpMatchDate.Location = new System.Drawing.Point(78, 0);
             this.dtpMatchDate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dtpMatchDate.MaxDate = new System.DateTime(2021, 10, 3, 0, 0, 0, 0);
-            this.dtpMatchDate.MinDate = new System.DateTime(2021, 4, 1, 0, 0, 0, 0);
+            this.dtpMatchDate.MaxDate = new System.DateTime(2031, 1, 5, 0, 0, 0, 0);
+            this.dtpMatchDate.MinDate = new System.DateTime(2018, 12, 31, 0, 0, 0, 0);
             this.dtpMatchDate.Name = "dtpMatchDate";
             this.dtpMatchDate.Size = new System.Drawing.Size(242, 27);
             this.dtpMatchDate.TabIndex = 5;

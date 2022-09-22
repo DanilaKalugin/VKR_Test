@@ -10,10 +10,11 @@ namespace VKR.PL.NET5
 
         public MatchResultsMenuForm() => InitializeComponent();
 
-        private void btnResultsByDate_Click(object sender, EventArgs e)
+        private async void btnResultsByDate_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new MatchResultsForm(_matchBL.GetMaxDateForAllMatches(), false, MatchScheduleBL.TableType.Results))
+            var matchDate = await _matchBL.GetMaxDateForAllMatchesAsync();
+            using (var form = new MatchResultsForm(matchDate, false, MatchScheduleBL.TableType.Results))
                 form.ShowDialog();
             Visible = true;
         }
@@ -36,10 +37,11 @@ namespace VKR.PL.NET5
             Visible = true;
         }
 
-        private void btnScheduleByDate_Click(object sender, EventArgs e)
+        private async void btnScheduleByDate_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new MatchResultsForm(_matchBL.GetMaxDateForAllMatches(), false, MatchScheduleBL.TableType.Schedule))
+            var matchDate = await _matchBL.GetMaxDateForAllMatchesAsync();
+            using (var form = new MatchResultsForm(matchDate, false, MatchScheduleBL.TableType.Schedule))
                 form.ShowDialog();
             Visible = true;
         }

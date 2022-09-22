@@ -53,15 +53,15 @@ namespace VKR.EF.Entities
 
         public double ISO => SLG - AVG;
 
-        public double ABperHR => (double)AtBats / HomeRuns;
+        public double ABperHR => HomeRuns == 0 ? 0 : (double)AtBats / HomeRuns;
 
-        public double WalkToStrikeout => (double)Walks / Strikeouts;
+        public double WalkToStrikeout => Strikeouts == 0 ? 0 : (double)Walks / Strikeouts;
 
-        public double GOtoAO => (double)Groundouts / Flyouts;
+        public double GOtoAO => Flyouts == 0 ? 0 : (double)Groundouts / Flyouts;
 
-        public double WalkPercentage => (double)Walks / PA;
+        public double WalkPercentage => PA == 0 ? 0 :(double)Walks / PA;
 
-        public double StrikeoutPercentage => (double)Strikeouts / PA;
+        public double StrikeoutPercentage => PA == 0 ? 0 : (double)Strikeouts / PA;
 
         public double ExpectedHomeRuns => TGP > 0 ? HomeRuns / TGP * 162 : 0;
     }

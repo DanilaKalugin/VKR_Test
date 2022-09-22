@@ -35,7 +35,8 @@ namespace VKR.BLL.NET5
 
             var minimumGamesBehind = teams.Select(team => team.GamesBehind).Min();
 
-            foreach (var team in teams) team.GamesBehind -= minimumGamesBehind;
+            foreach (var team in teams) 
+                team.GamesBehind -= minimumGamesBehind;
 
             return teams;
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
 
@@ -7,19 +8,23 @@ namespace VKR.EF.DAO
 {
     public class MatchScheduleEFDAO
     {
-        public List<MatchScheduleViewModel> GetResultsForAllMatches()
+        public async Task<List<MatchScheduleViewModel>> GetResultsForAllMatches(Season season, TypeOfMatchEnum typeOfMatch)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
 
             var matches = db.Matches.Include(m => m.MatchResult)
                 .Include(match => match.Stadium)
                 .ThenInclude(stadium => stadium.StadiumCity);
 
-            var results = matches
+            var results = await matches
                 .Where(m => m.MatchResult != null)
-                .Select(m => new MatchScheduleViewModel(true, m.MatchEnded, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, m.MatchResult.Length, m.MatchResult.AwayTeamRuns, m.MatchResult.HomeTeamRuns, m.Stadium, m.MatchDate)).ToList();
+                .Select(m => new MatchScheduleViewModel(true, m.MatchEnded, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, m.MatchResult.Length, m.MatchResult.AwayTeamRuns, m.MatchResult.HomeTeamRuns, m.Stadium, m.MatchDate))
+                .ToListAsync()
+                .ConfigureAwait(false);
 
-            var activeMatches = db.ActiveMatchResults.ToList();
+            var activeMatches = await db.ActiveMatchResults
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             var activeMatchResults = matches.ToList()
                 .Join(activeMatches,
@@ -32,15 +37,18 @@ namespace VKR.EF.DAO
             return results.Union(activeMatchResults).ToList();
         }
 
-        public List<MatchScheduleViewModel> GetScheduleForAllMatches()
+        public async Task<List<MatchScheduleViewModel>> GetScheduleForAllMatches(Season season, TypeOfMatchEnum typeOfMatch)
         {
-            using var db = new VKRApplicationContext();
-            return db.NextMatches.Include(m => m.HomeTeam)
+            await using var db = new VKRApplicationContext();
+            return await db.NextMatches.Where(match => match.SeasonId == season.Year && match.MatchTypeId == typeOfMatch)
+                .Include(m => m.HomeTeam)
                 .ThenInclude(team => team.StadiumsForMatchTypes)
                 .ThenInclude(tmts => tmts.Stadium)
                 .ThenInclude(stadium => stadium.StadiumCity)
                 .Where(m => !m.IsPlayed)
-                .Select(m => new MatchScheduleViewModel(m.IsPlayed, false, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, 1, 0, 0, m.HomeTeam.StadiumsForMatchTypes.First().Stadium, m.MatchDate)).ToList();
+                .Select(m => new MatchScheduleViewModel(m.IsPlayed, false, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, 1, 0, 0, m.HomeTeam.StadiumsForMatchTypes.First().Stadium, m.MatchDate))
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
     }
 }

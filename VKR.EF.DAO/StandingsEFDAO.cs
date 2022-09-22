@@ -13,7 +13,7 @@ namespace VKR.EF.DAO
         {
             using var db = new VKRApplicationContext();
 
-            var teamWithLeagueAndDivision = db.Teams.Include(t => t.TeamColors)
+            var teamWithLeagueAndDivision = db.Teams
                 .Include(t => t.Division)
                 .ThenInclude(d => d.League)
                 .ToList();
@@ -33,24 +33,29 @@ GROUP BY dbo.Teams.TeamAbbreviation", typeParam, dateParam).ToList();
 
             var streaks = db.ReturnStreakForAllTeams(date, type).ToList();
 
-            var runs = db.Runs.FromSqlRaw(
-                @"SELECT team As TeamAbbreviation, ISNULL(SUM(CASE WHEN MatchDate <= {0} AND MatchType = {1} AND Year(MatchDate) = Year({0}) THEN RunsScored ELSE NULL END), 0) AS RunsScored, 
-                               ISNULL(SUM(CASE WHEN MatchDate <= {0} AND MatchType = {1} AND Year(MatchDate) = Year({0}) THEN RunsAllowed ELSE NULL END), 0) AS RunsAllowed
+            var runs = db.RunsByTeams.FromSqlRaw(
+                @"SELECT team As TeamAbbreviation, {1} As MatchType, Year({0}) As Season, 
+                               ISNULL(SUM(CASE WHEN MatchDate <= {0} AND MatchType = {1} AND Season = Year({0}) THEN RunsScored ELSE NULL END), 0) AS RunsScored, 
+                               ISNULL(SUM(CASE WHEN MatchDate <= {0} AND MatchType = {1} AND Season = Year({0}) THEN RunsAllowed ELSE NULL END), 0) AS RunsAllowed
                    FROM RunsScoredAndAllowedForEveryMatch
                    GROUP BY team", dateParam, typeParam).ToList();
 
-            return teamWithLeagueAndDivision.Join(teamBalances,
+            var teams = teamWithLeagueAndDivision.Join(teamBalances,
                 t => t.TeamAbbreviation,
                 tb => tb.TeamAbbreviation,
                 (team, balance) => team.SetTeamBalance(balance))
-                .Join(streaks,
-                    team => team.TeamAbbreviation,
-                    streak => streak.AwayTeam,
-                    (team, stat) => team.SetTeamStreak(stat.Streak))
                 .Join(runs,
                     team => team.TeamAbbreviation,
                     run => run.TeamAbbreviation,
                     (team, run) => team.SetRunsByTeam(run)).ToList();
+
+            if (teams.Count != streaks.Count)
+                return teams;
+
+            return teams.Join(streaks,
+                t => t.TeamAbbreviation,
+                streak => streak.AwayTeam,
+                (team, streak) => team.SetTeamStreak(streak.Streak)).ToList();
         }
     }
 }

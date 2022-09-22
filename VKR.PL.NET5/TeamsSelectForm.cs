@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
@@ -13,13 +13,13 @@ namespace VKR.PL.NET5
     {
         private readonly TeamsBL _teamsBL = new();
         private readonly MatchBL _matchBL = new();
-        private readonly List<Team> _teams;
+        private List<Team> _teams;
         private List<MatchFromSchedule> _matches;
         private int _currentHomeColor;
         private int _currentAwayColor;
         private int _awayTeamNumber;
         private int _homeTeamNumber;
-        private Match _newMatch;
+        private readonly Match _newMatch;
         private int _matchNumber;
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
@@ -36,28 +36,29 @@ namespace VKR.PL.NET5
 
             AwayTeamBalance.Visible = match.MatchTypeId != TypeOfMatchEnum.QuickMatch;
             HomeTeamBalance.Visible = match.MatchTypeId != TypeOfMatchEnum.QuickMatch;
-            _teams = _teamsBL.GetTeamsWithWLBalance(match.MatchDate.Year, match.MatchTypeId).ToList();
-
-            if (match.MatchTypeId == TypeOfMatchEnum.QuickMatch)
-            {
-                _awayTeamNumber = 0;
-                _homeTeamNumber = 1;
-            }
-            else FillScheduleForToday();
 
             btnSwap.Visible = match.MatchTypeId == TypeOfMatchEnum.QuickMatch;
             dataGridView1.Visible = match.MatchTypeId != TypeOfMatchEnum.QuickMatch;
         }
 
-        private void TeamsSelectForm_Load(object sender, EventArgs e)
+        private async void TeamsSelectForm_Load(object sender, EventArgs e)
         {
+            _teams = await _teamsBL.GetTeamsWithWLBalanceAsync(_newMatch.MatchDate.Year, _newMatch.MatchTypeId);
+
+            if (_newMatch.MatchTypeId == TypeOfMatchEnum.QuickMatch)
+            {
+                _awayTeamNumber = 0;
+                _homeTeamNumber = 1;
+            }
+            else await FillScheduleForToday();
+
             DisplayTeam(_awayTeamNumber, numAwayTeamColor, lbAwayCity, lbAwayTitle, pbAwayLogo, _currentAwayColor, label4, AwayOverallRating, AwayDefensiveRating, AwayOffensiveRating, btnDecreaseAwayTeamNumberBy1, btnIncreaseAwayTeamNumberBy1, AwayTeamBalance);
             DisplayTeam(_homeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, _currentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
-        private void DisplayTeam(int teamNumber, NumericUpDown teamColorsForMatch, Label teamCity, Label teamTitle, Panel teamLogo, int teamColorNumber, Label teamColorHeader,
+        private void DisplayTeam(int teamNumber, NumericUpDown teamColorsForMatch, Control teamCity, Control teamTitle, Panel teamLogo, int teamColorNumber, Control teamColorHeader,
                                  CircularProgressBar.CircularProgressBar overall, CircularProgressBar.CircularProgressBar defense, CircularProgressBar.CircularProgressBar offense,
-                                 Button increaseNumber, Button decreaseNumber, Label balance)
+                                 Control increaseNumber, Control decreaseNumber, Control balance)
         {
             teamColorsForMatch.Maximum = _teams[teamNumber].TeamColors.Count - 1;
             teamCity.Text = _teams[teamNumber].TeamCity.ToUpper();
@@ -196,23 +197,26 @@ namespace VKR.PL.NET5
             DisplayTeam(_homeTeamNumber, numHomeTeamColor, lbHomeCity, lbHomeTitle, pbHomeLogo, _currentHomeColor, label5, HomeOverallRating, HomeDefensiveRating, HomeOffensiveRating, btnDecreaseHomeTeamNumberBy1, btnIncreaseHomeTeamNumberBy1, HomeTeamBalance);
         }
 
-        private void TeamsSelectForm_KeyDown(object sender, KeyEventArgs e)
+        private async void TeamsSelectForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.F5) return;
 
-            if (!_newMatch.IsQuickMatch) FillScheduleForToday();
+            if (!_newMatch.IsQuickMatch)
+                await FillScheduleForToday();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e) => StartNewMatch();
 
-        private void FillScheduleForToday()
+        private async Task FillScheduleForToday()
         {
-            var matchDate = _matchBL.GetDateForNextMatch(_newMatch.MatchTypeId);
-            _matches = _matchBL.GetMatchesForThisDay(matchDate, _newMatch.MatchTypeId);
+            var matchDate = await _matchBL.GetDateForNextMatchAsync(_newMatch.MatchTypeId);
+
+            _matches = await _matchBL.GetMatchesForThisDayAsync(matchDate, _newMatch.MatchTypeId);
             _matchNumber = 0;
             _awayTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].AwayTeamAbbreviation);
             _homeTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].HomeTeamAbbreviation);
             dataGridView1.Rows.Clear();
+
             foreach (var match in _matches)
                 dataGridView1.Rows.Add(ImageHelper.ShowImageIfExists($"TeamLogosForSubstitution/{match.AwayTeamAbbreviation}.png"), ImageHelper.ShowImageIfExists($"TeamLogosForSubstitution/{match.HomeTeamAbbreviation}.png"));
         }

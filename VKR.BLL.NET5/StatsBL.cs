@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
 
@@ -10,21 +11,24 @@ namespace VKR.BLL.NET5
         private readonly StatsEFDAO _statsDao = new();
         private readonly TeamsEFDAO _teamsDao = new();
 
-        public List<Team> GetTeamBattingStats()
+        public async Task<List<Team>> GetTeamBattingStats(Season season, TypeOfMatchEnum typeOfMatch = TypeOfMatchEnum.RegularSeason)
         {
-            return _statsDao.GetBattingStatsByYearAndMatchType(2021, TypeOfMatchEnum.RegularSeason)
-                .OrderByDescending(team => team.BattingStats.AVG).ToList();
+            var teams = await _statsDao.GetBattingStatsByYearAndMatchType(season.Year, typeOfMatch)
+                .ConfigureAwait(false);
+            return teams.OrderByDescending(team => team.BattingStats.AVG).ToList();
         }
 
-        public List<Team> GetTeamPitchingStats()
+        public async Task<List<Team>> GetTeamPitchingStats(Season season, TypeOfMatchEnum typeOfMatch = TypeOfMatchEnum.RegularSeason)
         {
-            return _statsDao.GetPitchingStatsByYearAndMatchType(2021, TypeOfMatchEnum.RegularSeason)
-                .OrderBy(team => team.PitchingStats.ERA).ToList();
+            var teams = await _statsDao.GetPitchingStatsByYearAndMatchTypeAsync(season.Year, typeOfMatch)
+                .ConfigureAwait(false);
+            return teams.OrderBy(team => team.PitchingStats.ERA).ToList();
         }
-        public List<Player> GetBattersStats(string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
+
+        public async Task<List<Player>> GetBattersStats(Season season, string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
         {
-            var players = _statsDao.GetPlayerBattingStats(2021).ToList();
-            var abbreviations = GetTeamsForFilter(TeamFilter);
+            var players = await _statsDao.GetPlayerBattingStatsAsync(season.Year).ConfigureAwait(false);
+            var abbreviations = await GetTeamsForFilter(TeamFilter);
             players = players.Where(player => player.PlayersInTeam.Count > 0 && abbreviations.Contains(player.PlayersInTeam.First().TeamId)).ToList();
 
             if (positions != "")
@@ -48,10 +52,10 @@ namespace VKR.BLL.NET5
             return players;
         }
 
-        public List<Player> GetPitchersStats(string qualifying = "Qualified Players", string teamFilter = "MLB")
+        public async Task<List<Player>> GetPitchersStats(Season season, string qualifying = "Qualified Players", string teamFilter = "MLB")
         {
-            var players = _statsDao.GetPlayerPitchingStats(2021).ToList();
-            var abbreviations = GetTeamsForFilter(teamFilter);
+            var players = await _statsDao.GetPlayerPitchingStatsAsync(season.Year).ConfigureAwait(false);
+            var abbreviations = await GetTeamsForFilter(teamFilter);
             var fplayers = players.Where(player => player.PlayersInTeam.Count > 0 && abbreviations.Contains(player.PlayersInTeam.First().TeamId)).ToList();
 
             fplayers = qualifying switch
@@ -64,9 +68,9 @@ namespace VKR.BLL.NET5
             return fplayers;
         }
 
-        private List<string> GetTeamsForFilter(string TeamFilter)
+        private async Task<List<string>> GetTeamsForFilter(string teamFilter)
         {
-            var teams = _teamsDao.GetList().ToList();
+            var teams = await _teamsDao.GetListAsync().ConfigureAwait(false);
 
             return TeamFilter switch
             {

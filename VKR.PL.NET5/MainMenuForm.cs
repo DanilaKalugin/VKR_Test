@@ -12,18 +12,17 @@ namespace VKR.PL.NET5
 {
     public partial class MainMenuForm : Form
     {
-        private readonly ManBL _manBL = new();
-        private readonly MatchBL _matchBL = new();
+        private readonly ManBL _manBl = new();
+        private readonly MatchBL _matchBl = new();
         private readonly PrimaryTeamColorBL _teamColorBl = new();
 
         public MainMenuForm()
         {
             try
             {
-                InitializeComponent();
-
                 using var title = new TitleForm();
                 title.ShowDialog();
+                InitializeComponent();
             }
             catch (SqlException)
             {
@@ -34,20 +33,20 @@ namespace VKR.PL.NET5
             }
         }
 
-        private async void MainMenuForm_Load(object sender, EventArgs e) => await UpdateBirthDayTable();
-
         private async Task UpdateBirthDayTable()
         {
-            var man = await _manBL.GetListOfPeopleWithBirthdayTodayAsync();
-            var primaryTeamColors = _teamColorBl.GetPrimaryTeamColors();
-            dgvBirthDays.Invoke((Action<List<ManInTeam>>)FillBirthDayTable, man);
-            dgvBirthDays.Invoke((Action<List<TeamColor>, List<ManInTeam>>)FillColors, primaryTeamColors, man);
+            var man = await _manBl.GetListOfPeopleWithBirthdayTodayAsync();
+            var primaryTeamColors = await _teamColorBl.GetPrimaryTeamColorsAsync();
+            FillBirthDayTable(man);
+            FillColors(primaryTeamColors, man);
+            
+            if (man.Count != 0) return;
+            panel1.Visible = false;
+            Width = 1554 - panel1.Width;
         }
 
-        private void FillColors(List<TeamColor> teams, List<ManInTeam> men)
+        private void FillColors(IReadOnlyCollection<TeamColor> teams, IReadOnlyList<ManInTeam> men)
         {
-            if (men.Count == 0) return;
-
             for (var i = 0; i < men.Count; i++)
             {
                 var rowColor = men[i].TeamName != null
@@ -59,19 +58,16 @@ namespace VKR.PL.NET5
             }
         }
 
-        private void FillBirthDayTable(IList<ManInTeam> men)
+        private void FillBirthDayTable(IEnumerable<ManInTeam> men)
         {
             dgvBirthDays.Rows.Clear();
-            foreach (var man in men) dgvBirthDays.Rows.Add("", man.TeamName, man.FullName, man.Age);
-
-            if (men.Count != 0) return;
-            panel1.Visible = false;
-            Width = 1554 - panel1.Width;
+            foreach (var man in men) 
+                dgvBirthDays.Rows.Add("", man.TeamName, man.FullName, man.Age);
         }
 
-        private void btn_StartNewMatch_Click(object sender, EventArgs e)
+        private async void btn_StartNewMatch_Click(object sender, EventArgs e)
         {
-            var matchDate = _matchBL.GetDateForNextMatch(TypeOfMatchEnum.RegularSeason);
+            var matchDate = await _matchBl.GetDateForNextMatchAsync(TypeOfMatchEnum.RegularSeason);
             StartNewMatch(matchDate, TypeOfMatchEnum.RegularSeason);
         }
 
@@ -110,7 +106,7 @@ namespace VKR.PL.NET5
 
         private void btnNewMatch_Click(object sender, EventArgs e) => StartNewMatch(DateTime.Now, TypeOfMatchEnum.QuickMatch);
 
-        private void StartNewMatch(DateTime matchDate, TypeOfMatchEnum matchType)
+        private async void StartNewMatch(DateTime matchDate, TypeOfMatchEnum matchType)
         {
             var match = new Match(matchDate, matchType);
 
@@ -119,7 +115,7 @@ namespace VKR.PL.NET5
             {
                 form.ShowDialog();
                 if (form.DialogResult == DialogResult.Yes) 
-                    _matchBL.DeleteThisMatch(form.MatchNumberForDelete);
+                    await _matchBl.DeleteThisMatch(form.MatchNumberForDelete);
             }
             Visible = true;
         }
@@ -128,7 +124,8 @@ namespace VKR.PL.NET5
 
         private async void MainMenuForm_VisibleChanged(object sender, EventArgs e)
         {
-            if (Visible) await UpdateBirthDayTable();
+            if (Visible) 
+                await UpdateBirthDayTable();
         }
     }
 }

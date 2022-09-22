@@ -81,6 +81,7 @@ namespace VKR.PL.NET5
             this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.xHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -107,6 +108,7 @@ namespace VKR.PL.NET5
             this.cbTeams = new System.Windows.Forms.ComboBox();
             this.cbPlayers = new System.Windows.Forms.ComboBox();
             this.cbPositions = new System.Windows.Forms.ComboBox();
+            this.cbSeasons = new System.Windows.Forms.ComboBox();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,6 +123,7 @@ namespace VKR.PL.NET5
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -559,6 +562,14 @@ namespace VKR.PL.NET5
             this.Column26.ReadOnly = true;
             this.Column26.Width = 70;
             // 
+            // xHR
+            // 
+            this.xHR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.xHR.HeaderText = "xHR";
+            this.xHR.Name = "xHR";
+            this.xHR.ReadOnly = true;
+            this.xHR.Width = 70;
+            // 
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToAddRows = false;
@@ -593,6 +604,7 @@ namespace VKR.PL.NET5
             this.dataGridViewTextBoxColumn16,
             this.dataGridViewTextBoxColumn17,
             this.dataGridViewTextBoxColumn18,
+            this.Column37,
             this.dataGridViewTextBoxColumn19,
             this.dataGridViewTextBoxColumn20,
             this.dataGridViewTextBoxColumn21,
@@ -948,6 +960,16 @@ namespace VKR.PL.NET5
             this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn10.Width = 50;
             // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn10.FillWeight = 56.78233F;
+            this.dataGridViewTextBoxColumn10.HeaderText = "Place";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn10.Width = 50;
+            // 
             // Column33
             // 
             this.Column33.FillWeight = 15F;
@@ -1065,6 +1087,14 @@ namespace VKR.PL.NET5
             this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
             this.dataGridViewTextBoxColumn18.ReadOnly = true;
             this.dataGridViewTextBoxColumn18.Width = 65;
+            // 
+            // Column37
+            // 
+            this.Column37.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column37.HeaderText = "ER";
+            this.Column37.Name = "Column37";
+            this.Column37.ReadOnly = true;
+            this.Column37.Width = 65;
             // 
             // dataGridViewTextBoxColumn19
             // 
@@ -1220,6 +1250,24 @@ namespace VKR.PL.NET5
         private DataGridViewTextBoxColumn Column22;
         private DataGridViewTextBoxColumn Column18;
         private DataGridViewTextBoxColumn Column19;
+        private ComboBox cbSeasons;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn Column32;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn Column17;
+        private DataGridViewTextBoxColumn Column23;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewTextBoxColumn Column24;
+        private DataGridViewTextBoxColumn Column25;
+        private DataGridViewTextBoxColumn c1;
+        private DataGridViewTextBoxColumn Column26;
+        private DataGridViewTextBoxColumn xHR;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private DataGridViewTextBoxColumn Column33;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
@@ -1234,6 +1282,7 @@ namespace VKR.PL.NET5
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private DataGridViewTextBoxColumn Column37;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;

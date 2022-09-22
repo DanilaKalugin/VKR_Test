@@ -5,9 +5,6 @@ namespace VKR.PL.Utils.NET5
 {
     public class ImageHelper
     {
-        public static Image? ShowImageIfExists(string path)
-        {
-            return File.Exists(path) ? Image.FromFile(path) : null;
-        }
+        public static Image ShowImageIfExists(string path) => File.Exists(path) ? Image.FromFile(path) : null;
     }
 }

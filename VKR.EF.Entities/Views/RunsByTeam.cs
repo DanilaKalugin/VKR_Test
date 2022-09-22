@@ -1,6 +1,6 @@
 ﻿namespace VKR.EF.Entities
 {
-    public class RunsByTeam
+    public class RunsByTeam: StatGroupedBySeasonAndMatchType
     {
         public string TeamAbbreviation { get; set; }
         public int RunsScored { get; set; }

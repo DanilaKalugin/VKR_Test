@@ -30,12 +30,11 @@ namespace VKR.EF.Entities
         public int NormalizedDefensiveRating { get; set; }
 
         public int OverallRating => (NormalizedDefensiveRating + NormalizedOffensiveRating) / 2;
-
         public double DefensiveRating
         {
             get
             {
-                var pitchingComponent = (double)(1600 - StrikeZoneProbability - (3000 - HitByPitchProbability)) / 36;
+                var pitchingComponent = (double)(3000 - StrikeZoneProbability - HitByPitchProbability) / 36;
                 var groundoutComponent = GroundoutProbability * 1.1 / 20;
                 var outfieldComponent = (double)(FlyoutProbability - GroundoutProbability) / 20;
                 var doublePlayComponent = (double)DoublePlayProbability / 3;

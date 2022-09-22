@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
 
@@ -14,17 +16,14 @@ namespace VKR.PL.NET5
         private readonly StatsBL _statsBl = new();
         private readonly PrimaryTeamColorBL _primaryColorBl = new();
 
-        private readonly List<Player> _batters;
-        private readonly List<Player> _pitchers;
-        private readonly List<TeamColor> _teamsColors;
+        private Season _season;
+        private List<Player> _batters;
+        private List<Player> _pitchers;
+        private List<TeamColor> _teamsColors;
 
         public StatsMenuForm()
         {
             InitializeComponent();
-
-            _batters = _statsBl.GetBattersStats();
-            _pitchers = _statsBl.GetPitchersStats();
-            _teamsColors = _primaryColorBl.GetPrimaryTeamColors();
         }
 
         private void btnPlayersStats_Click(object sender, EventArgs e) => OpenStats(PlayerStatsForm.SortingObjects.Players);
@@ -45,9 +44,9 @@ namespace VKR.PL.NET5
 
         private TKey? ReturnMinStatsValueForPitcher<TKey>(Func<Player, TKey> key) => _pitchers.Select(key).Min();
 
-        private TKey? ReturnMaxStatsValueForPitcher<TKey>(Func<Player, TKey> key, string qualyfing)
+        private async Task<TKey?> ReturnMaxStatsValueForPitcher<TKey>(Func<Player, TKey> key, string qualifying)
         {
-            var pitchers = _statsBl.GetPitchersStats(qualyfing);
+            var pitchers = await _statsBl.GetPitchersStats(_season, qualifying);
             return pitchers.Select(key).Max();
         }
 
@@ -58,7 +57,7 @@ namespace VKR.PL.NET5
             return countOfBattersWithThisAVG == 1 ? _batters.Where(key).Select(batter => batter.FullName).First() : "Tied";
         }
 
-        private string GetFullNameOfLeaderForThisPitchingParameter(Func<Player, bool> key)
+        private async Task<string> GetFullNameOfLeaderForThisPitchingParameter(Func<Player, bool> key)
         {
             var countOfBattersWithThisAVG = _pitchers.Where(key).Count();
 
@@ -66,7 +65,7 @@ namespace VKR.PL.NET5
             {
                 case 0:
                     {
-                        var _pitchers = _statsBl.GetPitchersStats("All Players");
+                        var _pitchers = await _statsBl.GetPitchersStats(_season, "All Players");
                         countOfBattersWithThisAVG = _pitchers.Where(key).Count();
                         return countOfBattersWithThisAVG == 1 ? _pitchers.Where(key).Select(pitcher => pitcher.FullName).First() : "Tied";
                     }
@@ -109,21 +108,30 @@ namespace VKR.PL.NET5
             }
         }
 
-        private void GetPitchingLeaders()
+        private async Task GetPitchingLeaders()
         {
             dgvPitchingLeaders.Rows.Clear();
 
-            var maxSaves = ReturnMaxStatsValueForPitcher(batter1 => batter1.PitchingStats.Saves, "All Players");
+            var maxSaves = await ReturnMaxStatsValueForPitcher(batter1 => batter1.PitchingStats.Saves, "All Players");
             var maxWins = ReturnMaxStatsValueForPitcher(batter1 => batter1.PitchingStats.Wins);
             var bestERA = ReturnMinStatsValueForPitcher(batter1 => batter1.PitchingStats.ERA);
             var maxSO = ReturnMaxStatsValueForPitcher(batter1 => batter1.PitchingStats.Strikeouts);
             var bestWHIP = ReturnMinStatsValueForPitcher(batter1 => batter1.PitchingStats.WHIP);
 
-            dgvPitchingLeaders.Rows.Add("W", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.Wins == maxWins), maxWins);
-            dgvPitchingLeaders.Rows.Add("SV", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.Saves == maxSaves), maxSaves);
-            dgvPitchingLeaders.Rows.Add("ERA", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.ERA == bestERA), bestERA.ToString("0.00", new CultureInfo("en-US")));
-            dgvPitchingLeaders.Rows.Add("SO", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.Strikeouts == maxSO), maxSO);
-            dgvPitchingLeaders.Rows.Add("WHIP", "", GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.WHIP == bestWHIP), bestWHIP.ToString("0.00", new CultureInfo("en-US")));
+            var leaderWTask = GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.Wins == maxWins);
+            var leaderSVTask = GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.Saves == maxSaves);
+            var leaderERATask = GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.ERA == bestERA);
+            var leaderSOTask = GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.Strikeouts == maxSO);
+            var leaderWHIPTask = GetFullNameOfLeaderForThisPitchingParameter(batter => batter.PitchingStats.WHIP == bestWHIP);
+
+            await Task.WhenAll(leaderWTask, leaderSVTask, leaderSOTask, leaderERATask, leaderWHIPTask);
+
+            dgvPitchingLeaders.Rows.Add("W", "", leaderWTask.Result, maxWins);
+            dgvPitchingLeaders.Rows.Add("SV", "", leaderSVTask.Result, maxSaves);
+            dgvPitchingLeaders.Rows.Add("ERA", "", leaderERATask.Result, bestERA.ToString("0.00", new CultureInfo("en-US")));
+            dgvPitchingLeaders.Rows.Add("SO", "", leaderSOTask.Result, maxSO);
+            dgvPitchingLeaders.Rows.Add("WHIP", "", leaderWHIPTask.Result, bestWHIP.ToString("0.00", new CultureInfo("en-US")));
+
             for (var i = 0; i < dgvPitchingLeaders.RowCount; i++)
             {
                 if (dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString() != "Tied")
@@ -132,7 +140,7 @@ namespace VKR.PL.NET5
                     Player currentPlayer;
                     if (pitchersWithThisValue.Count == 0)
                     {
-                        var allPitchers = _statsBl.GetPitchersStats("All Players").ToList();
+                        var allPitchers = await _statsBl.GetPitchersStats(_season, "All Players");
                         currentPlayer = allPitchers.First(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString());
                     }
                     else currentPlayer = pitchersWithThisValue.First();
@@ -151,10 +159,33 @@ namespace VKR.PL.NET5
 
         private void btnCloseResultsMenu_Click(object sender, EventArgs e) => Close();
 
-        private void StatsMenuForm_Load(object sender, EventArgs e)
+        private async void StatsMenuForm_Load(object sender, EventArgs e)
         {
-            GetBattingLeaders();
-            GetPitchingLeaders();
+            Opacity = 0;
+            _season = await _seasonBl.GetCurrentSeason();
+            _teamsColors = await _primaryColorBl.GetPrimaryTeamColorsAsync();
+
+            var f = new LoadingForm();
+            try
+            {
+                f.Show();
+                f.TopMost = true;
+
+                var battersTask = _statsBl.GetBattersStats(_season);
+                var pitchersTask = _statsBl.GetPitchersStats(_season);
+                
+
+                await Task.WhenAll(battersTask, pitchersTask);
+                (_batters, _pitchers) = (battersTask.Result, pitchersTask.Result);
+
+                await GetPitchingLeaders();
+                GetBattingLeaders();
+            }
+            finally
+            {
+                f.Close();
+                Opacity = 1;
+            }
         }
     }
 }
