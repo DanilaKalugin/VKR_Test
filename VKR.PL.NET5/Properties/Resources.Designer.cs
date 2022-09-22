@@ -193,6 +193,16 @@ namespace VKR.PL.NET5.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PlayersAdminMenu {
+            get {
+                object obj = ResourceManager.GetObject("PlayersAdminMenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Roster {
             get {
                 object obj = ResourceManager.GetObject("Roster", resourceCulture);

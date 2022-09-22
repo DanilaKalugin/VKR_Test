@@ -80,8 +80,8 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasCheckConstraint("StrikeZoneProbability1", "StrikeZoneProbability BETWEEN 1 AND 3000");
             builder.HasCheckConstraint("HitByPitchProbability1", "HitByPitchProbability BETWEEN 1 AND 3000");
-            builder.HasCheckConstraint("SwingInStrikeZoneProbability1", "SwingInStrikeZoneProbability BETWEEN 1 AND 100");
-            builder.HasCheckConstraint("SwingOutsideStrikeZoneProbability1", "SwingOutsideStrikeZoneProbability BETWEEN 1 AND 100");
+            builder.HasCheckConstraint("SwingInStrikeZoneProbability1", "SwingInStrikeZoneProbability BETWEEN 1 AND 1000");
+            builder.HasCheckConstraint("SwingOutsideStrikeZoneProbability1", "SwingOutsideStrikeZoneProbability BETWEEN 1 AND 1000");
             builder.HasCheckConstraint("HittingProbability1", "HittingProbability BETWEEN 1 AND 2000");
             builder.HasCheckConstraint("FoulProbability1", "FoulProbability BETWEEN 1 AND 2000");
             builder.HasCheckConstraint("SingleProbability1", "SingleProbability BETWEEN 1 AND 2000");

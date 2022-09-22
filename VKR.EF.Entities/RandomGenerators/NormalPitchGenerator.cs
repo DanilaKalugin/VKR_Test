@@ -124,7 +124,7 @@ namespace VKR.EF.Entities.RandomGenerators
             if (gettingIntoStrikeZoneRandomValue < strikeZoneProbability - (pitcherCoefficient - numberOfPitches) * 3 + (situation.Strikes - situation.Balls) * 15)
                 return GettingIntoStrikeZoneTypeOfResult.BallIsOutOfTheStrikeZone;
 
-            return gettingIntoStrikeZoneRandomValue < hitByPitchProbability ? GettingIntoStrikeZoneTypeOfResult.BallInTheStrikeZone : GettingIntoStrikeZoneTypeOfResult.HitByPitch;
+            return gettingIntoStrikeZoneRandomValue < 3000 - hitByPitchProbability ? GettingIntoStrikeZoneTypeOfResult.BallInTheStrikeZone : GettingIntoStrikeZoneTypeOfResult.HitByPitch;
         }
 
         protected static SwingResultType SwingDefinition(GettingIntoStrikeZoneTypeOfResult ballInStrikeZone, int swingProbabilityInStrikeZone, int swingProbabilityOutsideStrikeZone, GameSituation situation)

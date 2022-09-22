@@ -94,18 +94,17 @@ namespace VKR.PL.NET5
         private void btnLineups_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new RostersMenuForm())
+            using (var form = new RostersMenuForm(false))
                 form.ShowDialog();
             Visible = true;
         }
 
-        private async void btnResults_Click(object sender, EventArgs e)
+        private void btnResults_Click(object sender, EventArgs e)
         {
             Visible = false;
             using (var form = new MatchResultsMenuForm())
                 form.ShowDialog();
             Visible = true;
-            await UpdateBirthDayTable();
         }
 
         private void btnNewMatch_Click(object sender, EventArgs e) => StartNewMatch(DateTime.Now, TypeOfMatchEnum.QuickMatch);
@@ -129,6 +128,14 @@ namespace VKR.PL.NET5
         private async void MainMenuForm_VisibleChanged(object sender, EventArgs e)
         {
             if (Visible) await UpdateBirthDayTable();
+        }
+
+        private void btnAdminMenu_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+            using (var form = new AdminMenuForm()) 
+                form.ShowDialog();
+            Visible = true;
         }
     }
 }

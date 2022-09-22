@@ -5,15 +5,15 @@
         public uint RunnerId;
         public string RunnerPosition;
         public uint PitcherId;
-        public bool IsBaseNotEmpty;
+        public bool IsBaseNotEmpty => RunnerId > 0 && PitcherId > 0;
         public bool IsBaseStealingAttempt;
+        public bool IsEarnedRun;
 
         public Runner()
         {
             RunnerId = 0;
             RunnerPosition = "";
             PitcherId = 0;
-            IsBaseNotEmpty = false;
         }
 
         public Runner(Runner runnerOnFirst)
@@ -23,24 +23,24 @@
                 RunnerId = runnerOnFirst.RunnerId;
                 RunnerPosition = runnerOnFirst.RunnerPosition;
                 PitcherId = runnerOnFirst.PitcherId;
-                IsBaseNotEmpty = true;
             }
             else
             {
                 RunnerId = 0;
                 RunnerPosition = "";
                 PitcherId = 0;
-                IsBaseNotEmpty = false;
             }
             IsBaseStealingAttempt = false;
+            IsEarnedRun = runnerOnFirst.IsEarnedRun;
         }
 
-        public Runner(Batter batter, Pitcher pitcher)
+        public Runner(Batter batter, Pitcher pitcher, bool isEarned)
         {
             RunnerId = batter.BatterId;
             RunnerPosition = batter.PositionForThisMatch;
             PitcherId = pitcher.PitcherId;
-            IsBaseNotEmpty = true;
+            IsEarnedRun = isEarned;
         }
+
     }
 }

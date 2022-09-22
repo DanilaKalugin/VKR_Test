@@ -17,5 +17,13 @@ namespace VKR.EF.DAO
             using var db = new VKRApplicationContext();
             return db.LeagueSeasons.FirstOrDefault(ls => ls.MatchTypeId == matchType && ls.SeasonId == year);
         }
+
+        public Season GetCurrentSeason()
+        {
+            using var db = new VKRApplicationContext();
+            var seasonYear = db.Matches.Max(match => match.SeasonId);
+
+            return db.Seasons.FirstOrDefault(season => season.Year == seasonYear);
+        }
     }
 }
