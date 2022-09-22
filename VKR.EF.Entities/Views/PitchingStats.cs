@@ -7,6 +7,7 @@ namespace VKR.EF.Entities
         public int GamesPlayed { get; set; }
         public int Strikeouts { get; set; }
         public int RunsAllowed { get; set; }
+        public int EarnedRuns { get; set; }
         public int Outs { get; set; }
         public int WalksAllowed { get; set; }
         public int SacrificeBunts { get; set; }
@@ -63,7 +64,7 @@ namespace VKR.EF.Entities
             {
                 if (Outs == 0) return 0;
 
-                return Math.Round(RunsAllowed / ((double)Outs / 3) * 9, 2);
+                return Math.Round(EarnedRuns / ((double)Outs / 3) * 9, 2);
             }
         }
 
