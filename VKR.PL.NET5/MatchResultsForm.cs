@@ -96,8 +96,6 @@ namespace VKR.PL.NET5
         private async void MatchResultsForm_Load(object sender, EventArgs e)
         {
             _teams = await _teamsBL.GetListAsync();
-            var teamsInComboBox = _teams.Select(team => team.TeamName).ToList();
-            cbTeam.DataSource = teamsInComboBox;
 
             foreach (var team in _teams)
             {
@@ -133,6 +131,11 @@ namespace VKR.PL.NET5
                     var matchesList = await _scheduleBL.GetMatchesForSelectedTeam(TypeOfMatchEnum.RegularSeason, _season, _tableType, _teamAbbreviations.First());
                     _matches = matchesList.Take(10).ToList();
                     FillResultsTable();
+                    break;
+                case FormType.TeamResults:
+                case FormType.TeamSchedule:
+                    var teamsInComboBox = _teams.Select(team => team.TeamName).ToList();
+                    cbTeam.DataSource = teamsInComboBox;
                     break;
             }
 
@@ -179,7 +182,7 @@ namespace VKR.PL.NET5
 
         private async void cbSeasons_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbSeasons.Items.Count == 0) return;
+            if (cbSeasons.Items.Count == 0 || cbTeam.Items.Count == 0) return;
 
             var year = cbSeasons.SelectedItem is Season season ? season.Year : 0;
 
