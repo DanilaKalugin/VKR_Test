@@ -12,13 +12,16 @@ namespace VKR.BLL.NET5
 
         public async Task<List<City>> GetAllCitiesAsync()
         {
-            var cities = await _citiesEfdao.GetAllCitiesAsync().ConfigureAwait(false);
+            var cities = await _citiesEfdao.GetAllCitiesAsync()
+                .ConfigureAwait(false);
+
             return cities.OrderBy(city => city.Name)
                 .ThenBy(city => city.RegionCode)
                 .ToList();
         }
 
-        public async Task AddCityAsync(City city) => await _citiesEfdao.AddCityAsync(city).ConfigureAwait(false);
+        public async Task AddCityAsync(City city) => await _citiesEfdao.AddCityAsync(city)
+            .ConfigureAwait(false);
 
         public async Task<List<Region>> GetAllRegions()
         {

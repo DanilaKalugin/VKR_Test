@@ -14,7 +14,8 @@ namespace VKR.EF.DAO
 
             return await db.Teams.Include(t => t.TeamColors)
                 .OrderBy(t => t.TeamName)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<Team>> GetTeamsWithWLBalanceAsync(int season, TypeOfMatchEnum type)

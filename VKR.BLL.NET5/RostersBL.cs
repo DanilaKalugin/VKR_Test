@@ -15,7 +15,8 @@ namespace VKR.BLL.NET5
         private readonly TeamsEFDAO _teamsDao = new();
         public async Task<List<List<List<PlayerInLineupViewModel>>>> GetFreeAgents()
         {
-            var allFreeAgents = await _rostersDao.GetFreeAgents().ConfigureAwait(false);
+            var allFreeAgents = await _rostersDao.GetFreeAgents()
+                .ConfigureAwait(false);
             var players = new List<List<List<PlayerInLineupViewModel>>> { new() };
             players[0].Add(allFreeAgents.OrderBy(player => player.SecondName).ThenBy(player => player.FirstName).ToList());
             return players;
@@ -35,9 +36,11 @@ namespace VKR.BLL.NET5
             var allPlayers = new List<PlayerInLineupViewModel>();
 
             if (rosterFuncs.TryGetValue(typeOfRoster, out var playersFunc)) 
-                allPlayers = await playersFunc();
+                allPlayers = await playersFunc()
+                    .ConfigureAwait(false);
 
-            var teams = await _teamsDao.GetListAsync();
+            var teams = await _teamsDao.GetListAsync()
+                .ConfigureAwait(false);
 
             var lineups = allPlayers.Select(player => player.LineupNumber).OrderBy(number => number).Distinct().ToList();
 
@@ -61,7 +64,7 @@ namespace VKR.BLL.NET5
             var activePlayersTask = _rostersDao.GetActiveAndReservePlayers();
             var freeAgentsTask = _rostersDao.GetFreeAgents();
 
-            await Task.WhenAll(activePlayersTask, freeAgentsTask);
+            await Task.WhenAll(activePlayersTask, freeAgentsTask).ConfigureAwait(false);
 
             var allPlayers = activePlayersTask.Result.Union(freeAgentsTask.Result);
 

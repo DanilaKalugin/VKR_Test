@@ -44,7 +44,9 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            var playerDB = db.Players.FirstOrDefault(p => p.Id == player.Id);
+            var playerDB = await db.Players.FirstOrDefaultAsync(p => p.Id == player.Id)
+                .ConfigureAwait(false);
+
             if (playerDB == null) return;
 
             playerDB.PlayerBattingHand = player.PlayerBattingHand;
@@ -56,7 +58,8 @@ namespace VKR.EF.DAO
             playerDB.PlaceOfBirth = player.City.Id;
 
             db.Players.Update(playerDB);
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task AddPlayer(Player player)
@@ -77,8 +80,11 @@ namespace VKR.EF.DAO
 
             };
 
-            await db.Players.AddAsync(playerDb);
-            await db.SaveChangesAsync();
+            await db.Players.AddAsync(playerDb)
+                .ConfigureAwait(false);
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async ValueTask<uint> GetIdForNewPlayer()
@@ -96,14 +102,17 @@ namespace VKR.EF.DAO
             var starterId = await db.LineupsForMatches.Include(lfm => lfm.PlayerInTeam)
                 .Where(lfm => lfm.PlayerInTeam.TeamId == team.TeamAbbreviation && lfm.MatchId == match.Id && lfm.PlayerNumberInLineup == 10)
                 .Select(lfm => lfm.PlayerInTeam)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
 
             var numberInRotation = await db.StartingLineups.Where(sl => sl.LineupTypeId == 5 && sl.PlayerInTeamId == starterId.Id)
                 .Select(sl => sl.PlayerNumberInLineup)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
 
             var player = await db.Players.Include(p => p.Positions)
-                .FirstOrDefaultAsync(p => p.Id == starterId.PlayerId);
+                .FirstOrDefaultAsync(p => p.Id == starterId.PlayerId)
+                .ConfigureAwait(false);
 
             return new Pitcher(player, numberInRotation, starterId.Id);
         }
@@ -112,7 +121,9 @@ namespace VKR.EF.DAO
         {
             using var db = new VKRApplicationContext();
             return await db.Players.Where(p => p.Id == pitcherId)
-                .Select(p => db.GetStaminaForThisPitcher(pitcherId, matchDate)).FirstAsync();
+                .Select(p => db.GetStaminaForThisPitcher(pitcherId, matchDate))
+                .FirstAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task<List<Batter>> GetCurrentBattingLineup(Team team, Match match)
@@ -123,7 +134,8 @@ namespace VKR.EF.DAO
                 .Where(lfm =>
                     lfm.MatchId == match.Id && lfm.PlayerNumberInLineup < 10 &&
                     lfm.PlayerInTeam.TeamId == team.TeamAbbreviation)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
                 var currentLineupNumbers = playersPlayedInMatch.GroupBy(lfm => lfm.PlayerNumberInLineup, lfm => lfm.Id, (numberInLineup, ids) => new
                 {
@@ -146,10 +158,11 @@ namespace VKR.EF.DAO
 
             var battersIds = batters.Select(b => b.Id);
 
-            var battingStats = db.PlayersBattingStats.Where(player => battersIds.Contains(player.PlayerID) &&
+            var battingStats = await db.PlayersBattingStats.Where(player => battersIds.Contains(player.PlayerID) &&
                                                                              player.Season == match.MatchDate.Year &&
                                                                              player.MatchType == match.MatchTypeId)
-                .ToList();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return batters.Join(battingStats,
                 batter => batter.Id,

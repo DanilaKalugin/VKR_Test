@@ -12,7 +12,8 @@ namespace VKR.BLL.NET5
 
         public async Task<List<Stadium>> GetAllStadiumsAsync()
         {
-            var stadiums = await _stadiumsDAO.GetAllStadiumsAsync().ConfigureAwait(false);
+            var stadiums = await _stadiumsDAO.GetAllStadiumsAsync()
+                .ConfigureAwait(false);
             return stadiums.OrderBy(stadium => stadium.StadiumTitle).ToList();
         }
 

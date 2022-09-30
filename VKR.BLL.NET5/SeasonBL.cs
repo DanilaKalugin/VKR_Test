@@ -13,8 +13,10 @@ namespace VKR.BLL.NET5
             .ConfigureAwait(false);
 
         public async Task<LeagueSeason> GetLeagueSeasonInfo(int year, TypeOfMatchEnum matchType = TypeOfMatchEnum.RegularSeason) =>
-            await _seasonDao.GetSeasonInfo(year, matchType).ConfigureAwait(false);
+            await _seasonDao.GetSeasonInfo(year, matchType)
+                .ConfigureAwait(false);
 
-        public async Task<Season> GetCurrentSeason() => await _seasonDao.GetCurrentSeason().ConfigureAwait(false);
+        public async Task<Season> GetCurrentSeason() => await _seasonDao.GetCurrentSeason()
+            .ConfigureAwait(false);
     }
 }

@@ -20,7 +20,8 @@ namespace VKR.EF.DAO
                 PlayerNumberInLineup = 10
             };
 
-            await db.LineupsForMatches.AddAsync(pitcherDb);
+            await db.LineupsForMatches.AddAsync(pitcherDb)
+                .ConfigureAwait(false);
 
             if (!match.DHRule)
             {
@@ -31,9 +32,11 @@ namespace VKR.EF.DAO
                     PlayerPositionId = "P",
                     PlayerNumberInLineup = 9
                 };
-                await db.LineupsForMatches.AddAsync(pitcherInBattingLineup);
+                await db.LineupsForMatches.AddAsync(pitcherInBattingLineup)
+                    .ConfigureAwait(false);
             }
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task SubstituteBatter(Match match, Batter batter)
@@ -48,7 +51,8 @@ namespace VKR.EF.DAO
                 PlayerNumberInLineup = batter.NumberInLineup
             };
 
-            await db.LineupsForMatches.AddAsync(pitcherDb);
+            await db.LineupsForMatches.AddAsync(pitcherDb)
+                .ConfigureAwait(false);
 
             if (!match.DHRule && batter.NumberInLineup == 9 && batter.PositionForThisMatch == "P")
             {
@@ -59,9 +63,11 @@ namespace VKR.EF.DAO
                     PlayerPositionId = "P",
                     PlayerNumberInLineup = 10
                 };
-                await db.LineupsForMatches.AddAsync(pitcherInBattingLineup);
+                await db.LineupsForMatches.AddAsync(pitcherInBattingLineup)
+                    .ConfigureAwait(false);
             }
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task<List<Pitcher>> GetAvailablePitchers(Match match, Team team)
@@ -112,13 +118,15 @@ namespace VKR.EF.DAO
                     .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster &&
                                   pit.TeamId == team.TeamAbbreviation && !pit.Player.CanPlayAsPitcher &&
                                   !notAvailableBatters.Contains(pit.Id))
-                    .ToListAsync(),
+                    .ToListAsync()
+                    .ConfigureAwait(false),
                 "DH" => await db.PlayersInTeams.Include(pit => pit.Player)
                     .ThenInclude(player => player.Positions)
                     .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster &&
                                   pit.TeamId == team.TeamAbbreviation && !pit.Player.CanPlayAsPitcher &&
                                   !notAvailableBatters.Contains(pit.Id))
-                    .ToListAsync(),
+                    .ToListAsync()
+                    .ConfigureAwait(false),
                 _ => await db.PlayersInTeams.Include(pit => pit.Player)
                     .ThenInclude(player => player.Positions)
                     .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster &&
@@ -126,6 +134,7 @@ namespace VKR.EF.DAO
                                   pit.Player.Positions.Any(pp => pp.ShortTitle == batter.PositionForThisMatch) &&
                                   !notAvailableBatters.Contains(pit.Id))
                     .ToListAsync()
+                    .ConfigureAwait(false)
             };
 
             var batters = battersDB.Select(pit => new Batter(pit.Player, batter.PositionForThisMatch, batter.NumberInLineup, pit.Id))
@@ -136,7 +145,9 @@ namespace VKR.EF.DAO
             var battingStats = await db.PlayersBattingStats.Where(stats =>
                 stats.Season == match.MatchDate.Year &&
                 stats.MatchType == match.MatchTypeId &&
-                battersIds.Contains(stats.PlayerID)).ToListAsync();
+                battersIds.Contains(stats.PlayerID))
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return batters.Join(battingStats,
                 batter => batter.Id,

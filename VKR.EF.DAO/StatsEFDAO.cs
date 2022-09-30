@@ -14,13 +14,15 @@ namespace VKR.EF.DAO
 
             var players = await db.Players.Include(player => player.Positions)
                 .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam))
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
-            var battingStats = db.PlayersBattingStats
+            var battingStats =await  db.PlayersBattingStats
                 .Where(battingStats => battingStats.Season == year &&
                                        battingStats.MatchType == TypeOfMatchEnum.RegularSeason &&
                                        battingStats.Games > 0)
-                .ToList();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return players.Join(battingStats, player => player.Id, stats => stats.PlayerID,
                 (player, stats) => player.SetBattingStats(stats)).ToList();
@@ -34,11 +36,12 @@ namespace VKR.EF.DAO
                 .Include(player => player.PlayersInTeam.Where(pit => pit.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam))
                 .ToListAsync();
 
-            var pitchingStats = db.PlayersPitchingStats
+            var pitchingStats = await db.PlayersPitchingStats
                 .Where(battingStats => battingStats.Season == year &&
                                        battingStats.MatchType == matchType &&
                                        battingStats.GamesPlayed > 0)
-                .ToList();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return players.Join(pitchingStats, player => player.Id, stats => stats.PlayerID,
                 (player, stats) => player.SetPitchingStats(stats)).ToList();
@@ -54,7 +57,8 @@ namespace VKR.EF.DAO
             var battingStats = await db.TeamsBattingStats
                 .Where(batting => batting.Season == year && 
                                   batting.MatchType == type)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
                 (team, stats) => team.SetBattingStats(stats)).ToList();

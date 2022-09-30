@@ -29,7 +29,8 @@ namespace VKR.EF.DAO
             foreach (var position in player.Positions.Select(p => db.PlayersPositions.FirstOrDefault(pp => pp.Number == p.Number)))
                 playerDb.Positions.Add(position);
 
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task DeleteAllPositionsForPlayer(Player player)
@@ -41,7 +42,8 @@ namespace VKR.EF.DAO
 
             playerDb.Positions.Clear();
             db.Players.Update(playerDb);
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
     }
 }

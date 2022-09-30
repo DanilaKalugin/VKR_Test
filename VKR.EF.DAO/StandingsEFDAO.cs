@@ -33,7 +33,7 @@ GROUP BY dbo.Teams.TeamAbbreviation", typeParam, dateParam).ToList();
 
             var streaks = db.ReturnStreakForAllTeams(date, type).ToList();
 
-            var runs = db.RunsByTeams.FromSqlRaw(
+            var runs = db.RunsByTeam.FromSqlRaw(
                 @"SELECT team As TeamAbbreviation, {1} As MatchType, Year({0}) As Season, 
                                ISNULL(SUM(CASE WHEN MatchDate <= {0} AND MatchType = {1} AND Season = Year({0}) THEN RunsScored ELSE NULL END), 0) AS RunsScored, 
                                ISNULL(SUM(CASE WHEN MatchDate <= {0} AND MatchType = {1} AND Season = Year({0}) THEN RunsAllowed ELSE NULL END), 0) AS RunsAllowed

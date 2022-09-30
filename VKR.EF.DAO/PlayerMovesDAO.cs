@@ -37,7 +37,8 @@ namespace VKR.EF.DAO
                     TeamId = team.TeamAbbreviation,
                     Id = maxId + 1
                 };
-                await db.PlayersInTeams.AddAsync(newPiTrecord);
+                await db.PlayersInTeams.AddAsync(newPiTrecord)
+                    .ConfigureAwait(false);
             }
             else
             {
@@ -54,7 +55,8 @@ namespace VKR.EF.DAO
                 db.Players.Update(playerDB);
             }
 
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task ChangePlayerInTeamStatus(Player player, Team team, InTeamStatusEnum inTeamStatus)
@@ -66,7 +68,7 @@ namespace VKR.EF.DAO
             if (pit == null) return;
             pit.CurrentPlayerInTeamStatus = inTeamStatus;
             db.PlayersInTeams.Update(pit);
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public async Task ReleasePlayer(Player player)
@@ -90,7 +92,8 @@ namespace VKR.EF.DAO
                 db.PlayersInTeams.Update(playerInTeam);
             }
 
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task RemovePlayerFromStartingLineup(Player player, Team team, byte lineupNumber)
@@ -109,14 +112,16 @@ namespace VKR.EF.DAO
             if (slEntry == null) return;
 
             db.StartingLineups.Remove(slEntry);
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task AssignPlayerToStartingLineup(Player player, Team team, byte lineupNumber, PlayerPosition position, byte numberInLineup)
         {
             await using var db = new VKRApplicationContext();
             var playerInTeam = await db.PlayersInTeams.FirstOrDefaultAsync(pit => pit.PlayerId == player.Id &&
-                                                                       pit.TeamId == team.TeamAbbreviation);
+                                                                       pit.TeamId == team.TeamAbbreviation)
+                .ConfigureAwait(false);
 
             if (playerInTeam == null) return;
 
@@ -133,7 +138,8 @@ namespace VKR.EF.DAO
             };
 
             db.StartingLineups.Add(newEntryInStartingLineup);
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
     }
 }

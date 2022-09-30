@@ -34,7 +34,8 @@ namespace VKR.EF.DAO
                 .Include(p => p.Player.Positions)
                 .Include(pit => pit.Player.BattingHand)
                 .Include(pit => pit.Player.PitchingHand)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, pit.Player.Positions[0].ShortTitle, pit.TeamId)).ToList();
         }
@@ -49,7 +50,8 @@ namespace VKR.EF.DAO
                 .Include(p => p.Player.Positions)
                 .Include(pit => pit.Player.BattingHand)
                 .Include(pit => pit.Player.PitchingHand)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, pit.Player.Positions[0].ShortTitle, pit.TeamId)).ToList();
         }
@@ -64,7 +66,8 @@ namespace VKR.EF.DAO
                 .Include(p => p.Player.Positions)
                 .Include(pit => pit.Player.BattingHand)
                 .Include(pit => pit.Player.PitchingHand)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return allPlayers.Select(pit => new PlayerInLineupViewModel(pit.Player, pit.Player.Positions[0].ShortTitle, pit.TeamId)).ToList();
         }
@@ -80,7 +83,8 @@ namespace VKR.EF.DAO
                 .Include(p => p.Player.Positions)
                 .Include(pit => pit.Player.BattingHand)
                 .Include(pit => pit.Player.PitchingHand)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             var list = new List<PlayerInLineupViewModel>();
             foreach (var pit in allPlayers)
@@ -103,7 +107,8 @@ namespace VKR.EF.DAO
                 .Include(player => player.BattingHand)
                 .Include(player => player.PitchingHand)
                 .Include(player => player.City)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             var list = new List<PlayerInLineupViewModel>();
             foreach (var player in f)

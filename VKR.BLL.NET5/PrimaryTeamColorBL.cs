@@ -12,7 +12,8 @@ namespace VKR.BLL.NET5
 
         public async Task<List<TeamColor>> GetPrimaryTeamColorsAsync()
         {
-            var colors = await _primaryColorDao.GetPrimaryTeamColorsAsync().ConfigureAwait(false);
+            var colors = await _primaryColorDao.GetPrimaryTeamColorsAsync()
+                .ConfigureAwait(false);
             return colors.ToList();
         }
     }

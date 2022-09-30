@@ -12,13 +12,15 @@ namespace VKR.BLL.NET5
 
         public async Task<List<Team>> GetListAsync()
         {
-            var allTeams = await _teamsEF.GetListAsync().ConfigureAwait(false);
+            var allTeams = await _teamsEF.GetListAsync()
+                .ConfigureAwait(false);
             return allTeams.ToList();
         }
 
         public async Task<List<Team>> GetTeamsWithWLBalanceAsync(int season, TypeOfMatchEnum matchType)
         {
-            var teams = await _teamsEF.GetTeamsWithWLBalanceAsync(season, matchType).ConfigureAwait(false);
+            var teams = await _teamsEF.GetTeamsWithWLBalanceAsync(season, matchType)
+                .ConfigureAwait(false);
                 teams = teams.OrderBy(t => t.TeamName).ToList();
             var maxOffensiveRating = teams.Select(team => team.TeamRating.OffensiveRating).Max();
             var maxDefensiveRating = teams.Select(team => team.TeamRating.DefensiveRating).Max();
@@ -34,8 +36,8 @@ namespace VKR.BLL.NET5
 
         public async Task UpdateTeamBalance(Team team, Match match)
         {
-            var newBalanceForThisTeam =
-                await _teamsEF.GetNewTeamBalanceForThisTeam(team, match.MatchTypeId, match.MatchDate.Year);
+            var newBalanceForThisTeam = await _teamsEF.GetNewTeamBalanceForThisTeam(team, match.MatchTypeId, match.MatchDate.Year)
+                .ConfigureAwait(false);
             team.SetTeamBalance(newBalanceForThisTeam);
         }
     }

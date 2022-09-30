@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using VKR.EF.DAO;
 using VKR.EF.Entities;
 
@@ -27,6 +25,7 @@ namespace VKR.BLL.NET5
                 .ConfigureAwait(false);
 
         public async Task AssignPlayerToStartingLineup(Player player, Team team, byte lineupNumber, PlayerPosition position, byte numberInLineup) =>
-            await _playerMovesDao.AssignPlayerToStartingLineup(player, team, lineupNumber, position, numberInLineup).ConfigureAwait(false);
+            await _playerMovesDao.AssignPlayerToStartingLineup(player, team, lineupNumber, position, numberInLineup)
+                .ConfigureAwait(false);
     }
 }

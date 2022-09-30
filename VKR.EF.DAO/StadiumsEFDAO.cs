@@ -27,7 +27,8 @@ namespace VKR.EF.DAO
                 .ThenInclude(stadium => stadium.StadiumFactor)
                 .Include(tsmt => tsmt.Stadium.StadiumCity)
                 .Select(tsmt => tsmt.Stadium)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace VKR.BLL.NET5
         {
             var teams = await _statsDao.GetBattingStatsByYearAndMatchType(season.Year, typeOfMatch)
                 .ConfigureAwait(false);
+
             return teams.OrderByDescending(team => team.BattingStats.AVG).ToList();
         }
 
@@ -22,13 +23,18 @@ namespace VKR.BLL.NET5
         {
             var teams = await _statsDao.GetPitchingStatsByYearAndMatchTypeAsync(season.Year, typeOfMatch)
                 .ConfigureAwait(false);
+
             return teams.OrderBy(team => team.PitchingStats.ERA).ToList();
         }
 
         public async Task<List<Player>> GetBattersStats(Season season, string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
         {
-            var players = await _statsDao.GetPlayerBattingStatsAsync(season.Year).ConfigureAwait(false);
-            var abbreviations = await GetTeamsForFilter(TeamFilter);
+            var players = await _statsDao.GetPlayerBattingStatsAsync(season.Year)
+                .ConfigureAwait(false);
+
+            var abbreviations = await GetTeamsForFilter(TeamFilter)
+                .ConfigureAwait(false);
+
             players = players.Where(player => player.PlayersInTeam.Count > 0 && abbreviations.Contains(player.PlayersInTeam.First().TeamId)).ToList();
 
             if (positions != "")
@@ -54,8 +60,12 @@ namespace VKR.BLL.NET5
 
         public async Task<List<Player>> GetPitchersStats(Season season, string qualifying = "Qualified Players", string teamFilter = "MLB")
         {
-            var players = await _statsDao.GetPlayerPitchingStatsAsync(season.Year).ConfigureAwait(false);
-            var abbreviations = await GetTeamsForFilter(teamFilter);
+            var players = await _statsDao.GetPlayerPitchingStatsAsync(season.Year)
+                .ConfigureAwait(false);
+
+            var abbreviations = await GetTeamsForFilter(teamFilter)
+                .ConfigureAwait(false);
+
             var fplayers = players.Where(player => player.PlayersInTeam.Count > 0 && abbreviations.Contains(player.PlayersInTeam.First().TeamId)).ToList();
 
             fplayers = qualifying switch
@@ -70,7 +80,8 @@ namespace VKR.BLL.NET5
 
         private async Task<List<string>> GetTeamsForFilter(string teamFilter)
         {
-            var teams = await _teamsDao.GetListAsync().ConfigureAwait(false);
+            var teams = await _teamsDao.GetListAsync()
+                .ConfigureAwait(false);
 
             return teamFilter switch
             {

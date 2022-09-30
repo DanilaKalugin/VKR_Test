@@ -13,7 +13,7 @@ namespace VKR.EF.DAO
         public DbSet<TeamBalance> TeamStandings { get; set; }
         public DbSet<MatchFromSchedule> NextMatches { get; set; }
         public DbSet<Match> Matches { get; set; }
-        public DbSet<RunsByTeam> RunsByTeams { get; set; }
+        public DbSet<RunsByTeam> RunsByTeam { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
         public DbSet<TeamStadiumForTypeOfMatch> TeamStadiumForTypeOfMatch { get; set; }
         public DbSet<Player> Players { get; set; }

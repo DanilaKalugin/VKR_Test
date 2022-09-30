@@ -30,16 +30,19 @@ namespace VKR.EF.DAO
         public async ValueTask<DateTime> GetMaxDateForAllMatchesAsync()
         {
             await using var db = new VKRApplicationContext();
-            return db.Matches.Include(m => m.MatchResult)
+            return await db.Matches.Include(m => m.MatchResult)
                 .Where(m => m.MatchResult != null)
-                .Select(m => m.MatchDate).Max();
+                .Select(m => m.MatchDate)
+                .MaxAsync()
+                .ConfigureAwait(false);
         }
 
         public async ValueTask<int> GetNextMatchId(TypeOfMatchEnum matchType)
         {
             await using var db = new VKRApplicationContext();
 
-            var maxId = await db.Matches.MaxAsync(match => match.Id);
+            var maxId = await db.Matches.MaxAsync(match => match.Id)
+                .ConfigureAwait(false);
 
             return maxId + 1;
         }
@@ -177,7 +180,8 @@ namespace VKR.EF.DAO
 
             if (matchForDelete != null) matchForDelete.IsPlayed = false;
             db.Matches.Remove(deletingMatch);
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task FinishMatch(Match match)
@@ -212,23 +216,32 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            await db.AtBats.AddAsync(atBat);
-            await db.SaveChangesAsync();
+            await db.AtBats.AddAsync(atBat)
+                .ConfigureAwait(false);
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task AddNewRun(Run run)
         {
             await using var db = new VKRApplicationContext();
-            await db.Runs.AddAsync(run);
-            await db.SaveChangesAsync();
+            await db.Runs.AddAsync(run)
+                .ConfigureAwait(false);
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task AddMatchResultForThisPitcher(PitcherResults pitcherResults)
         {
             await using var db = new VKRApplicationContext();
 
-            await db.PitcherResults.AddAsync(pitcherResults);
-            await db.SaveChangesAsync();
+            await db.PitcherResults.AddAsync(pitcherResults)
+                .ConfigureAwait(false);
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
     }
 }

@@ -12,7 +12,8 @@ namespace VKR.BLL.NET5
 
         public async Task<List<ManInTeam>> GetListOfPeopleWithBirthdayTodayAsync()
         {
-            var men = await _manDAO.GetListOfPeopleWithBirthdayTodayAsync().ConfigureAwait(false);
+            var men = await _manDAO.GetListOfPeopleWithBirthdayTodayAsync()
+                .ConfigureAwait(false);
             return men.ToList();
         }
     }

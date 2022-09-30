@@ -27,7 +27,7 @@ namespace VKR.EF.DAO
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            var activeMatchResults = matches.ToList()
+            var activeMatchResults = (await matches.ToListAsync().ConfigureAwait(false))
                 .Join(activeMatches,
                     match => match.Id,
                     activeMatch => activeMatch.MatchId,
