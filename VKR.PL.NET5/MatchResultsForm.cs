@@ -100,7 +100,7 @@ namespace VKR.PL.NET5
             foreach (var team in _teams)
             {
                 var teamAbbreviation = team.TeamAbbreviation;
-                var teamLogo = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{teamAbbreviation}.png");
+                var teamLogo = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{teamAbbreviation}.png");
                 _teamLogos.Add(teamAbbreviation, teamLogo);
             }
 

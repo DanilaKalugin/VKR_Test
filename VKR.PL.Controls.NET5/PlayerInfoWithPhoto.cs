@@ -18,7 +18,7 @@ namespace VKR.PL.Controls.NET5
 
         private void OnPlayerChanging(object? sender, PlayerChangedEventArgs e)
         {
-            PlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{e.PlayerInfo.Id:0000}.png");
+            PlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{e.PlayerInfo.Id:0000}.png");
 
             PlayerFirstName.Text = e.PlayerInfo.FirstName.ToUpper();
             PlayerSecondName.Text = e.PlayerInfo.SecondName.ToUpper();

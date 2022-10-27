@@ -65,7 +65,7 @@ namespace VKR.PL.NET5.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _000 {
             get {
-                object obj = ResourceManager.GetObject("000", resourceCulture);
+                object obj = ResourceManager.GetObject("_000", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace VKR.PL.NET5.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _003 {
             get {
-                object obj = ResourceManager.GetObject("003", resourceCulture);
+                object obj = ResourceManager.GetObject("_003", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -85,7 +85,7 @@ namespace VKR.PL.NET5.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _020 {
             get {
-                object obj = ResourceManager.GetObject("020", resourceCulture);
+                object obj = ResourceManager.GetObject("_020", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +95,7 @@ namespace VKR.PL.NET5.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _023 {
             get {
-                object obj = ResourceManager.GetObject("023", resourceCulture);
+                object obj = ResourceManager.GetObject("_023", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +105,7 @@ namespace VKR.PL.NET5.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _100 {
             get {
-                object obj = ResourceManager.GetObject("100", resourceCulture);
+                object obj = ResourceManager.GetObject("_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,7 +115,7 @@ namespace VKR.PL.NET5.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _103 {
             get {
-                object obj = ResourceManager.GetObject("103", resourceCulture);
+                object obj = ResourceManager.GetObject("_103", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -125,7 +125,7 @@ namespace VKR.PL.NET5.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _120 {
             get {
-                object obj = ResourceManager.GetObject("120", resourceCulture);
+                object obj = ResourceManager.GetObject("_120", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,7 +135,7 @@ namespace VKR.PL.NET5.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _123 {
             get {
-                object obj = ResourceManager.GetObject("123", resourceCulture);
+                object obj = ResourceManager.GetObject("_123", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

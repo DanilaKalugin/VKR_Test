@@ -63,7 +63,7 @@ namespace VKR.PL.NET5
             teamColorsForMatch.Maximum = _teams[teamNumber].TeamColors.Count - 1;
             teamCity.Text = _teams[teamNumber].TeamCity.ToUpper();
             teamTitle.Text = _teams[teamNumber].TeamName.ToUpper();
-            teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{_teams[teamNumber].TeamAbbreviation}.png");
+            teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{_teams[teamNumber].TeamAbbreviation}.png");
             balance.Text = $"{_teams[teamNumber].Wins}-{_teams[teamNumber].Losses}";
 
             teamColorNumber = 0;
@@ -218,7 +218,8 @@ namespace VKR.PL.NET5
             dataGridView1.Rows.Clear();
 
             foreach (var match in _matches)
-                dataGridView1.Rows.Add(ImageHelper.ShowImageIfExists($"TeamLogosForSubstitution/{match.AwayTeamAbbreviation}.png"), ImageHelper.ShowImageIfExists($"TeamLogosForSubstitution/{match.HomeTeamAbbreviation}.png"));
+                dataGridView1.Rows.Add(ImageHelper.ShowImageIfExists($"Images/TeamLogosForSubstitution/{match.AwayTeamAbbreviation}.png"), 
+                                        ImageHelper.ShowImageIfExists($"Images/TeamLogosForSubstitution/{match.HomeTeamAbbreviation}.png"));
         }
     }
 }

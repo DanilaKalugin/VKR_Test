@@ -17,9 +17,9 @@ namespace VKR.PL.NET5
             Text = hrType;
             timer2.Start();
 
-            panel1.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            panel2.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
-            pbPatterPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{batter.Id:0000}.png");
+            panel1.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            panel2.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            pbPatterPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{batter.Id:0000}.png");
             
             lbBatterName.Text = batter.FullName.ToUpper();
             var hrTodayForThisBatter = allAtBats.Count(atBat => atBat.AtBatType == AtBatType.HomeRun && atBat.BatterId == batter.Id);

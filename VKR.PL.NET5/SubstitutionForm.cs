@@ -18,7 +18,7 @@ namespace VKR.PL.NET5
         {
             dgvAvailablePlayers.DefaultCellStyle.SelectionBackColor = _currentTeam.TeamColorForThisMatch;
             dgvAvailablePlayers.DefaultCellStyle.SelectionForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(_currentTeam.TeamColorForThisMatch, false);
-            panelTeamLogo.BackgroundImage = Image.FromFile($"TeamLogosForSubstitution/{_currentTeam.TeamAbbreviation}.png");
+            panelTeamLogo.BackgroundImage = Image.FromFile($"Images/TeamLogosForSubstitution/{_currentTeam.TeamAbbreviation}.png");
         }
 
         public SubstitutionForm(Team offense, List<Batter> batters)
@@ -34,7 +34,7 @@ namespace VKR.PL.NET5
             dgvAvailablePlayers.Columns[3].HeaderText = "HR";
             foreach (var batter in _batters)
             {
-                var image = ImageHelper.ShowImageIfExists($"PlayerPhotosForSubstitution/Player{batter.Id:0000}.jpg");
+                var image = ImageHelper.ShowImageIfExists($"Images/PlayerPhotosForSubstitution/Player{batter.Id:0000}.jpg");
                 dgvAvailablePlayers.Rows.Add(image, batter.FullName,
                         $"{batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"))}",
                         $"{batter.BattingStats.HomeRuns}");

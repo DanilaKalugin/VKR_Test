@@ -34,7 +34,7 @@ namespace VKR.PL.NET5
 
             Text = $"{_team.TeamCity} {_team.TeamName}";
             lbTeamTitle.Text = $"{_team.TeamName.ToUpper()} Batting Order".ToUpper();
-            teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{_team.TeamAbbreviation}.png");
+            teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{_team.TeamAbbreviation}.png");
             teamManager.Text = $"► Team Manager: {team.Manager.FullName}".ToUpper();
             BackColor = _team.TeamColorForThisMatch;
 

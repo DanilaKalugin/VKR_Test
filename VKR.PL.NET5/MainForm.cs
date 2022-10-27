@@ -61,7 +61,7 @@ namespace VKR.PL.NET5
             runsScored.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.9), (int)(team.TeamColorForThisMatch.G * 0.9), (int)(team.TeamColorForThisMatch.B * 0.9));
             teamTitle.Text = team.TeamName.ToUpper();
             teamTitle.BackColor = team.TeamColorForThisMatch;
-            TeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{team.TeamAbbreviation}.png");
+            TeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{team.TeamAbbreviation}.png");
             teamBalance.Text = $@"{team.Wins}-{team.Losses}";
             teamBalance.BackColor = team.TeamColorForThisMatch;
             teamBalance.Visible = !match.IsQuickMatch;
@@ -122,7 +122,7 @@ namespace VKR.PL.NET5
             panel8.BackColor = gameSituation.Offense.TeamColorForThisMatch;
             btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.Offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.B * 0.9));
 
-            pbCurrentOffenseLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{_newGameSituation.Offense.TeamAbbreviation}.png");
+            pbCurrentOffenseLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{_newGameSituation.Offense.TeamAbbreviation}.png");
             var nextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(nextBatter);
 
@@ -162,7 +162,7 @@ namespace VKR.PL.NET5
                 var runneron3rd = offense.BattingLineup.First(batter => batter.BatterId == runner.RunnerId);
                 RunnerName.Text = runneron3rd.FullName.ToUpper();
 
-                RunnerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{runneron3rd.Id:0000}.png");
+                RunnerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{runneron3rd.Id:0000}.png");
                 RunnerName.ForeColor = runner.IsBaseStealingAttempt ? Color.Goldenrod : Color.Gainsboro;
             }
             else RunnerPhoto.BackgroundImage = null;
@@ -180,7 +180,7 @@ namespace VKR.PL.NET5
             currentBatter.SetPlayer(batter);
 
             ShowStatsForThisMatch(batter, lbTodayStats);
-            pbCurrentBatterPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{batter.Id:0000}.png");
+            pbCurrentBatterPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{batter.Id:0000}.png");
 
             lblPlayerPosition.Text = batter.PositionForThisMatch;
             lblPlayerNumber.Text = batter.PlayerNumber.ToString();
@@ -268,8 +268,10 @@ namespace VKR.PL.NET5
             (_currentMatch.AwayTeam.BattingLineup, _currentMatch.HomeTeam.BattingLineup) =
                 (awayTeamLineupTask.Result, homeTeamLineupTask.Result);
 
-            _playerBl.UpdateStatsForThisPitcher(_currentMatch.AwayTeam.CurrentPitcher, _currentMatch);
-            _playerBl.UpdateStatsForThisPitcher(_currentMatch.HomeTeam.CurrentPitcher, _currentMatch);
+            var awayTeamPitcherTask = _playerBl.UpdateStatsForThisPitcher(_currentMatch.AwayTeam.CurrentPitcher, _currentMatch);
+            var homeTeamPitcherTask = _playerBl.UpdateStatsForThisPitcher(_currentMatch.HomeTeam.CurrentPitcher, _currentMatch);
+
+            await Task.WhenAll(awayTeamPitcherTask, homeTeamPitcherTask);
 
             UpdateScoreboard(away2, away3, away4, away5, away6, away7, away8, away9, away10, awayLOB, awayRuns, awayHits, _currentMatch, _currentMatch.AwayTeam);
             UpdateScoreboard(home2, home3, home4, home5, home6, home7, home8, home9, home10, homeLOB, homeRuns, homeHits, _currentMatch, _currentMatch.HomeTeam);
@@ -325,7 +327,7 @@ namespace VKR.PL.NET5
 
                 var lastAtBatOffense = lastAtBat.Offense;
                 label27.BackColor = lastAtBatOffense == _currentMatch.AwayTeam.TeamAbbreviation ? _currentMatch.AwayTeam.TeamColorForThisMatch : _currentMatch.HomeTeam.TeamColorForThisMatch;
-                panel15.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{lastAtBatOffense}.png");
+                panel15.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{lastAtBatOffense}.png");
                 
                 var lastBatter = await _playerBl.GetPlayerByCode(lastAtBat.BatterId);
                 label27.Text = Width >= 960 ? lastBatter.FullName : $"{lastBatter.FirstName[0]}. {lastBatter.SecondName}";
@@ -495,8 +497,8 @@ namespace VKR.PL.NET5
             PitchingTeamColor.BackColor = defense.TeamColorForThisMatch;
             btnShowAvailablePitchers.BackColor = defense.TeamColorForThisMatch;
 
-            PitchingTeam.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{defense.TeamAbbreviation}.png");
-            PitcherPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{defense.CurrentPitcher.Id:0000}.png");
+            PitchingTeam.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{defense.TeamAbbreviation}.png");
+            PitcherPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{defense.CurrentPitcher.Id:0000}.png");
 
             PitcherName.Text = defense.CurrentPitcher.FullName.ToUpper();
 

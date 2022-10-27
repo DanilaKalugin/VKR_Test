@@ -24,8 +24,8 @@ namespace VKR.PL.NET5
             InitializeComponent();
             NewMatch = match;
             
-            pbAwayTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{NewMatch.AwayTeam.TeamAbbreviation}.png");
-            pbHomeTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"SmallTeamLogos/{NewMatch.HomeTeam.TeamAbbreviation}.png");
+            pbAwayTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{NewMatch.AwayTeam.TeamAbbreviation}.png");
+            pbHomeTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{NewMatch.HomeTeam.TeamAbbreviation}.png");
         }
 
         public void DisplayCurrentStadium()
@@ -35,7 +35,7 @@ namespace VKR.PL.NET5
             lbStadiumCapacity.Text = _stadiums[_stadiumNumber]?.StadiumCapacity.ToString("N0", CultureInfo.InvariantCulture);
             lbDistanceToCenterField.Text = _stadiums[_stadiumNumber]?.StadiumDistanceToCenterfield + " ft";
 
-            pbStadiumPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Stadiums/Stadium{_stadiums[_stadiumNumber]?.StadiumId:000}.jpg");
+            pbStadiumPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/Stadiums/Stadium{_stadiums[_stadiumNumber]?.StadiumId:000}.jpg");
         }
 
         private async void StadiumSelectionForm_Load(object sender, EventArgs e)

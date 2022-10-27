@@ -15,7 +15,7 @@ namespace VKR.PL.NET5
             InitializeComponent();
             Text = $@"{team.TeamCity} {team.TeamName}";
             lbTeamTitle.Text = $@"{team.TeamName.ToUpper()} Defense".ToUpper();
-            teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{team.TeamAbbreviation}.png");
+            teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{team.TeamAbbreviation}.png");
             _defense = team;
         }
 

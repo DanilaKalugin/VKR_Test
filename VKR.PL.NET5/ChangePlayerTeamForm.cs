@@ -60,7 +60,7 @@ namespace VKR.PL.NET5
         {
             label7.Text = $@"Positions: {string.Join(", ", player.Positions.Select(position => position.ShortTitle))}";
 
-            pbPlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{player.Id:0000}.png");
+            pbPlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{player.Id:0000}.png");
 
             lbPlayerNumber.Text = $@"#{player.PlayerNumber}";
             lbPlayerName.Text = player.FullName.ToUpper();

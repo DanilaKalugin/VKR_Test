@@ -61,7 +61,7 @@ namespace VKR.PL.NET5
 
         private void TeamChanged(int teamNumber)
         {
-            panelTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"TeamLogoForMenu/{_teams[teamNumber].TeamAbbreviation}.png");
+            panelTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{_teams[teamNumber].TeamAbbreviation}.png");
             lbTeamtitle.Text = _teams[teamNumber].TeamName.ToUpper();
             lbTeamtitle.BackColor = _teams[teamNumber].TeamColors[0].Color;
             lbTeamtitle.ForeColor = Color.White;
@@ -187,7 +187,7 @@ namespace VKR.PL.NET5
 
             if (dgv1.SelectedRows.Count <= 0) return;
 
-            pbPlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"PlayerPhotos/Player{player.Id:0000}.png");
+            pbPlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{player.Id:0000}.png");
 
             lbPlayerNumber.Text = $@"#{player.PlayerNumber}";
             lbPlayerName.Text = player.FullName.ToUpper();

@@ -40,8 +40,6 @@ namespace VKR.PL.NET5
             dtpBirthDate.Value = player.DateOfBirth;
             numPlayerNumber.Value = player.PlayerNumber;
 
-            
-
             cbThrowLeft.Checked = _player.PitchingHand.PitchingHandId == PitchingHandEnum.Left;
             cbThrowRight.Checked = _player.PitchingHand.PitchingHandId == PitchingHandEnum.Right;
 
@@ -60,7 +58,7 @@ namespace VKR.PL.NET5
             _addingPlayer = true;
         }
 
-        private void txtFirstName_Validating(object sender, System.ComponentModel.CancelEventArgs e) => TextBoxValidating(txtFirstName, e);
+        private void txtFirstName_Validating(object sender, System.ComponentModel.CancelEventArgs e) => ControlValidator.TextBoxValidating(txtFirstName, e);
 
         private void txtFirstName_Validated(object sender, EventArgs e) => _player.FirstName = txtFirstName.Text.Trim();
 
@@ -128,23 +126,7 @@ namespace VKR.PL.NET5
             DialogResult = DialogResult.OK;
         }
 
-        private void txtLastName_Validating(object sender, System.ComponentModel.CancelEventArgs e) => TextBoxValidating(txtLastName, e);
-
-        private static void TextBoxValidating(Control control, System.ComponentModel.CancelEventArgs e)
-        {
-            var text = control.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(text) || text.Any(char.IsDigit))
-            {
-                control.BackColor = Color.DarkRed;
-                e.Cancel = true;
-            }
-            else
-            {
-                control.BackColor = Color.WhiteSmoke;
-                e.Cancel = false;
-            }
-        }
+        private void txtLastName_Validating(object sender, System.ComponentModel.CancelEventArgs e) => ControlValidator.TextBoxValidating(txtLastName, e);
 
         private void txtLastName_Validated(object sender, EventArgs e) => _player.SecondName = txtLastName.Text.Trim();
 

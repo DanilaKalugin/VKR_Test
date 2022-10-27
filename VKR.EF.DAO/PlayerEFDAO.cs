@@ -77,7 +77,6 @@ namespace VKR.EF.DAO
                 DateOfBirth = player.DateOfBirth,
                 PlaceOfBirth = player.City.Id,
                 CurrentPlayerStatus = PlayerStatusEnum.FreeAgent,
-
             };
 
             await db.Players.AddAsync(playerDb)
