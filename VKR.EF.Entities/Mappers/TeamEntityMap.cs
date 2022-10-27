@@ -35,13 +35,18 @@ namespace VKR.EF.Entities.Mappers
             builder.HasOne(t => t.Manager)
                 .WithMany(m => m.Teams)
                 .HasForeignKey(t => t.TeamManager)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.Property(t => t.TeamManager)
                 .HasColumnType("smallint");
 
+            builder.Property(t => t.FoundationYear)
+                .HasColumnType("smallint")
+                .IsRequired();
+
             builder.HasAlternateKey(t => new { t.TeamCity, t.TeamName });
+
+            builder.HasCheckConstraint("FoundationYear", "FoundationYear BETWEEN 1850 AND 2022");
         }
     }
 }

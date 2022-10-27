@@ -13,7 +13,8 @@ namespace VKR.EF.Entities
         public Division Division { get; set; }
         public int DivisionId { get; set; }
         public Manager Manager { get; set; }
-        public uint TeamManager { get; set; }
+        public uint? TeamManager { get; set; }
+        public ushort FoundationYear { get; set; }
         public virtual List<TeamColor> TeamColors { get; set; } = new();
         public virtual List<PlayerInTeam> PlayersInTeam { get; set; } = new();
         public virtual List<Match> AwayMatches { get; set; } = new();

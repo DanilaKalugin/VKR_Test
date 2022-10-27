@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221018135748_Updated-Relation-Team-To-Manager")]
+    partial class UpdatedRelationTeamToManager
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1306,8 +1308,8 @@ namespace VKR.EF.DAO.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TeamDivision");
 
-                    b.Property<short>("FoundationYear")
-                        .HasColumnType("smallint");
+                    b.Property<long?>("FoundationYear")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("TeamCity")
                         .IsRequired()
@@ -1331,8 +1333,6 @@ namespace VKR.EF.DAO.Migrations
                     b.HasIndex("TeamManager");
 
                     b.ToTable("Teams");
-
-                    b.HasCheckConstraint("FoundationYear", "FoundationYear BETWEEN 1850 AND 2022");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.TeamBalance", b =>

@@ -40,5 +40,17 @@ namespace VKR.BLL.NET5
                 .ConfigureAwait(false);
             team.SetTeamBalance(newBalanceForThisTeam);
         }
+
+        public async Task<List<Team>> GetTeamsWithInfoAsync() => 
+            await _teamsEF.GetTeamsWithInfoAsync()
+                .ConfigureAwait(false);
+
+        public async Task<List<TeamStadiumForTypeOfMatch>> GetAllStadiumsForThisTeam(Team team) =>
+            await _teamsEF.GetAllStadiumsForThisTeam(team)
+                .ConfigureAwait(false);
+
+        public async Task UpdateTeam(Team team) => 
+            await _teamsEF.UpdateTeam(team)
+                .ConfigureAwait(false);
     }
 }

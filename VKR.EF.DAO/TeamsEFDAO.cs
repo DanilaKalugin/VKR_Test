@@ -49,5 +49,53 @@ namespace VKR.EF.DAO
                                                            teamStandings.MatchType == matchType)
                 .ConfigureAwait(false);
         }
+
+        public async Task<List<Team>> GetTeamsWithInfoAsync()
+        {
+            await using var db = new VKRApplicationContext();
+
+            return await db.Teams.Include(t => t.TeamColors)
+                .Include(t => t.Manager)
+                .ThenInclude(m => m.City)
+                .Include(t => t.Division)
+                .ThenInclude(d => d.League)
+                .Include(t => t.StadiumsForMatchTypes)
+                .ThenInclude(tsmt => tsmt.Stadium)
+                .OrderBy(t => t.TeamName)
+                .ToListAsync()
+                .ConfigureAwait(false);
+        }
+
+        public async Task<List<TeamStadiumForTypeOfMatch>> GetAllStadiumsForThisTeam(Team team)
+        {
+            await using var db = new VKRApplicationContext();
+
+            return await db.TeamStadiumForTypeOfMatch
+                .Include(tmts => tmts.Stadium)
+                .Where(tmts => tmts.TeamAbbreviation == team.TeamAbbreviation)
+                .ToListAsync()
+                .ConfigureAwait(false);
+        }
+
+        public async Task UpdateTeam(Team team)
+        {
+            await using var db = new VKRApplicationContext();
+
+            var teamDb = await db.Teams.FirstOrDefaultAsync(p => p.TeamAbbreviation == team.TeamAbbreviation)
+                .ConfigureAwait(false);
+
+            if (teamDb == null) return;
+
+            teamDb.TeamAbbreviation = team.TeamAbbreviation;
+            teamDb.TeamCity = team.TeamCity;
+            teamDb.TeamName = team.TeamName;
+            teamDb.DivisionId = team.DivisionId;
+            teamDb.TeamManager = team.Manager?.Id;
+            teamDb.FoundationYear = team.FoundationYear;
+
+            db.Teams.Update(teamDb);
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
+        }
     }
 }

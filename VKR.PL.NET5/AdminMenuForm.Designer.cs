@@ -35,6 +35,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.btnAddCity = new System.Windows.Forms.Button();
+            this.btnEditTeam = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -124,12 +125,29 @@
             this.btnAddCity.UseVisualStyleBackColor = false;
             this.btnAddCity.Click += new System.EventHandler(this.btnAddCity_Click);
             // 
+            // btnEditTeam
+            // 
+            this.btnEditTeam.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnEditTeam.FlatAppearance.BorderSize = 0;
+            this.btnEditTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditTeam.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnEditTeam.Location = new System.Drawing.Point(277, 44);
+            this.btnEditTeam.Margin = new System.Windows.Forms.Padding(6, 6, 6, 3);
+            this.btnEditTeam.Name = "btnEditTeam";
+            this.btnEditTeam.Size = new System.Drawing.Size(250, 72);
+            this.btnEditTeam.TabIndex = 18;
+            this.btnEditTeam.Text = "EDIT TEAM";
+            this.btnEditTeam.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnEditTeam.UseVisualStyleBackColor = false;
+            this.btnEditTeam.Click += new System.EventHandler(this.btnEditTeam_Click);
+            // 
             // AdminMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(984, 371);
+            this.Controls.Add(this.btnEditTeam);
             this.Controls.Add(this.btnAddCity);
             this.Controls.Add(this.btnAddPlayer);
             this.Controls.Add(this.btnClose);
@@ -155,5 +173,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnAddPlayer;
         private System.Windows.Forms.Button btnAddCity;
+        private System.Windows.Forms.Button btnEditTeam;
     }
 }

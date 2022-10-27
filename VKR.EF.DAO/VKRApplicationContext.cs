@@ -36,10 +36,14 @@ namespace VKR.EF.DAO
         public DbSet<City> Cities { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Run> Runs { get; set; }
+        public DbSet<Division> Divisions { get; set; }
+        public DbSet<Manager> Managers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = GetConnectionString();
+            var connectionString =
+                @"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;";
+            /*var connectionString = GetConnectionString();*/
             optionsBuilder.UseSqlServer(connectionString);
         }
 
