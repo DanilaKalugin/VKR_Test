@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221027135028_RemovedRelationTeamManager")]
+    partial class RemovedRelationTeamManager
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -474,9 +476,9 @@ namespace VKR.EF.DAO.Migrations
 
             modelBuilder.Entity("VKR.EF.Entities.Manager", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("smallint")
                         .HasColumnName("ManagerID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
@@ -1307,6 +1309,9 @@ namespace VKR.EF.DAO.Migrations
                     b.Property<short>("FoundationYear")
                         .HasColumnType("smallint");
 
+                    b.Property<short?>("ManagerId")
+                        .HasColumnType("smallint");
+
                     b.Property<string>("TeamCity")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -1326,7 +1331,7 @@ namespace VKR.EF.DAO.Migrations
 
                     b.HasIndex("DivisionId");
 
-                    b.HasIndex("TeamManager");
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("Teams");
 
@@ -2201,7 +2206,7 @@ namespace VKR.EF.DAO.Migrations
 
                     b.HasOne("VKR.EF.Entities.Manager", "Manager")
                         .WithMany("Teams")
-                        .HasForeignKey("TeamManager");
+                        .HasForeignKey("ManagerId");
 
                     b.Navigation("Division");
 

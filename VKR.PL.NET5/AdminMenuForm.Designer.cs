@@ -36,6 +36,7 @@
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.btnAddCity = new System.Windows.Forms.Button();
             this.btnEditTeam = new System.Windows.Forms.Button();
+            this.btnAddManager = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -115,8 +116,8 @@
             this.btnAddCity.FlatAppearance.BorderSize = 0;
             this.btnAddCity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCity.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddCity.Location = new System.Drawing.Point(15, 287);
-            this.btnAddCity.Margin = new System.Windows.Forms.Padding(6, 6, 6, 3);
+            this.btnAddCity.Location = new System.Drawing.Point(15, 284);
+            this.btnAddCity.Margin = new System.Windows.Forms.Padding(6, 3, 6, 6);
             this.btnAddCity.Name = "btnAddCity";
             this.btnAddCity.Size = new System.Drawing.Size(250, 72);
             this.btnAddCity.TabIndex = 17;
@@ -141,6 +142,22 @@
             this.btnEditTeam.UseVisualStyleBackColor = false;
             this.btnEditTeam.Click += new System.EventHandler(this.btnEditTeam_Click);
             // 
+            // btnAddManager
+            // 
+            this.btnAddManager.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnAddManager.FlatAppearance.BorderSize = 0;
+            this.btnAddManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddManager.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddManager.Location = new System.Drawing.Point(277, 122);
+            this.btnAddManager.Margin = new System.Windows.Forms.Padding(6, 3, 6, 6);
+            this.btnAddManager.Name = "btnAddManager";
+            this.btnAddManager.Size = new System.Drawing.Size(250, 72);
+            this.btnAddManager.TabIndex = 17;
+            this.btnAddManager.Text = "ADD MANAGER";
+            this.btnAddManager.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnAddManager.UseVisualStyleBackColor = false;
+            this.btnAddManager.Click += new System.EventHandler(this.btnAddManager_Click);
+            // 
             // AdminMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,6 +165,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(984, 371);
             this.Controls.Add(this.btnEditTeam);
+            this.Controls.Add(this.btnAddManager);
             this.Controls.Add(this.btnAddCity);
             this.Controls.Add(this.btnAddPlayer);
             this.Controls.Add(this.btnClose);
@@ -174,5 +192,6 @@
         private System.Windows.Forms.Button btnAddPlayer;
         private System.Windows.Forms.Button btnAddCity;
         private System.Windows.Forms.Button btnEditTeam;
+        private System.Windows.Forms.Button btnAddManager;
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221027135819_RemovedRelationTeamManagerNew")]
+    partial class RemovedRelationTeamManagerNew
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -474,9 +476,9 @@ namespace VKR.EF.DAO.Migrations
 
             modelBuilder.Entity("VKR.EF.Entities.Manager", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("smallint")
                         .HasColumnName("ManagerID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
@@ -1325,8 +1327,6 @@ namespace VKR.EF.DAO.Migrations
                     b.HasAlternateKey("TeamCity", "TeamName");
 
                     b.HasIndex("DivisionId");
-
-                    b.HasIndex("TeamManager");
 
                     b.ToTable("Teams");
 
@@ -2199,13 +2199,7 @@ namespace VKR.EF.DAO.Migrations
                         .HasForeignKey("DivisionId")
                         .IsRequired();
 
-                    b.HasOne("VKR.EF.Entities.Manager", "Manager")
-                        .WithMany("Teams")
-                        .HasForeignKey("TeamManager");
-
                     b.Navigation("Division");
-
-                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.TeamColor", b =>
@@ -2299,11 +2293,6 @@ namespace VKR.EF.DAO.Migrations
             modelBuilder.Entity("VKR.EF.Entities.LineupType", b =>
                 {
                     b.Navigation("StartingLineups");
-                });
-
-            modelBuilder.Entity("VKR.EF.Entities.Manager", b =>
-                {
-                    b.Navigation("Teams");
                 });
 
             modelBuilder.Entity("VKR.EF.Entities.Match", b =>

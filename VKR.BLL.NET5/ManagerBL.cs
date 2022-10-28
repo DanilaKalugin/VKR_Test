@@ -19,5 +19,15 @@ namespace VKR.BLL.NET5
                 .ThenBy(m => m.FirstName)
                 .ToList();
         }
+
+        public async Task<uint> GetIdForNewManager() =>
+            await _mangerEfdao.GetIdForNewManager()
+                .ConfigureAwait(false);
+
+        public async Task AddManager(Manager manager)
+        {
+           await _mangerEfdao.AddManager(manager)
+               .ConfigureAwait(false);
+        }
     }
 }

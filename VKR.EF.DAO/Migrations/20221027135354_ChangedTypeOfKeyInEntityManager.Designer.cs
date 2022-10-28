@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221027135354_ChangedTypeOfKeyInEntityManager")]
+    partial class ChangedTypeOfKeyInEntityManager
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -474,9 +476,9 @@ namespace VKR.EF.DAO.Migrations
 
             modelBuilder.Entity("VKR.EF.Entities.Manager", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("smallint")
                         .HasColumnName("ManagerID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
@@ -1312,8 +1314,8 @@ namespace VKR.EF.DAO.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<long?>("TeamManager")
-                        .HasColumnType("bigint");
+                    b.Property<short?>("TeamManager")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("TeamName")
                         .IsRequired()

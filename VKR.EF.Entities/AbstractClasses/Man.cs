@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VKR.EF.Entities
 {
     public abstract class Man
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public uint Id { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }

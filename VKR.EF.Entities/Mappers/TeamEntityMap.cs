@@ -36,10 +36,7 @@ namespace VKR.EF.Entities.Mappers
                 .WithMany(m => m.Teams)
                 .HasForeignKey(t => t.TeamManager)
                 .OnDelete(DeleteBehavior.ClientSetNull);
-
-            builder.Property(t => t.TeamManager)
-                .HasColumnType("smallint");
-
+            
             builder.Property(t => t.FoundationYear)
                 .HasColumnType("smallint")
                 .IsRequired();

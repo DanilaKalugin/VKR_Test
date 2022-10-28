@@ -12,20 +12,22 @@ namespace VKR.EF.Entities.Mappers
             builder.HasKey(m => m.Id);
 
             builder.Property(m => m.Id)
-                .HasColumnName("ManagerID")
-                .HasColumnType("smallint");
+                .HasColumnName("ManagerID");
 
             builder.Property(m => m.FirstName)
                 .HasColumnName("ManagerFirstName")
-                .HasMaxLength(30).IsRequired();
+                .HasMaxLength(30)
+                .IsRequired();
 
             builder.Property(m => m.SecondName)
                 .HasColumnName("ManagerSecondName")
-                .HasMaxLength(30).IsRequired();
+                .HasMaxLength(30)
+                .IsRequired();
 
             builder.Property(m => m.DateOfBirth)
                 .HasColumnName("ManagerDateOfBirth")
-                .HasColumnType("date").IsRequired();
+                .HasColumnType("date")
+                .IsRequired();
 
             builder.HasOne(m => m.City)
                 .WithMany(c => c.Managers)
