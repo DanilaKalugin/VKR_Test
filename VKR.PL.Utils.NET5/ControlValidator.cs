@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VKR.PL.NET5
+namespace VKR.PL.Utils.NET5
 {
     public static class ControlValidator
     {
-        public static void TextBoxValidating(Control control, System.ComponentModel.CancelEventArgs e)
+        public static void TextBoxValidating(Control? control, System.ComponentModel.CancelEventArgs e)
         {
+            if (control is null) return;
+
             var text = control.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(text) || text.Any(char.IsDigit))
