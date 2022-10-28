@@ -80,7 +80,8 @@ namespace VKR.PL.NET5
             foreach (var batterInfo in batters)
             {
                 var nextNumber = GetNextNumber(number);
-                batterInfo.SetPlayer(team.BattingLineup[nextNumber - 1]);
+
+                batterInfo.Batter = team.BattingLineup[nextNumber - 1];
                 number = nextNumber;
             }
         }
@@ -177,7 +178,7 @@ namespace VKR.PL.NET5
 
         private void NewBatterDisplaying(Batter batter)
         {
-            currentBatter.SetPlayer(batter);
+            currentBatter.Batter = batter;
 
             ShowStatsForThisMatch(batter, lbTodayStats);
             pbCurrentBatterPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{batter.Id:0000}.png");
