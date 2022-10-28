@@ -63,25 +63,15 @@ namespace VKR.PL.NET5
             pbCapLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{team.TeamAbbreviation}.png");
             pbSubstitutionLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogosForSubstitution/{team.TeamAbbreviation}.png");
 
-            if (team.Manager is not null)
-                ShowManager(team.Manager);
-            else ShowManager();
+            ShowManager(team.Manager);
         }
 
-        private void ShowManager(Manager teamManager)
+        private void ShowManager(Manager? teamManager)
         {
-            lbManager.Text = teamManager.FullName;
-            lbManagerDateOfBirth.Text = teamManager.DateOfBirth.ToShortDateString().ToUpper();
-            lbManagerPlaceOfBirth.Text = teamManager.City.CityLocation;
-            pbManagerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/Managers/Manager{teamManager.Id:000}.jpg");
-        }
-
-        private void ShowManager()
-        {
-            lbManager.Text = string.Empty;
-            lbManagerDateOfBirth.Text = string.Empty;
-            lbManagerPlaceOfBirth.Text = string.Empty;
-            pbManagerPhoto.BackgroundImage = null;
+            lbManager.Text = teamManager?.FullName ?? string.Empty;
+            lbManagerDateOfBirth.Text = teamManager?.DateOfBirth.ToShortDateString() ?? string.Empty;
+            lbManagerPlaceOfBirth.Text = teamManager?.City.CityLocation ?? string.Empty;
+            pbManagerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/Managers/Manager{teamManager?.Id:000}.jpg");
         }
 
         private void ShowTeamStadiums(Team team)
@@ -104,10 +94,17 @@ namespace VKR.PL.NET5
         private async void btnEditTeamMainInfo_Click(object sender, EventArgs e)
         {
             var team = _teams[_teamNumber];
-            using var form = new EditTeamForm(team);
-            form.ShowDialog();
-            if (form.DialogResult == DialogResult.OK) 
-                await FillTeamsAndColors();
+
+            Visible = false;
+
+            using (var form = new EditTeamForm(team))
+            {
+                form.ShowDialog();
+                if (form.DialogResult == DialogResult.OK)
+                    await FillTeamsAndColors();
+            }
+
+            Visible = true;
         }
 
         private async Task FillTeamsAndColors()
