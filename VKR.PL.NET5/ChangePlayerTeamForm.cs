@@ -25,10 +25,7 @@ namespace VKR.PL.NET5
         private string _firstName = string.Empty;
         private string _lastName = string.Empty;
 
-        public ChangePlayerTeamForm()
-        {
-            InitializeComponent();
-        }
+        public ChangePlayerTeamForm() => InitializeComponent();
 
         private void btnDecreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {

@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
 using VKR.PL.Utils.NET5;
