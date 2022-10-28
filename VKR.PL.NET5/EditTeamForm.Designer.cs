@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditTeamForm));
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.btnUpdateTeam = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbLeague = new System.Windows.Forms.Label();
@@ -38,39 +36,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cbManager = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtTeamName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtRegion = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.cbDivision = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.numFoundationYear = new System.Windows.Forms.NumericUpDown();
             this.btnFireManager = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.txtTeamName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
+            this.txtRegion = new VKR.PL.Controls.NET5.TextBoxWithHeader();
+            this.txtId = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numFoundationYear)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtId
-            // 
-            this.txtId.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtId.Enabled = false;
-            this.txtId.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtId.Location = new System.Drawing.Point(141, 6);
-            this.txtId.MaxLength = 35;
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(250, 26);
-            this.txtId.TabIndex = 106;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(12, 9);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(106, 17);
-            this.label9.TabIndex = 105;
-            this.label9.Text = "Abbreviation:";
             // 
             // btnUpdateTeam
             // 
@@ -127,8 +103,10 @@
             // cbManager
             // 
             this.cbManager.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbManager.DropDownHeight = 172;
             this.cbManager.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbManager.FormattingEnabled = true;
+            this.cbManager.IntegralHeight = false;
             this.cbManager.Location = new System.Drawing.Point(141, 134);
             this.cbManager.Name = "cbManager";
             this.cbManager.Size = new System.Drawing.Size(250, 25);
@@ -144,50 +122,6 @@
             this.label3.Size = new System.Drawing.Size(65, 17);
             this.label3.TabIndex = 92;
             this.label3.Text = "Division:";
-            // 
-            // txtTeamName
-            // 
-            this.txtTeamName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtTeamName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTeamName.Location = new System.Drawing.Point(141, 70);
-            this.txtTeamName.MaxLength = 35;
-            this.txtTeamName.Name = "txtTeamName";
-            this.txtTeamName.Size = new System.Drawing.Size(250, 26);
-            this.txtTeamName.TabIndex = 90;
-            this.txtTeamName.Validating += new System.ComponentModel.CancelEventHandler(this.txtTeamName_Validating);
-            this.txtTeamName.Validated += new System.EventHandler(this.txtTeamName_Validated);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 73);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 17);
-            this.label1.TabIndex = 89;
-            this.label1.Text = "Team name:";
-            // 
-            // txtRegion
-            // 
-            this.txtRegion.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtRegion.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtRegion.Location = new System.Drawing.Point(141, 38);
-            this.txtRegion.MaxLength = 35;
-            this.txtRegion.Name = "txtRegion";
-            this.txtRegion.Size = new System.Drawing.Size(250, 26);
-            this.txtRegion.TabIndex = 88;
-            this.txtRegion.Validating += new System.ComponentModel.CancelEventHandler(this.txtRegion_Validating);
-            this.txtRegion.Validated += new System.EventHandler(this.txtRegion_Validated);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(12, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 17);
-            this.label2.TabIndex = 87;
-            this.label2.Text = "Region:";
             // 
             // cbDivision
             // 
@@ -262,18 +196,57 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // txtTeamName
+            // 
+            this.txtTeamName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtTeamName.Header = "Team name";
+            this.txtTeamName.Location = new System.Drawing.Point(12, 70);
+            this.txtTeamName.Name = "txtTeamName";
+            this.txtTeamName.ReadOnlyControl = false;
+            this.txtTeamName.Size = new System.Drawing.Size(379, 26);
+            this.txtTeamName.TabIndex = 113;
+            this.txtTeamName.Value = null;
+            this.txtTeamName.ValuePosition = ((ushort)(129));
+            this.txtTeamName.Validated += new System.EventHandler(this.txtTeamName_Validated);
+            // 
+            // txtRegion
+            // 
+            this.txtRegion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtRegion.Header = "Region";
+            this.txtRegion.Location = new System.Drawing.Point(12, 38);
+            this.txtRegion.Name = "txtRegion";
+            this.txtRegion.ReadOnlyControl = false;
+            this.txtRegion.Size = new System.Drawing.Size(379, 26);
+            this.txtRegion.TabIndex = 112;
+            this.txtRegion.Value = null;
+            this.txtRegion.ValuePosition = ((ushort)(129));
+            this.txtRegion.Validated += new System.EventHandler(this.txtRegion_Validated);
+            // 
+            // txtId
+            // 
+            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtId.Header = "Abbreviation";
+            this.txtId.Location = new System.Drawing.Point(12, 6);
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnlyControl = true;
+            this.txtId.Size = new System.Drawing.Size(379, 26);
+            this.txtId.TabIndex = 114;
+            this.txtId.Value = null;
+            this.txtId.ValuePosition = ((ushort)(129));
+            // 
             // EditTeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(403, 311);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.txtTeamName);
+            this.Controls.Add(this.txtRegion);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnFireManager);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.numFoundationYear);
-            this.Controls.Add(this.txtId);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnUpdateTeam);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
@@ -281,10 +254,6 @@
             this.Controls.Add(this.cbDivision);
             this.Controls.Add(this.cbManager);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtTeamName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtRegion);
-            this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -300,24 +269,20 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnUpdateTeam;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbManager;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtTeamName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtRegion;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbDivision;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numFoundationYear;
         private System.Windows.Forms.Label lbLeague;
         private System.Windows.Forms.Button btnFireManager;
         private System.Windows.Forms.Button btnClose;
+        private Controls.NET5.TextBoxWithHeader txtTeamName;
+        private Controls.NET5.TextBoxWithHeader txtRegion;
+        private Controls.NET5.TextBoxWithHeader txtId;
     }
 }

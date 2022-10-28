@@ -46,9 +46,9 @@ namespace VKR.PL.NET5
 
         private void ShowTeamInfo()
         {
-            txtId.Text = _team.TeamAbbreviation;
-            txtRegion.Text = _team.TeamCity;
-            txtTeamName.Text = _team.TeamName;
+            txtId.Value = _team.TeamAbbreviation;
+            txtRegion.Value = _team.TeamCity;
+            txtTeamName.Value = _team.TeamName;
 
             var division = _divisions.FirstOrDefault(d => d.Id == _team.DivisionId);
             cbDivision.SelectedItem = division;
@@ -62,12 +62,12 @@ namespace VKR.PL.NET5
 
         private async Task FillLists()
         {
-            var _divisionsTask = _divisionBl.GetAllDivisionsAsync();
-            var _managersTask = _managerBl.GetAllManagersAsync();
+            var divisionsTask = _divisionBl.GetAllDivisionsAsync();
+            var managersTask = _managerBl.GetAllManagersAsync();
 
-            await Task.WhenAll(_divisionsTask, _managersTask);
+            await Task.WhenAll(divisionsTask, managersTask);
 
-            (_divisions, _managers) = (_divisionsTask.Result, _managersTask.Result);
+            (_divisions, _managers) = (divisionsTask.Result, managersTask.Result);
 
             cbDivision.DataSource = _divisions;
             cbDivision.DisplayMember = "DivisionTitle";
@@ -97,36 +97,34 @@ namespace VKR.PL.NET5
         private async void btnCheck_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren()) return;
-
-            var updateTask = _teamsBl.UpdateTeam(_team);
-            await Task.WhenAll(updateTask);
+            
+            await _teamsBl.UpdateTeam(_team);
             btnClose.Visible = true;
-        }
-
-        private void txtRegion_Validating(object sender, CancelEventArgs e) => ControlValidator.TextBoxValidating(txtRegion, e);
-
-        private void txtTeamName_Validating(object sender, CancelEventArgs e) => ControlValidator.TextBoxValidating(txtTeamName, e);
-
-        private void txtRegion_Validated(object sender, EventArgs e)
-        {
-            _team.TeamCity = txtRegion.Text.Trim();
-            btnClose.Visible = false;
-        }
-
-        private void txtTeamName_Validated(object sender, EventArgs e)
-        {
-            _team.TeamName = txtTeamName.Text.Trim();
-            btnClose.Visible = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e) => DialogResult = DialogResult.OK;
 
         private void numFoundationYear_ValueChanged(object sender, EventArgs e)
         {
-            if (_team is null)
-                return;
+            if (_team is null) return;
 
             _team.FoundationYear = (ushort)numFoundationYear.Value;
+            btnClose.Visible = false;
+        }
+
+        private void txtRegion_Validated(object sender, EventArgs e)
+        {
+            if (_team is null) return;
+
+            _team.TeamCity = txtRegion.Value;
+            btnClose.Visible = false;
+        }
+
+        private void txtTeamName_Validated(object sender, EventArgs e)
+        {
+            if (_team is null) return;
+
+            _team.TeamName = txtTeamName.Value;
             btnClose.Visible = false;
         }
     }

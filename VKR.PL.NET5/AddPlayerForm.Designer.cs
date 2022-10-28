@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPlayerForm));
-            this.txtFirstName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtLastName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.numPlayerNumber = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.cbPlaceOfBirth = new System.Windows.Forms.ComboBox();
@@ -52,56 +48,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnCheck = new System.Windows.Forms.Button();
             this.btnAddCity = new System.Windows.Forms.Button();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.txtLastName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
+            this.txtFirstName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
+            this.txtId = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             ((System.ComponentModel.ISupportInitialize)(this.numPlayerNumber)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtFirstName
-            // 
-            this.txtFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtFirstName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtFirstName.Location = new System.Drawing.Point(141, 44);
-            this.txtFirstName.MaxLength = 35;
-            this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(250, 26);
-            this.txtFirstName.TabIndex = 67;
-            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.txtFirstName_Validating);
-            this.txtFirstName.Validated += new System.EventHandler(this.txtFirstName_Validated);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(12, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 17);
-            this.label2.TabIndex = 66;
-            this.label2.Text = "First name:";
-            // 
-            // txtLastName
-            // 
-            this.txtLastName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtLastName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtLastName.Location = new System.Drawing.Point(141, 76);
-            this.txtLastName.MaxLength = 35;
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(250, 26);
-            this.txtLastName.TabIndex = 69;
-            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.txtLastName_Validating);
-            this.txtLastName.Validated += new System.EventHandler(this.txtLastName_Validated);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 17);
-            this.label1.TabIndex = 68;
-            this.label1.Text = "Last name:";
             // 
             // numPlayerNumber
             // 
@@ -131,9 +85,12 @@
             // cbPlaceOfBirth
             // 
             this.cbPlaceOfBirth.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbPlaceOfBirth.DropDownHeight = 172;
             this.cbPlaceOfBirth.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbPlaceOfBirth.FormattingEnabled = true;
+            this.cbPlaceOfBirth.IntegralHeight = false;
             this.cbPlaceOfBirth.Location = new System.Drawing.Point(141, 140);
+            this.cbPlaceOfBirth.MaxLength = 60;
             this.cbPlaceOfBirth.Name = "cbPlaceOfBirth";
             this.cbPlaceOfBirth.Size = new System.Drawing.Size(250, 25);
             this.cbPlaceOfBirth.TabIndex = 72;
@@ -266,7 +223,9 @@
             // 
             // dtpBirthDate
             // 
+            this.dtpBirthDate.CalendarForeColor = System.Drawing.Color.Black;
             this.dtpBirthDate.CalendarMonthBackground = System.Drawing.Color.WhiteSmoke;
+            this.dtpBirthDate.CalendarTitleForeColor = System.Drawing.Color.Black;
             this.dtpBirthDate.CustomFormat = "MM/dd/yyyy";
             this.dtpBirthDate.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dtpBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -325,26 +284,56 @@
             this.btnAddCity.UseVisualStyleBackColor = true;
             this.btnAddCity.Click += new System.EventHandler(this.btnAddCity_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnClose.Location = new System.Drawing.Point(284, 496);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(107, 33);
+            this.btnClose.TabIndex = 109;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // txtLastName
+            // 
+            this.txtLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtLastName.Header = "Last name";
+            this.txtLastName.Location = new System.Drawing.Point(12, 76);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.ReadOnlyControl = false;
+            this.txtLastName.Size = new System.Drawing.Size(379, 26);
+            this.txtLastName.TabIndex = 111;
+            this.txtLastName.Value = null;
+            this.txtLastName.ValuePosition = ((ushort)(129));
+            this.txtLastName.Validated += new System.EventHandler(this.txtLastName_Validated);
+            // 
+            // txtFirstName
+            // 
+            this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtFirstName.Header = "First name";
+            this.txtFirstName.Location = new System.Drawing.Point(12, 44);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.ReadOnlyControl = false;
+            this.txtFirstName.Size = new System.Drawing.Size(379, 26);
+            this.txtFirstName.TabIndex = 110;
+            this.txtFirstName.Value = null;
+            this.txtFirstName.ValuePosition = ((ushort)(129));
+            this.txtFirstName.Validated += new System.EventHandler(this.txtFirstName_Validated);
+            // 
             // txtId
             // 
-            this.txtId.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtId.Enabled = false;
-            this.txtId.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtId.Location = new System.Drawing.Point(141, 12);
-            this.txtId.MaxLength = 35;
+            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtId.Header = "ID";
+            this.txtId.Location = new System.Drawing.Point(12, 12);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(250, 26);
-            this.txtId.TabIndex = 86;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(12, 15);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 17);
-            this.label9.TabIndex = 85;
-            this.label9.Text = "ID:";
+            this.txtId.ReadOnlyControl = true;
+            this.txtId.Size = new System.Drawing.Size(379, 26);
+            this.txtId.TabIndex = 112;
+            this.txtId.Value = null;
+            this.txtId.ValuePosition = ((ushort)(129));
             // 
             // AddPlayerForm
             // 
@@ -353,7 +342,9 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(506, 541);
             this.Controls.Add(this.txtId);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtFirstName);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAddCity);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.label8);
@@ -368,10 +359,6 @@
             this.Controls.Add(this.cbPlaceOfBirth);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.numPlayerNumber);
-            this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtFirstName);
-            this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -392,11 +379,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtFirstName;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numPlayerNumber;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbPlaceOfBirth;
@@ -416,7 +398,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Button btnAddCity;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnClose;
+        private Controls.NET5.TextBoxWithHeader txtLastName;
+        private Controls.NET5.TextBoxWithHeader txtFirstName;
+        private Controls.NET5.TextBoxWithHeader txtId;
     }
 }
