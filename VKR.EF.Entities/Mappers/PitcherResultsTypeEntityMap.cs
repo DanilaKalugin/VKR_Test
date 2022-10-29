@@ -22,7 +22,7 @@ namespace VKR.EF.Entities.Mappers
             builder.HasData(
                 Enum.GetValues(typeof(PitcherResultEnum))
                     .Cast<PitcherResultEnum>()
-                    .Select(e => new PitcherResultsType()
+                    .Select(e => new PitcherResultsType
                     {
                         Id = e,
                         Description = e.ToString()

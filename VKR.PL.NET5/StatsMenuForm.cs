@@ -21,10 +21,7 @@ namespace VKR.PL.NET5
         private List<Player> _pitchers;
         private List<TeamColor> _teamsColors;
 
-        public StatsMenuForm()
-        {
-            InitializeComponent();
-        }
+        public StatsMenuForm() => InitializeComponent();
 
         private void btnPlayersStats_Click(object sender, EventArgs e) => OpenStats(PlayerStatsForm.SortingObjects.Players);
 

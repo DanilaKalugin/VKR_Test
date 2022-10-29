@@ -12,7 +12,7 @@ namespace VKR.PL.NET5
 {
     public partial class StadiumSelectionForm : Form
     {
-        private readonly StadiumsBL _stadiumsBL = new();
+        private readonly StadiumsBL _stadiumsBl = new();
         private List<Stadium?> _stadiums;
         private int _stadiumNumber;
         public bool ExitFromCurrentMatch;
@@ -40,8 +40,8 @@ namespace VKR.PL.NET5
 
         private async void StadiumSelectionForm_Load(object sender, EventArgs e)
         {
-            var stadiumsTask = _stadiumsBL.GetAllStadiumsAsync();
-            var homeTeamStadiumTask = _stadiumsBL.GetHomeStadiumForThisTeamAndTypeOfMatch(NewMatch.HomeTeam, NewMatch.MatchTypeId);
+            var stadiumsTask = _stadiumsBl.GetAllStadiumsAsync();
+            var homeTeamStadiumTask = _stadiumsBl.GetHomeStadiumForThisTeamAndTypeOfMatch(NewMatch.HomeTeam, NewMatch.MatchTypeId);
 
             await Task.WhenAll(stadiumsTask, homeTeamStadiumTask);
 

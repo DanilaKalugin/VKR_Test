@@ -20,7 +20,7 @@ namespace VKR.EF.Entities.Mappers
             builder.HasData(
                     Enum.GetValues(typeof(BattingHandEnum))
                         .Cast<BattingHandEnum>()
-                        .Select(e => new BattingHand()
+                        .Select(e => new BattingHand
                         {
                             BattingHandId = e,
                             Description = e.ToString()

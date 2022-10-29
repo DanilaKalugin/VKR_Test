@@ -41,6 +41,5 @@
             PitcherId = pitcher.PitcherId;
             IsEarnedRun = isEarned;
         }
-
     }
 }

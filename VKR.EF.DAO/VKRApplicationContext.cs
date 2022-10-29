@@ -41,9 +41,7 @@ namespace VKR.EF.DAO
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString =
-                @"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;";
-            /*var connectionString = GetConnectionString();*/
+            var connectionString = GetConnectionString();
             optionsBuilder.UseSqlServer(connectionString);
         }
 

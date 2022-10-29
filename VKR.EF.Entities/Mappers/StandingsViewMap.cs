@@ -10,10 +10,17 @@ namespace VKR.EF.Entities.Mappers
             builder.ToView("StandingsBySeasonAndMatchType");
             builder.HasNoKey();
 
-            builder.Property(vw => vw.HomeWins).HasColumnName("HW");
-            builder.Property(vw => vw.AwayWins).HasColumnName("AW");
-            builder.Property(vw => vw.HomeLosses).HasColumnName("HL");
-            builder.Property(vw => vw.AwayLosses).HasColumnName("AL");
+            builder.Property(vw => vw.HomeWins)
+                .HasColumnName("HW");
+
+            builder.Property(vw => vw.AwayWins)
+                .HasColumnName("AW");
+
+            builder.Property(vw => vw.HomeLosses)
+                .HasColumnName("HL");
+
+            builder.Property(vw => vw.AwayLosses)
+                .HasColumnName("AL");
         }
     }
 }

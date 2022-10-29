@@ -11,8 +11,12 @@ namespace VKR.EF.Entities.Mappers
 
             builder.HasKey(r => r.RegionCode);
 
-            builder.Property(r => r.RegionCode).HasMaxLength(3);
-            builder.Property(r => r.RegionName).HasMaxLength(50).IsRequired();
+            builder.Property(r => r.RegionCode)
+                .HasMaxLength(3);
+
+            builder.Property(r => r.RegionName)
+                .HasMaxLength(50)
+                .IsRequired();
 
             builder.HasOne(r => r.Country)
                 .WithMany(c => c.Regions)

@@ -5,12 +5,13 @@ namespace VKR.PL.NET5
 {
     public partial class RostersMenuForm : Form
     {
-        private bool _isAdMin;
+        private readonly bool _isAdmin;
+
         public RostersMenuForm(bool b)
         {
-            _isAdMin = b;
+            _isAdmin = b;
             InitializeComponent();
-            button2.Visible = _isAdMin;
+            button2.Visible = _isAdmin;
         }
 
         private void btnCloseResultsMenu_Click(object sender, EventArgs e) => Close();
@@ -24,7 +25,7 @@ namespace VKR.PL.NET5
         private void OpenLineupsForm(LineupsForm.RosterType rosterType)
         {
             Visible = false;
-            using (var form = new LineupsForm(rosterType, _isAdMin)) 
+            using (var form = new LineupsForm(rosterType, _isAdmin)) 
                 form.ShowDialog();
             Visible = true;
         }

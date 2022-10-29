@@ -30,10 +30,7 @@ namespace VKR.PL.NET5
             _awayTeam = away;
         }
 
-        public StandingsForm()
-        {
-            InitializeComponent();
-        }
+        public StandingsForm() => InitializeComponent();
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter.SelectedIndex);
 

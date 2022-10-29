@@ -21,7 +21,7 @@ namespace VKR.EF.Entities.Mappers
             builder.HasData(
                 Enum.GetValues(typeof(TypeOfMatchEnum))
                     .Cast<TypeOfMatchEnum>()
-                    .Select(e => new TypeOfMatch()
+                    .Select(e => new TypeOfMatch
                     {
                         Id = e,
                         Description = e.ToString()
