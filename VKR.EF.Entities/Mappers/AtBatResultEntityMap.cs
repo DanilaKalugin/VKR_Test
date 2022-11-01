@@ -21,7 +21,7 @@ namespace VKR.EF.Entities.Mappers
             builder.HasData(
                 Enum.GetValues(typeof(AtBatType))
                     .Cast<AtBatType>()
-                    .Select(e => new AtBatResult()
+                    .Select(e => new AtBatResult
                     {
                         Id = e,
                         Description = e.ToString()

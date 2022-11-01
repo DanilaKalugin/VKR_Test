@@ -9,7 +9,6 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<PitcherResultsType> builder)
         {
-
             builder.ToTable("TypesOfMatchResultsForPitcher");
 
             builder.HasKey(mt => mt.Id);

@@ -39,10 +39,7 @@ namespace VKR.PL.NET5
         private readonly DateTime _matchDate;
         private readonly List<string> _teamAbbreviations = new();
 
-        private MatchResultsForm()
-        {
-            InitializeComponent();
-        }
+        private MatchResultsForm() => InitializeComponent();
 
         public MatchResultsForm(MatchScheduleBL.TableType tableType) : this()
         {
@@ -193,12 +190,9 @@ namespace VKR.PL.NET5
             switch (_formType)
             {
                 case FormType.DailyResults or FormType.DailySchedule:
-                {
                     ChangeMaxAndMinDateForThisSeason(seasonInfo);
                     break;
-                }
                 case FormType.TeamResults or FormType.TeamSchedule:
-
                     _matches = await _scheduleBL.GetMatchesForSelectedTeam(TypeOfMatchEnum.RegularSeason, _season, _tableType, _teams?[cbTeam.SelectedIndex].TeamAbbreviation);
                     FillResultsTable();
                     break;

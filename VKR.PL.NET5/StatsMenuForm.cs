@@ -89,7 +89,6 @@ namespace VKR.PL.NET5
             dgvBattingLeaders.Rows.Add("R", "", GetFullNameOfLeaderForThisBattingParameter(batter => batter.BattingStats.Runs == bestR), bestR);
 
             for (var i = 0; i < dgvBattingLeaders.RowCount; i++)
-            {
                 if (dgvBattingLeaders.Rows[i].Cells[2].Value.ToString() == "Tied")
                 {
                     dgvBattingLeaders.Rows[i].Cells[1].Style.BackColor = Color.FromArgb(220, 220, 220);
@@ -102,7 +101,6 @@ namespace VKR.PL.NET5
                     dgvBattingLeaders.Rows[i].Cells[1].Style.BackColor = color;
                     dgvBattingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = color;
                 }
-            }
         }
 
         private async Task GetPitchingLeaders()
@@ -130,7 +128,6 @@ namespace VKR.PL.NET5
             dgvPitchingLeaders.Rows.Add("WHIP", "", leaderWHIPTask.Result, bestWHIP.ToString("0.00", new CultureInfo("en-US")));
 
             for (var i = 0; i < dgvPitchingLeaders.RowCount; i++)
-            {
                 if (dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString() != "Tied")
                 {
                     var pitchersWithThisValue = _pitchers.Where(batter => batter.FullName == dgvPitchingLeaders.Rows[i].Cells[2].Value.ToString()).ToList();
@@ -151,7 +148,6 @@ namespace VKR.PL.NET5
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.BackColor = Color.FromArgb(220, 220, 220);
                     dgvPitchingLeaders.Rows[i].Cells[1].Style.SelectionBackColor = Color.FromArgb(220, 220, 220);
                 }
-            }
         }
 
         private void btnCloseResultsMenu_Click(object sender, EventArgs e) => Close();

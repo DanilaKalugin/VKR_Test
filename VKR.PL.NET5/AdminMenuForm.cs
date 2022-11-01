@@ -39,7 +39,6 @@ namespace VKR.PL.NET5
         private void btnEditTeam_Click(object sender, EventArgs e)
         {
             Visible = false;
-
             using (var form = new TeamInformationForm())
                 form.ShowDialog();
 
@@ -49,7 +48,6 @@ namespace VKR.PL.NET5
         private void btnAddManager_Click(object sender, EventArgs e)
         {
             Visible = false;
-
             using (var form = new AddManagerForm())
                 form.ShowDialog();
 

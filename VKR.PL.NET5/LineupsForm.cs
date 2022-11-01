@@ -246,7 +246,6 @@ namespace VKR.PL.NET5
             var f = new LoadingForm();
             f.TopMost = true;
             f.Show();
-            
 
             switch (_rosterType)
             {
@@ -322,7 +321,6 @@ namespace VKR.PL.NET5
                 });
 
             var availablePositions = positions.Where(pp => !filledPositionsInLineup.Contains(pp.ShortTitle)).ToList();
-
 
             if (availablePositions.Count <= 1) 
                 return availablePositions.First();
