@@ -30,5 +30,41 @@ namespace VKR.EF.DAO
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
         }
+
+        public async Task<ushort> GetIdForNewStadium()
+        {
+            await using var db = new VKRApplicationContext();
+            var maxId = await db.Stadiums.MaxAsync(p => p.StadiumId)
+                .ConfigureAwait(false);
+            return (ushort)(maxId + 1);
+        }
+
+        public async Task AddNewStadium(Stadium stadium)
+        {
+            await using var db = new VKRApplicationContext();
+
+            var stadiumDb = new Stadium
+            {
+                StadiumId = stadium.StadiumId,
+                StadiumTitle = stadium.StadiumTitle,
+                StadiumCapacity = stadium.StadiumCapacity,
+                StadiumDistanceToCenterfield = stadium.StadiumDistanceToCenterfield,
+                StadiumLocation = stadium.StadiumCity.Id
+            };
+
+            await db.Stadiums.AddAsync(stadiumDb)
+                .ConfigureAwait(false);
+
+            var factorDb = new StadiumFactor
+            {
+                StadiumId = stadium.StadiumId
+            };
+
+            await db.StadiumFactors.AddAsync(factorDb)
+                .ConfigureAwait(false);
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
+        }
     }
 }

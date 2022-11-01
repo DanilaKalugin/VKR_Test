@@ -37,6 +37,7 @@
             this.btnAddCity = new System.Windows.Forms.Button();
             this.btnEditTeam = new System.Windows.Forms.Button();
             this.btnAddManager = new System.Windows.Forms.Button();
+            this.addStadium = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -158,12 +159,29 @@
             this.btnAddManager.UseVisualStyleBackColor = false;
             this.btnAddManager.Click += new System.EventHandler(this.btnAddManager_Click);
             // 
+            // addStadium
+            // 
+            this.addStadium.BackColor = System.Drawing.Color.Gainsboro;
+            this.addStadium.FlatAppearance.BorderSize = 0;
+            this.addStadium.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addStadium.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.addStadium.Location = new System.Drawing.Point(277, 206);
+            this.addStadium.Margin = new System.Windows.Forms.Padding(6, 3, 6, 6);
+            this.addStadium.Name = "addStadium";
+            this.addStadium.Size = new System.Drawing.Size(250, 72);
+            this.addStadium.TabIndex = 19;
+            this.addStadium.Text = "ADD STADIUM";
+            this.addStadium.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.addStadium.UseVisualStyleBackColor = false;
+            this.addStadium.Click += new System.EventHandler(this.addStadium_Click);
+            // 
             // AdminMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(984, 371);
+            this.Controls.Add(this.addStadium);
             this.Controls.Add(this.btnEditTeam);
             this.Controls.Add(this.btnAddManager);
             this.Controls.Add(this.btnAddCity);
@@ -193,5 +211,6 @@
         private System.Windows.Forms.Button btnAddCity;
         private System.Windows.Forms.Button btnEditTeam;
         private System.Windows.Forms.Button btnAddManager;
+        private System.Windows.Forms.Button addStadium;
     }
 }

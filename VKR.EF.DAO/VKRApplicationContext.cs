@@ -38,6 +38,7 @@ namespace VKR.EF.DAO
         public DbSet<Run> Runs { get; set; }
         public DbSet<Division> Divisions { get; set; }
         public DbSet<Manager> Managers { get; set; }
+        public DbSet<StadiumFactor> StadiumFactors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

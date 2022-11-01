@@ -55,5 +55,14 @@ namespace VKR.PL.NET5
 
             Visible = true;
         }
+
+        private void addStadium_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+            using (var form = new AddStadiumForm())
+                form.ShowDialog();
+
+            Visible = true;
+        }
     }
 }

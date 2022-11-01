@@ -20,5 +20,13 @@ namespace VKR.BLL.NET5
         public async Task<Stadium> GetHomeStadiumForThisTeamAndTypeOfMatch(Team team, TypeOfMatchEnum typeOfMatch) => 
             await _stadiumsDAO.GetHomeStadiumForThisTeamAndTypeOfMatchAsync(team.TeamAbbreviation, typeOfMatch)
                 .ConfigureAwait(false);
+
+        public async Task<ushort> GetIdForNewStadium() =>
+            await _stadiumsDAO.GetIdForNewStadium()
+                .ConfigureAwait(false);
+
+        public async Task AddNewStadium(Stadium stadium) =>
+            await _stadiumsDAO.AddNewStadium(stadium)
+                .ConfigureAwait(false);
     }
 }
