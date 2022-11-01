@@ -30,6 +30,7 @@
         {
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbHint = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtLastName
@@ -55,15 +56,24 @@
             this.label1.Size = new System.Drawing.Size(0, 17);
             this.label1.TabIndex = 91;
             // 
+            // lbHint
+            // 
+            this.lbHint.Font = new System.Drawing.Font("MicroFLF", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbHint.Location = new System.Drawing.Point(123, 29);
+            this.lbHint.Name = "lbHint";
+            this.lbHint.Size = new System.Drawing.Size(127, 15);
+            this.lbHint.TabIndex = 93;
+            // 
             // TextBoxWithHeader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lbHint);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "TextBoxWithHeader";
-            this.Size = new System.Drawing.Size(250, 26);
+            this.Size = new System.Drawing.Size(250, 46);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -73,5 +83,6 @@
 
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbHint;
     }
 }
