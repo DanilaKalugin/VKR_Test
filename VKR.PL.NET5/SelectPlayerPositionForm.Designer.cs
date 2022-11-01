@@ -36,6 +36,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCheck = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // txtPlayer
@@ -43,7 +44,7 @@
             this.txtPlayer.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtPlayer.Enabled = false;
             this.txtPlayer.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPlayer.Location = new System.Drawing.Point(141, 6);
+            this.txtPlayer.Location = new System.Drawing.Point(218, 6);
             this.txtPlayer.MaxLength = 35;
             this.txtPlayer.Name = "txtPlayer";
             this.txtPlayer.Size = new System.Drawing.Size(250, 26);
@@ -53,7 +54,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(12, 9);
+            this.label9.Location = new System.Drawing.Point(89, 9);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 17);
             this.label9.TabIndex = 89;
@@ -63,7 +64,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(12, 73);
+            this.label4.Location = new System.Drawing.Point(89, 73);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 17);
             this.label4.TabIndex = 88;
@@ -75,7 +76,7 @@
             this.cbPlaceOfBirth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPlaceOfBirth.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbPlaceOfBirth.FormattingEnabled = true;
-            this.cbPlaceOfBirth.Location = new System.Drawing.Point(141, 70);
+            this.cbPlaceOfBirth.Location = new System.Drawing.Point(218, 70);
             this.cbPlaceOfBirth.Name = "cbPlaceOfBirth";
             this.cbPlaceOfBirth.Size = new System.Drawing.Size(250, 25);
             this.cbPlaceOfBirth.TabIndex = 87;
@@ -85,7 +86,7 @@
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(141, 38);
+            this.textBox1.Location = new System.Drawing.Point(218, 38);
             this.textBox1.MaxLength = 35;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(250, 26);
@@ -95,7 +96,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 41);
+            this.label1.Location = new System.Drawing.Point(89, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 17);
             this.label1.TabIndex = 91;
@@ -106,7 +107,7 @@
             this.btnCheck.FlatAppearance.BorderSize = 0;
             this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheck.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(287, 101);
+            this.btnCheck.Location = new System.Drawing.Point(361, 101);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(107, 33);
             this.btnCheck.TabIndex = 93;
@@ -114,11 +115,21 @@
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(12, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(71, 107);
+            this.panel1.TabIndex = 94;
+            // 
             // SelectPlayerPositionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 146);
+            this.ClientSize = new System.Drawing.Size(480, 146);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
@@ -145,5 +156,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Panel panel1;
     }
 }
