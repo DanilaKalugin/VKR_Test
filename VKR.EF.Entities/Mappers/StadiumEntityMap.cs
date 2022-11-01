@@ -16,7 +16,8 @@ namespace VKR.EF.Entities.Mappers
             builder.Property(s => s.StadiumId)
                 .HasColumnType("smallint");
 
-            builder.Property(s => s.StadiumTitle).IsRequired()
+            builder.Property(s => s.StadiumTitle)
+                .IsRequired()
                 .HasMaxLength(75);
 
             builder.Property(s => s.StadiumCapacity)

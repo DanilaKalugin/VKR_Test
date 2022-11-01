@@ -603,7 +603,8 @@ namespace VKR.PL.NET5
         {
             timer1.Stop();
 
-            using (var form = new StandingsForm(_currentMatch.HomeTeam, _currentMatch.AwayTeam)) form.ShowDialog();
+            using (var form = new StandingsForm(_currentMatch.HomeTeam, _currentMatch.AwayTeam)) 
+                form.ShowDialog();
 
             if (_isAutoSimulation) timer1.Start();
         }
@@ -614,7 +615,8 @@ namespace VKR.PL.NET5
         {
             timer1.Stop();
 
-            using (var form = new ScheduleAndResultsForm(_currentMatch)) form.ShowDialog();
+            using (var form = new ScheduleAndResultsForm(_currentMatch)) 
+                form.ShowDialog();
 
             if (_isAutoSimulation) timer1.Start();
         }
@@ -623,7 +625,8 @@ namespace VKR.PL.NET5
         {
             timer1.Stop();
 
-            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players)) form.ShowDialog();
+            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players)) 
+                form.ShowDialog();
 
             if (_isAutoSimulation) timer1.Start();
         }
