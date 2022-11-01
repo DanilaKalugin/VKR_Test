@@ -510,6 +510,7 @@ namespace VKR.PL.NET5
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Starting lineups";
             this.Load += new System.EventHandler(this.LineupsForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.LineupsForm_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLineup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBench)).EndInit();
             this.ResumeLayout(false);

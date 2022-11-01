@@ -336,15 +336,16 @@ namespace VKR.PL.NET5
         {
             Visible = false;
 
-
-            using (var form = new AddPlayerForm(_player))
-            {
+            using (var form = new AddPlayerForm(_player)) 
                 form.ShowDialog();
-                if (form.DialogResult == DialogResult.OK)
-                    await FillTables();
-            }
 
             Visible = true;
+        }
+
+        private async void LineupsForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!Visible) return;
+            await FillTables();
         }
     }
 }

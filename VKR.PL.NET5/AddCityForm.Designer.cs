@@ -32,7 +32,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cbPlaceOfBirth = new System.Windows.Forms.ComboBox();
             this.btnCheck = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.txtCityName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.SuspendLayout();
             // 
@@ -40,7 +39,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(12, 47);
+            this.label4.Location = new System.Drawing.Point(12, 67);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 17);
             this.label4.TabIndex = 77;
@@ -53,7 +52,7 @@
             this.cbPlaceOfBirth.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbPlaceOfBirth.FormattingEnabled = true;
             this.cbPlaceOfBirth.IntegralHeight = false;
-            this.cbPlaceOfBirth.Location = new System.Drawing.Point(115, 44);
+            this.cbPlaceOfBirth.Location = new System.Drawing.Point(115, 64);
             this.cbPlaceOfBirth.Name = "cbPlaceOfBirth";
             this.cbPlaceOfBirth.Size = new System.Drawing.Size(351, 25);
             this.cbPlaceOfBirth.TabIndex = 76;
@@ -66,7 +65,7 @@
             this.btnCheck.FlatAppearance.BorderSize = 0;
             this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheck.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(359, 75);
+            this.btnCheck.Location = new System.Drawing.Point(359, 95);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(107, 33);
             this.btnCheck.TabIndex = 84;
@@ -74,27 +73,16 @@
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
-            // btnClose
-            // 
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClose.Location = new System.Drawing.Point(359, 75);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(107, 33);
-            this.btnClose.TabIndex = 108;
-            this.btnClose.Text = "CLOSE";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // txtCityName
             // 
             this.txtCityName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtCityName.Header = "City name";
             this.txtCityName.Location = new System.Drawing.Point(12, 12);
+            this.txtCityName.MaxLength = ((ushort)(50));
+            this.txtCityName.MayIncludeNumbers = false;
             this.txtCityName.Name = "txtCityName";
             this.txtCityName.ReadOnlyControl = false;
-            this.txtCityName.Size = new System.Drawing.Size(454, 26);
+            this.txtCityName.Size = new System.Drawing.Size(454, 46);
             this.txtCityName.TabIndex = 109;
             this.txtCityName.Value = null;
             this.txtCityName.ValuePosition = ((ushort)(103));
@@ -104,9 +92,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 120);
+            this.ClientSize = new System.Drawing.Size(478, 140);
             this.Controls.Add(this.txtCityName);
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbPlaceOfBirth);
@@ -128,7 +115,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbPlaceOfBirth;
         private System.Windows.Forms.Button btnCheck;
-        private System.Windows.Forms.Button btnClose;
         private Controls.NET5.TextBoxWithHeader txtCityName;
     }
 }

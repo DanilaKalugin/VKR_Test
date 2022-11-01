@@ -25,7 +25,7 @@ namespace VKR.PL.NET5
             if (!ValidateChildren()) return;
 
             await _citiesBl.AddCityAsync(_city);
-            btnClose.Visible = true;
+            DialogResult = DialogResult.OK;
         }
 
         private async void AddCityForm_Load(object sender, EventArgs e)
@@ -35,8 +35,6 @@ namespace VKR.PL.NET5
             cbPlaceOfBirth.DataSource = _regions;
             cbPlaceOfBirth.DisplayMember = "RegionLocation";
         }
-
-        private void btnClose_Click(object sender, EventArgs e) => DialogResult = DialogResult.OK;
 
         private void cbPlaceOfBirth_Validating(object sender, CancelEventArgs e)
         {
@@ -50,13 +48,8 @@ namespace VKR.PL.NET5
                 cbPlaceOfBirth.BackColor = Color.WhiteSmoke;
                 e.Cancel = false;
             }
-            btnClose.Visible = false;
         }
 
-        private void txtCityName_Validated(object sender, EventArgs e)
-        {
-            _city.Name = txtCityName.Value;
-            btnClose.Visible = false;
-        }
+        private void txtCityName_Validated(object sender, EventArgs e) => _city.Name = txtCityName.Value;
     }
 }

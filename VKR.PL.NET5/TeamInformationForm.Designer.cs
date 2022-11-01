@@ -516,7 +516,7 @@
             this.Name = "TeamInformationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Team information";
-            this.Load += new System.EventHandler(this.TeamEditingForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.TeamInformationForm_VisibleChanged);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);

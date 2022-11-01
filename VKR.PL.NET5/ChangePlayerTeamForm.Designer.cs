@@ -370,6 +370,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChangePlayerTeamForm";
             this.Load += new System.EventHandler(this.ChangePlayerTeamForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.ChangePlayerTeamForm_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

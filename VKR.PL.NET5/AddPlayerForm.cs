@@ -24,8 +24,6 @@ namespace VKR.PL.NET5
         private AddPlayerForm()
         {
             InitializeComponent();
-            lbRewards.DataSource = _positions;
-            lbRewards.DisplayMember = "FullTitle";
 
             dtpBirthDate.MaxDate = DateTime.Today.AddYears(-16);
             dtpBirthDate.MinDate = DateTime.Today.AddYears(-100);
@@ -61,65 +59,49 @@ namespace VKR.PL.NET5
         private void cbThrowLeft_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbThrowLeft.Checked) return;
-
             _player.PlayerPitchingHand = PitchingHandEnum.Left;
-            btnClose.Visible = false;
         }
 
         private void cbThrowRight_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbThrowRight.Checked) return;
-
             _player.PlayerPitchingHand = PitchingHandEnum.Right;
-            btnClose.Visible = false;
         }
 
         private void cbBattingLeft_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbBattingLeft.Checked) return;
-
             _player.PlayerBattingHand = BattingHandEnum.Left;
-            btnClose.Visible = false;
         }
 
         private void cbBattingRight_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbBattingRight.Checked) return;
-
             _player.PlayerBattingHand = BattingHandEnum.Right;
-            btnClose.Visible = false;
         }
 
         private void cbBattingSwitch_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbBattingSwitch.Checked) return;
-
+            if (!cbBattingSwitch.Checked) return;
             _player.PlayerBattingHand = BattingHandEnum.Switch;
-            btnClose.Visible = false;
         }
 
         private void numPlayerNumber_ValueChanged(object sender, EventArgs e)
         {
             if (_player is null) return;
-
             _player.PlayerNumber = (byte)numPlayerNumber.Value;
-            btnClose.Visible = false;
         }
 
         private void dtpBirthDate_ValueChanged(object sender, EventArgs e)
         {
             if (_player is null) return;
-
             _player.DateOfBirth = dtpBirthDate.Value;
-            btnClose.Visible = false;
         }
 
         private void cbPlaceOfBirth_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_player is null) return;
-
             _player.City = cbPlaceOfBirth.SelectedItem as City;
-            btnClose.Visible = false;
         }
 
         private void lbRewards_Validated(object sender, EventArgs e)
@@ -130,8 +112,6 @@ namespace VKR.PL.NET5
                 var item = lbRewards.CheckedIndices[index];
                 _player?.Positions.Add(_positions[item]);
             }
-
-            btnClose.Visible = false;
         }
 
         private async void btnCheck_Click(object sender, EventArgs e)
@@ -142,13 +122,12 @@ namespace VKR.PL.NET5
                 await _playersBl.AddPlayer(_player);
             else await _playersBl.UpdatePlayer(_player);
 
-            btnClose.Visible = true;
+            DialogResult = DialogResult.OK;
         }
 
         private async void AddPlayerForm_Load(object sender, EventArgs e)
         {
             await FillCitiesTable();
-            cbPlaceOfBirth.DisplayMember = "CityLocation";
 
             _positions = await _playerPositionsBl.GetAvailablePlayerPositions();
             lbRewards.DataSource = _positions;
@@ -170,12 +149,8 @@ namespace VKR.PL.NET5
         {
             Visible = false;
 
-            using (var form = new AddCityForm())
-            {
+            using (var form = new AddCityForm()) 
                 form.ShowDialog();
-                if (form.DialogResult == DialogResult.OK)
-                    await FillCitiesTable();
-            }
 
             Visible = true;
         }
@@ -212,20 +187,17 @@ namespace VKR.PL.NET5
         {
             _cities = await _citiesBl.GetAllCitiesAsync();
             cbPlaceOfBirth.DataSource = _cities;
+            cbPlaceOfBirth.DisplayMember = "CityLocation";
         }
 
-        private void btnClose_Click(object sender, EventArgs e) => DialogResult = DialogResult.OK;
+        private void txtFirstName_Validated(object sender, EventArgs e) => _player.FirstName = txtFirstName.Value;
 
-        private void txtFirstName_Validated(object sender, EventArgs e)
-        {
-            _player.FirstName = txtFirstName.Value;
-            btnClose.Visible = false;
-        }
+        private void txtLastName_Validated(object sender, EventArgs e) => _player.SecondName = txtLastName.Value;
 
-        private void txtLastName_Validated(object sender, EventArgs e)
+        private async void AddPlayerForm_VisibleChanged(object sender, EventArgs e)
         {
-            _player.SecondName = txtLastName.Value;
-            btnClose.Visible = false;
+            if (!Visible) return;
+            await FillCitiesTable();
         }
     }
 }

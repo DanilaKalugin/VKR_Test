@@ -18,17 +18,7 @@ namespace VKR.PL.NET5
         private List<TeamColor> _primaryColor;
         private int _teamNumber;
 
-        public TeamInformationForm()
-        {
-            InitializeComponent();
-            _teamNumber = 0;
-        }
-
-        private async void TeamEditingForm_Load(object sender, EventArgs e)
-        {
-            await FillTeamsAndColors();
-            ShowTeam();
-        }
+        public TeamInformationForm() => InitializeComponent();
 
         private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {
@@ -93,16 +83,11 @@ namespace VKR.PL.NET5
 
         private async void btnEditTeamMainInfo_Click(object sender, EventArgs e)
         {
+            Visible = false;
             var team = _teams[_teamNumber];
 
-            Visible = false;
-
             using (var form = new EditTeamForm(team))
-            {
                 form.ShowDialog();
-                if (form.DialogResult == DialogResult.OK)
-                    await FillTeamsAndColors();
-            }
 
             Visible = true;
         }
@@ -115,6 +100,13 @@ namespace VKR.PL.NET5
             await Task.WhenAll(teamsTask, primaryColorsTask);
 
             (_teams, _primaryColor) = (teamsTask.Result, primaryColorsTask.Result);
+        }
+
+        private async void TeamInformationForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!Visible) return;
+
+            await FillTeamsAndColors();
             ShowTeam();
         }
     }

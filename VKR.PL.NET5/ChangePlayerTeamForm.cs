@@ -114,27 +114,19 @@ namespace VKR.PL.NET5
             FillSecondTable(_players);
         }
 
-        private async void btnUpdatePlayer_Click(object sender, EventArgs e)
+        private void btnUpdatePlayer_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new AddPlayerForm(_currentPlayer))
-            {
+            using (var form = new AddPlayerForm(_currentPlayer)) 
                 form.ShowDialog();
-                if (form.DialogResult == DialogResult.OK)
-                    await FillTables();
-            }
             Visible = true;
         }
 
-        private async void btnAddPlayer_Click(object sender, EventArgs e)
+        private void btnAddPlayer_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new AddPlayerForm(true))
-            {
+            using (var form = new AddPlayerForm(true)) 
                 form.ShowDialog();
-                if (form.DialogResult == DialogResult.OK)
-                    await FillTables();
-            }
             Visible = true;
         }
 
@@ -162,11 +154,11 @@ namespace VKR.PL.NET5
             FillSecondTable(_players);
         }
 
-        private async void ChangePlayerTeamForm_Load(object sender, EventArgs e)
-        {
-            _teams = await _teamsBL.GetListAsync();
+        private async void ChangePlayerTeamForm_Load(object sender, EventArgs e) => _teams = await _teamsBL.GetListAsync();
 
-            _teamNumber = 0;
+        private async void ChangePlayerTeamForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!Visible) return;
             await FillTables();
         }
     }

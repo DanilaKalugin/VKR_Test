@@ -38,12 +38,6 @@ namespace VKR.PL.NET5
             Text = $"Updating {team.TeamCity} {team.TeamName}";
         }
 
-        private async void EditTeamForm_Load(object sender, EventArgs e)
-        {
-            await FillLists();
-            ShowTeamInfo();
-        }
-
         private void ShowTeamInfo()
         {
             txtId.Value = _team.TeamAbbreviation;
@@ -57,7 +51,7 @@ namespace VKR.PL.NET5
             var manager = _managers.FirstOrDefault(m => m.Id == _teamManager);
             cbManager.SelectedItem = manager;
 
-            numFoundationYear.Value = (decimal?)_team.FoundationYear ?? 1850;
+            numFoundationYear.Value = _team.FoundationYear;
         }
 
         private async Task FillLists()
@@ -74,6 +68,8 @@ namespace VKR.PL.NET5
 
             cbManager.DataSource = _managers;
             cbManager.DisplayMember = "FullName";
+
+            ShowTeamInfo();
         }
 
         private void cbDivision_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,10 +79,7 @@ namespace VKR.PL.NET5
             lbLeague.Text = division?.League.LeagueTitle;
         }
 
-        private void cbManager_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _team.Manager = cbManager.SelectedItem as Manager;
-        }
+        private void cbManager_SelectedIndexChanged(object sender, EventArgs e) => _team.Manager = cbManager.SelectedItem as Manager;
 
         private void btnFireManager_Click(object sender, EventArgs e)
         {
@@ -97,35 +90,41 @@ namespace VKR.PL.NET5
         private async void btnCheck_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren()) return;
-            
             await _teamsBl.UpdateTeam(_team);
-            btnClose.Visible = true;
+            DialogResult = DialogResult.OK;
         }
-
-        private void btnClose_Click(object sender, EventArgs e) => DialogResult = DialogResult.OK;
 
         private void numFoundationYear_ValueChanged(object sender, EventArgs e)
         {
             if (_team is null) return;
-
             _team.FoundationYear = (ushort)numFoundationYear.Value;
-            btnClose.Visible = false;
         }
 
         private void txtRegion_Validated(object sender, EventArgs e)
         {
             if (_team is null) return;
-
             _team.TeamCity = txtRegion.Value;
-            btnClose.Visible = false;
         }
 
         private void txtTeamName_Validated(object sender, EventArgs e)
         {
             if (_team is null) return;
-
             _team.TeamName = txtTeamName.Value;
-            btnClose.Visible = false;
+        }
+
+        private void btnAddManager_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+            using (var form = new AddManagerForm()) 
+                form.ShowDialog();
+
+            Visible = true;
+        }
+
+        private async void EditTeamForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!Visible) return;
+            await FillLists();
         }
     }
 }

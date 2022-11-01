@@ -31,27 +31,21 @@ namespace VKR.PL.NET5
         {
             _cities = await _citiesBl.GetAllCitiesAsync();
             cbPlaceOfBirth.DataSource = _cities;
+            cbPlaceOfBirth.DisplayMember = "CityLocation";
         }
 
         private async void AddManagerForm_Load(object sender, EventArgs e)
         {
-            await FillCitiesTable();
-            cbPlaceOfBirth.DisplayMember = "CityLocation";
-
             _manager.Id = await _managersBl.GetIdForNewManager();
             txtId.Value = _manager?.Id.ToString();
         }
 
-        private async void btnAddCity_Click(object sender, EventArgs e)
+        private void btnAddCity_Click(object sender, EventArgs e)
         {
             Visible = false;
 
-            using (var form = new AddCityForm())
-            {
+            using (var form = new AddCityForm()) 
                 form.ShowDialog();
-                if (form.DialogResult == DialogResult.OK)
-                    await FillCitiesTable();
-            }
 
             Visible = true;
         }
@@ -68,7 +62,6 @@ namespace VKR.PL.NET5
                 cbPlaceOfBirth.BackColor = Color.WhiteSmoke;
                 e.Cancel = false;
             }
-            btnClose.Visible = false;
         }
 
         private void dtpBirthDate_Validating(object sender, CancelEventArgs e)
@@ -83,7 +76,6 @@ namespace VKR.PL.NET5
                 dtpBirthDate.BackColor = Color.WhiteSmoke;
                 e.Cancel = false;
             }
-            btnClose.Visible = false;
         }
 
         private void cbPlaceOfBirth_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,7 +89,7 @@ namespace VKR.PL.NET5
             if (!ValidateChildren()) return;
 
             await _managersBl.AddManager(_manager);
-            btnClose.Visible = true;
+            DialogResult = DialogResult.OK;
         }
 
         private void dtpBirthDate_ValueChanged(object sender, EventArgs e)
@@ -107,18 +99,14 @@ namespace VKR.PL.NET5
             _manager.DateOfBirth = dtpBirthDate.Value.Date;
         }
 
-        private void btnClose_Click(object sender, EventArgs e) => Close();
+        private void txtFirstName_Validated(object sender, EventArgs e) => _manager.FirstName = txtFirstName.Value;
 
-        private void txtFirstName_Validated(object sender, EventArgs e)
-        {
-            _manager.FirstName = txtFirstName.Value;
-            btnClose.Visible = false;
-        }
+        private void txtLastName_Validated_1(object sender, EventArgs e) => _manager.SecondName = txtLastName.Value;
 
-        private void txtLastName_Validated_1(object sender, EventArgs e)
+        private async void AddManagerForm_VisibleChanged(object sender, EventArgs e)
         {
-            _manager.SecondName = txtLastName.Value;
-            btnClose.Visible = false;
+            if (!Visible) return;
+            await FillCitiesTable();
         }
     }
 }
