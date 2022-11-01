@@ -89,7 +89,7 @@ namespace VKR.EF.DAO
             teamDb.TeamAbbreviation = team.TeamAbbreviation;
             teamDb.TeamCity = team.TeamCity;
             teamDb.TeamName = team.TeamName;
-            teamDb.DivisionId = team.DivisionId;
+            teamDb.DivisionId = team.Division.Id;
             teamDb.TeamManager = team.Manager?.Id;
             teamDb.FoundationYear = team.FoundationYear;
 
