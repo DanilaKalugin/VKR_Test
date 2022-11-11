@@ -342,6 +342,12 @@
     <None Update="Images\Managers\Manager038.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Images\Managers\Manager039.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\Managers\Manager040.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\PlayerPhotos\Player0001.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
