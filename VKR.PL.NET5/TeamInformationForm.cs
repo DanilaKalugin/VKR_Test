@@ -83,10 +83,10 @@ namespace VKR.PL.NET5
 
         private void ShowTeamStadiums(Team team)
         {
-            dataGridView1.Rows.Clear();
+            dgvStadiums.Rows.Clear();
 
             foreach (var stadium in team.StadiumsForMatchTypes)
-                dataGridView1.Rows.Add(stadium.TypeOfMatchId, stadium.Stadium.StadiumTitle);
+                dgvStadiums.Rows.Add(stadium.TypeOfMatchId, stadium.Stadium.StadiumTitle);
         }
 
         private void btnDecreaseTeamNumberBy1_Click(object sender, EventArgs e)
@@ -98,7 +98,7 @@ namespace VKR.PL.NET5
 
         private void btnClose_Click(object sender, EventArgs e) => Close();
 
-        private async void btnEditTeamMainInfo_Click(object sender, EventArgs e)
+        private void btnEditTeamMainInfo_Click(object sender, EventArgs e)
         {
             Visible = false;
             var team = _teams[_teamNumber];

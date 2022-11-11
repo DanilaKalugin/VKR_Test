@@ -145,7 +145,7 @@ namespace VKR.PL.NET5
             btnCheck.Text = _addingPlayer ? "ADD" : "UPDATE";
         }
 
-        private async void btnAddCity_Click(object sender, EventArgs e)
+        private void btnAddCity_Click(object sender, EventArgs e)
         {
             Visible = false;
 

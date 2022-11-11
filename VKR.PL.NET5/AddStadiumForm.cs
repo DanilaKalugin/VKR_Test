@@ -72,7 +72,7 @@ namespace VKR.PL.NET5
             _stadium.StadiumDistanceToCenterfield = (ushort)numMaxWidth.Value;
         }
 
-        private async void btnAddCity_Click(object sender, EventArgs e)
+        private void btnAddCity_Click(object sender, EventArgs e)
         {
             Visible = false;
 

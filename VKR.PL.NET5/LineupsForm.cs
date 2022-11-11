@@ -330,7 +330,7 @@ namespace VKR.PL.NET5
             return form.DialogResult == DialogResult.OK ? form.Position : null;
         }
 
-        private async void btnUpdatePlayer_Click(object sender, EventArgs e)
+        private void btnUpdatePlayer_Click(object sender, EventArgs e)
         {
             Visible = false;
 

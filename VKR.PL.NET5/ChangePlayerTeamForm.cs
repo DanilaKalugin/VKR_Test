@@ -86,6 +86,10 @@ namespace VKR.PL.NET5
 
         private async Task FillTables()
         {
+            Opacity = 0;
+            var f = new LoadingForm();
+            f.TopMost = true;
+            f.Show();
             _allPlayers = await _rostersBl.GetAllPlayers();
             _players = _allPlayers.ToList();
 
@@ -94,6 +98,8 @@ namespace VKR.PL.NET5
 
             TeamChanged(_teamNumber);
             FillSecondTable(_allPlayers);
+            f.Dispose();
+            Opacity = 1;
         }
 
         private void FillSecondTable(IEnumerable<PlayerInLineupViewModel> players)

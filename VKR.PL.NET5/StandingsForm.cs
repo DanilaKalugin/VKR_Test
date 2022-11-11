@@ -12,10 +12,10 @@ namespace VKR.PL.NET5
 {
     public partial class StandingsForm : Form
     {
-        private readonly MatchBL _matchBL = new();
+        private readonly MatchBL _matchBl = new();
         private readonly StandingsBL _standingsBl = new();
         private readonly PrimaryTeamColorBL _primaryColorBl = new();
-        private readonly SeasonBL _seasonBL = new();
+        private readonly SeasonBL _seasonBl = new();
 
         private readonly Team? _homeTeam;
         private readonly Team? _awayTeam;
@@ -128,15 +128,15 @@ namespace VKR.PL.NET5
 
         private async void StandingsForm_Load(object sender, EventArgs e)
         {
-            _seasons = await _seasonBL.GetAllSeasonsAsync();
+            _seasons = await _seasonBl.GetAllSeasonsAsync();
             cbSeasons.DataSource = _seasons;
             cbSeasons.DisplayMember = "Year";
 
-            _season = await _seasonBL.GetCurrentSeason();
-            _leagueSeason = await _seasonBL.GetLeagueSeasonInfo(_season.Year);
+            _season = await _seasonBl.GetCurrentSeason();
+            _leagueSeason = await _seasonBl.GetLeagueSeasonInfo(_season.Year);
             ChangeMaxAndMinDateForThisSeason(_leagueSeason);
 
-            var matchDate = await _matchBL.GetMaxDateForAllMatchesAsync();
+            var matchDate = await _matchBl.GetMaxDateForAllMatchesAsync();
             cbSeasons.SelectedItem = _seasons.FirstOrDefault(year => year.Year == matchDate.Year);
 
             dtpStandingsDate.Value = matchDate;
@@ -147,7 +147,7 @@ namespace VKR.PL.NET5
         private async void cbSeasons_SelectedIndexChanged(object sender, EventArgs e)
         {
             var season = cbSeasons.SelectedValue as Season;
-            var leagueSeason = await _seasonBL.GetLeagueSeasonInfo(season.Year);
+            var leagueSeason = await _seasonBl.GetLeagueSeasonInfo(season.Year);
 
             ChangeMaxAndMinDateForThisSeason(leagueSeason);
         }
