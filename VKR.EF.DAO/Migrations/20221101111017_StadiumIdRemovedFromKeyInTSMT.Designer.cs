@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKR.EF.DAO;
 
 namespace VKR.EF.DAO.Migrations
 {
     [DbContext(typeof(VKRApplicationContext))]
-    partial class VKRApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221101111017_StadiumIdRemovedFromKeyInTSMT")]
+    partial class StadiumIdRemovedFromKeyInTSMT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1130,34 +1132,6 @@ namespace VKR.EF.DAO.Migrations
                     b.ToTable("Regions");
                 });
 
-            modelBuilder.Entity("VKR.EF.Entities.RetiredNumber", b =>
-                {
-                    b.Property<short>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<byte>("Number")
-                        .HasColumnType("tinyint");
-
-                    b.Property<string>("Person")
-                        .IsRequired()
-                        .HasMaxLength(75)
-                        .HasColumnType("nvarchar(75)");
-
-                    b.Property<string>("TeamId")
-                        .HasColumnType("nvarchar(3)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("RetiredNumbers");
-                });
-
             modelBuilder.Entity("VKR.EF.Entities.Run", b =>
                 {
                     b.Property<long>("Id")
@@ -2144,16 +2118,6 @@ namespace VKR.EF.DAO.Migrations
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("VKR.EF.Entities.RetiredNumber", b =>
-                {
-                    b.HasOne("VKR.EF.Entities.Team", "Team")
-                        .WithMany("RetiredNumbers")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Team");
-                });
-
             modelBuilder.Entity("VKR.EF.Entities.Run", b =>
                 {
                     b.HasOne("VKR.EF.Entities.Match", "Match")
@@ -2436,8 +2400,6 @@ namespace VKR.EF.DAO.Migrations
                     b.Navigation("NextHomeMatches");
 
                     b.Navigation("PlayersInTeam");
-
-                    b.Navigation("RetiredNumbers");
 
                     b.Navigation("StadiumsForMatchTypes");
 

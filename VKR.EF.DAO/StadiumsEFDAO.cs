@@ -66,5 +66,22 @@ namespace VKR.EF.DAO
             await db.SaveChangesAsync()
                 .ConfigureAwait(false);
         }
+
+        public async Task UpdateStadiumForThisTeamAndMatchType(TeamStadiumForTypeOfMatch tsmt)
+        {
+            await using var db = new VKRApplicationContext();
+
+            var teamStadiumForMatchType = await db.TeamStadiumForTypeOfMatch.FirstOrDefaultAsync(t => t.TypeOfMatchId == tsmt.TypeOfMatchId 
+                    && t.TeamAbbreviation == tsmt.TeamAbbreviation)
+                .ConfigureAwait(false);
+
+            if (teamStadiumForMatchType == null) return;
+
+            teamStadiumForMatchType.StadiumId = tsmt.StadiumId;
+
+            db.TeamStadiumForTypeOfMatch.Update(teamStadiumForMatchType);
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
+        }
     }
 }

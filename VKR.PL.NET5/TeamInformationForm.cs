@@ -109,5 +109,22 @@ namespace VKR.PL.NET5
             await FillTeamsAndColors();
             ShowTeam();
         }
+
+        private void btnEditTSMT_Click(object sender, EventArgs e)
+        {
+            if (dgvStadiums.SelectedRows.Count != 1) return;
+
+            var rowIndex = dgvStadiums.SelectedRows[0].Index;
+            var tsmt = _teams[_teamNumber].StadiumsForMatchTypes[rowIndex];
+
+            if (tsmt == null) return;
+
+            Visible = false;
+
+            using (var form = new SetStadiumForMatchTypeAndTeam(tsmt))
+                form.ShowDialog();
+
+            Visible = true;
+        }
     }
 }

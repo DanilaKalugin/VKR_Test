@@ -52,5 +52,12 @@ namespace VKR.BLL.NET5
         public async Task UpdateTeam(Team team) => 
             await _teamsEF.UpdateTeam(team)
                 .ConfigureAwait(false);
+
+        public async Task<List<RetiredNumber>> GetRetiredNumbersForThisTeam(Team team)
+        {
+            var numbers = await _teamsEF.GetRetiredNumbersForThisTeam(team)
+                .ConfigureAwait(false);
+            return numbers.OrderBy(rn => rn.Number).ToList();
+        }
     }
 }

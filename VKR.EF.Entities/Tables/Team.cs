@@ -56,6 +56,8 @@ namespace VKR.EF.Entities
         public TeamBattingStats BattingStats;
         public TeamPitchingStats PitchingStats;
 
+        public string FullTeamName => $"{TeamCity} {TeamName}";
+
         public Team SetTeamBalance(TeamBalance balance)
         {
             HomeWins = balance.HomeWins;

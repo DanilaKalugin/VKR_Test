@@ -28,5 +28,9 @@ namespace VKR.BLL.NET5
         public async Task AddNewStadium(Stadium stadium) =>
             await _stadiumsDAO.AddNewStadium(stadium)
                 .ConfigureAwait(false);
+
+        public async Task UpdateStadiumForThisTeamAndMatchType(TeamStadiumForTypeOfMatch tsmt) =>
+            await _stadiumsDAO.UpdateStadiumForThisTeamAndMatchType(tsmt)
+                .ConfigureAwait(false);
     }
 }
