@@ -39,11 +39,19 @@ namespace VKR.EF.DAO
         public DbSet<Division> Divisions { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<StadiumFactor> StadiumFactors { get; set; }
+        public DbSet<RetiredNumber> RetiredNumbers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = GetConnectionString();
-            optionsBuilder.UseSqlServer(connectionString);
+            try
+            {
+                var connectionString = GetConnectionString();
+                optionsBuilder.UseSqlServer(connectionString);
+            }
+            catch
+            {
+                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
+            }
         }
 
         public static string GetConnectionString()
@@ -88,6 +96,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.LeagueSeasonEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RunEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StadiumFactorEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.RetiredNumberEntityMap());
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());

@@ -31,6 +31,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamInformationForm));
             this.btnDecreaseTeamNumberBy1 = new System.Windows.Forms.Button();
             this.btnIncreaseTeamNumberBy1 = new System.Windows.Forms.Button();
@@ -63,16 +66,24 @@
             this.lbManagerDateOfBirth = new System.Windows.Forms.Label();
             this.pbManagerPhoto = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnEditTSMT = new System.Windows.Forms.Button();
+            this.dgvStadiums = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stadium = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnClose = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dgvRetiredNumbers = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStadiums)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRetiredNumbers)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDecreaseTeamNumberBy1
@@ -275,6 +286,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -420,7 +432,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Gainsboro;
-            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Controls.Add(this.btnEditTSMT);
+            this.tabPage2.Controls.Add(this.dgvStadiums);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -428,17 +441,30 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stadiums";
             // 
-            // dataGridView1
+            // btnEditTSMT
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
+            this.btnEditTSMT.FlatAppearance.BorderSize = 0;
+            this.btnEditTSMT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditTSMT.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnEditTSMT.Location = new System.Drawing.Point(586, 261);
+            this.btnEditTSMT.Name = "btnEditTSMT";
+            this.btnEditTSMT.Size = new System.Drawing.Size(100, 41);
+            this.btnEditTSMT.TabIndex = 101;
+            this.btnEditTSMT.Text = "EDIT";
+            this.btnEditTSMT.UseVisualStyleBackColor = true;
+            this.btnEditTSMT.Click += new System.EventHandler(this.btnEditTSMT_Click);
+            // 
+            // dgvStadiums
+            // 
+            this.dgvStadiums.AllowUserToAddRows = false;
+            this.dgvStadiums.AllowUserToDeleteRows = false;
+            this.dgvStadiums.AllowUserToResizeColumns = false;
+            this.dgvStadiums.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvStadiums.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvStadiums.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvStadiums.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgvStadiums.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -446,9 +472,9 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvStadiums.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvStadiums.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStadiums.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Stadium});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -458,18 +484,18 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(686, 150);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvStadiums.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvStadiums.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgvStadiums.EnableHeadersVisualStyles = false;
+            this.dgvStadiums.GridColor = System.Drawing.Color.Gainsboro;
+            this.dgvStadiums.Location = new System.Drawing.Point(3, 3);
+            this.dgvStadiums.Name = "dgvStadiums";
+            this.dgvStadiums.ReadOnly = true;
+            this.dgvStadiums.RowHeadersVisible = false;
+            this.dgvStadiums.RowTemplate.Height = 25;
+            this.dgvStadiums.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvStadiums.Size = new System.Drawing.Size(686, 150);
+            this.dgvStadiums.TabIndex = 0;
             // 
             // Column1
             // 
@@ -501,6 +527,85 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabPage3.Controls.Add(this.dgvRetiredNumbers);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(692, 308);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Retired numbers";
+            // 
+            // dgvRetiredNumbers
+            // 
+            this.dgvRetiredNumbers.AllowUserToAddRows = false;
+            this.dgvRetiredNumbers.AllowUserToDeleteRows = false;
+            this.dgvRetiredNumbers.AllowUserToResizeColumns = false;
+            this.dgvRetiredNumbers.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
+            this.dgvRetiredNumbers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvRetiredNumbers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRetiredNumbers.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgvRetiredNumbers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRetiredNumbers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvRetiredNumbers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRetiredNumbers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.Column2});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRetiredNumbers.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvRetiredNumbers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgvRetiredNumbers.EnableHeadersVisualStyles = false;
+            this.dgvRetiredNumbers.GridColor = System.Drawing.Color.Gainsboro;
+            this.dgvRetiredNumbers.Location = new System.Drawing.Point(3, 3);
+            this.dgvRetiredNumbers.Name = "dgvRetiredNumbers";
+            this.dgvRetiredNumbers.ReadOnly = true;
+            this.dgvRetiredNumbers.RowHeadersVisible = false;
+            this.dgvRetiredNumbers.RowTemplate.Height = 25;
+            this.dgvRetiredNumbers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRetiredNumbers.Size = new System.Drawing.Size(686, 150);
+            this.dgvRetiredNumbers.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 29.30221F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Number";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 209.7841F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Person";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 60.9137F;
+            this.Column2.HeaderText = "Date";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // TeamInformationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -523,7 +628,9 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStadiums)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRetiredNumbers)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -552,7 +659,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvStadiums;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stadium;
         private System.Windows.Forms.Panel pbManagerPhoto;
@@ -565,5 +672,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnEditTSMT;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView dgvRetiredNumbers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

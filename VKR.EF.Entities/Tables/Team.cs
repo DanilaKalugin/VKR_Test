@@ -24,6 +24,7 @@ namespace VKR.EF.Entities
         public virtual List<MatchFromSchedule> NextHomeMatches { get; set; } = new();
         public virtual List<MatchResult> MatchWinners { get; set; } = new();
         public virtual List<MatchResult> MatchLosers { get; set; } = new();
+        public virtual List<RetiredNumber> RetiredNumbers { get; set; } = new();
         public TeamRating TeamRating { get; set; }
 
         public int HomeWins;

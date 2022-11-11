@@ -97,5 +97,15 @@ namespace VKR.EF.DAO
             await db.SaveChangesAsync()
                 .ConfigureAwait(false);
         }
+
+        public async Task<List<RetiredNumber>> GetRetiredNumbersForThisTeam(Team team)
+        {
+            await using var db = new VKRApplicationContext();
+
+            return await db.RetiredNumbers
+                .Where(rn => rn.TeamId == team.TeamAbbreviation || rn.TeamId == null)
+                .ToListAsync()
+                .ConfigureAwait(false);
+        }
     }
 }

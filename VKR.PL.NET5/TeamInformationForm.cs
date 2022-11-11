@@ -32,14 +32,20 @@ namespace VKR.PL.NET5
             var team = _teams[_teamNumber];
 
             ShowTeamStadiums(team);
+            ShowRetiredNumbers(team);
 
             var teamColor = _primaryColor.FirstOrDefault(pc => pc.TeamName == team.TeamAbbreviation)!.Color;
 
             lbTeamTitle.BackColor = teamColor;
             btnIncreaseTeamNumberBy1.ForeColor = teamColor;
             btnDecreaseTeamNumberBy1.ForeColor = teamColor;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = teamColor;
-            dataGridView1.AlternatingRowsDefaultCellStyle.SelectionBackColor = teamColor;
+
+            dgvStadiums.DefaultCellStyle.SelectionBackColor = teamColor;
+            dgvStadiums.AlternatingRowsDefaultCellStyle.SelectionBackColor = teamColor;
+
+            dgvRetiredNumbers.DefaultCellStyle.SelectionBackColor = teamColor;
+            dgvRetiredNumbers.AlternatingRowsDefaultCellStyle.SelectionForeColor = teamColor;
+
             lbManagerHeader.ForeColor = teamColor;
 
             lbTeamTitle.Text = team.TeamName;
@@ -54,6 +60,17 @@ namespace VKR.PL.NET5
             pbSubstitutionLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogosForSubstitution/{team.TeamAbbreviation}.png");
 
             ShowManager(team.Manager);
+        }
+
+        private async Task ShowRetiredNumbers(Team team)
+        {
+            var retiredNumbers = await _teamsBl.GetRetiredNumbersForThisTeam(team);
+
+            dgvRetiredNumbers.Rows.Clear();
+
+            foreach (var retiredNumber in retiredNumbers)
+                dgvRetiredNumbers.Rows.Add(retiredNumber.Number, retiredNumber.Person,
+                    retiredNumber.Date.ToShortDateString());
         }
 
         private void ShowManager(Manager? teamManager)
