@@ -105,7 +105,7 @@ namespace VKR.EF.DAO
 
         public async Task<int> GetPitcherStamina(uint pitcherId, DateTime matchDate)
         {
-            using var db = new VKRApplicationContext();
+            await using var db = new VKRApplicationContext();
             return await db.Players.Where(p => p.Id == pitcherId)
                 .Select(p => db.GetStaminaForThisPitcher(pitcherId, matchDate))
                 .FirstAsync()
