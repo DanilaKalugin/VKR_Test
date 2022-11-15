@@ -76,5 +76,9 @@ namespace VKR.BLL.NET5
                 .OrderByDescending(n => n)
                 .ToList();
         }
+
+        public async Task AddNewRetiredNumberAsync(RetiredNumber newRetiredNumber) =>
+            await _teamsEF.AddNewRetiredNumberAsync(newRetiredNumber)
+                .ConfigureAwait(false);
     }
 }

@@ -71,6 +71,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stadium = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnAddRetiredNumber = new System.Windows.Forms.Button();
             this.dgvRetiredNumbers = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -514,6 +515,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabPage3.Controls.Add(this.btnAddRetiredNumber);
             this.tabPage3.Controls.Add(this.dgvRetiredNumbers);
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
@@ -521,6 +523,19 @@
             this.tabPage3.Size = new System.Drawing.Size(692, 308);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Retired numbers";
+            // 
+            // btnAddRetiredNumber
+            // 
+            this.btnAddRetiredNumber.FlatAppearance.BorderSize = 0;
+            this.btnAddRetiredNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddRetiredNumber.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddRetiredNumber.Location = new System.Drawing.Point(586, 261);
+            this.btnAddRetiredNumber.Name = "btnAddRetiredNumber";
+            this.btnAddRetiredNumber.Size = new System.Drawing.Size(100, 41);
+            this.btnAddRetiredNumber.TabIndex = 102;
+            this.btnAddRetiredNumber.Text = "ADD";
+            this.btnAddRetiredNumber.UseVisualStyleBackColor = true;
+            this.btnAddRetiredNumber.Click += new System.EventHandler(this.btnAddRetiredNumber_Click);
             // 
             // dgvRetiredNumbers
             // 
@@ -564,7 +579,7 @@
             this.dgvRetiredNumbers.RowHeadersVisible = false;
             this.dgvRetiredNumbers.RowTemplate.Height = 25;
             this.dgvRetiredNumbers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRetiredNumbers.Size = new System.Drawing.Size(686, 150);
+            this.dgvRetiredNumbers.Size = new System.Drawing.Size(686, 247);
             this.dgvRetiredNumbers.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -679,5 +694,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.Button btnAddRetiredNumber;
     }
 }

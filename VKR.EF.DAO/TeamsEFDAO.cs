@@ -96,5 +96,16 @@ namespace VKR.EF.DAO
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
+
+        public async Task AddNewRetiredNumberAsync(RetiredNumber newRetiredNumber)
+        {
+            await using var db = new VKRApplicationContext();
+
+            await db.AddAsync(newRetiredNumber)
+                .ConfigureAwait(false);
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
+        }
     }
 }

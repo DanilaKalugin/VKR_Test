@@ -21,6 +21,7 @@ namespace VKR.PL.NET5
         public TeamInformationForm(bool isEditing)
         {
             InitializeComponent();
+            btnAddRetiredNumber.Visible = isEditing;
             btnEditTSMT.Visible = isEditing;
             btnEditTeamMainInfo.Visible = isEditing;
         }
@@ -142,6 +143,16 @@ namespace VKR.PL.NET5
             Visible = false;
 
             using (var form = new SetStadiumForMatchTypeAndTeamForm(tsmt))
+                form.ShowDialog();
+
+            Visible = true;
+        }
+
+        private void btnAddRetiredNumber_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+
+            using (var form = new AddRetiredNumberForm(_teams[_teamNumber])) 
                 form.ShowDialog();
 
             Visible = true;
