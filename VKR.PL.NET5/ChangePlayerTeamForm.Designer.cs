@@ -281,6 +281,7 @@
             this.btnUpdatePlayer.FlatAppearance.BorderSize = 0;
             this.btnUpdatePlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdatePlayer.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnUpdatePlayer.ForeColor = System.Drawing.Color.Black;
             this.btnUpdatePlayer.Location = new System.Drawing.Point(608, 141);
             this.btnUpdatePlayer.Name = "btnUpdatePlayer";
             this.btnUpdatePlayer.Size = new System.Drawing.Size(189, 33);
@@ -296,12 +297,14 @@
             this.btnAddPlayer.FlatAppearance.BorderSize = 0;
             this.btnAddPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPlayer.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddPlayer.ForeColor = System.Drawing.Color.Black;
             this.btnAddPlayer.Location = new System.Drawing.Point(16, 275);
             this.btnAddPlayer.Name = "btnAddPlayer";
             this.btnAddPlayer.Size = new System.Drawing.Size(781, 33);
             this.btnAddPlayer.TabIndex = 67;
             this.btnAddPlayer.Text = "Add new player";
             this.btnAddPlayer.UseVisualStyleBackColor = true;
+            this.btnAddPlayer.Visible = false;
             this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
             // 
             // label3
@@ -343,6 +346,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(809, 700);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.label1);
@@ -368,7 +372,7 @@
             this.MaximizeBox = false;
             this.Name = "ChangePlayerTeamForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ChangePlayerTeamForm";
+            this.Text = "Assigning players to teams";
             this.Load += new System.EventHandler(this.ChangePlayerTeamForm_Load);
             this.VisibleChanged += new System.EventHandler(this.ChangePlayerTeamForm_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

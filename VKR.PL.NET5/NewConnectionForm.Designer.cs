@@ -244,6 +244,7 @@ namespace VKR.PL.NET5
             this.Controls.Add(this.cb_Servers);
             this.Controls.Add(lb_Country);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewConnectionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
