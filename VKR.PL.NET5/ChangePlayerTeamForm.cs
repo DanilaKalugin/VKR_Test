@@ -19,7 +19,7 @@ namespace VKR.PL.NET5
         private List<PlayerInLineupViewModel> _allPlayers;
         private List<PlayerInLineupViewModel> _players = new();
         private List<Team> _teams;
-        private PlayerInLineupViewModel _currentPlayer;
+        private PlayerInLineupViewModel? _currentPlayer;
 
         private int _teamNumber;
         private string _firstName = string.Empty;
@@ -53,25 +53,29 @@ namespace VKR.PL.NET5
             TeamChanged();
         }
 
-        private void ShowNewPlayer(PlayerInLineupViewModel player)
+        private void ShowNewPlayer(PlayerInLineupViewModel? player)
         {
-            label7.Text = $@"Positions: {string.Join(", ", player.Positions.Select(position => position.ShortTitle))}";
+            label7.Text = $@"Positions: {string.Join(", ", player?.Positions.Select(position => position.ShortTitle) ?? Array.Empty<string>())}";
 
-            pbPlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{player.Id:0000}.png");
+            pbPlayerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{player?.Id:0000}.png");
 
-            lbPlayerNumber.Text = $@"#{player.PlayerNumber}";
-            lbPlayerName.Text = player.FullName.ToUpper();
-            lbPlayerPlace_and_DateOfBirth.Text = $@"{player.City.CityLocation.ToUpper()} / {player.DateOfBirth.ToShortDateString().ToUpper()}";
-            playerHands.Text = $@"B/T: {player.BattingHand.Description[0]}/{player.PitchingHand.Description[0]}".ToUpper();
+            lbPlayerNumber.Text = $@"#{player?.PlayerNumber}";
+            lbPlayerName.Text = player?.FullName.ToUpper();
+            lbPlayerPlace_and_DateOfBirth.Text = $@"{player?.City.CityLocation.ToUpper()} / {player?.DateOfBirth.ToShortDateString().ToUpper()}";
+            playerHands.Text = $@"B/T: {player?.BattingHand.Description[0]}/{player?.PitchingHand.Description[0]}".ToUpper();
 
-            btnAssignTo.Enabled = player.TeamAbbreviation != _teams[_teamNumber].TeamAbbreviation;
+            btnAssignTo.Enabled = player?.TeamAbbreviation != _teams[_teamNumber].TeamAbbreviation;
+            
+            label7.Visible = player is not null;
+            lbPlayerNumber.Visible = player is not null;
+            lbPlayerPlace_and_DateOfBirth.Visible = player is not null;
+            playerHands.Visible = player is not null;
+            btnUpdatePlayer.Visible = player is not null;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count <= 0) return;
-
-            _currentPlayer = _players[dataGridView1.SelectedRows[0].Index];
+            _currentPlayer = dataGridView1.SelectedRows.Count > 0 ? _players[dataGridView1.SelectedRows[0].Index]: null;
 
             ShowNewPlayer(_currentPlayer);
         }
@@ -103,8 +107,8 @@ namespace VKR.PL.NET5
 
             TeamChanged();
             FillSecondTable(_allPlayers);
-            f.Dispose();
             Opacity = 1;
+            f.Dispose();
         }
 
         private void FillSecondTable(IEnumerable<PlayerInLineupViewModel> players)
