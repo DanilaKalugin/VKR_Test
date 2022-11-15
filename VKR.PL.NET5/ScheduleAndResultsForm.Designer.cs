@@ -51,6 +51,10 @@ namespace VKR.PL.NET5
             this.btnTeam2Next10Matches = new System.Windows.Forms.Button();
             this.btnTeam2Last10Matches = new System.Windows.Forms.Button();
             this.team2Header = new System.Windows.Forms.Label();
+            this.team1SeriesImage = new System.Windows.Forms.Panel();
+            this.team2SeriesImage = new System.Windows.Forms.Panel();
+            this.team2Image = new System.Windows.Forms.Panel();
+            this.team1Image = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -106,7 +110,7 @@ namespace VKR.PL.NET5
             this.btnMatchDayUpcomingMatches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMatchDayUpcomingMatches.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnMatchDayUpcomingMatches.Location = new System.Drawing.Point(12, 98);
-            this.btnMatchDayUpcomingMatches.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnMatchDayUpcomingMatches.Margin = new System.Windows.Forms.Padding(6);
             this.btnMatchDayUpcomingMatches.Name = "btnMatchDayUpcomingMatches";
             this.btnMatchDayUpcomingMatches.Size = new System.Drawing.Size(370, 35);
             this.btnMatchDayUpcomingMatches.TabIndex = 63;
@@ -121,7 +125,7 @@ namespace VKR.PL.NET5
             this.btnMatchDayResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMatchDayResults.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnMatchDayResults.Location = new System.Drawing.Point(12, 51);
-            this.btnMatchDayResults.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnMatchDayResults.Margin = new System.Windows.Forms.Padding(6);
             this.btnMatchDayResults.Name = "btnMatchDayResults";
             this.btnMatchDayResults.Size = new System.Drawing.Size(370, 35);
             this.btnMatchDayResults.TabIndex = 60;
@@ -143,6 +147,7 @@ namespace VKR.PL.NET5
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.team1Image);
             this.panel2.Controls.Add(this.btnTeam1Next10Matches);
             this.panel2.Controls.Add(this.btnTeam1Last10Matches);
             this.panel2.Controls.Add(this.team1Header);
@@ -159,7 +164,7 @@ namespace VKR.PL.NET5
             this.btnTeam1Next10Matches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeam1Next10Matches.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTeam1Next10Matches.Location = new System.Drawing.Point(12, 98);
-            this.btnTeam1Next10Matches.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnTeam1Next10Matches.Margin = new System.Windows.Forms.Padding(6);
             this.btnTeam1Next10Matches.Name = "btnTeam1Next10Matches";
             this.btnTeam1Next10Matches.Size = new System.Drawing.Size(370, 35);
             this.btnTeam1Next10Matches.TabIndex = 63;
@@ -174,7 +179,7 @@ namespace VKR.PL.NET5
             this.btnTeam1Last10Matches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeam1Last10Matches.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTeam1Last10Matches.Location = new System.Drawing.Point(12, 51);
-            this.btnTeam1Last10Matches.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnTeam1Last10Matches.Margin = new System.Windows.Forms.Padding(6);
             this.btnTeam1Last10Matches.Name = "btnTeam1Last10Matches";
             this.btnTeam1Last10Matches.Size = new System.Drawing.Size(370, 35);
             this.btnTeam1Last10Matches.TabIndex = 61;
@@ -196,6 +201,8 @@ namespace VKR.PL.NET5
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.team2SeriesImage);
+            this.panel3.Controls.Add(this.team1SeriesImage);
             this.panel3.Controls.Add(this.btnSeriesNextMatches);
             this.panel3.Controls.Add(this.btnSeriesHistory);
             this.panel3.Controls.Add(this.seriesHeader);
@@ -212,7 +219,7 @@ namespace VKR.PL.NET5
             this.btnSeriesNextMatches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeriesNextMatches.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnSeriesNextMatches.Location = new System.Drawing.Point(12, 98);
-            this.btnSeriesNextMatches.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSeriesNextMatches.Margin = new System.Windows.Forms.Padding(6);
             this.btnSeriesNextMatches.Name = "btnSeriesNextMatches";
             this.btnSeriesNextMatches.Size = new System.Drawing.Size(370, 35);
             this.btnSeriesNextMatches.TabIndex = 63;
@@ -227,7 +234,7 @@ namespace VKR.PL.NET5
             this.btnSeriesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeriesHistory.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnSeriesHistory.Location = new System.Drawing.Point(12, 51);
-            this.btnSeriesHistory.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSeriesHistory.Margin = new System.Windows.Forms.Padding(6);
             this.btnSeriesHistory.Name = "btnSeriesHistory";
             this.btnSeriesHistory.Size = new System.Drawing.Size(370, 35);
             this.btnSeriesHistory.TabIndex = 62;
@@ -249,6 +256,7 @@ namespace VKR.PL.NET5
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.team2Image);
             this.panel4.Controls.Add(this.btnTeam2Next10Matches);
             this.panel4.Controls.Add(this.btnTeam2Last10Matches);
             this.panel4.Controls.Add(this.team2Header);
@@ -265,7 +273,7 @@ namespace VKR.PL.NET5
             this.btnTeam2Next10Matches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeam2Next10Matches.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTeam2Next10Matches.Location = new System.Drawing.Point(12, 98);
-            this.btnTeam2Next10Matches.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnTeam2Next10Matches.Margin = new System.Windows.Forms.Padding(6);
             this.btnTeam2Next10Matches.Name = "btnTeam2Next10Matches";
             this.btnTeam2Next10Matches.Size = new System.Drawing.Size(370, 35);
             this.btnTeam2Next10Matches.TabIndex = 63;
@@ -280,7 +288,7 @@ namespace VKR.PL.NET5
             this.btnTeam2Last10Matches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeam2Last10Matches.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTeam2Last10Matches.Location = new System.Drawing.Point(12, 51);
-            this.btnTeam2Last10Matches.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnTeam2Last10Matches.Margin = new System.Windows.Forms.Padding(6);
             this.btnTeam2Last10Matches.Name = "btnTeam2Last10Matches";
             this.btnTeam2Last10Matches.Size = new System.Drawing.Size(370, 35);
             this.btnTeam2Last10Matches.TabIndex = 62;
@@ -299,6 +307,34 @@ namespace VKR.PL.NET5
             this.team2Header.TabIndex = 4;
             this.team2Header.Text = "team2";
             this.team2Header.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // team1SeriesImage
+            // 
+            this.team1SeriesImage.Location = new System.Drawing.Point(0, 0);
+            this.team1SeriesImage.Name = "team1SeriesImage";
+            this.team1SeriesImage.Size = new System.Drawing.Size(45, 45);
+            this.team1SeriesImage.TabIndex = 64;
+            // 
+            // team2SeriesImage
+            // 
+            this.team2SeriesImage.Location = new System.Drawing.Point(349, 0);
+            this.team2SeriesImage.Name = "team2SeriesImage";
+            this.team2SeriesImage.Size = new System.Drawing.Size(45, 45);
+            this.team2SeriesImage.TabIndex = 65;
+            // 
+            // team2Image
+            // 
+            this.team2Image.Location = new System.Drawing.Point(349, 0);
+            this.team2Image.Name = "team2Image";
+            this.team2Image.Size = new System.Drawing.Size(45, 45);
+            this.team2Image.TabIndex = 66;
+            // 
+            // team1Image
+            // 
+            this.team1Image.Location = new System.Drawing.Point(349, 0);
+            this.team1Image.Name = "team1Image";
+            this.team1Image.Size = new System.Drawing.Size(45, 45);
+            this.team1Image.TabIndex = 66;
             // 
             // ScheduleAndResultsForm
             // 
@@ -344,5 +380,9 @@ namespace VKR.PL.NET5
         private Button btnSeriesHistory;
         private Button btnTeam2Next10Matches;
         private Button btnTeam2Last10Matches;
+        private Panel team1Image;
+        private Panel team2SeriesImage;
+        private Panel team1SeriesImage;
+        private Panel team2Image;
     }
 }

@@ -14,14 +14,21 @@ namespace VKR.BLL.NET5
         {
             var positions = await _positionsDao.GetPlayerPositions()
                 .ConfigureAwait(false);
-            return positions.ToList();
+
+            return positions
+                .OrderBy(pp => pp.Number)
+                .ToList();
         }
 
         public async Task<List<PlayerPosition>> GetAvailablePlayerPositions()
         {
             var positions = await _positionsDao.GetPlayerPositions()
                 .ConfigureAwait(false);
-            return positions.Where(pp => pp.Number % 9 != 0).ToList();
+
+            return positions
+                .Where(pp => pp.Number % 9 != 0)
+                .OrderBy(pp => pp.Number)
+                .ToList();
         }
     }
 }

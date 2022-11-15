@@ -529,6 +529,7 @@
             this.dgvRetiredNumbers.AllowUserToResizeColumns = false;
             this.dgvRetiredNumbers.AllowUserToResizeRows = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.dgvRetiredNumbers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRetiredNumbers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRetiredNumbers.BackgroundColor = System.Drawing.Color.Gainsboro;

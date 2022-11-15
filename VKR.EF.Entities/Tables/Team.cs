@@ -51,7 +51,6 @@ namespace VKR.EF.Entities
         public List<Pitcher> PitchersPlayedInMatch = new();
         public Pitcher CurrentPitcher => PitchersPlayedInMatch.Last();
 
-
         public List<Batter> BattingLineup = new();
 
         public TeamBattingStats BattingStats;

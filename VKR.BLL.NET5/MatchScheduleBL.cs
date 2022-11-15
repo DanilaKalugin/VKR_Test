@@ -13,11 +13,13 @@ namespace VKR.BLL.NET5
 
         private readonly MatchScheduleEFDAO _scheduleDao = new();
 
-        public async Task<List<MatchScheduleViewModel>> GetSchedule(TypeOfMatchEnum matchType, Season season) => await _scheduleDao.GetScheduleForAllMatches(season, matchType)
-            .ConfigureAwait(false);
+        public async Task<List<MatchScheduleViewModel>> GetSchedule(TypeOfMatchEnum matchType, Season season) => 
+            await _scheduleDao.GetScheduleForAllMatches(season, matchType)
+                .ConfigureAwait(false);
 
-        public async Task<List<MatchScheduleViewModel>> GetResultsForAllMatches(TypeOfMatchEnum matchType, Season season) => await _scheduleDao.GetResultsForAllMatches(season, matchType)
-            .ConfigureAwait(false);
+        public async Task<List<MatchScheduleViewModel>> GetResultsForAllMatches(TypeOfMatchEnum matchType, Season season) => 
+            await _scheduleDao.GetResultsForAllMatches(season, matchType)
+                .ConfigureAwait(false);
 
         public async Task<List<MatchScheduleViewModel>> GetMatchesForSelectedTeam(TypeOfMatchEnum matchType, Season season, TableType tableType, string team)
         {

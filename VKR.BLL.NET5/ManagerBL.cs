@@ -24,10 +24,8 @@ namespace VKR.BLL.NET5
             await _mangerEfdao.GetIdForNewManager()
                 .ConfigureAwait(false);
 
-        public async Task AddManager(Manager manager)
-        {
-           await _mangerEfdao.AddManager(manager)
-               .ConfigureAwait(false);
-        }
+        public async Task AddManager(Manager manager) =>
+            await _mangerEfdao.AddManager(manager)
+                .ConfigureAwait(false);
     }
 }

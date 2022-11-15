@@ -53,7 +53,8 @@ namespace VKR.BLL.NET5
                         .Where(player => player.TeamAbbreviation == teams[i].TeamAbbreviation && player.LineupNumber == lineupType)
                         .OrderBy(player => player.NumberInLineup)
                         .ThenBy(player => player.SecondName)
-                        .ThenBy(player => player.FirstName).ToList());
+                        .ThenBy(player => player.FirstName)
+                        .ToList());
             }
 
             return players;

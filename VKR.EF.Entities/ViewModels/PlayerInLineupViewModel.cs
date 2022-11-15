@@ -28,9 +28,7 @@
             PositionInLineup = positionInLineup;
         }
 
-        public PlayerInLineupViewModel(Player player, string positionInLineup, string team) : this(player, positionInLineup)
-        {
+        public PlayerInLineupViewModel(Player player, string positionInLineup, string team) : this(player, positionInLineup) => 
             TeamAbbreviation = team;
-        }
     }
 }

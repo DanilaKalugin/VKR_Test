@@ -11,8 +11,9 @@ namespace VKR.BLL.NET5
         private readonly PlayerEFDAO _playerEFDAO = new();
         private readonly PlayerPositionsEFDAO _positionsDao = new();
 
-        public async Task<Player> GetPlayerByCode(uint code) => await _playerEFDAO.GetPlayerByCode(code)
-            .ConfigureAwait(false);
+        public async Task<Player> GetPlayerByCode(uint code) => 
+            await _playerEFDAO.GetPlayerByCode(code)
+                .ConfigureAwait(false);
 
         public async Task<List<Batter>> GetCurrentLineupForThisMatch(Team team, Match match)
         {
@@ -44,11 +45,13 @@ namespace VKR.BLL.NET5
             return pitcher;
         }
 
-        public async Task<int> GetPitcherStamina(Pitcher pitcher, Match match) => await _playerEFDAO.GetPitcherStamina(pitcher.Id, match.MatchDate)
-            .ConfigureAwait(false);
+        public async Task<int> GetPitcherStamina(Pitcher pitcher, Match match) => 
+            await _playerEFDAO.GetPitcherStamina(pitcher.Id, match.MatchDate)
+                .ConfigureAwait(false);
 
-        public async Task<PlayerBattingStats> GetBattingStatsByCode(uint id, int year) => await _playerEFDAO.GetBattingStatsByCode(id, year)
-            .ConfigureAwait(false);
+        public async Task<PlayerBattingStats> GetBattingStatsByCode(uint id, int year) => 
+            await _playerEFDAO.GetBattingStatsByCode(id, year)
+                .ConfigureAwait(false);
 
         public async Task<PlayerPitchingStats> GetPitchingStatsByCode(uint id, int year, TypeOfMatchEnum matchType = TypeOfMatchEnum.RegularSeason) =>
             await _playerEFDAO.GetPitchingStatsByCode(id, year, matchType)
@@ -75,7 +78,8 @@ namespace VKR.BLL.NET5
                 .ConfigureAwait(false);
         }
 
-        public async Task<uint> GetIdForNewPlayer() => await _playerEFDAO.GetIdForNewPlayer()
-            .ConfigureAwait(false);
+        public async Task<uint> GetIdForNewPlayer() => 
+            await _playerEFDAO.GetIdForNewPlayer()
+                .ConfigureAwait(false);
     }
 }

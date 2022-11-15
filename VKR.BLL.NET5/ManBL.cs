@@ -14,7 +14,10 @@ namespace VKR.BLL.NET5
         {
             var men = await _manDAO.GetListOfPeopleWithBirthdayTodayAsync()
                 .ConfigureAwait(false);
-            return men.ToList();
+
+            return men.OrderBy(m => m.SecondName)
+                .ThenBy(m => m.FirstName)
+                .ToList();
         }
     }
 }

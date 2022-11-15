@@ -113,7 +113,7 @@ namespace VKR.PL.NET5
             // 
             this.pbHomeLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbHomeLogo.Location = new System.Drawing.Point(10, 10);
-            this.pbHomeLogo.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.pbHomeLogo.Margin = new System.Windows.Forms.Padding(10);
             this.pbHomeLogo.Name = "pbHomeLogo";
             this.pbHomeLogo.Size = new System.Drawing.Size(280, 280);
             this.pbHomeLogo.TabIndex = 1;
@@ -132,7 +132,7 @@ namespace VKR.PL.NET5
             // 
             this.pbAwayLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbAwayLogo.Location = new System.Drawing.Point(10, 10);
-            this.pbAwayLogo.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.pbAwayLogo.Margin = new System.Windows.Forms.Padding(10);
             this.pbAwayLogo.Name = "pbAwayLogo";
             this.pbAwayLogo.Size = new System.Drawing.Size(280, 280);
             this.pbAwayLogo.TabIndex = 0;

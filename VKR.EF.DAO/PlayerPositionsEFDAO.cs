@@ -12,7 +12,6 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
             return await db.PlayersPositions
-                .OrderBy(pp => pp.Number)
                 .ToListAsync()
                 .ConfigureAwait(false);
         }

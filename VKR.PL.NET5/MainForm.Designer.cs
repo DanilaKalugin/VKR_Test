@@ -255,6 +255,7 @@ namespace VKR.PL.NET5
             // 
             // currentBatter
             // 
+            this.currentBatter.Batter = null;
             this.currentBatter.Location = new System.Drawing.Point(0, 36);
             this.currentBatter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.currentBatter.Name = "currentBatter";
@@ -1327,6 +1328,7 @@ namespace VKR.PL.NET5
             // 
             // awayNextBatter3
             // 
+            this.awayNextBatter3.Batter = null;
             this.awayNextBatter3.Location = new System.Drawing.Point(0, 62);
             this.awayNextBatter3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.awayNextBatter3.Name = "awayNextBatter3";
@@ -1335,6 +1337,7 @@ namespace VKR.PL.NET5
             // 
             // awayNextBatter2
             // 
+            this.awayNextBatter2.Batter = null;
             this.awayNextBatter2.Location = new System.Drawing.Point(0, 31);
             this.awayNextBatter2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.awayNextBatter2.Name = "awayNextBatter2";
@@ -1343,6 +1346,7 @@ namespace VKR.PL.NET5
             // 
             // awayNextBatter1
             // 
+            this.awayNextBatter1.Batter = null;
             this.awayNextBatter1.Location = new System.Drawing.Point(0, 0);
             this.awayNextBatter1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.awayNextBatter1.Name = "awayNextBatter1";
@@ -1396,6 +1400,7 @@ namespace VKR.PL.NET5
             // 
             // homeNextBatter3
             // 
+            this.homeNextBatter3.Batter = null;
             this.homeNextBatter3.Location = new System.Drawing.Point(0, 62);
             this.homeNextBatter3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.homeNextBatter3.Name = "homeNextBatter3";
@@ -1404,6 +1409,7 @@ namespace VKR.PL.NET5
             // 
             // homeNextBatter2
             // 
+            this.homeNextBatter2.Batter = null;
             this.homeNextBatter2.Location = new System.Drawing.Point(0, 31);
             this.homeNextBatter2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.homeNextBatter2.Name = "homeNextBatter2";
@@ -1412,6 +1418,7 @@ namespace VKR.PL.NET5
             // 
             // homeNextBatter1
             // 
+            this.homeNextBatter1.Batter = null;
             this.homeNextBatter1.Location = new System.Drawing.Point(0, 0);
             this.homeNextBatter1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.homeNextBatter1.Name = "homeNextBatter1";

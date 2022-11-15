@@ -22,7 +22,8 @@ namespace VKR.PL.NET5
 
         private void txtLogin_Validating(object sender, CancelEventArgs e)
         {
-            if (!cb_IntegratedSecurity.Checked) txt_Validating(txtLogin, e, ServerLoginErrorText, "Login");
+            if (cb_IntegratedSecurity.Checked) return;
+            txt_Validating(txtLogin, e, ServerLoginErrorText, "Login");
         }
 
 
@@ -46,7 +47,8 @@ namespace VKR.PL.NET5
 
         private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
-            if (!cb_IntegratedSecurity.Checked) txt_Validating(txtPassword, e, ServerPasswordErrorText, "Password");
+            if (cb_IntegratedSecurity.Checked) return;
+            txt_Validating(txtPassword, e, ServerPasswordErrorText, "Password");
         }
 
         private void cb_Servers_TextChanged(object sender, EventArgs e) => lbConnectionStringTitle.Text = $"{cb_Servers.Text.Replace("\u005c", "_").ToLower()}ConnectionString";
@@ -64,8 +66,8 @@ namespace VKR.PL.NET5
             else _newConnectionBL.DeployDatabase(lbConnectionStringTitle.Text, cb_Servers.Text, cb_IntegratedSecurity.Checked, out result, out message, txtLogin.Text, txtPassword.Text);
             var deploymentResult = result == 0;
 
-            using var form = new DBDeploymentResultForm(deploymentResult, message);
             Visible = false;
+            using var form = new DBDeploymentResultForm(deploymentResult, message);
             form.ShowDialog();
         }
 

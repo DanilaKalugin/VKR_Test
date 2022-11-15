@@ -48,28 +48,24 @@ namespace VKR.PL.NET5
         private void txtStadiumName_Validated(object sender, EventArgs e)
         {
             if (_stadium is null) return;
-
             _stadium.StadiumTitle = txtStadiumName.Value;
         }
 
         private void cbPlaceOfBirth_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_stadium is null) return;
-
             _stadium.StadiumCity = cbPlaceOfBirth.SelectedItem as City;
         }
 
         private void numPlayerNumber_ValueChanged(object sender, EventArgs e)
         {
             if (_stadium is null) return;
-
             _stadium.StadiumCapacity = (uint)numPlayerNumber.Value;
         }
 
         private void numMaxWidth_ValueChanged(object sender, EventArgs e)
         {
             if (_stadium is null) return;
-
             _stadium.StadiumDistanceToCenterfield = (ushort)numMaxWidth.Value;
         }
 

@@ -41,13 +41,16 @@ namespace VKR.BLL.NET5
             team.SetTeamBalance(newBalanceForThisTeam);
         }
 
-        public async Task<List<Team>> GetTeamsWithInfoAsync() => 
-            await _teamsEF.GetTeamsWithInfoAsync()
+        public async Task<List<Team>> GetTeamsWithInfoAsync()
+        {
+            var teamsInfo = await _teamsEF.GetTeamsWithInfoAsync()
                 .ConfigureAwait(false);
 
         public async Task<List<TeamStadiumForTypeOfMatch>> GetAllStadiumsForThisTeam(Team team) =>
             await _teamsEF.GetAllStadiumsForThisTeam(team)
                 .ConfigureAwait(false);
+            return teamsInfo.OrderBy(t => t.TeamName).ToList();
+        }
 
         public async Task UpdateTeam(Team team) => 
             await _teamsEF.UpdateTeam(team)
@@ -57,7 +60,10 @@ namespace VKR.BLL.NET5
         {
             var numbers = await _teamsEF.GetRetiredNumbersForThisTeam(team)
                 .ConfigureAwait(false);
-            return numbers.OrderBy(rn => rn.Number).ToList();
+
+            return numbers
+                .OrderBy(rn => rn.Number)
+                .ToList();
         }
     }
 }

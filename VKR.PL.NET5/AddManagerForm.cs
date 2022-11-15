@@ -90,7 +90,6 @@ namespace VKR.PL.NET5
         private void dtpBirthDate_ValueChanged(object sender, EventArgs e)
         {
             if (_manager is null) return;
-
             _manager.DateOfBirth = dtpBirthDate.Value.Date;
         }
 

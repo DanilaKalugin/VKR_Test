@@ -9,7 +9,8 @@ namespace VKR.BLL.NET5
     {
         private readonly DivisionEFDAO _divisionEfdao = new();
 
-        public async Task<List<Division>> GetAllDivisionsAsync() => await _divisionEfdao.GetAllDivisionsAsync()
-            .ConfigureAwait(false);
+        public async Task<List<Division>> GetAllDivisionsAsync() => 
+            await _divisionEfdao.GetAllDivisionsAsync()
+                .ConfigureAwait(false);
     }
 }
