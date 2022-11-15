@@ -46,9 +46,6 @@ namespace VKR.BLL.NET5
             var teamsInfo = await _teamsEF.GetTeamsWithInfoAsync()
                 .ConfigureAwait(false);
 
-        public async Task<List<TeamStadiumForTypeOfMatch>> GetAllStadiumsForThisTeam(Team team) =>
-            await _teamsEF.GetAllStadiumsForThisTeam(team)
-                .ConfigureAwait(false);
             return teamsInfo.OrderBy(t => t.TeamName).ToList();
         }
 

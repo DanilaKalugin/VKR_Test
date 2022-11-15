@@ -66,17 +66,6 @@ namespace VKR.EF.DAO
                 .ConfigureAwait(false);
         }
 
-        public async Task<List<TeamStadiumForTypeOfMatch>> GetAllStadiumsForThisTeam(Team team)
-        {
-            await using var db = new VKRApplicationContext();
-
-            return await db.TeamStadiumForTypeOfMatch
-                .Include(tmts => tmts.Stadium)
-                .Where(tmts => tmts.TeamAbbreviation == team.TeamAbbreviation)
-                .ToListAsync()
-                .ConfigureAwait(false);
-        }
-
         public async Task UpdateTeam(Team team)
         {
             await using var db = new VKRApplicationContext();
