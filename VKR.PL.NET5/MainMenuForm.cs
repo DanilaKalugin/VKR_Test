@@ -123,14 +123,22 @@ namespace VKR.PL.NET5
 
         private async void MainMenuForm_VisibleChanged(object sender, EventArgs e)
         {
-            if (Visible) 
-                await UpdateBirthDayTable();
+            if (!Visible) return; 
+            await UpdateBirthDayTable();
         }
 
         private void btnAdminMenu_Click(object sender, EventArgs e)
         {
             Visible = false;
             using (var form = new AdminMenuForm()) 
+                form.ShowDialog();
+            Visible = true;
+        }
+
+        private void btnTeamsInformation_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+            using (var form = new TeamInformationForm(false)) 
                 form.ShowDialog();
             Visible = true;
         }

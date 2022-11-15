@@ -51,6 +51,7 @@ namespace VKR.PL.NET5
             this.btnClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAdminMenu = new System.Windows.Forms.Button();
+            this.btnTeamsInformation = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBirthDays)).BeginInit();
             this.SuspendLayout();
@@ -281,15 +282,31 @@ namespace VKR.PL.NET5
             this.btnAdminMenu.FlatAppearance.BorderSize = 0;
             this.btnAdminMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdminMenu.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdminMenu.Location = new System.Drawing.Point(942, 184);
+            this.btnAdminMenu.Location = new System.Drawing.Point(418, 354);
             this.btnAdminMenu.Margin = new System.Windows.Forms.Padding(6);
             this.btnAdminMenu.Name = "btnAdminMenu";
-            this.btnAdminMenu.Size = new System.Drawing.Size(250, 158);
+            this.btnAdminMenu.Size = new System.Drawing.Size(250, 81);
             this.btnAdminMenu.TabIndex = 15;
             this.btnAdminMenu.Text = "ADMINISTRATIVE TOOLS";
             this.btnAdminMenu.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnAdminMenu.UseVisualStyleBackColor = false;
             this.btnAdminMenu.Click += new System.EventHandler(this.btnAdminMenu_Click);
+            // 
+            // btnTeamsInformation
+            // 
+            this.btnTeamsInformation.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnTeamsInformation.FlatAppearance.BorderSize = 0;
+            this.btnTeamsInformation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTeamsInformation.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnTeamsInformation.Location = new System.Drawing.Point(942, 184);
+            this.btnTeamsInformation.Margin = new System.Windows.Forms.Padding(6);
+            this.btnTeamsInformation.Name = "btnTeamsInformation";
+            this.btnTeamsInformation.Size = new System.Drawing.Size(250, 158);
+            this.btnTeamsInformation.TabIndex = 16;
+            this.btnTeamsInformation.Text = "TEAM INFORMATION";
+            this.btnTeamsInformation.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnTeamsInformation.UseVisualStyleBackColor = false;
+            this.btnTeamsInformation.Click += new System.EventHandler(this.btnTeamsInformation_Click);
             // 
             // MainMenuForm
             // 
@@ -297,6 +314,7 @@ namespace VKR.PL.NET5
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1554, 450);
+            this.Controls.Add(this.btnTeamsInformation);
             this.Controls.Add(this.btnAdminMenu);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panel2);
@@ -340,5 +358,6 @@ namespace VKR.PL.NET5
         private Panel panel2;
         private Button btnClose;
         private Button btnAdminMenu;
+        private Button btnTeamsInformation;
     }
 }

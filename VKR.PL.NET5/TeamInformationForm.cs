@@ -18,7 +18,12 @@ namespace VKR.PL.NET5
         private List<TeamColor> _primaryColor;
         private int _teamNumber;
 
-        public TeamInformationForm() => InitializeComponent();
+        public TeamInformationForm(bool isEditing)
+        {
+            InitializeComponent();
+            btnEditTSMT.Visible = isEditing;
+            btnEditTeamMainInfo.Visible = isEditing;
+        }
 
         private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {
