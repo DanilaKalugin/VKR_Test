@@ -30,27 +30,27 @@ namespace VKR.PL.NET5
         private void btnDecreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {
             _teamNumber = _teamNumber > 0 ? _teamNumber - 1 : _teams.Count - 1;
-            TeamChanged(_teamNumber);
+            TeamChanged();
         }
 
-        private void TeamChanged(int teamNumber)
+        private void TeamChanged()
         {
-            lbTeamtitle.Text = _teams[teamNumber].TeamName.ToUpper();
-            lbTeamtitle.BackColor = _teams[teamNumber].TeamColors[0].Color;
+            lbTeamtitle.Text = _teams[_teamNumber].TeamName.ToUpper();
+            lbTeamtitle.BackColor = _teams[_teamNumber].TeamColors[0].Color;
             lbTeamtitle.ForeColor = Color.White;
 
-            btnIncreaseTeamNumberBy1.ForeColor = _teams[teamNumber].TeamColors[0].Color;
-            btnDecreaseTeamNumberBy1.ForeColor = _teams[teamNumber].TeamColors[0].Color;
+            btnIncreaseTeamNumberBy1.ForeColor = _teams[_teamNumber].TeamColors[0].Color;
+            btnDecreaseTeamNumberBy1.ForeColor = _teams[_teamNumber].TeamColors[0].Color;
 
-            dataGridView1.DefaultCellStyle.SelectionBackColor = _teams[teamNumber].TeamColors[0].Color;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = _teams[_teamNumber].TeamColors[0].Color;
 
-            btnAssignTo.Text = $"Assign to {_teams[teamNumber].TeamName}";
+            btnAssignTo.Text = $"Assign to {_teams[_teamNumber].TeamName}";
         }
 
         private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {
             _teamNumber = _teamNumber < _teams.Count - 1 ? _teamNumber + 1 : 0;
-            TeamChanged(_teamNumber);
+            TeamChanged();
         }
 
         private void ShowNewPlayer(PlayerInLineupViewModel player)
@@ -101,7 +101,7 @@ namespace VKR.PL.NET5
             txtLastName.Clear();
             txtFirstName.Clear();
 
-            TeamChanged(_teamNumber);
+            TeamChanged();
             FillSecondTable(_allPlayers);
             f.Dispose();
             Opacity = 1;
