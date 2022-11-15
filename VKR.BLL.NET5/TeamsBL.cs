@@ -65,5 +65,19 @@ namespace VKR.BLL.NET5
                 .OrderBy(rn => rn.Number)
                 .ToList();
         }
+
+        public async Task<List<byte>> GetAvailableNumbers(Team team)
+        {
+            var retiredNumbers = await _teamsEF.GetRetiredNumbersForThisTeam(team)
+                .ConfigureAwait(false);
+
+            var numbers = retiredNumbers.Select(rn => rn.Number);
+
+            return Enumerable.Range(0,100)
+                .Select(num => (byte)num)
+                .Where(num => !numbers.Contains(num))
+                .OrderByDescending(n => n)
+                .ToList();
+        }
     }
 }

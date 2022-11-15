@@ -80,6 +80,11 @@ namespace VKR.PL.NET5
         {
             var team = _teams[_teamNumber];
 
+            Visible = false;
+            using (var form = new SetNewNumberForPlayerForm(team, _currentPlayer)) 
+                form.ShowDialog();
+            Visible = true;
+
             await _playerMoves.MovePlayerToNewTeam(_currentPlayer, team);
             await FillTables();
         }
