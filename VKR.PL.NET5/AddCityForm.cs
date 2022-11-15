@@ -18,8 +18,6 @@ namespace VKR.PL.NET5
 
         public AddCityForm() => InitializeComponent();
 
-        private void cbPlaceOfBirth_SelectedIndexChanged(object sender, EventArgs e) => _city.Region = cbPlaceOfBirth.SelectedItem as Region;
-
         private async void btnCheck_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren()) return;
@@ -32,24 +30,27 @@ namespace VKR.PL.NET5
         {
             var regions = await _citiesBl.GetAllRegions();
             _regions = regions.OrderBy(r => r.ToString()).ToList();
-            cbPlaceOfBirth.DataSource = _regions;
-            cbPlaceOfBirth.DisplayMember = "RegionLocation";
+            cbCityRegion.DataSource = _regions;
+            cbCityRegion.DisplayMember = "RegionLocation";
+            cbCityRegion.ValueMember = "RegionCode";
         }
 
         private void cbPlaceOfBirth_Validating(object sender, CancelEventArgs e)
         {
-            if (_city.Region is null)
+            if (cbCityRegion.SelectedValue is null)
             {
-                cbPlaceOfBirth.BackColor = Color.DarkRed;
+                cbCityRegion.BackColor = Color.DarkRed;
                 e.Cancel = true;
             }
             else
             {
-                cbPlaceOfBirth.BackColor = Color.WhiteSmoke;
+                cbCityRegion.BackColor = Color.WhiteSmoke;
                 e.Cancel = false;
             }
         }
 
         private void txtCityName_Validated(object sender, EventArgs e) => _city.Name = txtCityName.Value;
+
+        private void cbCityRegion_SelectionChangeCommitted(object sender, EventArgs e) => _city.RegionCode = (string)cbCityRegion.SelectedValue;
     }
 }

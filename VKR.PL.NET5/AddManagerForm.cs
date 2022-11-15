@@ -32,6 +32,7 @@ namespace VKR.PL.NET5
             _cities = await _citiesBl.GetAllCitiesAsync();
             cbPlaceOfBirth.DataSource = _cities;
             cbPlaceOfBirth.DisplayMember = "CityLocation";
+            cbPlaceOfBirth.ValueMember = "Id";
         }
 
         private async void AddManagerForm_Load(object sender, EventArgs e)
@@ -52,7 +53,7 @@ namespace VKR.PL.NET5
 
         private void cbPlaceOfBirth_Validating(object sender, CancelEventArgs e)
         {
-            if (_manager?.City is null)
+            if (cbPlaceOfBirth.SelectedValue is null)
             {
                 cbPlaceOfBirth.BackColor = Color.DarkRed;
                 e.Cancel = true;
@@ -78,12 +79,6 @@ namespace VKR.PL.NET5
             }
         }
 
-        private void cbPlaceOfBirth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_manager is null) return;
-            _manager.City = cbPlaceOfBirth.SelectedItem as City;
-        }
-
         private async void btnAddManager_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren()) return;
@@ -107,6 +102,12 @@ namespace VKR.PL.NET5
         {
             if (!Visible) return;
             await FillCitiesTable();
+        }
+
+        private void cbPlaceOfBirth_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (_manager is null) return; 
+            _manager.PlaceOfBirth = (short)cbPlaceOfBirth.SelectedValue;
         }
     }
 }

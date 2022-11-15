@@ -29,16 +29,7 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            var managerDb = new Manager
-            {
-                Id = manager.Id,
-                FirstName = manager.FirstName,
-                SecondName = manager.SecondName,
-                DateOfBirth = manager.DateOfBirth,
-                PlaceOfBirth = manager.City.Id,
-            };
-
-            await db.Managers.AddAsync(managerDb)
+            await db.Managers.AddAsync(manager)
                 .ConfigureAwait(false);
 
             await db.SaveChangesAsync()

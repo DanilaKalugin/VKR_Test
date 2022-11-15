@@ -114,7 +114,7 @@
             this.cbPlaceOfBirth.Name = "cbPlaceOfBirth";
             this.cbPlaceOfBirth.Size = new System.Drawing.Size(250, 25);
             this.cbPlaceOfBirth.TabIndex = 93;
-            this.cbPlaceOfBirth.SelectedIndexChanged += new System.EventHandler(this.cbPlaceOfBirth_SelectedIndexChanged);
+            this.cbPlaceOfBirth.SelectionChangeCommitted += new System.EventHandler(this.cbPlaceOfBirth_SelectionChangeCommitted);
             this.cbPlaceOfBirth.Validating += new System.ComponentModel.CancelEventHandler(this.cbPlaceOfBirth_Validating);
             // 
             // txtFirstName

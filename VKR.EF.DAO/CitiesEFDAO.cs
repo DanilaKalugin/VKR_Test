@@ -19,14 +19,11 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            var newCity = new City
-            {
-                Name = city.Name,
-                RegionCode = city.Region.RegionCode
-            };
+            await db.Cities.AddAsync(city)
+                .ConfigureAwait(false);
 
-            await db.Cities.AddAsync(newCity);
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task<List<Region>> GetAllRegionsAsync()

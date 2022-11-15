@@ -43,16 +43,7 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            var stadiumDb = new Stadium
-            {
-                StadiumId = stadium.StadiumId,
-                StadiumTitle = stadium.StadiumTitle,
-                StadiumCapacity = stadium.StadiumCapacity,
-                StadiumDistanceToCenterfield = stadium.StadiumDistanceToCenterfield,
-                StadiumLocation = stadium.StadiumCity.Id
-            };
-
-            await db.Stadiums.AddAsync(stadiumDb)
+            await db.Stadiums.AddAsync(stadium)
                 .ConfigureAwait(false);
 
             var factorDb = new StadiumFactor

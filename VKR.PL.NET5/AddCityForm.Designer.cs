@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCityForm));
             this.label4 = new System.Windows.Forms.Label();
-            this.cbPlaceOfBirth = new System.Windows.Forms.ComboBox();
+            this.cbCityRegion = new System.Windows.Forms.ComboBox();
             this.btnCheck = new System.Windows.Forms.Button();
             this.txtCityName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.btnClose = new System.Windows.Forms.Button();
@@ -46,19 +46,19 @@
             this.label4.TabIndex = 77;
             this.label4.Text = "Region";
             // 
-            // cbPlaceOfBirth
+            // cbCityRegion
             // 
-            this.cbPlaceOfBirth.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbPlaceOfBirth.DropDownHeight = 172;
-            this.cbPlaceOfBirth.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbPlaceOfBirth.FormattingEnabled = true;
-            this.cbPlaceOfBirth.IntegralHeight = false;
-            this.cbPlaceOfBirth.Location = new System.Drawing.Point(115, 64);
-            this.cbPlaceOfBirth.Name = "cbPlaceOfBirth";
-            this.cbPlaceOfBirth.Size = new System.Drawing.Size(351, 25);
-            this.cbPlaceOfBirth.TabIndex = 76;
-            this.cbPlaceOfBirth.SelectedIndexChanged += new System.EventHandler(this.cbPlaceOfBirth_SelectedIndexChanged);
-            this.cbPlaceOfBirth.Validating += new System.ComponentModel.CancelEventHandler(this.cbPlaceOfBirth_Validating);
+            this.cbCityRegion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbCityRegion.DropDownHeight = 172;
+            this.cbCityRegion.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbCityRegion.FormattingEnabled = true;
+            this.cbCityRegion.IntegralHeight = false;
+            this.cbCityRegion.Location = new System.Drawing.Point(115, 64);
+            this.cbCityRegion.Name = "cbCityRegion";
+            this.cbCityRegion.Size = new System.Drawing.Size(351, 25);
+            this.cbCityRegion.TabIndex = 76;
+            this.cbCityRegion.SelectionChangeCommitted += new System.EventHandler(this.cbCityRegion_SelectionChangeCommitted);
+            this.cbCityRegion.Validating += new System.ComponentModel.CancelEventHandler(this.cbPlaceOfBirth_Validating);
             // 
             // btnCheck
             // 
@@ -112,7 +112,7 @@
             this.Controls.Add(this.txtCityName);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbPlaceOfBirth);
+            this.Controls.Add(this.cbCityRegion);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -129,7 +129,7 @@
         #endregion
 
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbPlaceOfBirth;
+        private System.Windows.Forms.ComboBox cbCityRegion;
         private System.Windows.Forms.Button btnCheck;
         private Controls.NET5.TextBoxWithHeader txtCityName;
         private System.Windows.Forms.Button btnClose;

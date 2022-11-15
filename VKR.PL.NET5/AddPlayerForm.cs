@@ -51,7 +51,8 @@ namespace VKR.PL.NET5
         {
             _player = new Player
             {
-                Positions = new List<PlayerPosition>()
+                Positions = new List<PlayerPosition>(),
+                CurrentPlayerStatus = PlayerStatusEnum.FreeAgent
             };
             _addingPlayer = true;
         }
@@ -96,12 +97,6 @@ namespace VKR.PL.NET5
         {
             if (_player is null) return;
             _player.DateOfBirth = dtpBirthDate.Value;
-        }
-
-        private void cbPlaceOfBirth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_player is null) return;
-            _player.City = cbPlaceOfBirth.SelectedItem as City;
         }
 
         private void lbRewards_Validated(object sender, EventArgs e)
@@ -157,7 +152,7 @@ namespace VKR.PL.NET5
 
         private void cbPlaceOfBirth_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (_player?.City is null)
+            if (cbPlaceOfBirth.SelectedValue is null)
             {
                 cbPlaceOfBirth.BackColor = Color.DarkRed;
                 e.Cancel = true;
@@ -188,6 +183,7 @@ namespace VKR.PL.NET5
             _cities = await _citiesBl.GetAllCitiesAsync();
             cbPlaceOfBirth.DataSource = _cities;
             cbPlaceOfBirth.DisplayMember = "CityLocation";
+            cbPlaceOfBirth.ValueMember = "Id";
         }
 
         private void txtFirstName_Validated(object sender, EventArgs e) => _player.FirstName = txtFirstName.Value;
@@ -198,6 +194,12 @@ namespace VKR.PL.NET5
         {
             if (!Visible) return;
             await FillCitiesTable();
+        }
+
+        private void cbPlaceOfBirth_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (_player is null) return; 
+            _player.PlaceOfBirth = (short)cbPlaceOfBirth.SelectedValue;
         }
     }
 }

@@ -33,6 +33,7 @@ namespace VKR.PL.NET5
             cbPlaceOfBirth.DataSource = _cities;
 
             cbPlaceOfBirth.DisplayMember = "CityLocation";
+            cbPlaceOfBirth.ValueMember = "Id";
         }
 
         private async void AddStadiumForm_Load(object sender, EventArgs e)
@@ -108,6 +109,12 @@ namespace VKR.PL.NET5
         {
             if (!Visible) return;
             await FillCitiesTable();
+        }
+
+        private void cbPlaceOfBirth_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (_stadium is null) return;
+            _stadium.StadiumLocation = (short)cbPlaceOfBirth.SelectedValue;
         }
     }
 }
