@@ -1,6 +1,6 @@
 ﻿namespace VKR.PL.NET5
 {
-    partial class SetStadiumForMatchTypeAndTeam
+    partial class SetStadiumForMatchTypeAndTeamForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Label cbStadium;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetStadiumForMatchTypeAndTeam));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetStadiumForMatchTypeAndTeamForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.btnConfirm = new System.Windows.Forms.Button();
             this.cbStadiums = new System.Windows.Forms.ComboBox();
             this.txtTeam = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.txtMatchType = new VKR.PL.Controls.NET5.TextBoxWithHeader();
+            this.btnClose = new System.Windows.Forms.Button();
             cbStadium = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -57,18 +58,18 @@
             this.panel1.Size = new System.Drawing.Size(100, 100);
             this.panel1.TabIndex = 102;
             // 
-            // btnClose
+            // btnConfirm
             // 
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClose.Location = new System.Drawing.Point(420, 107);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(107, 33);
-            this.btnClose.TabIndex = 101;
-            this.btnClose.Text = "CONFIRM";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnConfirm.FlatAppearance.BorderSize = 0;
+            this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirm.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnConfirm.Location = new System.Drawing.Point(420, 107);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(107, 33);
+            this.btnConfirm.TabIndex = 101;
+            this.btnConfirm.Text = "CONFIRM";
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // cbStadiums
             // 
@@ -110,15 +111,30 @@
             this.txtMatchType.Value = null;
             this.txtMatchType.ValuePosition = ((ushort)(129));
             // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnClose.Location = new System.Drawing.Point(247, 107);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(107, 33);
+            this.btnClose.TabIndex = 105;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
             // SetStadiumForMatchTypeAndTeam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(539, 152);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtMatchType);
             this.Controls.Add(this.txtTeam);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnConfirm);
             this.Controls.Add(cbStadium);
             this.Controls.Add(this.cbStadiums);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -129,7 +145,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SetStadiumForMatchTypeAndTeam";
             this.Load += new System.EventHandler(this.SetStadiumForMatchTypeAndTeam_Load);
-            this.VisibleChanged += new System.EventHandler(this.SetStadiumForMatchTypeAndTeam_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,10 +153,11 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label cbStadium;
         private System.Windows.Forms.ComboBox cbStadiums;
         private Controls.NET5.TextBoxWithHeader txtTeam;
         private Controls.NET5.TextBoxWithHeader txtMatchType;
+        private System.Windows.Forms.Button btnClose;
     }
 }

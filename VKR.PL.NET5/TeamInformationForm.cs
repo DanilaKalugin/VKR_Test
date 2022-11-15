@@ -141,7 +141,7 @@ namespace VKR.PL.NET5
 
             Visible = false;
 
-            using (var form = new SetStadiumForMatchTypeAndTeam(tsmt))
+            using (var form = new SetStadiumForMatchTypeAndTeamForm(tsmt))
                 form.ShowDialog();
 
             Visible = true;
