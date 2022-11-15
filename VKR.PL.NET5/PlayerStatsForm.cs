@@ -18,7 +18,6 @@ namespace VKR.PL.NET5
         public enum SortingObjects { Players, Teams }
 
         private readonly TeamsBL _teamsBL = new();
-        private readonly SortingBL _sortingBL = new();
         private readonly StatsBL _statsBL = new();
         private readonly PrimaryTeamColorBL _teamColorBl = new();
         private readonly PlayerPositionsBL _playerPositionsBl = new();
@@ -223,19 +222,19 @@ namespace VKR.PL.NET5
 
             if (obj == SortingObjects.Players)
             {
-                _batters = _sortModes[0][batting] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_batters, playerBattingActions[batting])
-                                                                         : _sortingBL.GetSortedStats(_batters, playerBattingActions[batting]);
+                _batters = _sortModes[0][batting] == SortMode.Descending ? _batters.GetSortedStatsDesc(playerBattingActions[batting])
+                                                                         : _batters.GetSortedStats(playerBattingActions[batting]);
 
-                _pitchers = _sortModes[1][pitching] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_pitchers, playerPitchingActions[pitching])
-                                                                           : _sortingBL.GetSortedStats(_pitchers, playerPitchingActions[pitching]);
+                _pitchers = _sortModes[1][pitching] == SortMode.Descending ? _pitchers.GetSortedStatsDesc(playerPitchingActions[pitching])
+                                                                           : _pitchers.GetSortedStats(playerPitchingActions[pitching]);
             }
             else
             {
-                _teamBattingStats = _sortModes[0][batting] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamBattingStats, teamBattingActions[batting])
-                                                                                  : _sortingBL.GetSortedStats(_teamBattingStats, teamBattingActions[batting]);
+                _teamBattingStats = _sortModes[0][batting] == SortMode.Descending ? _teamBattingStats.GetSortedStatsDesc(teamBattingActions[batting])
+                                                                                  : _teamBattingStats.GetSortedStats(teamBattingActions[batting]);
 
-                _teamPitchingStats = _sortModes[1][pitching] == SortMode.Descending ? _sortingBL.GetSortedStatsDesc(_teamPitchingStats, teamPitchingActions[pitching])
-                                                                                    : _sortingBL.GetSortedStats(_teamPitchingStats, teamPitchingActions[pitching]);
+                _teamPitchingStats = _sortModes[1][pitching] == SortMode.Descending ? _teamPitchingStats.GetSortedStatsDesc(teamPitchingActions[pitching])
+                                                                                    : _teamPitchingStats.GetSortedStats(teamPitchingActions[pitching]);
             }
 
             FillBattersAndPitchersTable(_batters, _pitchers, _teamBattingStats, _teamPitchingStats);
