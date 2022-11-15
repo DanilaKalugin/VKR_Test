@@ -26,14 +26,14 @@ namespace VKR.PL.NET5
             btnEditTeamMainInfo.Visible = isEditing;
         }
 
-        private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
+        private async void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {
             _teamNumber = _teamNumber < _teams.Count - 1 ? _teamNumber + 1 : 0;
 
-            ShowTeam();
+            await ShowTeam();
         }
 
-        private void ShowTeam()
+        private async Task ShowTeam()
         {
             var team = _teams[_teamNumber];
 
@@ -95,11 +95,11 @@ namespace VKR.PL.NET5
                 dgvStadiums.Rows.Add(stadium.TypeOfMatchId, stadium.Stadium.StadiumTitle);
         }
 
-        private void btnDecreaseTeamNumberBy1_Click(object sender, EventArgs e)
+        private async void btnDecreaseTeamNumberBy1_Click(object sender, EventArgs e)
         {
             _teamNumber = _teamNumber > 0 ? _teamNumber - 1 : _teams.Count - 1;
 
-            ShowTeam();
+            await ShowTeam();
         }
 
         private void btnEditTeamMainInfo_Click(object sender, EventArgs e)
@@ -128,7 +128,7 @@ namespace VKR.PL.NET5
             if (!Visible) return;
 
             await FillTeamsAndColors();
-            ShowTeam();
+            await ShowTeam();
         }
 
         private void btnEditTSMT_Click(object sender, EventArgs e)
