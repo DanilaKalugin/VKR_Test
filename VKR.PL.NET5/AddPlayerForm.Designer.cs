@@ -52,6 +52,7 @@
             this.txtFirstName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.txtId = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.btnClose = new System.Windows.Forms.Button();
+            this.pbPhoto = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numPlayerNumber)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -341,12 +342,21 @@
             this.btnClose.Text = "CLOSE";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
+            // pbPhoto
+            // 
+            this.pbPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbPhoto.Location = new System.Drawing.Point(397, 12);
+            this.pbPhoto.Name = "pbPhoto";
+            this.pbPhoto.Size = new System.Drawing.Size(97, 146);
+            this.pbPhoto.TabIndex = 114;
+            // 
             // AddPlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(506, 575);
+            this.Controls.Add(this.pbPhoto);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtLastName);
@@ -409,5 +419,6 @@
         private Controls.NET5.TextBoxWithHeader txtFirstName;
         private Controls.NET5.TextBoxWithHeader txtId;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Panel pbPhoto;
     }
 }

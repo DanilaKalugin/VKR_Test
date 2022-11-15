@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
+using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
 {
@@ -21,13 +22,7 @@ namespace VKR.PL.NET5
         private readonly bool _addingPlayer;
         private readonly int _cityId;
 
-        private AddPlayerForm()
-        {
-            InitializeComponent();
-
-            dtpBirthDate.MaxDate = DateTime.Today.AddYears(-16);
-            dtpBirthDate.MinDate = DateTime.Today.AddYears(-100);
-        }
+        private AddPlayerForm() => InitializeComponent();
 
         public AddPlayerForm(Player player) : this()
         {
@@ -137,6 +132,8 @@ namespace VKR.PL.NET5
 
             Text = _addingPlayer ? "Adding new player" : $"Updating {_player?.FullName}";
             txtId.Value = _player?.Id.ToString();
+
+            pbPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{_player?.Id:0000}.png");
             btnCheck.Text = _addingPlayer ? "ADD" : "UPDATE";
         }
 

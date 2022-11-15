@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
+using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
 {
@@ -16,6 +17,11 @@ namespace VKR.PL.NET5
             seriesHeader.Text = $"{_currentMatch.AwayTeam.TeamAbbreviation} - {_currentMatch.HomeTeam.TeamAbbreviation} series";
             team1Header.Text = _currentMatch.AwayTeam.TeamName;
             team2Header.Text = _currentMatch.HomeTeam.TeamName;
+
+            team1SeriesImage.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{_currentMatch.AwayTeam.TeamAbbreviation}.png");
+            team2SeriesImage.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{_currentMatch.HomeTeam.TeamAbbreviation}.png");
+            team1Image.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{_currentMatch.AwayTeam.TeamAbbreviation}.png");
+            team2Image.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{_currentMatch.HomeTeam.TeamAbbreviation}.png");
         }
 
         private void btnSeriesHistory_Click(object sender, EventArgs e) => 
