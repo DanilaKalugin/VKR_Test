@@ -36,10 +36,6 @@ namespace VKR.PL.NET5
         private async Task ShowTeam()
         {
             var team = _teams[_teamNumber];
-
-            ShowTeamStadiums(team);
-            ShowRetiredNumbers(team);
-
             var teamColor = _primaryColor.FirstOrDefault(pc => pc.TeamName == team.TeamAbbreviation)!.Color;
 
             lbTeamTitle.BackColor = teamColor;
@@ -50,7 +46,7 @@ namespace VKR.PL.NET5
             dgvStadiums.AlternatingRowsDefaultCellStyle.SelectionBackColor = teamColor;
 
             dgvRetiredNumbers.DefaultCellStyle.SelectionBackColor = teamColor;
-            dgvRetiredNumbers.AlternatingRowsDefaultCellStyle.SelectionForeColor = teamColor;
+            dgvRetiredNumbers.AlternatingRowsDefaultCellStyle.SelectionBackColor = teamColor;
 
             lbManagerHeader.ForeColor = teamColor;
 
@@ -66,6 +62,8 @@ namespace VKR.PL.NET5
             pbSubstitutionLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogosForSubstitution/{team.TeamAbbreviation}.png");
 
             ShowManager(team.Manager);
+            ShowTeamStadiums(team);
+            await ShowRetiredNumbers(team);
         }
 
         private async Task ShowRetiredNumbers(Team team)

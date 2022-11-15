@@ -64,12 +64,12 @@ namespace VKR.PL.NET5
         }
 
 
-        private void RowChanging(int step, Label PlayerName, Label playerERA, Label playerSO, ProgressBar progressBar, PictureBox pb)
+        private void RowChanging(int step, Label playerName, Label playerERA, Label playerSO, ProgressBar progressBar, PictureBox pb)
         {
             if (_playerIndex + step < _pitchers.Count)
             {
                 pb.Image = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{_pitchers[_playerIndex + step].Id:0000}.png");
-                PlayerName.Text = _pitchers[_playerIndex + step].FullName;
+                playerName.Text = _pitchers[_playerIndex + step].FullName;
                 playerERA.Text = $"{_pitchers[_playerIndex + step].PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"))}";
                 playerSO.Text = _pitchers[_playerIndex + step].PitchingStats.Strikeouts.ToString();
                 progressBar.Value = (int)_pitchers[_playerIndex + step].RemainingStamina;
@@ -78,7 +78,7 @@ namespace VKR.PL.NET5
             else
             {
                 pb.Image = null;
-                PlayerName.Text = string.Empty;
+                playerName.Text = string.Empty;
                 playerERA.Text = string.Empty;
                 playerSO.Text = string.Empty;
                 progressBar.Value = 0;

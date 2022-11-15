@@ -117,6 +117,9 @@ namespace VKR.PL.NET5
 
         private async void AddPlayerForm_Load(object sender, EventArgs e)
         {
+            dtpBirthDate.MaxDate = _addingPlayer ? DateTime.Today.AddYears(-16) : DateTime.Today;
+            dtpBirthDate.MinDate = _addingPlayer ? DateTime.Today.AddYears(-100): DateTime.Today.AddYears(-200);
+
             await FillCitiesTable();
 
             _positions = await _playerPositionsBl.GetAvailablePlayerPositions();
