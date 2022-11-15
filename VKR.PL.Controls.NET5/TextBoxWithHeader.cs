@@ -58,6 +58,7 @@ namespace VKR.PL.Controls.NET5
 
                 txtLastName.Enabled = !value;
                 Height = value ? 26 : 46;
+                txtLastName.Cursor = _readOnlyControl ? Cursors.Default : Cursors.IBeam;
             }
         }
 
@@ -101,8 +102,7 @@ namespace VKR.PL.Controls.NET5
 
         private void txtLastName_Validating(object sender, CancelEventArgs e)
         {
-            if (ReadOnlyControl)
-                return;
+            if (ReadOnlyControl) return;
 
             var text = txtLastName.Text.Trim();
 
