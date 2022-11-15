@@ -115,12 +115,18 @@ namespace VKR.PL.NET5
 
         private async Task FillTeamsAndColors()
         {
+            Opacity = 0;
+            var f = new LoadingForm();
+            f.TopMost = true;
+            f.Show();
             var teamsTask = _teamsBl.GetTeamsWithInfoAsync();
             var primaryColorsTask = _primaryTeamColorBl.GetPrimaryTeamColorsAsync();
 
             await Task.WhenAll(teamsTask, primaryColorsTask);
 
             (_teams, _primaryColor) = (teamsTask.Result, primaryColorsTask.Result);
+            f.Dispose();
+            Opacity = 1;
         }
 
         private async void TeamInformationForm_VisibleChanged(object sender, EventArgs e)
