@@ -32,8 +32,6 @@ namespace VKR.EF.Entities.Mappers
                 .HasForeignKey(s => s.StadiumLocation)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
-
-            builder.Navigation(s => s.StadiumCity).AutoInclude();
         }
     }
 }

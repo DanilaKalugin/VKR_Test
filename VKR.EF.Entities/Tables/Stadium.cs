@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VKR.EF.Entities
 {
     public class Stadium
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public ushort StadiumId { get; set; }
         public string StadiumTitle { get; set; }
         public uint StadiumCapacity { get; set; }
