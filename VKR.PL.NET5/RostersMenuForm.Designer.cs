@@ -71,6 +71,7 @@ namespace VKR.PL.NET5
             // 
             // btnCloseRostersMenu
             // 
+            this.btnCloseRostersMenu.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCloseRostersMenu.FlatAppearance.BorderSize = 0;
             this.btnCloseRostersMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseRostersMenu.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -82,7 +83,6 @@ namespace VKR.PL.NET5
             this.btnCloseRostersMenu.TabIndex = 20;
             this.btnCloseRostersMenu.Text = "CLOSE";
             this.btnCloseRostersMenu.UseVisualStyleBackColor = false;
-            this.btnCloseRostersMenu.Click += new System.EventHandler(this.btnCloseResultsMenu_Click);
             // 
             // btnReserves
             // 

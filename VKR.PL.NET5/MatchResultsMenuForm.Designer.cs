@@ -88,6 +88,7 @@ namespace VKR.PL.NET5
             // 
             this.btnCloseResultsMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCloseResultsMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btnCloseResultsMenu.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCloseResultsMenu.FlatAppearance.BorderSize = 0;
             this.btnCloseResultsMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseResultsMenu.Font = new System.Drawing.Font("MicroFLF", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -98,7 +99,6 @@ namespace VKR.PL.NET5
             this.btnCloseResultsMenu.TabIndex = 13;
             this.btnCloseResultsMenu.Text = "CLOSE";
             this.btnCloseResultsMenu.UseVisualStyleBackColor = false;
-            this.btnCloseResultsMenu.Click += new System.EventHandler(this.btnCloseResultsMenu_Click);
             // 
             // btnScheduleByTeam
             // 

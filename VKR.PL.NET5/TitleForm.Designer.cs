@@ -42,6 +42,7 @@ namespace VKR.PL.NET5
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -51,7 +52,6 @@ namespace VKR.PL.NET5
             this.button1.TabIndex = 1;
             this.button1.Text = "START";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // lbTitleEnglish
             // 
@@ -61,7 +61,7 @@ namespace VKR.PL.NET5
             this.lbTitleEnglish.Name = "lbTitleEnglish";
             this.lbTitleEnglish.Size = new System.Drawing.Size(776, 24);
             this.lbTitleEnglish.TabIndex = 2;
-            this.lbTitleEnglish.Text = "Predicting the results of baseball matches";
+            this.lbTitleEnglish.Text = "PREDICTING THE RESULTS OF BASEBALL MATCHES";
             // 
             // panel1
             // 

@@ -150,8 +150,6 @@ namespace VKR.PL.NET5
                 }
         }
 
-        private void btnCloseResultsMenu_Click(object sender, EventArgs e) => Close();
-
         private async void StatsMenuForm_Load(object sender, EventArgs e)
         {
             Opacity = 0;

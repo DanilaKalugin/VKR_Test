@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 
@@ -12,36 +13,26 @@ namespace VKR.PL.NET5
 
         private async void btnResultsByDate_Click(object sender, EventArgs e)
         {
-            Visible = false;
-            var matchDate = await _matchBL.GetMaxDateForAllMatchesAsync();
-            using (var form = new MatchResultsForm(matchDate, false, MatchScheduleBL.TableType.Results))
-                form.ShowDialog();
-            Visible = true;
+            var matchDate = await _matchBL.GetMaxDateForAllMatchesAsync(); 
+            OpenMatchResultsForm(new MatchResultsForm(matchDate, false, MatchScheduleBL.TableType.Results));
         }
 
-        private void btnResults_Click(object sender, EventArgs e)
-        {
-            Visible = false;
-            using (var form = new MatchResultsForm(MatchScheduleBL.TableType.Results)) 
-                form.ShowDialog();
-            Visible = true;
-        }
+        private void btnResults_Click(object sender, EventArgs e) => 
+            OpenMatchResultsForm(new MatchResultsForm(MatchScheduleBL.TableType.Results));
 
-        private void btnCloseResultsMenu_Click(object sender, EventArgs e) => Close();
-
-        private void btnScheduleByTeam_Click(object sender, EventArgs e)
-        {
-            Visible = false;
-            using (var form = new MatchResultsForm(MatchScheduleBL.TableType.Schedule)) 
-                form.ShowDialog();
-            Visible = true;
-        }
+        private void btnScheduleByTeam_Click(object sender, EventArgs e) => 
+            OpenMatchResultsForm(new MatchResultsForm(MatchScheduleBL.TableType.Schedule));
 
         private async void btnScheduleByDate_Click(object sender, EventArgs e)
         {
-            Visible = false;
             var matchDate = await _matchBL.GetMaxDateForAllMatchesAsync();
-            using (var form = new MatchResultsForm(matchDate, false, MatchScheduleBL.TableType.Schedule))
+            OpenMatchResultsForm(new MatchResultsForm(matchDate, false, MatchScheduleBL.TableType.Schedule));
+        }
+
+        private void OpenMatchResultsForm(MatchResultsForm form)
+        {
+            Visible = false;
+            using (form)
                 form.ShowDialog();
             Visible = true;
         }

@@ -14,8 +14,6 @@ namespace VKR.PL.NET5
             button2.Visible = _isAdmin;
         }
 
-        private void btnCloseResultsMenu_Click(object sender, EventArgs e) => Close();
-
         private void btnLineups_Click(object sender, EventArgs e) => OpenLineupsForm(LineupsForm.RosterType.StartingLineups);
 
         private void btnReserves_Click(object sender, EventArgs e) => OpenLineupsForm(LineupsForm.RosterType.Reserves);
