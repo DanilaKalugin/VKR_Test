@@ -40,6 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cbPlaceOfBirth = new System.Windows.Forms.ComboBox();
             this.btnCheck = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPlayerNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxWidth)).BeginInit();
             this.SuspendLayout();
@@ -208,11 +209,25 @@
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnClose.Location = new System.Drawing.Point(187, 191);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(107, 33);
+            this.btnClose.TabIndex = 111;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
             // AddStadiumForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 236);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.btnAddCity);
             this.Controls.Add(this.label4);
@@ -253,5 +268,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbPlaceOfBirth;
         private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Button btnClose;
     }
 }

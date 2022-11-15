@@ -51,6 +51,7 @@
             this.txtLastName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.txtFirstName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.txtId = new VKR.PL.Controls.NET5.TextBoxWithHeader();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPlayerNumber)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -327,12 +328,26 @@
             this.txtId.Value = null;
             this.txtId.ValuePosition = ((ushort)(129));
             // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnClose.Location = new System.Drawing.Point(141, 530);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(107, 33);
+            this.btnClose.TabIndex = 113;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
             // AddPlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(506, 575);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtFirstName);
@@ -393,5 +408,6 @@
         private Controls.NET5.TextBoxWithHeader txtLastName;
         private Controls.NET5.TextBoxWithHeader txtFirstName;
         private Controls.NET5.TextBoxWithHeader txtId;
+        private System.Windows.Forms.Button btnClose;
     }
 }

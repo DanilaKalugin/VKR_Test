@@ -101,8 +101,6 @@ namespace VKR.PL.NET5
             ShowTeam();
         }
 
-        private void btnClose_Click(object sender, EventArgs e) => Close();
-
         private void btnEditTeamMainInfo_Click(object sender, EventArgs e)
         {
             Visible = false;
