@@ -28,8 +28,8 @@ namespace VKR.PL.NET5
 
         private List<Player> _batters;
         private List<Player> _pitchers;
-        private List<Team> _teamBattingStats;
-        private List<Team> _teamPitchingStats;
+        private List<TeamStatsViewModel> _teamBattingStats;
+        private List<TeamStatsViewModel> _teamPitchingStats;
         private readonly SortMode[][] _sortModes = new SortMode[2][];
         private PlayerType _playerType;
         private StatsType _statsType;
@@ -155,7 +155,7 @@ namespace VKR.PL.NET5
                 pitcher => pitcher.PitchingStats.CaughtStealing
             };
 
-            var teamBattingActions = new List<Func<Team, double>>
+            var teamBattingActions = new List<Func<TeamStatsViewModel, double>>
             {
                 teamBatting => teamBatting.BattingStats.TGP,
                 teamBatting => teamBatting.BattingStats.AtBats,
@@ -188,7 +188,7 @@ namespace VKR.PL.NET5
                 teamBatting => teamBatting.BattingStats.ExpectedHomeRuns
             };
 
-            var teamPitchingActions = new List<Func<Team, double>>
+            var teamPitchingActions = new List<Func<TeamStatsViewModel, double>>
             {
                 pitcher => pitcher.PitchingStats.Wins,
                 pitcher => pitcher.PitchingStats.Losses,
@@ -293,7 +293,7 @@ namespace VKR.PL.NET5
             ShowNewStats(_playerType, _statsType);
         }
 
-        private void FillBattersAndPitchersTable(IReadOnlyList<Player> batters, IReadOnlyList<Player> pitchers, List<Team> teamBatting, List<Team> teamPitching)
+        private void FillBattersAndPitchersTable(IReadOnlyList<Player> batters, IReadOnlyList<Player> pitchers, IReadOnlyList<TeamStatsViewModel> teamBatting, IReadOnlyList<TeamStatsViewModel> teamPitching)
         {
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();

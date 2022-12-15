@@ -48,7 +48,7 @@ namespace VKR.EF.DAO
                 (player, stats) => player.SetPitchingStats(stats)).ToList();
         }
 
-        public async Task<List<Team>> GetBattingStatsByYearAndMatchType(int year, TypeOfMatchEnum type)
+        public async Task<List<TeamStatsViewModel>> GetBattingStatsByYearAndMatchType(int year, TypeOfMatchEnum type)
         {
             await using var db = new VKRApplicationContext();
 
@@ -62,10 +62,10 @@ namespace VKR.EF.DAO
                 .ConfigureAwait(false);
 
             return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
-                (team, stats) => team.SetBattingStats(stats)).ToList();
+                (team, stats) => new TeamStatsViewModel(team, stats)).ToList();
         }
 
-        public async Task<List<Team>> GetPitchingStatsByYearAndMatchTypeAsync(int year = 2021, TypeOfMatchEnum type = TypeOfMatchEnum.RegularSeason)
+        public async Task<List<TeamStatsViewModel>> GetPitchingStatsByYearAndMatchTypeAsync(int year = 2021, TypeOfMatchEnum type = TypeOfMatchEnum.RegularSeason)
         {
             await using var db = new VKRApplicationContext();
 
@@ -79,7 +79,7 @@ namespace VKR.EF.DAO
                 .ConfigureAwait(false);
 
             return teams.Join(battingStats, team => team.TeamAbbreviation, stats => stats.TeamName,
-                (team, stats) => team.SetPitchingStats(stats)).ToList();
+                (team, stats) => new TeamStatsViewModel(team, stats)).ToList();
         }
     }
 }

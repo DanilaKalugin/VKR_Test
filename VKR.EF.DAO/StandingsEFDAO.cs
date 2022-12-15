@@ -10,7 +10,7 @@ namespace VKR.EF.DAO
 {
     public class StandingsEFDAO
     {
-        public List<Team> GetStandings(DateTime date, byte type)
+        public List<TeamStandingsViewModel> GetStandings(DateTime date, TypeOfMatchEnum type)
         {
             using var db = new VKRApplicationContext();
 
@@ -48,7 +48,7 @@ GROUP BY dbo.Teams.TeamAbbreviation", typeParam, dateParam).ToList();
                 .Join(runs,
                     team => team.TeamAbbreviation,
                     run => run.TeamAbbreviation,
-                    (team, run) => team.SetRunsByTeam(run)).ToList();
+                    (team, run) => new TeamStandingsViewModel(team, run)).ToList();
 
             if (teams.Count != streaks.Count)
                 return teams;

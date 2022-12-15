@@ -164,7 +164,6 @@ namespace VKR.PL.NET5
 
                 var battersTask = _statsBl.GetBattersStats(_season);
                 var pitchersTask = _statsBl.GetPitchersStats(_season);
-                
 
                 await Task.WhenAll(battersTask, pitchersTask);
                 (_batters, _pitchers) = (battersTask.Result, pitchersTask.Result);

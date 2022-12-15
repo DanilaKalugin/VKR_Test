@@ -10,13 +10,13 @@ namespace VKR.BLL.NET5
     {
         private readonly StandingsEFDAO _standingsDao = new();
 
-        public List<Team> GetStandings(string filter, DateTime date)
+        public List<TeamStandingsViewModel> GetStandings(string filter, DateTime date)
         {
-            var teams = _standingsDao.GetStandings(date, (byte)TypeOfMatchEnum.RegularSeason);
+            var teams = _standingsDao.GetStandings(date, TypeOfMatchEnum.RegularSeason);
 
             if (filter != "MLB")
             {
-                Func<Team, bool> teamFilter = filter is "NL" or "AL"
+                Func<TeamStandingsViewModel, bool> teamFilter = filter is "NL" or "AL"
                     ? team => team.Division.LeagueId == filter
                     : team => team.Division.DivisionTitle == filter;
 
@@ -41,7 +41,7 @@ namespace VKR.BLL.NET5
             return teams;
         }
 
-        public List<Team> GetWildCardStandings(string filter, DateTime date)
+        public List<TeamStandingsViewModel> GetWildCardStandings(string filter, DateTime date)
         {
             var teams = GetStandings(filter, date);
 
@@ -49,7 +49,7 @@ namespace VKR.BLL.NET5
             var centralLeader = teams.First(team => team.Division.DivisionTitle == $"{filter} Central");
             var eastLeader = teams.First(team => team.Division.DivisionTitle == $"{filter} East");
 
-            var divisionLeaders = new List<Team> { westLeader, centralLeader, eastLeader };
+            var divisionLeaders = new List<TeamStandingsViewModel> { westLeader, centralLeader, eastLeader };
             teams = teams.Except(divisionLeaders).ToList();
 
             var leaderW = teams[2].Wins;

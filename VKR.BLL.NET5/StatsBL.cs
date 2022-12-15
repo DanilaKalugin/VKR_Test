@@ -11,7 +11,7 @@ namespace VKR.BLL.NET5
         private readonly StatsEFDAO _statsDao = new();
         private readonly TeamsEFDAO _teamsDao = new();
 
-        public async Task<List<Team>> GetTeamBattingStats(Season season, TypeOfMatchEnum typeOfMatch = TypeOfMatchEnum.RegularSeason)
+        public async Task<List<TeamStatsViewModel>> GetTeamBattingStats(Season season, TypeOfMatchEnum typeOfMatch = TypeOfMatchEnum.RegularSeason)
         {
             var teams = await _statsDao.GetBattingStatsByYearAndMatchType(season.Year, typeOfMatch)
                 .ConfigureAwait(false);
@@ -19,7 +19,7 @@ namespace VKR.BLL.NET5
             return teams.OrderByDescending(team => team.BattingStats.AVG).ToList();
         }
 
-        public async Task<List<Team>> GetTeamPitchingStats(Season season, TypeOfMatchEnum typeOfMatch = TypeOfMatchEnum.RegularSeason)
+        public async Task<List<TeamStatsViewModel>> GetTeamPitchingStats(Season season, TypeOfMatchEnum typeOfMatch = TypeOfMatchEnum.RegularSeason)
         {
             var teams = await _statsDao.GetPitchingStatsByYearAndMatchTypeAsync(season.Year, typeOfMatch)
                 .ConfigureAwait(false);

@@ -34,7 +34,7 @@ namespace VKR.PL.NET5
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter.SelectedIndex);
 
-        private void GetStandingsForThisGroup(IList<Team> teams, string group)
+        private void GetStandingsForThisGroup(IList<TeamStandingsViewModel> teams, string group)
         {
             var teamsInGroup = teams.Count;
             dgvStandings.Rows.Add("", group, "W", "L", "GB", "PCT", "STREAK", "RS", "RA", "DIFF", "HOME", "AWAY");
@@ -105,7 +105,7 @@ namespace VKR.PL.NET5
                 _ => new List<string>()
             };
 
-            Func<string, DateTime, List<Team>> teamFunc =
+            Func<string, DateTime, List<TeamStandingsViewModel>> teamFunc =
                 groupingTypeNumber == 3 
                     ? _standingsBl.GetWildCardStandings 
                     : _standingsBl.GetStandings;
@@ -116,11 +116,11 @@ namespace VKR.PL.NET5
                 GetStandingsForThisGroup(teamsGroups[index], groups[index]);
         }
 
-        private List<List<Team>> GetStandingsForEachGroup(IReadOnlyList<string> groups, Func<string, DateTime, List<Team>> teamFunc)
+        private List<List<TeamStandingsViewModel>> GetStandingsForEachGroup(IReadOnlyList<string> groups, Func<string, DateTime, List<TeamStandingsViewModel>> teamFunc)
         {
-            var teamsGroups = new List<List<Team>>(groups.Count);
+            var teamsGroups = new List<List<TeamStandingsViewModel>>(groups.Count);
 
-            teamsGroups.AddRange(Enumerable.Repeat(new List<Team>(), groups.Count));
+            teamsGroups.AddRange(Enumerable.Repeat(new List<TeamStandingsViewModel>(), groups.Count));
 
             Parallel.For(0, groups.Count, index => teamsGroups[index] = teamFunc(groups[index], dtpStandingsDate.Value));
             return teamsGroups;
