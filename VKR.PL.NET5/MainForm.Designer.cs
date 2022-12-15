@@ -775,6 +775,7 @@ namespace VKR.PL.NET5
             this.lbTodayStats.Size = new System.Drawing.Size(1013, 30);
             this.lbTodayStats.TabIndex = 22;
             this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTodayStats.VisibleChanged += new System.EventHandler(this.lbTodayStats_VisibleChanged);
             // 
             // pbCurrentBatterPhoto
             // 

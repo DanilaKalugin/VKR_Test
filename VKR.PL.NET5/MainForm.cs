@@ -15,7 +15,7 @@ namespace VKR.PL.NET5
 {
     public partial class MainForm : Form
     {
-        private Match _currentMatch;
+        private readonly Match _currentMatch;
         private GameSituation _newGameSituation;
         private GameSituation _previousSituation;
         private readonly MatchBL _matchBl = new();
@@ -36,9 +36,9 @@ namespace VKR.PL.NET5
 
             BatterInfo.SetMatch(_currentMatch);
 
-            using (var lineup = new StartingLineupForm(_currentMatch.AwayTeam)) 
+            using (var lineup = new StartingLineupForm(_currentMatch.AwayTeam))
                 lineup.ShowDialog();
-            using (var defense = new DefenseForm(_currentMatch.HomeTeam)) 
+            using (var defense = new DefenseForm(_currentMatch.HomeTeam))
                 defense.ShowDialog();
 
             _previousSituation = _currentMatch.GameSituations.Last();
@@ -233,11 +233,6 @@ namespace VKR.PL.NET5
             AddNewStatsForTodayStatsLabel(Ks, "SO", lbTodayStats);
 
             lbTodayStats.Visible = lbTodayStats.Text != "►TODAY: " && panelCurrentBatter.Visible;
-
-            panelCurrentBatter.Height = lbTodayStats.Text != "►TODAY: " ? 110 : 140;
-            pbCurrentOffenseLogo.Width = lbTodayStats.Text != "►TODAY: " ? 110 : 140;
-            pbCurrentOffenseLogo.Height = lbTodayStats.Text != "►TODAY: " ? 110 : 140;
-            pbCurrentOffenseLogo.Left = lbTodayStats.Text != "►TODAY: " ? 88 : 58;
         }
 
         private void IsHomeRun(int runs)
@@ -329,7 +324,7 @@ namespace VKR.PL.NET5
                 var lastAtBatOffense = lastAtBat.Offense;
                 label27.BackColor = lastAtBatOffense == _currentMatch.AwayTeam.TeamAbbreviation ? _currentMatch.AwayTeam.TeamColorForThisMatch : _currentMatch.HomeTeam.TeamColorForThisMatch;
                 panel15.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{lastAtBatOffense}.png");
-                
+
                 var lastBatter = await _playerBl.GetPlayerByCode(lastAtBat.BatterId);
                 label27.Text = Width >= 960 ? lastBatter.FullName : $"{lastBatter.FirstName[0]}. {lastBatter.SecondName}";
                 label44.Text = lastAtBat.ToString();
@@ -376,8 +371,8 @@ namespace VKR.PL.NET5
         private async Task GenerateNewPitch()
         {
             Pitch pitch;
-            
-            var stealingAttempt = _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt || _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
+
+            var stealingAttempt = (_newGameSituation.RunnerOnFirst.IsBaseStealingAttempt || _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt) && _newGameSituation.Outs < 2;
             var countOfAtBats = _currentMatch.AtBats.Count;
             var typeOfStealing = 0;
 
@@ -477,7 +472,7 @@ namespace VKR.PL.NET5
                 !GameSituation.BaseStealingResults.Contains(situation.Result) &&
                 (situation.Result != EF.Entities.Enums.PitchResult.Ball || situation.Balls != 0) &&
                 (situation.Result != EF.Entities.Enums.PitchResult.Strike || situation.Strikes != 0)) return;
-            
+
             var newAtBat = situation.Result switch
             {
                 EF.Entities.Enums.PitchResult.SecondBaseStolen => new AtBat(_currentMatch, situation.RunnerOnSecond.RunnerId, true),
@@ -566,7 +561,7 @@ namespace VKR.PL.NET5
             {
                 _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt = !_newGameSituation.RunnerOnFirst.IsBaseStealingAttempt;
 
-                if (lb_Runner2_Name.Visible) 
+                if (lb_Runner2_Name.Visible)
                     _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt = true;
             }
 
@@ -603,7 +598,7 @@ namespace VKR.PL.NET5
         {
             timer1.Stop();
 
-            using (var form = new StandingsForm(_currentMatch.HomeTeam, _currentMatch.AwayTeam)) 
+            using (var form = new StandingsForm(_currentMatch.HomeTeam, _currentMatch.AwayTeam))
                 form.ShowDialog();
 
             if (_isAutoSimulation) timer1.Start();
@@ -615,7 +610,7 @@ namespace VKR.PL.NET5
         {
             timer1.Stop();
 
-            using (var form = new ScheduleAndResultsForm(_currentMatch)) 
+            using (var form = new ScheduleAndResultsForm(_currentMatch))
                 form.ShowDialog();
 
             if (_isAutoSimulation) timer1.Start();
@@ -625,7 +620,7 @@ namespace VKR.PL.NET5
         {
             timer1.Stop();
 
-            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players)) 
+            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players))
                 form.ShowDialog();
 
             if (_isAutoSimulation) timer1.Start();
@@ -656,7 +651,7 @@ namespace VKR.PL.NET5
         {
             timer1.Stop();
 
-            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Teams)) 
+            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Teams))
                 form.ShowDialog();
 
             if (_isAutoSimulation) timer1.Start();
@@ -690,10 +685,16 @@ namespace VKR.PL.NET5
             if (!_isAutoSimulation) return;
 
             var TBFinThisMatch = _currentMatch.AtBats.Count(atBat => atBat.AtBatType != AtBatType.CaughtStealing && atBat.AtBatType != AtBatType.StolenBase && atBat.PitcherId == defense.CurrentPitcher.PitcherId);
-            
-            if (TBFinThisMatch >= 3 && _newGameSituation.Balls == 0 && _newGameSituation.Strikes == 0) 
-                await PitcherSubstitution_Definition(defense.CurrentPitcher);
-            
+
+            if (_newGameSituation.Balls == 0 && _newGameSituation.Strikes == 0)
+            {
+                var batterNumber = _newGameSituation.Offense == _currentMatch.AwayTeam ? _newGameSituation.NumberOfBatterFromAwayTeam : _newGameSituation.NumberOfBatterFromHomeTeam;
+                await BatterSubstitution_Definition(_newGameSituation.Offense.BattingLineup[batterNumber - 1], batterNumber);
+
+                if (TBFinThisMatch >= 3)
+                    await PitcherSubstitution_Definition(defense.CurrentPitcher);
+            }
+
             BasesStealingAttempt_Definition();
             bool isBunt;
 
@@ -702,18 +703,9 @@ namespace VKR.PL.NET5
                 isBunt = BuntAttemptDefinition();
             else isBunt = false;
 
-            if (isBunt) 
+            if (isBunt)
                 await GenerateNewBunt();
             else await GenerateNewPitch();
-        }
-
-        private async Task PitcherSubstitution_Definition(Pitcher pitcher)
-        {
-            var pitcherSubstitution = RandomGenerators.PitcherSubstitution_Definition(pitcher, _currentMatch.AtBats);
-
-            if (pitcherSubstitution != RandomGenerators.PitcherSubstitution.Substitution) return;
-            
-            await ChangePitcher(_isAutoSimulation);
         }
 
         private void btnAutoMode_Click(object sender, EventArgs e) => SimulationModeChanged(true);
@@ -742,6 +734,14 @@ namespace VKR.PL.NET5
         }
 
         private void btnManualMode_Click(object sender, EventArgs e) => SimulationModeChanged(false);
+
+        private void lbTodayStats_VisibleChanged(object sender, EventArgs e)
+        {
+            panelCurrentBatter.Height = lbTodayStats.Visible ? 110 : 140;
+            pbCurrentOffenseLogo.Width = lbTodayStats.Visible ? 110 : 140;
+            pbCurrentOffenseLogo.Height = lbTodayStats.Visible ? 110 : 140;
+            pbCurrentOffenseLogo.Left = lbTodayStats.Visible ? 88 : 58;
+        }
 
         #region BatterSubstitution
         private async Task BatterSubstitution_Definition(Batter batter, int batterNumber)
