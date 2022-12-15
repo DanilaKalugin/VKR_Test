@@ -637,44 +637,13 @@ namespace VKR.PL.NET5
             pbCurrentBatterPhoto.Visible = panelCurrentBatter.Visible;
         }
 
-        private async void btnChangeBatter_Click(object sender, EventArgs e) => await BatterSubstitution();
-
-        private async Task BatterSubstitution()
+        private async void btnChangeBatter_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
-            var Offense = _newGameSituation.Offense;
-            
-            var batters = await _substitutionBl.GetAvailableBatters(_currentMatch, Offense, GetBatterByGameSituation(_newGameSituation));
-            
-            if (batters.Count > 0)
-            {
-                using var form = new SubstitutionForm(Offense, batters);
-                form.ShowDialog();
-
-                if (form.DialogResult == DialogResult.OK)
-                {
-                    var oldBatter = GetBatterByGameSituation(_newGameSituation);
-
-                    await _substitutionBl.SubstituteBatter(_currentMatch, form.NewBatterForThisTeam);
-                    Offense.BattingLineup = await _playerBl.GetCurrentLineupForThisMatch(Offense, _currentMatch);
-
-                    if (!_currentMatch.DHRule && oldBatter.NumberInLineup == 9)
-                    {
-                        var newPitcher = (Pitcher)await _playerBl.GetPlayerByCode(form.NewBatterForThisTeam.Id);
-                        Offense.PitchersPlayedInMatch.Add(newPitcher);
-                    }
-
-                    await _playerBl.UpdateStatsForThisPitcher(Offense.CurrentPitcher, _currentMatch);
-                    await DisplayingCurrentSituation(_newGameSituation);
-                }
-            }
-            else
-            {
-                using var form = new ErrorForm();
-                form.ShowDialog();
-            }
-            
-            if (_isAutoSimulation) timer1.Start();
+            var offense = _newGameSituation.Offense;
+            var batterNumber = offense.TeamAbbreviation == _currentMatch.AwayTeam.TeamAbbreviation 
+                ? _newGameSituation.NumberOfBatterFromAwayTeam 
+                : _newGameSituation.NumberOfBatterFromHomeTeam;
+            await ChangeBatter(_isAutoSimulation, batterNumber);
         }
 
         private void BackColorChanging_label(object sender, EventArgs e)
@@ -774,6 +743,73 @@ namespace VKR.PL.NET5
 
         private void btnManualMode_Click(object sender, EventArgs e) => SimulationModeChanged(false);
 
+        #region BatterSubstitution
+        private async Task BatterSubstitution_Definition(Batter batter, int batterNumber)
+        {
+            var batterSubstitution = RandomGenerators.BatterSubstitution_Definition(batter, _currentMatch.AtBats);
+
+            if (batterSubstitution != RandomGenerators.BatterSubstitution.Substitution) return;
+            await ChangeBatter(_isAutoSimulation, batterNumber);
+        }
+
+        private async Task ChangeBatter(bool isAutoSimulation, int batterNumber)
+        {
+            timer1.Stop();
+
+            var offense = _newGameSituation.Offense;
+            var batter = offense.BattingLineup[batterNumber - 1];
+            var batters = await _substitutionBl.GetAvailableBatters(_currentMatch, offense, batter);
+
+            if (batters.Count > 0)
+            {
+                Func<Team, List<Batter>, Batter?> newBatterFunc =
+                    !isAutoSimulation ? GetBatterManual : GetBatterAutomatic;
+
+                var newBatter = newBatterFunc(offense, batters);
+
+                if (newBatter is null) return;
+
+                await _substitutionBl.SubstituteBatter(_currentMatch, newBatter);
+                offense.BattingLineup = await _playerBl.GetCurrentLineupForThisMatch(offense, _currentMatch);
+
+                if (!_currentMatch.DHRule && batter.NumberInLineup == 9)
+                {
+                    var newPitcher = (Pitcher)await _playerBl.GetPlayerByCode(newBatter.Id);
+                    offense.PitchersPlayedInMatch.Add(newPitcher);
+                }
+
+                await _playerBl.UpdateStatsForThisPitcher(offense.CurrentPitcher, _currentMatch);
+                await DisplayingCurrentSituation(_newGameSituation);
+            }
+            else if (!isAutoSimulation)
+            {
+                using var form = new ErrorForm();
+                form.ShowDialog();
+            }
+
+            if (isAutoSimulation) timer1.Start();
+        }
+
+        private Batter? GetBatterManual(Team offense, List<Batter> batters)
+        {
+            using var form = new SubstitutionForm(offense, batters);
+            form.ShowDialog();
+            return form.DialogResult == DialogResult.OK ? form.NewBatterForThisTeam : null;
+        }
+
+        private Batter? GetBatterAutomatic(Team offense, List<Batter> batters) => batters.FirstOrDefault();
+        #endregion
+
+        #region PitcherSubstitution
+        private async Task PitcherSubstitution_Definition(Pitcher pitcher)
+        {
+            var pitcherSubstitution = RandomGenerators.PitcherSubstitution_Definition(pitcher, _currentMatch.Runs);
+
+            if (pitcherSubstitution != RandomGenerators.PitcherSubstitution.Substitution) return;
+
+            await ChangePitcher(_isAutoSimulation);
+        }
+
         private async Task ChangePitcher(bool isAutoSimulation)
         {
             var defense = _newGameSituation.Offense == _currentMatch.AwayTeam ? _currentMatch.HomeTeam : _currentMatch.AwayTeam;
@@ -822,5 +858,6 @@ namespace VKR.PL.NET5
             form.ShowDialog();
             return form.DialogResult == DialogResult.OK ? form.NewPitcherForThisTeam : null;
         }
+        #endregion
     }
 }

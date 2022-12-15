@@ -34,16 +34,30 @@ namespace VKR.PL.Utils.NET5
             return pitchingSubstitutionRandomValue <= Math.Pow(pitcher.RemainingStamina / 10 - 25, 2) + Math.Pow(runsByThisPitcher + 1, 2) ? PitcherSubstitution.Substitution : PitcherSubstitution.NoSubstitution;
         }
 
-        /*public static BatterSubstitution BatterSubstitution_Definition()
+        public static BatterSubstitution BatterSubstitution_Definition(Batter batter, List<AtBat> atBats)
         {
-            
-        }*/
+            var batterSubstitutionRandomValue = _batterSubstitutionRandomGenerator.Next(1, 1000);
+
+            var hitsForThisBatter = atBats.Count(atBat => atBat.BatterId == batter.BatterId && atBat.AtBatType is AtBatType.Double or AtBatType.Triple or AtBatType.HomeRun or AtBatType.Single);
+            var outsForThisBatter = atBats.Count(atBat => atBat.BatterId == batter.BatterId && atBat.AtBatType is AtBatType.Groundout or AtBatType.Flyout or AtBatType.SacrificeFly or AtBatType.Strikeout or AtBatType.SacrificeBunt or AtBatType.Walk);
+
+            var atBatsForThisBatter = outsForThisBatter == 0 ? 0 : hitsForThisBatter + outsForThisBatter;
+
+            const int firstCoefficient = 25;
+            const int deltaCoefficient = 75;
+
+            return batterSubstitutionRandomValue <=
+                   (firstCoefficient * 2 + deltaCoefficient * (outsForThisBatter - 1)) / 2 * (outsForThisBatter + atBatsForThisBatter)
+                ? BatterSubstitution.Substitution
+                : BatterSubstitution.NoSubstitution;
+        }
 
         static RandomGenerators()
         {
             var initializeRandomGenerator = new Random(DateTime.Now.Second);
             _buntAttemptRandomGenerator = new Random(29 + initializeRandomGenerator.Next(1, 1000));
             _pitcherSubstitutionRandomGenerator = new Random(31 + initializeRandomGenerator.Next(1, 1000));
+            _batterSubstitutionRandomGenerator = new Random(37 + initializeRandomGenerator.Next(1, 1000));
         }
     }
 }
