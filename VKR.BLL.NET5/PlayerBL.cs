@@ -81,5 +81,11 @@ namespace VKR.BLL.NET5
         public async Task<uint> GetIdForNewPlayer() => 
             await _playerEFDAO.GetIdForNewPlayer()
                 .ConfigureAwait(false);
+
+        public async Task SetNewNumberForPlayerAsync(Player player, byte newNumber)
+        {
+            await _playerEFDAO.SetNewNumberForPlayerAsync(player, newNumber)
+                .ConfigureAwait(false);
+        }
     }
 }

@@ -9,8 +9,11 @@ namespace VKR.PL.NET5
     public partial class SetNewNumberForPlayerForm : Form
     {
         private readonly TeamsBL _teamsBl = new();
+        private readonly PlayerBL _playerBl = new();
+
         private readonly Team _team;
         private readonly Player? _player;
+        private byte _newNumber;
 
         public SetNewNumberForPlayerForm(Team team, Player? player)
         {
@@ -30,5 +33,13 @@ namespace VKR.PL.NET5
             domainUpDown1.Items.AddRange(availableNumbers);
             domainUpDown1.SelectedItem = _player.PlayerNumber;
         }
+
+        private async void btnConfirm_Click(object sender, EventArgs e)
+        {
+            await _playerBl.SetNewNumberForPlayerAsync(_player, _newNumber);
+            DialogResult = DialogResult.OK;
+        }
+
+        private void domainUpDown1_Validated(object sender, EventArgs e) => _newNumber = (byte)domainUpDown1.SelectedItem;
     }
 }

@@ -59,6 +59,7 @@
             this.domainUpDown1.TabIndex = 0;
             this.domainUpDown1.Text = "domainUpDown1";
             this.domainUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.domainUpDown1.Validated += new System.EventHandler(this.domainUpDown1_Validated);
             // 
             // txtPlayer
             // 
@@ -108,6 +109,7 @@
             this.btnConfirm.TabIndex = 107;
             this.btnConfirm.Text = "CONFIRM";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnClose
             // 
@@ -119,7 +121,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(107, 33);
             this.btnClose.TabIndex = 111;
-            this.btnClose.Text = "CONFIRM";
+            this.btnClose.Text = "CANCEL";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
             // SetNewNumberForPlayerForm

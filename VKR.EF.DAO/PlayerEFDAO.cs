@@ -157,5 +157,20 @@ namespace VKR.EF.DAO
                 (batter, stats) => batter.SetBattingStats(stats))
                 .ToList();
         }
+
+        public async Task SetNewNumberForPlayerAsync(Player player, byte newNumber)
+        {
+            await using var db = new VKRApplicationContext();
+
+            var playerDb = await db.Players.FindAsync(player.Id);
+
+            if (playerDb is null) return;
+
+            playerDb.PlayerNumber = newNumber;
+
+            db.Players.Update(playerDb);
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
+        }
     }
 }
