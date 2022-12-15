@@ -116,15 +116,17 @@ namespace VKR.EF.DAO
             {
                 "P" => await db.PlayersInTeams.Include(pit => pit.Player)
                     .ThenInclude(player => player.Positions)
-                    .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster &&
-                                  pit.TeamId == team.TeamAbbreviation && !pit.Player.CanPlayAsPitcher &&
+                    .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster && 
+                                  pit.TeamId == team.TeamAbbreviation && 
+                                  pit.Player.Positions.All(pp => pp.ShortTitle != "P") &&
                                   !notAvailableBatters.Contains(pit.Id))
                     .ToListAsync()
                     .ConfigureAwait(false),
                 "DH" => await db.PlayersInTeams.Include(pit => pit.Player)
                     .ThenInclude(player => player.Positions)
-                    .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster &&
-                                  pit.TeamId == team.TeamAbbreviation && !pit.Player.CanPlayAsPitcher &&
+                    .Where(pit => pit.CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster && 
+                                  pit.TeamId == team.TeamAbbreviation && 
+                                  pit.Player.Positions.All(pp => pp.ShortTitle != "P") &&
                                   !notAvailableBatters.Contains(pit.Id))
                     .ToListAsync()
                     .ConfigureAwait(false),
