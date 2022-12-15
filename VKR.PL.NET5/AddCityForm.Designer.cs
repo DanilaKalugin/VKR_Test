@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCityForm));
             this.label4 = new System.Windows.Forms.Label();
             this.cbCityRegion = new System.Windows.Forms.ComboBox();
-            this.btnCheck = new System.Windows.Forms.Button();
+            this.btnAddCity = new System.Windows.Forms.Button();
             this.txtCityName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -58,21 +58,21 @@
             this.cbCityRegion.Size = new System.Drawing.Size(351, 25);
             this.cbCityRegion.TabIndex = 76;
             this.cbCityRegion.SelectionChangeCommitted += new System.EventHandler(this.cbCityRegion_SelectionChangeCommitted);
-            this.cbCityRegion.Validating += new System.ComponentModel.CancelEventHandler(this.cbPlaceOfBirth_Validating);
+            this.cbCityRegion.Validating += new System.ComponentModel.CancelEventHandler(this.cbCityRegion_Validating);
             // 
-            // btnCheck
+            // btnAddCity
             // 
-            this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheck.FlatAppearance.BorderSize = 0;
-            this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCheck.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(359, 95);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(107, 33);
-            this.btnCheck.TabIndex = 84;
-            this.btnCheck.Text = "ADD";
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            this.btnAddCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddCity.FlatAppearance.BorderSize = 0;
+            this.btnAddCity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddCity.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddCity.Location = new System.Drawing.Point(359, 95);
+            this.btnAddCity.Name = "btnAddCity";
+            this.btnAddCity.Size = new System.Drawing.Size(107, 33);
+            this.btnAddCity.TabIndex = 84;
+            this.btnAddCity.Text = "ADD";
+            this.btnAddCity.UseVisualStyleBackColor = true;
+            this.btnAddCity.Click += new System.EventHandler(this.btnAddCity_Click);
             // 
             // txtCityName
             // 
@@ -111,7 +111,7 @@
             this.ClientSize = new System.Drawing.Size(478, 140);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtCityName);
-            this.Controls.Add(this.btnCheck);
+            this.Controls.Add(this.btnAddCity);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbCityRegion);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -131,7 +131,7 @@
 
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbCityRegion;
-        private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Button btnAddCity;
         private Controls.NET5.TextBoxWithHeader txtCityName;
         private System.Windows.Forms.Button btnClose;
     }

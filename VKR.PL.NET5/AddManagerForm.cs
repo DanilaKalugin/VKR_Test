@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
+using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
 {
@@ -51,19 +52,7 @@ namespace VKR.PL.NET5
             Visible = true;
         }
 
-        private void cbPlaceOfBirth_Validating(object sender, CancelEventArgs e)
-        {
-            if (cbPlaceOfBirth.SelectedValue is null)
-            {
-                cbPlaceOfBirth.BackColor = Color.DarkRed;
-                e.Cancel = true;
-            }
-            else
-            {
-                cbPlaceOfBirth.BackColor = Color.WhiteSmoke;
-                e.Cancel = false;
-            }
-        }
+        private void cbPlaceOfBirth_Validating(object sender, CancelEventArgs e) => cbPlaceOfBirth.ValidateComboBox(e);
 
         private void dtpBirthDate_Validating(object sender, CancelEventArgs e)
         {

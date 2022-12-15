@@ -150,19 +150,7 @@ namespace VKR.PL.NET5
             Visible = true;
         }
 
-        private void cbPlaceOfBirth_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (cbPlaceOfBirth.SelectedValue is null)
-            {
-                cbPlaceOfBirth.BackColor = Color.DarkRed;
-                e.Cancel = true;
-            }
-            else
-            {
-                cbPlaceOfBirth.BackColor = Color.WhiteSmoke;
-                e.Cancel = false;
-            }
-        }
+        private void cbPlaceOfBirth_Validating(object sender, System.ComponentModel.CancelEventArgs e) => cbPlaceOfBirth.ValidateComboBox(e);
 
         private void dtpBirthDate_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {

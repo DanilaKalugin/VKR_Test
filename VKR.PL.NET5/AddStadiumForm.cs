@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
+using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.NET5
 {
@@ -30,10 +30,10 @@ namespace VKR.PL.NET5
         private async Task FillCitiesTable()
         {
             _cities = await _citiesBl.GetAllCitiesAsync();
-            cbPlaceOfBirth.DataSource = _cities;
+            cbStadiumLocation.DataSource = _cities;
 
-            cbPlaceOfBirth.DisplayMember = "CityLocation";
-            cbPlaceOfBirth.ValueMember = "Id";
+            cbStadiumLocation.DisplayMember = "CityLocation";
+            cbStadiumLocation.ValueMember = "Id";
         }
 
         private async void AddStadiumForm_Load(object sender, EventArgs e)
@@ -49,12 +49,6 @@ namespace VKR.PL.NET5
         {
             if (_stadium is null) return;
             _stadium.StadiumTitle = txtStadiumName.Value;
-        }
-
-        private void cbPlaceOfBirth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_stadium is null) return;
-            _stadium.StadiumCity = cbPlaceOfBirth.SelectedItem as City;
         }
 
         private void numPlayerNumber_ValueChanged(object sender, EventArgs e)
@@ -87,19 +81,7 @@ namespace VKR.PL.NET5
             DialogResult = DialogResult.OK;
         }
 
-        private void cbPlaceOfBirth_Validating(object sender, CancelEventArgs e)
-        {
-            if (_stadium.StadiumCity is null)
-            {
-                cbPlaceOfBirth.BackColor = Color.DarkRed;
-                e.Cancel = true;
-            }
-            else
-            {
-                cbPlaceOfBirth.BackColor = Color.WhiteSmoke;
-                e.Cancel = false;
-            }
-        }
+        private void cbStadiumLocation_Validating(object sender, CancelEventArgs e) => cbStadiumLocation.ValidateComboBox(e);
 
         private async void AddStadiumForm_VisibleChanged(object sender, EventArgs e)
         {
@@ -107,10 +89,10 @@ namespace VKR.PL.NET5
             await FillCitiesTable();
         }
 
-        private void cbPlaceOfBirth_SelectionChangeCommitted(object sender, EventArgs e)
+        private void cbStadiumLocation_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (_stadium is null) return;
-            _stadium.StadiumLocation = (short)cbPlaceOfBirth.SelectedValue;
+            _stadium.StadiumLocation = (short)cbStadiumLocation.SelectedValue;
         }
     }
 }

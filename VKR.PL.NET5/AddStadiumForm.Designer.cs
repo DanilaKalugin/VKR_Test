@@ -38,8 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnAddCity = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.cbPlaceOfBirth = new System.Windows.Forms.ComboBox();
             this.btnCheck = new System.Windows.Forms.Button();
+            this.cbStadiumLocation = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPlayerNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxWidth)).BeginInit();
@@ -181,21 +181,20 @@
             this.label4.TabIndex = 86;
             this.label4.Text = "Location:";
             // 
-            // cbPlaceOfBirth
+            // cbStadiumLocation
             // 
-            this.cbPlaceOfBirth.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbPlaceOfBirth.DropDownHeight = 172;
-            this.cbPlaceOfBirth.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbPlaceOfBirth.FormattingEnabled = true;
-            this.cbPlaceOfBirth.IntegralHeight = false;
-            this.cbPlaceOfBirth.Location = new System.Drawing.Point(187, 160);
-            this.cbPlaceOfBirth.MaxLength = 60;
-            this.cbPlaceOfBirth.Name = "cbPlaceOfBirth";
-            this.cbPlaceOfBirth.Size = new System.Drawing.Size(250, 25);
-            this.cbPlaceOfBirth.TabIndex = 85;
-            this.cbPlaceOfBirth.SelectedIndexChanged += new System.EventHandler(this.cbPlaceOfBirth_SelectedIndexChanged);
-            this.cbPlaceOfBirth.SelectionChangeCommitted += new System.EventHandler(this.cbPlaceOfBirth_SelectionChangeCommitted);
-            this.cbPlaceOfBirth.Validating += new System.ComponentModel.CancelEventHandler(this.cbPlaceOfBirth_Validating);
+            this.cbStadiumLocation.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbStadiumLocation.DropDownHeight = 172;
+            this.cbStadiumLocation.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbStadiumLocation.FormattingEnabled = true;
+            this.cbStadiumLocation.IntegralHeight = false;
+            this.cbStadiumLocation.Location = new System.Drawing.Point(187, 160);
+            this.cbStadiumLocation.MaxLength = 60;
+            this.cbStadiumLocation.Name = "cbStadiumLocation";
+            this.cbStadiumLocation.Size = new System.Drawing.Size(250, 25);
+            this.cbStadiumLocation.TabIndex = 85;
+            this.cbStadiumLocation.SelectionChangeCommitted += new System.EventHandler(this.cbStadiumLocation_SelectionChangeCommitted);
+            this.cbStadiumLocation.Validating += new System.ComponentModel.CancelEventHandler(this.cbStadiumLocation_Validating);
             // 
             // btnCheck
             // 
@@ -233,7 +232,7 @@
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.btnAddCity);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbPlaceOfBirth);
+            this.Controls.Add(this.cbStadiumLocation);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numMaxWidth);
@@ -268,8 +267,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAddCity;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbPlaceOfBirth;
         private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.ComboBox cbStadiumLocation;
         private System.Windows.Forms.Button btnClose;
     }
 }
