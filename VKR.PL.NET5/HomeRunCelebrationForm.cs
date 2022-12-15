@@ -9,7 +9,7 @@ namespace VKR.PL.NET5
 {
     public partial class HomeRunCelebrationForm : Form
     {
-        public HomeRunCelebrationForm(Team team, string hrType, Player batter, IEnumerable<AtBat> allAtBats, bool isQuickMatch)
+        public HomeRunCelebrationForm(Team team, string hrType, Batter batter, IEnumerable<AtBat> allAtBats, bool isQuickMatch)
         {
             InitializeComponent();
             BackColor = team.TeamColorForThisMatch;
@@ -22,11 +22,11 @@ namespace VKR.PL.NET5
             pbPatterPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{batter.Id:0000}.png");
             
             lbBatterName.Text = batter.FullName.ToUpper();
-            var hrTodayForThisBatter = allAtBats.Count(atBat => atBat.AtBatType == AtBatType.HomeRun && atBat.BatterId == batter.Id);
+            var hrTodayForThisBatter = allAtBats.Count(atBat => atBat.AtBatType == AtBatType.HomeRun && atBat.BatterId == batter.BatterId);
 
             lbBatterHRNumber.Visible = !isQuickMatch;
 
-            lbBatterHRNumber.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.BattingStats.HomeRuns + 1)} HR in career";
+            lbBatterHRNumber.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.BattingStats.HomeRuns + 1)} HR in season";
             lbBatterHRNumberInThisMatch.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(hrTodayForThisBatter + 1)} HR in this match";
             lbBatterHRNumberInThisMatch.Visible = hrTodayForThisBatter > 0;
         }
