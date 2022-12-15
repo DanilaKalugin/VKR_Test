@@ -12,12 +12,13 @@ namespace VKR.PL.NET5
 {
     public partial class MainMenuForm : Form
     {
-        private readonly ManBL _manBl = new();
+        private readonly ManBL _manBl;
         private readonly MatchBL _matchBl = new();
         private readonly PrimaryTeamColorBL _teamColorBl = new();
 
-        public MainMenuForm()
+        public MainMenuForm(ManBL manBl)
         {
+            _manBl = manBl;
             try
             {
                 using var title = new TitleForm();

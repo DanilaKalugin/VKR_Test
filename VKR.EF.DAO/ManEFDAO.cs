@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.DAO.Contexts;
+using VKR.EF.DAO.Interfaces;
 using VKR.EF.Entities;
 
 namespace VKR.EF.DAO
 {
-    public class ManEFDAO
+    public class ManEFDAO: IManDAO
     {
         public async Task<List<ManInTeam>> GetListOfPeopleWithBirthdayTodayAsync()
         {

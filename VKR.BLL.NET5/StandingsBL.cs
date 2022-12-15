@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using VKR.EF.DAO;
+using VKR.EF.DAO.Interfaces;
 using VKR.EF.Entities;
 
 namespace VKR.BLL.NET5
 {
     public class StandingsBL
     {
-        private readonly StandingsEFDAO _standingsDao = new();
+        private readonly IStandingsDAO _standingsDao = new StandingsEFDAO();
 
         public List<TeamStandingsViewModel> GetStandings(string filter, DateTime date)
         {

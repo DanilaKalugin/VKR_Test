@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VKR.EF.DAO;
+using VKR.EF.DAO.Interfaces;
 using VKR.EF.Entities;
 
 namespace VKR.BLL.NET5
 {
     public class ManBL
     {
-        private readonly ManEFDAO _manDAO = new();
+        private readonly IManDAO _manDAO;
+
+        public ManBL(IManDAO manDao)
+        {
+            _manDAO = manDao;
+        }
 
         public async Task<List<ManInTeam>> GetListOfPeopleWithBirthdayTodayAsync()
         {

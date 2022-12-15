@@ -4,11 +4,12 @@ using System.Linq;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.DAO.Contexts;
+using VKR.EF.DAO.Interfaces;
 using VKR.EF.Entities;
 
 namespace VKR.EF.DAO
 {
-    public class StandingsEFDAO
+    public class StandingsEFDAO : IStandingsDAO
     {
         public List<TeamStandingsViewModel> GetStandings(DateTime date, TypeOfMatchEnum type)
         {
