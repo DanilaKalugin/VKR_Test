@@ -45,20 +45,20 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            var playerDB = await db.Players.FirstOrDefaultAsync(p => p.Id == player.Id)
+            var playerDb = await db.Players.FindAsync(player.Id)
                 .ConfigureAwait(false);
 
-            if (playerDB == null) return;
+            if (playerDb == null) return;
 
-            playerDB.PlayerBattingHand = player.PlayerBattingHand;
-            playerDB.PlayerPitchingHand = player.PlayerPitchingHand;
-            playerDB.FirstName = player.FirstName;
-            playerDB.SecondName = player.SecondName;
-            playerDB.PlayerNumber = player.PlayerNumber;
-            playerDB.DateOfBirth = player.DateOfBirth;
-            playerDB.PlaceOfBirth = player.City.Id;
+            playerDb.PlayerBattingHand = player.PlayerBattingHand;
+            playerDb.PlayerPitchingHand = player.PlayerPitchingHand;
+            playerDb.FirstName = player.FirstName;
+            playerDb.SecondName = player.SecondName;
+            playerDb.PlayerNumber = player.PlayerNumber;
+            playerDb.DateOfBirth = player.DateOfBirth;
+            playerDb.PlaceOfBirth = player.City.Id;
 
-            db.Players.Update(playerDB);
+            db.Players.Update(playerDb);
             await db.SaveChangesAsync()
                 .ConfigureAwait(false);
         }

@@ -28,7 +28,7 @@ namespace VKR.EF.DAO
 
             if (pit == null)
             {
-                var maxId = await db.PlayersInTeams.MaxAsync(pit => pit.Id)
+                var maxId = await db.PlayersInTeams.MaxAsync(playerInTeam => playerInTeam.Id)
                     .ConfigureAwait(false);
 
                 var newPiTrecord = new PlayerInTeam

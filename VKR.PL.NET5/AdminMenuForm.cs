@@ -17,8 +17,8 @@ namespace VKR.PL.NET5
 
         private void btnAddManager_Click(object sender, EventArgs e) => OpenNewForm(new AddManagerForm());
 
-        private void addStadium_Click(object sender, EventArgs e) => OpenNewForm(new AddStadiumForm());
-
+        private void btnAddStadium_Click(object sender, EventArgs e) => OpenNewForm(new AddStadiumForm());
+        
         private void OpenNewForm(Form form)
         {
             Visible = false;

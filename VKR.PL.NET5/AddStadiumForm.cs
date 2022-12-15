@@ -73,7 +73,7 @@ namespace VKR.PL.NET5
             Visible = true;
         }
 
-        private async void btnCheck_Click(object sender, EventArgs e)
+        private async void btnAddStadium_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren()) return;
 

@@ -87,7 +87,7 @@ namespace VKR.PL.NET5
             cbManager.SelectedItem = null;
         }
 
-        private async void btnCheck_Click(object sender, EventArgs e)
+        private async void btnUpdateTeam_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren()) return;
             await _teamsBl.UpdateTeam(_team);

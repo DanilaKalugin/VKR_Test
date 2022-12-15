@@ -141,7 +141,7 @@ namespace VKR.EF.DAO
             var batters = battersDB.Select(pit => new Batter(pit.Player, batter.PositionForThisMatch, batter.NumberInLineup, pit.Id))
                 .ToList();
 
-            var battersIds = batters.Select(batter => batter.Id).ToList();
+            var battersIds = batters.Select(batter1 => batter1.Id).ToList();
 
             var battingStats = await db.PlayersBattingStats.Where(stats =>
                 stats.Season == match.MatchDate.Year &&
@@ -151,9 +151,9 @@ namespace VKR.EF.DAO
                 .ConfigureAwait(false);
 
             return batters.Join(battingStats,
-                batter => batter.Id,
+                batter1 => batter1.Id,
                 stats => stats.PlayerID,
-                (batter, stats) => batter.SetBattingStats(stats)).ToList();
+                (batter1, stats) => batter1.SetBattingStats(stats)).ToList();
         }
     }
 }

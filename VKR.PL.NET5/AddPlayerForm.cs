@@ -94,17 +94,17 @@ namespace VKR.PL.NET5
             _player.DateOfBirth = dtpBirthDate.Value;
         }
 
-        private void lbRewards_Validated(object sender, EventArgs e)
+        private void lbPositions_Validated(object sender, EventArgs e)
         {
             _player?.Positions.Clear();
-            for (var index = 0; index < lbRewards.CheckedItems.Count; index++)
+            for (var index = 0; index < lbPositions.CheckedItems.Count; index++)
             {
-                var item = lbRewards.CheckedIndices[index];
+                var item = lbPositions.CheckedIndices[index];
                 _player?.Positions.Add(_positions[item]);
             }
         }
 
-        private async void btnCheck_Click(object sender, EventArgs e)
+        private async void btnAddPlayer_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren()) return;
 
@@ -123,11 +123,11 @@ namespace VKR.PL.NET5
             await FillCitiesTable();
 
             _positions = await _playerPositionsBl.GetAvailablePlayerPositions();
-            lbRewards.DataSource = _positions;
-            lbRewards.DisplayMember = "FullTitle";
+            lbPositions.DataSource = _positions;
+            lbPositions.DisplayMember = "FullTitle";
 
             foreach (var index in _player?.Positions.Select(pp => _positions.FindIndex(position => position.Number == pp.Number))!)
-                lbRewards.SetItemChecked(index, true);
+                lbPositions.SetItemChecked(index, true);
 
             if (!_addingPlayer)
                 cbPlaceOfBirth.SelectedItem = _cities.First(city => city.Id == _cityId);
@@ -137,7 +137,7 @@ namespace VKR.PL.NET5
             txtId.Value = _player?.Id.ToString();
 
             pbPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{_player?.Id:0000}.png");
-            btnCheck.Text = _addingPlayer ? "ADD" : "UPDATE";
+            btnAddPlayer.Text = _addingPlayer ? "ADD" : "UPDATE";
         }
 
         private void btnAddCity_Click(object sender, EventArgs e)

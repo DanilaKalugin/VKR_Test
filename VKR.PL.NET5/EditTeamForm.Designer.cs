@@ -59,7 +59,7 @@
             this.btnUpdateTeam.TabIndex = 103;
             this.btnUpdateTeam.Text = "UPDATE";
             this.btnUpdateTeam.UseVisualStyleBackColor = true;
-            this.btnUpdateTeam.Click += new System.EventHandler(this.btnCheck_Click);
+            this.btnUpdateTeam.Click += new System.EventHandler(this.btnUpdateTeam_Click);
             // 
             // panel1
             // 

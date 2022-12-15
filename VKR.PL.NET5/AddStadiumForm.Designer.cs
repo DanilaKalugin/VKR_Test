@@ -38,8 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnAddCity = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnCheck = new System.Windows.Forms.Button();
             this.cbStadiumLocation = new System.Windows.Forms.ComboBox();
+            this.btnAddStadium = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPlayerNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxWidth)).BeginInit();
@@ -196,18 +196,18 @@
             this.cbStadiumLocation.SelectionChangeCommitted += new System.EventHandler(this.cbStadiumLocation_SelectionChangeCommitted);
             this.cbStadiumLocation.Validating += new System.ComponentModel.CancelEventHandler(this.cbStadiumLocation_Validating);
             // 
-            // btnCheck
+            // btnAddStadium
             // 
-            this.btnCheck.FlatAppearance.BorderSize = 0;
-            this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCheck.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(330, 191);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(107, 33);
-            this.btnCheck.TabIndex = 110;
-            this.btnCheck.Text = "UPDATE";
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            this.btnAddStadium.FlatAppearance.BorderSize = 0;
+            this.btnAddStadium.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddStadium.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddStadium.Location = new System.Drawing.Point(330, 191);
+            this.btnAddStadium.Name = "btnAddStadium";
+            this.btnAddStadium.Size = new System.Drawing.Size(107, 33);
+            this.btnAddStadium.TabIndex = 110;
+            this.btnAddStadium.Text = "ADD";
+            this.btnAddStadium.UseVisualStyleBackColor = true;
+            this.btnAddStadium.Click += new System.EventHandler(this.btnAddStadium_Click);
             // 
             // btnClose
             // 
@@ -229,7 +229,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(552, 236);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnCheck);
+            this.Controls.Add(this.btnAddStadium);
             this.Controls.Add(this.btnAddCity);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbStadiumLocation);
@@ -267,8 +267,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAddCity;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.ComboBox cbStadiumLocation;
+        private System.Windows.Forms.Button btnAddStadium;
         private System.Windows.Forms.Button btnClose;
     }
 }

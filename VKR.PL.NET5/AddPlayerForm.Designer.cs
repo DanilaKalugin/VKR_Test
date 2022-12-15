@@ -44,9 +44,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
-            this.lbRewards = new System.Windows.Forms.CheckedListBox();
+            this.lbPositions = new System.Windows.Forms.CheckedListBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnCheck = new System.Windows.Forms.Button();
+            this.btnAddPlayer = new System.Windows.Forms.Button();
             this.btnAddCity = new System.Windows.Forms.Button();
             this.txtLastName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
             this.txtFirstName = new VKR.PL.Controls.NET5.TextBoxWithHeader();
@@ -238,16 +238,16 @@
             this.dtpBirthDate.ValueChanged += new System.EventHandler(this.dtpBirthDate_ValueChanged);
             this.dtpBirthDate.Validating += new System.ComponentModel.CancelEventHandler(this.dtpBirthDate_Validating);
             // 
-            // lbRewards
+            // lbPositions
             // 
-            this.lbRewards.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbRewards.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbRewards.FormattingEnabled = true;
-            this.lbRewards.Location = new System.Drawing.Point(141, 310);
-            this.lbRewards.Name = "lbRewards";
-            this.lbRewards.Size = new System.Drawing.Size(250, 214);
-            this.lbRewards.TabIndex = 81;
-            this.lbRewards.Validated += new System.EventHandler(this.lbRewards_Validated);
+            this.lbPositions.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbPositions.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbPositions.FormattingEnabled = true;
+            this.lbPositions.Location = new System.Drawing.Point(141, 310);
+            this.lbPositions.Name = "lbPositions";
+            this.lbPositions.Size = new System.Drawing.Size(250, 214);
+            this.lbPositions.TabIndex = 81;
+            this.lbPositions.Validated += new System.EventHandler(this.lbPositions_Validated);
             // 
             // label8
             // 
@@ -259,18 +259,18 @@
             this.label8.TabIndex = 82;
             this.label8.Text = "Positions:";
             // 
-            // btnCheck
+            // btnAddPlayer
             // 
-            this.btnCheck.FlatAppearance.BorderSize = 0;
-            this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCheck.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(284, 530);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(107, 33);
-            this.btnCheck.TabIndex = 83;
-            this.btnCheck.Text = "UPDATE";
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            this.btnAddPlayer.FlatAppearance.BorderSize = 0;
+            this.btnAddPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPlayer.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddPlayer.Location = new System.Drawing.Point(284, 530);
+            this.btnAddPlayer.Name = "btnAddPlayer";
+            this.btnAddPlayer.Size = new System.Drawing.Size(107, 33);
+            this.btnAddPlayer.TabIndex = 83;
+            this.btnAddPlayer.Text = "UPDATE";
+            this.btnAddPlayer.UseVisualStyleBackColor = true;
+            this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
             // 
             // btnAddCity
             // 
@@ -362,9 +362,9 @@
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.btnAddCity);
-            this.Controls.Add(this.btnCheck);
+            this.Controls.Add(this.btnAddPlayer);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.lbRewards);
+            this.Controls.Add(this.lbPositions);
             this.Controls.Add(this.dtpBirthDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel2);
@@ -411,9 +411,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dtpBirthDate;
-        private System.Windows.Forms.CheckedListBox lbRewards;
+        private System.Windows.Forms.CheckedListBox lbPositions;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Button btnAddPlayer;
         private System.Windows.Forms.Button btnAddCity;
         private Controls.NET5.TextBoxWithHeader txtLastName;
         private Controls.NET5.TextBoxWithHeader txtFirstName;

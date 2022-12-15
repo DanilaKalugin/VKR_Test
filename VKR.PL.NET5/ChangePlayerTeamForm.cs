@@ -42,7 +42,7 @@ namespace VKR.PL.NET5
             btnIncreaseTeamNumberBy1.ForeColor = _teams[_teamNumber].TeamColors[0].Color;
             btnDecreaseTeamNumberBy1.ForeColor = _teams[_teamNumber].TeamColors[0].Color;
 
-            dataGridView1.DefaultCellStyle.SelectionBackColor = _teams[_teamNumber].TeamColors[0].Color;
+            dgvPlayers.DefaultCellStyle.SelectionBackColor = _teams[_teamNumber].TeamColors[0].Color;
 
             btnAssignTo.Text = $"Assign to {_teams[_teamNumber].TeamName}";
         }
@@ -73,9 +73,9 @@ namespace VKR.PL.NET5
             btnUpdatePlayer.Visible = player is not null;
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dgvPlayers_SelectionChanged(object sender, EventArgs e)
         {
-            _currentPlayer = dataGridView1.SelectedRows.Count > 0 ? _players[dataGridView1.SelectedRows[0].Index]: null;
+            _currentPlayer = dgvPlayers.SelectedRows.Count > 0 ? _players[dgvPlayers.SelectedRows[0].Index] : null;
 
             ShowNewPlayer(_currentPlayer);
         }
@@ -118,10 +118,10 @@ namespace VKR.PL.NET5
 
         private void FillSecondTable(IEnumerable<PlayerInLineupViewModel> players)
         {
-            dataGridView1.Rows.Clear();
+            dgvPlayers.Rows.Clear();
             foreach (var player in players)
-                dataGridView1.Rows.Add("", player.PositionInLineup, $"{player.FullName}", player.TeamAbbreviation);
-            dataGridView1.Columns[0].Visible = false;
+                dgvPlayers.Rows.Add("", player.PositionInLineup, $"{player.FullName}", player.TeamAbbreviation);
+            dgvPlayers.Columns[0].Visible = false;
         }
 
         private void txtLastName_TextChanged(object sender, EventArgs e)
