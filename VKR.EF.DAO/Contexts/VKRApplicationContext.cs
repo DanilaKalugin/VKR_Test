@@ -4,11 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using VKR.EF.Entities;
 using System.Configuration;
 
-namespace VKR.EF.DAO
+namespace VKR.EF.DAO.Contexts
 {
     public sealed class VKRApplicationContext : DbContext
     {
-        public DbSet<ManInTeam> ManInTeam { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamBalance> TeamStandings { get; set; }
         public DbSet<MatchFromSchedule> NextMatches { get; set; }
@@ -98,7 +97,6 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StadiumFactorEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RetiredNumberEntityMap());
 
-            modelBuilder.ApplyConfiguration(new Entities.Mappers.ManInTeamViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerPitchingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StandingsViewMap());
@@ -110,7 +108,7 @@ namespace VKR.EF.DAO
             modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamStreakFunctionMap());
 
             modelBuilder.HasDbFunction(typeof(VKRApplicationContext)
-                        .GetMethod(nameof(ReturnStreakForAllTeams), new[] { typeof(DateTime), typeof(byte) }))
+                        .GetMethod(nameof(ReturnStreakForAllTeams), new[] { typeof(DateTime), typeof(TypeOfMatchEnum) }))
                         .HasName("ReturnStreakForAllTeams");
 
             modelBuilder.HasDbFunction(typeof(VKRApplicationContext)
@@ -121,7 +119,7 @@ namespace VKR.EF.DAO
             modelBuilder.Ignore<Pitcher>();
         }
 
-        public IQueryable<TeamStreak> ReturnStreakForAllTeams(DateTime date, byte MatchType) => FromExpression(() => ReturnStreakForAllTeams(date, MatchType));
+        public IQueryable<TeamStreak> ReturnStreakForAllTeams(DateTime date, TypeOfMatchEnum MatchType) => FromExpression(() => ReturnStreakForAllTeams(date, MatchType));
 
         [DbFunction("GetStaminaForThisPitcher", "DBO")]
         public int GetStaminaForThisPitcher(uint pitcherId, DateTime matchDate) => throw new NotImplementedException();

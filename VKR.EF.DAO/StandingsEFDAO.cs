@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using VKR.EF.DAO.Contexts;
 using VKR.EF.Entities;
 
 namespace VKR.EF.DAO
