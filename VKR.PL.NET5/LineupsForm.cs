@@ -167,21 +167,22 @@ namespace VKR.PL.NET5
             label4.Text = player.CanPlayAsPitcher ? "ERA" : "AVG";
             label5.Text = player.CanPlayAsPitcher ? "SO" : "HR";
             label6.Text = player.CanPlayAsPitcher ? "WHIP" : "RBI";
+            
             if (!player.CanPlayAsPitcher)
             {
                 player.BattingStats = await _playersBl.GetBattingStatsByCode(player.Id, _matchDate.Year);
-                label1.Text = player.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
-                label2.Text = player.BattingStats.HomeRuns.ToString();
-                label3.Text = player.BattingStats.RBI.ToString();
+                lbFirstValue.Text = player.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
+                lbSecondValue.Text = player.BattingStats.HomeRuns.ToString();
+                lbThirdValue.Text = player.BattingStats.RBI.ToString();
             }
             else
             {
                 player.PitchingStats = await _playersBl.GetPitchingStatsByCode(player.Id, _matchDate.Year);
-                label1.Text = player.PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"));
-                label2.Text = player.PitchingStats.Strikeouts.ToString();
-                label3.Text = player.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
+                lbFirstValue.Text = player.PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"));
+                lbSecondValue.Text = player.PitchingStats.Strikeouts.ToString();
+                lbThirdValue.Text = player.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
             }
-
+            
             label7.Text = $@"Positions: {string.Join(", ", player.Positions.Select(position => position.ShortTitle))}";
 
             if (dgv1.SelectedRows.Count <= 0) return;
