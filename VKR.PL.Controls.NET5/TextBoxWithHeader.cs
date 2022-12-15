@@ -45,7 +45,7 @@ namespace VKR.PL.Controls.NET5
 
                 _valuePosition = value;
                 var args = new ValuePositionChangedEventArgs(value);
-                OnValuePositionChanged(this, args);
+                ValuePositionChanged(this, args);
             }
         }
 

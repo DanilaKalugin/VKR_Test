@@ -65,7 +65,7 @@ namespace VKR.PL.NET5
             playerHands.Text = $@"B/T: {player?.BattingHand.Description[0]}/{player?.PitchingHand.Description[0]}".ToUpper();
 
             btnAssignTo.Enabled = player?.TeamAbbreviation != _teams[_teamNumber].TeamAbbreviation;
-            
+
             label7.Visible = player is not null;
             lbPlayerNumber.Visible = player is not null;
             lbPlayerPlace_and_DateOfBirth.Visible = player is not null;
@@ -137,7 +137,7 @@ namespace VKR.PL.NET5
         private void btnUpdatePlayer_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new AddPlayerForm(_currentPlayer)) 
+            using (var form = new AddPlayerForm(_currentPlayer))
                 form.ShowDialog();
             Visible = true;
         }
@@ -145,7 +145,7 @@ namespace VKR.PL.NET5
         private void btnAddPlayer_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new AddPlayerForm(true)) 
+            using (var form = new AddPlayerForm(true))
                 form.ShowDialog();
             Visible = true;
         }

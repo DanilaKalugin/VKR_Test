@@ -26,10 +26,10 @@ namespace VKR.PL.Utils.NET5
             return stealingAttemptRandomValue <= batterNumberComponent * (18 - batterNumberComponent - buntsCount) * 5 ? BuntAttempt.Attempt : BuntAttempt.NoAttempt;
         }
 
-        public static PitcherSubstitution PitcherSubstitution_Definition(Pitcher pitcher, List<AtBat> atBats)
+        public static PitcherSubstitution PitcherSubstitution_Definition(Pitcher pitcher, List<Run> runs)
         {
             var pitchingSubstitutionRandomValue = _pitcherSubstitutionRandomGenerator.Next(1, 1500);
-            var runsByThisPitcher = atBats.Count(atBat => atBat.PitcherId == pitcher.PitcherId && atBat.AtBatType == AtBatType.Run);
+            var runsByThisPitcher = runs.Count(atBat => atBat.PitcherId == pitcher.PitcherId);
 
             return pitchingSubstitutionRandomValue <= Math.Pow(pitcher.RemainingStamina / 10 - 25, 2) + Math.Pow(runsByThisPitcher + 1, 2) ? PitcherSubstitution.Substitution : PitcherSubstitution.NoSubstitution;
         }

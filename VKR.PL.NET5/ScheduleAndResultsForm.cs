@@ -48,7 +48,7 @@ namespace VKR.PL.NET5
         private void btnTeam2Next10Matches_Click(object sender, EventArgs e) => 
             OpenMatchResultsForm(new MatchResultsForm(_currentMatch.HomeTeam, MatchScheduleBL.TableType.Schedule));
 
-        private void OpenMatchResultsForm(MatchResultsForm form)
+        private void OpenMatchResultsForm(Form form)
         {
             Visible = false;
             form.ShowDialog();

@@ -40,21 +40,21 @@ namespace VKR.PL.NET5
             this.btnMatchDayResults = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.team1Image = new System.Windows.Forms.Panel();
             this.btnTeam1Next10Matches = new System.Windows.Forms.Button();
             this.btnTeam1Last10Matches = new System.Windows.Forms.Button();
             this.team1Header = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.team2SeriesImage = new System.Windows.Forms.Panel();
+            this.team1SeriesImage = new System.Windows.Forms.Panel();
             this.btnSeriesNextMatches = new System.Windows.Forms.Button();
             this.btnSeriesHistory = new System.Windows.Forms.Button();
             this.seriesHeader = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.team2Image = new System.Windows.Forms.Panel();
             this.btnTeam2Next10Matches = new System.Windows.Forms.Button();
             this.btnTeam2Last10Matches = new System.Windows.Forms.Button();
             this.team2Header = new System.Windows.Forms.Label();
-            this.team1SeriesImage = new System.Windows.Forms.Panel();
-            this.team2SeriesImage = new System.Windows.Forms.Panel();
-            this.team2Image = new System.Windows.Forms.Panel();
-            this.team1Image = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -157,6 +157,14 @@ namespace VKR.PL.NET5
             this.panel2.Size = new System.Drawing.Size(394, 181);
             this.panel2.TabIndex = 1;
             // 
+            // team1Image
+            // 
+            this.team1Image.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.team1Image.Location = new System.Drawing.Point(349, 0);
+            this.team1Image.Name = "team1Image";
+            this.team1Image.Size = new System.Drawing.Size(45, 45);
+            this.team1Image.TabIndex = 66;
+            // 
             // btnTeam1Next10Matches
             // 
             this.btnTeam1Next10Matches.BackColor = System.Drawing.Color.Gainsboro;
@@ -212,6 +220,22 @@ namespace VKR.PL.NET5
             this.panel3.Size = new System.Drawing.Size(394, 182);
             this.panel3.TabIndex = 2;
             // 
+            // team2SeriesImage
+            // 
+            this.team2SeriesImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.team2SeriesImage.Location = new System.Drawing.Point(349, 0);
+            this.team2SeriesImage.Name = "team2SeriesImage";
+            this.team2SeriesImage.Size = new System.Drawing.Size(45, 45);
+            this.team2SeriesImage.TabIndex = 65;
+            // 
+            // team1SeriesImage
+            // 
+            this.team1SeriesImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.team1SeriesImage.Location = new System.Drawing.Point(0, 0);
+            this.team1SeriesImage.Name = "team1SeriesImage";
+            this.team1SeriesImage.Size = new System.Drawing.Size(45, 45);
+            this.team1SeriesImage.TabIndex = 64;
+            // 
             // btnSeriesNextMatches
             // 
             this.btnSeriesNextMatches.BackColor = System.Drawing.Color.Gainsboro;
@@ -266,6 +290,14 @@ namespace VKR.PL.NET5
             this.panel4.Size = new System.Drawing.Size(394, 182);
             this.panel4.TabIndex = 3;
             // 
+            // team2Image
+            // 
+            this.team2Image.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.team2Image.Location = new System.Drawing.Point(349, 0);
+            this.team2Image.Name = "team2Image";
+            this.team2Image.Size = new System.Drawing.Size(45, 45);
+            this.team2Image.TabIndex = 66;
+            // 
             // btnTeam2Next10Matches
             // 
             this.btnTeam2Next10Matches.BackColor = System.Drawing.Color.Gainsboro;
@@ -307,34 +339,6 @@ namespace VKR.PL.NET5
             this.team2Header.TabIndex = 4;
             this.team2Header.Text = "team2";
             this.team2Header.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // team1SeriesImage
-            // 
-            this.team1SeriesImage.Location = new System.Drawing.Point(0, 0);
-            this.team1SeriesImage.Name = "team1SeriesImage";
-            this.team1SeriesImage.Size = new System.Drawing.Size(45, 45);
-            this.team1SeriesImage.TabIndex = 64;
-            // 
-            // team2SeriesImage
-            // 
-            this.team2SeriesImage.Location = new System.Drawing.Point(349, 0);
-            this.team2SeriesImage.Name = "team2SeriesImage";
-            this.team2SeriesImage.Size = new System.Drawing.Size(45, 45);
-            this.team2SeriesImage.TabIndex = 65;
-            // 
-            // team2Image
-            // 
-            this.team2Image.Location = new System.Drawing.Point(349, 0);
-            this.team2Image.Name = "team2Image";
-            this.team2Image.Size = new System.Drawing.Size(45, 45);
-            this.team2Image.TabIndex = 66;
-            // 
-            // team1Image
-            // 
-            this.team1Image.Location = new System.Drawing.Point(349, 0);
-            this.team1Image.Name = "team1Image";
-            this.team1Image.Size = new System.Drawing.Size(45, 45);
-            this.team1Image.TabIndex = 66;
             // 
             // ScheduleAndResultsForm
             // 

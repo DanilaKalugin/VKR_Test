@@ -98,7 +98,7 @@ namespace VKR.EF.Entities.RandomGenerators
             var stadiumFactor = match.Stadium.StadiumFactor;
 
             if (defense.CurrentPitcher.RemainingStamina < 25)
-                numberOfPitches = (int)(numberOfPitches * (1 + Math.Abs(defense.CurrentPitcher.RemainingStamina - 25) / 5 * 0.2));
+                numberOfPitches = (int)(numberOfPitches * (1 + Math.Abs(defense.CurrentPitcher.RemainingStamina - 25) * 0.04));
 
             if (numberOfPitches > pitcherCoefficient)
             {

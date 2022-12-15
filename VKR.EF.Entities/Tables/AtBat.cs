@@ -56,10 +56,11 @@ namespace VKR.EF.Entities
             };
         }
 
-        public int OutsForThisAtBat(GameSituation lastSituation, GameSituation previousSituation)
+        public byte OutsForThisAtBat(GameSituation lastSituation, GameSituation previousSituation)
         {
             if (lastSituation.Offense.TeamAbbreviation == previousSituation.Offense.TeamAbbreviation)
-                return lastSituation.Outs - previousSituation.Outs;
+                return (byte)(lastSituation.Outs - previousSituation.Outs);
+
             return lastSituation.Outs;
         }
 

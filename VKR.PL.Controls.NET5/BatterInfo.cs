@@ -33,6 +33,7 @@ namespace VKR.PL.Controls.NET5
 
         private void OnBatterChanged(object? sender, PlayerChangedEventArgs e)
         {
+            if (e.PlayerInfo is null) return;
             BatterNumber.Text = $@"{e.PlayerInfo.NumberInLineup}.";
             lbBatterSecondName.Text = e.PlayerInfo.SecondName;
             BatterStats.Text = HitsForAtBatsHelper.GetDailyStats(e.PlayerInfo, _match);
