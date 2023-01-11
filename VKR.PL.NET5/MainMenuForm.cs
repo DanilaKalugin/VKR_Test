@@ -122,7 +122,15 @@ namespace VKR.PL.NET5
             Visible = true;
         }
 
-        private void btnClose_Click(object sender, EventArgs e) => Close();
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+
+            using var exitForm = new ExitForm();
+            exitForm.ShowDialog();
+            if (exitForm.DialogResult == DialogResult.Cancel) 
+                Visible = true;
+        }
 
         private async void MainMenuForm_VisibleChanged(object sender, EventArgs e)
         {
