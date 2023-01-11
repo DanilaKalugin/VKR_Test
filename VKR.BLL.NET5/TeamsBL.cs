@@ -81,5 +81,12 @@ namespace VKR.BLL.NET5
         public async Task AddNewRetiredNumberAsync(RetiredNumber newRetiredNumber) =>
             await _teamsDao.AddNewRetiredNumberAsync(newRetiredNumber)
                 .ConfigureAwait(false);
+
+        public async Task<List<TeamHistoricalName>> GetTeamNamesForThisYear(Season season)
+        {
+            var names = await _teamsDao.GetTeamNamesBySeason(season)
+                .ConfigureAwait(false);
+            return names.OrderBy(n => n.TeamName).ToList();
+        }
     }
 }

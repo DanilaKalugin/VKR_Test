@@ -30,7 +30,7 @@ namespace VKR.PL.NET5
         private readonly TeamsBL _teamsBl = new();
         private readonly SeasonBL _seasonBl = new();
 
-        private List<Team>? _teams;
+        private List<TeamHistoricalName>? _teams;
         private List<Season>? _seasons;
         private List<MatchScheduleViewModel>? _matches;
         private readonly MatchScheduleBL.TableType _tableType;
@@ -94,7 +94,17 @@ namespace VKR.PL.NET5
 
         private async void MatchResultsForm_Load(object sender, EventArgs e)
         {
-            _teams = await _teamsBL.GetListAsync();
+            _seasons = await _seasonBl.GetAllSeasonsAsync();
+            cbSeasons.DataSource = _seasons;
+            cbSeasons.DisplayMember = "Year";
+
+            _season = await _seasonBl.GetCurrentSeason();
+
+            cbSeasons.SelectedItem = _seasons.FirstOrDefault(season => season.Year == _season.Year);
+
+            var seasonInfo = await _seasonBl.GetLeagueSeasonInfo(_season.Year);
+            
+            _teams = await _teamsBl.GetTeamNamesForThisYear(_season);
 
             foreach (var team in _teams)
             {
@@ -103,15 +113,7 @@ namespace VKR.PL.NET5
                 _teamLogos.Add(teamAbbreviation, teamLogo);
             }
 
-            _seasons = await _seasonBL.GetAllSeasonsAsync();
-            cbSeasons.DataSource = _seasons;
-            cbSeasons.DisplayMember = "Year";
-
-            _season = await _seasonBL.GetCurrentSeason();
-
-            cbSeasons.SelectedItem = _seasons.FirstOrDefault(season => season.Year == _season.Year);
-
-            var seasonInfo = await _seasonBL.GetLeagueSeasonInfo(_season.Year);
+            
             ChangeMaxAndMinDateForThisSeason(seasonInfo);
 
             switch (_formType)
@@ -194,7 +196,9 @@ namespace VKR.PL.NET5
                     ChangeMaxAndMinDateForThisSeason(seasonInfo);
                     break;
                 case FormType.TeamResults or FormType.TeamSchedule:
-                    _matches = await _scheduleBL.GetMatchesForSelectedTeam(TypeOfMatchEnum.RegularSeason, _season, _tableType, _teams?[cbTeam.SelectedIndex].TeamAbbreviation);
+                    _teams = await _teamsBl.GetTeamNamesForThisYear(_season);
+                    cbTeam.DataSource = _teams.Select(t => t.TeamName).ToList();
+                    _matches = await _scheduleBl.GetMatchesForSelectedTeam(TypeOfMatchEnum.RegularSeason, _season, _tableType, _teams?[cbTeam.SelectedIndex].TeamAbbreviation);
                     FillResultsTable();
                     break;
             }

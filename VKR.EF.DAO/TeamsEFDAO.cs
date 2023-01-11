@@ -110,5 +110,15 @@ namespace VKR.EF.DAO
             await db.SaveChangesAsync()
                 .ConfigureAwait(false);
         }
+
+        public async Task<List<TeamHistoricalName>> GetTeamNamesBySeason(Season season)
+        {
+            await using var db = new VKRApplicationContext();
+
+            return await db.TeamHistoricalNames
+                .Where(t => t.FirstSeasonWithName <= season.Year &&
+                            (t.LastSeasonWithName == null || t.LastSeasonWithName >= season.Year))
+                .ToListAsync();
+        }
     }
 }
