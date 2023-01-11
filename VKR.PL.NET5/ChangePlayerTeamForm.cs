@@ -95,14 +95,13 @@ namespace VKR.PL.NET5
 
             Visible = true;
 
-
             await FillTables();
         }
 
         private async Task FillTables()
         {
             Opacity = 0;
-            var f = new LoadingForm();
+            using var f = new LoadingForm();
             f.TopMost = true;
             f.Show();
             _allPlayers = await _rostersBl.GetAllPlayers();
@@ -114,7 +113,6 @@ namespace VKR.PL.NET5
             TeamChanged();
             FillSecondTable(_allPlayers);
             Opacity = 1;
-            f.Dispose();
         }
 
         private void FillSecondTable(IEnumerable<PlayerInLineupViewModel> players)
@@ -123,16 +121,6 @@ namespace VKR.PL.NET5
             foreach (var player in players)
                 dgvPlayers.Rows.Add("", player.PositionInLineup, $"{player.FullName}", player.TeamAbbreviation);
             dgvPlayers.Columns[0].Visible = false;
-        }
-
-        private void txtLastName_TextChanged(object sender, EventArgs e)
-        {
-            _lastName = txtLastName.Text.Trim();
-
-            _players = GetFilteredPlayers(_firstName, _lastName);
-            btnAddPlayer.Visible = _players.Count == 0;
-            btnAssignTo.Enabled = _players.Count > 0;
-            FillSecondTable(_players);
         }
 
         private void btnUpdatePlayer_Click(object sender, EventArgs e)
@@ -151,36 +139,47 @@ namespace VKR.PL.NET5
             Visible = true;
         }
 
-        private List<PlayerInLineupViewModel> GetFilteredPlayers(string firstName = "", string lastName = "")
-        {
-            var players = _allPlayers.ToList();
-
-            if (firstName != string.Empty)
-                players = players.Where(player => player.FirstName.StartsWith(firstName)).ToList();
-
-            if (lastName != string.Empty)
-                players = players.Where(player => player.SecondName.StartsWith(lastName)).ToList();
-
-            return players;
-        }
-
-
-        private void txtFirstName_TextChanged(object sender, EventArgs e)
-        {
-            _firstName = txtFirstName.Text.Trim();
-
-            _players = GetFilteredPlayers(_firstName, _lastName);
-            btnAddPlayer.Visible = _players.Count == 0;
-            btnAssignTo.Enabled = _players.Count > 0;
-            FillSecondTable(_players);
-        }
-
-        private async void ChangePlayerTeamForm_Load(object sender, EventArgs e) => _teams = await _teamsBL.GetListAsync();
+        private async void ChangePlayerTeamForm_Load(object sender, EventArgs e) => _teams = await _teamsBl.GetListAsync();
 
         private async void ChangePlayerTeamForm_VisibleChanged(object sender, EventArgs e)
         {
             if (!Visible) return;
             await FillTables();
         }
+
+        #region PlayerFilter
+        private void txtFirstName_TextChanged(object sender, EventArgs e)
+        {
+            _firstName = txtFirstName.Text.Trim();
+
+            _players = GetFilteredPlayers();
+            btnAddPlayer.Visible = _players.Count == 0;
+            btnAssignTo.Enabled = _players.Count > 0;
+            FillSecondTable(_players);
+        }
+
+        private void txtLastName_TextChanged(object sender, EventArgs e)
+        {
+            _lastName = txtLastName.Text.Trim();
+
+            _players = GetFilteredPlayers();
+            btnAddPlayer.Visible = _players.Count == 0;
+            btnAssignTo.Enabled = _players.Count > 0;
+            FillSecondTable(_players);
+        }
+
+        private List<PlayerInLineupViewModel> GetFilteredPlayers()
+        {
+            var players = _allPlayers.ToList();
+
+            if (_firstName != string.Empty)
+                players = players.Where(player => player.FirstName.StartsWith(_firstName)).ToList();
+
+            if (_lastName != string.Empty)
+                players = players.Where(player => player.SecondName.StartsWith(_lastName)).ToList();
+
+            return players;
+        }
+        #endregion
     }
 }
