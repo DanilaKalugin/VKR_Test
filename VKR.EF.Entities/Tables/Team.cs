@@ -24,6 +24,7 @@ namespace VKR.EF.Entities
         public virtual List<MatchResult> MatchWinners { get; set; } = new();
         public virtual List<MatchResult> MatchLosers { get; set; } = new();
         public virtual List<RetiredNumber> RetiredNumbers { get; set; } = new();
+        public virtual List<TeamHistoricalName> HistoricalNames { get; set; } = new();
         public TeamRating TeamRating { get; set; }
 
         public int HomeWins;
@@ -41,6 +42,7 @@ namespace VKR.EF.Entities
         public List<Batter> BattingLineup = new();
 
         public string FullTeamName => $"{TeamCity} {TeamName}";
+
 
         public Team SetTeamBalance(TeamBalance balance)
         {

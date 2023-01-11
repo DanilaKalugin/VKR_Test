@@ -39,6 +39,7 @@ namespace VKR.EF.DAO.Contexts
         public DbSet<Manager> Managers { get; set; }
         public DbSet<StadiumFactor> StadiumFactors { get; set; }
         public DbSet<RetiredNumber> RetiredNumbers { get; set; }
+        public DbSet<TeamHistoricalName> TeamHistoricalNames { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -96,6 +97,7 @@ namespace VKR.EF.DAO.Contexts
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RunEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.StadiumFactorEntityMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.RetiredNumberEntityMap());
+            modelBuilder.ApplyConfiguration(new Entities.Mappers.TeamHistoricalNameEntityMap());
 
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerBattingStatsViewMap());
             modelBuilder.ApplyConfiguration(new Entities.Mappers.PlayerPitchingStatsViewMap());
