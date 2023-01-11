@@ -32,6 +32,13 @@ namespace VKR.PL.NET5
             NewMatch.Id = matchId;
             NewMatch.MatchLength = (byte)numMatchLength.Value;
 
+            using (var form = new LoadingForm())
+            {
+                form.TopMost = true;
+                form.Show();
+
+                try
+                {
                     await _matchBl.StartNewMatch(NewMatch);
 
                     var awayTeamTask = _playerBl.GetCurrentLineupForThisMatch(NewMatch.AwayTeam, NewMatch);
@@ -46,6 +53,15 @@ namespace VKR.PL.NET5
 
                     NewMatch.AwayTeam.PitchersPlayedInMatch.Add(awayPitcher);
                     NewMatch.HomeTeam.PitchersPlayedInMatch.Add(homePitcher);
+
+                }
+                catch (Exception ex)
+                {
+                    var errorForm = new ErrorForm(ex.Message);
+                    errorForm.ShowDialog();
+                    DialogResult = DialogResult.Yes;
+                }
+            }
 
             using var newMatchForm = new MainForm(NewMatch);
             Visible = false;

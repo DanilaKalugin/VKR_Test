@@ -45,7 +45,7 @@ namespace VKR.PL.NET5
 
             dgvPlayers.DefaultCellStyle.SelectionBackColor = _teams[_teamNumber].TeamColors[0].Color;
 
-            btnAssignTo.Text = $"Assign to {_teams[_teamNumber].TeamName}";
+            btnAssignTo.Text = string.Format(Properties.Resources.AssignToTeamMessage, _teams[_teamNumber].TeamName);
         }
 
         private void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)

@@ -32,7 +32,14 @@ namespace VKR.PL.NET5
         {
             var availableNumbers = await _teamsBl.GetAvailableNumbers(_team);
             domainUpDown1.Items.AddRange(availableNumbers);
-            domainUpDown1.SelectedItem = _player.PlayerNumber;
+
+            if (!availableNumbers.Contains(_player.PlayerNumber))
+            {
+                var form = new ErrorForm($"Number {_player.PlayerNumber} is not available");
+                form.ShowDialog();
+                domainUpDown1.SelectedItem = availableNumbers.Min();
+            }
+            else domainUpDown1.SelectedItem = _player.PlayerNumber;
         }
 
         private async void btnConfirm_Click(object sender, EventArgs e)

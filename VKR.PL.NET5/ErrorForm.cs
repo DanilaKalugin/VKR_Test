@@ -4,6 +4,10 @@ namespace VKR.PL.NET5
 {
     public partial class ErrorForm : Form
     {
-        public ErrorForm() => InitializeComponent();
+        public ErrorForm(string message)
+        {
+            InitializeComponent();
+            lbHeader.Text = message.ToUpperInvariant();
+        }
     }
 }

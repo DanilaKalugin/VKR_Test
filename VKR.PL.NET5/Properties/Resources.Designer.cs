@@ -141,6 +141,15 @@ namespace VKR.PL.NET5.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assign to {0}.
+        /// </summary>
+        internal static string AssignToTeamMessage {
+            get {
+                return ResourceManager.GetString("AssignToTeamMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Error {
@@ -201,6 +210,16 @@ namespace VKR.PL.NET5.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to close this window?
+        ///This match will be deleted from database.
+        /// </summary>
+        internal static string MatchClosingMessage {
+            get {
+                return ResourceManager.GetString("MatchClosingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap MatchResults {
@@ -217,6 +236,25 @@ namespace VKR.PL.NET5.Properties {
             get {
                 object obj = ResourceManager.GetObject("NewConnection", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no available players.
+        /// </summary>
+        internal static string NoAvailablePlayersInTeamMessage {
+            get {
+                return ResourceManager.GetString("NoAvailablePlayersInTeamMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The player on mound is not a pitcher.
+        ///Would you like to replace him?.
+        /// </summary>
+        internal static string PlayerOnMoundIsNotAPitcherMessage {
+            get {
+                return ResourceManager.GetString("PlayerOnMoundIsNotAPitcherMessage", resourceCulture);
             }
         }
         

@@ -136,6 +136,10 @@
   <data name="MainMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\ImagesForMenu\MainMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MatchClosingMessage" xml:space="preserve">
+    <value>Do you want to close this window?
+This match will be deleted from database</value>
+  </data>
   <data name="MatchResults" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\ImagesForMenu\MatchResults.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,5 +181,15 @@
   </data>
   <data name="_123" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\ImagesForBaseSituation\123.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerOnMoundIsNotAPitcherMessage" xml:space="preserve">
+    <value>The player on mound is not a pitcher.
+Would you like to replace him?</value>
+  </data>
+  <data name="AssignToTeamMessage" xml:space="preserve">
+    <value>Assign to {0}</value>
+  </data>
+  <data name="NoAvailablePlayersInTeamMessage" xml:space="preserve">
+    <value>There are no available players</value>
   </data>
 </root>

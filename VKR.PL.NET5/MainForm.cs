@@ -546,7 +546,7 @@ namespace VKR.PL.NET5
 
             timer1.Stop();
 
-            if (MessageBox.Show("The player on mound is not a pitcher.\nWould you like to replace him?", "New pitcher", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            if (MessageBox.Show(Properties.Resources.PlayerOnMoundIsNotAPitcherMessage, "New pitcher", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                 await ChangePitcher(_isAutoSimulation);
         }
 
@@ -585,7 +585,7 @@ namespace VKR.PL.NET5
 
             e.Cancel = true;
 
-            if (MessageBox.Show("Do you want to close this window?\nThis match will be deleted from database", "Graduation paper", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+            if (MessageBox.Show(Properties.Resources.MatchClosingMessage, "Graduation paper", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
             {
                 timer1.Start();
                 return;
@@ -779,7 +779,7 @@ namespace VKR.PL.NET5
             }
             else if (!isAutoSimulation)
             {
-                using var form = new ErrorForm();
+                using var form = new ErrorForm(Properties.Resources.NoAvailablePlayersInTeamMessage);
                 form.ShowDialog();
             }
 
@@ -833,7 +833,7 @@ namespace VKR.PL.NET5
             }
             else if (!_isAutoSimulation)
             {
-                using var form = new ErrorForm();
+                using var form = new ErrorForm(Properties.Resources.NoAvailablePlayersInTeamMessage);
                 form.ShowDialog();
             }
         }
