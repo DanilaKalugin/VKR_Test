@@ -19,8 +19,8 @@ namespace VKR.BLL.NET5
             if (filter != "MLB")
             {
                 Func<TeamStandingsViewModel, bool> teamFilter = filter is "NL" or "AL"
-                    ? team => team.Division.LeagueId == filter
-                    : team => team.Division.DivisionTitle == filter;
+                    ? team => team.LeagueName == filter
+                    : team => team.DivisionName == filter;
 
                 teams = teams.Where(teamFilter).ToList();
             }
@@ -39,7 +39,7 @@ namespace VKR.BLL.NET5
 
             foreach (var team in teams) 
                 team.GamesBehind -= minimumGamesBehind;
-
+            
             return teams;
         }
 
@@ -47,9 +47,9 @@ namespace VKR.BLL.NET5
         {
             var teams = GetStandings(filter, date);
 
-            var westLeader = teams.First(team => team.Division.DivisionTitle == $"{filter} West");
-            var centralLeader = teams.First(team => team.Division.DivisionTitle == $"{filter} Central");
-            var eastLeader = teams.First(team => team.Division.DivisionTitle == $"{filter} East");
+            var westLeader = teams.First(team => team.DivisionName == $"{filter} West");
+            var centralLeader = teams.First(team => team.DivisionName == $"{filter} Central");
+            var eastLeader = teams.First(team => team.DivisionName == $"{filter} East");
 
             var divisionLeaders = new List<TeamStandingsViewModel> { westLeader, centralLeader, eastLeader };
             teams = teams.Except(divisionLeaders).ToList();

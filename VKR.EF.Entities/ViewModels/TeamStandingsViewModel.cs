@@ -4,8 +4,22 @@ using VKR.EF.Entities.Views;
 
 namespace VKR.EF.Entities.ViewModels
 {
-    public class TeamStandingsViewModel: Team
+    public class TeamStandingsViewModel
     {
+        public string TeamAbbreviation { get; set; }
+        public string TeamName { get; set; }
+        public string TeamCity { get; set; }
+        public string DivisionName { get; set; }
+        public string LeagueName { get; set; }
+
+        public int HomeWins;
+        public int HomeLosses;
+        public int AwayWins;
+        public int AwayLosses;
+
+        public int Wins => HomeWins + AwayWins;
+        public int Losses => HomeLosses + AwayLosses;
+
         public double Pct => Wins + Losses == 0 ? 0 : Math.Round(Wins / (double)(Wins + Losses), 3);
         public string HomeBalance => $"{HomeWins}-{HomeLosses}";
         public string AwayBalance => $"{AwayWins}-{AwayLosses}";
@@ -25,21 +39,30 @@ namespace VKR.EF.Entities.ViewModels
             return this;
         }
 
-        public TeamStandingsViewModel(Team team, RunsByTeam run)
+        public TeamStandingsViewModel(TeamHistoricalName teamName, Team team)
         {
-            TeamAbbreviation = team.TeamAbbreviation;
-            TeamCity = team.TeamCity;
-            TeamName = team.TeamName;
+            TeamAbbreviation = teamName.TeamAbbreviation;
+            TeamCity = teamName.TeamRegion;
+            TeamName = teamName.TeamName;
 
-            Division = team.Division;
+            DivisionName = team.Division.DivisionTitle;
+            LeagueName = team.Division.LeagueId;
+        }
 
-            HomeWins = team.HomeWins;
-            HomeLosses = team.HomeLosses;
-            AwayWins = team.AwayWins;
-            AwayLosses = team.AwayLosses;
+        public TeamStandingsViewModel SetTeamBalance(TeamBalance balance)
+        {
+            HomeWins = balance.HomeWins;
+            HomeLosses = balance.HomeLosses;
+            AwayWins = balance.AwayWins;
+            AwayLosses = balance.AwayLosses;
+            return this;
+        }
 
+        public TeamStandingsViewModel SetTeamRuns(RunsByTeam run)
+        {
             RunsScored = run.RunsScored;
             RunsAllowed = run.RunsAllowed;
+            return this;
         }
     }
 }

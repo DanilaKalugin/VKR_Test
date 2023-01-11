@@ -16,10 +16,18 @@ namespace VKR.EF.DAO
         {
             using var db = new VKRApplicationContext();
 
-            var teamWithLeagueAndDivision = db.Teams
-                .Include(t => t.Division)
-                .ThenInclude(d => d.League)
+            var teamsHistoricalNames = db.TeamHistoricalNames
+                .Where(t => t.FirstSeasonWithName <= date.Year &&
+                            (t.LastSeasonWithName == null || t.LastSeasonWithName >= date.Year))
                 .ToList();
+
+            var teamsDivisions = db.Teams.Include(t => t.Division)
+                .ToList();
+
+            var teamList = teamsHistoricalNames.Join(teamsDivisions,
+                t1 => t1.TeamAbbreviation,
+                t2 => t2.TeamAbbreviation,
+                (t1, t2) => new TeamStandingsViewModel(t1, t2));
 
             var dateParam = new SqlParameter("@Date", date);
             var typeParam = new SqlParameter("@Type", type);
@@ -43,14 +51,14 @@ GROUP BY dbo.Teams.TeamAbbreviation", typeParam, dateParam).ToList();
                    FROM RunsScoredAndAllowedForEveryMatch
                    GROUP BY team", dateParam, typeParam).ToList();
 
-            var teams = teamWithLeagueAndDivision.Join(teamBalances,
+            var teams = teamList.Join(teamBalances,
                 t => t.TeamAbbreviation,
                 tb => tb.TeamAbbreviation,
                 (team, balance) => team.SetTeamBalance(balance))
                 .Join(runs,
                     team => team.TeamAbbreviation,
                     run => run.TeamAbbreviation,
-                    (team, run) => new TeamStandingsViewModel(team, run)).ToList();
+                    (team, run) => team.SetTeamRuns(run)).ToList();
 
             if (teams.Count != streaks.Count)
                 return teams;
