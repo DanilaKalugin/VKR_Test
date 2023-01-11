@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.Tables
 {
     public class Country
     {

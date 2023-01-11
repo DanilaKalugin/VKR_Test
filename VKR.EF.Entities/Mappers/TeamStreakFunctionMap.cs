@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using VKR.EF.Entities.Functions;
 
 namespace VKR.EF.Entities.Mappers
 {

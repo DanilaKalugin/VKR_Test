@@ -4,6 +4,9 @@ using System.Linq;
 using System.Windows.Forms;
 using VKR.PL.Utils.NET5;
 using VKR.EF.Entities;
+using VKR.EF.Entities.Enums;
+using VKR.EF.Entities.Tables;
+using VKR.EF.Entities.ViewModels;
 
 namespace VKR.PL.NET5
 {

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using VKR.EF.Entities.Enums;
+using VKR.EF.Entities.Views;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.Tables
 {
     public class Player : Man
     {

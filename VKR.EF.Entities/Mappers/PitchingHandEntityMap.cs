@@ -2,6 +2,8 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using VKR.EF.Entities.Enums;
+using VKR.EF.Entities.Tables;
 
 namespace VKR.EF.Entities.Mappers
 {

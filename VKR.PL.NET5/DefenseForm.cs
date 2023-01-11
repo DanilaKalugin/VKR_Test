@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using VKR.PL.Utils.NET5;
-using VKR.EF.Entities;
+using VKR.EF.Entities.Tables;
 
 namespace VKR.PL.NET5
 {

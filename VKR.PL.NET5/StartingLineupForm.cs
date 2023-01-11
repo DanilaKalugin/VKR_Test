@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using VKR.EF.Entities;
+using VKR.EF.Entities.Tables;
 using VKR.PL.Controls.NET5;
 using VKR.PL.Utils.NET5;
 

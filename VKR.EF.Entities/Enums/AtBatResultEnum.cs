@@ -1,4 +1,4 @@
-﻿namespace VKR.EF.Entities
+﻿namespace VKR.EF.Entities.Enums
 {
     public enum AtBatType : byte
     {

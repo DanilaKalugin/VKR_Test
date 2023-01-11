@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using VKR.EF.DAO;
 using VKR.EF.DAO.Interfaces;
-using VKR.EF.Entities;
+using VKR.EF.Entities.Enums;
+using VKR.EF.Entities.ViewModels;
 
 namespace VKR.BLL.NET5
 {

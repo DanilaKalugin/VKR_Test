@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using VKR.EF.Entities.Enums;
+using VKR.EF.Entities.Tables;
+using VKR.EF.Entities.ViewModels;
 
 namespace VKR.EF.Entities.RandomGenerators
 {

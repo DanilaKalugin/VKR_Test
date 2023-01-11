@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VKR.EF.DAO;
-using VKR.EF.Entities;
+using VKR.EF.Entities.ViewModels;
 
 namespace VKR.BLL.NET5
 {

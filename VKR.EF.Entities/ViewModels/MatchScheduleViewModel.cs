@@ -1,6 +1,7 @@
 ﻿using System;
+using VKR.EF.Entities.Tables;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.ViewModels
 {
     public class MatchScheduleViewModel : MatchBaseClass
     {

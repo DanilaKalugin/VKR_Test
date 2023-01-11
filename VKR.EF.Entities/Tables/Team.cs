@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using VKR.EF.Entities.ViewModels;
+using VKR.EF.Entities.Views;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.Tables
 {
     public class Team
     {

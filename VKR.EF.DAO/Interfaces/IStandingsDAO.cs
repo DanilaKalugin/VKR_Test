@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using VKR.EF.Entities;
+using VKR.EF.Entities.Enums;
+using VKR.EF.Entities.ViewModels;
 
 namespace VKR.EF.DAO.Interfaces
 {

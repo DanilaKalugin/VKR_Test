@@ -1,6 +1,7 @@
 ﻿using System;
+using VKR.EF.Entities.Enums;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.Tables
 {
     public class LeagueSeason
     {

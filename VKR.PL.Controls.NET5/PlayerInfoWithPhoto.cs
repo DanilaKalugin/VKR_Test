@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using VKR.EF.Entities;
+using VKR.EF.Entities.ViewModels;
+using VKR.PL.Controls.NET5.EventArgs;
 using VKR.PL.Utils.NET5;
 
 namespace VKR.PL.Controls.NET5

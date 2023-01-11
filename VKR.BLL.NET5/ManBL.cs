@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using VKR.EF.DAO.Interfaces;
-using VKR.EF.Entities;
+using VKR.EF.Entities.Views;
 
 namespace VKR.BLL.NET5
 {

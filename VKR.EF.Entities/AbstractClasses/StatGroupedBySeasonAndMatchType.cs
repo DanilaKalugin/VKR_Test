@@ -1,4 +1,6 @@
-﻿namespace VKR.EF.Entities
+﻿using VKR.EF.Entities.Enums;
+
+namespace VKR.EF.Entities
 {
     public abstract class StatGroupedBySeasonAndMatchType
     {

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using VKR.EF.Entities.Enums;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.Tables
 {
     public class PlayerInTeam
     {

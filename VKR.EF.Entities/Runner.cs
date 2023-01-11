@@ -1,4 +1,6 @@
-﻿namespace VKR.EF.Entities
+﻿using VKR.EF.Entities.ViewModels;
+
+namespace VKR.EF.Entities
 {
     public class Runner
     {

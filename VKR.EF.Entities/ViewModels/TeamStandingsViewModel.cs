@@ -1,6 +1,8 @@
 ﻿using System;
+using VKR.EF.Entities.Tables;
+using VKR.EF.Entities.Views;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.ViewModels
 {
     public class TeamStandingsViewModel: Team
     {

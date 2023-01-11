@@ -1,4 +1,6 @@
-﻿namespace VKR.EF.Entities
+﻿using VKR.EF.Entities.Tables;
+
+namespace VKR.EF.Entities.ViewModels
 {
     public class PlayerInLineupViewModel : Player
     {

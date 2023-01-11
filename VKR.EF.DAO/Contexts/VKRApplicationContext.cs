@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using VKR.EF.Entities;
 using System.Configuration;
+using VKR.EF.Entities.Enums;
+using VKR.EF.Entities.Functions;
+using VKR.EF.Entities.Tables;
+using VKR.EF.Entities.ViewModels;
+using VKR.EF.Entities.Views;
 
 namespace VKR.EF.DAO.Contexts
 {

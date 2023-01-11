@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using VKR.EF.Entities.Enums;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.Tables
 {
     public class BattingHand
     {

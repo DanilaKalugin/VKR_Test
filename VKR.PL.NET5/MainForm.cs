@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VKR.BLL.NET5;
 using VKR.EF.Entities;
+using VKR.EF.Entities.Enums;
 using VKR.EF.Entities.RandomGenerators;
+using VKR.EF.Entities.Tables;
+using VKR.EF.Entities.ViewModels;
 using VKR.PL.Controls.NET5;
 using VKR.PL.Utils.NET5;
 
@@ -279,7 +282,7 @@ namespace VKR.PL.NET5
 
             _currentMatch.GameSituations.Add(_newGameSituation.Clone());
 
-            if (pitch.NewPitchResult == EF.Entities.Enums.PitchResult.HomeRun) IsHomeRun(_newGameSituation.RunsByThisPitch.Count);
+            if (pitch.NewPitchResult == PitchResult.HomeRun) IsHomeRun(_newGameSituation.RunsByThisPitch.Count);
 
             await IsAtBatFinished(_currentMatch.GameSituations.Last());
 
@@ -470,15 +473,15 @@ namespace VKR.PL.NET5
         {
             if (!GameSituation.AtBatEndingConditions.Contains(situation.Result) &&
                 !GameSituation.BaseStealingResults.Contains(situation.Result) &&
-                (situation.Result != EF.Entities.Enums.PitchResult.Ball || situation.Balls != 0) &&
-                (situation.Result != EF.Entities.Enums.PitchResult.Strike || situation.Strikes != 0)) return;
+                (situation.Result != PitchResult.Ball || situation.Balls != 0) &&
+                (situation.Result != PitchResult.Strike || situation.Strikes != 0)) return;
 
             var newAtBat = situation.Result switch
             {
-                EF.Entities.Enums.PitchResult.SecondBaseStolen => new AtBat(_currentMatch, situation.RunnerOnSecond.RunnerId, true),
-                EF.Entities.Enums.PitchResult.ThirdBaseStolen => new AtBat(_currentMatch, situation.RunnerOnThird.RunnerId, true),
-                EF.Entities.Enums.PitchResult.CaughtStealingOnSecond => new AtBat(_currentMatch, _currentMatch.GameSituations[^2].RunnerOnFirst.RunnerId, true),
-                EF.Entities.Enums.PitchResult.CaughtStealingOnThird => new AtBat(_currentMatch, _currentMatch.GameSituations[^2].RunnerOnSecond.RunnerId, true),
+                PitchResult.SecondBaseStolen => new AtBat(_currentMatch, situation.RunnerOnSecond.RunnerId, true),
+                PitchResult.ThirdBaseStolen => new AtBat(_currentMatch, situation.RunnerOnThird.RunnerId, true),
+                PitchResult.CaughtStealingOnSecond => new AtBat(_currentMatch, _currentMatch.GameSituations[^2].RunnerOnFirst.RunnerId, true),
+                PitchResult.CaughtStealingOnThird => new AtBat(_currentMatch, _currentMatch.GameSituations[^2].RunnerOnSecond.RunnerId, true),
                 _ => new AtBat(_currentMatch, (byte)_newGameSituation.RunsByThisPitch.Count)
             };
 

@@ -1,4 +1,7 @@
-﻿namespace VKR.EF.Entities
+﻿using VKR.EF.Entities.Tables;
+using VKR.EF.Entities.Views;
+
+namespace VKR.EF.Entities.ViewModels
 {
     public class Pitcher : Player
     {

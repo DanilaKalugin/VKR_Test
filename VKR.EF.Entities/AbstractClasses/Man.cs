@@ -1,4 +1,5 @@
 ﻿using System;
+using VKR.EF.Entities.Tables;
 
 namespace VKR.EF.Entities
 {

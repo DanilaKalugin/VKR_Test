@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
-using VKR.EF.Entities;
+using VKR.EF.Entities.Tables;
+using VKR.EF.Entities.ViewModels;
 using VKR.PL.Utils.NET5;
 using ProgressBar = ExtendedDotNET.Controls.Progress.ProgressBar;
 

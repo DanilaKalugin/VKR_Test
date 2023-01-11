@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.Tables
 {
     public class TeamColor
     {

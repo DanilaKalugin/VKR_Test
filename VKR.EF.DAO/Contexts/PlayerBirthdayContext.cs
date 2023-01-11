@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using VKR.EF.Entities;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using VKR.EF.Entities.Views;
 
 namespace VKR.EF.DAO.Contexts
 {

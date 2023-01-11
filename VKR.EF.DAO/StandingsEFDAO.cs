@@ -5,7 +5,8 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.DAO.Contexts;
 using VKR.EF.DAO.Interfaces;
-using VKR.EF.Entities;
+using VKR.EF.Entities.Enums;
+using VKR.EF.Entities.ViewModels;
 
 namespace VKR.EF.DAO
 {

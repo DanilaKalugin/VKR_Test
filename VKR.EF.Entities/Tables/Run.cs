@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace VKR.EF.Entities
+namespace VKR.EF.Entities.Tables
 {
     public class Run
     {

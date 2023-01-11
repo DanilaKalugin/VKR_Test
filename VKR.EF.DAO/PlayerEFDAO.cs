@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.DAO.Contexts;
-using VKR.EF.Entities;
+using VKR.EF.Entities.Enums;
+using VKR.EF.Entities.Tables;
+using VKR.EF.Entities.ViewModels;
+using VKR.EF.Entities.Views;
 
 namespace VKR.EF.DAO
 {

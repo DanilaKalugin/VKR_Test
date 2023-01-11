@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VKR.EF.DAO.Contexts;
 using VKR.EF.DAO.Interfaces;
-using VKR.EF.Entities;
+using VKR.EF.Entities.Views;
 
 namespace VKR.EF.DAO
 {

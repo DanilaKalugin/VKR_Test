@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using VKR.EF.Entities.Tables;
 
 namespace VKR.EF.Entities.RandomGenerators
 {
