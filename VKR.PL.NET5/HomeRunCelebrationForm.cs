@@ -29,8 +29,8 @@ namespace VKR.PL.NET5
 
             lbBatterHRNumber.Visible = !isQuickMatch;
 
-            lbBatterHRNumber.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(batter.BattingStats.HomeRuns + 1)} HR in season";
-            lbBatterHRNumberInThisMatch.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(hrTodayForThisBatter + 1)} HR in this match";
+            lbBatterHRNumber.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitative(batter.BattingStats.HomeRuns + 1)} HR in season";
+            lbBatterHRNumberInThisMatch.Text = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitative(hrTodayForThisBatter + 1)} HR in this match";
             lbBatterHRNumberInThisMatch.Visible = hrTodayForThisBatter > 0;
         }
 

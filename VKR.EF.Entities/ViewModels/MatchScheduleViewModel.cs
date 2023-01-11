@@ -34,7 +34,7 @@ namespace VKR.EF.Entities.ViewModels
             get
             {
                 if (!IsEnded)
-                    return $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitive(CurrentInning)} inning";
+                    return $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitative(CurrentInning)} inning";
 
                 if (CurrentInning != 9)
                     return CurrentInning == 0 ? "" : $"Final/{CurrentInning}";

@@ -2,7 +2,7 @@
 {
     public class OrdinalNumerals
     {
-        public static string GetOrdinalNumeralFromQuantitive(int number) =>
+        public static string GetOrdinalNumeralFromQuantitative(int number) =>
             (number % 10) switch
             {
                 1 when number % 100 != 11 => $"{number}st",
