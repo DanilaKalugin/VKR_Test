@@ -168,21 +168,6 @@ namespace VKR.PL.NET5
             this.PitcherName = new System.Windows.Forms.Label();
             this.PitchingTeam = new System.Windows.Forms.Panel();
             this.PitcherPhoto = new System.Windows.Forms.Panel();
-            this.panel2Base = new System.Windows.Forms.Panel();
-            this.lb_Runner2_Name = new System.Windows.Forms.Label();
-            this.panel31 = new System.Windows.Forms.Panel();
-            this.lb2ndBase = new System.Windows.Forms.Label();
-            this.RunnerOn2Photo = new System.Windows.Forms.Panel();
-            this.panel1Base = new System.Windows.Forms.Panel();
-            this.lb_Runner1_Name = new System.Windows.Forms.Label();
-            this.panel33 = new System.Windows.Forms.Panel();
-            this.lb1stBase = new System.Windows.Forms.Label();
-            this.RunnerOn1Photo = new System.Windows.Forms.Panel();
-            this.panel3Base = new System.Windows.Forms.Panel();
-            this.lb_Runner3_Name = new System.Windows.Forms.Label();
-            this.panel36 = new System.Windows.Forms.Panel();
-            this.lb3rdBase = new System.Windows.Forms.Label();
-            this.RunnerOn3Photo = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.btnBuntAttempt = new System.Windows.Forms.Button();
@@ -198,6 +183,9 @@ namespace VKR.PL.NET5
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnAutoMode = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.runnerData1 = new VKR.PL.Controls.NET5.RunnerData();
+            this.runnerData2 = new VKR.PL.Controls.NET5.RunnerData();
+            this.runnerData3 = new VKR.PL.Controls.NET5.RunnerData();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -219,12 +207,6 @@ namespace VKR.PL.NET5
             this.homeTeamNextBatters.SuspendLayout();
             this.panelCurrentPitcher.SuspendLayout();
             this.PitchingTeamColor.SuspendLayout();
-            this.panel2Base.SuspendLayout();
-            this.panel31.SuspendLayout();
-            this.panel1Base.SuspendLayout();
-            this.panel33.SuspendLayout();
-            this.panel3Base.SuspendLayout();
-            this.panel36.SuspendLayout();
             this.panelLastAtBat.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -1888,168 +1870,6 @@ namespace VKR.PL.NET5
             this.PitcherPhoto.Size = new System.Drawing.Size(146, 219);
             this.PitcherPhoto.TabIndex = 49;
             // 
-            // panel2Base
-            // 
-            this.panel2Base.Controls.Add(this.lb_Runner2_Name);
-            this.panel2Base.Controls.Add(this.panel31);
-            this.panel2Base.Location = new System.Drawing.Point(643, 144);
-            this.panel2Base.Name = "panel2Base";
-            this.panel2Base.Size = new System.Drawing.Size(197, 100);
-            this.panel2Base.TabIndex = 50;
-            this.panel2Base.Visible = false;
-            // 
-            // lb_Runner2_Name
-            // 
-            this.lb_Runner2_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb_Runner2_Name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Runner2_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_Runner2_Name.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lb_Runner2_Name.Location = new System.Drawing.Point(0, 23);
-            this.lb_Runner2_Name.Name = "lb_Runner2_Name";
-            this.lb_Runner2_Name.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.lb_Runner2_Name.Size = new System.Drawing.Size(197, 77);
-            this.lb_Runner2_Name.TabIndex = 2;
-            this.lb_Runner2_Name.Text = "label32";
-            this.lb_Runner2_Name.Click += new System.EventHandler(this.lb_Runner2_Name_Click);
-            // 
-            // panel31
-            // 
-            this.panel31.Controls.Add(this.lb2ndBase);
-            this.panel31.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel31.Location = new System.Drawing.Point(0, 0);
-            this.panel31.Name = "panel31";
-            this.panel31.Size = new System.Drawing.Size(197, 23);
-            this.panel31.TabIndex = 1;
-            // 
-            // lb2ndBase
-            // 
-            this.lb2ndBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb2ndBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb2ndBase.ForeColor = System.Drawing.Color.White;
-            this.lb2ndBase.Location = new System.Drawing.Point(0, 0);
-            this.lb2ndBase.Name = "lb2ndBase";
-            this.lb2ndBase.Size = new System.Drawing.Size(197, 23);
-            this.lb2ndBase.TabIndex = 0;
-            this.lb2ndBase.Text = "2ND BASE";
-            this.lb2ndBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lb2ndBase.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
-            // 
-            // RunnerOn2Photo
-            // 
-            this.RunnerOn2Photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RunnerOn2Photo.Location = new System.Drawing.Point(576, 144);
-            this.RunnerOn2Photo.Name = "RunnerOn2Photo";
-            this.RunnerOn2Photo.Size = new System.Drawing.Size(67, 100);
-            this.RunnerOn2Photo.TabIndex = 0;
-            // 
-            // panel1Base
-            // 
-            this.panel1Base.Controls.Add(this.lb_Runner1_Name);
-            this.panel1Base.Controls.Add(this.panel33);
-            this.panel1Base.Location = new System.Drawing.Point(1214, 490);
-            this.panel1Base.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1Base.Name = "panel1Base";
-            this.panel1Base.Size = new System.Drawing.Size(197, 100);
-            this.panel1Base.TabIndex = 51;
-            this.panel1Base.Visible = false;
-            // 
-            // lb_Runner1_Name
-            // 
-            this.lb_Runner1_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb_Runner1_Name.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lb_Runner1_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_Runner1_Name.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lb_Runner1_Name.Location = new System.Drawing.Point(0, 23);
-            this.lb_Runner1_Name.Name = "lb_Runner1_Name";
-            this.lb_Runner1_Name.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.lb_Runner1_Name.Size = new System.Drawing.Size(197, 77);
-            this.lb_Runner1_Name.TabIndex = 2;
-            this.lb_Runner1_Name.Text = "label44";
-            this.lb_Runner1_Name.Click += new System.EventHandler(this.lb_Runner1_Name_Click);
-            // 
-            // panel33
-            // 
-            this.panel33.Controls.Add(this.lb1stBase);
-            this.panel33.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel33.Location = new System.Drawing.Point(0, 0);
-            this.panel33.Name = "panel33";
-            this.panel33.Size = new System.Drawing.Size(197, 23);
-            this.panel33.TabIndex = 1;
-            // 
-            // lb1stBase
-            // 
-            this.lb1stBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb1stBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb1stBase.ForeColor = System.Drawing.Color.White;
-            this.lb1stBase.Location = new System.Drawing.Point(0, 0);
-            this.lb1stBase.Name = "lb1stBase";
-            this.lb1stBase.Size = new System.Drawing.Size(197, 23);
-            this.lb1stBase.TabIndex = 1;
-            this.lb1stBase.Text = "1ST BASE";
-            this.lb1stBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lb1stBase.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
-            // 
-            // RunnerOn1Photo
-            // 
-            this.RunnerOn1Photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RunnerOn1Photo.Location = new System.Drawing.Point(1147, 490);
-            this.RunnerOn1Photo.Name = "RunnerOn1Photo";
-            this.RunnerOn1Photo.Size = new System.Drawing.Size(67, 100);
-            this.RunnerOn1Photo.TabIndex = 0;
-            // 
-            // panel3Base
-            // 
-            this.panel3Base.Controls.Add(this.lb_Runner3_Name);
-            this.panel3Base.Controls.Add(this.panel36);
-            this.panel3Base.Location = new System.Drawing.Point(79, 505);
-            this.panel3Base.Name = "panel3Base";
-            this.panel3Base.Size = new System.Drawing.Size(197, 100);
-            this.panel3Base.TabIndex = 52;
-            this.panel3Base.Visible = false;
-            // 
-            // lb_Runner3_Name
-            // 
-            this.lb_Runner3_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lb_Runner3_Name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Runner3_Name.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_Runner3_Name.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lb_Runner3_Name.Location = new System.Drawing.Point(0, 23);
-            this.lb_Runner3_Name.Name = "lb_Runner3_Name";
-            this.lb_Runner3_Name.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.lb_Runner3_Name.Size = new System.Drawing.Size(197, 77);
-            this.lb_Runner3_Name.TabIndex = 2;
-            this.lb_Runner3_Name.Text = "label45";
-            // 
-            // panel36
-            // 
-            this.panel36.Controls.Add(this.lb3rdBase);
-            this.panel36.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel36.Location = new System.Drawing.Point(0, 0);
-            this.panel36.Name = "panel36";
-            this.panel36.Size = new System.Drawing.Size(197, 23);
-            this.panel36.TabIndex = 1;
-            // 
-            // lb3rdBase
-            // 
-            this.lb3rdBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb3rdBase.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb3rdBase.ForeColor = System.Drawing.Color.White;
-            this.lb3rdBase.Location = new System.Drawing.Point(0, 0);
-            this.lb3rdBase.Name = "lb3rdBase";
-            this.lb3rdBase.Size = new System.Drawing.Size(197, 23);
-            this.lb3rdBase.TabIndex = 1;
-            this.lb3rdBase.Text = "3RD BASE";
-            this.lb3rdBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lb3rdBase.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
-            // 
-            // RunnerOn3Photo
-            // 
-            this.RunnerOn3Photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RunnerOn3Photo.Location = new System.Drawing.Point(12, 505);
-            this.RunnerOn3Photo.Name = "RunnerOn3Photo";
-            this.RunnerOn3Photo.Size = new System.Drawing.Size(67, 100);
-            this.RunnerOn3Photo.TabIndex = 0;
-            // 
             // label32
             // 
             this.label32.Dock = System.Windows.Forms.DockStyle.Left;
@@ -2253,6 +2073,39 @@ namespace VKR.PL.NET5
             this.panel1.Size = new System.Drawing.Size(770, 55);
             this.panel1.TabIndex = 67;
             // 
+            // runnerData1
+            // 
+            this.runnerData1.BaseType = VKR.PL.Controls.NET5.RunnerData.BaseTypeEnum.First;
+            this.runnerData1.Batter = null;
+            this.runnerData1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.runnerData1.Location = new System.Drawing.Point(1147, 490);
+            this.runnerData1.Name = "runnerData1";
+            this.runnerData1.Size = new System.Drawing.Size(264, 100);
+            this.runnerData1.TabIndex = 68;
+            this.runnerData1.TeamColor = System.Drawing.Color.Empty;
+            // 
+            // runnerData2
+            // 
+            this.runnerData2.BaseType = VKR.PL.Controls.NET5.RunnerData.BaseTypeEnum.Second;
+            this.runnerData2.Batter = null;
+            this.runnerData2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.runnerData2.Location = new System.Drawing.Point(576, 144);
+            this.runnerData2.Name = "runnerData2";
+            this.runnerData2.Size = new System.Drawing.Size(264, 100);
+            this.runnerData2.TabIndex = 69;
+            this.runnerData2.TeamColor = System.Drawing.Color.Empty;
+            // 
+            // runnerData3
+            // 
+            this.runnerData3.BaseType = VKR.PL.Controls.NET5.RunnerData.BaseTypeEnum.Third;
+            this.runnerData3.Batter = null;
+            this.runnerData3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.runnerData3.Location = new System.Drawing.Point(12, 505);
+            this.runnerData3.Name = "runnerData3";
+            this.runnerData3.Size = new System.Drawing.Size(264, 100);
+            this.runnerData3.TabIndex = 70;
+            this.runnerData3.TeamColor = System.Drawing.Color.Empty;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2266,15 +2119,9 @@ namespace VKR.PL.NET5
             this.Controls.Add(this.lbTodayStats);
             this.Controls.Add(this.btnPlayerStats);
             this.Controls.Add(this.btnOtherResults);
-            this.Controls.Add(this.RunnerOn3Photo);
-            this.Controls.Add(this.RunnerOn2Photo);
-            this.Controls.Add(this.RunnerOn1Photo);
             this.Controls.Add(label24);
             this.Controls.Add(this.btnShowAvailablePitchers);
             this.Controls.Add(this.btnStandings);
-            this.Controls.Add(this.panel3Base);
-            this.Controls.Add(this.panel1Base);
-            this.Controls.Add(this.panel2Base);
             this.Controls.Add(this.PitcherPhoto);
             this.Controls.Add(this.pbCurrentBatterPhoto);
             this.Controls.Add(this.pbCurrentOffenseLogo);
@@ -2285,6 +2132,9 @@ namespace VKR.PL.NET5
             this.Controls.Add(this.panelSmallScoreBoard);
             this.Controls.Add(this.panelCurrentSituation);
             this.Controls.Add(this.panelLastAtBat);
+            this.Controls.Add(this.runnerData1);
+            this.Controls.Add(this.runnerData2);
+            this.Controls.Add(this.runnerData3);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2314,12 +2164,6 @@ namespace VKR.PL.NET5
             this.panelCurrentPitcher.ResumeLayout(false);
             this.panelCurrentPitcher.PerformLayout();
             this.PitchingTeamColor.ResumeLayout(false);
-            this.panel2Base.ResumeLayout(false);
-            this.panel31.ResumeLayout(false);
-            this.panel1Base.ResumeLayout(false);
-            this.panel33.ResumeLayout(false);
-            this.panel3Base.ResumeLayout(false);
-            this.panel36.ResumeLayout(false);
             this.panelLastAtBat.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -2437,21 +2281,6 @@ namespace VKR.PL.NET5
         private Label PitcherName;
         private Panel PitchingTeam;
         private Panel PitcherPhoto;
-        private Panel panel2Base;
-        private Label lb_Runner2_Name;
-        private Panel panel31;
-        private Panel RunnerOn2Photo;
-        private Panel panel1Base;
-        private Label lb_Runner1_Name;
-        private Panel panel33;
-        private Panel RunnerOn1Photo;
-        private Panel panel3Base;
-        private Label lb_Runner3_Name;
-        private Panel panel36;
-        private Panel RunnerOn3Photo;
-        private Label lb2ndBase;
-        private Label lb1stBase;
-        private Label lb3rdBase;
         private Label label32;
         private Label label44;
         private Button btnBuntAttempt;
@@ -2488,6 +2317,9 @@ namespace VKR.PL.NET5
         private BatterInfo homeNextBatter3;
         private BatterInfo homeNextBatter2;
         private BatterInfo homeNextBatter1;
+        private RunnerData runnerData1;
+        private RunnerData runnerData2;
+        private RunnerData runnerData3;
     }
 }
 

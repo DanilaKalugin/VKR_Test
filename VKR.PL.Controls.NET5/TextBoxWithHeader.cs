@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using VKR.PL.Controls.NET5.EventArgs;
 
 namespace VKR.PL.Controls.NET5
 {
@@ -135,6 +136,6 @@ namespace VKR.PL.Controls.NET5
             lbHint.ForeColor = Color.Green;
         }
 
-        private void txtLastName_Validated(object sender, EventArgs e) => Value = txtLastName.Text.Trim();
+        private void txtLastName_Validated(object sender, System.EventArgs e) => Value = txtLastName.Text.Trim();
     }
 }

@@ -1,9 +1,8 @@
-﻿using System;
-using VKR.EF.Entities;
+﻿using VKR.EF.Entities.ViewModels;
 
-namespace VKR.PL.Controls.NET5
+namespace VKR.PL.Controls.NET5.EventArgs
 {
-    public class PlayerChangedEventArgs: EventArgs
+    public class PlayerChangedEventArgs : System.EventArgs
     {
         public PlayerChangedEventArgs(Batter playerInfo) => PlayerInfo = playerInfo;
 

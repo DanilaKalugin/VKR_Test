@@ -152,24 +152,18 @@ namespace VKR.PL.NET5
 
         public void DisplayCurrentRunners(GameSituation situation)
         {
-            RunnerOnBase_Displaying(situation.RunnerOnFirst, lb_Runner1_Name, RunnerOn1Photo, situation.Offense, situation, panel1Base, lb1stBase);
-            RunnerOnBase_Displaying(situation.RunnerOnSecond, lb_Runner2_Name, RunnerOn2Photo, situation.Offense, situation, panel2Base, lb2ndBase);
-            RunnerOnBase_Displaying(situation.RunnerOnThird, lb_Runner3_Name, RunnerOn3Photo, situation.Offense, situation, panel3Base, lb3rdBase);
+            DisplayingRunnerOnBase(situation.RunnerOnFirst, runnerData1, situation);
+            DisplayingRunnerOnBase(situation.RunnerOnSecond, runnerData2, situation);
+            DisplayingRunnerOnBase(situation.RunnerOnThird, runnerData3, situation);
         }
 
-        private static void RunnerOnBase_Displaying(Runner runner, Label RunnerName, Panel RunnerPhoto, Team offense, GameSituation situation, Panel basePanel, Label panelHeader)
+        private static void DisplayingRunnerOnBase(Runner runner, RunnerData runnerData, GameSituation situation)
         {
-            basePanel.Visible = runner.IsBaseNotEmpty;
-            panelHeader.BackColor = situation.Offense.TeamColorForThisMatch;
-            if (runner.IsBaseNotEmpty)
-            {
-                var runneron3rd = offense.BattingLineup.First(batter => batter.BatterId == runner.RunnerId);
-                RunnerName.Text = runneron3rd.FullName.ToUpper();
-
-                RunnerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{runneron3rd.Id:0000}.png");
-                RunnerName.ForeColor = runner.IsBaseStealingAttempt ? Color.Goldenrod : Color.Gainsboro;
-            }
-            else RunnerPhoto.BackgroundImage = null;
+            runnerData.Visible  = runner.IsBaseNotEmpty;
+            runnerData.TeamColor = situation.Offense.TeamColorForThisMatch;
+            if (!runner.IsBaseNotEmpty) return;
+            var batter = situation.Offense.BattingLineup.First(batter1 => batter1.BatterId == runner.RunnerId);
+            runnerData.Batter = batter;
         }
 
         private Batter GetBatterByGameSituation(GameSituation gameSituation)
@@ -560,6 +554,7 @@ namespace VKR.PL.NET5
 
         private void lb_Runner1_Name_Click(object sender, EventArgs e)
         {
+            /*
             if (!_isAutoSimulation && !(lb_Runner3_Name.Visible && lb_Runner2_Name.Visible))
             {
                 _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt = !_newGameSituation.RunnerOnFirst.IsBaseStealingAttempt;
@@ -570,13 +565,16 @@ namespace VKR.PL.NET5
 
             lb_Runner1_Name.ForeColor = _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
             lb_Runner2_Name.ForeColor = _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
+            */
         }
 
         private void lb_Runner2_Name_Click(object sender, EventArgs e)
         {
+            /*
             if (!_isAutoSimulation && !lb_Runner3_Name.Visible) _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt = !_newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
 
             lb_Runner2_Name.ForeColor = _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
+            */
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -662,14 +660,9 @@ namespace VKR.PL.NET5
 
         private void MainForm_ClientSizeChanged(object sender, EventArgs e)
         {
-            panel1Base.Location = new Point(ClientSize.Width - 211, ClientSize.Height / 2 - 30);
-            RunnerOn1Photo.Location = new Point(ClientSize.Width - 278, ClientSize.Height / 2 - 30);
-
-            panel3Base.Location = new Point(79, ClientSize.Height / 2 - 30);
-            RunnerOn3Photo.Location = new Point(12, ClientSize.Height / 2 - 30);
-
-            RunnerOn2Photo.Location = new Point(ClientSize.Width / 2 - 132, 144);
-            panel2Base.Location = new Point(ClientSize.Width / 2 - 65, 144);
+            runnerData1.Location = new Point(ClientSize.Width - 278, ClientSize.Height / 2 - 30);
+            runnerData2.Location = new Point(ClientSize.Width / 2 - 132, 144);
+            runnerData3.Location = new Point(12, ClientSize.Height / 2 - 30);
 
             btnNewPitch.Location = new Point(panel1.Width / 2 - 303, 10);
             btnBuntAttempt.Location = new Point(panel1.Width / 2 + 3, 10);
