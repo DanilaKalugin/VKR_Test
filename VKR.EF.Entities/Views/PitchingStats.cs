@@ -35,7 +35,7 @@ namespace VKR.EF.Entities.Views
 
         public int HitsAllowed => SinglesAllowed + DoublesAllowed + TriplesAllowed + HomeRunsAllowed;
 
-        public double IP => Math.Round(Outs / 3 + (double)(Outs % 3) / 10, 1);
+        public double InningsPitched => Math.Round(Outs / 3 + (double)(Outs % 3) / 10, 1);
 
         public double WHIP
         {
@@ -68,11 +68,11 @@ namespace VKR.EF.Entities.Views
             }
         }
 
-        public double KperNineInnings => Outs == 0 ? 0 : Strikeouts / ((double)Outs / 3) * 9;
+        public double StrikeoutsPerNineInnings => Outs == 0 ? 0 : Strikeouts / ((double)Outs / 3) * 9;
 
-        public double BBperNineInnings => Outs == 0 ? 0 : WalksAllowed / ((double)Outs / 3) * 9;
+        public double WalksPerNineInnings => Outs == 0 ? 0 : WalksAllowed / ((double)Outs / 3) * 9;
 
-        public double KperBb => WalksAllowed == 0 ? 0 : (double)Strikeouts / WalksAllowed;
+        public double StrikeoutsPerWalks => WalksAllowed == 0 ? 0 : (double)Strikeouts / WalksAllowed;
 
         public double GOtoAo => Flyouts == 0 ? 0 : (double)Groundouts / Flyouts;
     }

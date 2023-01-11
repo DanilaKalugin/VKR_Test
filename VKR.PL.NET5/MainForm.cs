@@ -516,7 +516,7 @@ namespace VKR.PL.NET5
 
             PitcherBAA.Text = defense.CurrentPitcher.PitchingStats.BAA.ToString("#.000", new CultureInfo("en-US"));
             PitcherERA.Text = defense.CurrentPitcher.PitchingStats.ERA.ToString("##0.00", new CultureInfo("en-US"));
-            PitcherIP.Text = defense.CurrentPitcher.PitchingStats.IP.ToString("0.0", new CultureInfo("en-US"));
+            PitcherIP.Text = defense.CurrentPitcher.PitchingStats.InningsPitched.ToString("0.0", new CultureInfo("en-US"));
             PitcherHomeRuns.Text = defense.CurrentPitcher.PitchingStats.HomeRunsAllowed.ToString();
             PitcherStrikeouts.Text = defense.CurrentPitcher.PitchingStats.Strikeouts.ToString();
             PitcherWalks.Text = defense.CurrentPitcher.PitchingStats.WalksAllowed.ToString();

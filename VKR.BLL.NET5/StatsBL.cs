@@ -72,7 +72,7 @@ namespace VKR.BLL.NET5
 
             fplayers = qualifying switch
             {
-                "Qualified Players" => fplayers.Where(player => player.PitchingStats.IP / player.PitchingStats.TGP >= 1.1 && player.PlayersInTeam is not null).ToList(),
+                "Qualified Players" => fplayers.Where(player => player.PitchingStats.InningsPitched / player.PitchingStats.TGP >= 1.1 && player.PlayersInTeam is not null).ToList(),
                 "Active Players" => fplayers.Where(player => player.PlayersInTeam.First().CurrentPlayerInTeamStatus == InTeamStatusEnum.ActiveRoster && player.CanPlayAsPitcher).ToList(),
                 _ => fplayers
             };
