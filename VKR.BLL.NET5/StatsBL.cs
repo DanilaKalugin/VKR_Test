@@ -29,12 +29,12 @@ namespace VKR.BLL.NET5
             return teams.OrderBy(team => team.PitchingStats.ERA).ToList();
         }
 
-        public async Task<List<Player>> GetBattersStats(Season season, string TeamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
+        public async Task<List<Player>> GetBattersStats(Season season, string teamFilter = "MLB", string qualifying = "Qualified Players", string positions = "")
         {
             var players = await _statsDao.GetPlayerBattingStatsAsync(season.Year)
                 .ConfigureAwait(false);
 
-            var abbreviations = await GetTeamsForFilter(TeamFilter)
+            var abbreviations = await GetTeamsForFilter(teamFilter)
                 .ConfigureAwait(false);
 
             players = players.Where(player => player.PlayersInTeam.Count > 0 && abbreviations.Contains(player.PlayersInTeam.First().TeamId)).ToList();

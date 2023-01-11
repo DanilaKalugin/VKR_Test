@@ -15,7 +15,7 @@ namespace VKR.EF.Entities.RandomGenerators
         public enum BuntResult { SuccessfulBunt, FoulOnBunt, SingleOnBunt, HitByPitch, Ball }
         private static BuntResult _newBuntResult;
 
-        private BuntResult BuntResultDefinition(GameSituation situation, int successfulBuntAttemptProbabilty, int strikeZoneProbability, int hitByPitchProbability, int batterNumberComponent)
+        private BuntResult BuntResultDefinition(GameSituation situation, int successfulBuntAttemptProbability, int strikeZoneProbability, int hitByPitchProbability, int batterNumberComponent)
         {
             var buntRandomValue = _buntResultRandomGenerator.Next(1, 1000);
 
@@ -25,7 +25,7 @@ namespace VKR.EF.Entities.RandomGenerators
             if (buntRandomValue <= (strikeZoneProbability - (situation.Strikes - situation.Balls) * 15) / 3)
                 return BuntResult.Ball;
 
-            if (buntRandomValue <= successfulBuntAttemptProbabilty - batterNumberComponent * 15)
+            if (buntRandomValue <= successfulBuntAttemptProbability - batterNumberComponent * 15)
                 return BuntResult.SuccessfulBunt;
 
             return buntRandomValue <= hitByPitchProbability / 3 ? BuntResult.SingleOnBunt : BuntResult.HitByPitch;

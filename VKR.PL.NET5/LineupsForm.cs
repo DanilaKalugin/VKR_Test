@@ -32,7 +32,6 @@ namespace VKR.PL.NET5
         private readonly string[] _typesOfLineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
         private bool _lineupChanged;
         private DateTime _matchDate;
-        private bool _isAdmin;
         private PlayerInLineupViewModel _player;
 
         public LineupsForm(RosterType rosterType, bool isAdmin)
@@ -40,11 +39,10 @@ namespace VKR.PL.NET5
             InitializeComponent();
 
             _rosterType = rosterType;
-            _isAdmin = isAdmin;
 
-            btnMoveToLowerRoster.Visible = _isAdmin;
-            btnMoveToUpperRoster.Visible = _isAdmin;
-            btnUpdatePlayer.Visible = _isAdmin;
+            btnMoveToLowerRoster.Visible = isAdmin;
+            btnMoveToUpperRoster.Visible = isAdmin;
+            btnUpdatePlayer.Visible = isAdmin;
             Opacity = 0;
         }
 

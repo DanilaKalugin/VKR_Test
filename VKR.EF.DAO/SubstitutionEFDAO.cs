@@ -114,7 +114,7 @@ namespace VKR.EF.DAO
             var notAvailableBatters = db.LineupsForMatches.Where(lfm => lfm.MatchId == match.Id)
                     .Select(sl => sl.PlayerInTeamId);
 
-            var battersDB = batter.PositionForThisMatch switch
+            var battersDb = batter.PositionForThisMatch switch
             {
                 "P" => await db.PlayersInTeams.Include(pit => pit.Player)
                     .ThenInclude(player => player.Positions)
@@ -142,7 +142,7 @@ namespace VKR.EF.DAO
                     .ConfigureAwait(false)
             };
 
-            var batters = battersDB.Select(pit => new Batter(pit.Player, batter.PositionForThisMatch, batter.NumberInLineup, pit.Id))
+            var batters = battersDb.Select(pit => new Batter(pit.Player, batter.PositionForThisMatch, batter.NumberInLineup, pit.Id))
                 .ToList();
 
             var battersIds = batters.Select(batter1 => batter1.Id).ToList();

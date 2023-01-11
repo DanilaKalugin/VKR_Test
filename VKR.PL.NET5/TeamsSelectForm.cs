@@ -12,8 +12,8 @@ namespace VKR.PL.NET5
 {
     public partial class TeamsSelectForm : Form
     {
-        private readonly TeamsBL _teamsBL = new();
-        private readonly MatchBL _matchBL = new();
+        private readonly TeamsBL _teamsBl = new();
+        private readonly MatchBL _matchBl = new();
         private List<Team> _teams;
         private List<MatchFromSchedule> _matches;
         private int _currentHomeColor;
@@ -44,7 +44,7 @@ namespace VKR.PL.NET5
 
         private async void TeamsSelectForm_Load(object sender, EventArgs e)
         {
-            _teams = await _teamsBL.GetTeamsWithWLBalanceAsync(_newMatch.MatchDate.Year, _newMatch.MatchTypeId);
+            _teams = await _teamsBl.GetTeamsWithWLBalanceAsync(_newMatch.MatchDate.Year, _newMatch.MatchTypeId);
 
             if (_newMatch.MatchTypeId == TypeOfMatchEnum.QuickMatch)
             {
@@ -210,9 +210,9 @@ namespace VKR.PL.NET5
 
         private async Task FillScheduleForToday()
         {
-            var matchDate = await _matchBL.GetDateForNextMatchAsync(_newMatch.MatchTypeId);
+            var matchDate = await _matchBl.GetDateForNextMatchAsync(_newMatch.MatchTypeId);
 
-            _matches = await _matchBL.GetMatchesForThisDayAsync(matchDate, _newMatch.MatchTypeId);
+            _matches = await _matchBl.GetMatchesForThisDayAsync(matchDate, _newMatch.MatchTypeId);
             _matchNumber = 0;
             _awayTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].AwayTeamAbbreviation);
             _homeTeamNumber = _teams.FindIndex(team => team.TeamAbbreviation == _matches[0].HomeTeamAbbreviation);

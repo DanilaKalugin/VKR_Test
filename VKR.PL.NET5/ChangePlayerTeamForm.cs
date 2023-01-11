@@ -13,9 +13,9 @@ namespace VKR.PL.NET5
 {
     public partial class ChangePlayerTeamForm : Form
     {
-        private readonly TeamsBL _teamsBL = new();
+        private readonly TeamsBL _teamsBl = new();
         private readonly RostersBL _rostersBl = new();
-        private readonly PlayerMovesBL _playerMoves = new();
+        private readonly PlayerMovesBL _playerMovesBl = new();
 
         private List<PlayerInLineupViewModel> _allPlayers;
         private List<PlayerInLineupViewModel> _players = new();
@@ -89,8 +89,8 @@ namespace VKR.PL.NET5
             using (var form = new SetNewNumberForPlayerForm(team, _currentPlayer))
             {
                 form.ShowDialog();
-                if (form.DialogResult == DialogResult.OK) 
-                    await _playerMoves.MovePlayerToNewTeam(_currentPlayer, team);
+                if (form.DialogResult == DialogResult.OK)
+                    await _playerMovesBl.MovePlayerToNewTeam(_currentPlayer, team);
             }
 
             Visible = true;

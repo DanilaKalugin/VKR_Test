@@ -26,9 +26,9 @@ namespace VKR.PL.NET5
             NextTenMatches
         }
 
-        private readonly MatchScheduleBL _scheduleBL = new();
-        private readonly TeamsBL _teamsBL = new();
-        private readonly SeasonBL _seasonBL = new();
+        private readonly MatchScheduleBL _scheduleBl = new();
+        private readonly TeamsBL _teamsBl = new();
+        private readonly SeasonBL _seasonBl = new();
 
         private List<Team>? _teams;
         private List<Season>? _seasons;
@@ -122,19 +122,18 @@ namespace VKR.PL.NET5
                     break;
                 case FormType.SeriesSchedule:
                 case FormType.SeriesResults:
-                    _matches = await _scheduleBL.GetMatchesFromThisSeries(_tableType, TypeOfMatchEnum.RegularSeason, _season, _teamAbbreviations[0], _teamAbbreviations[1]);
+                    _matches = await _scheduleBl.GetMatchesFromThisSeries(_tableType, TypeOfMatchEnum.RegularSeason, _season, _teamAbbreviations[0], _teamAbbreviations[1]);
                     FillResultsTable();
                     break;
                 case FormType.LastTenMatches:
                 case FormType.NextTenMatches:
-                    var matchesList = await _scheduleBL.GetMatchesForSelectedTeam(TypeOfMatchEnum.RegularSeason, _season, _tableType, _teamAbbreviations.First());
+                    var matchesList = await _scheduleBl.GetMatchesForSelectedTeam(TypeOfMatchEnum.RegularSeason, _season, _tableType, _teamAbbreviations.First());
                     _matches = matchesList.Take(10).ToList();
                     FillResultsTable();
                     break;
                 case FormType.TeamResults:
                 case FormType.TeamSchedule:
-                    var teamsInComboBox = _teams.Select(team => team.TeamName).ToList();
-                    cbTeam.DataSource = teamsInComboBox;
+                    cbTeam.DataSource = _teams.Select(t => t.TeamName).ToList();
                     break;
             }
 
@@ -145,7 +144,7 @@ namespace VKR.PL.NET5
         {
             if (_season is null) return;
 
-            _matches = await _scheduleBL.GetMatchesForSelectedTeam(TypeOfMatchEnum.RegularSeason, _season, _tableType, _teams?[cbTeam.SelectedIndex].TeamAbbreviation);
+            _matches = await _scheduleBl.GetMatchesForSelectedTeam(TypeOfMatchEnum.RegularSeason, _season, _tableType, _teams?[cbTeam.SelectedIndex].TeamAbbreviation);
             FillResultsTable();
         }
 
@@ -168,8 +167,8 @@ namespace VKR.PL.NET5
         {
             Func<TypeOfMatchEnum, Season, Task<List<MatchScheduleViewModel>>> matchFunc =
                 _tableType == MatchScheduleBL.TableType.Results
-                    ? _scheduleBL.GetResultsForAllMatches
-                    : _scheduleBL.GetSchedule;
+                    ? _scheduleBl.GetResultsForAllMatches
+                    : _scheduleBl.GetSchedule;
 
             if (_season is null) return;
 
@@ -187,7 +186,7 @@ namespace VKR.PL.NET5
 
             _season = cbSeasons.SelectedItem as Season;
 
-            var seasonInfo = await _seasonBL.GetLeagueSeasonInfo(year);
+            var seasonInfo = await _seasonBl.GetLeagueSeasonInfo(year);
 
             switch (_formType)
             {

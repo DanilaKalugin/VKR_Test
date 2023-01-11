@@ -9,20 +9,20 @@ namespace VKR.BLL.NET5
 {
     public class TeamsBL
     {
-        private readonly TeamsEFDAO _teamsEF = new();
+        private readonly TeamsEFDAO _teamsDao = new();
 
         public async Task<List<Team>> GetListAsync()
         {
-            var allTeams = await _teamsEF.GetListAsync()
+            var allTeams = await _teamsDao.GetListAsync()
                 .ConfigureAwait(false);
             return allTeams.ToList();
         }
 
         public async Task<List<Team>> GetTeamsWithWLBalanceAsync(int season, TypeOfMatchEnum matchType)
         {
-            var teams = await _teamsEF.GetTeamsWithWLBalanceAsync(season, matchType)
+            var teams = await _teamsDao.GetTeamsWithWLBalanceAsync(season, matchType)
                 .ConfigureAwait(false);
-                teams = teams.OrderBy(t => t.TeamName).ToList();
+            teams = teams.OrderBy(t => t.TeamName).ToList();
             var maxOffensiveRating = teams.Select(team => team.TeamRating.OffensiveRating).Max();
             var maxDefensiveRating = teams.Select(team => team.TeamRating.DefensiveRating).Max();
 
@@ -37,26 +37,26 @@ namespace VKR.BLL.NET5
 
         public async Task UpdateTeamBalance(Team team, Match match)
         {
-            var newBalanceForThisTeam = await _teamsEF.GetNewTeamBalanceForThisTeam(team, match.MatchTypeId, match.MatchDate.Year)
+            var newBalanceForThisTeam = await _teamsDao.GetNewTeamBalanceForThisTeam(team, match.MatchTypeId, match.MatchDate.Year)
                 .ConfigureAwait(false);
             team.SetTeamBalance(newBalanceForThisTeam);
         }
 
         public async Task<List<Team>> GetTeamsWithInfoAsync()
         {
-            var teamsInfo = await _teamsEF.GetTeamsWithInfoAsync()
+            var teamsInfo = await _teamsDao.GetTeamsWithInfoAsync()
                 .ConfigureAwait(false);
 
             return teamsInfo.OrderBy(t => t.TeamName).ToList();
         }
 
-        public async Task UpdateTeam(Team team) => 
-            await _teamsEF.UpdateTeam(team)
+        public async Task UpdateTeam(Team team) =>
+            await _teamsDao.UpdateTeam(team)
                 .ConfigureAwait(false);
 
         public async Task<List<RetiredNumber>> GetRetiredNumbersForThisTeam(Team team)
         {
-            var numbers = await _teamsEF.GetRetiredNumbersForThisTeam(team)
+            var numbers = await _teamsDao.GetRetiredNumbersForThisTeam(team)
                 .ConfigureAwait(false);
 
             return numbers
@@ -66,12 +66,12 @@ namespace VKR.BLL.NET5
 
         public async Task<List<byte>> GetAvailableNumbers(Team team)
         {
-            var retiredNumbers = await _teamsEF.GetRetiredNumbersForThisTeam(team)
+            var retiredNumbers = await _teamsDao.GetRetiredNumbersForThisTeam(team)
                 .ConfigureAwait(false);
 
             var numbers = retiredNumbers.Select(rn => rn.Number);
 
-            return Enumerable.Range(0,100)
+            return Enumerable.Range(0, 100)
                 .Select(num => (byte)num)
                 .Where(num => !numbers.Contains(num))
                 .OrderByDescending(n => n)
@@ -79,7 +79,7 @@ namespace VKR.BLL.NET5
         }
 
         public async Task AddNewRetiredNumberAsync(RetiredNumber newRetiredNumber) =>
-            await _teamsEF.AddNewRetiredNumberAsync(newRetiredNumber)
+            await _teamsDao.AddNewRetiredNumberAsync(newRetiredNumber)
                 .ConfigureAwait(false);
     }
 }

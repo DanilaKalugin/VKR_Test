@@ -47,7 +47,7 @@ namespace VKR.EF.DAO
             return await db.NextMatches.Where(match => match.SeasonId == season.Year && match.MatchTypeId == typeOfMatch)
                 .Include(m => m.HomeTeam)
                 .ThenInclude(team => team.StadiumsForMatchTypes)
-                .ThenInclude(tmts => tmts.Stadium)
+                .ThenInclude(tsmt => tsmt.Stadium)
                 .ThenInclude(stadium => stadium.StadiumCity)
                 .Where(m => !m.IsPlayed)
                 .Select(m => new MatchScheduleViewModel(m.IsPlayed, false, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, 1, 0, 0, m.HomeTeam.StadiumsForMatchTypes.First().Stadium, m.MatchDate))

@@ -13,8 +13,8 @@ namespace VKR.PL.NET5
         public DefenseForm(Team team)
         {
             InitializeComponent();
-            Text = $@"{team.TeamCity} {team.TeamName}";
-            lbTeamTitle.Text = $@"{team.TeamName.ToUpper()} Defense".ToUpper();
+            Text = $"{team.TeamCity} {team.TeamName}";
+            lbTeamTitle.Text = $"{team.TeamName.ToUpper()} Defense".ToUpper();
             teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{team.TeamAbbreviation}.png");
             _defense = team;
         }

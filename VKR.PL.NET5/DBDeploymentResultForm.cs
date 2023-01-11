@@ -5,10 +5,10 @@ namespace VKR.PL.NET5
 {
     public partial class DBDeploymentResultForm : Form
     {
-        public DBDeploymentResultForm(bool IsSuccessful, string message)
+        public DBDeploymentResultForm(bool isSuccessful, string message)
         {
             InitializeComponent();
-            pbResult.Visible = !IsSuccessful;
+            pbResult.Visible = !isSuccessful;
             lbMessage.Text = message;
         }
 

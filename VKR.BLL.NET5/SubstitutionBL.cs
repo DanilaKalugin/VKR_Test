@@ -10,7 +10,7 @@ namespace VKR.BLL.NET5
     public class SubstitutionBL
     {
         private readonly SubstitutionEFDAO _substitutionDao = new();
-        private readonly PlayerEFDAO _playerEFDAO = new();
+        private readonly PlayerEFDAO _playerDao = new();
 
         public async Task<List<Pitcher>> GetAvailablePitchers(Match match, Team team)
         {
@@ -19,7 +19,7 @@ namespace VKR.BLL.NET5
 
             var pitchers = pitchersList.ToList();
             foreach (var pitcher in pitchers)
-                pitcher.RemainingStamina = await _playerEFDAO.GetPitcherStamina(pitcher.Id, match.MatchDate);
+                pitcher.RemainingStamina = await _playerDao.GetPitcherStamina(pitcher.Id, match.MatchDate);
             return pitchers;
         }
 

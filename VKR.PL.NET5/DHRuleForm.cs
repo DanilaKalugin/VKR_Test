@@ -9,8 +9,8 @@ namespace VKR.PL.NET5
     public partial class DHRuleForm : Form
     {
         public bool ExitFromCurrentMatch;
-        private readonly MatchBL _matchBL = new();
-        private readonly PlayerBL _playerBL = new();
+        private readonly MatchBL _matchBl = new();
+        private readonly PlayerBL _playerBl = new();
         public int MatchNumber;
         public Match NewMatch;
 
@@ -26,26 +26,27 @@ namespace VKR.PL.NET5
 
         private async void btnAcceptDHRule_Click(object sender, EventArgs e)
         {
-            var matchId = await _matchBL.GetNextMatchId(NewMatch);
+            var matchId = await _matchBl.GetNextMatchId(NewMatch);
             NewMatch.MatchDate = dtpMatchDate.Value;
             NewMatch.DHRule = rbPlayWithDH.Checked;
             NewMatch.Id = matchId;
             NewMatch.MatchLength = (byte)numMatchLength.Value;
 
-            await _matchBL.StartNewMatch(NewMatch);
+                    await _matchBl.StartNewMatch(NewMatch);
 
-            var awayTeamTask = _playerBL.GetCurrentLineupForThisMatch(NewMatch.AwayTeam, NewMatch);
-            var homeTeamTask = _playerBL.GetCurrentLineupForThisMatch(NewMatch.HomeTeam, NewMatch);
+                    var awayTeamTask = _playerBl.GetCurrentLineupForThisMatch(NewMatch.AwayTeam, NewMatch);
+                    var homeTeamTask = _playerBl.GetCurrentLineupForThisMatch(NewMatch.HomeTeam, NewMatch);
 
-            await Task.WhenAll(awayTeamTask, homeTeamTask);
-            (NewMatch.AwayTeam.BattingLineup, NewMatch.HomeTeam.BattingLineup) = (awayTeamTask.Result, homeTeamTask.Result);
+                    await Task.WhenAll(awayTeamTask, homeTeamTask);
+                    (NewMatch.AwayTeam.BattingLineup, NewMatch.HomeTeam.BattingLineup) =
+                        (awayTeamTask.Result, homeTeamTask.Result);
 
-            var awayPitcher = await _playerBL.GetStartingPitcherForThisTeam(NewMatch.AwayTeam, NewMatch);
-            var homePitcher = await _playerBL.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch);
+                    var awayPitcher = await _playerBl.GetStartingPitcherForThisTeam(NewMatch.AwayTeam, NewMatch);
+                    var homePitcher = await _playerBl.GetStartingPitcherForThisTeam(NewMatch.HomeTeam, NewMatch);
 
-            NewMatch.AwayTeam.PitchersPlayedInMatch.Add(awayPitcher);
-            NewMatch.HomeTeam.PitchersPlayedInMatch.Add(homePitcher);
-            
+                    NewMatch.AwayTeam.PitchersPlayedInMatch.Add(awayPitcher);
+                    NewMatch.HomeTeam.PitchersPlayedInMatch.Add(homePitcher);
+
             using var newMatchForm = new MainForm(NewMatch);
             Visible = false;
             newMatchForm.ShowDialog();

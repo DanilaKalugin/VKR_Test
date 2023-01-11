@@ -48,13 +48,13 @@ namespace VKR.EF.DAO
                 db.PlayersInTeams.Update(pit);
             }
 
-            var playerDB = await db.Players.FirstOrDefaultAsync(p => p.Id == player.Id)
+            var playerDb = await db.Players.FirstOrDefaultAsync(p => p.Id == player.Id)
                 .ConfigureAwait(false);
 
-            if (playerDB is { CurrentPlayerStatus: PlayerStatusEnum.FreeAgent })
+            if (playerDb is { CurrentPlayerStatus: PlayerStatusEnum.FreeAgent })
             {
-                playerDB.CurrentPlayerStatus = PlayerStatusEnum.Active;
-                db.Players.Update(playerDB);
+                playerDb.CurrentPlayerStatus = PlayerStatusEnum.Active;
+                db.Players.Update(playerDb);
             }
 
             await db.SaveChangesAsync()
@@ -76,13 +76,13 @@ namespace VKR.EF.DAO
         public async Task ReleasePlayer(Player player)
         {
             await using var db = new VKRApplicationContext();
-            var playerDB = await db.Players.FirstOrDefaultAsync(p => p.Id == player.Id)
+            var playerDb = await db.Players.FirstOrDefaultAsync(p => p.Id == player.Id)
                 .ConfigureAwait(false);
 
-            if (playerDB == null) return;
+            if (playerDb == null) return;
 
-            playerDB.CurrentPlayerStatus = PlayerStatusEnum.FreeAgent;
-            db.Players.Update(playerDB);
+            playerDb.CurrentPlayerStatus = PlayerStatusEnum.FreeAgent;
+            db.Players.Update(playerDb);
 
             var pitRecords = await db.PlayersInTeams.Where(pit => pit.PlayerId == player.Id)
                 .ToListAsync()

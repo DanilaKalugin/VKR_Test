@@ -33,9 +33,9 @@ namespace VKR.BLL.NET5
                                           match.HomeTeamAbbreviation == team).ToList();
         }
 
-        public async Task<List<MatchScheduleViewModel>> GetMatchesFromThisSeries(TableType tableType, TypeOfMatchEnum matchType, Season season, string firstTeamID, string secondTeamID)
+        public async Task<List<MatchScheduleViewModel>> GetMatchesFromThisSeries(TableType tableType, TypeOfMatchEnum matchType, Season season, string firstTeamId, string secondTeamId)
         {
-            var teams = new List<string> { firstTeamID, secondTeamID };
+            var teams = new List<string> { firstTeamId, secondTeamId };
 
             Func<TypeOfMatchEnum, Season, Task<List<MatchScheduleViewModel>>> matchesFunc =
                 tableType == TableType.Results ? GetResultsForAllMatches : GetSchedule;

@@ -11,16 +11,16 @@ namespace VKR.BLL.NET5
 {
     public class PlayerBL
     {
-        private readonly PlayerEFDAO _playerEFDAO = new();
+        private readonly PlayerEFDAO _playerDao = new();
         private readonly PlayerPositionsEFDAO _positionsDao = new();
 
         public async Task<Player> GetPlayerByCode(uint code) => 
-            await _playerEFDAO.GetPlayerByCode(code)
+            await _playerDao.GetPlayerByCode(code)
                 .ConfigureAwait(false);
 
         public async Task<List<Batter>> GetCurrentLineupForThisMatch(Team team, Match match)
         {
-            var lineup = await _playerEFDAO.GetCurrentBattingLineup(team, match)
+            var lineup = await _playerDao.GetCurrentBattingLineup(team, match)
                 .ConfigureAwait(false);
             return lineup.ToList();
         }
@@ -30,39 +30,39 @@ namespace VKR.BLL.NET5
             pitcher.PitchingStats = await GetPitchingStatsByCode(pitcher.Id, match.MatchDate.Year, match.MatchTypeId)
                 .ConfigureAwait(false);
 
-            pitcher.RemainingStamina = await _playerEFDAO.GetPitcherStamina(pitcher.Id, match.MatchDate)
+            pitcher.RemainingStamina = await _playerDao.GetPitcherStamina(pitcher.Id, match.MatchDate)
                 .ConfigureAwait(false);
         }
 
         public async Task<Pitcher> GetStartingPitcherForThisTeam(Team team, Match match)
         {
-            var pitcher = await _playerEFDAO.GetStartingPitcherForThisTeam(match, team)
+            var pitcher = await _playerDao.GetStartingPitcherForThisTeam(match, team)
                 .ConfigureAwait(false);
 
             pitcher.PitchingStats = await GetPitchingStatsByCode(pitcher.Id, match.MatchDate.Year, match.MatchTypeId)
                 .ConfigureAwait(false);
 
-            pitcher.RemainingStamina = await _playerEFDAO.GetPitcherStamina(pitcher.Id, match.MatchDate)
+            pitcher.RemainingStamina = await _playerDao.GetPitcherStamina(pitcher.Id, match.MatchDate)
                 .ConfigureAwait(false);
 
             return pitcher;
         }
 
         public async Task<int> GetPitcherStamina(Pitcher pitcher, Match match) => 
-            await _playerEFDAO.GetPitcherStamina(pitcher.Id, match.MatchDate)
+            await _playerDao.GetPitcherStamina(pitcher.Id, match.MatchDate)
                 .ConfigureAwait(false);
 
         public async Task<PlayerBattingStats> GetBattingStatsByCode(uint id, int year) => 
-            await _playerEFDAO.GetBattingStatsByCode(id, year)
+            await _playerDao.GetBattingStatsByCode(id, year)
                 .ConfigureAwait(false);
 
         public async Task<PlayerPitchingStats> GetPitchingStatsByCode(uint id, int year, TypeOfMatchEnum matchType = TypeOfMatchEnum.RegularSeason) =>
-            await _playerEFDAO.GetPitchingStatsByCode(id, year, matchType)
+            await _playerDao.GetPitchingStatsByCode(id, year, matchType)
                 .ConfigureAwait(false);
 
         public async Task UpdatePlayer(Player player)
         {
-            await _playerEFDAO.UpdatePlayer(player)
+            await _playerDao.UpdatePlayer(player)
                 .ConfigureAwait(false);
 
             await _positionsDao.DeleteAllPositionsForPlayer(player)
@@ -74,7 +74,7 @@ namespace VKR.BLL.NET5
 
         public async Task AddPlayer(Player player)
         {
-            await _playerEFDAO.AddPlayer(player)
+            await _playerDao.AddPlayer(player)
                 .ConfigureAwait(false);
 
             await _positionsDao.FillPlayerPositionsForPlayer(player)
@@ -82,12 +82,12 @@ namespace VKR.BLL.NET5
         }
 
         public async Task<uint> GetIdForNewPlayer() => 
-            await _playerEFDAO.GetIdForNewPlayer()
+            await _playerDao.GetIdForNewPlayer()
                 .ConfigureAwait(false);
 
         public async Task SetNewNumberForPlayerAsync(Player player, byte newNumber)
         {
-            await _playerEFDAO.SetNewNumberForPlayerAsync(player, newNumber)
+            await _playerDao.SetNewNumberForPlayerAsync(player, newNumber)
                 .ConfigureAwait(false);
         }
     }

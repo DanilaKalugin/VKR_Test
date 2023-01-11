@@ -42,7 +42,7 @@ namespace VKR.PL.NET5
             var primaryTeamColors = await _teamColorBl.GetPrimaryTeamColorsAsync();
             FillBirthDayTable(man);
             FillColors(primaryTeamColors, man);
-            
+
             if (man.Count != 0) return;
             panel1.Visible = false;
             Width = 1554 - panel1.Width;
@@ -64,7 +64,7 @@ namespace VKR.PL.NET5
         private void FillBirthDayTable(IEnumerable<ManInTeam> men)
         {
             dgvBirthDays.Rows.Clear();
-            foreach (var man in men) 
+            foreach (var man in men)
                 dgvBirthDays.Rows.Add("", man.TeamName, man.FullName, man.Age);
         }
 
@@ -116,7 +116,7 @@ namespace VKR.PL.NET5
             using (var form = new TeamsSelectForm(match))
             {
                 form.ShowDialog();
-                if (form.DialogResult == DialogResult.Yes) 
+                if (form.DialogResult == DialogResult.Yes)
                     await _matchBl.DeleteThisMatch(form.MatchNumberForDelete);
             }
             Visible = true;
@@ -134,14 +134,14 @@ namespace VKR.PL.NET5
 
         private async void MainMenuForm_VisibleChanged(object sender, EventArgs e)
         {
-            if (!Visible) return; 
+            if (!Visible) return;
             await UpdateBirthDayTable();
         }
 
         private void btnAdminMenu_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new AdminMenuForm()) 
+            using (var form = new AdminMenuForm())
                 form.ShowDialog();
             Visible = true;
         }
@@ -149,7 +149,7 @@ namespace VKR.PL.NET5
         private void btnTeamsInformation_Click(object sender, EventArgs e)
         {
             Visible = false;
-            using (var form = new TeamInformationForm(false)) 
+            using (var form = new TeamInformationForm(false))
                 form.ShowDialog();
             Visible = true;
         }

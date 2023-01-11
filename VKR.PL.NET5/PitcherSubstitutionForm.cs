@@ -73,7 +73,7 @@ namespace VKR.PL.NET5
                 playerName.Text = _pitchers[_playerIndex + step].FullName;
                 playerERA.Text = $"{_pitchers[_playerIndex + step].PitchingStats.ERA.ToString("0.00", new CultureInfo("en-US"))}";
                 playerSO.Text = _pitchers[_playerIndex + step].PitchingStats.Strikeouts.ToString();
-                progressBar.Value = (int)_pitchers[_playerIndex + step].RemainingStamina;
+                progressBar.Value = _pitchers[_playerIndex + step].RemainingStamina;
                 progressBar.Visible = true;
             }
             else

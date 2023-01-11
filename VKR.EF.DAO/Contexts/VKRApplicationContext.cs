@@ -125,7 +125,7 @@ namespace VKR.EF.DAO.Contexts
             modelBuilder.Ignore<Pitcher>();
         }
 
-        public IQueryable<TeamStreak> ReturnStreakForAllTeams(DateTime date, TypeOfMatchEnum MatchType) => FromExpression(() => ReturnStreakForAllTeams(date, MatchType));
+        public IQueryable<TeamStreak> ReturnStreakForAllTeams(DateTime date, TypeOfMatchEnum matchType) => FromExpression(() => ReturnStreakForAllTeams(date, matchType));
 
         [DbFunction("GetStaminaForThisPitcher", "DBO")]
         public int GetStaminaForThisPitcher(uint pitcherId, DateTime matchDate) => throw new NotImplementedException();
