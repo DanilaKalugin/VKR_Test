@@ -13,7 +13,7 @@ namespace VKR.PL.NET5
     public partial class AddCityForm : Form
     {
         private readonly CitiesBL _citiesBl = new();
-        private List<Region> _regions;
+        private List<Region> _regions = new();
         private readonly City _city = new();
 
         public AddCityForm() => InitializeComponent();
@@ -25,6 +25,7 @@ namespace VKR.PL.NET5
             await _citiesBl.AddCityAsync(_city);
             DialogResult = DialogResult.OK;
         }
+
         private async void AddCityForm_Load(object sender, EventArgs e)
         {
             var regions = await _citiesBl.GetAllRegions();
@@ -35,6 +36,7 @@ namespace VKR.PL.NET5
         }
 
         private void cbCityRegion_Validating(object sender, CancelEventArgs e) => cbCityRegion.ValidateComboBox(e);
+
         private void txtCityName_Validated(object sender, EventArgs e) => _city.Name = txtCityName.Value;
 
         private void cbCityRegion_SelectionChangeCommitted(object sender, EventArgs e) => _city.RegionCode = (string)cbCityRegion.SelectedValue;

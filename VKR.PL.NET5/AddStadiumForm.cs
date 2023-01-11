@@ -14,7 +14,7 @@ namespace VKR.PL.NET5
         private readonly CitiesBL _citiesBl = new();
         private readonly StadiumsBL _stadiumBl = new();
 
-        private List<City> _cities;
+        private List<City> _cities = new();
         private readonly Stadium _stadium;
 
         public AddStadiumForm()

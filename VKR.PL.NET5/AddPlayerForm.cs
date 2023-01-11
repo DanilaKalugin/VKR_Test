@@ -56,31 +56,31 @@ namespace VKR.PL.NET5
         private void cbThrowLeft_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbThrowLeft.Checked) return;
-            _player.PlayerPitchingHand = PitchingHandEnum.Left;
+            _player!.PlayerPitchingHand = PitchingHandEnum.Left;
         }
 
         private void cbThrowRight_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbThrowRight.Checked) return;
-            _player.PlayerPitchingHand = PitchingHandEnum.Right;
+            _player!.PlayerPitchingHand = PitchingHandEnum.Right;
         }
 
         private void cbBattingLeft_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbBattingLeft.Checked) return;
-            _player.PlayerBattingHand = BattingHandEnum.Left;
+            _player!.PlayerBattingHand = BattingHandEnum.Left;
         }
 
         private void cbBattingRight_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbBattingRight.Checked) return;
-            _player.PlayerBattingHand = BattingHandEnum.Right;
+            _player!.PlayerBattingHand = BattingHandEnum.Right;
         }
 
         private void cbBattingSwitch_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbBattingSwitch.Checked) return;
-            _player.PlayerBattingHand = BattingHandEnum.Switch;
+            _player!.PlayerBattingHand = BattingHandEnum.Switch;
         }
 
         private void numPlayerNumber_ValueChanged(object sender, EventArgs e)

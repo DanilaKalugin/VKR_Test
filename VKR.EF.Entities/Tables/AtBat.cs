@@ -85,7 +85,7 @@ namespace VKR.EF.Entities.Tables
                 PitcherId = currentMatch.AwayTeam.CurrentPitcher.PitcherId;
             }
 
-            Outs = (byte)OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
+            Outs = OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
             RBI = runs;
             Inning = currentMatch.GameSituations.Last().InningNumber;
         }
@@ -111,7 +111,7 @@ namespace VKR.EF.Entities.Tables
                 PitcherId = currentMatch.AwayTeam.CurrentPitcher.PitcherId;
             }
 
-            Outs = (byte)OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
+            Outs = OutsForThisAtBat(currentMatch.GameSituations.Last(), currentMatch.GameSituations[^2]);
             RBI = 0;
             Inning = currentMatch.GameSituations.Last().InningNumber;
         }

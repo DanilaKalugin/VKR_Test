@@ -118,13 +118,6 @@ namespace VKR.PL.NET5
             this.lb2ndInning = new System.Windows.Forms.Label();
             this.lb1stInning = new System.Windows.Forms.Label();
             this.panelScoreBoard = new System.Windows.Forms.Panel();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.panelNextAwayBatters = new System.Windows.Forms.Panel();
-            this.awayNextBatter3 = new VKR.PL.Controls.NET5.BatterInfo();
-            this.awayNextBatter2 = new VKR.PL.Controls.NET5.BatterInfo();
-            this.awayNextBatter1 = new VKR.PL.Controls.NET5.BatterInfo();
-            this.AwayTeamNextBatters = new System.Windows.Forms.Panel();
-            this.away_DueUP = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panelNextHomeBatters = new System.Windows.Forms.Panel();
             this.homeNextBatter3 = new VKR.PL.Controls.NET5.BatterInfo();
@@ -199,9 +192,6 @@ namespace VKR.PL.NET5
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panelScoreBoard.SuspendLayout();
-            this.panel18.SuspendLayout();
-            this.panelNextAwayBatters.SuspendLayout();
-            this.AwayTeamNextBatters.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panelNextHomeBatters.SuspendLayout();
             this.homeTeamNextBatters.SuspendLayout();
@@ -1235,7 +1225,6 @@ namespace VKR.PL.NET5
             // 
             // panelScoreBoard
             // 
-            this.panelScoreBoard.Controls.Add(this.panel18);
             this.panelScoreBoard.Controls.Add(this.panel16);
             this.panelScoreBoard.Controls.Add(this.label23);
             this.panelScoreBoard.Controls.Add(this.label22);
@@ -1285,78 +1274,6 @@ namespace VKR.PL.NET5
             this.panelScoreBoard.Name = "panelScoreBoard";
             this.panelScoreBoard.Size = new System.Drawing.Size(1423, 138);
             this.panelScoreBoard.TabIndex = 45;
-            // 
-            // panel18
-            // 
-            this.panel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel18.Controls.Add(this.panelNextAwayBatters);
-            this.panel18.Controls.Add(this.AwayTeamNextBatters);
-            this.panel18.Location = new System.Drawing.Point(920, 0);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(250, 138);
-            this.panel18.TabIndex = 1;
-            // 
-            // panelNextAwayBatters
-            // 
-            this.panelNextAwayBatters.BackColor = System.Drawing.Color.White;
-            this.panelNextAwayBatters.Controls.Add(this.awayNextBatter3);
-            this.panelNextAwayBatters.Controls.Add(this.awayNextBatter2);
-            this.panelNextAwayBatters.Controls.Add(this.awayNextBatter1);
-            this.panelNextAwayBatters.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelNextAwayBatters.ForeColor = System.Drawing.Color.White;
-            this.panelNextAwayBatters.Location = new System.Drawing.Point(0, 33);
-            this.panelNextAwayBatters.Name = "panelNextAwayBatters";
-            this.panelNextAwayBatters.Size = new System.Drawing.Size(250, 105);
-            this.panelNextAwayBatters.TabIndex = 1;
-            // 
-            // awayNextBatter3
-            // 
-            this.awayNextBatter3.Batter = null;
-            this.awayNextBatter3.Location = new System.Drawing.Point(0, 62);
-            this.awayNextBatter3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.awayNextBatter3.Name = "awayNextBatter3";
-            this.awayNextBatter3.Size = new System.Drawing.Size(250, 30);
-            this.awayNextBatter3.TabIndex = 50;
-            // 
-            // awayNextBatter2
-            // 
-            this.awayNextBatter2.Batter = null;
-            this.awayNextBatter2.Location = new System.Drawing.Point(0, 31);
-            this.awayNextBatter2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.awayNextBatter2.Name = "awayNextBatter2";
-            this.awayNextBatter2.Size = new System.Drawing.Size(250, 30);
-            this.awayNextBatter2.TabIndex = 49;
-            // 
-            // awayNextBatter1
-            // 
-            this.awayNextBatter1.Batter = null;
-            this.awayNextBatter1.Location = new System.Drawing.Point(0, 0);
-            this.awayNextBatter1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.awayNextBatter1.Name = "awayNextBatter1";
-            this.awayNextBatter1.Size = new System.Drawing.Size(250, 30);
-            this.awayNextBatter1.TabIndex = 48;
-            // 
-            // AwayTeamNextBatters
-            // 
-            this.AwayTeamNextBatters.Controls.Add(this.away_DueUP);
-            this.AwayTeamNextBatters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AwayTeamNextBatters.Location = new System.Drawing.Point(0, 0);
-            this.AwayTeamNextBatters.Name = "AwayTeamNextBatters";
-            this.AwayTeamNextBatters.Size = new System.Drawing.Size(250, 30);
-            this.AwayTeamNextBatters.TabIndex = 0;
-            // 
-            // away_DueUP
-            // 
-            this.away_DueUP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.away_DueUP.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.away_DueUP.ForeColor = System.Drawing.Color.White;
-            this.away_DueUP.Location = new System.Drawing.Point(0, 0);
-            this.away_DueUP.Name = "away_DueUP";
-            this.away_DueUP.Size = new System.Drawing.Size(250, 30);
-            this.away_DueUP.TabIndex = 0;
-            this.away_DueUP.Text = "label32";
-            this.away_DueUP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.away_DueUP.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel16
             // 
@@ -2155,9 +2072,6 @@ namespace VKR.PL.NET5
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panelScoreBoard.ResumeLayout(false);
-            this.panel18.ResumeLayout(false);
-            this.panelNextAwayBatters.ResumeLayout(false);
-            this.AwayTeamNextBatters.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panelNextHomeBatters.ResumeLayout(false);
             this.homeTeamNextBatters.ResumeLayout(false);
@@ -2245,13 +2159,9 @@ namespace VKR.PL.NET5
         private Label lb2ndInning;
         private Label lb1stInning;
         private Panel panelScoreBoard;
-        private Panel panel18;
-        private Panel AwayTeamNextBatters;
         private Panel panel16;
         private Panel homeTeamNextBatters;
-        private Label away_DueUP;
         private Label home_DueUP;
-        private Panel panelNextAwayBatters;
         private Panel panelNextHomeBatters;
         private Panel panelCurrentSituationPitcher;
         private Label lbPitchCountForThisPitcher;
@@ -2311,9 +2221,6 @@ namespace VKR.PL.NET5
         private Label awayLOB;
         private Label homeLOB;
         private BatterInfo currentBatter;
-        private BatterInfo awayNextBatter3;
-        private BatterInfo awayNextBatter2;
-        private BatterInfo awayNextBatter1;
         private BatterInfo homeNextBatter3;
         private BatterInfo homeNextBatter2;
         private BatterInfo homeNextBatter1;

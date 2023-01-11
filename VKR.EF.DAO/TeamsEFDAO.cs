@@ -104,7 +104,7 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            await db.AddAsync(newRetiredNumber)
+            await db.RetiredNumbers.AddAsync(newRetiredNumber)
                 .ConfigureAwait(false);
 
             await db.SaveChangesAsync()

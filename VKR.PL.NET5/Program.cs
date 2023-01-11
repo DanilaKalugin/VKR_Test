@@ -26,7 +26,7 @@ namespace VKR.PL.NET5
             Application.Run(ServiceProvider.GetRequiredService<MainMenuForm>());
         }
 
-        public static IServiceProvider ServiceProvider { get; private set; }
+        public static IServiceProvider? ServiceProvider { get; private set; }
 
         static IHostBuilder CreateHostBuilder()
         {
