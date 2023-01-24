@@ -18,8 +18,8 @@ namespace VKR.PL.NET5
         private enum StatsType { Standard, Expanded }
         public enum SortingObjects { Players, Teams }
 
-        private readonly TeamsBL _teamsBL = new();
-        private readonly StatsBL _statsBL = new();
+        private readonly TeamsBL _teamsBl = new();
+        private readonly StatsBL _statsBl = new();
         private readonly PrimaryTeamColorBL _teamColorBl = new();
         private readonly PlayerPositionsBL _playerPositionsBl = new();
         private readonly SeasonBL _seasonBl = new();
@@ -31,6 +31,8 @@ namespace VKR.PL.NET5
         private List<Player> _pitchers;
         private List<TeamStatsViewModel> _teamBattingStats;
         private List<TeamStatsViewModel> _teamPitchingStats;
+        private Season? _season;
+
         private readonly SortMode[][] _sortModes = new SortMode[2][];
         private PlayerType _playerType;
         private StatsType _statsType;
@@ -483,18 +485,20 @@ namespace VKR.PL.NET5
 
         private async void PlayerStatsForm_Load(object sender, EventArgs e)
         {
-            cbSeasons.DataSource = await _seasonBl.GetAllSeasonsAsync();
+            var seasons = await _seasonBl.GetAllSeasonsAsync();
             cbSeasons.DisplayMember = "Year";
 
-            _teams = await _teamsBL.GetListAsync();
-            _primaryColors = await _teamColorBl.GetPrimaryTeamColorsAsync();
+            cbSeasons.DataSource = seasons;
 
-            var season = await _seasonBl.GetCurrentSeason();
+            _teams = await _teamsBl.GetListAsync();
+            _primaryColors = await _teamColorBl.GetPrimaryTeamColorsAsync();
+            _season = await _seasonBl.GetCurrentSeason();
+            cbSeasons.SelectedItem = seasons.FirstOrDefault(s => s.Year == _season.Year);
 
             if (_objects == SortingObjects.Teams)
             {
-                using var teamBattingTask = _statsBL.GetTeamBattingStats(season);
-                using var teamPitchingTask = _statsBL.GetTeamPitchingStats(season);
+                using var teamBattingTask = _statsBl.GetTeamBattingStats(_season);
+                using var teamPitchingTask = _statsBl.GetTeamPitchingStats(_season);
 
                 await Task.WhenAll(teamBattingTask, teamPitchingTask);
                 (_teamBattingStats, _teamPitchingStats) = (teamBattingTask.Result, teamPitchingTask.Result);
@@ -524,7 +528,7 @@ namespace VKR.PL.NET5
             cbTeams.Visible = cbPlayers.Text != "Free Agents" && _objects == SortingObjects.Players;
 
             if (cbPositions.DataSource == null || cbTeams.DataSource == null || cbSeasons.DataSource == null) return;
-
+            _season = cbSeasons.SelectedItem as Season;
             var f = new LoadingForm();
             try
             {
@@ -533,25 +537,20 @@ namespace VKR.PL.NET5
 
                 if (_objects == SortingObjects.Players)
                 {
-                    if (cbSeasons.SelectedValue is Season season)
-                    {
-                        var positionTitle = cbPositions.SelectedValue is PlayerPosition position ? position.ShortTitle : "";
+                    var positionTitle = cbPositions.SelectedValue is PlayerPosition position ? position.ShortTitle : "";
 
-                        using var pitchersTask = _statsBL.GetPitchersStats(season, cbPlayers.Text, cbTeams.SelectedValue.ToString());
-                        using var battersTask = _statsBL.GetBattersStats(season, cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
-                        await Task.WhenAll(pitchersTask, battersTask);
-                        (_pitchers, _batters) = (pitchersTask.Result, battersTask.Result);
-                    }
+                    using var pitchersTask = _statsBl.GetPitchersStats(_season, cbPlayers.Text, cbTeams.SelectedValue.ToString());
+                    using var battersTask = _statsBl.GetBattersStats(_season, cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
+                    await Task.WhenAll(pitchersTask, battersTask);
+                    (_pitchers, _batters) = (pitchersTask.Result, battersTask.Result);
+
                 }
                 else
                 {
-                    if (cbSeasons.SelectedValue is Season season)
-                    {
-                        using var teamBattingTask = _statsBL.GetTeamBattingStats(season);
-                        using var teamPitchingTask = _statsBL.GetTeamPitchingStats(season);
-                        await Task.WhenAll(teamBattingTask, teamPitchingTask);
-                        (_teamBattingStats, _teamPitchingStats) = (teamBattingTask.Result, teamPitchingTask.Result);
-                    }
+                    using var teamBattingTask = _statsBl.GetTeamBattingStats(_season);
+                    using var teamPitchingTask = _statsBl.GetTeamPitchingStats(_season);
+                    await Task.WhenAll(teamBattingTask, teamPitchingTask);
+                    (_teamBattingStats, _teamPitchingStats) = (teamBattingTask.Result, teamPitchingTask.Result);
                 }
             }
             finally
