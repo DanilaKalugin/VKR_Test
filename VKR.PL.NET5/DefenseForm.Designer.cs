@@ -139,7 +139,7 @@ namespace VKR.PL.NET5
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tableLayoutPanel1.ColumnCount = 7;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
@@ -202,7 +202,7 @@ namespace VKR.PL.NET5
             // 
             // lf_SecondName
             // 
-            this.lf_SecondName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.lf_SecondName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lf_SecondName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lf_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lf_SecondName.Location = new System.Drawing.Point(0, 22);
@@ -214,7 +214,7 @@ namespace VKR.PL.NET5
             // 
             // lf_FirstName
             // 
-            this.lf_FirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.lf_FirstName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lf_FirstName.Dock = System.Windows.Forms.DockStyle.Top;
             this.lf_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lf_FirstName.ForeColor = System.Drawing.Color.Black;
@@ -261,7 +261,7 @@ namespace VKR.PL.NET5
             // 
             // cf_SecondName
             // 
-            this.cf_SecondName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.cf_SecondName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cf_SecondName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cf_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cf_SecondName.Location = new System.Drawing.Point(0, 22);
@@ -273,7 +273,7 @@ namespace VKR.PL.NET5
             // 
             // cf_FirstName
             // 
-            this.cf_FirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.cf_FirstName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cf_FirstName.Dock = System.Windows.Forms.DockStyle.Top;
             this.cf_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cf_FirstName.ForeColor = System.Drawing.Color.Black;
@@ -320,7 +320,7 @@ namespace VKR.PL.NET5
             // 
             // rf_SecondName
             // 
-            this.rf_SecondName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.rf_SecondName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.rf_SecondName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rf_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rf_SecondName.Location = new System.Drawing.Point(0, 22);
@@ -332,7 +332,7 @@ namespace VKR.PL.NET5
             // 
             // rf_FirstName
             // 
-            this.rf_FirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.rf_FirstName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.rf_FirstName.Dock = System.Windows.Forms.DockStyle.Top;
             this.rf_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.rf_FirstName.ForeColor = System.Drawing.Color.Black;
@@ -379,7 +379,7 @@ namespace VKR.PL.NET5
             // 
             // ss_SecondName
             // 
-            this.ss_SecondName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.ss_SecondName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ss_SecondName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ss_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ss_SecondName.Location = new System.Drawing.Point(0, 22);
@@ -391,7 +391,7 @@ namespace VKR.PL.NET5
             // 
             // ss_FirstName
             // 
-            this.ss_FirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.ss_FirstName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ss_FirstName.Dock = System.Windows.Forms.DockStyle.Top;
             this.ss_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ss_FirstName.ForeColor = System.Drawing.Color.Black;
@@ -438,7 +438,7 @@ namespace VKR.PL.NET5
             // 
             // _2b_SecondName
             // 
-            this._2b_SecondName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this._2b_SecondName.BackColor = System.Drawing.Color.WhiteSmoke;
             this._2b_SecondName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._2b_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this._2b_SecondName.Location = new System.Drawing.Point(0, 22);
@@ -450,7 +450,7 @@ namespace VKR.PL.NET5
             // 
             // _2b_FirstName
             // 
-            this._2b_FirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this._2b_FirstName.BackColor = System.Drawing.Color.WhiteSmoke;
             this._2b_FirstName.Dock = System.Windows.Forms.DockStyle.Top;
             this._2b_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._2b_FirstName.ForeColor = System.Drawing.Color.Black;
@@ -497,7 +497,7 @@ namespace VKR.PL.NET5
             // 
             // c_FirstName
             // 
-            this.c_FirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.c_FirstName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.c_FirstName.Dock = System.Windows.Forms.DockStyle.Top;
             this.c_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.c_FirstName.ForeColor = System.Drawing.Color.Black;
@@ -510,7 +510,7 @@ namespace VKR.PL.NET5
             // 
             // c_SecondName
             // 
-            this.c_SecondName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.c_SecondName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.c_SecondName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.c_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.c_SecondName.Location = new System.Drawing.Point(0, 22);
@@ -556,7 +556,7 @@ namespace VKR.PL.NET5
             // 
             // _3b_FirstName
             // 
-            this._3b_FirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this._3b_FirstName.BackColor = System.Drawing.Color.WhiteSmoke;
             this._3b_FirstName.Dock = System.Windows.Forms.DockStyle.Top;
             this._3b_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._3b_FirstName.ForeColor = System.Drawing.Color.Black;
@@ -569,7 +569,7 @@ namespace VKR.PL.NET5
             // 
             // _3b_SecondName
             // 
-            this._3b_SecondName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this._3b_SecondName.BackColor = System.Drawing.Color.WhiteSmoke;
             this._3b_SecondName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._3b_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this._3b_SecondName.Location = new System.Drawing.Point(0, 22);
@@ -615,7 +615,7 @@ namespace VKR.PL.NET5
             // 
             // _1b_SecondName
             // 
-            this._1b_SecondName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this._1b_SecondName.BackColor = System.Drawing.Color.WhiteSmoke;
             this._1b_SecondName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._1b_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this._1b_SecondName.Location = new System.Drawing.Point(0, 22);
@@ -627,7 +627,7 @@ namespace VKR.PL.NET5
             // 
             // _1b_FirstName
             // 
-            this._1b_FirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this._1b_FirstName.BackColor = System.Drawing.Color.WhiteSmoke;
             this._1b_FirstName.Dock = System.Windows.Forms.DockStyle.Top;
             this._1b_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._1b_FirstName.ForeColor = System.Drawing.Color.Black;
@@ -675,7 +675,7 @@ namespace VKR.PL.NET5
             // 
             // p_FirstName
             // 
-            this.p_FirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.p_FirstName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.p_FirstName.Dock = System.Windows.Forms.DockStyle.Top;
             this.p_FirstName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.p_FirstName.ForeColor = System.Drawing.Color.Black;
@@ -688,7 +688,7 @@ namespace VKR.PL.NET5
             // 
             // p_SecondName
             // 
-            this.p_SecondName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))));
+            this.p_SecondName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.p_SecondName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.p_SecondName.Font = new System.Drawing.Font("MicroFLF", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.p_SecondName.Location = new System.Drawing.Point(0, 22);
@@ -724,7 +724,7 @@ namespace VKR.PL.NET5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SeaShell;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1120, 627);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
