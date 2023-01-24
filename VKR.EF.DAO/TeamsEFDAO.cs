@@ -16,6 +16,7 @@ namespace VKR.EF.DAO
             await using var db = new VKRApplicationContext();
 
             return await db.Teams.Include(t => t.TeamColors)
+                .Include(t => t.Division)
                 .OrderBy(t => t.TeamName)
                 .ToListAsync()
                 .ConfigureAwait(false);
