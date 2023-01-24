@@ -15,20 +15,17 @@ namespace VKR.EF.Entities.RandomGenerators
         public enum BuntResult { SuccessfulBunt, FoulOnBunt, SingleOnBunt, HitByPitch, Ball }
         private static BuntResult _newBuntResult;
 
-        private BuntResult BuntResultDefinition(GameSituation situation, int successfulBuntAttemptProbability, int strikeZoneProbability, int hitByPitchProbability, int batterNumberComponent)
+        private BuntResult BuntResultDefinition(GameSituation situation, int successfulBuntAttemptProbability, int hitByPitchProbability, int batterNumberComponent)
         {
             var buntRandomValue = _buntResultRandomGenerator.Next(1, 1000);
 
-            if (buntRandomValue <= 50)
+            if (buntRandomValue <= 25)
                 return BuntResult.FoulOnBunt;
-
-            if (buntRandomValue <= (strikeZoneProbability - (situation.Strikes - situation.Balls) * 15) / 3)
-                return BuntResult.Ball;
 
             if (buntRandomValue <= successfulBuntAttemptProbability - batterNumberComponent * 15)
                 return BuntResult.SuccessfulBunt;
 
-            return buntRandomValue <= hitByPitchProbability / 3 ? BuntResult.SingleOnBunt : BuntResult.HitByPitch;
+            return buntRandomValue <= (1000 - hitByPitchProbability) / 3 ? BuntResult.SingleOnBunt : BuntResult.HitByPitch;
         }
 
         /// <summary>
@@ -42,7 +39,7 @@ namespace VKR.EF.Entities.RandomGenerators
             var batterNumberComponent = 5 - Math.Abs(offense == match.AwayTeam ? situation.NumberOfBatterFromAwayTeam - 3 : situation.NumberOfBatterFromHomeTeam - 3);
             var countOfNotEmptyBases = Convert.ToInt32(situation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(situation.RunnerOnSecond.IsBaseNotEmpty) * 2 + Convert.ToInt32(situation.RunnerOnThird.IsBaseNotEmpty) * 3;
 
-            _newBuntResult = BuntResultDefinition(situation, offense.TeamRating.SuccessfulBuntAttemptProbability, defense.TeamRating.StrikeZoneProbability, defense.TeamRating.HitByPitchProbability, batterNumberComponent);
+            _newBuntResult = BuntResultDefinition(situation, offense.TeamRating.SuccessfulBuntAttemptProbability, defense.TeamRating.HitByPitchProbability, batterNumberComponent);
             _newBuntOtherConditions = OtherCondition_Definition(_newBuntResult, situation, defense.TeamRating.DoublePlayProbability, countOfNotEmptyBases);
             NewPitchResult = PitchResultDefinition(_newBuntResult, _newBuntOtherConditions);
             return new Pitch(NewPitchResult);

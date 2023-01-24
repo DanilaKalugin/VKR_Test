@@ -16,7 +16,7 @@ namespace VKR.EF.Entities.RandomGenerators
             if (numberOfPitches > pitcherCoefficient) numberOfPitches += numberOfPitches - pitcherCoefficient;
 
             _newPitchGettingIntoStrikeZoneResult = GettingIntoStrikeZoneDefinition(defense.TeamRating.StrikeZoneProbability, defense.TeamRating.HitByPitchProbability, numberOfPitches, pitcherCoefficient, situation);
-            _newPitchSwingResult = SwingDefinition(_newPitchGettingIntoStrikeZoneResult, offense.TeamRating.SwingInStrikeZoneProbability, offense.TeamRating.SwingOutsideStrikeZoneProbability, situation);
+            _newPitchSwingResult = SwingDefinition(_newPitchGettingIntoStrikeZoneResult, offense.TeamRating.SwingInStrikeZoneProbability, offense.TeamRating.SwingOutsideStrikeZoneProbability, numberOfPitches, situation);
             NewPitchResult = PitchResultDefinition(_newPitchGettingIntoStrikeZoneResult, _newPitchSwingResult);
             return new Pitch(NewPitchResult);
         }

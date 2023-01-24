@@ -110,7 +110,7 @@ namespace VKR.EF.Entities.RandomGenerators
             }
 
             _newPitchGettingIntoStrikeZoneResult = GettingIntoStrikeZoneDefinition(defense.TeamRating.StrikeZoneProbability, defense.TeamRating.HitByPitchProbability, numberOfPitches, pitcherCoefficient, situation);
-            _newPitchSwingResult = SwingDefinition(_newPitchGettingIntoStrikeZoneResult, offense.TeamRating.SwingInStrikeZoneProbability, offense.TeamRating.SwingOutsideStrikeZoneProbability, situation);
+            _newPitchSwingResult = SwingDefinition(_newPitchGettingIntoStrikeZoneResult, offense.TeamRating.SwingInStrikeZoneProbability, offense.TeamRating.SwingOutsideStrikeZoneProbability, numberOfPitches, situation);
             _newPitchHitting = HittingDefinition(_newPitchSwingResult, offense.TeamRating.HittingProbability, batterNumberComponent, pitcherCoefficient, numberOfPitches, situation, handsCoefficient, stadiumFactor);
             _newPitchHitType = HitTypeDefinition(_newPitchHitting, offense.TeamRating.SingleProbability, offense.TeamRating.DoubleProbability, offense.TeamRating.HomeRunProbability, offense.TeamRating.TripleProbability, batterNumberComponent, numberOfPitches, countOfNotEmptyBases, situation, currentBatter, stadiumFactor);
             _newPitchOutType = OutTypeDefinition(_newPitchHitType, situation, defense.TeamRating.PopoutOnFoulProbability, defense.TeamRating.FlyoutOnHomeRunProbability, defense.TeamRating.GroundoutProbability, defense.TeamRating.FlyoutProbability);
@@ -123,7 +123,7 @@ namespace VKR.EF.Entities.RandomGenerators
         {
             var gettingIntoStrikeZoneRandomValue = _gettingIntoStrikeZoneRandomGenerator.Next(1, 3000);
 
-            if (gettingIntoStrikeZoneRandomValue < strikeZoneProbability - (pitcherCoefficient - numberOfPitches) * 3 + (situation.Strikes - situation.Balls) * 15)
+            if (gettingIntoStrikeZoneRandomValue < strikeZoneProbability + (pitcherCoefficient - numberOfPitches) * 3 + (situation.Strikes - situation.Balls) * 15)
                 return GettingIntoStrikeZoneTypeOfResult.BallIsOutOfTheStrikeZone;
 
             if (gettingIntoStrikeZoneRandomValue < 3000 - hitByPitchProbability)
@@ -132,7 +132,7 @@ namespace VKR.EF.Entities.RandomGenerators
             return GettingIntoStrikeZoneTypeOfResult.HitByPitch;
         }
 
-        protected static SwingResultType SwingDefinition(GettingIntoStrikeZoneTypeOfResult ballInStrikeZone, int swingProbabilityInStrikeZone, int swingProbabilityOutsideStrikeZone, GameSituation situation)
+        protected static SwingResultType SwingDefinition(GettingIntoStrikeZoneTypeOfResult ballInStrikeZone, int swingProbabilityInStrikeZone, int swingProbabilityOutsideStrikeZone, int numberOfPitches, GameSituation situation)
         {
             var swingRandomValue = _swingRandomGenerator.Next(1, 1000);
 
@@ -140,7 +140,7 @@ namespace VKR.EF.Entities.RandomGenerators
             {
                 case GettingIntoStrikeZoneTypeOfResult.HitByPitch:
                     return SwingResultType.NoResult;
-                case GettingIntoStrikeZoneTypeOfResult.BallInTheStrikeZone when swingRandomValue > swingProbabilityInStrikeZone + (situation.Balls - situation.Strikes) * 15:
+                case GettingIntoStrikeZoneTypeOfResult.BallInTheStrikeZone when swingRandomValue > swingProbabilityInStrikeZone + (situation.Balls - situation.Strikes) * 15 - numberOfPitches:
                     return SwingResultType.Swing;
                 case GettingIntoStrikeZoneTypeOfResult.BallInTheStrikeZone:
                     return SwingResultType.NoSwing;
@@ -158,9 +158,10 @@ namespace VKR.EF.Entities.RandomGenerators
 
             var hittingRandomValue = _hittingRandomGenerator.Next(1, 2000);
 
-            if (swingResult != SwingResultType.Swing) return HittingResultType.NoResult;
+            if (swingResult != SwingResultType.Swing) 
+                return HittingResultType.NoResult;
 
-            if (hittingRandomValue > fullHittingProbability + pitcherCoefficient - batterNumberComponent * 3 - numberOfPitches / 3 - situation.Balls * 25 + situation.Strikes * 15 - handsCoefficient)
+            if (hittingRandomValue > fullHittingProbability + pitcherCoefficient - batterNumberComponent * 3 - numberOfPitches * 3 - situation.Balls * 15 + situation.Strikes * 10 - handsCoefficient)
                 return HittingResultType.Hit;
 
             return HittingResultType.Miss;
@@ -191,10 +192,10 @@ namespace VKR.EF.Entities.RandomGenerators
             if (hitTypeRandomValue <= foulProbabilityNormalizedByBatterPosition + fullSingleProbability - batterNumberComponent * 5 + countOfNotEmptyBases * 15)
                 return HitType.Single;
 
-            if (hitTypeRandomValue < foulProbabilityNormalizedByBatterPosition + fullSingleProbability + fullDoubleProbability - batterNumberComponent * 3 + countOfNotEmptyBases * 8)
+            if (hitTypeRandomValue < foulProbabilityNormalizedByBatterPosition + fullSingleProbability + fullDoubleProbability - batterNumberComponent * 3 + countOfNotEmptyBases * 8 - numberOfPitches / 2)
                 return HitType.Double;
 
-            if (hitTypeRandomValue == foulProbabilityNormalizedByBatterPosition + fullSingleProbability + fullDoubleProbability - batterNumberComponent * 3 + countOfNotEmptyBases * 8)
+            if (hitTypeRandomValue == foulProbabilityNormalizedByBatterPosition + fullSingleProbability + fullDoubleProbability - batterNumberComponent * 3 + countOfNotEmptyBases * 8 - numberOfPitches / 2)
                 return HitType.GroundRuleDouble;
 
             if (hitTypeRandomValue <= foulProbabilityNormalizedByBatterPosition + fullSingleProbability + fullDoubleProbability + fullHomeRunProbability - batterNumberComponent - numberOfPitches / 4 + countOfNotEmptyBases * 7)
