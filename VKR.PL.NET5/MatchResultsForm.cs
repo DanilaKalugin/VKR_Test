@@ -182,7 +182,7 @@ namespace VKR.PL.NET5
 
         private async void cbSeasons_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbSeasons.Items.Count == 0 || cbTeam.Items.Count == 0) return;
+            if (cbSeasons.Items.Count == 0) return;
 
             var year = cbSeasons.SelectedItem is Season season ? season.Year : 0;
 
@@ -199,6 +199,11 @@ namespace VKR.PL.NET5
                     _teams = await _teamsBl.GetTeamNamesForThisYear(_season);
                     cbTeam.DataSource = _teams.Select(t => t.TeamName).ToList();
                     _matches = await _scheduleBl.GetMatchesForSelectedTeam(TypeOfMatchEnum.RegularSeason, _season, _tableType, _teams?[cbTeam.SelectedIndex].TeamAbbreviation);
+                    FillResultsTable();
+                    break;
+                case FormType.SeriesSchedule:
+                case FormType.SeriesResults:
+                    _matches = await _scheduleBl.GetMatchesFromThisSeries(_tableType, TypeOfMatchEnum.RegularSeason, _season, _teamAbbreviations[0], _teamAbbreviations[1]);
                     FillResultsTable();
                     break;
             }

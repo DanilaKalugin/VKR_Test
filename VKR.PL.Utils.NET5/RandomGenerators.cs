@@ -23,8 +23,8 @@ namespace VKR.PL.Utils.NET5
             var stealingAttemptRandomValue = _buntAttemptRandomGenerator.Next(1, 1000);
             var offense = situation.Offense;
             var batterNumberComponent = offense == awayTeam ? situation.NumberOfBatterFromHomeTeam : situation.NumberOfBatterFromAwayTeam;
-            var batterID = situation.Offense.BattingLineup[batterNumberComponent - 1].Id;
-            var buntsCount = atBats.Count(atBat => atBat.AtBatType == AtBatType.SacrificeBunt && atBat.BatterId == batterID);
+            var batterId = situation.Offense.BattingLineup[batterNumberComponent - 1].Id;
+            var buntsCount = atBats.Count(atBat => atBat.AtBatType == AtBatType.SacrificeBunt && atBat.BatterId == batterId);
             
             return stealingAttemptRandomValue <= batterNumberComponent * (18 - batterNumberComponent - buntsCount) * 5 ? BuntAttempt.Attempt : BuntAttempt.NoAttempt;
         }
