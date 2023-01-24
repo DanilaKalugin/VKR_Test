@@ -81,9 +81,7 @@ namespace VKR.PL.NET5
             this.pbCurrentBatterPhoto = new System.Windows.Forms.Panel();
             this.pbCurrentOffenseLogo = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
             this.away2 = new System.Windows.Forms.Label();
             this.away3 = new System.Windows.Forms.Label();
             this.away4 = new System.Windows.Forms.Label();
@@ -118,6 +116,13 @@ namespace VKR.PL.NET5
             this.lb2ndInning = new System.Windows.Forms.Label();
             this.lb1stInning = new System.Windows.Forms.Label();
             this.panelScoreBoard = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panelNextHomeBatters = new System.Windows.Forms.Panel();
             this.homeNextBatter3 = new VKR.PL.Controls.NET5.BatterInfo();
@@ -125,8 +130,6 @@ namespace VKR.PL.NET5
             this.homeNextBatter1 = new VKR.PL.Controls.NET5.BatterInfo();
             this.homeTeamNextBatters = new System.Windows.Forms.Panel();
             this.home_DueUP = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.awayLOB = new System.Windows.Forms.Label();
             this.homeLOB = new System.Windows.Forms.Label();
@@ -192,6 +195,8 @@ namespace VKR.PL.NET5
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panelScoreBoard.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panelNextHomeBatters.SuspendLayout();
             this.homeTeamNextBatters.SuspendLayout();
@@ -220,7 +225,7 @@ namespace VKR.PL.NET5
             panel27.Controls.Add(this.currentBatter);
             panel27.Controls.Add(this.pb_stamina);
             panel27.Controls.Add(this.panelCurrentSituationPitcher);
-            panel27.Location = new System.Drawing.Point(1163, 846);
+            panel27.Location = new System.Drawing.Point(972, 848);
             panel27.Name = "panel27";
             panel27.Size = new System.Drawing.Size(250, 66);
             panel27.TabIndex = 47;
@@ -309,7 +314,7 @@ namespace VKR.PL.NET5
             // 
             label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             label24.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label24.Location = new System.Drawing.Point(1179, 144);
+            label24.Location = new System.Drawing.Point(990, 144);
             label24.Name = "label24";
             label24.Size = new System.Drawing.Size(234, 23);
             label24.TabIndex = 58;
@@ -322,9 +327,9 @@ namespace VKR.PL.NET5
             this.btnNewPitch.FlatAppearance.BorderSize = 0;
             this.btnNewPitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewPitch.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnNewPitch.Location = new System.Drawing.Point(82, 10);
+            this.btnNewPitch.Location = new System.Drawing.Point(3, 10);
             this.btnNewPitch.Name = "btnNewPitch";
-            this.btnNewPitch.Size = new System.Drawing.Size(300, 35);
+            this.btnNewPitch.Size = new System.Drawing.Size(280, 35);
             this.btnNewPitch.TabIndex = 0;
             this.btnNewPitch.TabStop = false;
             this.btnNewPitch.Text = "NEXT PITCH";
@@ -337,7 +342,7 @@ namespace VKR.PL.NET5
             this.panelSmallScoreBoard.Controls.Add(this.panel5);
             this.panelSmallScoreBoard.Controls.Add(this.panel4);
             this.panelSmallScoreBoard.Controls.Add(this.panel3);
-            this.panelSmallScoreBoard.Location = new System.Drawing.Point(1162, 920);
+            this.panelSmallScoreBoard.Location = new System.Drawing.Point(972, 920);
             this.panelSmallScoreBoard.Name = "panelSmallScoreBoard";
             this.panelSmallScoreBoard.Size = new System.Drawing.Size(250, 78);
             this.panelSmallScoreBoard.TabIndex = 1;
@@ -439,7 +444,7 @@ namespace VKR.PL.NET5
             this.panelCurrentSituation.Controls.Add(this.label3);
             this.panelCurrentSituation.Controls.Add(this.label2);
             this.panelCurrentSituation.Controls.Add(this.label1);
-            this.panelCurrentSituation.Location = new System.Drawing.Point(1161, 999);
+            this.panelCurrentSituation.Location = new System.Drawing.Point(972, 999);
             this.panelCurrentSituation.Name = "panelCurrentSituation";
             this.panelCurrentSituation.Size = new System.Drawing.Size(250, 30);
             this.panelCurrentSituation.TabIndex = 2;
@@ -524,7 +529,7 @@ namespace VKR.PL.NET5
             this.panelCurrentBatter.Controls.Add(this.panel8);
             this.panelCurrentBatter.Location = new System.Drawing.Point(198, 889);
             this.panelCurrentBatter.Name = "panelCurrentBatter";
-            this.panelCurrentBatter.Size = new System.Drawing.Size(903, 110);
+            this.panelCurrentBatter.Size = new System.Drawing.Size(714, 110);
             this.panelCurrentBatter.TabIndex = 3;
             this.panelCurrentBatter.VisibleChanged += new System.EventHandler(this.panel6_VisibleChanged);
             // 
@@ -669,7 +674,7 @@ namespace VKR.PL.NET5
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Margin = new System.Windows.Forms.Padding(0, 3, 3, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(903, 36);
+            this.panel8.Size = new System.Drawing.Size(714, 36);
             this.panel8.TabIndex = 4;
             // 
             // btnChangeBatter
@@ -679,7 +684,7 @@ namespace VKR.PL.NET5
             this.btnChangeBatter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeBatter.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnChangeBatter.ForeColor = System.Drawing.Color.White;
-            this.btnChangeBatter.Location = new System.Drawing.Point(795, 0);
+            this.btnChangeBatter.Location = new System.Drawing.Point(606, 0);
             this.btnChangeBatter.Name = "btnChangeBatter";
             this.btnChangeBatter.Size = new System.Drawing.Size(108, 36);
             this.btnChangeBatter.TabIndex = 61;
@@ -744,7 +749,7 @@ namespace VKR.PL.NET5
             this.lbTodayStats.ForeColor = System.Drawing.Color.Gold;
             this.lbTodayStats.Location = new System.Drawing.Point(88, 999);
             this.lbTodayStats.Name = "lbTodayStats";
-            this.lbTodayStats.Size = new System.Drawing.Size(1013, 30);
+            this.lbTodayStats.Size = new System.Drawing.Size(824, 30);
             this.lbTodayStats.TabIndex = 22;
             this.lbTodayStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbTodayStats.VisibleChanged += new System.EventHandler(this.lbTodayStats_VisibleChanged);
@@ -776,7 +781,7 @@ namespace VKR.PL.NET5
             this.label18.BackColor = System.Drawing.Color.Gainsboro;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(103, 53);
+            this.label18.Location = new System.Drawing.Point(39, 0);
             this.label18.Margin = new System.Windows.Forms.Padding(6, 5, 0, 1);
             this.label18.MaximumSize = new System.Drawing.Size(287, 39);
             this.label18.Name = "label18";
@@ -785,36 +790,14 @@ namespace VKR.PL.NET5
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label18.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
-            // label19
-            // 
-            this.label19.BackColor = System.Drawing.Color.Gainsboro;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(103, 94);
-            this.label19.Margin = new System.Windows.Forms.Padding(6, 1, 6, 5);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(287, 39);
-            this.label19.TabIndex = 5;
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label19.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
-            // 
             // panel11
             // 
             this.panel11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel11.Location = new System.Drawing.Point(64, 53);
+            this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(39, 39);
             this.panel11.TabIndex = 6;
-            // 
-            // panel12
-            // 
-            this.panel12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel12.Location = new System.Drawing.Point(64, 94);
-            this.panel12.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(39, 39);
-            this.panel12.TabIndex = 7;
             // 
             // away2
             // 
@@ -1225,16 +1208,12 @@ namespace VKR.PL.NET5
             // 
             // panelScoreBoard
             // 
+            this.panelScoreBoard.Controls.Add(this.panel6);
+            this.panelScoreBoard.Controls.Add(this.panel2);
             this.panelScoreBoard.Controls.Add(this.panel16);
-            this.panelScoreBoard.Controls.Add(this.label23);
-            this.panelScoreBoard.Controls.Add(this.label22);
-            this.panelScoreBoard.Controls.Add(this.label18);
             this.panelScoreBoard.Controls.Add(this.label20);
-            this.panelScoreBoard.Controls.Add(this.label19);
             this.panelScoreBoard.Controls.Add(this.label21);
-            this.panelScoreBoard.Controls.Add(this.panel11);
             this.panelScoreBoard.Controls.Add(this.lb9thInning);
-            this.panelScoreBoard.Controls.Add(this.panel12);
             this.panelScoreBoard.Controls.Add(this.lb8thInning);
             this.panelScoreBoard.Controls.Add(this.lb7thInning);
             this.panelScoreBoard.Controls.Add(this.away2);
@@ -1272,22 +1251,113 @@ namespace VKR.PL.NET5
             this.panelScoreBoard.Location = new System.Drawing.Point(0, 0);
             this.panelScoreBoard.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
             this.panelScoreBoard.Name = "panelScoreBoard";
-            this.panelScoreBoard.Size = new System.Drawing.Size(1423, 138);
+            this.panelScoreBoard.Size = new System.Drawing.Size(1234, 138);
             this.panelScoreBoard.TabIndex = 45;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.Controls.Add(this.panel7);
+            this.panel6.Controls.Add(this.label17);
+            this.panel6.Controls.Add(this.label23);
+            this.panel6.Controls.Add(this.label29);
+            this.panel6.Location = new System.Drawing.Point(64, 94);
+            this.panel6.MaximumSize = new System.Drawing.Size(326, 39);
+            this.panel6.MinimumSize = new System.Drawing.Size(0, 39);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(326, 39);
+            this.panel6.TabIndex = 72;
+            // 
+            // panel7
+            // 
+            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(39, 39);
+            this.panel7.TabIndex = 6;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label17.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label17.Location = new System.Drawing.Point(402, 4);
+            this.label17.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(78, 31);
+            this.label17.TabIndex = 45;
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label23.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label23.Location = new System.Drawing.Point(241, 3);
+            this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(78, 31);
+            this.label23.TabIndex = 46;
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label23.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            // 
+            // label29
+            // 
+            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label29.BackColor = System.Drawing.Color.Gainsboro;
+            this.label29.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label29.ForeColor = System.Drawing.Color.White;
+            this.label29.Location = new System.Drawing.Point(39, 0);
+            this.label29.Margin = new System.Windows.Forms.Padding(6, 5, 0, 1);
+            this.label29.MaximumSize = new System.Drawing.Size(287, 39);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(287, 39);
+            this.label29.TabIndex = 4;
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.panel11);
+            this.panel2.Controls.Add(this.label22);
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Location = new System.Drawing.Point(64, 53);
+            this.panel2.MaximumSize = new System.Drawing.Size(326, 39);
+            this.panel2.MinimumSize = new System.Drawing.Size(0, 39);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(326, 39);
+            this.panel2.TabIndex = 71;
+            // 
+            // label22
+            // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label22.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label22.Location = new System.Drawing.Point(241, 4);
+            this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(78, 31);
+            this.label22.TabIndex = 45;
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label22.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // panel16
             // 
-            this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel16.Controls.Add(this.panelNextHomeBatters);
             this.panel16.Controls.Add(this.homeTeamNextBatters);
-            this.panel16.Location = new System.Drawing.Point(1173, 0);
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel16.Location = new System.Drawing.Point(984, 0);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(250, 138);
             this.panel16.TabIndex = 0;
             // 
             // panelNextHomeBatters
             // 
-            this.panelNextHomeBatters.BackColor = System.Drawing.Color.White;
+            this.panelNextHomeBatters.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelNextHomeBatters.Controls.Add(this.homeNextBatter3);
             this.panelNextHomeBatters.Controls.Add(this.homeNextBatter2);
             this.panelNextHomeBatters.Controls.Add(this.homeNextBatter1);
@@ -1346,30 +1416,6 @@ namespace VKR.PL.NET5
             this.home_DueUP.Text = "label32";
             this.home_DueUP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.home_DueUP.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
-            // 
-            // label23
-            // 
-            this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label23.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label23.Location = new System.Drawing.Point(305, 98);
-            this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(78, 31);
-            this.label23.TabIndex = 46;
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label23.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
-            // 
-            // label22
-            // 
-            this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label22.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label22.Location = new System.Drawing.Point(305, 57);
-            this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(78, 31);
-            this.label22.TabIndex = 45;
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label22.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
             // 
             // label28
             // 
@@ -1442,7 +1488,7 @@ namespace VKR.PL.NET5
             this.panelCurrentPitcher.Controls.Add(this.label35);
             this.panelCurrentPitcher.Controls.Add(this.labelGames);
             this.panelCurrentPitcher.Controls.Add(this.PitchingTeamColor);
-            this.panelCurrentPitcher.Location = new System.Drawing.Point(1179, 167);
+            this.panelCurrentPitcher.Location = new System.Drawing.Point(990, 167);
             this.panelCurrentPitcher.Name = "panelCurrentPitcher";
             this.panelCurrentPitcher.Size = new System.Drawing.Size(234, 219);
             this.panelCurrentPitcher.TabIndex = 48;
@@ -1781,7 +1827,7 @@ namespace VKR.PL.NET5
             // 
             this.PitcherPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PitcherPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PitcherPhoto.Location = new System.Drawing.Point(1033, 167);
+            this.PitcherPhoto.Location = new System.Drawing.Point(844, 167);
             this.PitcherPhoto.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PitcherPhoto.Name = "PitcherPhoto";
             this.PitcherPhoto.Size = new System.Drawing.Size(146, 219);
@@ -1806,10 +1852,10 @@ namespace VKR.PL.NET5
             this.label44.Dock = System.Windows.Forms.DockStyle.Right;
             this.label44.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label44.ForeColor = System.Drawing.Color.White;
-            this.label44.Location = new System.Drawing.Point(520, 0);
+            this.label44.Location = new System.Drawing.Point(374, 0);
             this.label44.MaximumSize = new System.Drawing.Size(400, 31);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(250, 31);
+            this.label44.Size = new System.Drawing.Size(207, 31);
             this.label44.TabIndex = 54;
             this.label44.Text = "00";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1821,9 +1867,9 @@ namespace VKR.PL.NET5
             this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
             this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuntAttempt.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBuntAttempt.Location = new System.Drawing.Point(388, 10);
+            this.btnBuntAttempt.Location = new System.Drawing.Point(298, 10);
             this.btnBuntAttempt.Name = "btnBuntAttempt";
-            this.btnBuntAttempt.Size = new System.Drawing.Size(300, 35);
+            this.btnBuntAttempt.Size = new System.Drawing.Size(280, 35);
             this.btnBuntAttempt.TabIndex = 55;
             this.btnBuntAttempt.TabStop = false;
             this.btnBuntAttempt.Text = "BUNT ATTEMPT";
@@ -1851,7 +1897,7 @@ namespace VKR.PL.NET5
             this.btnShowAvailablePitchers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowAvailablePitchers.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnShowAvailablePitchers.ForeColor = System.Drawing.Color.White;
-            this.btnShowAvailablePitchers.Location = new System.Drawing.Point(1033, 386);
+            this.btnShowAvailablePitchers.Location = new System.Drawing.Point(844, 386);
             this.btnShowAvailablePitchers.Name = "btnShowAvailablePitchers";
             this.btnShowAvailablePitchers.Size = new System.Drawing.Size(380, 35);
             this.btnShowAvailablePitchers.TabIndex = 57;
@@ -1907,7 +1953,7 @@ namespace VKR.PL.NET5
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(155, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(365, 31);
+            this.label27.Size = new System.Drawing.Size(219, 31);
             this.label27.TabIndex = 62;
             this.label27.Text = "00";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1924,7 +1970,7 @@ namespace VKR.PL.NET5
             this.panelLastAtBat.Controls.Add(this.label44);
             this.panelLastAtBat.Location = new System.Drawing.Point(331, 852);
             this.panelLastAtBat.Name = "panelLastAtBat";
-            this.panelLastAtBat.Size = new System.Drawing.Size(770, 31);
+            this.panelLastAtBat.Size = new System.Drawing.Size(581, 31);
             this.panelLastAtBat.TabIndex = 63;
             this.panelLastAtBat.Visible = false;
             // 
@@ -1949,9 +1995,9 @@ namespace VKR.PL.NET5
             this.btnManualMode.FlatAppearance.BorderSize = 0;
             this.btnManualMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnManualMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnManualMode.Location = new System.Drawing.Point(413, 750);
+            this.btnManualMode.Location = new System.Drawing.Point(334, 750);
             this.btnManualMode.Name = "btnManualMode";
-            this.btnManualMode.Size = new System.Drawing.Size(300, 35);
+            this.btnManualMode.Size = new System.Drawing.Size(280, 35);
             this.btnManualMode.TabIndex = 65;
             this.btnManualMode.TabStop = false;
             this.btnManualMode.Text = "MANUAL";
@@ -1970,9 +2016,9 @@ namespace VKR.PL.NET5
             this.btnAutoMode.FlatAppearance.BorderSize = 0;
             this.btnAutoMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAutoMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAutoMode.Location = new System.Drawing.Point(719, 750);
+            this.btnAutoMode.Location = new System.Drawing.Point(629, 750);
             this.btnAutoMode.Name = "btnAutoMode";
-            this.btnAutoMode.Size = new System.Drawing.Size(300, 35);
+            this.btnAutoMode.Size = new System.Drawing.Size(280, 35);
             this.btnAutoMode.TabIndex = 66;
             this.btnAutoMode.TabStop = false;
             this.btnAutoMode.Text = "AUTOMATIC";
@@ -1987,48 +2033,53 @@ namespace VKR.PL.NET5
             this.panel1.Controls.Add(this.btnBuntAttempt);
             this.panel1.Location = new System.Drawing.Point(331, 791);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(770, 55);
+            this.panel1.Size = new System.Drawing.Size(581, 55);
             this.panel1.TabIndex = 67;
             // 
             // runnerData1
             // 
             this.runnerData1.BaseType = VKR.PL.Controls.NET5.RunnerData.BaseTypeEnum.First;
-            this.runnerData1.Batter = null;
             this.runnerData1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.runnerData1.Location = new System.Drawing.Point(1147, 490);
+            this.runnerData1.Location = new System.Drawing.Point(958, 490);
             this.runnerData1.Name = "runnerData1";
+            this.runnerData1.Runner = null;
             this.runnerData1.Size = new System.Drawing.Size(264, 100);
             this.runnerData1.TabIndex = 68;
             this.runnerData1.TeamColor = System.Drawing.Color.Empty;
+            this.runnerData1.Visible = false;
+            this.runnerData1.IsSelectedChanged += new System.EventHandler(this.runnerData1_Click);
             // 
             // runnerData2
             // 
             this.runnerData2.BaseType = VKR.PL.Controls.NET5.RunnerData.BaseTypeEnum.Second;
-            this.runnerData2.Batter = null;
             this.runnerData2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.runnerData2.Location = new System.Drawing.Point(576, 144);
             this.runnerData2.Name = "runnerData2";
+            this.runnerData2.Runner = null;
             this.runnerData2.Size = new System.Drawing.Size(264, 100);
             this.runnerData2.TabIndex = 69;
             this.runnerData2.TeamColor = System.Drawing.Color.Empty;
+            this.runnerData2.Visible = false;
+            this.runnerData2.IsSelectedChanged += new System.EventHandler(this.runnerData2_Click);
             // 
             // runnerData3
             // 
             this.runnerData3.BaseType = VKR.PL.Controls.NET5.RunnerData.BaseTypeEnum.Third;
-            this.runnerData3.Batter = null;
             this.runnerData3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.runnerData3.Location = new System.Drawing.Point(12, 505);
+            this.runnerData3.Location = new System.Drawing.Point(12, 490);
             this.runnerData3.Name = "runnerData3";
+            this.runnerData3.Runner = null;
             this.runnerData3.Size = new System.Drawing.Size(264, 100);
             this.runnerData3.TabIndex = 70;
             this.runnerData3.TeamColor = System.Drawing.Color.Empty;
+            this.runnerData3.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1423, 1041);
+            this.ClientSize = new System.Drawing.Size(1234, 1041);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnAutoMode);
             this.Controls.Add(this.btnManualMode);
@@ -2055,7 +2106,7 @@ namespace VKR.PL.NET5
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1339, 1000);
+            this.MinimumSize = new System.Drawing.Size(1200, 1000);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -2072,6 +2123,8 @@ namespace VKR.PL.NET5
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panelScoreBoard.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panelNextHomeBatters.ResumeLayout(false);
             this.homeTeamNextBatters.ResumeLayout(false);
@@ -2122,9 +2175,7 @@ namespace VKR.PL.NET5
         private Label label16;
         private Label batterOPSValue;
         private Label label18;
-        private Label label19;
         private Panel panel11;
-        private Panel panel12;
         private Label away2;
         private Label away3;
         private Label away4;
@@ -2227,6 +2278,11 @@ namespace VKR.PL.NET5
         private RunnerData runnerData1;
         private RunnerData runnerData2;
         private RunnerData runnerData3;
+        private Panel panel2;
+        private Panel panel6;
+        private Panel panel7;
+        private Label label17;
+        private Label label29;
     }
 }
 

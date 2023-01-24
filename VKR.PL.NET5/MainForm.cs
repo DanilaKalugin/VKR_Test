@@ -48,17 +48,15 @@ namespace VKR.PL.NET5
             _previousSituation = _currentMatch.GameSituations.Last();
             _newGameSituation = new GameSituation(match.AwayTeam);
 
-            PrepareForThisTeam(_currentMatch.AwayTeam, AwayTeam_Abbreviation, AwayTeam_RunsScored, label18, panel11, label22, _currentMatch/*, AwayTeamNextBatters, away_DueUP*/);
-            PrepareForThisTeam(_currentMatch.HomeTeam, HomeTeam_Abbreviation, HomeTeam_RunsScored, label19, panel12, label23, _currentMatch/*, homeTeamNextBatters, home_DueUP*/);
+            PrepareForThisTeam(_currentMatch.AwayTeam, AwayTeam_Abbreviation, AwayTeam_RunsScored, label18, panel11, label22, _currentMatch);
+            PrepareForThisTeam(_currentMatch.HomeTeam, HomeTeam_Abbreviation, HomeTeam_RunsScored, label29, panel7, label23, _currentMatch);
             _ = DisplayingCurrentSituation(match.GameSituations.Last());
 
-            //DisplayNextBatters(_currentMatch, _currentMatch.AwayTeam, _currentMatch.GameSituations.Last(), awayNextBatter1, awayNextBatter2, awayNextBatter3);
-            //DisplayNextBatters(_currentMatch, _currentMatch.HomeTeam, _currentMatch.GameSituations.Last(), homeNextBatter1, homeNextBatter2, homeNextBatter3);
             pb_stamina.Value = _currentMatch.HomeTeam.CurrentPitcher.RemainingStamina;
             SimulationModeChanged(!match.IsQuickMatch);
         }
 
-        private static void PrepareForThisTeam(Team team, Control teamAbbreviation, Control runsScored, Control teamTitle, Control teamLogo, Control teamBalance, Match match/*, Control nextBatters, Control nextBattersHeader*/)
+        private static void PrepareForThisTeam(Team team, Control teamAbbreviation, Control runsScored, Control teamTitle, Control teamLogo, Control teamBalance, Match match)
         {
             teamAbbreviation.Text = team.TeamAbbreviation;
             teamAbbreviation.BackColor = team.TeamColorForThisMatch;
@@ -69,8 +67,6 @@ namespace VKR.PL.NET5
             teamBalance.Text = $@"{team.Wins}-{team.Losses}";
             teamBalance.BackColor = team.TeamColorForThisMatch;
             teamBalance.Visible = !match.IsQuickMatch;
-            //nextBatters.BackColor = team.TeamColorForThisMatch;
-            //nextBattersHeader.Text = $"{team.TeamName.ToUpper()} - DUE UP";
         }
 
         private void DisplayNextBatters(MatchBaseClass currentMatch, Team team, GameSituation situation, params BatterInfo[] batters)
@@ -114,8 +110,8 @@ namespace VKR.PL.NET5
             label5.Text = $"{gameSituation.Balls}-{gameSituation.Strikes}";
 
             var currentSituationOnBases = Convert.ToInt32(gameSituation.RunnerOnFirst.IsBaseNotEmpty) + Convert.ToInt32(gameSituation.RunnerOnSecond.IsBaseNotEmpty) * 2 + Convert.ToInt32(gameSituation.RunnerOnThird.IsBaseNotEmpty) * 4;
-            panel3.BackgroundImage = basesImagesDictionary[currentSituationOnBases]; 
-            
+            panel3.BackgroundImage = basesImagesDictionary[currentSituationOnBases];
+
             AwayTeam_RunsScored.Text = gameSituation.AwayTeamRuns.ToString();
             HomeTeam_RunsScored.Text = gameSituation.HomeTeamRuns.ToString();
 
@@ -131,12 +127,15 @@ namespace VKR.PL.NET5
 
             panel8.BackColor = gameSituation.Offense.TeamColorForThisMatch;
             btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.Offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.B * 0.9));
-
+            
             pbCurrentOffenseLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{_newGameSituation.Offense.TeamAbbreviation}.png");
             var nextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(nextBatter);
 
             DisplayNextBatters(_currentMatch, gameSituation.Offense, gameSituation, homeNextBatter1, homeNextBatter2, homeNextBatter3);
+            home_DueUP.BackColor = gameSituation.Offense.TeamColorForThisMatch;
+            home_DueUP.Text = $"{gameSituation.Offense.TeamName.ToUpper()} - DUE UP";
+
             await DisplayPitcherStats();
 
             //Scoreboard
@@ -373,7 +372,7 @@ namespace VKR.PL.NET5
         {
             Pitch pitch;
 
-            var stealingAttempt = (_newGameSituation.RunnerOnFirst.IsBaseStealingAttempt || _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt) && _newGameSituation.Outs < 2;
+            var stealingAttempt = _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt || _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
             var countOfAtBats = _currentMatch.AtBats.Count;
             var typeOfStealing = 0;
 
@@ -596,37 +595,7 @@ namespace VKR.PL.NET5
             Dispose();
         }
 
-        private void btnStandings_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-
-            using (var form = new StandingsForm(_currentMatch.HomeTeam, _currentMatch.AwayTeam))
-                form.ShowDialog();
-
-            if (_isAutoSimulation) timer1.Start();
-        }
-
         private async void btnShowAvailablePitchers_Click(object sender, EventArgs e) => await ChangePitcher(_isAutoSimulation);
-
-        private void btnOtherResults_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-
-            using (var form = new ScheduleAndResultsForm(_currentMatch))
-                form.ShowDialog();
-
-            if (_isAutoSimulation) timer1.Start();
-        }
-
-        private void btnPlayerStats_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-
-            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players))
-                form.ShowDialog();
-
-            if (_isAutoSimulation) timer1.Start();
-        }
 
         private void panel6_VisibleChanged(object sender, EventArgs e)
         {
@@ -649,30 +618,20 @@ namespace VKR.PL.NET5
                 l.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(l.BackColor, false);
         }
 
-        private void btnTeamStats_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-
-            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Teams))
-                form.ShowDialog();
-
-            if (_isAutoSimulation) timer1.Start();
-        }
-
         private void MainForm_ClientSizeChanged(object sender, EventArgs e)
         {
-            runnerData1.Location = new Point(ClientSize.Width - 278, ClientSize.Height / 2 - 30);
-            runnerData2.Location = new Point(ClientSize.Width / 2 - 132, 144);
-            runnerData3.Location = new Point(12, ClientSize.Height / 2 - 30);
+            runnerData1.Location = new Point(Size.Width - 292, Size.Height / 2 - 50);
+            runnerData2.Location = new Point(Size.Width / 2 - 132, 144);
+            runnerData3.Location = new Point(12, Size.Height / 2 - 50);
 
             btnNewPitch.Location = new Point(panel1.Width / 2 - 303, 10);
             btnBuntAttempt.Location = new Point(panel1.Width / 2 + 3, 10);
             btnManualMode.Location = new Point(ClientSize.Width / 2 - 298, ClientSize.Height - 291);
             btnAutoMode.Location = new Point(ClientSize.Width / 2 + 8, ClientSize.Height - 291);
 
-            label28.Visible = ClientSize.Width > 1480;
-            awayLOB.Visible = ClientSize.Width > 1480;
-            homeLOB.Visible = ClientSize.Width > 1480;
+            label28.Visible = Size.Width > 1300;
+            awayLOB.Visible = Size.Width > 1300;
+            homeLOB.Visible = Size.Width > 1300;
         }
 
         private async void timer1_Tick(object sender, EventArgs e)
@@ -739,6 +698,48 @@ namespace VKR.PL.NET5
             pbCurrentOffenseLogo.Height = lbTodayStats.Visible ? 110 : 140;
             pbCurrentOffenseLogo.Left = lbTodayStats.Visible ? 88 : 58;
         }
+
+        #region Submenus
+        private void btnStandings_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+
+            using (var form = new StandingsForm(_currentMatch.HomeTeam, _currentMatch.AwayTeam))
+                form.ShowDialog();
+
+            if (_isAutoSimulation) timer1.Start();
+        }
+
+        private void btnOtherResults_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+
+            using (var form = new ScheduleAndResultsForm(_currentMatch))
+                form.ShowDialog();
+
+            if (_isAutoSimulation) timer1.Start();
+        }
+
+        private void btnTeamStats_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+
+            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Teams))
+                form.ShowDialog();
+
+            if (_isAutoSimulation) timer1.Start();
+        }
+
+        private void btnPlayerStats_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+
+            using (var form = new PlayerStatsForm(PlayerStatsForm.SortingObjects.Players))
+                form.ShowDialog();
+
+            if (_isAutoSimulation) timer1.Start();
+        }
+        #endregion
 
         #region BatterSubstitution
         private async Task BatterSubstitution_Definition(Batter batter, int batterNumber)
