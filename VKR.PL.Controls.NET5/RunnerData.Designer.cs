@@ -58,6 +58,7 @@
             this.lb_Runner1_Name.Padding = new System.Windows.Forms.Padding(4, 4, 0, 0);
             this.lb_Runner1_Name.Size = new System.Drawing.Size(197, 77);
             this.lb_Runner1_Name.TabIndex = 2;
+            this.lb_Runner1_Name.Click += new System.EventHandler(this.RunnerData_Click);
             // 
             // panel33
             // 
@@ -65,7 +66,7 @@
             this.panel33.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel33.Location = new System.Drawing.Point(0, 0);
             this.panel33.Name = "panel33";
-            this.panel33.Size = new System.Drawing.Size(197, 20);
+            this.panel33.Size = new System.Drawing.Size(197, 23);
             this.panel33.TabIndex = 1;
             // 
             // lb1stBase
@@ -75,10 +76,11 @@
             this.lb1stBase.ForeColor = System.Drawing.Color.White;
             this.lb1stBase.Location = new System.Drawing.Point(0, 0);
             this.lb1stBase.Name = "lb1stBase";
-            this.lb1stBase.Size = new System.Drawing.Size(197, 20);
+            this.lb1stBase.Size = new System.Drawing.Size(197, 23);
             this.lb1stBase.TabIndex = 1;
             this.lb1stBase.Text = "1ST BASE";
             this.lb1stBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb1stBase.Click += new System.EventHandler(this.RunnerData_Click);
             // 
             // RunnerOn1Photo
             // 
@@ -87,6 +89,7 @@
             this.RunnerOn1Photo.Name = "RunnerOn1Photo";
             this.RunnerOn1Photo.Size = new System.Drawing.Size(67, 100);
             this.RunnerOn1Photo.TabIndex = 53;
+            this.RunnerOn1Photo.Click += new System.EventHandler(this.RunnerData_Click);
             // 
             // RunnerData
             // 
@@ -97,6 +100,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "RunnerData";
             this.Size = new System.Drawing.Size(264, 100);
+            this.Click += new System.EventHandler(this.RunnerData_Click);
             this.panel1Base.ResumeLayout(false);
             this.panel33.ResumeLayout(false);
             this.ResumeLayout(false);

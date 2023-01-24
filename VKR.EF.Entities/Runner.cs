@@ -7,6 +7,8 @@ namespace VKR.EF.Entities
         public uint RunnerId;
         public string RunnerPosition;
         public uint PitcherId;
+        public string RunnerName;
+        public uint RunnerPhotoId;
         public bool IsBaseNotEmpty => RunnerId > 0 && PitcherId > 0;
         public bool IsBaseStealingAttempt;
         public bool IsEarnedRun;
@@ -16,6 +18,8 @@ namespace VKR.EF.Entities
             RunnerId = 0;
             RunnerPosition = "";
             PitcherId = 0;
+            RunnerName = "";
+            RunnerPhotoId = 0;
         }
 
         public Runner(Runner runnerOnFirst)
@@ -25,12 +29,16 @@ namespace VKR.EF.Entities
                 RunnerId = runnerOnFirst.RunnerId;
                 RunnerPosition = runnerOnFirst.RunnerPosition;
                 PitcherId = runnerOnFirst.PitcherId;
+                RunnerName = runnerOnFirst.RunnerName;
+                RunnerPhotoId = runnerOnFirst.RunnerPhotoId;
             }
             else
             {
                 RunnerId = 0;
                 RunnerPosition = "";
                 PitcherId = 0;
+                RunnerPhotoId = 0;
+                RunnerName = "";
             }
             IsBaseStealingAttempt = false;
             IsEarnedRun = runnerOnFirst.IsEarnedRun;
@@ -41,6 +49,8 @@ namespace VKR.EF.Entities
             RunnerId = batter.BatterId;
             RunnerPosition = batter.PositionForThisMatch;
             PitcherId = pitcher.PitcherId;
+            RunnerName = batter.FullName;
+            RunnerPhotoId = batter.Id;
             IsEarnedRun = isEarned;
         }
     }

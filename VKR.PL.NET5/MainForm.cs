@@ -163,11 +163,11 @@ namespace VKR.PL.NET5
 
         private static void DisplayingRunnerOnBase(Runner runner, RunnerData runnerData, GameSituation situation)
         {
-            runnerData.Visible  = runner.IsBaseNotEmpty;
+            runnerData.Visible = runner.IsBaseNotEmpty;
             runnerData.TeamColor = situation.Offense.TeamColorForThisMatch;
+
             if (!runner.IsBaseNotEmpty) return;
-            var batter = situation.Offense.BattingLineup.First(batter1 => batter1.BatterId == runner.RunnerId);
-            runnerData.Batter = batter;
+            runnerData.Runner = runner;
         }
 
         private Batter GetBatterByGameSituation(GameSituation gameSituation)
@@ -556,29 +556,26 @@ namespace VKR.PL.NET5
 
         private async void btnBuntAttempt_Click(object sender, EventArgs e) => await GenerateNewBunt();
 
-        private void lb_Runner1_Name_Click(object sender, EventArgs e)
+        private void runnerData1_Click(object sender, EventArgs e)
         {
-            /*
-            if (!_isAutoSimulation && !(lb_Runner3_Name.Visible && lb_Runner2_Name.Visible))
+            if (!_isAutoSimulation && !(_newGameSituation.RunnerOnThird.IsBaseNotEmpty && _newGameSituation.RunnerOnSecond.IsBaseNotEmpty))
             {
                 _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt = !_newGameSituation.RunnerOnFirst.IsBaseStealingAttempt;
 
-                if (lb_Runner2_Name.Visible)
+                if (_newGameSituation.RunnerOnSecond.IsBaseNotEmpty)
                     _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt = true;
             }
 
-            lb_Runner1_Name.ForeColor = _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
-            lb_Runner2_Name.ForeColor = _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
-            */
+            runnerData1.Runner = _newGameSituation.RunnerOnFirst;
+            runnerData2.Runner = _newGameSituation.RunnerOnSecond;
         }
 
-        private void lb_Runner2_Name_Click(object sender, EventArgs e)
+        private void runnerData2_Click(object sender, EventArgs e)
         {
-            /*
-            if (!_isAutoSimulation && !lb_Runner3_Name.Visible) _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt = !_newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
+            if (!_isAutoSimulation && !_newGameSituation.RunnerOnThird.IsBaseNotEmpty)
+                _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt = !_newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
 
-            lb_Runner2_Name.ForeColor = _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
-            */
+            runnerData2.Runner = _newGameSituation.RunnerOnSecond;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
