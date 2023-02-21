@@ -34,7 +34,8 @@ namespace VKR.EF.Entities.Mappers
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
-            builder.Property(m => m.Id).HasColumnName("MatchID");
+            builder.Property(m => m.Id)
+                .HasColumnName("MatchID");
 
             builder.Property(m => m.AwayTeamAbbreviation)
                 .HasColumnName("AwayTeam");
@@ -56,6 +57,13 @@ namespace VKR.EF.Entities.Mappers
 
             builder.Property(m => m.SeasonId)
                 .HasColumnName("Season");
+
+            builder.Property(m => m.MatchResultId)
+                .HasColumnName("PlayedMatchId");
+
+            builder.HasOne(nm => nm.Match)
+                .WithOne(m => m.MatchInSchedule)
+                .HasForeignKey<MatchFromSchedule>(m => m.MatchResultId);
         }
     }
 }

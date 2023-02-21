@@ -15,7 +15,7 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
             return await db.NextMatches
-                .Where(match => match.MatchTypeId == matchType && !match.IsPlayed)
+                .Where(match => match.MatchTypeId == matchType && match.MatchResultId == null)
                 .MinAsync(match => match.MatchDate)
                 .ConfigureAwait(false);
         }
@@ -24,7 +24,7 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
             return await db.NextMatches
-                .Where(nm => !nm.IsPlayed && nm.MatchTypeId == matchType && nm.MatchDate == date)
+                .Where(nm => nm.MatchResultId == null && nm.MatchTypeId == matchType && nm.MatchDate == date)
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
@@ -78,11 +78,15 @@ namespace VKR.EF.DAO
             var thisMatch = await db.NextMatches.FirstOrDefaultAsync(_match =>
                 _match.HomeTeamAbbreviation == newMatch.HomeTeamAbbreviation &&
                 _match.AwayTeamAbbreviation == newMatch.AwayTeamAbbreviation &&
-                _match.MatchDate == match.MatchDate && !_match.IsPlayed)
+                _match.MatchDate == match.MatchDate && 
+                _match.MatchResultId == null)
                 .ConfigureAwait(false);
 
             if (thisMatch != null)
+            {
                 thisMatch.IsPlayed = true;
+                thisMatch.MatchResultId = match.Id;
+            }
 
             db.NextMatches.Update(thisMatch);
             await db.SaveChangesAsync();
@@ -168,7 +172,7 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            var deletingMatch = await db.Matches.FirstOrDefaultAsync(m => m.Id == matchId)
+            var deletingMatch = await db.Matches.FindAsync(matchId)
                 .ConfigureAwait(false);
 
             if (deletingMatch == null) return;
@@ -180,7 +184,12 @@ namespace VKR.EF.DAO
                 nm.MatchTypeId == deletingMatch.MatchTypeId)
                 .ConfigureAwait(false);
 
-            if (matchForDelete != null) matchForDelete.IsPlayed = false;
+            if (matchForDelete != null)
+            {
+                matchForDelete.IsPlayed = false;
+                matchForDelete.MatchResultId = null;
+            }
+
             db.Matches.Remove(deletingMatch);
             await db.SaveChangesAsync()
                 .ConfigureAwait(false);

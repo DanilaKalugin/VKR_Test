@@ -12,6 +12,7 @@ namespace VKR.EF.Entities.Tables
         public bool MatchEnded { get; set; }
         public Stadium Stadium { get; set; }
         public ushort StadiumId { get; set; }
+        public MatchFromSchedule MatchInSchedule { get; set; }
         public virtual List<LineupForMatch> LineupsForMatches { get; set; } = new();
         public virtual List<AtBat> AtBats { get; set; } = new();
         public virtual List<PitcherResults> PitcherResults { get; set; } = new();
@@ -40,7 +41,6 @@ namespace VKR.EF.Entities.Tables
                        (lastGs.Offense == HomeTeam && lastGs.AwayTeamRuns < lastGs.HomeTeamRuns && lastGs.InningNumber >= MatchLength);
             }
         }
-
 
         public List<string> GetMatchLeaderAfterEachPitch()
         {

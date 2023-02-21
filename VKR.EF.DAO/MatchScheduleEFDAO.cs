@@ -34,8 +34,8 @@ namespace VKR.EF.DAO
                 .Join(activeMatches,
                     match => match.Id,
                     activeMatch => activeMatch.MatchId,
-                    (match, res) => new MatchScheduleViewModel(true, match.MatchEnded, match.AwayTeamAbbreviation,
-                        match.HomeTeamAbbreviation, res.Inning, res.AwayTeamRuns, res.HomeTeamRuns, match.Stadium,
+                    (match, res) => new MatchScheduleViewModel(true, match.MatchEnded, match.AwayTeamAbbreviation, 
+                        match.HomeTeamAbbreviation, res.Inning, res.AwayTeamRuns, res.HomeTeamRuns, match.Stadium, 
                         match.MatchDate)).ToList();
 
             return results.Union(activeMatchResults).ToList();
@@ -49,7 +49,7 @@ namespace VKR.EF.DAO
                 .ThenInclude(team => team.StadiumsForMatchTypes)
                 .ThenInclude(tsmt => tsmt.Stadium)
                 .ThenInclude(stadium => stadium.StadiumCity)
-                .Where(m => !m.IsPlayed)
+                .Where(m => m.MatchResultId == null)
                 .Select(m => new MatchScheduleViewModel(m.IsPlayed, false, m.AwayTeamAbbreviation, m.HomeTeamAbbreviation, 1, 0, 0, m.HomeTeam.StadiumsForMatchTypes.First().Stadium, m.MatchDate))
                 .ToListAsync()
                 .ConfigureAwait(false);
