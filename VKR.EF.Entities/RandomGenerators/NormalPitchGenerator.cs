@@ -144,12 +144,11 @@ namespace VKR.EF.Entities.RandomGenerators
                     return SwingResultType.Swing;
                 case GettingIntoStrikeZoneTypeOfResult.BallInTheStrikeZone:
                     return SwingResultType.NoSwing;
+                case GettingIntoStrikeZoneTypeOfResult.BallIsOutOfTheStrikeZone when swingRandomValue > swingProbabilityOutsideStrikeZone:
+                    return SwingResultType.Swing;
+                default: 
+                    return SwingResultType.NoSwing;
             }
-
-            if (swingRandomValue > swingProbabilityOutsideStrikeZone + (situation.Balls - situation.Strikes) * 5)
-                return SwingResultType.Swing;
-
-            return SwingResultType.NoSwing;
         }
 
         private static HittingResultType HittingDefinition(SwingResultType swingResult, int hittingProbability, int batterNumberComponent, int pitcherCoefficient, int numberOfPitches, GameSituation situation, int handsCoefficient, StadiumFactor factor)

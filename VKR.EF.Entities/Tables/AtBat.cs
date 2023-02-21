@@ -58,10 +58,11 @@ namespace VKR.EF.Entities.Tables
 
         public byte OutsForThisAtBat(GameSituation lastSituation, GameSituation previousSituation)
         {
-            if (lastSituation.Offense.TeamAbbreviation == previousSituation.Offense.TeamAbbreviation)
-                return (byte)(lastSituation.Outs - previousSituation.Outs);
-
-            return lastSituation.Outs;
+            if (lastSituation.Offense.TeamAbbreviation != previousSituation.Offense.TeamAbbreviation)
+                return lastSituation.Outs;
+            if (lastSituation.Outs < previousSituation.Outs)
+                return lastSituation.Outs;
+            return (byte)(lastSituation.Outs - previousSituation.Outs);
         }
 
         /// <summary>
