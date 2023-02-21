@@ -64,6 +64,23 @@ namespace VKR.PL.NET5
             ShowManager(team.Manager);
             ShowTeamStadiums(team);
             await ShowRetiredNumbers(team);
+            ShowTeamColors(team);
+        }
+
+        private void ShowTeamColors(Team team)
+        {
+            dgvTeamColors.Rows.Clear();
+
+            foreach (var color in team.TeamColors)
+            {
+                var row = new DataGridViewRow();
+                row.CreateCells(dgvTeamColors);
+
+                row.Cells[1].Value = $"#{color.RedComponent:X2}{color.GreenComponent:X2}{color.BlueComponent:X2}";
+                row.Cells[0].Style.BackColor = color.Color;
+                row.Cells[0].Style.SelectionBackColor = color.Color;
+                dgvTeamColors.Rows.Add(row);
+            }
         }
 
         private async Task ShowRetiredNumbers(Team team)
@@ -156,10 +173,27 @@ namespace VKR.PL.NET5
         {
             Visible = false;
 
-            using (var form = new AddRetiredNumberForm(_teams[_teamNumber])) 
+            using (var form = new AddRetiredNumberForm(_teams[_teamNumber]))
                 form.ShowDialog();
 
             Visible = true;
+        }
+
+        private void dgvTeamColors_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var colorNumber = dgvTeamColors.SelectedRows[0].Index;
+
+            colorDialog.Color = _teams[_teamNumber].TeamColors[colorNumber].Color;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                var color = colorDialog.Color;
+
+                _teams[_teamNumber].TeamColors[colorNumber].RedComponent = color.R;
+                _teams[_teamNumber].TeamColors[colorNumber].GreenComponent = color.G;
+                _teams[_teamNumber].TeamColors[colorNumber].BlueComponent = color.B;
+
+                ShowTeamColors(_teams[_teamNumber]);
+            }
         }
     }
 }

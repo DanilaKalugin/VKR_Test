@@ -34,6 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamInformationForm));
             this.btnDecreaseTeamNumberBy1 = new System.Windows.Forms.Button();
             this.btnIncreaseTeamNumberBy1 = new System.Windows.Forms.Button();
@@ -76,7 +79,12 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dgvTeamColors = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnClose = new System.Windows.Forms.Button();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -85,6 +93,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStadiums)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRetiredNumbers)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTeamColors)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDecreaseTeamNumberBy1
@@ -288,6 +298,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -606,6 +617,75 @@
             this.Column2.ReadOnly = true;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabPage4.Controls.Add(this.dgvTeamColors);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(692, 308);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Team colors";
+            // 
+            // dgvTeamColors
+            // 
+            this.dgvTeamColors.AllowUserToAddRows = false;
+            this.dgvTeamColors.AllowUserToDeleteRows = false;
+            this.dgvTeamColors.AllowUserToResizeColumns = false;
+            this.dgvTeamColors.AllowUserToResizeRows = false;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvTeamColors.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvTeamColors.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTeamColors.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgvTeamColors.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTeamColors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvTeamColors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTeamColors.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column3,
+            this.Column4});
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTeamColors.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvTeamColors.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgvTeamColors.EnableHeadersVisualStyles = false;
+            this.dgvTeamColors.GridColor = System.Drawing.Color.Gainsboro;
+            this.dgvTeamColors.Location = new System.Drawing.Point(3, 3);
+            this.dgvTeamColors.Name = "dgvTeamColors";
+            this.dgvTeamColors.ReadOnly = true;
+            this.dgvTeamColors.RowHeadersVisible = false;
+            this.dgvTeamColors.RowTemplate.Height = 25;
+            this.dgvTeamColors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTeamColors.Size = new System.Drawing.Size(686, 247);
+            this.dgvTeamColors.TabIndex = 2;
+            this.dgvTeamColors.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTeamColors_CellDoubleClick);
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 10F;
+            this.Column3.HeaderText = "Color";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "RGB code";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -621,6 +701,10 @@
             this.btnClose.TabIndex = 107;
             this.btnClose.Text = "CLOSE";
             this.btnClose.UseVisualStyleBackColor = false;
+            // 
+            // colorDialog
+            // 
+            this.colorDialog.FullOpen = true;
             // 
             // TeamInformationForm
             // 
@@ -647,6 +731,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStadiums)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRetiredNumbers)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTeamColors)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -695,5 +781,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button btnAddRetiredNumber;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.DataGridView dgvTeamColors;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.ColorDialog colorDialog;
     }
 }

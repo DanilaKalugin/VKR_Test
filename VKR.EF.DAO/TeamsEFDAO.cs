@@ -60,11 +60,11 @@ namespace VKR.EF.DAO
 
             return await db.Teams.Include(t => t.TeamColors)
                 .Include(t => t.Manager)
-                .ThenInclude(m => m.City)
+                    .ThenInclude(m => m.City)
                 .Include(t => t.Division)
-                .ThenInclude(d => d.League)
+                    .ThenInclude(d => d.League)
                 .Include(t => t.StadiumsForMatchTypes)
-                .ThenInclude(tsmt => tsmt.Stadium)
+                    .ThenInclude(tsmt => tsmt.Stadium)
                 .OrderBy(t => t.TeamName)
                 .ToListAsync()
                 .ConfigureAwait(false);
