@@ -20,6 +20,7 @@ namespace VKR.PL.NET5
             txtPlayer.Text = player.FullName;
             textBox1.Text = lineupType;
             panel1.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{player.Id:0000}.png");
+            Text = $"Select position for {player.FullName}";
         }
 
         private void btnCheck_Click(object sender, EventArgs e)

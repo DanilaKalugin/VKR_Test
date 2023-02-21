@@ -124,12 +124,13 @@
             this.btnClose.Text = "CLOSE";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // SetStadiumForMatchTypeAndTeam
+            // SetStadiumForMatchTypeAndTeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(539, 152);
+            this.ControlBox = false;
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtMatchType);
             this.Controls.Add(this.txtTeam);
@@ -138,10 +139,10 @@
             this.Controls.Add(cbStadium);
             this.Controls.Add(this.cbStadiums);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "SetStadiumForMatchTypeAndTeam";
+            this.Name = "SetStadiumForMatchTypeAndTeamForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SetStadiumForMatchTypeAndTeam";
             this.Load += new System.EventHandler(this.SetStadiumForMatchTypeAndTeam_Load);

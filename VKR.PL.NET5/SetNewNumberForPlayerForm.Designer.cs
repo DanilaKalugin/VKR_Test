@@ -130,6 +130,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(539, 152);
+            this.ControlBox = false;
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtPlayer);
             this.Controls.Add(this.txtTeam);
@@ -137,7 +138,7 @@
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(cbStadium);
             this.Controls.Add(this.domainUpDown1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SetNewNumberForPlayerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

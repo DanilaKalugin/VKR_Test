@@ -26,6 +26,7 @@ namespace VKR.PL.NET5
             txtPlayer.Value = _player.FullName;
 
             panel1.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{_team.TeamAbbreviation}.png");
+            Text = $"Select new number for {_player.FullName} in {_team.TeamName}";
         }
 
         private async void SetNewNumberForPlayerForm_Load(object sender, EventArgs e)
