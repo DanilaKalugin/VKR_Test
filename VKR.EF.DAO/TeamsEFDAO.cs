@@ -26,22 +26,24 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            var f = await db.Teams.Include(t => t.TeamRating)
+            var teams = await db.Teams.Include(t => t.TeamRating)
                 .Include(t => t.TeamColors)
                 .Include(t => t.Manager)
                 .Include(t => t.Division)
-                .ThenInclude(d => d.League)
+                    .ThenInclude(d => d.League)
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            var f1 = await db.TeamStandings
+            var standings = await db.TeamStandings
                 .Where(ts => ts.MatchType == type && ts.Season == season)
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            return f.Join(f1,
-                    t => t.TeamAbbreviation, tb => tb.TeamAbbreviation,
-                    (team, balance) => team.SetTeamBalance(balance)).ToList();
+            return teams.Join(standings,
+                    t => t.TeamAbbreviation, 
+                    tb => tb.TeamAbbreviation,
+                    (team, balance) => team.SetTeamBalance(balance))
+                .ToList();
         }
 
         public async Task<TeamBalance> GetNewTeamBalanceForThisTeam(Team team, TypeOfMatchEnum matchType, int year)

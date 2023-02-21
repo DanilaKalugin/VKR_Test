@@ -112,7 +112,8 @@ namespace VKR.EF.DAO
                 }).ToListAsync()
                 .ConfigureAwait(false);
 
-            var pitcher = await db.StartingLineups.Include(sl => sl.PlayerInTeam)
+            var pitcher = await db.StartingLineups
+                .Include(sl => sl.PlayerInTeam)
                 .ThenInclude(pit => pit.Player)
                 .Where(sl =>
                     sl.LineupTypeId == 5 &&
@@ -127,7 +128,8 @@ namespace VKR.EF.DAO
                 }).ToListAsync()
                 .ConfigureAwait(false);
 
-            var pitcherDH = await db.StartingLineups.Include(sl => sl.PlayerInTeam)
+            var pitcherDH = await db.StartingLineups
+                .Include(sl => sl.PlayerInTeam)
                 .Where(sl => lineupType.Id % 2 == 0 &&
                     sl.PlayerInTeam.CurrentPlayerInTeamStatus != InTeamStatusEnum.NotInThisTeam && sl.PlayerInTeam.TeamId == team.TeamAbbreviation && sl.PlayerInTeam.PlayerId == startingPitcher.Id)
                 .Select(sl => new LineupForMatch
@@ -139,13 +141,17 @@ namespace VKR.EF.DAO
                 }).ToListAsync()
                 .ConfigureAwait(false);
 
-            await db.LineupsForMatches.AddRangeAsync(startingLineup);
+            await db.LineupsForMatches.AddRangeAsync(startingLineup)
+                .ConfigureAwait(false);
 
-            if (!match.DHRule) 
-                await db.LineupsForMatches.AddRangeAsync(pitcherDH);
+            if (!match.DHRule)
+                await db.LineupsForMatches.AddRangeAsync(pitcherDH)
+                    .ConfigureAwait(false);
 
             db.LineupsForMatches.AddRange(pitcher);
-            await db.SaveChangesAsync();
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         private async Task<Player> FindStartingPitcherForThisTeamAsync(Team team)
@@ -219,8 +225,11 @@ namespace VKR.EF.DAO
                 HomeTeamRuns = match.GameSituations.Last().HomeTeamRuns
             };
 
-            await db.MatchResults.AddAsync(matchRes);
-            await db.SaveChangesAsync();
+            await db.MatchResults.AddAsync(matchRes)
+                .ConfigureAwait(false);
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task AddNewAtBat(AtBat atBat)
@@ -237,6 +246,7 @@ namespace VKR.EF.DAO
         public async Task AddNewRun(Run run)
         {
             await using var db = new VKRApplicationContext();
+
             await db.Runs.AddAsync(run)
                 .ConfigureAwait(false);
 
