@@ -58,7 +58,7 @@ namespace VKR.PL.NET5
                 row.Cells[2].Value = teams[i].Wins;
                 row.Cells[3].Value = teams[i].Losses;
                 row.Cells[4].Value = gamesBehind;
-                row.Cells[5].Value = teams[i].Pct.ToString("#.000", new CultureInfo("en-US"));
+                row.Cells[5].Value = teams[i].WinPercentage.ToString("#.000", new CultureInfo("en-US"));
                 row.Cells[6].Value = teams[i].StreakString;
                 row.Cells[7].Value = teams[i].RunsScored;
                 row.Cells[8].Value = teams[i].RunsAllowed;

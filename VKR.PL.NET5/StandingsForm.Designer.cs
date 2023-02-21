@@ -196,7 +196,7 @@ namespace VKR.PL.NET5
             this.TeamColor.Name = "TeamColor";
             this.TeamColor.ReadOnly = true;
             this.TeamColor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TeamColor.Width = 16;
+            this.TeamColor.Width = 22;
             // 
             // TeamName
             // 

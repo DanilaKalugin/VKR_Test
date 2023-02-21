@@ -20,7 +20,7 @@ namespace VKR.EF.Entities.ViewModels
         public int Wins => HomeWins + AwayWins;
         public int Losses => HomeLosses + AwayLosses;
 
-        public double Pct => Wins + Losses == 0 ? 0 : Math.Round(Wins / (double)(Wins + Losses), 3);
+        public double WinPercentage => Wins + Losses == 0 ? 0 : Math.Round(Wins / (double)(Wins + Losses), 3);
         public string HomeBalance => $"{HomeWins}-{HomeLosses}";
         public string AwayBalance => $"{AwayWins}-{AwayLosses}";
 

@@ -31,7 +31,7 @@ namespace VKR.BLL.NET5
             foreach (var team in teams) team.GamesBehind = (double)(leaderW - leaderL - (team.Wins - team.Losses)) / 2;
 
             teams = teams.OrderBy(team => team.GamesBehind)
-                .ThenByDescending(team => team.Wins)
+                .ThenByDescending(team => team.WinPercentage)
                 .ThenByDescending(team => team.RunDifferential)
                 .ThenByDescending(team => team.RunsScored).ToList();
 
