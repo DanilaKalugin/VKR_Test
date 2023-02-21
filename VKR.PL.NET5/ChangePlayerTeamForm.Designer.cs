@@ -198,13 +198,13 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvPlayers.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPlayers.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvPlayers.Location = new System.Drawing.Point(16, 314);
+            this.dgvPlayers.Location = new System.Drawing.Point(12, 314);
             this.dgvPlayers.MultiSelect = false;
             this.dgvPlayers.Name = "dgvPlayers";
             this.dgvPlayers.ReadOnly = true;
             this.dgvPlayers.RowHeadersVisible = false;
             this.dgvPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPlayers.Size = new System.Drawing.Size(781, 374);
+            this.dgvPlayers.Size = new System.Drawing.Size(785, 376);
             this.dgvPlayers.TabIndex = 59;
             this.dgvPlayers.SelectionChanged += new System.EventHandler(this.dgvPlayers_SelectionChanged);
             // 
@@ -347,7 +347,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(809, 700);
+            this.ClientSize = new System.Drawing.Size(809, 702);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);

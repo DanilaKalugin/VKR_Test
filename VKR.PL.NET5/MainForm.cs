@@ -127,7 +127,7 @@ namespace VKR.PL.NET5
 
             panel8.BackColor = gameSituation.Offense.TeamColorForThisMatch;
             btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.Offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.B * 0.9));
-            
+
             pbCurrentOffenseLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{_newGameSituation.Offense.TeamAbbreviation}.png");
             var nextBatter = GetBatterByGameSituation(gameSituation);
             NewBatterDisplaying(nextBatter);
@@ -205,7 +205,7 @@ namespace VKR.PL.NET5
                 lb.Text += lb.Text == "►TODAY: " ? $"{valueWithText}" : $", {valueWithText}";
             }
 
-            var atBatsForThisBatter = _currentMatch.AtBats.Where(atBat => atBat.BatterId == batter.Id).ToList();
+            var atBatsForThisBatter = _currentMatch.AtBats.Where(atBat => atBat.BatterId == batter.BatterId).ToList();
 
             var HBPs = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.HitByPitch);
             var BBs = atBatsForThisBatter.Count(atBat => atBat.AtBatType == AtBatType.Walk);
@@ -364,6 +364,11 @@ namespace VKR.PL.NET5
 
         private bool BuntAttemptDefinition()
         {
+            var endOfLastAtBat = _currentMatch.GameSituations.FindLastIndex(ab => GameSituation.AtBatEndingConditions.Contains(ab.Result) && ab.Result != PitchResult.SacrificeBunt);
+            var lastBunt = _currentMatch.GameSituations.FindLastIndex(gs => gs.Result == PitchResult.SacrificeBunt);
+
+            if (lastBunt >= endOfLastAtBat) return false;
+
             var buntAttempt = RandomGenerators.BuntAttempt_Definition(_newGameSituation, _currentMatch.AwayTeam, _currentMatch.AtBats);
             return buntAttempt == RandomGenerators.BuntAttempt.Attempt;
         }
@@ -372,7 +377,10 @@ namespace VKR.PL.NET5
         {
             Pitch pitch;
 
-            var stealingAttempt = _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt || _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
+            var stealing = _newGameSituation.RunnerOnFirst.IsBaseStealingAttempt ||
+                           _newGameSituation.RunnerOnSecond.IsBaseStealingAttempt;
+
+            var stealingAttempt = !_isAutoSimulation ? stealing : stealing && _newGameSituation.Outs < 2;
             var countOfAtBats = _currentMatch.AtBats.Count;
             var typeOfStealing = 0;
 
@@ -620,18 +628,19 @@ namespace VKR.PL.NET5
 
         private void MainForm_ClientSizeChanged(object sender, EventArgs e)
         {
-            runnerData1.Location = new Point(Size.Width - 292, Size.Height / 2 - 50);
+            runnerData1.Location = new Point(Size.Width - 292, Math.Max(Size.Height / 2 - 20, 427));
             runnerData2.Location = new Point(Size.Width / 2 - 132, 144);
-            runnerData3.Location = new Point(12, Size.Height / 2 - 50);
-
-            btnNewPitch.Location = new Point(panel1.Width / 2 - 303, 10);
-            btnBuntAttempt.Location = new Point(panel1.Width / 2 + 3, 10);
-            btnManualMode.Location = new Point(ClientSize.Width / 2 - 298, ClientSize.Height - 291);
-            btnAutoMode.Location = new Point(ClientSize.Width / 2 + 8, ClientSize.Height - 291);
+            runnerData3.Location = new Point(12, Size.Height / 2 - 20);
 
             label28.Visible = Size.Width > 1300;
             awayLOB.Visible = Size.Width > 1300;
             homeLOB.Visible = Size.Width > 1300;
+        }
+        
+        private void panelCurrentBatter_SizeChanged(object sender, EventArgs e)
+        {
+            batterOPSValue.Visible = panelCurrentBatter.Width >= 725;
+            label16.Visible = panelCurrentBatter.Width >= 725;
         }
 
         private async void timer1_Tick(object sender, EventArgs e)
@@ -672,9 +681,10 @@ namespace VKR.PL.NET5
             timer1.Enabled = isAutoSim;
             btnNewPitch.Enabled = !isAutoSim;
             btnBuntAttempt.Enabled = !isAutoSim;
+            btnChangeBatter.Visible = !isAutoSim;
             btnManualMode.BackColor = _isAutoSimulation ? Color.DimGray : Color.Gainsboro;
             btnAutoMode.BackColor = !_isAutoSimulation ? Color.DimGray : Color.Gainsboro;
-            panel1.Visible = !_isAutoSimulation;
+            tableLayoutPanel2.RowStyles[1].Height = isAutoSim ? 0 : 50;
         }
 
         private async Task GenerateNewBunt()

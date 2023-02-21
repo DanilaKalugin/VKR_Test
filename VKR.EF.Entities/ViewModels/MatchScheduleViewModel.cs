@@ -33,13 +33,13 @@ namespace VKR.EF.Entities.ViewModels
         {
             get
             {
+                if (!IsPlayed)
+                    return "Scheduled";
+
                 if (!IsEnded)
                     return $"{OrdinalNumerals.GetOrdinalNumeralFromQuantitative(CurrentInning)} inning";
 
-                if (CurrentInning != 9)
-                    return CurrentInning == 0 ? "" : $"Final/{CurrentInning}";
-
-                return "Final";
+                return CurrentInning != 9 ? $"Final/{CurrentInning}" : "Final";
             }
         }
     }

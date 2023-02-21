@@ -116,11 +116,15 @@ namespace VKR.PL.NET5
             this.lb2ndInning = new System.Windows.Forms.Label();
             this.lb1stInning = new System.Windows.Forms.Label();
             this.panelScoreBoard = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
@@ -178,10 +182,10 @@ namespace VKR.PL.NET5
             this.btnManualMode = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnAutoMode = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.runnerData1 = new VKR.PL.Controls.NET5.RunnerData();
             this.runnerData2 = new VKR.PL.Controls.NET5.RunnerData();
             this.runnerData3 = new VKR.PL.Controls.NET5.RunnerData();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             label36 = new System.Windows.Forms.Label();
             panel27 = new System.Windows.Forms.Panel();
             label24 = new System.Windows.Forms.Label();
@@ -195,7 +199,11 @@ namespace VKR.PL.NET5
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panelScoreBoard.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panelNextHomeBatters.SuspendLayout();
@@ -203,7 +211,7 @@ namespace VKR.PL.NET5
             this.panelCurrentPitcher.SuspendLayout();
             this.PitchingTeamColor.SuspendLayout();
             this.panelLastAtBat.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label36
@@ -324,12 +332,13 @@ namespace VKR.PL.NET5
             // btnNewPitch
             // 
             this.btnNewPitch.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnNewPitch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNewPitch.FlatAppearance.BorderSize = 0;
             this.btnNewPitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewPitch.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnNewPitch.Location = new System.Drawing.Point(3, 10);
+            this.btnNewPitch.Location = new System.Drawing.Point(3, 43);
             this.btnNewPitch.Name = "btnNewPitch";
-            this.btnNewPitch.Size = new System.Drawing.Size(280, 35);
+            this.btnNewPitch.Size = new System.Drawing.Size(284, 34);
             this.btnNewPitch.TabIndex = 0;
             this.btnNewPitch.TabStop = false;
             this.btnNewPitch.Text = "NEXT PITCH";
@@ -531,6 +540,7 @@ namespace VKR.PL.NET5
             this.panelCurrentBatter.Name = "panelCurrentBatter";
             this.panelCurrentBatter.Size = new System.Drawing.Size(714, 110);
             this.panelCurrentBatter.TabIndex = 3;
+            this.panelCurrentBatter.SizeChanged += new System.EventHandler(this.panelCurrentBatter_SizeChanged);
             this.panelCurrentBatter.VisibleChanged += new System.EventHandler(this.panel6_VisibleChanged);
             // 
             // label14
@@ -801,10 +811,11 @@ namespace VKR.PL.NET5
             // 
             // away2
             // 
+            this.away2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.away2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.away2.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away2.ForeColor = System.Drawing.Color.White;
-            this.away2.Location = new System.Drawing.Point(390, 53);
+            this.away2.Location = new System.Drawing.Point(326, 0);
             this.away2.Margin = new System.Windows.Forms.Padding(0);
             this.away2.Name = "away2";
             this.away2.Size = new System.Drawing.Size(45, 39);
@@ -813,10 +824,11 @@ namespace VKR.PL.NET5
             // 
             // away3
             // 
+            this.away3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.away3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.away3.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away3.ForeColor = System.Drawing.Color.White;
-            this.away3.Location = new System.Drawing.Point(435, 53);
+            this.away3.Location = new System.Drawing.Point(371, 0);
             this.away3.Margin = new System.Windows.Forms.Padding(0);
             this.away3.Name = "away3";
             this.away3.Size = new System.Drawing.Size(45, 39);
@@ -825,10 +837,11 @@ namespace VKR.PL.NET5
             // 
             // away4
             // 
+            this.away4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.away4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.away4.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away4.ForeColor = System.Drawing.Color.White;
-            this.away4.Location = new System.Drawing.Point(480, 53);
+            this.away4.Location = new System.Drawing.Point(416, 0);
             this.away4.Margin = new System.Windows.Forms.Padding(0);
             this.away4.Name = "away4";
             this.away4.Size = new System.Drawing.Size(45, 39);
@@ -837,10 +850,11 @@ namespace VKR.PL.NET5
             // 
             // away5
             // 
+            this.away5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.away5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.away5.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away5.ForeColor = System.Drawing.Color.White;
-            this.away5.Location = new System.Drawing.Point(525, 53);
+            this.away5.Location = new System.Drawing.Point(461, 0);
             this.away5.Margin = new System.Windows.Forms.Padding(0);
             this.away5.Name = "away5";
             this.away5.Size = new System.Drawing.Size(45, 39);
@@ -849,10 +863,11 @@ namespace VKR.PL.NET5
             // 
             // away6
             // 
+            this.away6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.away6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.away6.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away6.ForeColor = System.Drawing.Color.White;
-            this.away6.Location = new System.Drawing.Point(570, 53);
+            this.away6.Location = new System.Drawing.Point(506, 0);
             this.away6.Margin = new System.Windows.Forms.Padding(0);
             this.away6.Name = "away6";
             this.away6.Size = new System.Drawing.Size(45, 39);
@@ -861,10 +876,11 @@ namespace VKR.PL.NET5
             // 
             // away7
             // 
+            this.away7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.away7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.away7.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away7.ForeColor = System.Drawing.Color.White;
-            this.away7.Location = new System.Drawing.Point(615, 53);
+            this.away7.Location = new System.Drawing.Point(551, 0);
             this.away7.Margin = new System.Windows.Forms.Padding(0);
             this.away7.Name = "away7";
             this.away7.Size = new System.Drawing.Size(45, 39);
@@ -873,10 +889,11 @@ namespace VKR.PL.NET5
             // 
             // away8
             // 
+            this.away8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.away8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.away8.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away8.ForeColor = System.Drawing.Color.White;
-            this.away8.Location = new System.Drawing.Point(660, 53);
+            this.away8.Location = new System.Drawing.Point(596, 0);
             this.away8.Margin = new System.Windows.Forms.Padding(0);
             this.away8.Name = "away8";
             this.away8.Size = new System.Drawing.Size(45, 39);
@@ -885,10 +902,11 @@ namespace VKR.PL.NET5
             // 
             // away9
             // 
+            this.away9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.away9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.away9.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away9.ForeColor = System.Drawing.Color.White;
-            this.away9.Location = new System.Drawing.Point(705, 53);
+            this.away9.Location = new System.Drawing.Point(641, 0);
             this.away9.Margin = new System.Windows.Forms.Padding(0);
             this.away9.Name = "away9";
             this.away9.Size = new System.Drawing.Size(45, 39);
@@ -897,10 +915,11 @@ namespace VKR.PL.NET5
             // 
             // away10
             // 
+            this.away10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.away10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.away10.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.away10.ForeColor = System.Drawing.Color.White;
-            this.away10.Location = new System.Drawing.Point(750, 53);
+            this.away10.Location = new System.Drawing.Point(686, 0);
             this.away10.Margin = new System.Windows.Forms.Padding(0);
             this.away10.Name = "away10";
             this.away10.Size = new System.Drawing.Size(45, 39);
@@ -909,10 +928,11 @@ namespace VKR.PL.NET5
             // 
             // home10
             // 
+            this.home10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.home10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.home10.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home10.ForeColor = System.Drawing.Color.White;
-            this.home10.Location = new System.Drawing.Point(750, 94);
+            this.home10.Location = new System.Drawing.Point(686, 0);
             this.home10.Margin = new System.Windows.Forms.Padding(0);
             this.home10.Name = "home10";
             this.home10.Size = new System.Drawing.Size(45, 39);
@@ -921,10 +941,11 @@ namespace VKR.PL.NET5
             // 
             // home9
             // 
+            this.home9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.home9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.home9.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home9.ForeColor = System.Drawing.Color.White;
-            this.home9.Location = new System.Drawing.Point(705, 94);
+            this.home9.Location = new System.Drawing.Point(641, 0);
             this.home9.Margin = new System.Windows.Forms.Padding(0);
             this.home9.Name = "home9";
             this.home9.Size = new System.Drawing.Size(45, 39);
@@ -933,10 +954,11 @@ namespace VKR.PL.NET5
             // 
             // home8
             // 
+            this.home8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.home8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.home8.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home8.ForeColor = System.Drawing.Color.White;
-            this.home8.Location = new System.Drawing.Point(660, 94);
+            this.home8.Location = new System.Drawing.Point(596, 0);
             this.home8.Margin = new System.Windows.Forms.Padding(0);
             this.home8.Name = "home8";
             this.home8.Size = new System.Drawing.Size(45, 39);
@@ -945,10 +967,11 @@ namespace VKR.PL.NET5
             // 
             // home7
             // 
+            this.home7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.home7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.home7.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home7.ForeColor = System.Drawing.Color.White;
-            this.home7.Location = new System.Drawing.Point(615, 94);
+            this.home7.Location = new System.Drawing.Point(551, 0);
             this.home7.Margin = new System.Windows.Forms.Padding(0);
             this.home7.Name = "home7";
             this.home7.Size = new System.Drawing.Size(45, 39);
@@ -957,10 +980,11 @@ namespace VKR.PL.NET5
             // 
             // home6
             // 
+            this.home6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.home6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.home6.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home6.ForeColor = System.Drawing.Color.White;
-            this.home6.Location = new System.Drawing.Point(570, 94);
+            this.home6.Location = new System.Drawing.Point(506, 0);
             this.home6.Margin = new System.Windows.Forms.Padding(0);
             this.home6.Name = "home6";
             this.home6.Size = new System.Drawing.Size(45, 39);
@@ -969,10 +993,11 @@ namespace VKR.PL.NET5
             // 
             // home5
             // 
+            this.home5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.home5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.home5.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home5.ForeColor = System.Drawing.Color.White;
-            this.home5.Location = new System.Drawing.Point(525, 94);
+            this.home5.Location = new System.Drawing.Point(461, 0);
             this.home5.Margin = new System.Windows.Forms.Padding(0);
             this.home5.Name = "home5";
             this.home5.Size = new System.Drawing.Size(45, 39);
@@ -981,10 +1006,11 @@ namespace VKR.PL.NET5
             // 
             // home4
             // 
+            this.home4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.home4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.home4.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home4.ForeColor = System.Drawing.Color.White;
-            this.home4.Location = new System.Drawing.Point(480, 94);
+            this.home4.Location = new System.Drawing.Point(416, 0);
             this.home4.Margin = new System.Windows.Forms.Padding(0);
             this.home4.Name = "home4";
             this.home4.Size = new System.Drawing.Size(45, 39);
@@ -993,10 +1019,11 @@ namespace VKR.PL.NET5
             // 
             // home3
             // 
+            this.home3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.home3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.home3.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home3.ForeColor = System.Drawing.Color.White;
-            this.home3.Location = new System.Drawing.Point(435, 94);
+            this.home3.Location = new System.Drawing.Point(371, 0);
             this.home3.Margin = new System.Windows.Forms.Padding(0);
             this.home3.Name = "home3";
             this.home3.Size = new System.Drawing.Size(45, 39);
@@ -1005,10 +1032,11 @@ namespace VKR.PL.NET5
             // 
             // home2
             // 
+            this.home2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.home2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.home2.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.home2.ForeColor = System.Drawing.Color.White;
-            this.home2.Location = new System.Drawing.Point(390, 94);
+            this.home2.Location = new System.Drawing.Point(326, 0);
             this.home2.Margin = new System.Windows.Forms.Padding(0);
             this.home2.Name = "home2";
             this.home2.Size = new System.Drawing.Size(45, 39);
@@ -1017,10 +1045,11 @@ namespace VKR.PL.NET5
             // 
             // awayRuns
             // 
+            this.awayRuns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.awayRuns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.awayRuns.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.awayRuns.ForeColor = System.Drawing.Color.White;
-            this.awayRuns.Location = new System.Drawing.Point(797, 53);
+            this.awayRuns.Location = new System.Drawing.Point(733, 0);
             this.awayRuns.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.awayRuns.Name = "awayRuns";
             this.awayRuns.Size = new System.Drawing.Size(45, 39);
@@ -1029,10 +1058,11 @@ namespace VKR.PL.NET5
             // 
             // homeRuns
             // 
+            this.homeRuns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.homeRuns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.homeRuns.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.homeRuns.ForeColor = System.Drawing.Color.White;
-            this.homeRuns.Location = new System.Drawing.Point(797, 94);
+            this.homeRuns.Location = new System.Drawing.Point(733, 0);
             this.homeRuns.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.homeRuns.Name = "homeRuns";
             this.homeRuns.Size = new System.Drawing.Size(45, 39);
@@ -1041,10 +1071,11 @@ namespace VKR.PL.NET5
             // 
             // awayHits
             // 
+            this.awayHits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.awayHits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.awayHits.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.awayHits.ForeColor = System.Drawing.Color.White;
-            this.awayHits.Location = new System.Drawing.Point(842, 53);
+            this.awayHits.Location = new System.Drawing.Point(778, 0);
             this.awayHits.Margin = new System.Windows.Forms.Padding(0);
             this.awayHits.Name = "awayHits";
             this.awayHits.Size = new System.Drawing.Size(45, 39);
@@ -1053,10 +1084,11 @@ namespace VKR.PL.NET5
             // 
             // homeHits
             // 
+            this.homeHits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.homeHits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.homeHits.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.homeHits.ForeColor = System.Drawing.Color.White;
-            this.homeHits.Location = new System.Drawing.Point(842, 94);
+            this.homeHits.Location = new System.Drawing.Point(778, 0);
             this.homeHits.Margin = new System.Windows.Forms.Padding(0);
             this.homeHits.Name = "homeHits";
             this.homeHits.Size = new System.Drawing.Size(45, 39);
@@ -1068,7 +1100,7 @@ namespace VKR.PL.NET5
             this.label20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.label20.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(842, 9);
+            this.label20.Location = new System.Drawing.Point(452, 0);
             this.label20.Margin = new System.Windows.Forms.Padding(0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(45, 39);
@@ -1081,7 +1113,7 @@ namespace VKR.PL.NET5
             this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.label21.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(797, 9);
+            this.label21.Location = new System.Drawing.Point(407, 0);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(45, 39);
@@ -1094,7 +1126,7 @@ namespace VKR.PL.NET5
             this.lb9thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb9thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb9thInning.ForeColor = System.Drawing.Color.White;
-            this.lb9thInning.Location = new System.Drawing.Point(750, 9);
+            this.lb9thInning.Location = new System.Drawing.Point(360, 0);
             this.lb9thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb9thInning.Name = "lb9thInning";
             this.lb9thInning.Size = new System.Drawing.Size(45, 39);
@@ -1107,7 +1139,7 @@ namespace VKR.PL.NET5
             this.lb8thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb8thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb8thInning.ForeColor = System.Drawing.Color.White;
-            this.lb8thInning.Location = new System.Drawing.Point(705, 9);
+            this.lb8thInning.Location = new System.Drawing.Point(315, 0);
             this.lb8thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb8thInning.Name = "lb8thInning";
             this.lb8thInning.Size = new System.Drawing.Size(45, 39);
@@ -1120,7 +1152,7 @@ namespace VKR.PL.NET5
             this.lb7thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb7thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb7thInning.ForeColor = System.Drawing.Color.White;
-            this.lb7thInning.Location = new System.Drawing.Point(660, 9);
+            this.lb7thInning.Location = new System.Drawing.Point(270, 0);
             this.lb7thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb7thInning.Name = "lb7thInning";
             this.lb7thInning.Size = new System.Drawing.Size(45, 39);
@@ -1133,7 +1165,7 @@ namespace VKR.PL.NET5
             this.lb6thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb6thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb6thInning.ForeColor = System.Drawing.Color.White;
-            this.lb6thInning.Location = new System.Drawing.Point(615, 9);
+            this.lb6thInning.Location = new System.Drawing.Point(225, 0);
             this.lb6thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb6thInning.Name = "lb6thInning";
             this.lb6thInning.Size = new System.Drawing.Size(45, 39);
@@ -1146,7 +1178,7 @@ namespace VKR.PL.NET5
             this.lb5thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb5thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb5thInning.ForeColor = System.Drawing.Color.White;
-            this.lb5thInning.Location = new System.Drawing.Point(570, 9);
+            this.lb5thInning.Location = new System.Drawing.Point(180, 0);
             this.lb5thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb5thInning.Name = "lb5thInning";
             this.lb5thInning.Size = new System.Drawing.Size(45, 39);
@@ -1159,7 +1191,7 @@ namespace VKR.PL.NET5
             this.lb4thInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb4thInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb4thInning.ForeColor = System.Drawing.Color.White;
-            this.lb4thInning.Location = new System.Drawing.Point(525, 9);
+            this.lb4thInning.Location = new System.Drawing.Point(135, 0);
             this.lb4thInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb4thInning.Name = "lb4thInning";
             this.lb4thInning.Size = new System.Drawing.Size(45, 39);
@@ -1172,7 +1204,7 @@ namespace VKR.PL.NET5
             this.lb3rdInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb3rdInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb3rdInning.ForeColor = System.Drawing.Color.White;
-            this.lb3rdInning.Location = new System.Drawing.Point(480, 9);
+            this.lb3rdInning.Location = new System.Drawing.Point(90, 0);
             this.lb3rdInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb3rdInning.Name = "lb3rdInning";
             this.lb3rdInning.Size = new System.Drawing.Size(45, 39);
@@ -1185,7 +1217,7 @@ namespace VKR.PL.NET5
             this.lb2ndInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb2ndInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb2ndInning.ForeColor = System.Drawing.Color.White;
-            this.lb2ndInning.Location = new System.Drawing.Point(435, 9);
+            this.lb2ndInning.Location = new System.Drawing.Point(45, 0);
             this.lb2ndInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb2ndInning.Name = "lb2ndInning";
             this.lb2ndInning.Size = new System.Drawing.Size(45, 39);
@@ -1198,7 +1230,7 @@ namespace VKR.PL.NET5
             this.lb1stInning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lb1stInning.Font = new System.Drawing.Font("Segoe UI", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb1stInning.ForeColor = System.Drawing.Color.White;
-            this.lb1stInning.Location = new System.Drawing.Point(390, 9);
+            this.lb1stInning.Location = new System.Drawing.Point(0, 0);
             this.lb1stInning.Margin = new System.Windows.Forms.Padding(0);
             this.lb1stInning.Name = "lb1stInning";
             this.lb1stInning.Size = new System.Drawing.Size(45, 39);
@@ -1208,42 +1240,10 @@ namespace VKR.PL.NET5
             // 
             // panelScoreBoard
             // 
-            this.panelScoreBoard.Controls.Add(this.panel6);
-            this.panelScoreBoard.Controls.Add(this.panel2);
+            this.panelScoreBoard.Controls.Add(this.panel14);
+            this.panelScoreBoard.Controls.Add(this.panel12);
+            this.panelScoreBoard.Controls.Add(this.panel10);
             this.panelScoreBoard.Controls.Add(this.panel16);
-            this.panelScoreBoard.Controls.Add(this.label20);
-            this.panelScoreBoard.Controls.Add(this.label21);
-            this.panelScoreBoard.Controls.Add(this.lb9thInning);
-            this.panelScoreBoard.Controls.Add(this.lb8thInning);
-            this.panelScoreBoard.Controls.Add(this.lb7thInning);
-            this.panelScoreBoard.Controls.Add(this.away2);
-            this.panelScoreBoard.Controls.Add(this.lb6thInning);
-            this.panelScoreBoard.Controls.Add(this.away3);
-            this.panelScoreBoard.Controls.Add(this.lb5thInning);
-            this.panelScoreBoard.Controls.Add(this.away4);
-            this.panelScoreBoard.Controls.Add(this.lb4thInning);
-            this.panelScoreBoard.Controls.Add(this.away5);
-            this.panelScoreBoard.Controls.Add(this.lb3rdInning);
-            this.panelScoreBoard.Controls.Add(this.away6);
-            this.panelScoreBoard.Controls.Add(this.lb2ndInning);
-            this.panelScoreBoard.Controls.Add(this.away7);
-            this.panelScoreBoard.Controls.Add(this.lb1stInning);
-            this.panelScoreBoard.Controls.Add(this.away8);
-            this.panelScoreBoard.Controls.Add(this.away9);
-            this.panelScoreBoard.Controls.Add(this.homeHits);
-            this.panelScoreBoard.Controls.Add(this.away10);
-            this.panelScoreBoard.Controls.Add(this.awayHits);
-            this.panelScoreBoard.Controls.Add(this.homeRuns);
-            this.panelScoreBoard.Controls.Add(this.home2);
-            this.panelScoreBoard.Controls.Add(this.awayRuns);
-            this.panelScoreBoard.Controls.Add(this.home3);
-            this.panelScoreBoard.Controls.Add(this.home10);
-            this.panelScoreBoard.Controls.Add(this.home4);
-            this.panelScoreBoard.Controls.Add(this.home9);
-            this.panelScoreBoard.Controls.Add(this.home5);
-            this.panelScoreBoard.Controls.Add(this.home8);
-            this.panelScoreBoard.Controls.Add(this.home6);
-            this.panelScoreBoard.Controls.Add(this.home7);
             this.panelScoreBoard.Controls.Add(this.label28);
             this.panelScoreBoard.Controls.Add(this.awayLOB);
             this.panelScoreBoard.Controls.Add(this.homeLOB);
@@ -1254,6 +1254,62 @@ namespace VKR.PL.NET5
             this.panelScoreBoard.Size = new System.Drawing.Size(1234, 138);
             this.panelScoreBoard.TabIndex = 45;
             // 
+            // panel14
+            // 
+            this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel14.Controls.Add(this.panel13);
+            this.panel14.Location = new System.Drawing.Point(64, 9);
+            this.panel14.MaximumSize = new System.Drawing.Size(823, 39);
+            this.panel14.MinimumSize = new System.Drawing.Size(0, 39);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(823, 39);
+            this.panel14.TabIndex = 71;
+            // 
+            // panel13
+            // 
+            this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel13.Controls.Add(this.lb1stInning);
+            this.panel13.Controls.Add(this.lb2ndInning);
+            this.panel13.Controls.Add(this.lb3rdInning);
+            this.panel13.Controls.Add(this.label20);
+            this.panel13.Controls.Add(this.lb4thInning);
+            this.panel13.Controls.Add(this.label21);
+            this.panel13.Controls.Add(this.lb5thInning);
+            this.panel13.Controls.Add(this.lb9thInning);
+            this.panel13.Controls.Add(this.lb6thInning);
+            this.panel13.Controls.Add(this.lb8thInning);
+            this.panel13.Controls.Add(this.lb7thInning);
+            this.panel13.Location = new System.Drawing.Point(326, 0);
+            this.panel13.MaximumSize = new System.Drawing.Size(497, 39);
+            this.panel13.MinimumSize = new System.Drawing.Size(0, 39);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(497, 39);
+            this.panel13.TabIndex = 71;
+            // 
+            // panel12
+            // 
+            this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel12.Controls.Add(this.panel6);
+            this.panel12.Controls.Add(this.home2);
+            this.panel12.Controls.Add(this.home3);
+            this.panel12.Controls.Add(this.home4);
+            this.panel12.Controls.Add(this.home5);
+            this.panel12.Controls.Add(this.home6);
+            this.panel12.Controls.Add(this.home7);
+            this.panel12.Controls.Add(this.home8);
+            this.panel12.Controls.Add(this.home9);
+            this.panel12.Controls.Add(this.home10);
+            this.panel12.Controls.Add(this.homeRuns);
+            this.panel12.Controls.Add(this.homeHits);
+            this.panel12.Location = new System.Drawing.Point(64, 94);
+            this.panel12.MaximumSize = new System.Drawing.Size(823, 39);
+            this.panel12.MinimumSize = new System.Drawing.Size(0, 39);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(823, 39);
+            this.panel12.TabIndex = 71;
+            // 
             // panel6
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1262,7 +1318,7 @@ namespace VKR.PL.NET5
             this.panel6.Controls.Add(this.label17);
             this.panel6.Controls.Add(this.label23);
             this.panel6.Controls.Add(this.label29);
-            this.panel6.Location = new System.Drawing.Point(64, 94);
+            this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.MaximumSize = new System.Drawing.Size(326, 39);
             this.panel6.MinimumSize = new System.Drawing.Size(0, 39);
             this.panel6.Name = "panel6";
@@ -1295,10 +1351,10 @@ namespace VKR.PL.NET5
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label23.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label23.Location = new System.Drawing.Point(241, 3);
+            this.label23.Location = new System.Drawing.Point(241, 0);
             this.label23.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(78, 31);
+            this.label23.Size = new System.Drawing.Size(85, 39);
             this.label23.TabIndex = 46;
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label23.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
@@ -1317,6 +1373,30 @@ namespace VKR.PL.NET5
             this.label29.Size = new System.Drawing.Size(287, 39);
             this.label29.TabIndex = 4;
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label29.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
+            // 
+            // panel10
+            // 
+            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel10.Controls.Add(this.panel2);
+            this.panel10.Controls.Add(this.away2);
+            this.panel10.Controls.Add(this.away3);
+            this.panel10.Controls.Add(this.away4);
+            this.panel10.Controls.Add(this.away5);
+            this.panel10.Controls.Add(this.away6);
+            this.panel10.Controls.Add(this.away7);
+            this.panel10.Controls.Add(this.away8);
+            this.panel10.Controls.Add(this.away9);
+            this.panel10.Controls.Add(this.away10);
+            this.panel10.Controls.Add(this.awayRuns);
+            this.panel10.Controls.Add(this.awayHits);
+            this.panel10.Location = new System.Drawing.Point(64, 53);
+            this.panel10.MaximumSize = new System.Drawing.Size(823, 39);
+            this.panel10.MinimumSize = new System.Drawing.Size(0, 39);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(823, 39);
+            this.panel10.TabIndex = 71;
             // 
             // panel2
             // 
@@ -1325,7 +1405,7 @@ namespace VKR.PL.NET5
             this.panel2.Controls.Add(this.panel11);
             this.panel2.Controls.Add(this.label22);
             this.panel2.Controls.Add(this.label18);
-            this.panel2.Location = new System.Drawing.Point(64, 53);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.MaximumSize = new System.Drawing.Size(326, 39);
             this.panel2.MinimumSize = new System.Drawing.Size(0, 39);
             this.panel2.Name = "panel2";
@@ -1337,10 +1417,10 @@ namespace VKR.PL.NET5
             this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label22.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label22.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label22.Location = new System.Drawing.Point(241, 4);
+            this.label22.Location = new System.Drawing.Point(241, 0);
             this.label22.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(78, 31);
+            this.label22.Size = new System.Drawing.Size(85, 39);
             this.label22.TabIndex = 45;
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label22.BackColorChanged += new System.EventHandler(this.BackColorChanging_label);
@@ -1841,7 +1921,7 @@ namespace VKR.PL.NET5
             this.label32.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.label32.MaximumSize = new System.Drawing.Size(140, 31);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(124, 31);
+            this.label32.Size = new System.Drawing.Size(105, 31);
             this.label32.TabIndex = 53;
             this.label32.Text = "Last At-bat:";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1852,24 +1932,24 @@ namespace VKR.PL.NET5
             this.label44.Dock = System.Windows.Forms.DockStyle.Right;
             this.label44.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label44.ForeColor = System.Drawing.Color.White;
-            this.label44.Location = new System.Drawing.Point(374, 0);
+            this.label44.Location = new System.Drawing.Point(391, 0);
             this.label44.MaximumSize = new System.Drawing.Size(400, 31);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(207, 31);
+            this.label44.Size = new System.Drawing.Size(190, 31);
             this.label44.TabIndex = 54;
             this.label44.Text = "00";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnBuntAttempt
             // 
-            this.btnBuntAttempt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuntAttempt.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnBuntAttempt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBuntAttempt.FlatAppearance.BorderSize = 0;
             this.btnBuntAttempt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuntAttempt.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBuntAttempt.Location = new System.Drawing.Point(298, 10);
+            this.btnBuntAttempt.Location = new System.Drawing.Point(293, 43);
             this.btnBuntAttempt.Name = "btnBuntAttempt";
-            this.btnBuntAttempt.Size = new System.Drawing.Size(280, 35);
+            this.btnBuntAttempt.Size = new System.Drawing.Size(285, 34);
             this.btnBuntAttempt.TabIndex = 55;
             this.btnBuntAttempt.TabStop = false;
             this.btnBuntAttempt.Text = "BUNT ATTEMPT";
@@ -1939,7 +2019,7 @@ namespace VKR.PL.NET5
             // 
             this.panel15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel15.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel15.Location = new System.Drawing.Point(124, 0);
+            this.panel15.Location = new System.Drawing.Point(105, 0);
             this.panel15.Margin = new System.Windows.Forms.Padding(0, 3, 3, 1);
             this.panel15.MaximumSize = new System.Drawing.Size(31, 31);
             this.panel15.Name = "panel15";
@@ -1951,9 +2031,9 @@ namespace VKR.PL.NET5
             this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label27.Font = new System.Drawing.Font("MicroFLF", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(155, 0);
+            this.label27.Location = new System.Drawing.Point(136, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(219, 31);
+            this.label27.Size = new System.Drawing.Size(255, 31);
             this.label27.TabIndex = 62;
             this.label27.Text = "00";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1990,14 +2070,14 @@ namespace VKR.PL.NET5
             // 
             // btnManualMode
             // 
-            this.btnManualMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnManualMode.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnManualMode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnManualMode.FlatAppearance.BorderSize = 0;
             this.btnManualMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnManualMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnManualMode.Location = new System.Drawing.Point(334, 750);
+            this.btnManualMode.Location = new System.Drawing.Point(3, 3);
             this.btnManualMode.Name = "btnManualMode";
-            this.btnManualMode.Size = new System.Drawing.Size(280, 35);
+            this.btnManualMode.Size = new System.Drawing.Size(284, 34);
             this.btnManualMode.TabIndex = 65;
             this.btnManualMode.TabStop = false;
             this.btnManualMode.Text = "MANUAL";
@@ -2006,41 +2086,30 @@ namespace VKR.PL.NET5
             // 
             // timer1
             // 
-            this.timer1.Interval = 2500;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // btnAutoMode
             // 
-            this.btnAutoMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAutoMode.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnAutoMode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAutoMode.FlatAppearance.BorderSize = 0;
             this.btnAutoMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAutoMode.Font = new System.Drawing.Font("MicroFLF", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAutoMode.Location = new System.Drawing.Point(629, 750);
+            this.btnAutoMode.Location = new System.Drawing.Point(293, 3);
             this.btnAutoMode.Name = "btnAutoMode";
-            this.btnAutoMode.Size = new System.Drawing.Size(280, 35);
+            this.btnAutoMode.Size = new System.Drawing.Size(285, 34);
             this.btnAutoMode.TabIndex = 66;
             this.btnAutoMode.TabStop = false;
             this.btnAutoMode.Text = "AUTOMATIC";
             this.btnAutoMode.UseVisualStyleBackColor = false;
             this.btnAutoMode.Click += new System.EventHandler(this.btnAutoMode_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.btnNewPitch);
-            this.panel1.Controls.Add(this.btnBuntAttempt);
-            this.panel1.Location = new System.Drawing.Point(331, 791);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(581, 55);
-            this.panel1.TabIndex = 67;
-            // 
             // runnerData1
             // 
             this.runnerData1.BaseType = VKR.PL.Controls.NET5.RunnerData.BaseTypeEnum.First;
             this.runnerData1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.runnerData1.Location = new System.Drawing.Point(958, 490);
+            this.runnerData1.Location = new System.Drawing.Point(958, 520);
             this.runnerData1.Name = "runnerData1";
             this.runnerData1.Runner = null;
             this.runnerData1.Size = new System.Drawing.Size(264, 100);
@@ -2053,7 +2122,7 @@ namespace VKR.PL.NET5
             // 
             this.runnerData2.BaseType = VKR.PL.Controls.NET5.RunnerData.BaseTypeEnum.Second;
             this.runnerData2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.runnerData2.Location = new System.Drawing.Point(576, 144);
+            this.runnerData2.Location = new System.Drawing.Point(493, 144);
             this.runnerData2.Name = "runnerData2";
             this.runnerData2.Runner = null;
             this.runnerData2.Size = new System.Drawing.Size(264, 100);
@@ -2066,7 +2135,7 @@ namespace VKR.PL.NET5
             // 
             this.runnerData3.BaseType = VKR.PL.Controls.NET5.RunnerData.BaseTypeEnum.Third;
             this.runnerData3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.runnerData3.Location = new System.Drawing.Point(12, 490);
+            this.runnerData3.Location = new System.Drawing.Point(12, 520);
             this.runnerData3.Name = "runnerData3";
             this.runnerData3.Runner = null;
             this.runnerData3.Size = new System.Drawing.Size(264, 100);
@@ -2074,15 +2143,32 @@ namespace VKR.PL.NET5
             this.runnerData3.TeamColor = System.Drawing.Color.Empty;
             this.runnerData3.Visible = false;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.btnNewPitch, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnBuntAttempt, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnAutoMode, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnManualMode, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(331, 766);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(581, 80);
+            this.tableLayoutPanel2.TabIndex = 73;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1234, 1041);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnAutoMode);
-            this.Controls.Add(this.btnManualMode);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.btnTeamStats);
             this.Controls.Add(this.lbTodayStats);
             this.Controls.Add(this.btnPlayerStats);
@@ -2106,7 +2192,7 @@ namespace VKR.PL.NET5
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1200, 1000);
+            this.MinimumSize = new System.Drawing.Size(1200, 765);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -2123,7 +2209,11 @@ namespace VKR.PL.NET5
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panelScoreBoard.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panelNextHomeBatters.ResumeLayout(false);
@@ -2132,7 +2222,7 @@ namespace VKR.PL.NET5
             this.panelCurrentPitcher.PerformLayout();
             this.PitchingTeamColor.ResumeLayout(false);
             this.panelLastAtBat.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2267,7 +2357,6 @@ namespace VKR.PL.NET5
         private Button btnManualMode;
         private Timer timer1;
         private Button btnAutoMode;
-        private Panel panel1;
         private Label label28;
         private Label awayLOB;
         private Label homeLOB;
@@ -2283,6 +2372,11 @@ namespace VKR.PL.NET5
         private Panel panel7;
         private Label label17;
         private Label label29;
+        private Panel panel10;
+        private Panel panel12;
+        private Panel panel13;
+        private Panel panel14;
+        private TableLayoutPanel tableLayoutPanel2;
     }
 }
 

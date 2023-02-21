@@ -23,8 +23,11 @@ namespace VKR.PL.Utils.NET5
                 return numberOfWalks == 1 ? "WALK" : $"{numberOfWalks} WALKS";
             }
 
-            if (match.AtBats.Any(atBat => atBat.BatterId == batter.Id && atBat.AtBatType == AtBatType.SacrificeFly)) 
+            if (match.AtBats.Any(atBat => atBat.BatterId == batter.BatterId && atBat.AtBatType == AtBatType.SacrificeFly)) 
                 return "SAC FLY";
+
+            if (match.AtBats.Any(atBat => atBat.BatterId == batter.BatterId && atBat.AtBatType == AtBatType.SacrificeBunt)) 
+                return "SAC BUNT";
 
             return batter.BattingStats.AVG.ToString("#.000", new CultureInfo("en-US"));
         }

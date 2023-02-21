@@ -67,6 +67,9 @@ namespace VKR.PL.NET5
             dgvLineup.DefaultCellStyle.SelectionBackColor = _teams[teamNumber].TeamColors[0].Color;
             dgvLineup.DefaultCellStyle.SelectionForeColor = Color.White;
 
+            dgvBench.DefaultCellStyle.SelectionBackColor = _teams[teamNumber].TeamColors[0].Color;
+            dgvBench.DefaultCellStyle.SelectionForeColor = Color.White;
+
             label4.ForeColor = _teams[teamNumber].TeamColors[0].Color;
             label5.ForeColor = _teams[teamNumber].TeamColors[0].Color;
             label6.ForeColor = _teams[teamNumber].TeamColors[0].Color;
@@ -122,7 +125,10 @@ namespace VKR.PL.NET5
                 dgvBench.Rows.Add($"{player.FirstName[0]}. {player.SecondName}");
 
             btnMoveToLowerRoster.Enabled = _teamsLineups[teamNumber][lineupNumber].Count > 0;
-            btnMoveToUpperRoster.Enabled = bench.Count > 0;
+            if (_rosterType != RosterType.StartingLineups)
+            {
+                btnMoveToUpperRoster.Enabled = bench.Count > 0;
+            }
 
             _lineupChanged = true;
         }
@@ -167,7 +173,7 @@ namespace VKR.PL.NET5
             label4.Text = player.CanPlayAsPitcher ? "ERA" : "AVG";
             label5.Text = player.CanPlayAsPitcher ? "SO" : "HR";
             label6.Text = player.CanPlayAsPitcher ? "WHIP" : "RBI";
-            
+
             if (!player.CanPlayAsPitcher)
             {
                 player.BattingStats = await _playersBl.GetBattingStatsByCode(player.Id, _matchDate.Year);
@@ -182,7 +188,7 @@ namespace VKR.PL.NET5
                 lbSecondValue.Text = player.PitchingStats.Strikeouts.ToString();
                 lbThirdValue.Text = player.PitchingStats.WHIP.ToString("0.00", new CultureInfo("en-US"));
             }
-            
+
             label7.Text = $@"Positions: {string.Join(", ", player.Positions.Select(position => position.ShortTitle))}";
 
             if (dgv1.SelectedRows.Count <= 0) return;
@@ -202,6 +208,10 @@ namespace VKR.PL.NET5
             var player = _rosterType == RosterType.FreeAgents
                 ? _teamsBench[0][0][dgvBench.SelectedRows[0].Index]
                 : _teamsBench[_teamNumber][_lineupNumber][dgvBench.SelectedRows[0].Index];
+
+            var availablePositions = GetAvailablePositionsForPlayer(player);
+            btnMoveToUpperRoster.Enabled = availablePositions.Any();
+
             ShowNewPlayer(dgvBench, dgvLineup, player);
         }
 
@@ -310,20 +320,9 @@ namespace VKR.PL.NET5
 
         private PlayerPosition? GetPlayerPositionForPlayer(Player player)
         {
-            var filledPositionsInLineup = _teamsLineups[_teamNumber][_lineupNumber].Select(p => p.PositionInLineup).ToList();
-            var positions = player.Positions.ToList();
+            var availablePositions = GetAvailablePositionsForPlayer(player);
 
-            if (_lineupNumber % 2 == 0)
-                positions.Add(new PlayerPosition
-                {
-                    Number = 10,
-                    ShortTitle = "DH",
-                    FullTitle = "Designated Hitter"
-                });
-
-            var availablePositions = positions.Where(pp => !filledPositionsInLineup.Contains(pp.ShortTitle)).ToList();
-
-            if (availablePositions.Count <= 1) 
+            if (availablePositions.Count == 1)
                 return availablePositions.First();
 
             var form = new SelectPlayerPositionForm(player, availablePositions, _typesOfLineups[_lineupNumber]);
@@ -335,7 +334,7 @@ namespace VKR.PL.NET5
         {
             Visible = false;
 
-            using (var form = new AddPlayerForm(_player)) 
+            using (var form = new AddPlayerForm(_player))
                 form.ShowDialog();
 
             Visible = true;
@@ -345,6 +344,22 @@ namespace VKR.PL.NET5
         {
             if (!Visible) return;
             await FillTables();
+        }
+
+        private List<PlayerPosition> GetAvailablePositionsForPlayer(Player player)
+        {
+            var filledPositionsInLineup = _teamsLineups[_teamNumber][_lineupNumber].Select(p => p.PositionInLineup).ToList();
+            var positions = player.Positions.ToList();
+
+            if (_lineupNumber % 2 == 0)
+                positions.Add(new PlayerPosition
+                {
+                    Number = 10,
+                    ShortTitle = "DH",
+                    FullTitle = "Designated Hitter"
+                });
+
+            return positions.Where(pp => !filledPositionsInLineup.Contains(pp.ShortTitle)).ToList();
         }
     }
 }
