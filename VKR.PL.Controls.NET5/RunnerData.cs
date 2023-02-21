@@ -27,7 +27,7 @@ namespace VKR.PL.Controls.NET5
             {
                 _baseTypeEnum = value;
                 var num = $@"{OrdinalNumerals.GetOrdinalNumeralFromQuantitative((int)value)} base";
-                lb1stBase.Text = num.ToUpper();
+                lbHeader.Text = num.ToUpper();
             }
         }
 
@@ -48,7 +48,7 @@ namespace VKR.PL.Controls.NET5
             set
             {
                 _teamColor = value;
-                lb1stBase.BackColor = value;
+                lbHeader.BackColor = value;
             }
         }
 
@@ -65,15 +65,20 @@ namespace VKR.PL.Controls.NET5
         {
             if (e.Runner is null) return;
 
-            RunnerOn1Photo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{e.Runner.RunnerPhotoId:0000}.png");
-            lb_Runner1_Name.Text = e.Runner.RunnerName.ToUpper();
-            lb_Runner1_Name.ForeColor = e.Runner.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
+            RunnerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/PlayerPhotos/Player{e.Runner.RunnerPhotoId:0000}.png");
+            lbRunnerName.Text = e.Runner.RunnerName.ToUpper();
+            lbRunnerName.ForeColor = e.Runner.IsBaseStealingAttempt ? Color.DarkGoldenrod : Color.Gainsboro;
         }
 
         private void RunnerData_Click(object sender, System.EventArgs e)
         {
             if (IsSelectedChanged != null)
                 IsSelectedChanged(this, e);
+        }
+
+        private void lbHeader_BackColorChanged(object sender, System.EventArgs e)
+        {
+            lbHeader.ForeColor = CorrectForeColorForAllBackColors.GetForeColorForThisSituation(lbHeader.BackColor, false);
         }
     }
 }
