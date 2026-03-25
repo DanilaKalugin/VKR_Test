@@ -14,8 +14,8 @@ namespace VKR.PL.NET5
     {
         private readonly TeamsBL _teamsBl = new();
         private readonly MatchBL _matchBl = new();
-        private List<Team> _teams;
-        private List<MatchFromSchedule> _matches;
+        private List<Team> _teams = null!;
+        private List<MatchFromSchedule> _matches = null!;
         private int _currentHomeColor;
         private int _currentAwayColor;
         private int _awayTeamNumber;

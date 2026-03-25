@@ -14,8 +14,8 @@ namespace VKR.PL.NET5
         private readonly DivisionBL _divisionBl = new();
         private readonly TeamsBL _teamsBl = new();
 
-        private List<Division> _divisions;
-        private List<Manager> _managers;
+        private List<Division> _divisions = null!;
+        private List<Manager> _managers = null!;
 
         private readonly Team _team;
         private readonly uint? _teamManager;

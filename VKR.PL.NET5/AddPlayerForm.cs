@@ -25,16 +25,16 @@ namespace VKR.PL.NET5
 
         private AddPlayerForm() => InitializeComponent();
 
-        public AddPlayerForm(Player player) : this()
+        public AddPlayerForm(Player? player) : this()
         {
             _player = player;
-            _cityId = player.City.Id;
+            _cityId = player!.City.Id;
             txtFirstName.Value = player.FirstName;
             txtLastName.Value = player.SecondName;
             dtpBirthDate.Value = player.DateOfBirth;
             numPlayerNumber.Value = player.PlayerNumber;
 
-            cbThrowLeft.Checked = _player.PitchingHand.PitchingHandId == PitchingHandEnum.Left;
+            cbThrowLeft.Checked = _player!.PitchingHand.PitchingHandId == PitchingHandEnum.Left;
             cbThrowRight.Checked = _player.PitchingHand.PitchingHandId == PitchingHandEnum.Right;
 
             cbBattingLeft.Checked = _player.BattingHand.BattingHandId == BattingHandEnum.Left;
@@ -175,9 +175,9 @@ namespace VKR.PL.NET5
             cbPlaceOfBirth.ValueMember = "Id";
         }
 
-        private void txtFirstName_Validated(object sender, EventArgs e) => _player.FirstName = txtFirstName.Value;
+        private void txtFirstName_Validated(object sender, EventArgs e) => _player!.FirstName = txtFirstName.Value;
 
-        private void txtLastName_Validated(object sender, EventArgs e) => _player.SecondName = txtLastName.Value;
+        private void txtLastName_Validated(object sender, EventArgs e) => _player!.SecondName = txtLastName.Value;
 
         private async void AddPlayerForm_VisibleChanged(object sender, EventArgs e)
         {
@@ -188,7 +188,7 @@ namespace VKR.PL.NET5
         private void cbPlaceOfBirth_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (_player is null) return; 
-            _player.PlaceOfBirth = (short)cbPlaceOfBirth.SelectedValue;
+            _player.PlaceOfBirth = (short)cbPlaceOfBirth.SelectedValue!;
         }
     }
 }

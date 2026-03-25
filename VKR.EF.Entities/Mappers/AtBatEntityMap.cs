@@ -50,11 +50,17 @@ namespace VKR.EF.Entities.Mappers
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired();
 
-            builder.Property(ab => ab.MatchId).HasColumnName("Match");
-            builder.Property(ab => ab.BatterId).HasColumnName("Batter");
-            builder.Property(ab => ab.AtBatType).HasColumnName("AtBatResult");
-            builder.Property(ab => ab.PitcherId).HasColumnName("Pitcher");
+            builder.Property(ab => ab.MatchId)
+                .HasColumnName("Match");
 
+            builder.Property(ab => ab.BatterId)
+                .HasColumnName("Batter");
+
+            builder.Property(ab => ab.AtBatType)
+                .HasColumnName("AtBatResult");
+
+            builder.Property(ab => ab.PitcherId)
+                .HasColumnName("Pitcher");
         }
     }
 }

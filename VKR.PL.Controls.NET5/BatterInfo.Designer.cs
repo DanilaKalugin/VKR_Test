@@ -29,67 +29,67 @@ namespace VKR.PL.Controls.NET5
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelCurrentSituationBatter = new System.Windows.Forms.Panel();
-            this.BatterStats = new System.Windows.Forms.Label();
-            this.lbBatterSecondName = new System.Windows.Forms.Label();
-            this.BatterNumber = new System.Windows.Forms.Label();
-            this.panelCurrentSituationBatter.SuspendLayout();
-            this.SuspendLayout();
+            panelCurrentSituationBatter = new System.Windows.Forms.Panel();
+            BatterStats = new System.Windows.Forms.Label();
+            lbBatterSecondName = new System.Windows.Forms.Label();
+            BatterNumber = new System.Windows.Forms.Label();
+            panelCurrentSituationBatter.SuspendLayout();
+            SuspendLayout();
             // 
             // panelCurrentSituationBatter
             // 
-            this.panelCurrentSituationBatter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.panelCurrentSituationBatter.Controls.Add(this.BatterStats);
-            this.panelCurrentSituationBatter.Controls.Add(this.lbBatterSecondName);
-            this.panelCurrentSituationBatter.Controls.Add(this.BatterNumber);
-            this.panelCurrentSituationBatter.Location = new System.Drawing.Point(0, 0);
-            this.panelCurrentSituationBatter.Name = "panelCurrentSituationBatter";
-            this.panelCurrentSituationBatter.Size = new System.Drawing.Size(250, 30);
-            this.panelCurrentSituationBatter.TabIndex = 45;
+            panelCurrentSituationBatter.BackColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            panelCurrentSituationBatter.Controls.Add(BatterStats);
+            panelCurrentSituationBatter.Controls.Add(lbBatterSecondName);
+            panelCurrentSituationBatter.Controls.Add(BatterNumber);
+            panelCurrentSituationBatter.Location = new System.Drawing.Point(0, 0);
+            panelCurrentSituationBatter.Name = "panelCurrentSituationBatter";
+            panelCurrentSituationBatter.Size = new System.Drawing.Size(250, 30);
+            panelCurrentSituationBatter.TabIndex = 45;
             // 
             // BatterStats
             // 
-            this.BatterStats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BatterStats.ForeColor = System.Drawing.Color.White;
-            this.BatterStats.Location = new System.Drawing.Point(163, 5);
-            this.BatterStats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.BatterStats.Name = "BatterStats";
-            this.BatterStats.Size = new System.Drawing.Size(86, 20);
-            this.BatterStats.TabIndex = 4;
-            this.BatterStats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            BatterStats.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            BatterStats.ForeColor = System.Drawing.Color.White;
+            BatterStats.Location = new System.Drawing.Point(163, 5);
+            BatterStats.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
+            BatterStats.Name = "BatterStats";
+            BatterStats.Size = new System.Drawing.Size(86, 20);
+            BatterStats.TabIndex = 4;
+            BatterStats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbBatterSecondName
             // 
-            this.lbBatterSecondName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBatterSecondName.ForeColor = System.Drawing.Color.White;
-            this.lbBatterSecondName.Location = new System.Drawing.Point(28, 5);
-            this.lbBatterSecondName.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.lbBatterSecondName.Name = "lbBatterSecondName";
-            this.lbBatterSecondName.Size = new System.Drawing.Size(149, 20);
-            this.lbBatterSecondName.TabIndex = 3;
-            this.lbBatterSecondName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lbBatterSecondName.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lbBatterSecondName.ForeColor = System.Drawing.Color.White;
+            lbBatterSecondName.Location = new System.Drawing.Point(28, 5);
+            lbBatterSecondName.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
+            lbBatterSecondName.Name = "lbBatterSecondName";
+            lbBatterSecondName.Size = new System.Drawing.Size(149, 20);
+            lbBatterSecondName.TabIndex = 3;
+            lbBatterSecondName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BatterNumber
             // 
-            this.BatterNumber.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BatterNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.BatterNumber.Location = new System.Drawing.Point(3, 5);
-            this.BatterNumber.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
-            this.BatterNumber.Name = "BatterNumber";
-            this.BatterNumber.Size = new System.Drawing.Size(25, 20);
-            this.BatterNumber.TabIndex = 1;
-            this.BatterNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            BatterNumber.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            BatterNumber.ForeColor = System.Drawing.Color.FromArgb(160, 160, 160);
+            BatterNumber.Location = new System.Drawing.Point(3, 5);
+            BatterNumber.Margin = new System.Windows.Forms.Padding(3, 5, 1, 5);
+            BatterNumber.Name = "BatterNumber";
+            BatterNumber.Size = new System.Drawing.Size(25, 20);
+            BatterNumber.TabIndex = 1;
+            BatterNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BatterInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panelCurrentSituationBatter);
-            this.Name = "BatterInfo";
-            this.Size = new System.Drawing.Size(250, 30);
-            this.panelCurrentSituationBatter.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(panelCurrentSituationBatter);
+            Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            Name = "BatterInfo";
+            Size = new System.Drawing.Size(250, 30);
+            panelCurrentSituationBatter.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion

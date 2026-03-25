@@ -13,7 +13,7 @@ namespace VKR.PL.NET5
     {
         private readonly StadiumsBL _stadiumsBl = new();
         private readonly TeamStadiumForTypeOfMatch _tsmt;
-        private List<Stadium> _stadiums;
+        private List<Stadium> _stadiums = null!;
 
         public SetStadiumForMatchTypeAndTeamForm(TeamStadiumForTypeOfMatch tsmt)
         {
@@ -49,7 +49,7 @@ namespace VKR.PL.NET5
         private void cbStadiums_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (_tsmt is null) return;
-            _tsmt.StadiumId = (ushort)cbStadiums.SelectedValue;
+            _tsmt.StadiumId = (ushort)cbStadiums.SelectedValue!;
         }
     }
 }

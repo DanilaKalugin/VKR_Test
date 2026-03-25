@@ -16,10 +16,10 @@ namespace VKR.PL.NET5
         private readonly PrimaryTeamColorBL _primaryColorBl = new();
         private readonly SeasonBL _seasonBl = new();
 
-        private Season _season;
-        private List<Player> _batters;
-        private List<Player> _pitchers;
-        private List<TeamColor> _teamsColors;
+        private Season _season = null!;
+        private List<Player> _batters = null!;
+        private List<Player> _pitchers = null!;
+        private List<TeamColor> _teamsColors = null!;
 
         public StatsMenuForm() => InitializeComponent();
 

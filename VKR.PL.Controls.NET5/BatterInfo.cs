@@ -10,8 +10,8 @@ namespace VKR.PL.Controls.NET5
 {
     public partial class BatterInfo : UserControl
     {
-        private static Match _match;
-        private Batter _batter;
+        private static Match _match = null!;
+        private Batter _batter = null!;
 
         [Browsable(false)]
         public Batter Batter
@@ -24,9 +24,9 @@ namespace VKR.PL.Controls.NET5
                 BatterChanged(this, args);
             }
         }
-        
+
         internal event EventHandler<PlayerChangedEventArgs> BatterChanged;
-        
+
         public BatterInfo()
         {
             InitializeComponent();

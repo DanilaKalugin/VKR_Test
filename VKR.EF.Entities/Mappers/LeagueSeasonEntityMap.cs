@@ -8,7 +8,9 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<LeagueSeason> builder)
         {
-            builder.ToTable("LeagueSeasons");
+            builder.ToTable("LeagueSeasons")
+                .ToTable(t => t.HasCheckConstraint("SeasonStart", "YEAR(SeasonStart) = Season"))
+                .ToTable(t => t.HasCheckConstraint("SeasonEnd", "YEAR(SeasonEnd) = Season"));
 
             builder.HasKey(ls => new { ls.SeasonId, ls.MatchTypeId });
 
@@ -38,10 +40,6 @@ namespace VKR.EF.Entities.Mappers
 
             builder.Property(ls => ls.MatchTypeId)
                 .HasColumnName("MatchType");
-
-            builder.HasCheckConstraint("SeasonStart", "YEAR(SeasonStart) = Season");
-
-            builder.HasCheckConstraint("SeasonEnd", "YEAR(SeasonEnd) = Season");
         }
     }
 }

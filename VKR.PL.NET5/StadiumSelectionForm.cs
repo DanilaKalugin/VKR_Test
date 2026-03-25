@@ -13,11 +13,11 @@ namespace VKR.PL.NET5
     public partial class StadiumSelectionForm : Form
     {
         private readonly StadiumsBL _stadiumsBl = new();
-        private List<Stadium?> _stadiums;
+        private List<Stadium?> _stadiums = null!;
         private int _stadiumNumber;
         public bool ExitFromCurrentMatch;
         public int MatchNumberForDelete;
-        public Match NewMatch;
+        private readonly Match NewMatch;
 
         public StadiumSelectionForm(Match match)
         {
@@ -28,7 +28,7 @@ namespace VKR.PL.NET5
             pbHomeTeamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{NewMatch.HomeTeam.TeamAbbreviation}.png");
         }
 
-        public void DisplayCurrentStadium()
+        private void DisplayCurrentStadium()
         {
             lbStadiumLocation.Text = _stadiums[_stadiumNumber]?.StadiumCity.CityLocation;
             lbStadiumName.Text = _stadiums[_stadiumNumber]?.StadiumTitle;

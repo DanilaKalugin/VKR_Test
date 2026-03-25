@@ -38,7 +38,7 @@ namespace VKR.PL.NET5
 
         private async void AddManagerForm_Load(object sender, EventArgs e)
         {
-            _manager.Id = await _managersBl.GetIdForNewManager();
+            _manager!.Id = await _managersBl.GetIdForNewManager();
             txtId.Value = _manager?.Id.ToString();
         }
 
@@ -82,9 +82,9 @@ namespace VKR.PL.NET5
             _manager.DateOfBirth = dtpBirthDate.Value.Date;
         }
 
-        private void txtFirstName_Validated(object sender, EventArgs e) => _manager.FirstName = txtFirstName.Value;
+        private void txtFirstName_Validated(object sender, EventArgs e) => _manager!.FirstName = txtFirstName.Value;
 
-        private void txtLastName_Validated_1(object sender, EventArgs e) => _manager.SecondName = txtLastName.Value;
+        private void txtLastName_Validated_1(object sender, EventArgs e) => _manager!.SecondName = txtLastName.Value;
 
         private async void AddManagerForm_VisibleChanged(object sender, EventArgs e)
         {
@@ -95,7 +95,7 @@ namespace VKR.PL.NET5
         private void cbPlaceOfBirth_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (_manager is null) return; 
-            _manager.PlaceOfBirth = (short)cbPlaceOfBirth.SelectedValue;
+            _manager.PlaceOfBirth = (short)cbPlaceOfBirth.SelectedValue!;
         }
     }
 }

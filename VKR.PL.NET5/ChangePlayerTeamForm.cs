@@ -17,9 +17,9 @@ namespace VKR.PL.NET5
         private readonly RostersBL _rostersBl = new();
         private readonly PlayerMovesBL _playerMovesBl = new();
 
-        private List<PlayerInLineupViewModel> _allPlayers;
+        private List<PlayerInLineupViewModel> _allPlayers = null!;
         private List<PlayerInLineupViewModel> _players = new();
-        private List<Team> _teams;
+        private List<Team> _teams = null!;
         private PlayerInLineupViewModel? _currentPlayer;
 
         private int _teamNumber;
@@ -85,15 +85,13 @@ namespace VKR.PL.NET5
         {
             var team = _teams[_teamNumber];
 
-            Visible = false;
-            using (var form = new SetNewNumberForPlayerForm(team, _currentPlayer))
+            using var form = new SetNewNumberForPlayerForm(team, _currentPlayer);
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.OK)
             {
-                form.ShowDialog();
-                if (form.DialogResult == DialogResult.OK)
-                    await _playerMovesBl.MovePlayerToNewTeam(_currentPlayer, team);
+                var player = form.Player;
+                await _playerMovesBl.MovePlayerToNewTeam(player, team);
             }
-
-            Visible = true;
 
             await FillTables();
         }

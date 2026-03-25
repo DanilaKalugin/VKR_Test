@@ -106,7 +106,7 @@ namespace VKR.PL.NET5
             Visible = true;
         }
 
-        private void btnNewMatch_Click(object sender, EventArgs e) => StartNewMatch(DateTime.Now, TypeOfMatchEnum.QuickMatch);
+        private void btnNewMatch_Click(object sender, EventArgs e) => StartNewMatch(new DateTime(2022,12,31), TypeOfMatchEnum.QuickMatch);
 
         private async void StartNewMatch(DateTime matchDate, TypeOfMatchEnum matchType)
         {

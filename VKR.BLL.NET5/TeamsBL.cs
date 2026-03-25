@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using VKR.EF.DAO;
@@ -87,6 +88,15 @@ namespace VKR.BLL.NET5
             var names = await _teamsDao.GetTeamNamesBySeason(season)
                 .ConfigureAwait(false);
             return names.OrderBy(n => n.TeamName).ToList();
+        }
+
+        public async Task UpdateTeamColorAsync(TeamColor color) => 
+            await _teamsDao.UpdateTeamColorAsync(color)
+                .ConfigureAwait(false);
+
+        public async Task AddNewTeamColor(Team team, Color color)
+        {
+            await _teamsDao.AddNewTeamColorAsync(team, color).ConfigureAwait(false);
         }
     }
 }

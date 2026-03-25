@@ -13,20 +13,20 @@ namespace VKR.PL.NET5
         private readonly PlayerBL _playerBl = new();
 
         private readonly Team _team;
-        private readonly Player? _player;
+        public readonly Player? Player;
         private byte _newNumber;
 
         public SetNewNumberForPlayerForm(Team team, Player? player)
         {
             InitializeComponent();
             _team = team;
-            _player = player;
+            Player = player;
 
             txtTeam.Value = _team.FullTeamName;
-            txtPlayer.Value = _player.FullName;
+            txtPlayer.Value = Player?.FullName;
 
             panel1.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogoForMenu/{_team.TeamAbbreviation}.png");
-            Text = $"Select new number for {_player.FullName} in {_team.TeamName}";
+            Text = $"Select new number for {Player?.FullName} in {_team.TeamName}";
         }
 
         private async void SetNewNumberForPlayerForm_Load(object sender, EventArgs e)
@@ -34,21 +34,21 @@ namespace VKR.PL.NET5
             var availableNumbers = await _teamsBl.GetAvailableNumbers(_team);
             domainUpDown1.Items.AddRange(availableNumbers);
 
-            if (!availableNumbers.Contains(_player.PlayerNumber))
+            if (!availableNumbers.Contains(Player!.PlayerNumber))
             {
-                var form = new ErrorForm($"Number {_player.PlayerNumber} is not available");
+                var form = new ErrorForm($"Number {Player.PlayerNumber} is not available");
                 form.ShowDialog();
                 domainUpDown1.SelectedItem = availableNumbers.Min();
             }
-            else domainUpDown1.SelectedItem = _player.PlayerNumber;
+            else domainUpDown1.SelectedItem = Player.PlayerNumber;
         }
 
         private async void btnConfirm_Click(object sender, EventArgs e)
         {
-            await _playerBl.SetNewNumberForPlayerAsync(_player, _newNumber);
+            await _playerBl.SetNewNumberForPlayerAsync(Player, _newNumber);
             DialogResult = DialogResult.OK;
         }
 
-        private void domainUpDown1_Validated(object sender, EventArgs e) => _newNumber = (byte)domainUpDown1.SelectedItem;
+        private void domainUpDown1_Validated(object sender, EventArgs e) => _newNumber = (byte)domainUpDown1.SelectedItem!;
     }
 }

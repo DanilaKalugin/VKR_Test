@@ -130,8 +130,7 @@ namespace VKR.EF.DAO
                         default:
                         {
                             if (player.CanPlayAsPitcher)
-                                list.Add(new PlayerInLineupViewModel(player, i, 0, playerInTeam.TeamId,
-                                    playerPosition));
+                                list.Add(new PlayerInLineupViewModel(player, i, 0, playerInTeam.TeamId, playerPosition));
                             break;
                         }
                     }

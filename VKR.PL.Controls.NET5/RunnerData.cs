@@ -17,7 +17,7 @@ namespace VKR.PL.Controls.NET5
         }
 
         private BaseTypeEnum _baseTypeEnum = BaseTypeEnum.First;
-        private Runner _runner;
+        private Runner _runner = null!;
         private Color _teamColor;
 
         public BaseTypeEnum BaseType
@@ -53,7 +53,7 @@ namespace VKR.PL.Controls.NET5
         }
 
         internal event EventHandler<RunnerChangedEventArgs> RunnerChanged;
-        public event EventHandler IsSelectedChanged;
+        public event EventHandler? IsSelectedChanged;
 
         public RunnerData()
         {
@@ -72,8 +72,7 @@ namespace VKR.PL.Controls.NET5
 
         private void RunnerData_Click(object sender, System.EventArgs e)
         {
-            if (IsSelectedChanged != null)
-                IsSelectedChanged(this, e);
+            IsSelectedChanged?.Invoke(this, e);
         }
 
         private void lbHeader_BackColorChanged(object sender, System.EventArgs e)

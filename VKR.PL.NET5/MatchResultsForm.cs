@@ -103,7 +103,7 @@ namespace VKR.PL.NET5
             cbSeasons.SelectedItem = _seasons.FirstOrDefault(season => season.Year == _season.Year);
 
             var seasonInfo = await _seasonBl.GetLeagueSeasonInfo(_season.Year);
-            
+
             _teams = await _teamsBl.GetTeamNamesForThisYear(_season);
 
             foreach (var team in _teams)
@@ -113,7 +113,7 @@ namespace VKR.PL.NET5
                 _teamLogos.Add(teamAbbreviation, teamLogo);
             }
 
-            
+
             ChangeMaxAndMinDateForThisSeason(seasonInfo);
 
             switch (_formType)

@@ -8,7 +8,13 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<TeamHistoricalName> builder)
         {
-            builder.ToTable("TeamHistoricalNames");
+            builder.ToTable("TeamHistoricalNames")
+                .ToTable(t => t.HasCheckConstraint("FirstSeasonGreaterThan1850", "FirstSeasonWithName > 1850"))
+                .ToTable(t => t.HasCheckConstraint("LastSeasonGreaterThan1850", "LastSeasonWithName > 1850"))
+                .ToTable(t =>
+                    t.HasCheckConstraint("LastSeasonMustBeGreaterThanFirst",
+                        "LastSeasonWithName >= FirstSeasonWithName"));
+
             builder.HasKey(thn => new {thn.TeamAbbreviation, thn.FirstSeasonWithName});
 
             builder.Property(t => t.TeamRegion)
@@ -21,10 +27,6 @@ namespace VKR.EF.Entities.Mappers
 
             builder.Property(thn => thn.FirstSeasonWithName)
                 .IsRequired();
-
-            builder.HasCheckConstraint("FirstSeasonGreaterThan1850", "FirstSeasonWithName > 1850");
-            builder.HasCheckConstraint("LastSeasonGreaterThan1850", "LastSeasonWithName > 1850");
-            builder.HasCheckConstraint("LastSeasonMustBeGreaterThanFirst", "LastSeasonWithName >= FirstSeasonWithName");
 
             builder.HasOne(thn => thn.Team)
                 .WithMany(t => t.HistoricalNames)

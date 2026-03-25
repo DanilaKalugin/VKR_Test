@@ -52,7 +52,6 @@
             this.lbLeague = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnEditTeamMainInfo = new System.Windows.Forms.Button();
-            this.lbManager = new System.Windows.Forms.Label();
             this.lbManagerHeader = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -65,9 +64,6 @@
             this.pbSubstitutionLogo = new System.Windows.Forms.Panel();
             this.pbCapLogo = new System.Windows.Forms.Panel();
             this.pbTeamLogo = new System.Windows.Forms.Panel();
-            this.lbManagerPlaceOfBirth = new System.Windows.Forms.Label();
-            this.lbManagerDateOfBirth = new System.Windows.Forms.Label();
-            this.pbManagerPhoto = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnEditTSMT = new System.Windows.Forms.Button();
             this.dgvStadiums = new System.Windows.Forms.DataGridView();
@@ -80,11 +76,14 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnAddTeamColor = new System.Windows.Forms.Button();
+            this.btnEditTeamColor = new System.Windows.Forms.Button();
             this.dgvTeamColors = new System.Windows.Forms.DataGridView();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.teamManager = new VKR.PL.Controls.NET5.ManagerInfo();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -251,16 +250,6 @@
             this.btnEditTeamMainInfo.UseVisualStyleBackColor = true;
             this.btnEditTeamMainInfo.Click += new System.EventHandler(this.btnEditTeamMainInfo_Click);
             // 
-            // lbManager
-            // 
-            this.lbManager.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbManager.Location = new System.Drawing.Point(104, 184);
-            this.lbManager.Name = "lbManager";
-            this.lbManager.Size = new System.Drawing.Size(250, 26);
-            this.lbManager.TabIndex = 103;
-            this.lbManager.Text = "label3";
-            this.lbManager.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lbManagerHeader
             // 
             this.lbManagerHeader.AutoSize = true;
@@ -310,6 +299,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabPage1.Controls.Add(this.teamManager);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label6);
@@ -317,9 +307,6 @@
             this.tabPage1.Controls.Add(this.pbSubstitutionLogo);
             this.tabPage1.Controls.Add(this.pbCapLogo);
             this.tabPage1.Controls.Add(this.pbTeamLogo);
-            this.tabPage1.Controls.Add(this.lbManagerPlaceOfBirth);
-            this.tabPage1.Controls.Add(this.lbManagerDateOfBirth);
-            this.tabPage1.Controls.Add(this.pbManagerPhoto);
             this.tabPage1.Controls.Add(this.btnEditTeamMainInfo);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.txtId);
@@ -330,7 +317,6 @@
             this.tabPage1.Controls.Add(this.lbManagerHeader);
             this.tabPage1.Controls.Add(this.lbRegion);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.lbManager);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.lbDivision);
             this.tabPage1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -412,34 +398,6 @@
             this.pbTeamLogo.Name = "pbTeamLogo";
             this.pbTeamLogo.Size = new System.Drawing.Size(90, 90);
             this.pbTeamLogo.TabIndex = 107;
-            // 
-            // lbManagerPlaceOfBirth
-            // 
-            this.lbManagerPlaceOfBirth.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbManagerPlaceOfBirth.Location = new System.Drawing.Point(104, 236);
-            this.lbManagerPlaceOfBirth.Name = "lbManagerPlaceOfBirth";
-            this.lbManagerPlaceOfBirth.Size = new System.Drawing.Size(250, 26);
-            this.lbManagerPlaceOfBirth.TabIndex = 106;
-            this.lbManagerPlaceOfBirth.Text = "label3";
-            this.lbManagerPlaceOfBirth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbManagerDateOfBirth
-            // 
-            this.lbManagerDateOfBirth.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbManagerDateOfBirth.Location = new System.Drawing.Point(104, 210);
-            this.lbManagerDateOfBirth.Name = "lbManagerDateOfBirth";
-            this.lbManagerDateOfBirth.Size = new System.Drawing.Size(250, 26);
-            this.lbManagerDateOfBirth.TabIndex = 105;
-            this.lbManagerDateOfBirth.Text = "label3";
-            this.lbManagerDateOfBirth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbManagerPhoto
-            // 
-            this.pbManagerPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbManagerPhoto.Location = new System.Drawing.Point(8, 184);
-            this.pbManagerPhoto.Name = "pbManagerPhoto";
-            this.pbManagerPhoto.Size = new System.Drawing.Size(90, 90);
-            this.pbManagerPhoto.TabIndex = 104;
             // 
             // tabPage2
             // 
@@ -620,6 +578,8 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabPage4.Controls.Add(this.btnAddTeamColor);
+            this.tabPage4.Controls.Add(this.btnEditTeamColor);
             this.tabPage4.Controls.Add(this.dgvTeamColors);
             this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Name = "tabPage4";
@@ -627,6 +587,32 @@
             this.tabPage4.Size = new System.Drawing.Size(692, 308);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Team colors";
+            // 
+            // btnAddTeamColor
+            // 
+            this.btnAddTeamColor.FlatAppearance.BorderSize = 0;
+            this.btnAddTeamColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddTeamColor.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddTeamColor.Location = new System.Drawing.Point(480, 261);
+            this.btnAddTeamColor.Name = "btnAddTeamColor";
+            this.btnAddTeamColor.Size = new System.Drawing.Size(100, 41);
+            this.btnAddTeamColor.TabIndex = 104;
+            this.btnAddTeamColor.Text = "ADD";
+            this.btnAddTeamColor.UseVisualStyleBackColor = true;
+            this.btnAddTeamColor.Click += new System.EventHandler(this.btnAddTeamColor_Click);
+            // 
+            // btnEditTeamColor
+            // 
+            this.btnEditTeamColor.FlatAppearance.BorderSize = 0;
+            this.btnEditTeamColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditTeamColor.Font = new System.Drawing.Font("MicroFLF", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnEditTeamColor.Location = new System.Drawing.Point(586, 261);
+            this.btnEditTeamColor.Name = "btnEditTeamColor";
+            this.btnEditTeamColor.Size = new System.Drawing.Size(100, 41);
+            this.btnEditTeamColor.TabIndex = 103;
+            this.btnEditTeamColor.Text = "EDIT";
+            this.btnEditTeamColor.UseVisualStyleBackColor = true;
+            this.btnEditTeamColor.Click += new System.EventHandler(this.btnEditTeamColor_Click);
             // 
             // dgvTeamColors
             // 
@@ -671,7 +657,6 @@
             this.dgvTeamColors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTeamColors.Size = new System.Drawing.Size(686, 247);
             this.dgvTeamColors.TabIndex = 2;
-            this.dgvTeamColors.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTeamColors_CellDoubleClick);
             // 
             // Column3
             // 
@@ -705,6 +690,14 @@
             // colorDialog
             // 
             this.colorDialog.FullOpen = true;
+            // 
+            // teamManager
+            // 
+            this.teamManager.Location = new System.Drawing.Point(8, 184);
+            this.teamManager.Manager = null;
+            this.teamManager.Name = "teamManager";
+            this.teamManager.Size = new System.Drawing.Size(381, 100);
+            this.teamManager.TabIndex = 114;
             // 
             // TeamInformationForm
             // 
@@ -753,7 +746,6 @@
         private System.Windows.Forms.Label lbLeague;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnEditTeamMainInfo;
-        private System.Windows.Forms.Label lbManager;
         private System.Windows.Forms.Label lbManagerHeader;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -764,9 +756,6 @@
         private System.Windows.Forms.DataGridView dgvStadiums;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stadium;
-        private System.Windows.Forms.Panel pbManagerPhoto;
-        private System.Windows.Forms.Label lbManagerDateOfBirth;
-        private System.Windows.Forms.Label lbManagerPlaceOfBirth;
         private System.Windows.Forms.Panel pbCapLogo;
         private System.Windows.Forms.Panel pbTeamLogo;
         private System.Windows.Forms.Panel pbSubstitutionLogo;
@@ -786,5 +775,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.Button btnAddTeamColor;
+        private System.Windows.Forms.Button btnEditTeamColor;
+        private Controls.NET5.ManagerInfo teamManager;
     }
 }

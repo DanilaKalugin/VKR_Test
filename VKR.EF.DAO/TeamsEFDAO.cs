@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -40,7 +41,7 @@ namespace VKR.EF.DAO
                 .ConfigureAwait(false);
 
             return teams.Join(standings,
-                    t => t.TeamAbbreviation, 
+                    t => t.TeamAbbreviation,
                     tb => tb.TeamAbbreviation,
                     (team, balance) => team.SetTeamBalance(balance))
                 .ToList();
@@ -50,7 +51,8 @@ namespace VKR.EF.DAO
         {
             await using var db = new VKRApplicationContext();
 
-            return await db.TeamStandings.FirstOrDefaultAsync(teamStandings => teamStandings.TeamAbbreviation == team.TeamAbbreviation &&
+            return await db.TeamStandings.FirstOrDefaultAsync(teamStandings =>
+                                                           teamStandings.TeamAbbreviation == team.TeamAbbreviation &&
                                                            teamStandings.Season == year &&
                                                            teamStandings.MatchType == matchType)
                 .ConfigureAwait(false);
@@ -122,6 +124,47 @@ namespace VKR.EF.DAO
                 .Where(t => t.FirstSeasonWithName <= season.Year &&
                             (t.LastSeasonWithName == null || t.LastSeasonWithName >= season.Year))
                 .ToListAsync();
+        }
+
+        public async Task UpdateTeamColorAsync(TeamColor teamColor)
+        {
+            await using var db = new VKRApplicationContext();
+
+            var teamColorDb = await db.TeamColors.FirstOrDefaultAsync(tc => tc.TeamName == teamColor.TeamName && 
+                                                                            tc.ColorNumber == teamColor.ColorNumber);
+
+            if (teamColorDb == null) return;
+
+            teamColorDb.RedComponent = teamColor.RedComponent;
+            teamColorDb.GreenComponent = teamColor.GreenComponent;
+            teamColorDb.BlueComponent = teamColor.BlueComponent;
+
+            db.TeamColors.Update(teamColorDb);
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
+        }
+
+        public async Task AddNewTeamColorAsync(Team team, Color color)
+        {
+            await using var db = new VKRApplicationContext();
+
+            var countOfColors = await db.TeamColors.CountAsync(tc => tc.TeamName == team.TeamAbbreviation);
+
+            var newTeamColor = new TeamColor()
+            {
+                TeamName = team.TeamAbbreviation,
+                ColorNumber = (byte)(countOfColors + 1),
+                RedComponent = color.R,
+                GreenComponent = color.G,
+                BlueComponent = color.B
+            };
+
+            await db.TeamColors.AddAsync(newTeamColor)
+                .ConfigureAwait(false);
+
+            await db.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
     }
 }

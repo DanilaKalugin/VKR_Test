@@ -35,7 +35,7 @@ namespace VKR.PL.NET5
 
         private void textPerson_Validated(object sender, EventArgs e) => _newRetiredNumber.Person = textPerson.Value;
 
-        private void numRetiredNumber_SelectedItemChanged(object sender, EventArgs e) => _newRetiredNumber.Number = (byte)numRetiredNumber.SelectedItem;
+        private void numRetiredNumber_SelectedItemChanged(object sender, EventArgs e) => _newRetiredNumber.Number = (byte)numRetiredNumber.SelectedItem!;
 
         private void dtpRetirementDate_Validated(object sender, EventArgs e) => _newRetiredNumber.Date = dtpRetirementDate.Value;
 

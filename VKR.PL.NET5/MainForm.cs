@@ -60,7 +60,7 @@ namespace VKR.PL.NET5
         {
             teamAbbreviation.Text = team.TeamAbbreviation;
             teamAbbreviation.BackColor = team.TeamColorForThisMatch;
-            runsScored.BackColor = Color.FromArgb((int)(team.TeamColorForThisMatch.R * 0.9), (int)(team.TeamColorForThisMatch.G * 0.9), (int)(team.TeamColorForThisMatch.B * 0.9));
+            runsScored.BackColor = CorrectForeColorForAllBackColors.ChangeColorBrightness(team.TeamColorForThisMatch, -0.1);
             teamTitle.Text = team.TeamName.ToUpper();
             teamTitle.BackColor = team.TeamColorForThisMatch;
             teamLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{team.TeamAbbreviation}.png");
@@ -126,7 +126,7 @@ namespace VKR.PL.NET5
             panelCurrentBatter.Visible = gameSituation is { Strikes: 0, Balls: 0 };
 
             panel8.BackColor = gameSituation.Offense.TeamColorForThisMatch;
-            btnChangeBatter.BackColor = Color.FromArgb((int)(gameSituation.Offense.TeamColorForThisMatch.R * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.G * 0.9), (int)(gameSituation.Offense.TeamColorForThisMatch.B * 0.9));
+            btnChangeBatter.BackColor = CorrectForeColorForAllBackColors.ChangeColorBrightness(gameSituation.Offense.TeamColorForThisMatch, -0.1);
 
             pbCurrentOffenseLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{_newGameSituation.Offense.TeamAbbreviation}.png");
             var nextBatter = GetBatterByGameSituation(gameSituation);

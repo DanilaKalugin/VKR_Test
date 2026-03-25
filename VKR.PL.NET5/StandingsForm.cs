@@ -20,10 +20,10 @@ namespace VKR.PL.NET5
 
         private readonly Team? _homeTeam;
         private readonly Team? _awayTeam;
-        private List<TeamColor> _teamsColors;
-        private List<Season> _seasons;
-        private Season _season;
-        private LeagueSeason _leagueSeason;
+        private List<TeamColor> _teamsColors = null!;
+        private List<Season> _seasons = null!;
+        private Season _season = null!;
+        private LeagueSeason _leagueSeason = null!;
 
         public StandingsForm(Team home, Team away) : this()
         {
@@ -81,7 +81,7 @@ namespace VKR.PL.NET5
                 dgvStandings.Rows.Add(row);
             }
 
-            Height = Math.Min(97 + dgvStandings.RowTemplate.Height * (teamsInGroup + 1), Screen.PrimaryScreen.Bounds.Height);
+            Height = Math.Min(97 + dgvStandings.RowTemplate.Height * (teamsInGroup + 1), Screen.PrimaryScreen!.Bounds.Height);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e) => GetNewTable(cbFilter.SelectedIndex);
@@ -148,7 +148,7 @@ namespace VKR.PL.NET5
         private async void cbSeasons_SelectedIndexChanged(object sender, EventArgs e)
         {
             var season = cbSeasons.SelectedValue as Season;
-            var leagueSeason = await _seasonBl.GetLeagueSeasonInfo(season.Year);
+            var leagueSeason = await _seasonBl.GetLeagueSeasonInfo(season!.Year);
 
             ChangeMaxAndMinDateForThisSeason(leagueSeason);
         }

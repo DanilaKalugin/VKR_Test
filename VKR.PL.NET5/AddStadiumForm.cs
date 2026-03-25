@@ -92,7 +92,7 @@ namespace VKR.PL.NET5
         private void cbStadiumLocation_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (_stadium is null) return;
-            _stadium.StadiumLocation = (short)cbStadiumLocation.SelectedValue;
+            _stadium.StadiumLocation = (short)cbStadiumLocation.SelectedValue!;
         }
     }
 }

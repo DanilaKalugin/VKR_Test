@@ -24,15 +24,15 @@ namespace VKR.PL.NET5
         private readonly RostersBL _rostersBl = new();
         private readonly PlayerMovesBL _playerMovesBl = new();
 
-        private List<List<List<PlayerInLineupViewModel>>> _teamsLineups;
-        private List<List<List<PlayerInLineupViewModel>>> _teamsBench;
-        private List<Team> _teams;
+        private List<List<List<PlayerInLineupViewModel>>> _teamsLineups = null!;
+        private List<List<List<PlayerInLineupViewModel>>> _teamsBench = null!;
+        private List<Team> _teams = null!;
         private int _teamNumber;
         private int _lineupNumber;
         private readonly string[] _typesOfLineups = { "RH W/ DH", "RH NO DH", "LH W/ DH", "LH NO DH", "ROTATION" };
         private bool _lineupChanged;
         private DateTime _matchDate;
-        private PlayerInLineupViewModel _player;
+        private PlayerInLineupViewModel _player = null!;
 
         public LineupsForm(RosterType rosterType, bool isAdmin)
         {
@@ -80,8 +80,8 @@ namespace VKR.PL.NET5
             lbLineUpType.ForeColor = _teams[teamNumber].TeamColors[0].Color;
             lbPlayerName.ForeColor = _teams[teamNumber].TeamColors[0].Color;
 
-            lbPlayerNumber.ForeColor = Color.FromArgb((int)(_teams[teamNumber].TeamColors[0].Color.R * 0.7), (int)(_teams[teamNumber].TeamColors[0].Color.G * 0.7), (int)(_teams[teamNumber].TeamColors[0].Color.B * 0.7));
-            dgvBench.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb((int)(_teams[teamNumber].TeamColors[0].Color.R * 0.65), (int)(_teams[teamNumber].TeamColors[0].Color.G * 0.65), (int)(_teams[teamNumber].TeamColors[0].Color.B * 0.65));
+            lbPlayerNumber.ForeColor = CorrectForeColorForAllBackColors.ChangeColorBrightness(_teams[teamNumber].TeamColors[0].Color, -0.3);
+            dgvBench.ColumnHeadersDefaultCellStyle.ForeColor = CorrectForeColorForAllBackColors.ChangeColorBrightness(_teams[teamNumber].TeamColors[0].Color, -0.35);
 
             lbl_LineupHeader.ForeColor = _teams[teamNumber].TeamColors[0].Color;
             DisplayRoster(teamNumber, _lineupNumber);

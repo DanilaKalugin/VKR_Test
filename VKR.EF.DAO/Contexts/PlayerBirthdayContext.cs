@@ -17,7 +17,7 @@ namespace VKR.EF.DAO.Contexts
             }
             catch
             {
-                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Integrated Security=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-I3JNR48\SQLEXPRESS;Initial Catalog=VKR_EF;Trusted_Connection=True; TrustServerCertificate=True");
             }
         }
 

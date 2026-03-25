@@ -192,4 +192,7 @@ Would you like to replace him?</value>
   <data name="NoAvailablePlayersInTeamMessage" xml:space="preserve">
     <value>There are no available players</value>
   </data>
+  <data name="PitchersListHeader" xml:space="preserve">
+	  <value>BULLPEN</value>
+  </data>
 </root>

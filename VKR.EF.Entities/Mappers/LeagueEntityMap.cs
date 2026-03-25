@@ -24,7 +24,8 @@ namespace VKR.EF.Entities.Mappers
                 .IsRequired()
                 .HasColumnName("LeagueDHRule");
 
-            builder.Property(l => l.YearOfFoundation).IsRequired()
+            builder.Property(l => l.YearOfFoundation)
+                .IsRequired()
                 .HasColumnName("LeagueYearOfFoundation")
                 .HasColumnType("smallint");
         }

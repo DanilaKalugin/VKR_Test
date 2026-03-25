@@ -39,6 +39,6 @@ namespace VKR.PL.NET5
 
         private void txtCityName_Validated(object sender, EventArgs e) => _city.Name = txtCityName.Value;
 
-        private void cbCityRegion_SelectionChangeCommitted(object sender, EventArgs e) => _city.RegionCode = (string)cbCityRegion.SelectedValue;
+        private void cbCityRegion_SelectionChangeCommitted(object sender, EventArgs e) => _city.RegionCode = (string)cbCityRegion.SelectedValue!;
     }
 }

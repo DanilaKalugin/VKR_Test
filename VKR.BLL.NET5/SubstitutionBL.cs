@@ -23,8 +23,9 @@ namespace VKR.BLL.NET5
             return pitchers;
         }
 
-        public async Task<List<Batter>> GetAvailableBatters(Match match, Team team, Batter batter) => await _substitutionDao.GetAvailableBatters(match, team, batter)
-            .ConfigureAwait(false);
+        public async Task<List<Batter>> GetAvailableBatters(Match match, Team team, Batter batter) => 
+            await _substitutionDao.GetAvailableBatters(match, team, batter)
+                .ConfigureAwait(false);
 
         public async Task SubstitutePitcher(Match match, Pitcher pitcher) =>
             await _substitutionDao.SubstitutePitcher(match, pitcher)

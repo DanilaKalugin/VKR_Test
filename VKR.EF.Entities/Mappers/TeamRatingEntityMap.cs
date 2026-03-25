@@ -8,7 +8,28 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<TeamRating> builder)
         {
-            builder.ToTable("TeamRating");
+            builder.ToTable("TeamRating").ToTable(tableBuilder =>
+            {
+                tableBuilder.HasCheckConstraint("StrikeZoneProbability1", "StrikeZoneProbability BETWEEN 1 AND 3000");
+                tableBuilder.HasCheckConstraint("HitByPitchProbability1", "HitByPitchProbability BETWEEN 1 AND 3000");
+                tableBuilder.HasCheckConstraint("SwingInStrikeZoneProbability1", "SwingInStrikeZoneProbability BETWEEN 1 AND 1000");
+                tableBuilder.HasCheckConstraint("SwingOutsideStrikeZoneProbability1", "SwingOutsideStrikeZoneProbability BETWEEN 1 AND 1000");
+                tableBuilder.HasCheckConstraint("HittingProbability1", "HittingProbability BETWEEN 1 AND 2000");
+                tableBuilder.HasCheckConstraint("FoulProbability1", "FoulProbability BETWEEN 1 AND 2000");
+                tableBuilder.HasCheckConstraint("SingleProbability1", "SingleProbability BETWEEN 1 AND 2000");
+                tableBuilder.HasCheckConstraint("DoubleProbability1", "DoubleProbability BETWEEN 1 AND 2000");
+                tableBuilder.HasCheckConstraint("HomeRunProbability1", "HomeRunProbability BETWEEN 1 AND 2000");
+                tableBuilder.HasCheckConstraint("TripleProbability1", "TripleProbability BETWEEN 1 AND 2000");
+                tableBuilder.HasCheckConstraint("PopoutOnFoulProbability1", "PopoutOnFoulProbability BETWEEN 1 AND 1000");
+                tableBuilder.HasCheckConstraint("FlyoutOnHomeRunProbability1", "FlyoutOnHomeRunProbability BETWEEN 1 AND 1000");
+                tableBuilder.HasCheckConstraint("GroundoutProbability1", "GroundoutProbability BETWEEN 1 AND 1000");
+                tableBuilder.HasCheckConstraint("FlyoutProbability1", "FlyoutProbability BETWEEN 1 AND 1000");
+                tableBuilder.HasCheckConstraint("DoublePlayProbability1", "DoublePlayProbability BETWEEN 1 AND 100");
+                tableBuilder.HasCheckConstraint("SacrificeFlyProbability1", "SacrificeFlyProbability BETWEEN 1 AND 100");
+                tableBuilder.HasCheckConstraint("StealingBaseProbability1", "StealingBaseProbability BETWEEN 1 AND 1000");
+                tableBuilder.HasCheckConstraint("StealingBaseSuccessfulAttemptProbability1", "StealingBaseSuccessfulAttemptProbability BETWEEN 1 AND 100");
+                tableBuilder.HasCheckConstraint("SuccessfulBuntAttemptProbability1", "SuccessfulBuntAttemptProbability BETWEEN 1 AND 1000");
+            });
 
             builder.HasKey(t => t.TeamAbbreviation);
 
@@ -78,26 +99,6 @@ namespace VKR.EF.Entities.Mappers
             builder.Property(t => t.SuccessfulBuntAttemptProbability)
                 .HasColumnType("smallint")
                 .IsRequired();
-
-            builder.HasCheckConstraint("StrikeZoneProbability1", "StrikeZoneProbability BETWEEN 1 AND 3000");
-            builder.HasCheckConstraint("HitByPitchProbability1", "HitByPitchProbability BETWEEN 1 AND 3000");
-            builder.HasCheckConstraint("SwingInStrikeZoneProbability1", "SwingInStrikeZoneProbability BETWEEN 1 AND 1000");
-            builder.HasCheckConstraint("SwingOutsideStrikeZoneProbability1", "SwingOutsideStrikeZoneProbability BETWEEN 1 AND 1000");
-            builder.HasCheckConstraint("HittingProbability1", "HittingProbability BETWEEN 1 AND 2000");
-            builder.HasCheckConstraint("FoulProbability1", "FoulProbability BETWEEN 1 AND 2000");
-            builder.HasCheckConstraint("SingleProbability1", "SingleProbability BETWEEN 1 AND 2000");
-            builder.HasCheckConstraint("DoubleProbability1", "DoubleProbability BETWEEN 1 AND 2000");
-            builder.HasCheckConstraint("HomeRunProbability1", "HomeRunProbability BETWEEN 1 AND 2000");
-            builder.HasCheckConstraint("TripleProbability1", "TripleProbability BETWEEN 1 AND 2000");
-            builder.HasCheckConstraint("PopoutOnFoulProbability1", "PopoutOnFoulProbability BETWEEN 1 AND 1000");
-            builder.HasCheckConstraint("FlyoutOnHomeRunProbability1", "FlyoutOnHomeRunProbability BETWEEN 1 AND 1000");
-            builder.HasCheckConstraint("GroundoutProbability1", "GroundoutProbability BETWEEN 1 AND 1000");
-            builder.HasCheckConstraint("FlyoutProbability1", "FlyoutProbability BETWEEN 1 AND 1000");
-            builder.HasCheckConstraint("DoublePlayProbability1", "DoublePlayProbability BETWEEN 1 AND 100");
-            builder.HasCheckConstraint("SacrificeFlyProbability1", "SacrificeFlyProbability BETWEEN 1 AND 100");
-            builder.HasCheckConstraint("StealingBaseProbability1", "StealingBaseProbability BETWEEN 1 AND 1000");
-            builder.HasCheckConstraint("StealingBaseSuccessfulAttemptProbability1", "StealingBaseSuccessfulAttemptProbability BETWEEN 1 AND 100");
-            builder.HasCheckConstraint("SuccessfulBuntAttemptProbability1", "SuccessfulBuntAttemptProbability BETWEEN 1 AND 1000");
 
             builder.HasOne(tr => tr.Team)
                 .WithOne(t => t.TeamRating)

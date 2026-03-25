@@ -249,6 +249,15 @@ namespace VKR.PL.NET5.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BULLPEN.
+        /// </summary>
+        internal static string PitchersListHeader {
+            get {
+                return ResourceManager.GetString("PitchersListHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The player on mound is not a pitcher.
         ///Would you like to replace him?.
         /// </summary>

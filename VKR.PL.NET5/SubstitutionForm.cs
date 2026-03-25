@@ -13,7 +13,7 @@ namespace VKR.PL.NET5
     {
         private readonly Team _currentTeam;
         private readonly List<Batter> _batters;
-        public Batter NewBatterForThisTeam;
+        public Batter NewBatterForThisTeam = null!;
 
         private void PitcherSubstitutionForm_Load(object sender, EventArgs e)
         {

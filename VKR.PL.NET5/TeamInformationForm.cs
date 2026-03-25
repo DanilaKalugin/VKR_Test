@@ -14,8 +14,8 @@ namespace VKR.PL.NET5
         private readonly TeamsBL _teamsBl = new();
         private readonly PrimaryTeamColorBL _primaryTeamColorBl = new();
 
-        private List<Team> _teams;
-        private List<TeamColor> _primaryColor;
+        private List<Team> _teams = null!;
+        private List<TeamColor> _primaryColor = null!;
         private int _teamNumber;
 
         public TeamInformationForm(bool isEditing)
@@ -24,6 +24,8 @@ namespace VKR.PL.NET5
             btnAddRetiredNumber.Visible = isEditing;
             btnEditTSMT.Visible = isEditing;
             btnEditTeamMainInfo.Visible = isEditing;
+            btnAddTeamColor.Visible = isEditing;
+            btnEditTeamColor.Visible = isEditing;
         }
 
         private async void btnIncreaseTeamNumberBy1_Click(object sender, EventArgs e)
@@ -61,7 +63,7 @@ namespace VKR.PL.NET5
             pbCapLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/SmallTeamLogos/{team.TeamAbbreviation}.png");
             pbSubstitutionLogo.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/TeamLogosForSubstitution/{team.TeamAbbreviation}.png");
 
-            ShowManager(team.Manager);
+            teamManager.Manager = team.Manager;
             ShowTeamStadiums(team);
             await ShowRetiredNumbers(team);
             ShowTeamColors(team);
@@ -92,14 +94,6 @@ namespace VKR.PL.NET5
             foreach (var retiredNumber in retiredNumbers)
                 dgvRetiredNumbers.Rows.Add(retiredNumber.Number, retiredNumber.Person,
                     retiredNumber.Date.ToShortDateString());
-        }
-
-        private void ShowManager(Manager? teamManager)
-        {
-            lbManager.Text = teamManager?.FullName ?? string.Empty;
-            lbManagerDateOfBirth.Text = teamManager?.DateOfBirth.ToShortDateString() ?? string.Empty;
-            lbManagerPlaceOfBirth.Text = teamManager?.City.CityLocation ?? string.Empty;
-            pbManagerPhoto.BackgroundImage = ImageHelper.ShowImageIfExists($"Images/Managers/Manager{teamManager?.Id:000}.jpg");
         }
 
         private void ShowTeamStadiums(Team team)
@@ -179,21 +173,33 @@ namespace VKR.PL.NET5
             Visible = true;
         }
 
-        private void dgvTeamColors_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private async void btnAddTeamColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() != DialogResult.OK) return;
+            var color = colorDialog.Color;
+
+            await _teamsBl.AddNewTeamColor(_teams[_teamNumber], color);
+
+            await FillTeamsAndColors();
+            await ShowTeam();
+        }
+
+        private async void btnEditTeamColor_Click(object sender, EventArgs e)
         {
             var colorNumber = dgvTeamColors.SelectedRows[0].Index;
 
             colorDialog.Color = _teams[_teamNumber].TeamColors[colorNumber].Color;
-            if (colorDialog.ShowDialog() == DialogResult.OK)
-            {
-                var color = colorDialog.Color;
+            if (colorDialog.ShowDialog() != DialogResult.OK) return;
+            var color = colorDialog.Color;
 
-                _teams[_teamNumber].TeamColors[colorNumber].RedComponent = color.R;
-                _teams[_teamNumber].TeamColors[colorNumber].GreenComponent = color.G;
-                _teams[_teamNumber].TeamColors[colorNumber].BlueComponent = color.B;
+            _teams[_teamNumber].TeamColors[colorNumber].RedComponent = color.R;
+            _teams[_teamNumber].TeamColors[colorNumber].GreenComponent = color.G;
+            _teams[_teamNumber].TeamColors[colorNumber].BlueComponent = color.B;
 
-                ShowTeamColors(_teams[_teamNumber]);
-            }
+            await _teamsBl.UpdateTeamColorAsync(_teams[_teamNumber].TeamColors[colorNumber]);
+
+            await FillTeamsAndColors();
+            await ShowTeam();
         }
     }
 }

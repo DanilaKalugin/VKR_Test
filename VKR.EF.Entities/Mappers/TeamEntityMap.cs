@@ -8,7 +8,10 @@ namespace VKR.EF.Entities.Mappers
     {
         public void Configure(EntityTypeBuilder<Team> builder)
         {
-            builder.ToTable("Teams");
+            builder.ToTable("Teams").ToTable(t =>
+            {
+                t.HasCheckConstraint("FoundationYear", "FoundationYear BETWEEN 1850 AND 2022");
+            });
 
             builder.HasKey(t => t.TeamAbbreviation);
 
@@ -43,8 +46,6 @@ namespace VKR.EF.Entities.Mappers
                 .IsRequired();
 
             builder.HasAlternateKey(t => new { t.TeamCity, t.TeamName });
-
-            builder.HasCheckConstraint("FoundationYear", "FoundationYear BETWEEN 1850 AND 2022");
         }
     }
 }

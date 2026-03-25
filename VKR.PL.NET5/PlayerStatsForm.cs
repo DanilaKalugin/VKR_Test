@@ -24,13 +24,13 @@ namespace VKR.PL.NET5
         private readonly PlayerPositionsBL _playerPositionsBl = new();
         private readonly SeasonBL _seasonBl = new();
 
-        private List<Team> _teams;
-        private List<TeamColor> _primaryColors;
+        private List<Team> _teams = null!;
+        private List<TeamColor> _primaryColors= null!;
 
-        private List<Player> _batters;
-        private List<Player> _pitchers;
-        private List<TeamStatsViewModel> _teamBattingStats;
-        private List<TeamStatsViewModel> _teamPitchingStats;
+        private List<Player> _batters= null!;
+        private List<Player> _pitchers= null!;
+        private List<TeamStatsViewModel> _teamBattingStats= null!;
+        private List<TeamStatsViewModel> _teamPitchingStats= null!;
         private Season? _season;
 
         private readonly SortMode[][] _sortModes = new SortMode[2][];
@@ -539,8 +539,8 @@ namespace VKR.PL.NET5
                 {
                     var positionTitle = cbPositions.SelectedValue is PlayerPosition position ? position.ShortTitle : "";
 
-                    using var pitchersTask = _statsBl.GetPitchersStats(_season, cbPlayers.Text, cbTeams.SelectedValue.ToString());
-                    using var battersTask = _statsBl.GetBattersStats(_season, cbTeams.SelectedValue.ToString(), cbPlayers.Text, positionTitle);
+                    using var pitchersTask = _statsBl.GetPitchersStats(_season, cbPlayers.Text, cbTeams.SelectedValue?.ToString());
+                    using var battersTask = _statsBl.GetBattersStats(_season, cbTeams.SelectedValue?.ToString(), cbPlayers.Text, positionTitle);
                     await Task.WhenAll(pitchersTask, battersTask);
                     (_pitchers, _batters) = (pitchersTask.Result, battersTask.Result);
 
